@@ -175,8 +175,8 @@ const EquipmentUI = {
     });
     grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
       icon: '✚', accent: 'var(--tree-extra)', title: type.Title_en, sub: type.Description_en,
-      curLabel: row ? `${fmtNum(row.RateAmount)}%` : '0%',
-      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount)}%` : null,
+      curLabel: row ? `${fmtNum(row.RateAmount / 10)}%` : '0%',
+      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount / 10)}%` : null,
       level, maxLevel,
     })).join('');
     grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
@@ -208,8 +208,8 @@ const EquipmentUI = {
       </div>`;
     grid.innerHTML = gradeHTML + cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
       icon: '✦', accent: 'var(--tree-special)', title: type.Title_en, sub: type.Description_en,
-      curLabel: row ? `${fmtNum(row.RateAmount)}%` : '0%',
-      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount)}%` : null,
+      curLabel: row ? `${fmtNum(row.RateAmount / 10)}%` : '0%',
+      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount / 10)}%` : null,
       level, maxLevel,
     })).join('');
 
@@ -240,8 +240,8 @@ const EquipmentUI = {
     });
     grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
       icon: '❖', accent: 'var(--tree-soul)', title: type.Title_en, sub: type.Description_en,
-      curLabel: row ? `${fmtNum(row.RateAmount)}%` : '0%',
-      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount)}%` : null,
+      curLabel: row ? `${fmtNum(row.RateAmount / 10)}%` : '0%',
+      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount / 10)}%` : null,
       level, maxLevel,
     })).join('');
     grid.querySelectorAll('.upgrade-row').forEach((el, i) => {

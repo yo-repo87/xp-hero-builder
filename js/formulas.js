@@ -268,12 +268,15 @@ const Formulas = {
   //               value from their own game screen if they know it.
   //   'unmodeled' — deliberately left at 0 rather than guessed.
   //
-  // Known unit assumption: Extra/Special/Soul upgrade RateAmount and Trait
-  // rate_amount fields are stored as plain percent in their tables (e.g. 6 =
-  // 6%) but the confirmed Dps formula's source dictionary is per-mille
-  // (1000 = 100%) — so each is multiplied by 10 here. This conversion itself
-  // was not independently confirmed by decompilation; flagged as 'mapped',
-  // not 'confirmed'.
+  // CONFIRMED unit fix (2026-09-04, against the real game): Extra/Special/
+  // Soul upgrade RateAmount is stored at 10x the displayed percent (e.g. 48
+  // means 4.8%, confirmed against a live account's Bulk Up row) — i.e. it's
+  // already directly in the Dps formula's per-mille scale (1000 = 100%), so
+  // these sources use RateAmount as-is, no conversion. `TraitRoll` below is
+  // a different table (TraitSynergyInfoData, not Extra/Special/SoulUpgrade
+  // LevelData) whose rate_amount scale hasn't been verified the same way —
+  // still tagged 'mapped' rather than 'confirmed', and still ×10'd pending
+  // real evidence either way; don't assume it shares this fix.
   totalDpsBreakdown(heroId) {
     const hero = State.getHero(heroId);
     const src = {}; // EStatContentType key -> { value, tag, note }
@@ -379,15 +382,15 @@ const Formulas = {
     {
       const specialRec = State.data.upgrades.special[1];
       const specialRow = specialRec ? this.specialRow(1, specialRec.level) : null;
-      set('SpecialUpgrade', specialRow ? num(specialRow.RateAmount) * 10 : 0, 'mapped', 'Special Upgrade "MASSIVE MUSCLE" (option_type 1)');
+      set('SpecialUpgrade', specialRow ? num(specialRow.RateAmount) : 0, 'mapped', 'Special Upgrade "MASSIVE MUSCLE" (option_type 1)');
 
       const extraLevel = State.data.upgrades.extra[1] || 0;
       const extraRow = this.extraRow(1, extraLevel);
-      set('ExtraUpgrade', extraRow ? num(extraRow.RateAmount) * 10 : 0, 'mapped', 'Extra Upgrade "Bulk Up" (option_type 1)');
+      set('ExtraUpgrade', extraRow ? num(extraRow.RateAmount) : 0, 'mapped', 'Extra Upgrade "Bulk Up" (option_type 1)');
 
       const soulLevel = State.data.upgrades.soul[1] || 0;
       const soulRow = this.soulRow(1, soulLevel);
-      set('SoulUpgrade', soulRow ? num(soulRow.RateAmount) * 10 : 0, 'mapped', 'Soul Upgrade "Battle Boost" (option_type 1)');
+      set('SoulUpgrade', soulRow ? num(soulRow.RateAmount) : 0, 'mapped', 'Soul Upgrade "Battle Boost" (option_type 1)');
     }
 
     // TraitRoll — achieved synergy bonus for option_type 1 ("Total Attack Power"), percent->per-mille.
