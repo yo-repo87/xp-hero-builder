@@ -14,6 +14,17 @@ const EquipmentUI = {
 
   // ---------------- Traits ----------------
 
+  // CORRECTED 2026-09-04: trait rate_amount fields (TraitOptionData and
+  // TraitSynergyInfoData) previously used a guessed "÷100 if >100, else
+  // as-is" heuristic with no real evidence behind it — it produced
+  // inconsistent output (dropping the % sign entirely above 100, e.g. a
+  // rarity-3 Power trait showed a bare "1.2" instead of a percent) and was
+  // never actually verified. Decompiling TraitSynergyController's real
+  // stat-modification path (see Formulas.totalDpsBreakdown's TraitRoll
+  // source) confirms rate_amount is per-mille (1000 = 100%) — the exact
+  // same unit convention already confirmed for Extra/Special/SoulUpgrade's
+  // RateAmount. Both option_info_desc_en and synergy_info_desc_en's `{0}%`
+  // templates expect a plain percent, so display is now a uniform ÷10.
   _renderTraits() {
     const root = document.getElementById('trait-groups');
     const groups = Game.index.traitSynergyGroups; // Map<groupNum, rows[]>
@@ -32,7 +43,7 @@ const EquipmentUI = {
             <div class="trait-slot-icon">${synType ? synType.name_en.split(' ').map(w => w[0]).join('').slice(0,2) : '?'}</div>
             <div class="trait-slot-info">
               <div class="ts-title">${chosen ? escapeHtml((optType?.name_en) || 'Trait') : `<span style="color:var(--ink-faint)">Empty — ${synType ? escapeHtml(synType.name_en) : ''}</span>`}</div>
-              <div class="ts-sub">${chosen ? `+${fmtNum(chosen.rate_amount / (chosen.rate_amount > 100 ? 100 : 1))}${chosen.rate_amount > 100 ? '' : '%'} · rarity ${chosen.option_rarity}` : 'Tap to set'}</div>
+              <div class="ts-sub">${chosen ? `+${fmtNum(chosen.rate_amount / 10)}% · rarity ${chosen.option_rarity}` : 'Tap to set'}</div>
             </div>
           </div>`;
       }).join('');
@@ -48,7 +59,7 @@ const EquipmentUI = {
           ? `<span style="color:var(--ink-faint);font-size:.82rem">Fill matching stat types across slots to unlock synergy bonuses.</span>`
           : synergies.map(s => {
               const t = Game.index.traitOptionTypeById.get(s.optionType);
-              const desc = (t?.synergy_info_desc_en || '{0}%').replace('{0}', fmtNum(s.bonus.rate_amount));
+              const desc = (t?.synergy_info_desc_en || '{0}%').replace('{0}', fmtNum(s.bonus.rate_amount / 10));
               return `<div class="synergy-row"><span>${escapeHtml(t?.name_en || 'Stat')} ×${s.count}</span><span class="mono" style="color:var(--gold)">${escapeHtml(desc)}</span></div>`;
             }).join('')}
       </div>
@@ -75,7 +86,7 @@ const EquipmentUI = {
             const t = Game.index.traitOptionTypeById.get(o.option_type);
             const r = Game.rarityColor(Math.min(o.option_rarity, 9));
             const selected = current === o.id;
-            const desc = (t?.option_info_desc_en || '{0}').replace('{0}', fmtNum(o.rate_amount / (o.rate_amount > 100 ? 100 : 1)));
+            const desc = (t?.option_info_desc_en || '{0}').replace('{0}', fmtNum(o.rate_amount / 10));
             return `
               <div class="picker-card ${selected ? 'selected' : ''}" data-trait="${o.id}" style="border-color:${r.c}55;text-align:left">
                 <div class="pc-name">${escapeHtml(t?.name_en || 'Trait')}</div>

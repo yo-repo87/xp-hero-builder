@@ -138,10 +138,13 @@ short version:
 | System | Status |
 |---|---|
 | Weapon base DPS (`base + perLevel*(level-1)`) | Real data (`BalancingData_Rarity`), but confirmed to be only the `Weapon` slice of the real account-wide `Dps` stat, not the full number (`WeaponLevelBonus` is now its own confirmed source — see next row) |
-| Weapon Level-Up Bonuses (fixed, up to 8 per weapon fusion chain) | **Confirmed by decompilation** 2026-09-04 (`RegistWeaponLevelBonus`, RVA `0x2796544`) — a completely separate mechanic from the random-roll "Bonus Affixes" (`WeaponBonusOptionData`/`BonusOptionCount`, sibling function `RegistWeaponBonusOption`). See chronological log entry below. |
+| Weapon Level-Up Bonuses (fixed, up to 8 per weapon fusion chain) | **Confirmed by decompilation**, corrected 2026-09-04 (`RegistWeaponLevelBonus`, RVA `0x2796544`) — a completely separate mechanic from the random-roll "Bonus Affixes" (`WeaponBonusOptionData`/`BonusOptionCount`, sibling function `RegistWeaponBonusOption`). Unlock gate is the weapon's own LEVEL crossing `BalancingData_Rarity.Get(row.Rarity,1).MaxLevel`, not fused rarity (first-pass guess was wrong — corrected same day per a direct user report). See chronological log entries below. |
 | Hero base stats (level/star/evolution) | Real data, checkpoint-interpolated where needed |
+| Hero bonus stat labels (Level/Star/Evolution "Stat Bonuses Unlocked", Guide tab "Recommended Stat Focus") | **Fixed 2026-09-04** — these OptionType fields are `E_BonusOption`-typed in the compiled game (confirmed by decompilation), not `StatData`'s id space; the two only agree at id 1. Now uses `BONUS_OPTION_NAMES` (data.js), sourced from the real `HERO_BONUS_OPTION_*` Locale strings. |
+| Hero Evolution bonus value | **Fixed 2026-09-04** by decompilation (`AddOwnEvolveStatModifications`) — was wrongly modeled as cumulative-sum across every reached tier; the real client does a single lookup at the exact current tier (`GetByCostumeAndRarity`) and multiplies its `OptionValue` by 10. |
 | Trait synergy token-counting | **Confirmed correct by decompilation** (`TraitSynergyController.CalculateSynergyTokens`) |
-| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are best-effort (each tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI — see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus` is now `confirmed` (see above); the rest remain `mapped`/`manual`/`unmodeled`. |
+| Trait/synergy percent display (Equipment tab) and `TraitRoll` Dps source | **Fixed 2026-09-04** — `rate_amount` (`TraitOptionData`, `TraitSynergyInfoData`) is per-mille (confirmed by decompiling `TraitSynergyController.GetStatModifications`), the same convention as Extra/Special/SoulUpgrade's `RateAmount`. Display now divides by 10 uniformly (replacing a guessed, inconsistent ">100 ? /100 : /1" heuristic); the Dps formula's `TraitRoll` source uses the raw value directly (no ×10 — that had been an unverified guess borrowed from the RateAmount fix and was wrong). |
+| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Farmable Items sources | Only 4/56 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss raids were **not** explored as reward sources. |
 | Combat damage formula (not used by app) | Mostly confirmed structurally; two basic-attack-only normalizer values in `CalculateDamageInternal` were left unidentified rather than guessed |
@@ -336,6 +339,104 @@ before (Special Upgrade caps) and values honesty over completeness.
     unlocked rows so the user can see what's still ahead in the fusion
     chain — no manual "add" UI at all, since none is needed for a
     deterministic mechanic), and the `totalDpsBreakdown` fix.
+13. User reported a concrete counter-example against entry #12's Level-Up
+    Bonuses feature the same day: their real, un-fused "Relic Beam" (still
+    at its original rarity) already had Lv10 Attack+1%, Lv20 LifeSteal+2%,
+    and Lv30 HP+2% all unlocked — impossible under entry #12's "gated by
+    fused Rarity" model. Re-disassembled `RegistWeaponLevelBonus` more
+    carefully and found the actual comparison: it calls
+    `BalancingData_Rarity.Get(row.Rarity, grade=1).MaxLevel` (row.Rarity is
+    just an index into the grade-1 level-curve table, always grade 1
+    regardless of the weapon's own grade) and compares that threshold
+    against `WeaponStatus.Level` (the `_originLevel` backing field, struct
+    offset `0x18` — not the weapon's Rarity as originally misread). So
+    row.Rarity=1 really means "unlocks at weapon level 10", row.Rarity=2
+    means "level 20", etc. — exactly matching the user's report. Fusing to
+    a higher rarity is still what makes the higher rows *reachable* (each
+    rarity has a hard level cap in `BalancingData_Rarity.MaxLevel`), but the
+    runtime gate itself is purely level-based. Fixed
+    `Formulas.weaponLevelBonusRows()` to take the weapon's current level and
+    check it against each row's threshold instead of checking fused Rarity;
+    updated the weapon detail modal's "Level-Up Bonuses" list to show
+    "unlocks at Level N" instead of a rarity name; updated
+    `totalDpsBreakdown`'s `WeaponLevelBonus` source to pass the weapon's
+    real level through. This is the kind of thing that's genuinely hard to
+    get right from static disassembly alone without a live counter-example
+    to check against — worth remembering if similar "which condition gates
+    this" mechanics come up again.
+
+    The same conversation also asked for a broader audit: "list anything
+    else not deep-dived and check whether it feeds wrong data to the page."
+    That pass used the same disassembly technique across every remaining
+    unverified `OptionType`/`rate_amount`/percent field in the hero and
+    trait systems, and found four more real, previously-shipped bugs (not
+    hypothetical — all four were live on the deployed site):
+    - **Hero bonus labels used the wrong enum.** `CostumeLevelOptionData`,
+      `CostumeStarGradeOptionData`, `CostumeEvolutionData`, and
+      `WeaponCategoryData.Class_OptionType` are all declared `E_BonusOption`
+      in the compiled game (22 values: Attack, CritDamage, LifeSteal,
+      SkillCooldown, HP, HPRegen, Dodge, MoveSpeed, CritRate, AttackSpeed,
+      Cargo, SkillDamage, DoubleAttack, TripleAttack, Coin, Exp, ...) — a
+      completely different, differently-numbered table from `StatData`,
+      which is what the app had been using to label them. The two only
+      agree at id 1 (Attack/Power); everywhere else they diverge. Concrete
+      visible symptom: the Guide tab's "Recommended Stat Focus" showed
+      **"CARGO"** as a natural strength for the Gun weapon category —
+      StatData id 12 is Cargo, but `E_BonusOption` 12 is really Skill
+      Damage, which is obviously the intended reading for a Gunslinger.
+      Cross-checked all 6 weapon categories' real `Class_OptionType` values
+      against both enumerations before concluding — the `E_BonusOption`
+      reading was thematically sound for every single one (Bruiser→HP,
+      Marksman→AttackSpeed/CritRate, Mage→SkillDamage/SkillCooldown) where
+      the `StatData` reading produced nonsense for at least two of them.
+      Fixed by adding `BONUS_OPTION_NAMES` to `data.js` (real
+      `HERO_BONUS_OPTION_*` Locale strings for this exact enum) and
+      switching both the Heroes tab's "Stat Bonuses Unlocked" list and the
+      Guide tab's stat-focus lookup to it.
+    - **Hero Evolution bonus was both mis-summed and unscaled.** It was
+      modeled as a cumulative sum across every evolution tier reached
+      (mirroring how Level and Star bonuses work), but the real function
+      (`AddOwnEvolveStatModifications`) does a single lookup at the *exact
+      current* tier only (`CostumeEvolutionData.GetByCostumeAndRarity`) —
+      confirmed by the data itself once looked at closely: every costume's
+      evolution rows count their own `OptionValue` up 1, 2, 3...7 in
+      lockstep with row position regardless of `OptionType`, which is a
+      checkpoint-magnitude pattern, not a delta-to-be-summed pattern. The
+      disassembly also showed the value gets ×10 before use, which the app
+      wasn't doing. Both bugs together meant a mid-evolution hero's
+      "Stat Bonuses Unlocked" total and the Total DPS estimate's
+      `CostumeOwnEvolutionOption` source were both wrong (direction depends
+      on how far evolved — could be too high or too low depending on tier).
+    - **`TraitRoll`'s ×10 was itself an unverified guess, and it was
+      wrong.** Entry #11 fixed Extra/Special/Soul's `RateAmount` (real
+      display = stored value ÷10) but left `TraitRoll`'s `×10` (the
+      opposite direction, on a different table, `TraitSynergyInfoData`)
+      "pending real evidence" rather than assuming it shared the fix.
+      Decompiling `TraitSynergyController.GetStatModifications` (not just
+      the token-counting logic already confirmed in an earlier pass) shows
+      `rate_amount` is read straight into the StatModification value for
+      the `TraitRoll` content type with no multiply anywhere in the path.
+      Removed the ×10.
+    - **The Traits tab's own percent display was a separate, wronger bug.**
+      Both `TraitOptionData.rate_amount` (single rolled trait) and
+      `TraitSynergyInfoData.rate_amount` (stacked synergy bonus) were
+      displayed through a guessed, undocumented heuristic —
+      `rate_amount > 100 ? rate_amount/100 : rate_amount` — that also
+      silently dropped the `%` sign above 100. It produced genuinely broken
+      output (a rarity-3 trait showed a bare "1.2" with no unit). The
+      `TraitRoll` finding above establishes that `rate_amount` is per-mille
+      across both trait tables (same convention as
+      Extra/Special/SoulUpgrade's `RateAmount`), and both description
+      templates (`option_info_desc_en` / `synergy_info_desc_en`) already
+      bake a literal `%` into their `{0}%` format string. Replaced the
+      heuristic with a uniform ÷10 in all three call sites in
+      `ui-equipment.js`.
+    `CostumeOwnGradeOption`/`CostumeOwnLevelOption` were also investigated
+    (their real source functions, `AddOwnGradeStatModifications`/
+    `AddOwnLevelStatModifications`, were located) but not resolved — unlike
+    every function fixed above, these route through IL2CPP interface/vtable
+    dispatch that would take meaningfully longer to trace by hand. Left
+    `unmodeled` rather than guessed, consistent with this project's norm.
 
 ## Open items / plausible next steps (not started)
 
@@ -350,8 +451,13 @@ before (Special Upgrade caps) and values honesty over completeness.
 - `VipSubscription` source in the Total DPS formula has no matching data
   table at all — stays a manual input unless one is found.
 - `CostumeOwnGradeOption`/`CostumeOwnLevelOption` in the Total DPS formula
-  are deliberately zeroed (no data source distinct from the `Equipping`-
-  prefixed ones already used) — revisit if a relevant table turns up.
+  are deliberately zeroed. Their real source functions ARE now known
+  (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`, found
+  2026-09-04) but not disassembled to completion — they route through
+  IL2CPP interface/vtable dispatch (indirect calls resolved through a type
+  interface table at runtime), which takes meaningfully longer to trace by
+  hand than the direct-call functions fixed the same day. Worth revisiting
+  with more time/budget rather than assumed to be unreachable.
 - If re-extracting art/data ever becomes necessary and the scratchpad is
   gone, you need a fresh APK download link from the user first.
 - Reskin polish not done: native `<input type=range>` sliders (weapon/hero

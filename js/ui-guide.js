@@ -206,8 +206,12 @@ function buildAdvice(hero, costume) {
       // Class_OptionType comes through as a plain string (not an array) for
       // categories with only one bonus stat (e.g. Sword) — normalize both
       // shape and type or the id lookup below silently misses those.
+      // CORRECTED 2026-09-04: Class_OptionType is E_BonusOption-typed (per
+      // decompilation), not StatData's id space — see the note on
+      // Formulas.heroFullStats. The old StatData lookup produced a
+      // nonsensical "CARGO" recommendation for Gun-category loadouts.
       const types = toArray(cat.Class_OptionType).map(Number);
-      const statNames = types.map(t => Game.index.statById.get(t)?.Title_en).filter(Boolean);
+      const statNames = types.map(t => Game.bonusOptionName(t)).filter(Boolean);
       if (statNames.length) {
         items.push(`Your loadout leans <b>${escapeHtml(cat.Class_Name_en)}</b> (${escapeHtml(cat.Name_en)}) — that archetype's natural strengths are <b>${statNames.map(escapeHtml).join(', ')}</b>. Favor Ability/Extra/Special/Soul upgrades in those stats for this hero.`);
       } else {

@@ -39,6 +39,30 @@ const RARITY_COLORS = {
   9: { name: 'Eternal',   art: 'Eternal',   c: '#7bb2c9' },
 };
 
+// E_BonusOption (compiled C# enum, TypeDefIndex 5592) — the option-type
+// space used by CostumeLevelOptionData, CostumeStarGradeOptionData,
+// CostumeEvolutionData, and WeaponCategoryData.Class_OptionType. CONFIRMED
+// BY DECOMPILATION (2026-09-04): all four tables' OptionType fields are
+// declared `E_BonusOption`, NOT StatData's id space — the two numbering
+// schemes only agree at 1 (Attack/Power) and diverge everywhere else (e.g.
+// StatData's id 12 is "Cargo" but E_BonusOption's 12 is "Skill Damage" —
+// this project's earlier code used StatData for these fields and got
+// visibly wrong labels for it, like "CARGO" as a Gun/Gunslinger stat
+// recommendation). Names are the real `HERO_BONUS_OPTION_*` Locale strings
+// (a decompiled-confirmed hero-flavored label set distinct from the
+// weapon-flavored `WEAPON_BONUS_OP_*` keys used in WeaponBonusOptionData /
+// WeaponLevelUpBonusGroup), not invented.
+const BONUS_OPTION_NAMES = {
+  1: 'Attack Power Up', 2: 'Critical Damage Up', 3: 'Life Steal Up',
+  4: 'Skill Cooldown Reduce', 5: 'HP Up', 6: 'HP Recovery Up',
+  7: 'Evasion Up', 8: 'Move Speed Up', 9: 'Critical Rate Up',
+  10: 'Attack Speed Up', 11: 'Cargo Up', 12: 'Skill Damage Up',
+  13: 'Multi-Attack Up', 14: 'Triple Attack Up', 15: 'Gold Gain Up',
+  16: 'EXP Gain Up', 17: 'Enhanced Atk Up', 18: 'Enemy Heal Down',
+  19: 'Ranged DMG Up', 20: 'Melee DMG Up', 21: 'Status Resist Up',
+  22: 'Basic Atk Up',
+};
+
 const Game = {
   db: {},
   index: {},
@@ -152,6 +176,9 @@ const Game = {
   chestIcon(chest) { return `assets/img/chests/${chest.PrefabName}.png`; },
 
   rarityColor(tier) { return RARITY_COLORS[tier] || RARITY_COLORS[1]; },
+
+  // See BONUS_OPTION_NAMES above — the E_BonusOption id space, not StatData.
+  bonusOptionName(type) { return BONUS_OPTION_NAMES[type] || `Option ${type}`; },
 
   // Real in-game rarity chrome — the game's own per-tier circular icon
   // background ring, ribbon banner, and text-plate badge (not redrawn).

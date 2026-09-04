@@ -76,26 +76,48 @@ const Formulas = {
   // fixed LevelUpBonusGroup shared by its whole fusion chain (e.g. Crude
   // Dagger through Absolute Radiance all share GroupID 1, one row per chain
   // link). WeaponLevelUpBonusGroup has one row per rarity tier (typically
-  // 1-8) in that group, each a FIXED, non-random bonus stat that unlocks
-  // permanently once the equipped weapon reaches that fused rarity —
-  // disassembly keeps every row whose Rarity <= the weapon's current
-  // Rarity, so unlocks are cumulative across the whole chain, not just the
-  // current tier. Some rows are further gated by SlotType: 0 = any slot,
-  // 1 = main-hand slot only (index 0, the real screen's "MAIN" slot),
-  // 2 = the five secondary slots only — confirmed by the same function
-  // branching on slotIndex==0. This is a COMPLETELY SEPARATE system from
-  // the random-roll "Bonus Affixes" above (WeaponBonusOptionData /
-  // BonusOptionCount, registered by the sibling function
-  // RegistWeaponBonusOption) — the two must not be conflated; a weapon
-  // shows both a handful of random rolled affixes AND this fixed unlock
-  // list at the same time.
-  weaponLevelBonusRows(weapon, slotIndex = 0) {
+  // 1-8) in that group, each a FIXED, non-random bonus stat.
+  //
+  // CORRECTED 2026-09-04 per direct user report against the live game
+  // (their un-fused "Relic Beam" unlocking Lv10 Attack+1% / Lv20
+  // LifeSteal+2% / Lv30 HP+2%): the unlock gate is NOT the weapon's fused
+  // Rarity as first implemented — it's the weapon's own current LEVEL
+  // crossing each row's rarity-tier LEVEL THRESHOLD. Re-disassembly
+  // confirms this precisely: the comparison calls
+  // `BalancingData_Rarity.Get(row.Rarity, grade=1).MaxLevel` (RVA
+  // 0x292538C — row.Rarity is just used as an index into the grade-1
+  // level-curve table, always grade 1 regardless of the weapon's own
+  // grade) and compares it against `WeaponStatus.Level` (the `_originLevel`
+  // backing field at struct offset 0x18, not the weapon's Rarity at
+  // offset-adjacent fields as originally assumed). So row.Rarity=1 asks
+  // "is this weapon level >= 10" (rarity 1's MaxLevel), row.Rarity=2 asks
+  // ">= 20", row.Rarity=3 asks ">= 30", etc. — matching the user's report
+  // exactly. In practice a low-rarity weapon instance can never reach the
+  // higher thresholds (BalancingData_Rarity caps MaxLevel per rarity), so
+  // fusing to a higher rarity is still what makes the higher rows reachable
+  // — but the runtime check itself is purely level-based, unlocks are
+  // cumulative (every threshold at/under the current level stays unlocked),
+  // and this now correctly matches un-fused weapons too. Some rows are
+  // further gated by SlotType: 0 = any slot, 1 = main-hand slot only (index
+  // 0, the real screen's "MAIN" slot), 2 = the five secondary slots only —
+  // confirmed by the same function branching on slotIndex==0. This is a
+  // COMPLETELY SEPARATE system from the random-roll "Bonus Affixes" above
+  // (WeaponBonusOptionData / BonusOptionCount, registered by the sibling
+  // function RegistWeaponBonusOption) — the two must not be conflated; a
+  // weapon shows both a handful of random rolled affixes AND this fixed
+  // unlock list at the same time.
+  weaponLevelBonusRows(weapon, slotIndex = 0, level = 1) {
     const rows = Game.index.weaponLevelBonusByGroup.get(weapon.LevelUpBonusGroup) || [];
-    return rows.map(row => ({
-      row,
-      unlocked: row.Rarity <= weapon.Rarity,
-      slotOk: row.SlotType === 0 || (row.SlotType === 1 && slotIndex === 0) || (row.SlotType === 2 && slotIndex !== 0),
-    }));
+    return rows.map(row => {
+      const thresholdRow = Game.index.rarityRowByKey.get(`${row.Rarity}:1`);
+      const requiredLevel = thresholdRow ? thresholdRow.MaxLevel : Infinity;
+      return {
+        row,
+        requiredLevel,
+        unlocked: level >= requiredLevel,
+        slotOk: row.SlotType === 0 || (row.SlotType === 1 && slotIndex === 0) || (row.SlotType === 2 && slotIndex !== 0),
+      };
+    });
   },
 
   // --- Heroes ------------------------------------------------------------
@@ -153,13 +175,31 @@ const Formulas = {
       .slice().sort((a, b) => a.Star_Grade - b.Star_Grade);
   },
 
-  // Cumulative evolution bonuses unlocked at/under the current evolution rarity.
+  // CORRECTED BY DECOMPILATION (2026-09-04, AddOwnEvolveStatModifications,
+  // RVA 0x25E9964): this was originally modeled as cumulative (summing
+  // every evolution tier's row up to the current one), like Level and Star
+  // bonuses. It isn't. The real client calls
+  // `CostumeEvolutionData.GetByCostumeAndRarity(costumeId, currentRarity)`
+  // — a SINGLE-ROW lookup at the exact current tier, not a list walk — and
+  // the row's own OptionValue already represents the full bonus at that
+  // tier (each costume's rows even count up 1,2,3...7 in lockstep with
+  // their own array position, confirming they're checkpoint magnitudes, not
+  // incremental deltas meant to be added together). The disassembly also
+  // shows the stored value gets ×10 before use (OptionValue parsed as a
+  // long, then `x*5` then `<<1` = ×10) — e.g. tier-7's OptionValue "7"
+  // contributes 70 (7.0%), not 7. Both the old cumulative-sum and the old
+  // missing ×10 were live bugs feeding both this hero's displayed "Stat
+  // Bonuses Unlocked" list and the Total DPS estimate's
+  // CostumeOwnEvolutionOption source.
   heroEvolutionBonuses(costume, evoRarity) {
+    if (!evoRarity) return [];
     const rows = Game.index.costumeEvoByCostume.get(costume.id) || [];
-    return rows.filter(r => r.Rarity <= evoRarity).map(r => ({
-      rarity: r.Rarity, optionType: r.OptionType, optionValue: r.OptionValue,
-      statReduction: r.StatReduction,
-    }));
+    const row = rows.find(r => r.Rarity === evoRarity);
+    if (!row) return [];
+    return [{
+      rarity: row.Rarity, optionType: row.OptionType, optionValue: num(row.OptionValue) * 10,
+      statReduction: row.StatReduction,
+    }];
   },
 
   heroEvolutionRows(costume) {
@@ -168,8 +208,19 @@ const Formulas = {
   },
 
   // Aggregate a hero's fully-built stat sheet: base attack/hp + every
-  // cumulative bonus rolled up per stat-option-type, using StatData's
-  // display names.
+  // cumulative bonus rolled up per stat-option-type.
+  //
+  // CORRECTED BY DECOMPILATION (2026-09-04): this used to label each bonus
+  // via `Game.index.statById` (the StatData table). CostumeLevelOptionData,
+  // CostumeStarGradeOptionData, and CostumeEvolutionData's OptionType
+  // fields are all declared `E_BonusOption` in the compiled game, a
+  // DIFFERENT, differently-numbered enum from StatData's id space — they
+  // only happen to agree at 1 (Attack/Power). Confirmed wrong in practice:
+  // the same mistake on WeaponCategoryData (also E_BonusOption-typed) was
+  // producing a nonsensical "CARGO" stat recommendation for Gun-category
+  // loadouts on the Guide tab (StatData id 12 = Cargo, but E_BonusOption 12
+  // is really Skill Damage). Now uses BONUS_OPTION_NAMES (data.js), built
+  // from the real `HERO_BONUS_OPTION_*` Locale strings for this exact enum.
   heroFullStats(costume, { level, starGrade, evoRarity }) {
     const base = this.heroBaseStats(costume, level);
     const bonusByType = new Map();
@@ -183,7 +234,7 @@ const Formulas = {
     }
     for (const b of this.heroEvolutionBonuses(costume, evoRarity)) add(b.optionType, b.optionValue);
     const bonuses = [...bonusByType.entries()].map(([type, value]) => ({
-      type, value, stat: Game.index.statById.get(type),
+      type, value, stat: { Title_en: Game.bonusOptionName(type) },
     }));
     return { base, bonuses };
   },
@@ -289,8 +340,12 @@ const Formulas = {
   // places — the decompile confirmed the FORMULA SHAPE (three per-mille
   // multiplier brackets over a flat base) with certainty, but not every
   // exact table→EStatContentType wire. Every source below is tagged:
+  //   'confirmed' — the exact table field AND its scale/unit conversion (or
+  //               lack thereof) were verified by disassembling the real
+  //               function that registers this source's StatModification.
   //   'mapped'  — a specific extracted table plausibly/directly feeds this
-  //               source, reasoned from field semantics (documented inline).
+  //               source, reasoned from field semantics (documented inline),
+  //               but not decompiled byte-for-byte.
   //   'manual'  — no matching data table was found; the user types in a
   //               value from their own game screen if they know it.
   //   'unmodeled' — deliberately left at 0 rather than guessed.
@@ -299,11 +354,17 @@ const Formulas = {
   // Soul upgrade RateAmount is stored at 10x the displayed percent (e.g. 48
   // means 4.8%, confirmed against a live account's Bulk Up row) — i.e. it's
   // already directly in the Dps formula's per-mille scale (1000 = 100%), so
-  // these sources use RateAmount as-is, no conversion. `TraitRoll` below is
-  // a different table (TraitSynergyInfoData, not Extra/Special/SoulUpgrade
-  // LevelData) whose rate_amount scale hasn't been verified the same way —
-  // still tagged 'mapped' rather than 'confirmed', and still ×10'd pending
-  // real evidence either way; don't assume it shares this fix.
+  // these sources use RateAmount as-is, no conversion.
+  //
+  // CONFIRMED unit fix (2026-09-04, by decompilation this time, not a live
+  // report): `TraitRoll` used to ×10 `TraitSynergyInfoData.rate_amount` as
+  // an unverified guess borrowed from the Extra/Special/Soul fix above.
+  // Disassembling TraitSynergyController.GetStatModifications (RVA
+  // 0x2433688) shows it reads `rate_amount` (struct offset 0x2C) straight
+  // into the StatModification value for content type 0x13 (TraitRoll = 19)
+  // with no multiply instruction anywhere in the path — unlike the
+  // Extra/Special/Soul case, this one is NOT stored at 10x. The ×10 was
+  // removed and this source is now tagged 'confirmed'.
   totalDpsBreakdown(heroId) {
     const hero = State.getHero(heroId);
     const src = {}; // EStatContentType key -> { value, tag, note }
@@ -343,7 +404,7 @@ const Formulas = {
         if (!w) return;
         const dps = this.weaponDPS(w, slot.level);
         weaponBase += dps.base;
-        for (const { row, unlocked, slotOk } of this.weaponLevelBonusRows(w, i)) {
+        for (const { row, unlocked, slotOk } of this.weaponLevelBonusRows(w, i, slot.level)) {
           if (unlocked && slotOk) weaponLevelBonus += num(row.Amount) * 1000;
         }
         for (const roll of (slot.bonusRolls || [])) {
@@ -427,7 +488,7 @@ const Formulas = {
       const filled = State.data.traits.slots.map(id => id ? Game.index.traitOptionById.get(id) : null);
       const synergies = this.computeTraitSynergies(filled);
       const hit = synergies.find(s => s.optionType === 1);
-      set('TraitRoll', hit ? num(hit.bonus.rate_amount) * 10 : 0, 'mapped', 'Trait synergy bonus for "Total Attack Power"');
+      set('TraitRoll', hit ? num(hit.bonus.rate_amount) : 0, 'confirmed', 'Trait synergy bonus for "Total Attack Power" (TraitSynergyController.GetStatModifications, confirmed no ×10)');
     }
 
     // VipSubscription — no VIP-tier data table found; manual per-mille input.
