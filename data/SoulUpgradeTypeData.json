@@ -1,0 +1,83 @@
+[
+ {
+  "Description": "SOUL_UPGRADE_ATTACK_DESC",
+  "Description_en": "Overall Attack",
+  "IconName": "Ability/Icons_Category/Icon_Attack",
+  "OptionType": 1,
+  "Title": "SOUL_UPGRADE_ATTACK",
+  "Title_en": "Battle Boost",
+  "id": 1
+ },
+ {
+  "Description": "SOUL_UPGRADE_CRIT_DAMAGE_DESC",
+  "Description_en": "Critical Damage",
+  "IconName": "Ability/Icons_Category/Icon_CriticalDamage",
+  "OptionType": 2,
+  "Title": "SOUL_UPGRADE_CRIT_DAMAGE",
+  "Title_en": "Critical Edge",
+  "id": 2
+ },
+ {
+  "Description": "SOUL_UPGRADE_HP_DESC",
+  "Description_en": "Max HP",
+  "IconName": "Ability/Icons_Category/Icon_Health",
+  "OptionType": 5,
+  "Title": "SOUL_UPGRADE_HP",
+  "Title_en": "Vital Force",
+  "id": 3
+ },
+ {
+  "Description": "SOUL_UPGRADE_HP_RECOVERY_DESC",
+  "Description_en": "HP Recovery",
+  "IconName": "Ability/Icons_Category/Icn_HealingRate",
+  "OptionType": 6,
+  "Title": "SOUL_UPGRADE_HP_RECOVERY",
+  "Title_en": "Recovery Boost",
+  "id": 4
+ },
+ {
+  "Description": "SOUL_UPGRADE_CARGO_DESC",
+  "Description_en": "Cargo",
+  "IconName": "Ability/Icons_Category/Icon_Reward",
+  "OptionType": 11,
+  "Title": "SOUL_UPGRADE_CARGO",
+  "Title_en": "Bag Boost",
+  "id": 5
+ },
+ {
+  "Description": "SOUL_UPGRADE_BASIC_ATTACK_DAMAGE_DESC",
+  "Description_en": "Basic Attack Damage",
+  "IconName": "Ability/Icons_Category/Icon_BasicAttackDamage",
+  "OptionType": 22,
+  "Title": "SOUL_UPGRADE_BASIC_ATTACK_DAMAGE",
+  "Title_en": "Basic Attack Up",
+  "id": 6
+ },
+ {
+  "Description": "SOUL_UPGRADE_SKILL_DAMAGE_DESC",
+  "Description_en": "Skill Damage",
+  "IconName": "Ability/Icons_SpecialUpgrade/Icn_SkillDamage",
+  "OptionType": 12,
+  "Title": "SOUL_UPGRADE_SKILL_DAMAGE",
+  "Title_en": "Spell Power",
+  "id": 7
+ },
+ {
+  "Description": "SOUL_UPGRADE_RANGED_DAMAGE_DESC",
+  "Description_en": "Ranged Damage",
+  "IconName": "Ability/Icons_Category/Icn_RangedDamageRate",
+  "OptionType": 19,
+  "Title": "SOUL_UPGRADE_RANGED_DAMAGE",
+  "Title_en": "Sharp Shot",
+  "id": 8
+ },
+ {
+  "Description": "SOUL_UPGRADE_MELEE_DAMAGE_DESC",
+  "Description_en": "Melee Damage",
+  "IconName": "Ability/Icons_Category/Icn_MeleeDamageRate",
+  "OptionType": 20,
+  "Title": "SOUL_UPGRADE_MELEE_DAMAGE",
+  "Title_en": "Heavy Swing",
+  "id": 9
+ }
+]

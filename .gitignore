@@ -1,0 +1,4 @@
+gitkey
+node_modules/
+.claude/
+launch.sh

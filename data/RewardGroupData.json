@@ -1,0 +1,8372 @@
+[
+ {
+  "BundleGroup": 1,
+  "Group": 101,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2,
+  "RewardType": 4,
+  "id": 1
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 101,
+  "Rate": 40,
+  "RewardCount_Max": 4,
+  "RewardCount_Min": 2,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 2
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 101,
+  "Rate": 0,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 3
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 101,
+  "Rate": 0,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 4
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 101,
+  "Rate": 0,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 5
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 102,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 6
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 102,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 7
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 102,
+  "Rate": 0,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 8
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 102,
+  "Rate": 0,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 9
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 102,
+  "Rate": 0,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 10
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 102,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 11
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 102,
+  "Rate": 10,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 12
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 102,
+  "Rate": 40,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 13
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 102,
+  "Rate": 25,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 14
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 102,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 15
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 102,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 16
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 102,
+  "Rate": 10,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 17
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 102,
+  "Rate": 40,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 18
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 102,
+  "Rate": 25,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 19
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 102,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 20
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 103,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 21
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 103,
+  "Rate": 40,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 22
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 23
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 24
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 25
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 26
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 103,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 27
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 103,
+  "Rate": 40,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 28
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 29
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 30
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 31
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 103,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 32
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 103,
+  "Rate": 40,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 33
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 34
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 35
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 36
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 103,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 37
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 103,
+  "Rate": 40,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 38
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 39
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 40
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 103,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 41
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 103,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 42
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 103,
+  "Rate": 40,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 43
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 4,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 44
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 103,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 45
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1001,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1,
+  "RewardType": 4,
+  "id": 46
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1001,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 47
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1001,
+  "Rate": 0,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 48
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1002,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2,
+  "RewardType": 4,
+  "id": 49
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1002,
+  "Rate": 37,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 50
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1002,
+  "Rate": 3,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 51
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1003,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 3,
+  "RewardType": 4,
+  "id": 52
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1003,
+  "Rate": 34,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 53
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1003,
+  "Rate": 6,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 54
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1004,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 55
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1004,
+  "Rate": 31,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 56
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1004,
+  "Rate": 9,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 57
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1005,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 5,
+  "RewardType": 4,
+  "id": 58
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1005,
+  "Rate": 28,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 59
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1005,
+  "Rate": 12,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 60
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1006,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 61
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1006,
+  "Rate": 25,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 62
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1006,
+  "Rate": 15,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 63
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1007,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 7,
+  "RewardType": 4,
+  "id": 64
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1007,
+  "Rate": 22,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 65
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1007,
+  "Rate": 18,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 66
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1008,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8,
+  "RewardType": 4,
+  "id": 67
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1008,
+  "Rate": 19,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 68
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1008,
+  "Rate": 21,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 69
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10001,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1001,
+  "RewardType": 4,
+  "id": 70
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10001,
+  "Rate": 30,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 71
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10001,
+  "Rate": 10,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 72
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10002,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1002,
+  "RewardType": 4,
+  "id": 73
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10002,
+  "Rate": 30,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 2,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 74
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10002,
+  "Rate": 10,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 75
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10003,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1003,
+  "RewardType": 4,
+  "id": 76
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10004,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1004,
+  "RewardType": 7,
+  "id": 77
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10005,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 11,
+  "RewardParam": 1005,
+  "RewardType": 4,
+  "id": 78
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 10006,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1006,
+  "RewardType": 7,
+  "id": 79
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 201,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2,
+  "RewardType": 4,
+  "id": 80
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 201,
+  "Rate": 40,
+  "RewardCount_Max": 4,
+  "RewardCount_Min": 2,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 81
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 201,
+  "Rate": 0,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 82
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 201,
+  "Rate": 0,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 83
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 201,
+  "Rate": 0,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 84
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 202,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 85
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 202,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 86
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 202,
+  "Rate": 0,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 87
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 202,
+  "Rate": 0,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 88
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 202,
+  "Rate": 0,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 89
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 202,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 90
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 202,
+  "Rate": 10,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 91
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 202,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 92
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 202,
+  "Rate": 25,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 93
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 202,
+  "Rate": 25,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 94
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 202,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 4,
+  "RewardType": 4,
+  "id": 95
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 202,
+  "Rate": 10,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 96
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 202,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 97
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 202,
+  "Rate": 25,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 98
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 202,
+  "Rate": 25,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 99
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 203,
+  "Rate": 60,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 100
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 203,
+  "Rate": 40,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 101
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 102
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 103
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 104
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 105
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 203,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 106
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 203,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 107
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 108
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 109
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 110
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 203,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 111
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 203,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 112
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 113
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 114
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 115
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 203,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 116
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 203,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 117
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 118
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 119
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 203,
+  "Rate": 0,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 6,
+  "RewardType": 4,
+  "id": 120
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 203,
+  "Rate": 10,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 121
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 203,
+  "Rate": 40,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 5,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 122
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 6,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 123
+ },
+ {
+  "BundleGroup": 5,
+  "Group": 203,
+  "Rate": 25,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 7,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 124
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 20001,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 125
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 20001,
+  "Rate": 100,
+  "RewardCount_Max": 27,
+  "RewardCount_Min": 27,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 126
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 20002,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 127
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 20002,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 18,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 128
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 20003,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 129
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 20003,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 12,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 130
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 20011,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 9,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 131
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 20011,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 9,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 132
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 20012,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 6,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 133
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 20012,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 6,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 134
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 20013,
+  "Rate": 100,
+  "RewardCount_Max": 3,
+  "RewardCount_Min": 3,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 135
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 20013,
+  "Rate": 100,
+  "RewardCount_Max": 4,
+  "RewardCount_Min": 4,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 136
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30001,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 137
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30001,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 138
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30001,
+  "Rate": 100,
+  "RewardCount_Max": 90,
+  "RewardCount_Min": 90,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 139
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30002,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 18,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 140
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30002,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 141
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30002,
+  "Rate": 100,
+  "RewardCount_Max": 64,
+  "RewardCount_Min": 64,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 142
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30003,
+  "Rate": 100,
+  "RewardCount_Max": 16,
+  "RewardCount_Min": 16,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 143
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30003,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 144
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30003,
+  "Rate": 100,
+  "RewardCount_Max": 51,
+  "RewardCount_Min": 51,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 145
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30004,
+  "Rate": 100,
+  "RewardCount_Max": 14,
+  "RewardCount_Min": 14,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 146
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30004,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 147
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30004,
+  "Rate": 100,
+  "RewardCount_Max": 38,
+  "RewardCount_Min": 38,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 148
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30005,
+  "Rate": 100,
+  "RewardCount_Max": 13,
+  "RewardCount_Min": 13,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 149
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30005,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 150
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30005,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 25,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 151
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30006,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 12,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 152
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30006,
+  "Rate": 100,
+  "RewardCount_Max": 16,
+  "RewardCount_Min": 16,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 153
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30006,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 154
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30007,
+  "Rate": 100,
+  "RewardCount_Max": 11,
+  "RewardCount_Min": 11,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 155
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30007,
+  "Rate": 100,
+  "RewardCount_Max": 13,
+  "RewardCount_Min": 13,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 156
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30007,
+  "Rate": 100,
+  "RewardCount_Max": 16,
+  "RewardCount_Min": 16,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 157
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 30008,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 158
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 30008,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 159
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 30008,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 12,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 160
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31001,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 161
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31001,
+  "Rate": 100,
+  "RewardCount_Max": 700,
+  "RewardCount_Min": 700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 162
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31001,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 163
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31002,
+  "Rate": 100,
+  "RewardCount_Max": 180,
+  "RewardCount_Min": 180,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 164
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31002,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 165
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31002,
+  "Rate": 100,
+  "RewardCount_Max": 214,
+  "RewardCount_Min": 214,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 166
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31003,
+  "Rate": 100,
+  "RewardCount_Max": 160,
+  "RewardCount_Min": 160,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 167
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31003,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 168
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31003,
+  "Rate": 100,
+  "RewardCount_Max": 171,
+  "RewardCount_Min": 171,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 169
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31004,
+  "Rate": 100,
+  "RewardCount_Max": 140,
+  "RewardCount_Min": 140,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 170
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31004,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 171
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31004,
+  "Rate": 100,
+  "RewardCount_Max": 128,
+  "RewardCount_Min": 128,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 172
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31005,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 173
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31005,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 174
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31005,
+  "Rate": 100,
+  "RewardCount_Max": 85,
+  "RewardCount_Min": 85,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 175
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31006,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 176
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31006,
+  "Rate": 100,
+  "RewardCount_Max": 160,
+  "RewardCount_Min": 160,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 177
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31006,
+  "Rate": 100,
+  "RewardCount_Max": 68,
+  "RewardCount_Min": 68,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 178
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31007,
+  "Rate": 100,
+  "RewardCount_Max": 110,
+  "RewardCount_Min": 110,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 179
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31007,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 180
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31007,
+  "Rate": 100,
+  "RewardCount_Max": 55,
+  "RewardCount_Min": 55,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 181
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 31008,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 182
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 31008,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 183
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 31008,
+  "Rate": 100,
+  "RewardCount_Max": 42,
+  "RewardCount_Min": 42,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 184
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40001,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 185
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40001,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 186
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40001,
+  "Rate": 100,
+  "RewardCount_Max": 142,
+  "RewardCount_Min": 142,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 187
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40002,
+  "Rate": 100,
+  "RewardCount_Max": 32,
+  "RewardCount_Min": 32,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 188
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40002,
+  "Rate": 100,
+  "RewardCount_Max": 110,
+  "RewardCount_Min": 110,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 189
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40002,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 190
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40003,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 24,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 191
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40003,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 192
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40003,
+  "Rate": 100,
+  "RewardCount_Max": 87,
+  "RewardCount_Min": 87,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 193
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40004,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 194
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40004,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 195
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40004,
+  "Rate": 100,
+  "RewardCount_Max": 76,
+  "RewardCount_Min": 76,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 196
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40005,
+  "Rate": 100,
+  "RewardCount_Max": 16,
+  "RewardCount_Min": 16,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 197
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40005,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 198
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40005,
+  "Rate": 100,
+  "RewardCount_Max": 54,
+  "RewardCount_Min": 54,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 199
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40006,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 200
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40006,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 201
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40006,
+  "Rate": 100,
+  "RewardCount_Max": 43,
+  "RewardCount_Min": 43,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 202
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40007,
+  "Rate": 100,
+  "RewardCount_Max": 14,
+  "RewardCount_Min": 14,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 203
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40007,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 204
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40007,
+  "Rate": 100,
+  "RewardCount_Max": 32,
+  "RewardCount_Min": 32,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 205
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40008,
+  "Rate": 100,
+  "RewardCount_Max": 13,
+  "RewardCount_Min": 13,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 206
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40008,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 207
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40008,
+  "Rate": 100,
+  "RewardCount_Max": 21,
+  "RewardCount_Min": 21,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 208
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 40009,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 12,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 209
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 40009,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 210
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 40009,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 211
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41001,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 212
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41001,
+  "Rate": 100,
+  "RewardCount_Max": 1300,
+  "RewardCount_Min": 1300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 213
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41001,
+  "Rate": 100,
+  "RewardCount_Max": 475,
+  "RewardCount_Min": 475,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 214
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 41001,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 5,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 215
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41002,
+  "Rate": 100,
+  "RewardCount_Max": 320,
+  "RewardCount_Min": 320,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 216
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41002,
+  "Rate": 100,
+  "RewardCount_Max": 1100,
+  "RewardCount_Min": 1100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 217
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41002,
+  "Rate": 100,
+  "RewardCount_Max": 401,
+  "RewardCount_Min": 401,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 218
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 41002,
+  "Rate": 100,
+  "RewardCount_Max": 4,
+  "RewardCount_Min": 4,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 219
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41003,
+  "Rate": 100,
+  "RewardCount_Max": 240,
+  "RewardCount_Min": 240,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 220
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41003,
+  "Rate": 100,
+  "RewardCount_Max": 800,
+  "RewardCount_Min": 800,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 221
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41003,
+  "Rate": 100,
+  "RewardCount_Max": 291,
+  "RewardCount_Min": 291,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 222
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 41003,
+  "Rate": 100,
+  "RewardCount_Max": 3,
+  "RewardCount_Min": 3,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 223
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41004,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 224
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41004,
+  "Rate": 100,
+  "RewardCount_Max": 700,
+  "RewardCount_Min": 700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 225
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41004,
+  "Rate": 100,
+  "RewardCount_Max": 254,
+  "RewardCount_Min": 254,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 226
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 41004,
+  "Rate": 100,
+  "RewardCount_Max": 2,
+  "RewardCount_Min": 2,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 227
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41005,
+  "Rate": 100,
+  "RewardCount_Max": 160,
+  "RewardCount_Min": 160,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 228
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41005,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 229
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41005,
+  "Rate": 100,
+  "RewardCount_Max": 181,
+  "RewardCount_Min": 181,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 230
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 41005,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 231
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41006,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 232
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41006,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 233
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41006,
+  "Rate": 100,
+  "RewardCount_Max": 144,
+  "RewardCount_Min": 144,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 234
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41007,
+  "Rate": 100,
+  "RewardCount_Max": 140,
+  "RewardCount_Min": 140,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 235
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41007,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 236
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41007,
+  "Rate": 100,
+  "RewardCount_Max": 108,
+  "RewardCount_Min": 108,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 237
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41008,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 238
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41008,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 239
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41008,
+  "Rate": 100,
+  "RewardCount_Max": 72,
+  "RewardCount_Min": 72,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 240
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 41009,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 241
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 41009,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 242
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 41009,
+  "Rate": 100,
+  "RewardCount_Max": 54,
+  "RewardCount_Min": 54,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 243
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50001,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 244
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50001,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 245
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50001,
+  "Rate": 100,
+  "RewardCount_Max": 195,
+  "RewardCount_Min": 195,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 246
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50002,
+  "Rate": 100,
+  "RewardCount_Max": 48,
+  "RewardCount_Min": 48,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 247
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50002,
+  "Rate": 100,
+  "RewardCount_Max": 160,
+  "RewardCount_Min": 160,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 248
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50002,
+  "Rate": 100,
+  "RewardCount_Max": 156,
+  "RewardCount_Min": 156,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 249
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50003,
+  "Rate": 100,
+  "RewardCount_Max": 36,
+  "RewardCount_Min": 36,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 250
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50003,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 251
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50003,
+  "Rate": 100,
+  "RewardCount_Max": 117,
+  "RewardCount_Min": 117,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 252
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50004,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 253
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50004,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 254
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50004,
+  "Rate": 100,
+  "RewardCount_Max": 97,
+  "RewardCount_Min": 97,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 255
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50005,
+  "Rate": 100,
+  "RewardCount_Max": 26,
+  "RewardCount_Min": 26,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 256
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50005,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 257
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50005,
+  "Rate": 100,
+  "RewardCount_Max": 77,
+  "RewardCount_Min": 77,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 258
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50006,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 24,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 259
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50006,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 260
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50006,
+  "Rate": 100,
+  "RewardCount_Max": 57,
+  "RewardCount_Min": 57,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 261
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50007,
+  "Rate": 100,
+  "RewardCount_Max": 22,
+  "RewardCount_Min": 22,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 262
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50007,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 263
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50007,
+  "Rate": 100,
+  "RewardCount_Max": 47,
+  "RewardCount_Min": 47,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 264
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50008,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 265
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50008,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 266
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50008,
+  "Rate": 100,
+  "RewardCount_Max": 37,
+  "RewardCount_Min": 37,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 267
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50009,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 18,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 268
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50009,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 269
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50009,
+  "Rate": 100,
+  "RewardCount_Max": 27,
+  "RewardCount_Min": 27,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 270
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 50010,
+  "Rate": 100,
+  "RewardCount_Max": 16,
+  "RewardCount_Min": 16,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 271
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 50010,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 272
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 50010,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 18,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 273
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51001,
+  "Rate": 100,
+  "RewardCount_Max": 600,
+  "RewardCount_Min": 600,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 274
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51001,
+  "Rate": 100,
+  "RewardCount_Max": 2000,
+  "RewardCount_Min": 2000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 275
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51001,
+  "Rate": 100,
+  "RewardCount_Max": 650,
+  "RewardCount_Min": 650,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 276
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 51001,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 277
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51002,
+  "Rate": 100,
+  "RewardCount_Max": 480,
+  "RewardCount_Min": 480,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 278
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51002,
+  "Rate": 100,
+  "RewardCount_Max": 1600,
+  "RewardCount_Min": 1600,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 279
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51002,
+  "Rate": 100,
+  "RewardCount_Max": 520,
+  "RewardCount_Min": 520,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 280
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 51002,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 12,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 281
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51003,
+  "Rate": 100,
+  "RewardCount_Max": 360,
+  "RewardCount_Min": 360,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 282
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51003,
+  "Rate": 100,
+  "RewardCount_Max": 1200,
+  "RewardCount_Min": 1200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 283
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51003,
+  "Rate": 100,
+  "RewardCount_Max": 390,
+  "RewardCount_Min": 390,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 284
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 51003,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 285
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51004,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 286
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51004,
+  "Rate": 100,
+  "RewardCount_Max": 1000,
+  "RewardCount_Min": 1000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 287
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51004,
+  "Rate": 100,
+  "RewardCount_Max": 325,
+  "RewardCount_Min": 325,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 288
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 51004,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 9,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 289
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51005,
+  "Rate": 100,
+  "RewardCount_Max": 260,
+  "RewardCount_Min": 260,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 290
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51005,
+  "Rate": 100,
+  "RewardCount_Max": 800,
+  "RewardCount_Min": 800,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 291
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51005,
+  "Rate": 100,
+  "RewardCount_Max": 260,
+  "RewardCount_Min": 260,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 292
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 51005,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 8,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 293
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51006,
+  "Rate": 100,
+  "RewardCount_Max": 240,
+  "RewardCount_Min": 240,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 294
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51006,
+  "Rate": 100,
+  "RewardCount_Max": 600,
+  "RewardCount_Min": 600,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 295
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51006,
+  "Rate": 100,
+  "RewardCount_Max": 195,
+  "RewardCount_Min": 195,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 296
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51007,
+  "Rate": 100,
+  "RewardCount_Max": 220,
+  "RewardCount_Min": 220,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 297
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51007,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 298
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51007,
+  "Rate": 100,
+  "RewardCount_Max": 162,
+  "RewardCount_Min": 162,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 299
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51008,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 300
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51008,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 301
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51008,
+  "Rate": 100,
+  "RewardCount_Max": 129,
+  "RewardCount_Min": 129,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 302
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51009,
+  "Rate": 100,
+  "RewardCount_Max": 180,
+  "RewardCount_Min": 180,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 303
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51009,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 304
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51009,
+  "Rate": 100,
+  "RewardCount_Max": 96,
+  "RewardCount_Min": 96,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 305
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 51010,
+  "Rate": 100,
+  "RewardCount_Max": 160,
+  "RewardCount_Min": 160,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 306
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 51010,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 307
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 51010,
+  "Rate": 100,
+  "RewardCount_Max": 64,
+  "RewardCount_Min": 64,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 308
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60001,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 309
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60001,
+  "Rate": 100,
+  "RewardCount_Max": 330,
+  "RewardCount_Min": 330,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 310
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60001,
+  "Rate": 100,
+  "RewardCount_Max": 240,
+  "RewardCount_Min": 240,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 311
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60002,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 312
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60002,
+  "Rate": 100,
+  "RewardCount_Max": 270,
+  "RewardCount_Min": 270,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 313
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60002,
+  "Rate": 100,
+  "RewardCount_Max": 196,
+  "RewardCount_Min": 196,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 314
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60003,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 315
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60003,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 316
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60003,
+  "Rate": 100,
+  "RewardCount_Max": 145,
+  "RewardCount_Min": 145,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 317
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60004,
+  "Rate": 100,
+  "RewardCount_Max": 56,
+  "RewardCount_Min": 56,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 318
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60004,
+  "Rate": 100,
+  "RewardCount_Max": 190,
+  "RewardCount_Min": 190,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 319
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60004,
+  "Rate": 100,
+  "RewardCount_Max": 137,
+  "RewardCount_Min": 137,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 320
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60005,
+  "Rate": 100,
+  "RewardCount_Max": 52,
+  "RewardCount_Min": 52,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 321
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60005,
+  "Rate": 100,
+  "RewardCount_Max": 170,
+  "RewardCount_Min": 170,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 322
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60005,
+  "Rate": 100,
+  "RewardCount_Max": 122,
+  "RewardCount_Min": 122,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 323
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60006,
+  "Rate": 100,
+  "RewardCount_Max": 48,
+  "RewardCount_Min": 48,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 324
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60006,
+  "Rate": 100,
+  "RewardCount_Max": 160,
+  "RewardCount_Min": 160,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 325
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60006,
+  "Rate": 100,
+  "RewardCount_Max": 114,
+  "RewardCount_Min": 114,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 326
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60007,
+  "Rate": 100,
+  "RewardCount_Max": 44,
+  "RewardCount_Min": 44,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 327
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60007,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 328
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60007,
+  "Rate": 100,
+  "RewardCount_Max": 106,
+  "RewardCount_Min": 106,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 329
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60008,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 330
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60008,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 331
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60008,
+  "Rate": 100,
+  "RewardCount_Max": 91,
+  "RewardCount_Min": 91,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 332
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60009,
+  "Rate": 100,
+  "RewardCount_Max": 36,
+  "RewardCount_Min": 36,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 333
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60009,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 334
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60009,
+  "Rate": 100,
+  "RewardCount_Max": 84,
+  "RewardCount_Min": 84,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 335
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60010,
+  "Rate": 100,
+  "RewardCount_Max": 32,
+  "RewardCount_Min": 32,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 336
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60010,
+  "Rate": 100,
+  "RewardCount_Max": 110,
+  "RewardCount_Min": 110,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 337
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60010,
+  "Rate": 100,
+  "RewardCount_Max": 77,
+  "RewardCount_Min": 77,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 338
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60011,
+  "Rate": 100,
+  "RewardCount_Max": 28,
+  "RewardCount_Min": 28,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 339
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60011,
+  "Rate": 100,
+  "RewardCount_Max": 90,
+  "RewardCount_Min": 90,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 340
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60011,
+  "Rate": 100,
+  "RewardCount_Max": 63,
+  "RewardCount_Min": 63,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 341
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60012,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 24,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 342
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60012,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 343
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60012,
+  "Rate": 100,
+  "RewardCount_Max": 56,
+  "RewardCount_Min": 56,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 344
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 60013,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 345
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 60013,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 346
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 60013,
+  "Rate": 100,
+  "RewardCount_Max": 49,
+  "RewardCount_Min": 49,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 347
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61001,
+  "Rate": 100,
+  "RewardCount_Max": 1000,
+  "RewardCount_Min": 1000,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 348
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61001,
+  "Rate": 100,
+  "RewardCount_Max": 3300,
+  "RewardCount_Min": 3300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 349
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61001,
+  "Rate": 100,
+  "RewardCount_Max": 800,
+  "RewardCount_Min": 800,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 350
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 61001,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 351
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61002,
+  "Rate": 100,
+  "RewardCount_Max": 800,
+  "RewardCount_Min": 800,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 352
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61002,
+  "Rate": 100,
+  "RewardCount_Max": 2700,
+  "RewardCount_Min": 2700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 353
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61002,
+  "Rate": 100,
+  "RewardCount_Max": 654,
+  "RewardCount_Min": 654,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 354
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 61002,
+  "Rate": 100,
+  "RewardCount_Max": 35,
+  "RewardCount_Min": 35,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 355
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61003,
+  "Rate": 100,
+  "RewardCount_Max": 600,
+  "RewardCount_Min": 600,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 356
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61003,
+  "Rate": 100,
+  "RewardCount_Max": 2000,
+  "RewardCount_Min": 2000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 357
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61003,
+  "Rate": 100,
+  "RewardCount_Max": 484,
+  "RewardCount_Min": 484,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 358
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 61003,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 359
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61004,
+  "Rate": 100,
+  "RewardCount_Max": 560,
+  "RewardCount_Min": 560,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 360
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61004,
+  "Rate": 100,
+  "RewardCount_Max": 1900,
+  "RewardCount_Min": 1900,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 361
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61004,
+  "Rate": 100,
+  "RewardCount_Max": 459,
+  "RewardCount_Min": 459,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 362
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 61004,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 25,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 363
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61005,
+  "Rate": 100,
+  "RewardCount_Max": 520,
+  "RewardCount_Min": 520,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 364
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61005,
+  "Rate": 100,
+  "RewardCount_Max": 1700,
+  "RewardCount_Min": 1700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 365
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61005,
+  "Rate": 100,
+  "RewardCount_Max": 410,
+  "RewardCount_Min": 410,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 366
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 61005,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 367
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61006,
+  "Rate": 100,
+  "RewardCount_Max": 480,
+  "RewardCount_Min": 480,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 368
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61006,
+  "Rate": 100,
+  "RewardCount_Max": 1600,
+  "RewardCount_Min": 1600,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 369
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61006,
+  "Rate": 100,
+  "RewardCount_Max": 385,
+  "RewardCount_Min": 385,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 370
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61007,
+  "Rate": 100,
+  "RewardCount_Max": 440,
+  "RewardCount_Min": 440,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 371
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61007,
+  "Rate": 100,
+  "RewardCount_Max": 1500,
+  "RewardCount_Min": 1500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 372
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61007,
+  "Rate": 100,
+  "RewardCount_Max": 360,
+  "RewardCount_Min": 360,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 373
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61008,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 374
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61008,
+  "Rate": 100,
+  "RewardCount_Max": 1300,
+  "RewardCount_Min": 1300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 375
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61008,
+  "Rate": 100,
+  "RewardCount_Max": 312,
+  "RewardCount_Min": 312,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 376
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61009,
+  "Rate": 100,
+  "RewardCount_Max": 360,
+  "RewardCount_Min": 360,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 377
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61009,
+  "Rate": 100,
+  "RewardCount_Max": 1200,
+  "RewardCount_Min": 1200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 378
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61009,
+  "Rate": 100,
+  "RewardCount_Max": 288,
+  "RewardCount_Min": 288,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 379
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61010,
+  "Rate": 100,
+  "RewardCount_Max": 320,
+  "RewardCount_Min": 320,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 380
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61010,
+  "Rate": 100,
+  "RewardCount_Max": 1100,
+  "RewardCount_Min": 1100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 381
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61010,
+  "Rate": 100,
+  "RewardCount_Max": 264,
+  "RewardCount_Min": 264,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 382
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61011,
+  "Rate": 100,
+  "RewardCount_Max": 280,
+  "RewardCount_Min": 280,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 383
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61011,
+  "Rate": 100,
+  "RewardCount_Max": 900,
+  "RewardCount_Min": 900,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 384
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61011,
+  "Rate": 100,
+  "RewardCount_Max": 216,
+  "RewardCount_Min": 216,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 385
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61012,
+  "Rate": 100,
+  "RewardCount_Max": 240,
+  "RewardCount_Min": 240,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 386
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61012,
+  "Rate": 100,
+  "RewardCount_Max": 800,
+  "RewardCount_Min": 800,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 387
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61012,
+  "Rate": 100,
+  "RewardCount_Max": 192,
+  "RewardCount_Min": 192,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 388
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 61013,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 389
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 61013,
+  "Rate": 100,
+  "RewardCount_Max": 700,
+  "RewardCount_Min": 700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 390
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 61013,
+  "Rate": 100,
+  "RewardCount_Max": 168,
+  "RewardCount_Min": 168,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 391
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70001,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 392
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70001,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 393
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70001,
+  "Rate": 100,
+  "RewardCount_Max": 315,
+  "RewardCount_Min": 315,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 394
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70002,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 395
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70002,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 396
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70002,
+  "Rate": 100,
+  "RewardCount_Max": 252,
+  "RewardCount_Min": 252,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 397
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70003,
+  "Rate": 100,
+  "RewardCount_Max": 90,
+  "RewardCount_Min": 90,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 398
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70003,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 399
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70003,
+  "Rate": 100,
+  "RewardCount_Max": 189,
+  "RewardCount_Min": 189,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 400
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70004,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 401
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70004,
+  "Rate": 100,
+  "RewardCount_Max": 230,
+  "RewardCount_Min": 230,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 402
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70004,
+  "Rate": 100,
+  "RewardCount_Max": 144,
+  "RewardCount_Min": 144,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 403
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70005,
+  "Rate": 100,
+  "RewardCount_Max": 65,
+  "RewardCount_Min": 65,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 404
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70005,
+  "Rate": 100,
+  "RewardCount_Max": 220,
+  "RewardCount_Min": 220,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 405
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70005,
+  "Rate": 100,
+  "RewardCount_Max": 137,
+  "RewardCount_Min": 137,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 406
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70006,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 407
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70006,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 408
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70006,
+  "Rate": 100,
+  "RewardCount_Max": 124,
+  "RewardCount_Min": 124,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 409
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70007,
+  "Rate": 100,
+  "RewardCount_Max": 55,
+  "RewardCount_Min": 55,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 410
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70007,
+  "Rate": 100,
+  "RewardCount_Max": 180,
+  "RewardCount_Min": 180,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 411
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70007,
+  "Rate": 100,
+  "RewardCount_Max": 111,
+  "RewardCount_Min": 111,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 412
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70008,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 413
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70008,
+  "Rate": 100,
+  "RewardCount_Max": 170,
+  "RewardCount_Min": 170,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 414
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70008,
+  "Rate": 100,
+  "RewardCount_Max": 104,
+  "RewardCount_Min": 104,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 415
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70009,
+  "Rate": 100,
+  "RewardCount_Max": 45,
+  "RewardCount_Min": 45,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 416
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70009,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 417
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70009,
+  "Rate": 100,
+  "RewardCount_Max": 91,
+  "RewardCount_Min": 91,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 418
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70010,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 419
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70010,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 420
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70010,
+  "Rate": 100,
+  "RewardCount_Max": 78,
+  "RewardCount_Min": 78,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 421
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70011,
+  "Rate": 100,
+  "RewardCount_Max": 35,
+  "RewardCount_Min": 35,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 422
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70011,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 423
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70011,
+  "Rate": 100,
+  "RewardCount_Max": 72,
+  "RewardCount_Min": 72,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 424
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70012,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 425
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70012,
+  "Rate": 100,
+  "RewardCount_Max": 110,
+  "RewardCount_Min": 110,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 426
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70012,
+  "Rate": 100,
+  "RewardCount_Max": 66,
+  "RewardCount_Min": 66,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 427
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 70013,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 25,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 428
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 70013,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 429
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 70013,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 430
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71001,
+  "Rate": 100,
+  "RewardCount_Max": 1500,
+  "RewardCount_Min": 1500,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 431
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71001,
+  "Rate": 100,
+  "RewardCount_Max": 5000,
+  "RewardCount_Min": 5000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 432
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71001,
+  "Rate": 100,
+  "RewardCount_Max": 1050,
+  "RewardCount_Min": 1050,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 433
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 71001,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 434
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71002,
+  "Rate": 100,
+  "RewardCount_Max": 1200,
+  "RewardCount_Min": 1200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 435
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71002,
+  "Rate": 100,
+  "RewardCount_Max": 4000,
+  "RewardCount_Min": 4000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 436
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71002,
+  "Rate": 100,
+  "RewardCount_Max": 840,
+  "RewardCount_Min": 840,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 437
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 71002,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 438
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71003,
+  "Rate": 100,
+  "RewardCount_Max": 900,
+  "RewardCount_Min": 900,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 439
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71003,
+  "Rate": 100,
+  "RewardCount_Max": 3000,
+  "RewardCount_Min": 3000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 440
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71003,
+  "Rate": 100,
+  "RewardCount_Max": 630,
+  "RewardCount_Min": 630,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 441
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 71003,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 442
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71004,
+  "Rate": 100,
+  "RewardCount_Max": 700,
+  "RewardCount_Min": 700,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 443
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71004,
+  "Rate": 100,
+  "RewardCount_Max": 2300,
+  "RewardCount_Min": 2300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 444
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71004,
+  "Rate": 100,
+  "RewardCount_Max": 483,
+  "RewardCount_Min": 483,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 445
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 71004,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 446
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71005,
+  "Rate": 100,
+  "RewardCount_Max": 650,
+  "RewardCount_Min": 650,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 447
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71005,
+  "Rate": 100,
+  "RewardCount_Max": 2200,
+  "RewardCount_Min": 2200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 448
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71005,
+  "Rate": 100,
+  "RewardCount_Max": 462,
+  "RewardCount_Min": 462,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 449
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 71005,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 450
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71006,
+  "Rate": 100,
+  "RewardCount_Max": 600,
+  "RewardCount_Min": 600,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 451
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71006,
+  "Rate": 100,
+  "RewardCount_Max": 2000,
+  "RewardCount_Min": 2000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 452
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71006,
+  "Rate": 100,
+  "RewardCount_Max": 420,
+  "RewardCount_Min": 420,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 453
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71007,
+  "Rate": 100,
+  "RewardCount_Max": 550,
+  "RewardCount_Min": 550,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 454
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71007,
+  "Rate": 100,
+  "RewardCount_Max": 1800,
+  "RewardCount_Min": 1800,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 455
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71007,
+  "Rate": 100,
+  "RewardCount_Max": 378,
+  "RewardCount_Min": 378,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 456
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71008,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 457
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71008,
+  "Rate": 100,
+  "RewardCount_Max": 1700,
+  "RewardCount_Min": 1700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 458
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71008,
+  "Rate": 100,
+  "RewardCount_Max": 357,
+  "RewardCount_Min": 357,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 459
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71009,
+  "Rate": 100,
+  "RewardCount_Max": 450,
+  "RewardCount_Min": 450,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 460
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71009,
+  "Rate": 100,
+  "RewardCount_Max": 1500,
+  "RewardCount_Min": 1500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 461
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71009,
+  "Rate": 100,
+  "RewardCount_Max": 315,
+  "RewardCount_Min": 315,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 462
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71010,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 463
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71010,
+  "Rate": 100,
+  "RewardCount_Max": 1300,
+  "RewardCount_Min": 1300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 464
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71010,
+  "Rate": 100,
+  "RewardCount_Max": 273,
+  "RewardCount_Min": 273,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 465
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71011,
+  "Rate": 100,
+  "RewardCount_Max": 350,
+  "RewardCount_Min": 350,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 466
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71011,
+  "Rate": 100,
+  "RewardCount_Max": 1200,
+  "RewardCount_Min": 1200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 467
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71011,
+  "Rate": 100,
+  "RewardCount_Max": 252,
+  "RewardCount_Min": 252,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 468
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71012,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 469
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71012,
+  "Rate": 100,
+  "RewardCount_Max": 1100,
+  "RewardCount_Min": 1100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 470
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71012,
+  "Rate": 100,
+  "RewardCount_Max": 231,
+  "RewardCount_Min": 231,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 471
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 71013,
+  "Rate": 100,
+  "RewardCount_Max": 250,
+  "RewardCount_Min": 250,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 472
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 71013,
+  "Rate": 100,
+  "RewardCount_Max": 1000,
+  "RewardCount_Min": 1000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 473
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 71013,
+  "Rate": 100,
+  "RewardCount_Max": 210,
+  "RewardCount_Min": 210,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 474
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80001,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 475
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80001,
+  "Rate": 100,
+  "RewardCount_Max": 700,
+  "RewardCount_Min": 700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 476
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80001,
+  "Rate": 100,
+  "RewardCount_Max": 405,
+  "RewardCount_Min": 405,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 477
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80002,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 478
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80002,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 479
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80002,
+  "Rate": 100,
+  "RewardCount_Max": 289,
+  "RewardCount_Min": 289,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 480
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80003,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 481
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80003,
+  "Rate": 100,
+  "RewardCount_Max": 330,
+  "RewardCount_Min": 330,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 482
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80003,
+  "Rate": 100,
+  "RewardCount_Max": 190,
+  "RewardCount_Min": 190,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 483
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80004,
+  "Rate": 100,
+  "RewardCount_Max": 90,
+  "RewardCount_Min": 90,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 484
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80004,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 485
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80004,
+  "Rate": 100,
+  "RewardCount_Max": 172,
+  "RewardCount_Min": 172,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 486
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80005,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 487
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80005,
+  "Rate": 100,
+  "RewardCount_Max": 270,
+  "RewardCount_Min": 270,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 488
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80005,
+  "Rate": 100,
+  "RewardCount_Max": 154,
+  "RewardCount_Min": 154,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 489
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80006,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 490
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80006,
+  "Rate": 100,
+  "RewardCount_Max": 230,
+  "RewardCount_Min": 230,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 491
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80006,
+  "Rate": 100,
+  "RewardCount_Max": 131,
+  "RewardCount_Min": 131,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 492
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80007,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 493
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80007,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 494
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80007,
+  "Rate": 100,
+  "RewardCount_Max": 113,
+  "RewardCount_Min": 113,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 495
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80008,
+  "Rate": 100,
+  "RewardCount_Max": 55,
+  "RewardCount_Min": 55,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 496
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80008,
+  "Rate": 100,
+  "RewardCount_Max": 180,
+  "RewardCount_Min": 180,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 497
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80008,
+  "Rate": 100,
+  "RewardCount_Max": 101,
+  "RewardCount_Min": 101,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 498
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80009,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 499
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80009,
+  "Rate": 100,
+  "RewardCount_Max": 170,
+  "RewardCount_Min": 170,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 500
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80009,
+  "Rate": 100,
+  "RewardCount_Max": 95,
+  "RewardCount_Min": 95,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 501
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80010,
+  "Rate": 100,
+  "RewardCount_Max": 45,
+  "RewardCount_Min": 45,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 502
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80010,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 503
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80010,
+  "Rate": 100,
+  "RewardCount_Max": 83,
+  "RewardCount_Min": 83,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 504
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80011,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 505
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80011,
+  "Rate": 100,
+  "RewardCount_Max": 130,
+  "RewardCount_Min": 130,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 506
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80011,
+  "Rate": 100,
+  "RewardCount_Max": 71,
+  "RewardCount_Min": 71,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 507
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80012,
+  "Rate": 100,
+  "RewardCount_Max": 35,
+  "RewardCount_Min": 35,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 508
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80012,
+  "Rate": 100,
+  "RewardCount_Max": 120,
+  "RewardCount_Min": 120,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 509
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80012,
+  "Rate": 100,
+  "RewardCount_Max": 65,
+  "RewardCount_Min": 65,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 510
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 80013,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 511
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 80013,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 512
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 80013,
+  "Rate": 100,
+  "RewardCount_Max": 54,
+  "RewardCount_Min": 54,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 513
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81001,
+  "Rate": 100,
+  "RewardCount_Max": 2000,
+  "RewardCount_Min": 2000,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 514
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81001,
+  "Rate": 100,
+  "RewardCount_Max": 7000,
+  "RewardCount_Min": 7000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 515
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81001,
+  "Rate": 100,
+  "RewardCount_Max": 1350,
+  "RewardCount_Min": 1350,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 516
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 81001,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 517
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81002,
+  "Rate": 100,
+  "RewardCount_Max": 1500,
+  "RewardCount_Min": 1500,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 518
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81002,
+  "Rate": 100,
+  "RewardCount_Max": 5000,
+  "RewardCount_Min": 5000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 519
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81002,
+  "Rate": 100,
+  "RewardCount_Max": 964,
+  "RewardCount_Min": 964,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 520
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 81002,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 521
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81003,
+  "Rate": 100,
+  "RewardCount_Max": 1000,
+  "RewardCount_Min": 1000,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 522
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81003,
+  "Rate": 100,
+  "RewardCount_Max": 3300,
+  "RewardCount_Min": 3300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 523
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81003,
+  "Rate": 100,
+  "RewardCount_Max": 636,
+  "RewardCount_Min": 636,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 524
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 81003,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 525
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81004,
+  "Rate": 100,
+  "RewardCount_Max": 900,
+  "RewardCount_Min": 900,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 526
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81004,
+  "Rate": 100,
+  "RewardCount_Max": 3000,
+  "RewardCount_Min": 3000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 527
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81004,
+  "Rate": 100,
+  "RewardCount_Max": 578,
+  "RewardCount_Min": 578,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 528
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 81004,
+  "Rate": 100,
+  "RewardCount_Max": 250,
+  "RewardCount_Min": 250,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 529
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81005,
+  "Rate": 100,
+  "RewardCount_Max": 800,
+  "RewardCount_Min": 800,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 530
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81005,
+  "Rate": 100,
+  "RewardCount_Max": 2700,
+  "RewardCount_Min": 2700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 531
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81005,
+  "Rate": 100,
+  "RewardCount_Max": 520,
+  "RewardCount_Min": 520,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 532
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 81005,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 533
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81006,
+  "Rate": 100,
+  "RewardCount_Max": 700,
+  "RewardCount_Min": 700,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 534
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81006,
+  "Rate": 100,
+  "RewardCount_Max": 2300,
+  "RewardCount_Min": 2300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 535
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81006,
+  "Rate": 100,
+  "RewardCount_Max": 442,
+  "RewardCount_Min": 442,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 536
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81007,
+  "Rate": 100,
+  "RewardCount_Max": 600,
+  "RewardCount_Min": 600,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 537
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81007,
+  "Rate": 100,
+  "RewardCount_Max": 2000,
+  "RewardCount_Min": 2000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 538
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81007,
+  "Rate": 100,
+  "RewardCount_Max": 384,
+  "RewardCount_Min": 384,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 539
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81008,
+  "Rate": 100,
+  "RewardCount_Max": 550,
+  "RewardCount_Min": 550,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 540
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81008,
+  "Rate": 100,
+  "RewardCount_Max": 1800,
+  "RewardCount_Min": 1800,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 541
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81008,
+  "Rate": 100,
+  "RewardCount_Max": 345,
+  "RewardCount_Min": 345,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 542
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81009,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 543
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81009,
+  "Rate": 100,
+  "RewardCount_Max": 1700,
+  "RewardCount_Min": 1700,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 544
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81009,
+  "Rate": 100,
+  "RewardCount_Max": 325,
+  "RewardCount_Min": 325,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 545
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81010,
+  "Rate": 100,
+  "RewardCount_Max": 450,
+  "RewardCount_Min": 450,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 546
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81010,
+  "Rate": 100,
+  "RewardCount_Max": 1500,
+  "RewardCount_Min": 1500,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 547
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81010,
+  "Rate": 100,
+  "RewardCount_Max": 286,
+  "RewardCount_Min": 286,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 548
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81011,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 549
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81011,
+  "Rate": 100,
+  "RewardCount_Max": 1300,
+  "RewardCount_Min": 1300,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 550
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81011,
+  "Rate": 100,
+  "RewardCount_Max": 247,
+  "RewardCount_Min": 247,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 551
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81012,
+  "Rate": 100,
+  "RewardCount_Max": 350,
+  "RewardCount_Min": 350,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 552
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81012,
+  "Rate": 100,
+  "RewardCount_Max": 1200,
+  "RewardCount_Min": 1200,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 553
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81012,
+  "Rate": 100,
+  "RewardCount_Max": 228,
+  "RewardCount_Min": 228,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 554
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 81013,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 555
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 81013,
+  "Rate": 100,
+  "RewardCount_Max": 1000,
+  "RewardCount_Min": 1000,
+  "RewardParam": 6,
+  "RewardType": 1,
+  "id": 556
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 81013,
+  "Rate": 100,
+  "RewardCount_Max": 190,
+  "RewardCount_Min": 190,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 557
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 1,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 558
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 2,
+  "Rate": 100,
+  "RewardCount_Max": 13,
+  "RewardCount_Min": 13,
+  "RewardParam": 5,
+  "RewardType": 1,
+  "id": 559
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 3,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 4,
+  "RewardType": 1,
+  "id": 560
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 4,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 6001,
+  "RewardType": 1,
+  "id": 561
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 5,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 5,
+  "RewardParam": 205,
+  "RewardType": 1,
+  "id": 562
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 6,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 563
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110101,
+  "Rate": 30,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8101,
+  "RewardType": 1,
+  "id": 564
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110101,
+  "Rate": 70,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 565
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90110101,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 6,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 566
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90110101,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 3,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 567
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90110101,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 1,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 568
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110201,
+  "Rate": 46,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8101,
+  "RewardType": 1,
+  "id": 569
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110201,
+  "Rate": 54,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 570
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90110201,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 8,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 571
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90110201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 6,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 572
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90110201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 2,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 573
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110301,
+  "Rate": 67,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8101,
+  "RewardType": 1,
+  "id": 574
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110301,
+  "Rate": 33,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 575
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90110301,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 12,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 576
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90110301,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 9,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 577
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90110301,
+  "Rate": 100,
+  "RewardCount_Max": 21,
+  "RewardCount_Min": 4,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 578
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8101,
+  "RewardType": 1,
+  "id": 579
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90110401,
+  "Rate": 0,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 580
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90110401,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 18,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 581
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90110401,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 12,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 582
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90110401,
+  "Rate": 100,
+  "RewardCount_Max": 34,
+  "RewardCount_Min": 7,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 583
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120101,
+  "Rate": 30,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8102,
+  "RewardType": 1,
+  "id": 584
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120101,
+  "Rate": 70,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 585
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90120101,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 6,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 586
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90120101,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 3,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 587
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90120101,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 1,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 588
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120201,
+  "Rate": 46,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8102,
+  "RewardType": 1,
+  "id": 589
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120201,
+  "Rate": 54,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 590
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90120201,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 8,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 591
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90120201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 6,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 592
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90120201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 2,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 593
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120301,
+  "Rate": 67,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8102,
+  "RewardType": 1,
+  "id": 594
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120301,
+  "Rate": 33,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 595
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90120301,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 12,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 596
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90120301,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 9,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 597
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90120301,
+  "Rate": 100,
+  "RewardCount_Max": 21,
+  "RewardCount_Min": 4,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 598
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8102,
+  "RewardType": 1,
+  "id": 599
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90120401,
+  "Rate": 0,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 600
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90120401,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 18,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 601
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90120401,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 12,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 602
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90120401,
+  "Rate": 100,
+  "RewardCount_Max": 34,
+  "RewardCount_Min": 7,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 603
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130101,
+  "Rate": 30,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8103,
+  "RewardType": 1,
+  "id": 604
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130101,
+  "Rate": 70,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 605
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90130101,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 6,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 606
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90130101,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 3,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 607
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90130101,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 1,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 608
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130201,
+  "Rate": 46,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8103,
+  "RewardType": 1,
+  "id": 609
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130201,
+  "Rate": 54,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 610
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90130201,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 8,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 611
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90130201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 6,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 612
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90130201,
+  "Rate": 100,
+  "RewardCount_Max": 13,
+  "RewardCount_Min": 3,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 613
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130301,
+  "Rate": 67,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8103,
+  "RewardType": 1,
+  "id": 614
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130301,
+  "Rate": 33,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 615
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90130301,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 12,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 616
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90130301,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 9,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 617
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90130301,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 5,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 618
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8103,
+  "RewardType": 1,
+  "id": 619
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90130401,
+  "Rate": 0,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 620
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90130401,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 18,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 621
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90130401,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 12,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 622
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90130401,
+  "Rate": 100,
+  "RewardCount_Max": 38,
+  "RewardCount_Min": 8,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 623
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140101,
+  "Rate": 30,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8104,
+  "RewardType": 1,
+  "id": 624
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140101,
+  "Rate": 70,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 625
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90140101,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 6,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 626
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90140101,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 3,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 627
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90140101,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 1,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 628
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140201,
+  "Rate": 46,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8104,
+  "RewardType": 1,
+  "id": 629
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140201,
+  "Rate": 54,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 630
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90140201,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 8,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 631
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90140201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 6,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 632
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90140201,
+  "Rate": 100,
+  "RewardCount_Max": 13,
+  "RewardCount_Min": 3,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 633
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140301,
+  "Rate": 67,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8104,
+  "RewardType": 1,
+  "id": 634
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140301,
+  "Rate": 33,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 635
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90140301,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 12,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 636
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90140301,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 9,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 637
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90140301,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 5,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 638
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8104,
+  "RewardType": 1,
+  "id": 639
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90140401,
+  "Rate": 0,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 640
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90140401,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 18,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 641
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90140401,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 12,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 642
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90140401,
+  "Rate": 100,
+  "RewardCount_Max": 38,
+  "RewardCount_Min": 8,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 643
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150101,
+  "Rate": 30,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8105,
+  "RewardType": 1,
+  "id": 644
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150101,
+  "Rate": 70,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 645
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90150101,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 6,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 646
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90150101,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 3,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 647
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90150101,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 1,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 648
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150201,
+  "Rate": 46,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8105,
+  "RewardType": 1,
+  "id": 649
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150201,
+  "Rate": 54,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 650
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90150201,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 8,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 651
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90150201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 6,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 652
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90150201,
+  "Rate": 100,
+  "RewardCount_Max": 17,
+  "RewardCount_Min": 3,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 653
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150301,
+  "Rate": 67,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8105,
+  "RewardType": 1,
+  "id": 654
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150301,
+  "Rate": 33,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 655
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90150301,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 12,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 656
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90150301,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 9,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 657
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90150301,
+  "Rate": 100,
+  "RewardCount_Max": 29,
+  "RewardCount_Min": 6,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 658
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8105,
+  "RewardType": 1,
+  "id": 659
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90150401,
+  "Rate": 0,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 660
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90150401,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 18,
+  "RewardParam": 8201,
+  "RewardType": 1,
+  "id": 661
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90150401,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 12,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 662
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90150401,
+  "Rate": 100,
+  "RewardCount_Max": 42,
+  "RewardCount_Min": 8,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 663
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160101,
+  "Rate": 30,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8106,
+  "RewardType": 1,
+  "id": 664
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160101,
+  "Rate": 70,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 665
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90160101,
+  "Rate": 100,
+  "RewardCount_Max": 8,
+  "RewardCount_Min": 6,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 666
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90160101,
+  "Rate": 100,
+  "RewardCount_Max": 6,
+  "RewardCount_Min": 3,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 667
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90160101,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 1,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 668
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160201,
+  "Rate": 46,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8106,
+  "RewardType": 1,
+  "id": 669
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160201,
+  "Rate": 54,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 670
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90160201,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 8,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 671
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90160201,
+  "Rate": 100,
+  "RewardCount_Max": 9,
+  "RewardCount_Min": 6,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 672
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90160201,
+  "Rate": 100,
+  "RewardCount_Max": 17,
+  "RewardCount_Min": 3,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 673
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160301,
+  "Rate": 67,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8106,
+  "RewardType": 1,
+  "id": 674
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160301,
+  "Rate": 33,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 675
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90160301,
+  "Rate": 100,
+  "RewardCount_Max": 18,
+  "RewardCount_Min": 12,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 676
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90160301,
+  "Rate": 100,
+  "RewardCount_Max": 12,
+  "RewardCount_Min": 9,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 677
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90160301,
+  "Rate": 100,
+  "RewardCount_Max": 29,
+  "RewardCount_Min": 6,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 678
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 8106,
+  "RewardType": 1,
+  "id": 679
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 90160401,
+  "Rate": 0,
+  "RewardCount_Max": 0,
+  "RewardCount_Min": 0,
+  "RewardParam": -1,
+  "RewardType": 0,
+  "id": 680
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 90160401,
+  "Rate": 100,
+  "RewardCount_Max": 24,
+  "RewardCount_Min": 18,
+  "RewardParam": 8202,
+  "RewardType": 1,
+  "id": 681
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 90160401,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 12,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 682
+ },
+ {
+  "BundleGroup": 4,
+  "Group": 90160401,
+  "Rate": 100,
+  "RewardCount_Max": 42,
+  "RewardCount_Min": 8,
+  "RewardParam": 8003,
+  "RewardType": 1,
+  "id": 683
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91110101,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 684
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91110201,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 685
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91110301,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 686
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91110401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 687
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91120101,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 688
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91120201,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 689
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91120301,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 690
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91120401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 691
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91130101,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 692
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91130201,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 693
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91130301,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 694
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91130401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 695
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91140101,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 696
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91140201,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 697
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91140301,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 698
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91140401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 699
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91150101,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 700
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91150201,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 701
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91150301,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 702
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91150401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 703
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91160101,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 704
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91160201,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 705
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91160301,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 706
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 91160401,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 707
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 11001,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2001,
+  "RewardType": 4,
+  "id": 708
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 11002,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2001,
+  "RewardType": 4,
+  "id": 709
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100011,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 710
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100012,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 711
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100012,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 712
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100013,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 713
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100013,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 714
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100014,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 715
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100014,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 716
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100015,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2001,
+  "RewardType": 1,
+  "id": 717
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100015,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 718
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100016,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2001,
+  "RewardType": 1,
+  "id": 719
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100016,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 720
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100021,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 721
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100022,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 201,
+  "RewardType": 1,
+  "id": 722
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100022,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 723
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100023,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 724
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100023,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 725
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100024,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 726
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100024,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 727
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100025,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2001,
+  "RewardType": 1,
+  "id": 728
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100025,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 729
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100026,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2001,
+  "RewardType": 1,
+  "id": 730
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100026,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 731
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100031,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 732
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100032,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 733
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100032,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 734
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100033,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 735
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100033,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 736
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100034,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 737
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100034,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 738
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100035,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2003,
+  "RewardType": 1,
+  "id": 739
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100035,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 740
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100036,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2003,
+  "RewardType": 1,
+  "id": 741
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100036,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 742
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100041,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 743
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100042,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 201,
+  "RewardType": 1,
+  "id": 744
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100042,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 745
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100043,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 746
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100043,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 747
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100044,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 748
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100044,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 749
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100045,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 750
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100045,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 751
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100046,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 752
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100046,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 753
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100051,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 754
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100052,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 755
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100052,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 756
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100053,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 757
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100053,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 758
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100054,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 759
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100054,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 760
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100055,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2003,
+  "RewardType": 1,
+  "id": 761
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100055,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 762
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100056,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2003,
+  "RewardType": 1,
+  "id": 763
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100056,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 764
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100061,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 765
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100062,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 766
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100062,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 767
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100063,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 768
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100063,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 769
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100064,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 770
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100064,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 771
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100065,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 772
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100065,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 773
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100066,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 774
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100066,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 775
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100071,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 776
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100072,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 777
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100072,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 778
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100073,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 779
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100073,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 780
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100074,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 301,
+  "RewardType": 1,
+  "id": 781
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100074,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 782
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100075,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 783
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100075,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 784
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100076,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 785
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 100076,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 786
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100081,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 787
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100082,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 11,
+  "RewardType": 7,
+  "id": 788
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100083,
+  "Rate": 100,
+  "RewardCount_Max": 3,
+  "RewardCount_Min": 3,
+  "RewardParam": 2103,
+  "RewardType": 1,
+  "id": 789
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100084,
+  "Rate": 100,
+  "RewardCount_Max": 600,
+  "RewardCount_Min": 600,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 790
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100085,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 1006,
+  "RewardType": 2,
+  "id": 791
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 100086,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 792
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110010,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 25,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 793
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110010,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 794
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110010,
+  "Rate": 100,
+  "RewardCount_Max": 500,
+  "RewardCount_Min": 500,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 795
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110020,
+  "Rate": 100,
+  "RewardCount_Max": 15,
+  "RewardCount_Min": 15,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 796
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110020,
+  "Rate": 100,
+  "RewardCount_Max": 175,
+  "RewardCount_Min": 175,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 797
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110020,
+  "Rate": 100,
+  "RewardCount_Max": 400,
+  "RewardCount_Min": 400,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 798
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110030,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 799
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110030,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 800
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110030,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 801
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110040,
+  "Rate": 100,
+  "RewardCount_Max": 5,
+  "RewardCount_Min": 5,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 802
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110040,
+  "Rate": 100,
+  "RewardCount_Max": 125,
+  "RewardCount_Min": 125,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 803
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110040,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 804
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110050,
+  "Rate": 100,
+  "RewardCount_Max": 4,
+  "RewardCount_Min": 4,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 805
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110050,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 806
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110050,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 807
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110060,
+  "Rate": 100,
+  "RewardCount_Max": 3,
+  "RewardCount_Min": 3,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 808
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110060,
+  "Rate": 100,
+  "RewardCount_Max": 75,
+  "RewardCount_Min": 75,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 809
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110060,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 810
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110070,
+  "Rate": 100,
+  "RewardCount_Max": 2,
+  "RewardCount_Min": 2,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 811
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110070,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 812
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110070,
+  "Rate": 100,
+  "RewardCount_Max": 60,
+  "RewardCount_Min": 60,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 813
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110080,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 814
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110080,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 25,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 815
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110080,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 816
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110090,
+  "Rate": 100,
+  "RewardCount_Max": 1,
+  "RewardCount_Min": 1,
+  "RewardParam": 2004,
+  "RewardType": 1,
+  "id": 817
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110090,
+  "Rate": 100,
+  "RewardCount_Max": 10,
+  "RewardCount_Min": 10,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 818
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110090,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 819
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110100,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 820
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110100,
+  "Rate": 100,
+  "RewardCount_Max": 20,
+  "RewardCount_Min": 20,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 821
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110100,
+  "Rate": 100,
+  "RewardCount_Max": 25,
+  "RewardCount_Min": 25,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 822
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110200,
+  "Rate": 100,
+  "RewardCount_Max": 75,
+  "RewardCount_Min": 75,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 823
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110200,
+  "Rate": 100,
+  "RewardCount_Max": 30,
+  "RewardCount_Min": 30,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 824
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110200,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 825
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110300,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 826
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110300,
+  "Rate": 100,
+  "RewardCount_Max": 40,
+  "RewardCount_Min": 40,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 827
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110300,
+  "Rate": 100,
+  "RewardCount_Max": 75,
+  "RewardCount_Min": 75,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 828
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110400,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 829
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110400,
+  "Rate": 100,
+  "RewardCount_Max": 50,
+  "RewardCount_Min": 50,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 830
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110400,
+  "Rate": 100,
+  "RewardCount_Max": 100,
+  "RewardCount_Min": 100,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 831
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110500,
+  "Rate": 100,
+  "RewardCount_Max": 200,
+  "RewardCount_Min": 200,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 832
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110500,
+  "Rate": 100,
+  "RewardCount_Max": 70,
+  "RewardCount_Min": 70,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 833
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110500,
+  "Rate": 100,
+  "RewardCount_Max": 125,
+  "RewardCount_Min": 125,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 834
+ },
+ {
+  "BundleGroup": 1,
+  "Group": 110600,
+  "Rate": 100,
+  "RewardCount_Max": 300,
+  "RewardCount_Min": 300,
+  "RewardParam": 3,
+  "RewardType": 1,
+  "id": 835
+ },
+ {
+  "BundleGroup": 2,
+  "Group": 110600,
+  "Rate": 100,
+  "RewardCount_Max": 80,
+  "RewardCount_Min": 80,
+  "RewardParam": 8002,
+  "RewardType": 1,
+  "id": 836
+ },
+ {
+  "BundleGroup": 3,
+  "Group": 110600,
+  "Rate": 100,
+  "RewardCount_Max": 150,
+  "RewardCount_Min": 150,
+  "RewardParam": 1,
+  "RewardType": 1,
+  "id": 837
+ }
+]

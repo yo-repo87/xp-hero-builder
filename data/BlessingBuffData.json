@@ -1,0 +1,1052 @@
+[
+ {
+  "buff_level": 1,
+  "buff_type": 1,
+  "buff_value": 50,
+  "id": 1001,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 2,
+  "buff_type": 1,
+  "buff_value": 52,
+  "id": 1002,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 3,
+  "buff_type": 1,
+  "buff_value": 54,
+  "id": 1003,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 4,
+  "buff_type": 1,
+  "buff_value": 56,
+  "id": 1004,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 5,
+  "buff_type": 1,
+  "buff_value": 58,
+  "id": 1005,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 6,
+  "buff_type": 1,
+  "buff_value": 60,
+  "id": 1006,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 7,
+  "buff_type": 1,
+  "buff_value": 62,
+  "id": 1007,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 8,
+  "buff_type": 1,
+  "buff_value": 64,
+  "id": 1008,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 9,
+  "buff_type": 1,
+  "buff_value": 66,
+  "id": 1009,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 10,
+  "buff_type": 1,
+  "buff_value": 68,
+  "id": 1010,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 11,
+  "buff_type": 1,
+  "buff_value": 70,
+  "id": 1011,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 12,
+  "buff_type": 1,
+  "buff_value": 72,
+  "id": 1012,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 13,
+  "buff_type": 1,
+  "buff_value": 74,
+  "id": 1013,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 14,
+  "buff_type": 1,
+  "buff_value": 76,
+  "id": 1014,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 15,
+  "buff_type": 1,
+  "buff_value": 78,
+  "id": 1015,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 16,
+  "buff_type": 1,
+  "buff_value": 80,
+  "id": 1016,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 17,
+  "buff_type": 1,
+  "buff_value": 82,
+  "id": 1017,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 18,
+  "buff_type": 1,
+  "buff_value": 84,
+  "id": 1018,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 19,
+  "buff_type": 1,
+  "buff_value": 86,
+  "id": 1019,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 20,
+  "buff_type": 1,
+  "buff_value": 88,
+  "id": 1020,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 21,
+  "buff_type": 1,
+  "buff_value": 90,
+  "id": 1021,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 22,
+  "buff_type": 1,
+  "buff_value": 92,
+  "id": 1022,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 23,
+  "buff_type": 1,
+  "buff_value": 94,
+  "id": 1023,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 24,
+  "buff_type": 1,
+  "buff_value": 96,
+  "id": 1024,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 25,
+  "buff_type": 1,
+  "buff_value": 98,
+  "id": 1025,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 26,
+  "buff_type": 1,
+  "buff_value": 100,
+  "id": 1026,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 27,
+  "buff_type": 1,
+  "buff_value": 102,
+  "id": 1027,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 28,
+  "buff_type": 1,
+  "buff_value": 104,
+  "id": 1028,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 29,
+  "buff_type": 1,
+  "buff_value": 106,
+  "id": 1029,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 30,
+  "buff_type": 1,
+  "buff_value": 108,
+  "id": 1030,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 31,
+  "buff_type": 1,
+  "buff_value": 110,
+  "id": 1031,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 32,
+  "buff_type": 1,
+  "buff_value": 112,
+  "id": 1032,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 33,
+  "buff_type": 1,
+  "buff_value": 114,
+  "id": 1033,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 34,
+  "buff_type": 1,
+  "buff_value": 116,
+  "id": 1034,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 35,
+  "buff_type": 1,
+  "buff_value": 118,
+  "id": 1035,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 36,
+  "buff_type": 1,
+  "buff_value": 120,
+  "id": 1036,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 37,
+  "buff_type": 1,
+  "buff_value": 122,
+  "id": 1037,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 38,
+  "buff_type": 1,
+  "buff_value": 124,
+  "id": 1038,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 39,
+  "buff_type": 1,
+  "buff_value": 126,
+  "id": 1039,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 40,
+  "buff_type": 1,
+  "buff_value": 128,
+  "id": 1040,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 41,
+  "buff_type": 1,
+  "buff_value": 130,
+  "id": 1041,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 42,
+  "buff_type": 1,
+  "buff_value": 132,
+  "id": 1042,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 43,
+  "buff_type": 1,
+  "buff_value": 134,
+  "id": 1043,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 44,
+  "buff_type": 1,
+  "buff_value": 136,
+  "id": 1044,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 45,
+  "buff_type": 1,
+  "buff_value": 138,
+  "id": 1045,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 46,
+  "buff_type": 1,
+  "buff_value": 140,
+  "id": 1046,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 47,
+  "buff_type": 1,
+  "buff_value": 142,
+  "id": 1047,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 48,
+  "buff_type": 1,
+  "buff_value": 144,
+  "id": 1048,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 49,
+  "buff_type": 1,
+  "buff_value": 146,
+  "id": 1049,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 50,
+  "buff_type": 1,
+  "buff_value": 150,
+  "id": 1999,
+  "required_exp": -1
+ },
+ {
+  "buff_level": 1,
+  "buff_type": 2,
+  "buff_value": 200,
+  "id": 2001,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 2,
+  "buff_type": 2,
+  "buff_value": 203,
+  "id": 2002,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 3,
+  "buff_type": 2,
+  "buff_value": 206,
+  "id": 2003,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 4,
+  "buff_type": 2,
+  "buff_value": 209,
+  "id": 2004,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 5,
+  "buff_type": 2,
+  "buff_value": 212,
+  "id": 2005,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 6,
+  "buff_type": 2,
+  "buff_value": 215,
+  "id": 2006,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 7,
+  "buff_type": 2,
+  "buff_value": 218,
+  "id": 2007,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 8,
+  "buff_type": 2,
+  "buff_value": 221,
+  "id": 2008,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 9,
+  "buff_type": 2,
+  "buff_value": 224,
+  "id": 2009,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 10,
+  "buff_type": 2,
+  "buff_value": 227,
+  "id": 2010,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 11,
+  "buff_type": 2,
+  "buff_value": 230,
+  "id": 2011,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 12,
+  "buff_type": 2,
+  "buff_value": 233,
+  "id": 2012,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 13,
+  "buff_type": 2,
+  "buff_value": 236,
+  "id": 2013,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 14,
+  "buff_type": 2,
+  "buff_value": 239,
+  "id": 2014,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 15,
+  "buff_type": 2,
+  "buff_value": 242,
+  "id": 2015,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 16,
+  "buff_type": 2,
+  "buff_value": 245,
+  "id": 2016,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 17,
+  "buff_type": 2,
+  "buff_value": 248,
+  "id": 2017,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 18,
+  "buff_type": 2,
+  "buff_value": 251,
+  "id": 2018,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 19,
+  "buff_type": 2,
+  "buff_value": 254,
+  "id": 2019,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 20,
+  "buff_type": 2,
+  "buff_value": 257,
+  "id": 2020,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 21,
+  "buff_type": 2,
+  "buff_value": 260,
+  "id": 2021,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 22,
+  "buff_type": 2,
+  "buff_value": 263,
+  "id": 2022,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 23,
+  "buff_type": 2,
+  "buff_value": 266,
+  "id": 2023,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 24,
+  "buff_type": 2,
+  "buff_value": 269,
+  "id": 2024,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 25,
+  "buff_type": 2,
+  "buff_value": 272,
+  "id": 2025,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 26,
+  "buff_type": 2,
+  "buff_value": 275,
+  "id": 2026,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 27,
+  "buff_type": 2,
+  "buff_value": 278,
+  "id": 2027,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 28,
+  "buff_type": 2,
+  "buff_value": 281,
+  "id": 2028,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 29,
+  "buff_type": 2,
+  "buff_value": 284,
+  "id": 2029,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 30,
+  "buff_type": 2,
+  "buff_value": 287,
+  "id": 2030,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 31,
+  "buff_type": 2,
+  "buff_value": 290,
+  "id": 2031,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 32,
+  "buff_type": 2,
+  "buff_value": 293,
+  "id": 2032,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 33,
+  "buff_type": 2,
+  "buff_value": 296,
+  "id": 2033,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 34,
+  "buff_type": 2,
+  "buff_value": 299,
+  "id": 2034,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 35,
+  "buff_type": 2,
+  "buff_value": 302,
+  "id": 2035,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 36,
+  "buff_type": 2,
+  "buff_value": 305,
+  "id": 2036,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 37,
+  "buff_type": 2,
+  "buff_value": 308,
+  "id": 2037,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 38,
+  "buff_type": 2,
+  "buff_value": 311,
+  "id": 2038,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 39,
+  "buff_type": 2,
+  "buff_value": 314,
+  "id": 2039,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 40,
+  "buff_type": 2,
+  "buff_value": 317,
+  "id": 2040,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 41,
+  "buff_type": 2,
+  "buff_value": 320,
+  "id": 2041,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 42,
+  "buff_type": 2,
+  "buff_value": 323,
+  "id": 2042,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 43,
+  "buff_type": 2,
+  "buff_value": 326,
+  "id": 2043,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 44,
+  "buff_type": 2,
+  "buff_value": 329,
+  "id": 2044,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 45,
+  "buff_type": 2,
+  "buff_value": 332,
+  "id": 2045,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 46,
+  "buff_type": 2,
+  "buff_value": 335,
+  "id": 2046,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 47,
+  "buff_type": 2,
+  "buff_value": 338,
+  "id": 2047,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 48,
+  "buff_type": 2,
+  "buff_value": 341,
+  "id": 2048,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 49,
+  "buff_type": 2,
+  "buff_value": 344,
+  "id": 2049,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 50,
+  "buff_type": 2,
+  "buff_value": 350,
+  "id": 2999,
+  "required_exp": -1
+ },
+ {
+  "buff_level": 1,
+  "buff_type": 3,
+  "buff_value": 100,
+  "id": 3001,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 2,
+  "buff_type": 3,
+  "buff_value": 104,
+  "id": 3002,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 3,
+  "buff_type": 3,
+  "buff_value": 108,
+  "id": 3003,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 4,
+  "buff_type": 3,
+  "buff_value": 112,
+  "id": 3004,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 5,
+  "buff_type": 3,
+  "buff_value": 116,
+  "id": 3005,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 6,
+  "buff_type": 3,
+  "buff_value": 120,
+  "id": 3006,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 7,
+  "buff_type": 3,
+  "buff_value": 124,
+  "id": 3007,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 8,
+  "buff_type": 3,
+  "buff_value": 128,
+  "id": 3008,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 9,
+  "buff_type": 3,
+  "buff_value": 132,
+  "id": 3009,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 10,
+  "buff_type": 3,
+  "buff_value": 136,
+  "id": 3010,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 11,
+  "buff_type": 3,
+  "buff_value": 140,
+  "id": 3011,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 12,
+  "buff_type": 3,
+  "buff_value": 144,
+  "id": 3012,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 13,
+  "buff_type": 3,
+  "buff_value": 148,
+  "id": 3013,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 14,
+  "buff_type": 3,
+  "buff_value": 152,
+  "id": 3014,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 15,
+  "buff_type": 3,
+  "buff_value": 156,
+  "id": 3015,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 16,
+  "buff_type": 3,
+  "buff_value": 160,
+  "id": 3016,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 17,
+  "buff_type": 3,
+  "buff_value": 164,
+  "id": 3017,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 18,
+  "buff_type": 3,
+  "buff_value": 168,
+  "id": 3018,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 19,
+  "buff_type": 3,
+  "buff_value": 172,
+  "id": 3019,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 20,
+  "buff_type": 3,
+  "buff_value": 176,
+  "id": 3020,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 21,
+  "buff_type": 3,
+  "buff_value": 180,
+  "id": 3021,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 22,
+  "buff_type": 3,
+  "buff_value": 184,
+  "id": 3022,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 23,
+  "buff_type": 3,
+  "buff_value": 188,
+  "id": 3023,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 24,
+  "buff_type": 3,
+  "buff_value": 192,
+  "id": 3024,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 25,
+  "buff_type": 3,
+  "buff_value": 196,
+  "id": 3025,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 26,
+  "buff_type": 3,
+  "buff_value": 200,
+  "id": 3026,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 27,
+  "buff_type": 3,
+  "buff_value": 204,
+  "id": 3027,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 28,
+  "buff_type": 3,
+  "buff_value": 208,
+  "id": 3028,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 29,
+  "buff_type": 3,
+  "buff_value": 212,
+  "id": 3029,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 30,
+  "buff_type": 3,
+  "buff_value": 216,
+  "id": 3030,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 31,
+  "buff_type": 3,
+  "buff_value": 220,
+  "id": 3031,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 32,
+  "buff_type": 3,
+  "buff_value": 224,
+  "id": 3032,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 33,
+  "buff_type": 3,
+  "buff_value": 228,
+  "id": 3033,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 34,
+  "buff_type": 3,
+  "buff_value": 232,
+  "id": 3034,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 35,
+  "buff_type": 3,
+  "buff_value": 236,
+  "id": 3035,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 36,
+  "buff_type": 3,
+  "buff_value": 240,
+  "id": 3036,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 37,
+  "buff_type": 3,
+  "buff_value": 244,
+  "id": 3037,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 38,
+  "buff_type": 3,
+  "buff_value": 248,
+  "id": 3038,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 39,
+  "buff_type": 3,
+  "buff_value": 252,
+  "id": 3039,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 40,
+  "buff_type": 3,
+  "buff_value": 256,
+  "id": 3040,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 41,
+  "buff_type": 3,
+  "buff_value": 260,
+  "id": 3041,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 42,
+  "buff_type": 3,
+  "buff_value": 264,
+  "id": 3042,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 43,
+  "buff_type": 3,
+  "buff_value": 268,
+  "id": 3043,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 44,
+  "buff_type": 3,
+  "buff_value": 272,
+  "id": 3044,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 45,
+  "buff_type": 3,
+  "buff_value": 276,
+  "id": 3045,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 46,
+  "buff_type": 3,
+  "buff_value": 280,
+  "id": 3046,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 47,
+  "buff_type": 3,
+  "buff_value": 284,
+  "id": 3047,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 48,
+  "buff_type": 3,
+  "buff_value": 288,
+  "id": 3048,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 49,
+  "buff_type": 3,
+  "buff_value": 292,
+  "id": 3049,
+  "required_exp": 2
+ },
+ {
+  "buff_level": 50,
+  "buff_type": 3,
+  "buff_value": 300,
+  "id": 3999,
+  "required_exp": -1
+ }
+]

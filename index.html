@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XP Hero Builder</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-row">
+    <div class="brand"><span class="brand-mark">⚔️</span> XP Hero Builder</div>
+    <nav class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="weapons">Weapons</button>
+      <button class="tab-btn" data-tab="heroes">Heroes</button>
+      <button class="tab-btn" data-tab="equipment">Equipment</button>
+      <button class="tab-btn" data-tab="guide">Guide</button>
+    </nav>
+    <div class="header-actions">
+      <button class="btn" id="btn-import">Import</button>
+      <input type="file" id="file-import" accept="application/json">
+      <button class="btn" id="btn-export">Export</button>
+      <button class="btn btn-danger" id="btn-reset">Reset</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ WEAPONS TAB ============ -->
+  <section class="tab-panel active" id="panel-weapons">
+    <div class="section-title"><h2>Weapon Loadout</h2></div>
+    <p class="section-sub">Click a slot to equip a weapon from your collection. Up to 6 weapons equipped at once, just like in-game.</p>
+    <div class="slot-grid" id="weapon-slot-grid"></div>
+  </section>
+
+  <!-- ============ HEROES TAB ============ -->
+  <section class="tab-panel" id="panel-heroes">
+    <div class="section-title"><h2>Heroes</h2></div>
+    <p class="section-sub">Add every hero you own, set their independent level / star grade / evolution, and mark which one is currently active.</p>
+    <div class="roster-grid" id="hero-roster-grid"></div>
+  </section>
+
+  <!-- ============ EQUIPMENT TAB (traits + upgrade trees) ============ -->
+  <section class="tab-panel" id="panel-equipment">
+    <div class="section-title"><h2>Traits</h2></div>
+    <p class="section-sub">Two trait groups, five synergy slots each (Fist / Vampire Fang / Dragon's Claw / Ogre Heart / Sage's Hourglass). Stack matching stat types across slots to unlock synergy-set bonuses.</p>
+    <div class="trait-groups" id="trait-groups"></div>
+
+    <div class="section-title" style="margin-top:36px"><h2>Account Upgrades</h2></div>
+    <p class="section-sub">Ability, Special, and Extra upgrade trees — permanent account-wide stat investment, independent of any one hero or weapon.</p>
+    <div class="upgrade-tree-tabs" id="upgrade-tree-tabs">
+      <button class="chip active" data-tree="ability">Ability</button>
+      <button class="chip" data-tree="extra">Extra</button>
+      <button class="chip" data-tree="special">Special</button>
+      <button class="chip" data-tree="soul">Soul</button>
+    </div>
+    <div class="upgrade-grid" id="upgrade-grid"></div>
+  </section>
+
+  <!-- ============ GUIDE TAB ============ -->
+  <section class="tab-panel" id="panel-guide">
+    <div class="section-title"><h2>Build Guide</h2></div>
+    <p class="section-sub">Pick one of your heroes to see build advice tailored to their current level, star grade, weapon loadout, traits, and upgrades.</p>
+    <div id="guide-root"></div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  Fan-made, unofficial companion tool for XP Hero (Supercent). All weapon/hero names, artwork, and game-balance data are property of Supercent and used here for a non-commercial community tool. Not affiliated with or endorsed by Supercent. Stat math is reconstructed from the game's own extracted data tables — see README for methodology and caveats.
+</footer>
+
+<div class="modal-backdrop" id="modal-backdrop" hidden>
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/formulas.js"></script>
+<script src="js/state.js"></script>
+<script src="js/ui-common.js"></script>
+<script src="js/ui-weapons.js"></script>
+<script src="js/ui-heroes.js"></script>
+<script src="js/ui-equipment.js"></script>
+<script src="js/ui-guide.js"></script>
+<script src="js/ui-importexport.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

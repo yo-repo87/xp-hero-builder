@@ -1,0 +1,62 @@
+[
+ {
+  "group": 1,
+  "id": 1001,
+  "rate": 20,
+  "synergy_type": 1
+ },
+ {
+  "group": 1,
+  "id": 1002,
+  "rate": 20,
+  "synergy_type": 2
+ },
+ {
+  "group": 1,
+  "id": 1003,
+  "rate": 20,
+  "synergy_type": 3
+ },
+ {
+  "group": 1,
+  "id": 1004,
+  "rate": 20,
+  "synergy_type": 4
+ },
+ {
+  "group": 1,
+  "id": 1004,
+  "rate": 20,
+  "synergy_type": 5
+ },
+ {
+  "group": 2,
+  "id": 2001,
+  "rate": 20,
+  "synergy_type": 1
+ },
+ {
+  "group": 2,
+  "id": 2002,
+  "rate": 20,
+  "synergy_type": 2
+ },
+ {
+  "group": 2,
+  "id": 2003,
+  "rate": 20,
+  "synergy_type": 3
+ },
+ {
+  "group": 2,
+  "id": 2004,
+  "rate": 20,
+  "synergy_type": 4
+ },
+ {
+  "group": 2,
+  "id": 2005,
+  "rate": 20,
+  "synergy_type": 5
+ }
+]

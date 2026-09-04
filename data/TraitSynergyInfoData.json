@@ -1,0 +1,130 @@
+[
+ {
+  "description": "SYNERGY_TYPE_DESC_1_1",
+  "id": 1,
+  "option_type": 1,
+  "rate_amount": 250,
+  "synergy_type": 1,
+  "synergy_value": 1
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_1_2",
+  "id": 2,
+  "option_type": 1,
+  "rate_amount": 900,
+  "synergy_type": 1,
+  "synergy_value": 3
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_1_3",
+  "id": 3,
+  "option_type": 1,
+  "rate_amount": 2500,
+  "synergy_type": 1,
+  "synergy_value": 5
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_2_1",
+  "id": 4,
+  "option_type": 3,
+  "rate_amount": 50,
+  "synergy_type": 2,
+  "synergy_value": 1
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_2_1",
+  "id": 5,
+  "option_type": 3,
+  "rate_amount": 75,
+  "synergy_type": 2,
+  "synergy_value": 2
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_2_1",
+  "id": 6,
+  "option_type": 10,
+  "rate_amount": 100,
+  "synergy_type": 2,
+  "synergy_value": 2
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_3_1",
+  "id": 7,
+  "option_type": 2,
+  "rate_amount": 500,
+  "synergy_type": 3,
+  "synergy_value": 1
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_3_2",
+  "id": 8,
+  "option_type": 2,
+  "rate_amount": 1750,
+  "synergy_type": 3,
+  "synergy_value": 3
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_3_3",
+  "id": 9,
+  "option_type": 2,
+  "rate_amount": 4000,
+  "synergy_type": 3,
+  "synergy_value": 5
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_4_1",
+  "id": 10,
+  "option_type": 5,
+  "rate_amount": 100,
+  "synergy_type": 4,
+  "synergy_value": 1
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_4_2",
+  "id": 11,
+  "option_type": 5,
+  "rate_amount": 250,
+  "synergy_type": 4,
+  "synergy_value": 2
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_4_3",
+  "id": 12,
+  "option_type": 5,
+  "rate_amount": 500,
+  "synergy_type": 4,
+  "synergy_value": 3
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_4_4",
+  "id": 13,
+  "option_type": 6,
+  "rate_amount": 500,
+  "synergy_type": 4,
+  "synergy_value": 3
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_5_1",
+  "id": 14,
+  "option_type": 4,
+  "rate_amount": 50,
+  "synergy_type": 5,
+  "synergy_value": 1
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_5_2",
+  "id": 15,
+  "option_type": 4,
+  "rate_amount": 100,
+  "synergy_type": 5,
+  "synergy_value": 2
+ },
+ {
+  "description": "SYNERGY_TYPE_DESC_5_3",
+  "id": 16,
+  "option_type": 4,
+  "rate_amount": 200,
+  "synergy_type": 5,
+  "synergy_value": 3
+ }
+]

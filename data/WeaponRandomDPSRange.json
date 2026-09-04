@@ -1,0 +1,56 @@
+[
+ {
+  "MaxCount": 6,
+  "SingleRange": 0.5,
+  "TotalRange": 1.0,
+  "id": 1
+ },
+ {
+  "MaxCount": 6,
+  "SingleRange": 0.125,
+  "TotalRange": 0.25,
+  "id": 2
+ },
+ {
+  "MaxCount": 7,
+  "SingleRange": 0.05,
+  "TotalRange": 0.2,
+  "id": 3
+ },
+ {
+  "MaxCount": 15,
+  "SingleRange": 0.025,
+  "TotalRange": 0.1,
+  "id": 4
+ },
+ {
+  "MaxCount": 52,
+  "SingleRange": 0.025,
+  "TotalRange": 0.1,
+  "id": 5
+ },
+ {
+  "MaxCount": 94,
+  "SingleRange": 0.025,
+  "TotalRange": 0.08,
+  "id": 6
+ },
+ {
+  "MaxCount": 141,
+  "SingleRange": 0.01,
+  "TotalRange": 0.05,
+  "id": 7
+ },
+ {
+  "MaxCount": 211,
+  "SingleRange": 0.01,
+  "TotalRange": 0.02,
+  "id": 8
+ },
+ {
+  "MaxCount": 211,
+  "SingleRange": 0.01,
+  "TotalRange": 0.02,
+  "id": 9
+ }
+]

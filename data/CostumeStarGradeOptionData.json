@@ -1,0 +1,1730 @@
+[
+ {
+  "Cost1_Amount": "10",
+  "Group_Id": 100001,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 1
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100001,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   100,
+   100
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 2
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100001,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 3
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100001,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   200,
+   200
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 4
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100001,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "30",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 5
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100001,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 6
+ },
+ {
+  "Cost1_Amount": "10",
+  "Group_Id": 100003,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 7
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100003,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   100,
+   100
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 8
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100003,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 9
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100003,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   200,
+   200
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 10
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100003,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "30",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 11
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100003,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 12
+ },
+ {
+  "Cost1_Amount": "10",
+  "Group_Id": 100004,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 13
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100004,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   100,
+   100
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 14
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100004,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 15
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100004,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   200,
+   200
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 16
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100004,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "30",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 17
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100004,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 18
+ },
+ {
+  "Cost1_Amount": "10",
+  "Group_Id": 100005,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 19
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100005,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   100,
+   100
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 20
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100005,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 21
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100005,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   200,
+   200
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 22
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100005,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "30",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 23
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100005,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 24
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100006,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 25
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100006,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   150,
+   150
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 26
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100006,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 27
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100006,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   300,
+   300
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 28
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100006,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "50",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 29
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100006,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 30
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100010,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 31
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100010,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   150,
+   150
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 32
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100010,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 33
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100010,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   300,
+   300
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 34
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100010,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "50",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 35
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100010,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 36
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100002,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 37
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100002,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   150,
+   150
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 38
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100002,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 39
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100002,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   300,
+   300
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 40
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100002,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "50",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 41
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100002,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 42
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100013,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 43
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100013,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   150,
+   150
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 44
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100013,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 45
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100013,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   300,
+   300
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 46
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100013,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "50",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 47
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100013,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 48
+ },
+ {
+  "Cost1_Amount": "50",
+  "Group_Id": 100008,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 49
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100008,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   250,
+   250
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 50
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100008,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 51
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100008,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   500,
+   500
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 52
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100008,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "80",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 53
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100008,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 54
+ },
+ {
+  "Cost1_Amount": "50",
+  "Group_Id": 100009,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 55
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100009,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   250,
+   250
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 56
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100009,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 57
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100009,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   500,
+   500
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 58
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100009,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "80",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 59
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100009,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 60
+ },
+ {
+  "Cost1_Amount": "50",
+  "Group_Id": 100011,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 61
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100011,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   250,
+   250
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 62
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100011,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 63
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100011,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   500,
+   500
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 64
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100011,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "80",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 65
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100011,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 66
+ },
+ {
+  "Cost1_Amount": "70",
+  "Group_Id": 100014,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 67
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100014,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   400,
+   400
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 68
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100014,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 69
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100014,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   800,
+   800
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 70
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100014,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "120",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 71
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100014,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 72
+ },
+ {
+  "Cost1_Amount": "70",
+  "Group_Id": 100015,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 73
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100015,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   400,
+   400
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 74
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100015,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 75
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100015,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   800,
+   800
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 76
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100015,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "120",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 77
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100015,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 78
+ },
+ {
+  "Cost1_Amount": "70",
+  "Group_Id": 100016,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 79
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100016,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   400,
+   400
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 80
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100016,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 81
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100016,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   800,
+   800
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 82
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100016,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "120",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 83
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100016,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 84
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100017,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 85
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100017,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   600,
+   600
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 86
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100017,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 87
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100017,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1200,
+   1200
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 88
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100017,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "180",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 89
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100017,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 90
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100018,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 91
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100018,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   600,
+   600
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 92
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100018,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 93
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100018,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1200,
+   1200
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 94
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100018,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "180",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 95
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100018,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 96
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100019,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 97
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100019,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   900,
+   900
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 98
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100019,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 99
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100019,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1800,
+   1800
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 100
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100019,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "260",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 101
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100019,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 102
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100007,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 103
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100007,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   900,
+   900
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 104
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100007,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 105
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100007,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1800,
+   1800
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 106
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100007,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "260",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 107
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100007,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 108
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100012,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 109
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100012,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1300,
+   1300
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 110
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100012,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 111
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100012,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   2600,
+   2600
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 112
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100012,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "360",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 113
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100012,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 114
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100020,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 115
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100020,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1300,
+   1300
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 116
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100020,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 117
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100020,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   2600,
+   2600
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 118
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100020,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "360",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 119
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100020,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 120
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100021,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 121
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100021,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   2000,
+   2000
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 122
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100021,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 123
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100021,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   4000,
+   4000
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 124
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100021,
+  "OptionStyle": 2,
+  "OptionType": "1",
+  "OptionValue": "500",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 125
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100021,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 126
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100022,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 127
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100022,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   2000,
+   2000
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 128
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100022,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 129
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100022,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   4000,
+   4000
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 130
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100022,
+  "OptionStyle": 2,
+  "OptionType": "5",
+  "OptionValue": "500",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 131
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100022,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 132
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100023,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 133
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100023,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   1300,
+   1300
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 134
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100023,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 135
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100023,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   2600,
+   2600
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 136
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100023,
+  "OptionStyle": 2,
+  "OptionType": "12",
+  "OptionValue": "100",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 137
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100023,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 138
+ },
+ {
+  "Cost1_Amount": "100",
+  "Group_Id": 100024,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "1성 스킬 언락",
+  "Star_Grade": 1,
+  "id": 139
+ },
+ {
+  "Cost1_Amount": "30",
+  "Group_Id": 100024,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   2000,
+   2000
+  ],
+  "StarBonus_OptionName": "2성 착용 스텟 강화",
+  "Star_Grade": 2,
+  "id": 140
+ },
+ {
+  "Cost1_Amount": "60",
+  "Group_Id": 100024,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "3성 스킬 강화",
+  "Star_Grade": 3,
+  "id": 141
+ },
+ {
+  "Cost1_Amount": "150",
+  "Group_Id": 100024,
+  "OptionStyle": 1,
+  "OptionType": [
+   1,
+   5
+  ],
+  "OptionValue": [
+   4000,
+   4000
+  ],
+  "StarBonus_OptionName": "4성 착용 스텟 강화",
+  "Star_Grade": 4,
+  "id": 142
+ },
+ {
+  "Cost1_Amount": "300",
+  "Group_Id": 100024,
+  "OptionStyle": 2,
+  "OptionType": "9",
+  "OptionValue": "50",
+  "StarBonus_OptionName": "5성 보유효과 추가",
+  "Star_Grade": 5,
+  "id": 143
+ },
+ {
+  "Cost1_Amount": "600",
+  "Group_Id": 100024,
+  "OptionStyle": 3,
+  "OptionType": null,
+  "OptionValue": null,
+  "StarBonus_OptionName": "6성 스킬 강화",
+  "Star_Grade": 6,
+  "id": 144
+ }
+]

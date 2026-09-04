@@ -1,0 +1,34 @@
+[
+ {
+  "id": 1,
+  "load_cost_amount": 100,
+  "load_cost_type": 6001,
+  "preset_type": 0,
+  "save_cost_amount": 100,
+  "save_cost_type": 6001
+ },
+ {
+  "id": 2,
+  "load_cost_amount": 100,
+  "load_cost_type": 6001,
+  "preset_type": 1,
+  "save_cost_amount": 100,
+  "save_cost_type": 6001
+ },
+ {
+  "id": 3,
+  "load_cost_amount": 100,
+  "load_cost_type": 6001,
+  "preset_type": 1,
+  "save_cost_amount": 100,
+  "save_cost_type": 6001
+ },
+ {
+  "id": 4,
+  "load_cost_amount": 100,
+  "load_cost_type": 6001,
+  "preset_type": 1,
+  "save_cost_amount": 100,
+  "save_cost_type": 6001
+ }
+]

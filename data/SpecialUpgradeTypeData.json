@@ -1,0 +1,167 @@
+[
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_EXTRA_POWER",
+  "Description_en": "Increase extra Power",
+  "IconName": "Icn_MassiveMuscle",
+  "MaxLevelDatas": [
+   5,
+   15,
+   30,
+   50
+  ],
+  "OptionType": 1,
+  "Title": "SPECIAL_UP_TYPE_MASSIVE_MUSCLE",
+  "Title_en": "MASSIVE MUSCLE",
+  "id": 1
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_EXTRA_CARGO",
+  "Description_en": "Increase extra Cargo",
+  "IconName": "Icn_Load Master",
+  "MaxLevelDatas": [
+   5,
+   15,
+   30,
+   50
+  ],
+  "OptionType": 11,
+  "Title": "SPECIAL_UP_TYPE_LOAD_MASTER",
+  "Title_en": "LOAD MASTER",
+  "id": 2
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_EXTRA_HP",
+  "Description_en": "Increase extra HP",
+  "IconName": "Icn_HpBoost",
+  "MaxLevelDatas": [
+   5,
+   15,
+   30,
+   50
+  ],
+  "OptionType": 5,
+  "Title": "SPECIAL_UP_TYPE_HP_BOOST",
+  "Title_en": "HP BOOST",
+  "id": 3
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_CONVERT_DAMAGE_INTO_HP",
+  "Description_en": "Convert damage into HP",
+  "IconName": "Icn_LifeDrain",
+  "MaxLevelDatas": [
+   5,
+   15,
+   30,
+   50
+  ],
+  "OptionType": 3,
+  "Title": "SPECIAL_UP_TYPE_LIFE_STEAL",
+  "Title_en": "LIFE STEAL",
+  "id": 4
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_EXTRA_MOVE_SPEED",
+  "Description_en": "Increase extra Move Speed",
+  "IconName": "Icn_QuickStep",
+  "MaxLevelDatas": [
+   5,
+   15,
+   30,
+   50
+  ],
+  "OptionType": 8,
+  "Title": "SPECIAL_UP_TYPE_QUICK_STEP",
+  "Title_en": "QUICK STEP",
+  "id": 5
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_ENHANCE_HP_RECOVERY",
+  "Description_en": "Enhance HP Recovery",
+  "IconName": "Icn_FastHeal",
+  "MaxLevelDatas": [
+   0,
+   10,
+   25,
+   45
+  ],
+  "OptionType": 6,
+  "Title": "SPECIAL_UP_TYPE_FAST_HEAL",
+  "Title_en": "FAST HEAL",
+  "id": 6
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_CRITICAL_CHANCE_MORE",
+  "Description_en": "Increase Critical Chance more",
+  "IconName": "Icn_LuckyPunch",
+  "MaxLevelDatas": [
+   0,
+   10,
+   25,
+   45
+  ],
+  "OptionType": 9,
+  "Title": "SPECIAL_UP_TYPE_LUCKY_PUNCH",
+  "Title_en": "LUCKY PUNCH",
+  "id": 7
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_DOUBLE_ATTACK_CHANCE",
+  "Description_en": "Increase Double Attack Chance",
+  "IconName": "Icn_DualTrigger",
+  "MaxLevelDatas": [
+   0,
+   0,
+   15,
+   35
+  ],
+  "OptionType": 13,
+  "Title": "SPECIAL_UP_TYPE_DUAL_TRIGGER",
+  "Title_en": "DUAL TRIGGER",
+  "id": 8
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_SKILL_DAMAGE",
+  "Description_en": "Increase Skill Damage",
+  "IconName": "Icn_SkillDamage",
+  "MaxLevelDatas": [
+   0,
+   0,
+   15,
+   35
+  ],
+  "OptionType": 12,
+  "Title": "SPECIAL_UP_TYPE_SKILL_DAMAGE",
+  "Title_en": "SKILL DAMAGE",
+  "id": 9
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_INCREASE_TRIPLE_ATTACK_CHANCE",
+  "Description_en": "Increase Triple Attack Chance",
+  "IconName": "Icn_TripleStrike",
+  "MaxLevelDatas": [
+   0,
+   0,
+   0,
+   20
+  ],
+  "OptionType": 14,
+  "Title": "SPECIAL_UP_TYPE_SKILL_TRIPLE_EDGE",
+  "Title_en": "TRIPLE EDGE",
+  "id": 10
+ },
+ {
+  "Description": "SPECIAL_UP_TYPEDESC_REDUCE_SKILL_COOLDOWN",
+  "Description_en": "Reduce Skill Cooldown",
+  "IconName": "Icn_SkillCoolDown",
+  "MaxLevelDatas": [
+   0,
+   0,
+   0,
+   20
+  ],
+  "OptionType": 4,
+  "Title": "SPECIAL_UP_TYPE_SKILL_COOLDOWN_RATE",
+  "Title_en": "SKILL COOLDOWN RATE",
+  "id": 11
+ }
+]

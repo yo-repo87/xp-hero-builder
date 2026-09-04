@@ -1,0 +1,74 @@
+[
+ {
+  "Description": "EXTRA_UP_TYPEDESC_BULK_UP",
+  "Description_en": "Increase Extra Power",
+  "IconName": "Icn_BulkUp",
+  "OptionType": 1,
+  "Title": "EXTRA_UP_TYPE_BULK_UP",
+  "Title_en": "Bulk Up",
+  "id": 1
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_EXTRA_CARGO",
+  "Description_en": "Increase Extra Cargo",
+  "IconName": "Icn_ExtraCargo",
+  "OptionType": 11,
+  "Title": "EXTRA_UP_TYPE_EXTRA_CARGO",
+  "Title_en": "Extra Cargo",
+  "id": 2
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_STRONG_HEART",
+  "Description_en": "Increase Extra HP",
+  "IconName": "Icn_StrongHeart",
+  "OptionType": 5,
+  "Title": "EXTRA_UP_TYPE_STRONG_HEART",
+  "Title_en": "Strong Heart",
+  "id": 3
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_SUPER_RECOVERY",
+  "Description_en": "Increase Extra HP Regen",
+  "IconName": "Icn_SuperRecovery",
+  "OptionType": 6,
+  "Title": "EXTRA_UP_TYPE_SUPER_RECOVERY",
+  "Title_en": "Super Recovery",
+  "id": 4
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_LUCKY_CHANCE",
+  "Description_en": "Increase Extra Critical Rate",
+  "IconName": "Icn_LuckyChance",
+  "OptionType": 9,
+  "Title": "EXTRA_UP_TYPE_LUCKY_CHANCE",
+  "Title_en": "Lucky Chance",
+  "id": 5
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_SPELL_OVERDRIVE",
+  "Description_en": "Increase Extra Skill Damage",
+  "IconName": "Icn_SpellOverdrive",
+  "OptionType": 12,
+  "Title": "EXTRA_UP_TYPE_SPELL_OVERDRIVE",
+  "Title_en": "Spell Overdrive",
+  "id": 6
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_BLOODLUST",
+  "Description_en": "Increase Extra Life Steal",
+  "IconName": "Icn_Bloodlust",
+  "OptionType": 3,
+  "Title": "EXTRA_UP_TYPE_BLOODLUST",
+  "Title_en": "Bloodlust",
+  "id": 7
+ },
+ {
+  "Description": "EXTRA_UP_TYPEDESC_QUICK_CAST",
+  "Description_en": "Reduce Extra Skill Cooldown",
+  "IconName": "Icn_QuickCast",
+  "OptionType": 4,
+  "Title": "EXTRA_UP_TYPE_QUICK_CAST",
+  "Title_en": "Quick Cast",
+  "id": 8
+ }
+]

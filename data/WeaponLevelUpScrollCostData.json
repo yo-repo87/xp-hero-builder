@@ -1,0 +1,652 @@
+[
+ {
+  "CostItemType": 301,
+  "RequireAmount": 1,
+  "id": 1
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 3,
+  "id": 2
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 5,
+  "id": 3
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 7,
+  "id": 4
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 9,
+  "id": 5
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 11,
+  "id": 6
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 13,
+  "id": 7
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 15,
+  "id": 8
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 17,
+  "id": 9
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 19,
+  "id": 10
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 21,
+  "id": 11
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 23,
+  "id": 12
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 25,
+  "id": 13
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 27,
+  "id": 14
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 29,
+  "id": 15
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 31,
+  "id": 16
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 33,
+  "id": 17
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 35,
+  "id": 18
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 37,
+  "id": 19
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 39,
+  "id": 20
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 41,
+  "id": 21
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 43,
+  "id": 22
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 45,
+  "id": 23
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 47,
+  "id": 24
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 49,
+  "id": 25
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 51,
+  "id": 26
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 53,
+  "id": 27
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 55,
+  "id": 28
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 57,
+  "id": 29
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 59,
+  "id": 30
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 61,
+  "id": 31
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 63,
+  "id": 32
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 65,
+  "id": 33
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 67,
+  "id": 34
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 69,
+  "id": 35
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 71,
+  "id": 36
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 73,
+  "id": 37
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 75,
+  "id": 38
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 77,
+  "id": 39
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 79,
+  "id": 40
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 81,
+  "id": 41
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 83,
+  "id": 42
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 85,
+  "id": 43
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 87,
+  "id": 44
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 89,
+  "id": 45
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 91,
+  "id": 46
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 93,
+  "id": 47
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 95,
+  "id": 48
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 97,
+  "id": 49
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 99,
+  "id": 50
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 101,
+  "id": 51
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 103,
+  "id": 52
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 105,
+  "id": 53
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 107,
+  "id": 54
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 109,
+  "id": 55
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 111,
+  "id": 56
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 113,
+  "id": 57
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 115,
+  "id": 58
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 117,
+  "id": 59
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 119,
+  "id": 60
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 121,
+  "id": 61
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 123,
+  "id": 62
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 125,
+  "id": 63
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 127,
+  "id": 64
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 129,
+  "id": 65
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 131,
+  "id": 66
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 133,
+  "id": 67
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 135,
+  "id": 68
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 137,
+  "id": 69
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 139,
+  "id": 70
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 141,
+  "id": 71
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 143,
+  "id": 72
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 145,
+  "id": 73
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 147,
+  "id": 74
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 149,
+  "id": 75
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 151,
+  "id": 76
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 153,
+  "id": 77
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 155,
+  "id": 78
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 157,
+  "id": 79
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 159,
+  "id": 80
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 161,
+  "id": 81
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 163,
+  "id": 82
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 165,
+  "id": 83
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 167,
+  "id": 84
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 169,
+  "id": 85
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 171,
+  "id": 86
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 173,
+  "id": 87
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 175,
+  "id": 88
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 177,
+  "id": 89
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 179,
+  "id": 90
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 181,
+  "id": 91
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 183,
+  "id": 92
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 185,
+  "id": 93
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 187,
+  "id": 94
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 189,
+  "id": 95
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 191,
+  "id": 96
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 193,
+  "id": 97
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 195,
+  "id": 98
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 197,
+  "id": 99
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 199,
+  "id": 100
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 201,
+  "id": 101
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 203,
+  "id": 102
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 205,
+  "id": 103
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 207,
+  "id": 104
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 209,
+  "id": 105
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 211,
+  "id": 106
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 213,
+  "id": 107
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 215,
+  "id": 108
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 217,
+  "id": 109
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 219,
+  "id": 110
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 221,
+  "id": 111
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 223,
+  "id": 112
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 225,
+  "id": 113
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 227,
+  "id": 114
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 229,
+  "id": 115
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 231,
+  "id": 116
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 233,
+  "id": 117
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 235,
+  "id": 118
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 237,
+  "id": 119
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 239,
+  "id": 120
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 241,
+  "id": 121
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 243,
+  "id": 122
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 245,
+  "id": 123
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 247,
+  "id": 124
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 249,
+  "id": 125
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 251,
+  "id": 126
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 253,
+  "id": 127
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 255,
+  "id": 128
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 257,
+  "id": 129
+ },
+ {
+  "CostItemType": 301,
+  "RequireAmount": 259,
+  "id": 130
+ }
+]

@@ -1,0 +1,58 @@
+[
+ {
+  "MaxValue": 1.1,
+  "MinValue": 0.3,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack {0}",
+  "id": 1
+ },
+ {
+  "MaxValue": 1.1,
+  "MinValue": 0.3,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal {0}",
+  "id": 2
+ },
+ {
+  "MaxValue": 1.1,
+  "MinValue": 0.1,
+  "OptionType": 4,
+  "PropertyName": "WEAPON_BONUS_OP_SKILL_COOLDOWN",
+  "PropertyName_en": "Skill CoolDown {0}",
+  "id": 3
+ },
+ {
+  "MaxValue": 2.5,
+  "MinValue": 0.3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp {0}",
+  "id": 4
+ },
+ {
+  "MaxValue": 2.5,
+  "MinValue": 0.3,
+  "OptionType": 6,
+  "PropertyName": "WEAPON_BONUS_OP_HP_REGEN",
+  "PropertyName_en": "HP Regen {0}",
+  "id": 5
+ },
+ {
+  "MaxValue": 1.1,
+  "MinValue": 0.1,
+  "OptionType": 7,
+  "PropertyName": "WEAPON_BONUS_OP_DODGE",
+  "PropertyName_en": "Dodge {0}",
+  "id": 6
+ },
+ {
+  "MaxValue": 3.0,
+  "MinValue": 1.0,
+  "OptionType": 8,
+  "PropertyName": "WEAPON_BONUS_OP_MOVE_SPEED",
+  "PropertyName_en": "Move Speed {0}",
+  "id": 7
+ }
+]

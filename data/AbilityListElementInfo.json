@@ -1,0 +1,82 @@
+[
+ {
+  "Desc": "ABILITY_DESC_INCREASE_YOUR_POWER",
+  "Desc_en": "Increase Your Power",
+  "IconName": "Icon_Attack",
+  "Title": "ABILITY_NAME_POWER",
+  "Title_en": "POWER",
+  "id": 1
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_CARGO_CAPACITY",
+  "Desc_en": "Increase Cargo Capacity",
+  "IconName": "Icon_Reward",
+  "Title": "ABILITY_NAME_CARGO",
+  "Title_en": "CARGO",
+  "id": 2
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_MOVE_SPEED",
+  "Desc_en": "Increase Move Speed",
+  "IconName": "Icon_Speed",
+  "Title": "ABILITY_NAME_MOVE_SPEED",
+  "Title_en": "MOVE SPEED",
+  "id": 3
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_YOUR_HEALTH",
+  "Desc_en": "Increase Your Health",
+  "IconName": "Icon_Health",
+  "Title": "ABILITY_NAME_HP",
+  "Title_en": "HP",
+  "id": 4
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_CRITICAL_CHANCE",
+  "Desc_en": "Increase Critical Chance",
+  "IconName": "Icon_CriticalRate",
+  "Title": "ABILITY_NAME_CRITICAL_CHANCE",
+  "Title_en": "CRITICAL CHANCE",
+  "id": 5
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_ATTACK_SPEED",
+  "Desc_en": "Increase Attack Speed",
+  "IconName": "Icon_AttackSpeed",
+  "Title": "ABILITY_NAME_ATTACK_SPEED",
+  "Title_en": "ATTACK SPEED",
+  "id": 8
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_CRITICAL_DAMAGE",
+  "Desc_en": "Increase Critical Damage",
+  "IconName": "Icon_CriticalDamage",
+  "Title": "ABILITY_NAME_CRITICAL_DAMAGE",
+  "Title_en": "CRITICAL DAMAGE",
+  "id": 9
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_HP_RECOVERY",
+  "Desc_en": "Increase HP Recovery",
+  "IconName": "Icon_HPRecovery",
+  "Title": "ABILITY_NAME_HP_RECOVERY",
+  "Title_en": "HP RECOVERY",
+  "id": 10
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_DOUBLE_ATTACK_CHANCE",
+  "Desc_en": "Increase Double Attack Chance",
+  "IconName": "Icon_DoubleAttack",
+  "Title": "ABILITY_NAME_DOUBLE_ATTACK",
+  "Title_en": "DOUBLE ATTACK",
+  "id": 11
+ },
+ {
+  "Desc": "ABILITY_DESC_INCREASE_TRIPLE_ATTACK_CHANCE",
+  "Desc_en": "Increase Triple Attack Chance",
+  "IconName": "Icon_TripleAttack",
+  "Title": "ABILITY_NAME_TRIPLE_ATTACK",
+  "Title_en": "TRIPLE ATTACK",
+  "id": 12
+ }
+]

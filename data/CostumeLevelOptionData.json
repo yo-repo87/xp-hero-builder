@@ -1,0 +1,5618 @@
+[
+ {
+  "Group_Id": 200001,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 1,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 2,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 3,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 4,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 5,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 6,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 7,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 8,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 9,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 10,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 11,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 12,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 13,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 14,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 15,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 16,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 17,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 18,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 19,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 20,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 21,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 22,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 23,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 24,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 25,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200001,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 26,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 27,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 28,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 29,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 30,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 31,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 32,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 33,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 34,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 35,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 36,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 37,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 38,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 39,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 40,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 41,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 42,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 43,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 44,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 45,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 46,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 47,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 48,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 49,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 50,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 51,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200003,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 52,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 53,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 54,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 55,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 56,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 57,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 58,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 59,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 60,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 61,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 62,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 63,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 64,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 65,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 66,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 67,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 68,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 69,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 70,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 71,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 72,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 73,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 74,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 75,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 76,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 77,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200004,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 78,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 79,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 80,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 81,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 82,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 83,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 84,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 85,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 86,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 87,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 88,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 89,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 90,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 91,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 92,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 93,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 94,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 95,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 96,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 97,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 98,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 99,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 100,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 101,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 102,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 103,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200005,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 104,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 105,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 106,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 107,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 108,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 109,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 110,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 111,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 112,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 113,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 114,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 115,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 116,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 117,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 118,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 119,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 120,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 121,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 122,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 123,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 124,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 125,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 126,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 127,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 128,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 129,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200006,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 130,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 131,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 132,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 133,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 134,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 135,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 136,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 137,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 138,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 139,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 140,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 141,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 142,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 143,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 144,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 145,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 146,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 147,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 148,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 149,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 150,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 151,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 152,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 153,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 154,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 155,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200010,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 156,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 157,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 158,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 159,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 160,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 161,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 162,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 163,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 164,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 165,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 166,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 167,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 168,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 169,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 170,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 171,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 172,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 173,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 174,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 175,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 176,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 177,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 178,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 179,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 180,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 181,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200002,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 182,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 183,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 184,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 185,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 186,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 187,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 188,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 189,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 190,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 191,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 192,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 193,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 194,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 195,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 196,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 197,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 198,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 199,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 200,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 201,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 202,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 203,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 204,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 205,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 206,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 207,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200013,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 208,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 209,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 210,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 211,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 212,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 213,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 214,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 215,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 216,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 217,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 218,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 219,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 220,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 221,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 222,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 223,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 224,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 225,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 226,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 227,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 228,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 229,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 230,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 231,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 232,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 233,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200008,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 234,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 235,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 236,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 237,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 238,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 239,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 240,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 241,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 242,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 243,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 244,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 245,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 246,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 247,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 248,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 249,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 250,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 251,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 252,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 253,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 254,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 255,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 256,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 257,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 258,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 259,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200009,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 260,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 261,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 262,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 263,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 264,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 265,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 266,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 267,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 268,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 269,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 270,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 271,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 272,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 273,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 274,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 275,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 276,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 277,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 278,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 279,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 280,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 281,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 282,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 283,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 284,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 285,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200011,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 286,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 287,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 288,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 289,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 290,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 291,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 292,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 293,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 294,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 295,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 296,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 297,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 298,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 299,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 300,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 301,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 302,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 303,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 304,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 305,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 306,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 307,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 308,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 309,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 310,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 311,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200014,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 312,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 313,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 314,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 315,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 316,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 317,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 318,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 319,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 320,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 321,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 322,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 323,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 324,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 325,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 326,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 327,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 328,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 329,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 330,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 331,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 332,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 333,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 334,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 335,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 336,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 337,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200015,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 338,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 339,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 340,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 341,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 342,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 343,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 344,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 345,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 346,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 347,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 348,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 349,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 350,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 351,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 352,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 353,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 354,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 355,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 356,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 357,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 358,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 359,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 360,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 361,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 362,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 363,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200016,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 364,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 365,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 366,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 367,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 368,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 369,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 370,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 371,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 372,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 373,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 374,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 375,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 376,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 377,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 378,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 379,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 380,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 381,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 382,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 383,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 384,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 385,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 386,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 387,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 388,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 389,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200017,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 390,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 391,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 392,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 393,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 394,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 395,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 396,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 397,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 398,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 399,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 400,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 401,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 402,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 403,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 404,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 405,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 406,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 407,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 408,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 409,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 410,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 411,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 412,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 413,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 414,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 415,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200018,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 416,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 417,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 418,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 419,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 420,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 421,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 422,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 423,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 424,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 425,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 426,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 427,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 428,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 429,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 430,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 431,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 432,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 433,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 434,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 435,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 436,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 437,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 438,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 439,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 440,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 441,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200019,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 442,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 443,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 444,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 445,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 446,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 447,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 448,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 449,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 450,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 451,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 452,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 453,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 454,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 455,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 456,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 457,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 458,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 459,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 460,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 461,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 462,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 463,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 464,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 465,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 466,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 467,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200007,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 468,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 469,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 470,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 471,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 472,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 473,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 474,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 11,
+  "OptionValue": 10,
+  "id": 475,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 476,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 477,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 478,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 479,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 480,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 481,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 482,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 483,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 484,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 485,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 486,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 487,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 488,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 489,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 490,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 491,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 492,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 493,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200012,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 494,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 495,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 496,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 497,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 498,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 499,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 500,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 501,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 502,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 503,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 504,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 505,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 506,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 507,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 508,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 509,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 510,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 511,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 512,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 513,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 514,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 515,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 516,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 517,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 518,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 519,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200020,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 520,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 521,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 522,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 523,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 524,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 525,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 526,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 527,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 528,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 529,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 530,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 531,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 532,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 533,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 534,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 535,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 12,
+  "OptionValue": 10,
+  "id": 536,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 537,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 538,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 539,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 540,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 541,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 542,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 543,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 544,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 545,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200021,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 546,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 547,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 548,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 549,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 550,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 551,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 552,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 553,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 554,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 555,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 556,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 557,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 558,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 559,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 560,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 561,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 562,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 563,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 564,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 565,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 566,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 567,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 568,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 569,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 570,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 571,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200022,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 572,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 573,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 574,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 575,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 576,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 577,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 578,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 579,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 580,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 581,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 582,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 583,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 584,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 585,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 586,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 587,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 10,
+  "id": 588,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 589,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 590,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 591,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 592,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 593,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 594,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 595,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 596,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 597,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200023,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 598,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 5,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 599,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 10,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 600,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 15,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 601,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 20,
+  "OptionName": "20레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 602,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 25,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 603,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 30,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 604,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 35,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 605,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 40,
+  "OptionName": "40레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 606,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 45,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 607,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 50,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 608,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 55,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 609,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 60,
+  "OptionName": "60레벨 옵션",
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 610,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 65,
+  "OptionName": null,
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 611,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 70,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 612,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 75,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 613,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 80,
+  "OptionName": "80레벨 옵션",
+  "OptionType": 2,
+  "OptionValue": 10,
+  "id": 614,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 85,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 615,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 90,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 616,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 95,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 617,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 100,
+  "OptionName": "100레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 618,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 105,
+  "OptionName": null,
+  "OptionType": 5,
+  "OptionValue": 20,
+  "id": 619,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 110,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 620,
+  "optionStyle": 2
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 115,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 621,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 120,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 622,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 125,
+  "OptionName": null,
+  "OptionType": 1,
+  "OptionValue": 20,
+  "id": 623,
+  "optionStyle": 1
+ },
+ {
+  "Group_Id": 200024,
+  "Level": 130,
+  "OptionName": "130레벨 옵션",
+  "OptionType": 1,
+  "OptionValue": 10,
+  "id": 624,
+  "optionStyle": 2
+ }
+]

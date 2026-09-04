@@ -1,0 +1,94 @@
+[
+ {
+  "Category": 1,
+  "Class_Name": "WEAP_CATE_CLASSNAME_DAGGER",
+  "Class_Name_en": "Assassin",
+  "Class_OptionType": [
+   10,
+   3,
+   8
+  ],
+  "Class_OptionValue": [
+   100,
+   50,
+   150
+  ],
+  "Name": "WEAP_CATE_NAME_DAGGER",
+  "Name_en": "Dagger",
+  "id": 1
+ },
+ {
+  "Category": 2,
+  "Class_Name": "WEAP_CATE_CLASSNAME_SWORD",
+  "Class_Name_en": "Warrior",
+  "Class_OptionType": "1",
+  "Class_OptionValue": "100",
+  "Name": "WEAP_CATE_NAME_SWORD",
+  "Name_en": "Sword",
+  "id": 2
+ },
+ {
+  "Category": 3,
+  "Class_Name": "WEAP_CATE_CLASSNAME_MORNINGSTAR",
+  "Class_Name_en": "Bruiser",
+  "Class_OptionType": [
+   5,
+   1
+  ],
+  "Class_OptionValue": [
+   100,
+   50
+  ],
+  "Name": "WEAP_CATE_NAME_MORNINGSTAR",
+  "Name_en": "Mace",
+  "id": 3
+ },
+ {
+  "Category": 4,
+  "Class_Name": "WEAP_CATE_CLASSNAME_CROSSBOW",
+  "Class_Name_en": "Marksman",
+  "Class_OptionType": [
+   10,
+   9
+  ],
+  "Class_OptionValue": [
+   100,
+   50
+  ],
+  "Name": "WEAP_CATE_NAME_CROSSBOW",
+  "Name_en": "Crossbow",
+  "id": 4
+ },
+ {
+  "Category": 5,
+  "Class_Name": "WEAP_CATE_CLASSNAME_GUN",
+  "Class_Name_en": "Gunslinger",
+  "Class_OptionType": [
+   9,
+   12
+  ],
+  "Class_OptionValue": [
+   150,
+   100
+  ],
+  "Name": "WEAP_CATE_NAME_GUN",
+  "Name_en": "Gun",
+  "id": 5
+ },
+ {
+  "Category": 6,
+  "Class_Name": "WEAP_CATE_CLASSNAME_WAND",
+  "Class_Name_en": "Mage",
+  "Class_OptionType": [
+   12,
+   4
+  ],
+  "Class_OptionValue": [
+   300,
+   100
+  ],
+  "Name": "WEAP_CATE_NAME_WAND",
+  "Name_en": "Wand",
+  "id": 6
+ }
+]

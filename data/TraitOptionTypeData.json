@@ -1,0 +1,212 @@
+[
+ {
+  "id": 1,
+  "name": "TRAIT_OPTION_TYPE_NAME_1",
+  "name_en": "Total Attack Power",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_1",
+  "option_info_desc_en": "Total Attack Power +{0}%",
+  "option_type": 1,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_01",
+  "synergy_info_desc_en": "Total Attack Power +{0}%"
+ },
+ {
+  "id": 2,
+  "name": "TRAIT_OPTION_TYPE_NAME_2",
+  "name_en": "Critical Damage",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_2",
+  "option_info_desc_en": "Critical Damage +{0}%",
+  "option_type": 2,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_02",
+  "synergy_info_desc_en": "Critical Damage +{0}%"
+ },
+ {
+  "id": 3,
+  "name": "TRAIT_OPTION_TYPE_NAME_3",
+  "name_en": "Lifesteal",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_3",
+  "option_info_desc_en": "Lifesteal +{0}%",
+  "option_type": 3,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_03",
+  "synergy_info_desc_en": "Lifesteal +{0}%"
+ },
+ {
+  "id": 4,
+  "name": "TRAIT_OPTION_TYPE_NAME_4",
+  "name_en": "Cooldown Reduce",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_4",
+  "option_info_desc_en": "Cooldown Reduce +{0}%",
+  "option_type": 4,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_04",
+  "synergy_info_desc_en": "Cooldown Reduce +{0}%"
+ },
+ {
+  "id": 5,
+  "name": "TRAIT_OPTION_TYPE_NAME_5",
+  "name_en": "Max HP",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_5",
+  "option_info_desc_en": "Max HP +{0}%",
+  "option_type": 5,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_05",
+  "synergy_info_desc_en": "Max HP +{0}%"
+ },
+ {
+  "id": 6,
+  "name": "TRAIT_OPTION_TYPE_NAME_6",
+  "name_en": "Health Recovery",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_6",
+  "option_info_desc_en": "Health Recovery +{0}%",
+  "option_type": 6,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_06",
+  "synergy_info_desc_en": "Health Recovery +{0}%"
+ },
+ {
+  "id": 7,
+  "name": "TRAIT_OPTION_TYPE_NAME_7",
+  "name_en": "Evasion",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_7",
+  "option_info_desc_en": "Evasion +{0}%",
+  "option_type": 7,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_07",
+  "synergy_info_desc_en": "Evasion +{0}%"
+ },
+ {
+  "id": 8,
+  "name": "TRAIT_OPTION_TYPE_NAME_8",
+  "name_en": "Movement Speed",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_8",
+  "option_info_desc_en": "Movement Speed +{0}%",
+  "option_type": 8,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_08",
+  "synergy_info_desc_en": "Movement Speed +{0}%"
+ },
+ {
+  "id": 9,
+  "name": "TRAIT_OPTION_TYPE_NAME_9",
+  "name_en": "Critical Chance",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_9",
+  "option_info_desc_en": "Critical Chance +{0}%",
+  "option_type": 9,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_09",
+  "synergy_info_desc_en": "Critical Chance +{0}%"
+ },
+ {
+  "id": 10,
+  "name": "TRAIT_OPTION_TYPE_NAME_10",
+  "name_en": "Attack Speed",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_10",
+  "option_info_desc_en": "Attack Speed +{0}%",
+  "option_type": 10,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_10",
+  "synergy_info_desc_en": "Attack Speed +{0}%"
+ },
+ {
+  "id": 11,
+  "name": "TRAIT_OPTION_TYPE_NAME_11",
+  "name_en": "cargo Capacity",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_11",
+  "option_info_desc_en": "cargo Capacity +{0}%",
+  "option_type": 11,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_11",
+  "synergy_info_desc_en": "cargo Capacity +{0}%"
+ },
+ {
+  "id": 12,
+  "name": "TRAIT_OPTION_TYPE_NAME_12",
+  "name_en": "Skill Damage",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_12",
+  "option_info_desc_en": "Skill Damage +{0}%",
+  "option_type": 12,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_12",
+  "synergy_info_desc_en": "Skill Damage +{0}%"
+ },
+ {
+  "id": 13,
+  "name": "TRAIT_OPTION_TYPE_NAME_13",
+  "name_en": "Multi-attack Chance",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_13",
+  "option_info_desc_en": "Multi-attack Chance +{0}%",
+  "option_type": 13,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_13",
+  "synergy_info_desc_en": "Multi-attack Chance +{0}%"
+ },
+ {
+  "id": 14,
+  "name": "TRAIT_OPTION_TYPE_NAME_14",
+  "name_en": "Triple Attack Chance",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_14",
+  "option_info_desc_en": "Triple Attack Chance +{0}%",
+  "option_type": 14,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_14",
+  "synergy_info_desc_en": "Triple Attack Chance +{0}%"
+ },
+ {
+  "id": 15,
+  "name": "TRAIT_OPTION_TYPE_NAME_15",
+  "name_en": "Gold Gain",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_15",
+  "option_info_desc_en": "Gold Gain +{0}%",
+  "option_type": 15,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_15",
+  "synergy_info_desc_en": "Gold Gain +{0}%"
+ },
+ {
+  "id": 16,
+  "name": "TRAIT_OPTION_TYPE_NAME_16",
+  "name_en": "EXP Gain",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_16",
+  "option_info_desc_en": "EXP Gain +{0}%",
+  "option_type": 16,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_16",
+  "synergy_info_desc_en": "EXP Gain +{0}%"
+ },
+ {
+  "id": 17,
+  "name": "TRAIT_OPTION_TYPE_NAME_17",
+  "name_en": "Enhanced Attack Damage",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_17",
+  "option_info_desc_en": "Enhanced Attack Damage +{0}%",
+  "option_type": 17,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_17",
+  "synergy_info_desc_en": "Enhanced Attack Damage +{0}%"
+ },
+ {
+  "id": 18,
+  "name": "TRAIT_OPTION_TYPE_NAME_18",
+  "name_en": "Healing Reduction on Hit",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_18",
+  "option_info_desc_en": "Healing Reduction on Hit +{0}%",
+  "option_type": 18,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_18",
+  "synergy_info_desc_en": "Healing Reduction on Hit +{0}%"
+ },
+ {
+  "id": 19,
+  "name": "TRAIT_OPTION_TYPE_NAME_19",
+  "name_en": "Ranged Weapon Damage",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_19",
+  "option_info_desc_en": "Ranged Weapon Damage +{0}%",
+  "option_type": 19,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_19",
+  "synergy_info_desc_en": "Ranged Weapon Damage +{0}%"
+ },
+ {
+  "id": 20,
+  "name": "TRAIT_OPTION_TYPE_NAME_20",
+  "name_en": "Melee Weapon Damage",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_20",
+  "option_info_desc_en": "Melee Weapon Damage +{0}%",
+  "option_type": 20,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_20",
+  "synergy_info_desc_en": "Melee Weapon Damage +{0}%"
+ },
+ {
+  "id": 21,
+  "name": "TRAIT_OPTION_TYPE_NAME_21",
+  "name_en": "Status Effect Resistance",
+  "option_info_desc": "TRAIT_OPTION_TYPE_DESC_21",
+  "option_info_desc_en": "Status Effect Resistance +{0}%",
+  "option_type": 21,
+  "synergy_info_desc": "SYNERGY_OPTION_DESC_21",
+  "synergy_info_desc_en": "Status Effect Resistance +{0}%"
+ }
+]

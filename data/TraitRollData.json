@@ -1,0 +1,90 @@
+[
+ {
+  "group": 1,
+  "id": 1,
+  "option_group_id": 1,
+  "option_group_rarity": 1,
+  "rate": 43605,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 2,
+  "option_group_id": 2,
+  "option_group_rarity": 2,
+  "rate": 35000,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 3,
+  "option_group_id": 3,
+  "option_group_rarity": 3,
+  "rate": 15000,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 4,
+  "option_group_id": 4,
+  "option_group_rarity": 4,
+  "rate": 5000,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 5,
+  "option_group_id": 5,
+  "option_group_rarity": 5,
+  "rate": 1210,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 6,
+  "option_group_id": 6,
+  "option_group_rarity": 6,
+  "rate": 150,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 7,
+  "option_group_id": 7,
+  "option_group_rarity": 7,
+  "rate": 30,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 1,
+  "id": 8,
+  "option_group_id": 8,
+  "option_group_rarity": 8,
+  "rate": 5,
+  "synergy_group_id": 1
+ },
+ {
+  "group": 2,
+  "id": 101,
+  "option_group_id": 6,
+  "option_group_rarity": 6,
+  "rate": 81080,
+  "synergy_group_id": 2
+ },
+ {
+  "group": 2,
+  "id": 102,
+  "option_group_id": 7,
+  "option_group_rarity": 7,
+  "rate": 16220,
+  "synergy_group_id": 2
+ },
+ {
+  "group": 2,
+  "id": 103,
+  "option_group_id": 8,
+  "option_group_rarity": 8,
+  "rate": 2700,
+  "synergy_group_id": 2
+ }
+]

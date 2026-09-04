@@ -1,0 +1,126 @@
+[
+ {
+  "IconName": "Ability/Icons_Category/Icon_Attack",
+  "Title": "STAT_NAME_DPS",
+  "Title_en": "POWER",
+  "id": 1
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_Health",
+  "Title": "STAT_NAME_HP",
+  "Title_en": "HP",
+  "id": 2
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_AttackSpeed",
+  "Title": "STAT_NAME_ATTACKSPEEDRATE",
+  "Title_en": "ATTACK SPEED",
+  "id": 3
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_Speed",
+  "Title": "STAT_NAME_MOVESPEED",
+  "Title_en": "MOVE SPEED",
+  "id": 4
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_CriticalRate",
+  "Title": "STAT_NAME_CRITICALRATE",
+  "Title_en": "CRITICAL CHANCE",
+  "id": 5
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_CriticalDamage",
+  "Title": "STAT_NAME_CRITICALDAMAGERATE",
+  "Title_en": "CRITICAL DAMAGE",
+  "id": 6
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_HPRecovery",
+  "Title": "STAT_NAME_HPREGEN",
+  "Title_en": "HP RECOVERY",
+  "id": 7
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_DoubleAttack",
+  "Title": "STAT_NAME_DOUBLEATTACKRATE",
+  "Title_en": "DOUBLE ATTACK",
+  "id": 8
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_TripleAttack",
+  "Title": "STAT_NAME_TRIPLEATTACKRATE",
+  "Title_en": "TRIPLE ATTACK",
+  "id": 9
+ },
+ {
+  "IconName": "Ability/Icons_ExtraUpgrade/Icn_Bloodlust",
+  "Title": "STAT_NAME_VAMPRATE",
+  "Title_en": "LIFE STEAL",
+  "id": 10
+ },
+ {
+  "IconName": "Ability/Icons_SpecialUpgrade/Icn_SkillCoolDown",
+  "Title": "STAT_NAME_SKILLCOOLDOWNRATE",
+  "Title_en": "SKILL COOLDOWN",
+  "id": 11
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_Reward",
+  "Title": "STAT_NAME_CARGO",
+  "Title_en": "CARGO",
+  "id": 12
+ },
+ {
+  "IconName": "Ability/Icons_SpecialUpgrade/Icn_SkillDamage",
+  "Title": "STAT_NAME_SKILLDAMAGERATE",
+  "Title_en": "SKILL DAMAGE",
+  "id": 13
+ },
+ {
+  "IconName": null,
+  "Title": "STAT_NAME_EXPRATE",
+  "Title_en": "EXP INCREASE",
+  "id": 14
+ },
+ {
+  "IconName": null,
+  "Title": "STAT_NAME_COIN_RATE",
+  "id": 15
+ },
+ {
+  "IconName": null,
+  "Title": "STAT_NAME_FINAL_BASIC_ATTACK_DAMAGE_MULT",
+  "id": 16
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_HealingRate",
+  "Title": "STAT_NAME_HEALING_RATE",
+  "Title_en": "Healing",
+  "id": 17
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_RangedDamageRate",
+  "Title": "STAT_NAME_RANGED_DAMAGE_RATE",
+  "Title_en": "Ranged Attack Power",
+  "id": 18
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_MeleeDamageRate",
+  "Title": "STAT_NAME_MELEE_DAMAGE_RATE",
+  "Title_en": "Melee Attack Power",
+  "id": 19
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_EffectResistRate",
+  "Title": "STAT_NAME_EFFECT_RESIST_RATE",
+  "Title_en": "Status Ailment Reduction",
+  "id": 20
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icon_BasicAttackDamage",
+  "Title": "STAT_NAME_BASIC_ATTACK_DAMAGE_MULT",
+  "Title_en": "Basic Attack Up",
+  "id": 21
+ }
+]

@@ -1,0 +1,32 @@
+[
+ {
+  "icon_name": "Icn_Traits_Fist_S128",
+  "id": 1,
+  "name": "SYNERGY_TYPE_NAME_1",
+  "name_en": "WARRIOR'S FIST"
+ },
+ {
+  "icon_name": "Icn_Traits_Vampire_S128",
+  "id": 2,
+  "name": "SYNERGY_TYPE_NAME_2",
+  "name_en": "VAMPIRE FANG"
+ },
+ {
+  "icon_name": "Icn_Traits_Scratch_S128",
+  "id": 3,
+  "name": "SYNERGY_TYPE_NAME_3",
+  "name_en": "DRAGON'S CLAW"
+ },
+ {
+  "icon_name": "Icn_Traits_Heart_S128",
+  "id": 4,
+  "name": "SYNERGY_TYPE_NAME_4",
+  "name_en": "OGRE HEART"
+ },
+ {
+  "icon_name": "Icn_Traits_Hourglass_S128",
+  "id": 5,
+  "name": "SYNERGY_TYPE_NAME_5",
+  "name_en": "SAGE'S HOURGLASS"
+ }
+]

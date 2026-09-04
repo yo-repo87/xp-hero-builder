@@ -1,0 +1,37 @@
+[
+ {
+  "RequireCost": "5",
+  "RequireLevel": 5,
+  "RequireQuestId": 23,
+  "RequireType": 20,
+  "id": 1
+ },
+ {
+  "RequireCost": "10",
+  "RequireLevel": 25,
+  "RequireQuestId": 0,
+  "RequireType": 20,
+  "id": 2
+ },
+ {
+  "RequireCost": "15",
+  "RequireLevel": 40,
+  "RequireQuestId": 0,
+  "RequireType": 1,
+  "id": 3
+ },
+ {
+  "RequireCost": "30",
+  "RequireLevel": 55,
+  "RequireQuestId": 0,
+  "RequireType": 1,
+  "id": 4
+ },
+ {
+  "RequireCost": "50",
+  "RequireLevel": 70,
+  "RequireQuestId": 0,
+  "RequireType": 1,
+  "id": 5
+ }
+]

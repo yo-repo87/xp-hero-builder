@@ -1,0 +1,156 @@
+{
+ "art_coverage": {
+  "weapons": {"matched": 84, "total_rows": 84, "missing_ids": []},
+  "heroes": {"matched": 24, "total_rows": 24, "missing_ids": []},
+  "method": "Weapon/Costume 'IconSprite' field values matched Unity Sprite object names by EXACT string equality (no fuzzy matching needed) -- e.g. WeaponData.IconSprite='W_Dagger' exactly matches a Sprite named 'W_Dagger'. Every sprite was exported via Sprite.image (correctly cropped from its atlas), saved as assets/img/weapons/<weapon id>.png and assets/img/heroes/<costume id>.png. Weapon icons are ~70x80px; hero icons are ~177x188px (native exported resolution, not resized)."
+ },
+ "field_mapping_notes": [
+  "Every field with a value found in the Locale table's 'key' column gets a companion '<Field>_en' key holding the resolved English string (e.g. Name -> Name_en). Original localization-key fields (e.g. 'WEAPON_NAME_WOODEN_DAGGER') are kept as-is so other languages could be resolved later from Locale.json if wanted -- Locale.json itself was NOT written to data/ (only used as a lookup source); re-run convert_data.py logic against it if other languages are needed.",
+  "Comma-separated string fields (declared type 'string' but containing commas, e.g. Costume_Skill_List='0,10053,10054', WeaponCategoryData.Class_OptionType) were split into JSON arrays, with each element cast to int/float where it looked numeric. Fields with only one value stayed as a plain scalar (see WeaponCategoryData id 2 vs id 1 above -- inconsistent array-vs-scalar shape for the same field across rows is a real quirk of the source data, not a conversion bug -- UI code should normalize single values into a length-1 array defensively.",
+  "WeaponData/CostumeData 'id' is the stable identifier used for image filenames (assets/img/weapons/<id>.png, assets/img/heroes/<id>.png).",
+  "WeaponLevelDPSData (19 rows, id 1-19) and WeaponLevelUpGoldCostData (20 rows) are NOT per-weapon-per-level tables -- they look like small reference/tier lookup curves (id appears to double as a level or tier index, not a weapon id.) BalancingData_Rarity is where the real per-rarity DPS growth formula lives: fields WeaponDPSAdd, WeaponDPSMult, WeaponDPS_LevelUpAdd, MaxLevel are keyed by Rarity (1-14 seen -- more rarity tiers than the 6 named in earlier analysis, worth double-checking against WeaponData.Rarity's actual value range). Cross-reference WeaponRandomDPSRange too before assuming the exact upgrade-stat formula -- I did not fully reverse-engineer the formula itself, only confirmed where the relevant raw numbers live. This needs verification/formula-derivation before the UI's 'upgrade' feature can show numerically-accurate adjusted stats.",
+  "CostumeStarGradeOptionData has null OptionType/OptionValue on some rows (e.g. Star_Grade 1 in group 100001) where OptionStyle=3 and only a text-only unlock description exists (e.g. a skill-unlock flavor row with no numeric stat bonus) -- treat OptionType/OptionValue nulls as 'no numeric stat bonus at this star grade' rather than a data gap.",
+  "TraitOptionTypeData/_en description fields contain a '{0}' placeholder for the actual percentage/value to interpolate in at render time (e.g. 'Total Attack Power +{0}%') -- the numeric value to substitute comes from TraitOptionData, not this table."
+ ],
+ "converted": [
+  "WeaponData",
+  "WeaponLevelDPSData",
+  "WeaponLevelUpGoldCostData",
+  "WeaponLevelUpScrollCostData",
+  "WeaponBonusOptionData",
+  "WeaponCategoryData",
+  "WeaponRandomDPSRange",
+  "SubWeaponUnlockCostData",
+  "CostumeData",
+  "CostumeLevelData",
+  "CostumeLevelOptionData",
+  "CostumeStarGradeOptionData",
+  "CostumeEvolutionData",
+  "TraitOptionData",
+  "TraitOptionTypeData",
+  "TraitSynergyGroupData",
+  "TraitSynergyInfoData",
+  "TraitSynergyTypeData",
+  "TraitRollData",
+  "TraitPresetSlotData",
+  "AbilityLevelUpCostInfo",
+  "AbilityListElementInfo",
+  "ExtraUpgradeLevelData",
+  "ExtraUpgradeTypeData",
+  "SpecialUpgradeGradeData",
+  "SpecialUpgradeLevelData",
+  "SpecialUpgradeTypeData",
+  "SoulUpgradeLevelData",
+  "SoulUpgradeTypeData",
+  "StatData",
+  "BalancingData_Rarity",
+  "BalancingData_Currency",
+  "RewardGroupData"
+ ],
+ "missing": [],
+ "row_counts": {
+  "WeaponData": 84,
+  "WeaponLevelDPSData": 19,
+  "WeaponLevelUpGoldCostData": 20,
+  "WeaponLevelUpScrollCostData": 130,
+  "WeaponBonusOptionData": 7,
+  "WeaponCategoryData": 6,
+  "WeaponRandomDPSRange": 9,
+  "SubWeaponUnlockCostData": 5,
+  "CostumeData": 24,
+  "CostumeLevelData": 126,
+  "CostumeLevelOptionData": 624,
+  "CostumeStarGradeOptionData": 144,
+  "CostumeEvolutionData": 92,
+  "TraitOptionData": 67,
+  "TraitOptionTypeData": 21,
+  "TraitSynergyGroupData": 10,
+  "TraitSynergyInfoData": 16,
+  "TraitSynergyTypeData": 5,
+  "TraitRollData": 11,
+  "TraitPresetSlotData": 4,
+  "AbilityLevelUpCostInfo": 346,
+  "AbilityListElementInfo": 10,
+  "ExtraUpgradeLevelData": 408,
+  "ExtraUpgradeTypeData": 8,
+  "SpecialUpgradeGradeData": 5,
+  "SpecialUpgradeLevelData": 461,
+  "SpecialUpgradeTypeData": 11,
+  "SoulUpgradeLevelData": 1009,
+  "SoulUpgradeTypeData": 9,
+  "StatData": 21,
+  "BalancingData_Rarity": 14,
+  "BalancingData_Currency": 2,
+  "RewardGroupData": 837
+ },
+ "locale_resolved_fields": {
+  "WeaponData": [
+   "Desc",
+   "Name",
+   "Story"
+  ],
+  "WeaponLevelDPSData": [],
+  "WeaponLevelUpGoldCostData": [],
+  "WeaponLevelUpScrollCostData": [],
+  "WeaponBonusOptionData": [
+   "PropertyName"
+  ],
+  "WeaponCategoryData": [
+   "Class_Name",
+   "Name"
+  ],
+  "WeaponRandomDPSRange": [],
+  "SubWeaponUnlockCostData": [],
+  "CostumeData": [
+   "Description",
+   "Name"
+  ],
+  "CostumeLevelData": [],
+  "CostumeLevelOptionData": [],
+  "CostumeStarGradeOptionData": [],
+  "CostumeEvolutionData": [],
+  "TraitOptionData": [],
+  "TraitOptionTypeData": [
+   "name",
+   "option_info_desc",
+   "synergy_info_desc"
+  ],
+  "TraitSynergyGroupData": [],
+  "TraitSynergyInfoData": [],
+  "TraitSynergyTypeData": [
+   "name"
+  ],
+  "TraitRollData": [],
+  "TraitPresetSlotData": [],
+  "AbilityLevelUpCostInfo": [],
+  "AbilityListElementInfo": [
+   "Desc",
+   "Title"
+  ],
+  "ExtraUpgradeLevelData": [],
+  "ExtraUpgradeTypeData": [
+   "Description",
+   "Title"
+  ],
+  "SpecialUpgradeGradeData": [
+   "UpgradeName1",
+   "UpgradeName2"
+  ],
+  "SpecialUpgradeLevelData": [],
+  "SpecialUpgradeTypeData": [
+   "Description",
+   "Title"
+  ],
+  "SoulUpgradeLevelData": [],
+  "SoulUpgradeTypeData": [
+   "Description",
+   "Title"
+  ],
+  "StatData": [
+   "Title"
+  ],
+  "BalancingData_Rarity": [],
+  "BalancingData_Currency": [],
+  "RewardGroupData": []
+ }
+}

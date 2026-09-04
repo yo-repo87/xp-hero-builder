@@ -1,0 +1,102 @@
+[
+ {
+  "CostItemType": 0,
+  "RequireAmount": "82",
+  "id": 1
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "106",
+  "id": 5
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "287",
+  "id": 11
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "493",
+  "id": 15
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "863",
+  "id": 19
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "1322",
+  "id": 23
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "1919",
+  "id": 28
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "2878",
+  "id": 33
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "4688",
+  "id": 39
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "6880",
+  "id": 45
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "10679",
+  "id": 52
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "18215",
+  "id": 59
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "34510",
+  "id": 66
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "58107",
+  "id": 74
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "89937",
+  "id": 82
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "110131",
+  "id": 91
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "132350",
+  "id": 100
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "156704",
+  "id": 110
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "183392",
+  "id": 120
+ },
+ {
+  "CostItemType": 0,
+  "RequireAmount": "212590",
+  "id": 130
+ }
+]
