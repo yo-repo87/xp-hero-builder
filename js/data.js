@@ -127,7 +127,11 @@ const Game = {
     idx.specialTypeByOptionType = new Map(this.db.SpecialUpgradeTypeData.map(s => [s.OptionType, s]));
     idx.specialGradeById = new Map(this.db.SpecialUpgradeGradeData.map(g => [g.id, g]));
     idx.specialLevelsByOptionType = groupBy(this.db.SpecialUpgradeLevelData, s => s.OptionType);
-    for (const arr of idx.specialLevelsByOptionType.values()) arr.sort((a, b) => a.Level - b.Level);
+    // Sort/step by UpgradeLevel, not the raw Level field: Level resets to 1
+    // at the start of every GradeLevel tier (1-5, then 1-10, then 1-15...),
+    // so it's not unique/monotonic across tiers. UpgradeLevel is the true
+    // cumulative counter (1, 2, 3, ... 50) that matches a single flat stepper.
+    for (const arr of idx.specialLevelsByOptionType.values()) arr.sort((a, b) => a.UpgradeLevel - b.UpgradeLevel);
 
     idx.soulTypeByOptionType = new Map(this.db.SoulUpgradeTypeData.map(s => [s.OptionType, s]));
     idx.soulLevelsByOptionType = groupBy(this.db.SoulUpgradeLevelData, s => s.OptionType);

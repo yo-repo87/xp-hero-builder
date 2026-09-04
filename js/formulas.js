@@ -192,12 +192,22 @@ const Formulas = {
   },
 
   specialRow(optionType, level) {
-    return this._closestRow(Game.index.specialLevelsByOptionType.get(optionType), 'Level', level);
+    // `level` here is the cumulative counter (matches UpgradeLevel, not the
+    // per-tier-resetting raw Level field — see the index-building note in
+    // data.js).
+    return this._closestRow(Game.index.specialLevelsByOptionType.get(optionType), 'UpgradeLevel', level);
   },
+  // CORRECTED per direct user report against the live game (Equipment >
+  // Special tab): every stat's level cap at Altar Grade N is a flat N*10,
+  // uniform across all stat types. `SpecialUpgradeTypeData.MaxLevelDatas`
+  // looked like a plausible per-type cumulative-cap table (its 4 entries
+  // summed correctly against the raw level-cost data: 5, 15, 30, 50) and was
+  // used for this originally, but it does not match what's actually shown
+  // in-game at grade 2 (20, not 15) — so it's evidently the wrong table for
+  // this, despite being internally consistent on its own. Left unused
+  // rather than removed in case it's the right source for something else.
   specialMaxLevelForGrade(optionType, grade) {
-    const type = Game.index.specialTypeByOptionType.get(optionType);
-    if (!type || !type.MaxLevelDatas) return 0;
-    return type.MaxLevelDatas[grade - 1] ?? type.MaxLevelDatas[type.MaxLevelDatas.length - 1];
+    return grade * 10;
   },
 
   soulRow(optionType, level) {
