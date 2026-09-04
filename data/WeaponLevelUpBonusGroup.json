@@ -1,0 +1,962 @@
+[
+ {
+  "id": 1,
+  "GroupID": 1,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 2,
+  "GroupID": 1,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 3,
+  "GroupID": 1,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 4,
+  "GroupID": 1,
+  "Rarity": 4,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.2,
+  "SlotType": 1
+ },
+ {
+  "id": 5,
+  "GroupID": 1,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 6,
+  "GroupID": 1,
+  "Rarity": 6,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 7,
+  "GroupID": 1,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 8,
+  "GroupID": 1,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 9,
+  "GroupID": 2,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 10,
+  "GroupID": 2,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 11,
+  "GroupID": 2,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 12,
+  "GroupID": 2,
+  "Rarity": 4,
+  "OptionType": 12,
+  "PropertyName": "WEAPON_BONUS_OP_SKILLDAMAGE",
+  "PropertyName_en": "Skill Damage",
+  "Amount": 0.25,
+  "SlotType": 1
+ },
+ {
+  "id": 13,
+  "GroupID": 2,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 14,
+  "GroupID": 2,
+  "Rarity": 6,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 15,
+  "GroupID": 2,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 16,
+  "GroupID": 2,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 17,
+  "GroupID": 3,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 18,
+  "GroupID": 3,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 19,
+  "GroupID": 3,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 20,
+  "GroupID": 3,
+  "Rarity": 4,
+  "OptionType": 4,
+  "PropertyName": "WEAPON_BONUS_OP_SKILL_COOLDOWN",
+  "PropertyName_en": "Skill CoolDown",
+  "Amount": 0.15,
+  "SlotType": 1
+ },
+ {
+  "id": 21,
+  "GroupID": 3,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 22,
+  "GroupID": 3,
+  "Rarity": 6,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 23,
+  "GroupID": 3,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 24,
+  "GroupID": 3,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 25,
+  "GroupID": 4,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 26,
+  "GroupID": 4,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 27,
+  "GroupID": 4,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 28,
+  "GroupID": 4,
+  "Rarity": 4,
+  "OptionType": 12,
+  "PropertyName": "WEAPON_BONUS_OP_SKILLDAMAGE",
+  "PropertyName_en": "Skill Damage",
+  "Amount": 0.25,
+  "SlotType": 1
+ },
+ {
+  "id": 29,
+  "GroupID": 4,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 30,
+  "GroupID": 4,
+  "Rarity": 6,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 31,
+  "GroupID": 4,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 32,
+  "GroupID": 4,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 33,
+  "GroupID": 5,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 34,
+  "GroupID": 5,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 35,
+  "GroupID": 5,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 36,
+  "GroupID": 5,
+  "Rarity": 4,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.2,
+  "SlotType": 1
+ },
+ {
+  "id": 37,
+  "GroupID": 5,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 38,
+  "GroupID": 5,
+  "Rarity": 6,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 39,
+  "GroupID": 5,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 40,
+  "GroupID": 5,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 41,
+  "GroupID": 6,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 42,
+  "GroupID": 6,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 43,
+  "GroupID": 6,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 44,
+  "GroupID": 6,
+  "Rarity": 4,
+  "OptionType": 4,
+  "PropertyName": "WEAPON_BONUS_OP_SKILL_COOLDOWN",
+  "PropertyName_en": "Skill CoolDown",
+  "Amount": 0.15,
+  "SlotType": 1
+ },
+ {
+  "id": 45,
+  "GroupID": 6,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 46,
+  "GroupID": 6,
+  "Rarity": 6,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 47,
+  "GroupID": 6,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 48,
+  "GroupID": 6,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 49,
+  "GroupID": 11,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 50,
+  "GroupID": 11,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.07,
+  "SlotType": 1
+ },
+ {
+  "id": 51,
+  "GroupID": 11,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 52,
+  "GroupID": 11,
+  "Rarity": 4,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.2,
+  "SlotType": 1
+ },
+ {
+  "id": 53,
+  "GroupID": 11,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 54,
+  "GroupID": 11,
+  "Rarity": 6,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 55,
+  "GroupID": 11,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 56,
+  "GroupID": 11,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 57,
+  "GroupID": 12,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 58,
+  "GroupID": 12,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.05,
+  "SlotType": 1
+ },
+ {
+  "id": 59,
+  "GroupID": 12,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 60,
+  "GroupID": 12,
+  "Rarity": 4,
+  "OptionType": 12,
+  "PropertyName": "WEAPON_BONUS_OP_SKILLDAMAGE",
+  "PropertyName_en": "Skill Damage",
+  "Amount": 0.25,
+  "SlotType": 1
+ },
+ {
+  "id": 61,
+  "GroupID": 12,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 62,
+  "GroupID": 12,
+  "Rarity": 6,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 63,
+  "GroupID": 12,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 64,
+  "GroupID": 12,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 65,
+  "GroupID": 13,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 66,
+  "GroupID": 13,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.03,
+  "SlotType": 1
+ },
+ {
+  "id": 67,
+  "GroupID": 13,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 68,
+  "GroupID": 13,
+  "Rarity": 4,
+  "OptionType": 4,
+  "PropertyName": "WEAPON_BONUS_OP_SKILL_COOLDOWN",
+  "PropertyName_en": "Skill CoolDown",
+  "Amount": 0.15,
+  "SlotType": 1
+ },
+ {
+  "id": 69,
+  "GroupID": 13,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 70,
+  "GroupID": 13,
+  "Rarity": 6,
+  "OptionType": 20,
+  "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
+  "PropertyName_en": "Melee Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 71,
+  "GroupID": 13,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 72,
+  "GroupID": 13,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 73,
+  "GroupID": 14,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 74,
+  "GroupID": 14,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.06,
+  "SlotType": 1
+ },
+ {
+  "id": 75,
+  "GroupID": 14,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 76,
+  "GroupID": 14,
+  "Rarity": 4,
+  "OptionType": 12,
+  "PropertyName": "WEAPON_BONUS_OP_SKILLDAMAGE",
+  "PropertyName_en": "Skill Damage",
+  "Amount": 0.25,
+  "SlotType": 1
+ },
+ {
+  "id": 77,
+  "GroupID": 14,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 78,
+  "GroupID": 14,
+  "Rarity": 6,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 79,
+  "GroupID": 14,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 80,
+  "GroupID": 14,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 81,
+  "GroupID": 15,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 82,
+  "GroupID": 15,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.04,
+  "SlotType": 1
+ },
+ {
+  "id": 83,
+  "GroupID": 15,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 84,
+  "GroupID": 15,
+  "Rarity": 4,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.2,
+  "SlotType": 1
+ },
+ {
+  "id": 85,
+  "GroupID": 15,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 86,
+  "GroupID": 15,
+  "Rarity": 6,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 87,
+  "GroupID": 15,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 88,
+  "GroupID": 15,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ },
+ {
+  "id": 89,
+  "GroupID": 16,
+  "Rarity": 1,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.01,
+  "SlotType": 0
+ },
+ {
+  "id": 90,
+  "GroupID": 16,
+  "Rarity": 2,
+  "OptionType": 3,
+  "PropertyName": "WEAPON_BONUS_OP_LIFESTEAL",
+  "PropertyName_en": "LifeSteal",
+  "Amount": 0.03,
+  "SlotType": 1
+ },
+ {
+  "id": 91,
+  "GroupID": 16,
+  "Rarity": 3,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.02,
+  "SlotType": 0
+ },
+ {
+  "id": 92,
+  "GroupID": 16,
+  "Rarity": 4,
+  "OptionType": 4,
+  "PropertyName": "WEAPON_BONUS_OP_SKILL_COOLDOWN",
+  "PropertyName_en": "Skill CoolDown",
+  "Amount": 0.15,
+  "SlotType": 1
+ },
+ {
+  "id": 93,
+  "GroupID": 16,
+  "Rarity": 5,
+  "OptionType": 5,
+  "PropertyName": "WEAPON_BONUS_OP_HP",
+  "PropertyName_en": "Hp",
+  "Amount": 0.08,
+  "SlotType": 0
+ },
+ {
+  "id": 94,
+  "GroupID": 16,
+  "Rarity": 6,
+  "OptionType": 19,
+  "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
+  "PropertyName_en": "Ranged Damage",
+  "Amount": 0.03,
+  "SlotType": 0
+ },
+ {
+  "id": 95,
+  "GroupID": 16,
+  "Rarity": 7,
+  "OptionType": 1,
+  "PropertyName": "WEAPON_BONUS_OP_ATTACK",
+  "PropertyName_en": "Attack",
+  "Amount": 0.09,
+  "SlotType": 0
+ },
+ {
+  "id": 96,
+  "GroupID": 16,
+  "Rarity": 8,
+  "OptionType": 2,
+  "PropertyName": "WEAPON_BONUS_OP_CRITICAL_DAMAGE",
+  "PropertyName_en": "Critical Damage",
+  "Amount": 0.1,
+  "SlotType": 0
+ }
+]

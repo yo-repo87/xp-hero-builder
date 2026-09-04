@@ -66,7 +66,7 @@ const GuideUI = {
 
   _dpsEstimateHTML(heroId) {
     const b = Formulas.totalDpsBreakdown(heroId);
-    const tagLabel = { mapped: 'data-mapped', manual: 'manual input', unmodeled: 'not modeled' };
+    const tagLabel = { confirmed: 'confirmed', mapped: 'data-mapped', manual: 'manual input', unmodeled: 'not modeled' };
     const rows = Object.entries(b.sources).map(([key, s]) => `
       <div class="de-row">
         <span class="de-key">${escapeHtml(key)}</span>

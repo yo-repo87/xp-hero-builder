@@ -115,7 +115,7 @@ js/
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
-data/*.json                 41 extracted, typed, English-labeled game-balance tables
+data/*.json                 42 extracted, typed, English-labeled game-balance tables
 assets/img/weapons/          84 icons, filename = WeaponData.id
 assets/img/heroes/           24 icons, filename = CostumeData.id
 assets/img/items/            47 icons, filename = StackableItemData.PackageIcon
@@ -137,10 +137,11 @@ short version:
 
 | System | Status |
 |---|---|
-| Weapon base DPS (`base + perLevel*(level-1)`) | Real data (`BalancingData_Rarity`), but confirmed to be only the `Weapon`+`WeaponLevelBonus` **slice** of the real account-wide `Dps` stat, not the full number |
+| Weapon base DPS (`base + perLevel*(level-1)`) | Real data (`BalancingData_Rarity`), but confirmed to be only the `Weapon` slice of the real account-wide `Dps` stat, not the full number (`WeaponLevelBonus` is now its own confirmed source — see next row) |
+| Weapon Level-Up Bonuses (fixed, up to 8 per weapon fusion chain) | **Confirmed by decompilation** 2026-09-04 (`RegistWeaponLevelBonus`, RVA `0x2796544`) — a completely separate mechanic from the random-roll "Bonus Affixes" (`WeaponBonusOptionData`/`BonusOptionCount`, sibling function `RegistWeaponBonusOption`). See chronological log entry below. |
 | Hero base stats (level/star/evolution) | Real data, checkpoint-interpolated where needed |
 | Trait synergy token-counting | **Confirmed correct by decompilation** (`TraitSynergyController.CalculateSynergyTokens`) |
-| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are best-effort (each tagged `mapped`/`manual`/`unmodeled` right in the UI — see `Formulas.totalDpsBreakdown`) |
+| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are best-effort (each tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI — see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus` is now `confirmed` (see above); the rest remain `mapped`/`manual`/`unmodeled`. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Farmable Items sources | Only 4/56 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss raids were **not** explored as reward sources. |
 | Combat damage formula (not used by app) | Mostly confirmed structurally; two basic-attack-only normalizer values in `CalculateDamageInternal` were left unidentified rather than guessed |
@@ -275,6 +276,66 @@ before (Special Upgrade caps) and values honesty over completeness.
       *blue* color theme, not brown/parchment — deliberately left
       unmatched (documented below) rather than fragmenting the app's visual
       identity into a per-tab patchwork on the strength of one screenshot.
+11. User compared the Extra tab against their live account and caught a real
+    data bug (not a reskin/layout issue): every Extra/Special/Soul upgrade
+    percent was showing exactly **10x too high** (Bulk Up: 48% here vs. the
+    real game's 4.8% at the same level). Root cause: `RateAmount` in
+    `ExtraUpgradeLevelData`/`SpecialUpgradeLevelData`/`SoulUpgradeLevelData`
+    is stored at 10x the displayed percent (verified: Level 8 Bulk Up has
+    `RateAmount=48`, real screen shows 4.8%) — the app had assumed it was
+    the plain percent already. Fixed the display (÷10) in all three trees.
+    Since `Formulas.totalDpsBreakdown` reads this exact same field for its
+    `SpecialUpgrade`/`ExtraUpgrade`/`SoulUpgrade` sources, the bug was live
+    there too, just in the *opposite* direction — it had been multiplying
+    by 10 to convert an assumed "plain percent" into per-mille, but
+    `RateAmount` turns out to already **be** per-mille-scale, so the fix
+    there was to remove the ×10 entirely, not flip its sign. `TraitRoll`'s
+    source (`TraitSynergyInfoData.rate_amount` — a different table) was
+    deliberately left untouched — no screenshot evidence either way on
+    whether it shares this same 10x convention, and after two units bugs in
+    a row in this exact area, guessing a third time felt like the wrong
+    instinct. If that one turns out wrong too, it needs its own real
+    evidence to fix, not an assumption borrowed from this fix.
+12. User reported that the Weapons tab's bonus-effect editor only let them
+    add up to 2 (or 3) bonus effects, while their real weapon shows more.
+    Investigation found this wasn't a cap bug — it was two genuinely
+    different game mechanics that had been conflated. The app only ever
+    modeled the RANDOM roll system (`WeaponBonusOptionData` pool +
+    `BalancingData_Rarity.BonusOptionCount`, correctly capped at 1-3
+    depending on rarity/grade — this is real and stays as-is, relabeled
+    "Rolled Bonus Affixes" for clarity). What the user was actually seeing
+    in-game is a **second, separate, fully deterministic mechanic** that had
+    never been extracted or wired in at all: `WeaponLevelUpBonusGroup` (96
+    rows, newly extracted from the scratchpad's raw Unity asset tree since
+    it wasn't among the original 41 tables — labels resolved from the same
+    real `Locale` table used everywhere else). Every weapon carries a fixed
+    `LevelUpBonusGroup` shared by its *entire fusion chain* (e.g. Crude
+    Dagger through Absolute Radiance all share `GroupID 1`); that group has
+    one row per rarity tier (typically 1-8), each a fixed, non-random bonus
+    stat that unlocks permanently once the weapon is fused to that rarity —
+    cumulative across the whole chain, up to 8 unlocked at once, not capped
+    at 2. **Confirmed by hand-disassembling the real compiled function**
+    (`RegistWeaponLevelBonus`, RVA `0x2796544`, called via
+    `WeaponData.LevelUpBonusGroup` at struct offset `0x6C`): it walks
+    `WeaponLevelUpBonusGroup.GetGroupList(groupId)`, keeps every row whose
+    `Rarity <= ` the weapon's current fused rarity (proving unlocks are
+    cumulative, not "current tier only"), further gates some rows by
+    `SlotType` (0 = any slot, 1 = main-hand/slot-0 only, 2 = the five
+    secondary slots only — confirmed by the same function branching on
+    `slotIndex==0`), and sums each unlocked row's `Amount × 1000` directly
+    into per-mille math. This also let a real gap get closed with actual
+    evidence instead of a guess: the confirmed real `Dps` formula (see
+    `docs/game_logic_deep_dive.md`) has always listed `WeaponLevelBonus` as
+    one of its 17 sources, but `Formulas.totalDpsBreakdown` had it wired to
+    a guess (`WeaponDPS_LevelUpAdd * (level-1)`, tagged `mapped`) — replaced
+    with the real formula above and upgraded to a new `confirmed` tag (added
+    to the Guide tab's source-tagging vocabulary, alongside the existing
+    `mapped`/`manual`/`unmodeled`). Shipped: `data/WeaponLevelUpBonusGroup.json`
+    (new table), `Formulas.weaponLevelBonusRows()` (new), the weapon detail
+    modal's new "Level-Up Bonuses" list (auto-computed, shows locked *and*
+    unlocked rows so the user can see what's still ahead in the fusion
+    chain — no manual "add" UI at all, since none is needed for a
+    deterministic mechanic), and the `totalDpsBreakdown` fix.
 
 ## Open items / plausible next steps (not started)
 

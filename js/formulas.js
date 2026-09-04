@@ -71,6 +71,33 @@ const Formulas = {
   // whatever their actual in-game weapon shows.
   bonusOptionPool() { return Game.db.WeaponBonusOptionData; },
 
+  // CONFIRMED BY DECOMPILATION (RegistWeaponLevelBonus, RVA 0x2796544, and
+  // the WeaponData.LevelUpBonusGroup field at 0x6C): every weapon carries a
+  // fixed LevelUpBonusGroup shared by its whole fusion chain (e.g. Crude
+  // Dagger through Absolute Radiance all share GroupID 1, one row per chain
+  // link). WeaponLevelUpBonusGroup has one row per rarity tier (typically
+  // 1-8) in that group, each a FIXED, non-random bonus stat that unlocks
+  // permanently once the equipped weapon reaches that fused rarity —
+  // disassembly keeps every row whose Rarity <= the weapon's current
+  // Rarity, so unlocks are cumulative across the whole chain, not just the
+  // current tier. Some rows are further gated by SlotType: 0 = any slot,
+  // 1 = main-hand slot only (index 0, the real screen's "MAIN" slot),
+  // 2 = the five secondary slots only — confirmed by the same function
+  // branching on slotIndex==0. This is a COMPLETELY SEPARATE system from
+  // the random-roll "Bonus Affixes" above (WeaponBonusOptionData /
+  // BonusOptionCount, registered by the sibling function
+  // RegistWeaponBonusOption) — the two must not be conflated; a weapon
+  // shows both a handful of random rolled affixes AND this fixed unlock
+  // list at the same time.
+  weaponLevelBonusRows(weapon, slotIndex = 0) {
+    const rows = Game.index.weaponLevelBonusByGroup.get(weapon.LevelUpBonusGroup) || [];
+    return rows.map(row => ({
+      row,
+      unlocked: row.Rarity <= weapon.Rarity,
+      slotOk: row.SlotType === 0 || (row.SlotType === 1 && slotIndex === 0) || (row.SlotType === 2 && slotIndex !== 0),
+    }));
+  },
+
   // --- Heroes ------------------------------------------------------------
 
   // Base Attack/HP curve is sampled at levels [1,10,20,...,130] per rarity
@@ -310,22 +337,24 @@ const Formulas = {
     // Weapon / WeaponLevelBonus / WeaponOption — summed across all 6 equipped slots.
     {
       let weaponBase = 0, weaponLevelBonus = 0, weaponOption = 0;
-      for (const slot of State.data.weapons) {
-        if (!slot) continue;
+      State.data.weapons.forEach((slot, i) => {
+        if (!slot) return;
         const w = Game.index.weaponById.get(slot.weaponId);
-        if (!w) continue;
+        if (!w) return;
         const dps = this.weaponDPS(w, slot.level);
         weaponBase += dps.base;
-        weaponLevelBonus += dps.perLevel * Math.max(0, slot.level - 1);
+        for (const { row, unlocked, slotOk } of this.weaponLevelBonusRows(w, i)) {
+          if (unlocked && slotOk) weaponLevelBonus += num(row.Amount) * 1000;
+        }
         for (const roll of (slot.bonusRolls || [])) {
           const opt = Game.index.weaponBonusOptionById.get(roll.optionId);
           if (!opt || opt.PropertyName !== 'WEAPON_BONUS_OP_ATTACK') continue;
           const mult = opt.MinValue + (roll.pct / 100) * (opt.MaxValue - opt.MinValue);
           weaponOption += (mult - 1) * 1000;
         }
-      }
+      });
       set('Weapon', weaponBase, 'mapped', 'Sum of each equipped weapon’s base DPS (BalancingData_Rarity.WeaponDPSAdd)');
-      set('WeaponLevelBonus', weaponLevelBonus, 'mapped', 'Sum of each equipped weapon’s per-level DPS gain');
+      set('WeaponLevelBonus', weaponLevelBonus, 'confirmed', 'Sum of each equipped weapon’s unlocked Level-Up Bonuses (WeaponLevelUpBonusGroup, confirmed via RegistWeaponLevelBonus decompilation)');
       set('WeaponOption', weaponOption, 'mapped', 'Sum of equipped weapons’ rolled "Attack" bonus affixes, converted to per-mille');
     }
 

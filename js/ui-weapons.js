@@ -125,6 +125,7 @@ const WeaponsUI = {
       const dps = Formulas.weaponDPS(w, draft.level);
       const scrollCost = Formulas.scrollCostForLevel(draft.level);
       const maxAffixes = rarityRow ? rarityRow.BonusOptionCount : 0;
+      const levelBonusRows = Formulas.weaponLevelBonusRows(w, slotIndex);
 
       body.innerHTML = `
         <div class="detail-layout">
@@ -164,8 +165,13 @@ const WeaponsUI = {
             </div>
             <div class="caveat">DPS = base ${fmtNum(dps.base)} + ${fmtNum(dps.perLevel)} × (level−1), from this weapon's rarity/grade tier data. Confirmed by decompiling the game's real Dps formula: your actual in-game Dps stat multiplies this weapon's contribution by three more percentage brackets from your player level, ability/extra/special/soul upgrades, hero grade/level/evolution, VIP, and trait roll all at once — so this number is this weapon's own slice, not your full build's Dps. See docs/game_logic_deep_dive.md for the exact formula.</div>
 
+            ${levelBonusRows.length ? `
+              <h4 style="margin:16px 0 6px;font-size:.9rem">Level-Up Bonuses <span style="color:var(--ink-muted);font-weight:500">(fixed, unlocks automatically as this weapon is fused to higher rarity)</span></h4>
+              <div class="milestone-list">${this._levelBonusListHTML(levelBonusRows)}</div>
+            ` : ''}
+
             ${maxAffixes > 0 ? `
-              <h4 style="margin:16px 0 6px;font-size:.9rem">Bonus Affixes <span style="color:var(--ink-muted);font-weight:500">(this rarity rolls up to ${maxAffixes})</span></h4>
+              <h4 style="margin:16px 0 6px;font-size:.9rem">Rolled Bonus Affixes <span style="color:var(--ink-muted);font-weight:500">(random — this rarity rolls up to ${maxAffixes})</span></h4>
               <div id="affix-list">${this._affixListHTML(draft, bonusPool, maxAffixes)}</div>
             ` : ''}
 
@@ -199,6 +205,20 @@ const WeaponsUI = {
     const body = document.getElementById('modal-body-target');
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
     renderBody();
+  },
+
+  _levelBonusListHTML(rows) {
+    return rows.map(({ row, unlocked, slotOk }) => {
+      const rarityName = Game.rarityColor(row.Rarity).name;
+      const pct = fmtNum(row.Amount * 100);
+      const slotTag = row.SlotType === 1 ? ' · Main slot only' : row.SlotType === 2 ? ' · Off-hand slots only' : '';
+      const active = unlocked && slotOk;
+      return `
+        <div class="milestone-row${active ? '' : ' milestone-row--locked'}">
+          ${active ? '' : '🔒 '}${escapeHtml(row.PropertyName_en)} +${pct}%
+          <span style="color:var(--ink-muted);font-weight:500"> — unlocks at ${rarityName} rarity${slotTag}${unlocked && !slotOk ? ' (wrong slot for this weapon)' : ''}</span>
+        </div>`;
+    }).join('');
   },
 
   _affixListHTML(draft, pool, maxAffixes) {

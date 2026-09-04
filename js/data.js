@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------------
 
 const DATA_FILES = [
-  'WeaponData', 'WeaponBonusOptionData', 'WeaponCategoryData',
+  'WeaponData', 'WeaponBonusOptionData', 'WeaponCategoryData', 'WeaponLevelUpBonusGroup',
   'WeaponLevelUpScrollCostData', 'WeaponLevelUpGoldCostData', 'SubWeaponUnlockCostData',
   'CostumeData', 'CostumeLevelData', 'CostumeLevelOptionData',
   'CostumeStarGradeOptionData', 'CostumeEvolutionData',
@@ -64,6 +64,7 @@ const Game = {
     idx.weaponsByCategory = groupBy(this.db.WeaponData, w => w.Category);
     idx.weaponCategoryById = new Map(this.db.WeaponCategoryData.map(c => [c.id, c]));
     idx.weaponBonusOptionById = new Map(this.db.WeaponBonusOptionData.map(o => [o.id, o]));
+    idx.weaponLevelBonusByGroup = groupBy(this.db.WeaponLevelUpBonusGroup, r => r.GroupID);
     idx.rarityRowByKey = new Map(this.db.BalancingData_Rarity.map(r => [`${r.Rarity}:${r.Grade}`, r]));
     idx.scrollCostByLevel = new Map(this.db.WeaponLevelUpScrollCostData.map(r => [r.id, r]));
     idx.goldCostCheckpoints = [...this.db.WeaponLevelUpGoldCostData].sort((a, b) => a.id - b.id);

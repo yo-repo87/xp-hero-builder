@@ -8,7 +8,7 @@ The UI is skinned with the game's own real chrome — buttons, panels, rarity ic
 
 ## What it does
 
-- **Weapons tab** — 6 equip slots, just like in-game. Pick from every weapon in the game (real icons, real per-rarity stats), set its upgrade level, and roll bonus affixes to match what you actually have equipped.
+- **Weapons tab** — 6 equip slots, just like in-game. Pick from every weapon in the game (real icons, real per-rarity stats), set its upgrade level, and roll bonus affixes to match what you actually have equipped. Each weapon also shows its **Level-Up Bonuses** — the fixed, non-random stat unlocks (up to 8) that a weapon's whole fusion chain earns as it's fused to higher rarity, shown locked/unlocked automatically — a separate system from the random rolled affixes above it.
 - **Heroes tab** — add every hero you own, each with independent level / star grade / evolution tier, and mark which one is currently active.
 - **Equipment tab** — the trait loadout (2 groups × 5 synergy slots) and the four account-wide upgrade trees: Ability, Extra, Special, Soul.
 - **Guide tab** — pick one of your heroes and get build advice computed live from your actual loadout (weapon category synergy, loadout health, growth pacing, trait coverage, recommended stat focus) — not a static tip list. It also shows an **Estimated Total DPS** using the game's real, decompilation-confirmed `Dps` formula, wired up to every system this app already tracks (player level, ability tree, all 6 weapons, hero grade/level/evolution, Special/Extra/Soul upgrades, trait synergy) — expand "Show full formula breakdown" for a per-source table with each value tagged as data-mapped, manual input, or not modeled, so you can see exactly which parts are solid and which are estimates.
