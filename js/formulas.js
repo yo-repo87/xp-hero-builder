@@ -276,15 +276,34 @@ const Formulas = {
     return this._closestRow(Game.index.specialLevelsByOptionType.get(optionType), 'UpgradeLevel', level);
   },
   // CORRECTED per direct user report against the live game (Equipment >
-  // Special tab): every stat's level cap at Altar Grade N is a flat N*10,
-  // uniform across all stat types. `SpecialUpgradeTypeData.MaxLevelDatas`
-  // looked like a plausible per-type cumulative-cap table (its 4 entries
-  // summed correctly against the raw level-cost data: 5, 15, 30, 50) and was
-  // used for this originally, but it does not match what's actually shown
-  // in-game at grade 2 (20, not 15) — so it's evidently the wrong table for
-  // this, despite being internally consistent on its own. Left unused
-  // rather than removed in case it's the right source for something else.
+  // Special tab): every stat's level cap at Altar Grade N, ONCE UNLOCKED, is
+  // a flat N*10, uniform across all stat types. `SpecialUpgradeTypeData.
+  // MaxLevelDatas`'s own 4 numbers looked like a plausible per-type
+  // cumulative-cap table but don't match what's shown in-game at grade 2
+  // (20, not 15) — wrong table for the cap *magnitude*.
+  //
+  // BUT (2026-09-04, by decompilation, following up on the weapon Level-Up
+  // Bonus fix): MaxLevelDatas' zero-vs-nonzero PATTERN turns out to be real
+  // and is a separate fact from the cap magnitude — it's exactly what
+  // `SpecialUpgradeManager.GetUnlockGrade` (RVA 0x250D6F0) reads to decide
+  // which Altar Grade a stat type first becomes available at: it calls
+  // `SpecialUpgradeTypeData.GetGradeMaxLevel(grade)` for grade=1,2,3...
+  // and returns the first grade whose entry is nonzero. E.g. FAST HEAL's
+  // MaxLevelDatas is `[0,10,25,45]` — grade 1's entry is 0, so it isn't
+  // unlocked until grade 2; DUAL TRIGGER's `[0,0,15,35]` doesn't unlock
+  // until grade 3; TRIPLE EDGE's `[0,0,0,20]` not until grade 4. Only 5 of
+  // the 11 types (the ones with a nonzero first entry) are available from
+  // grade 1. This had never been modeled — every type was previously shown
+  // upgradable at every grade — so `specialUnlockGrade` + the 0-below-
+  // unlock-grade branch below are both new.
+  specialUnlockGrade(optionType) {
+    const type = Game.index.specialTypeByOptionType.get(optionType);
+    const levels = type ? toArray(type.MaxLevelDatas) : [];
+    for (let i = 0; i < levels.length; i++) if (num(levels[i]) > 0) return i + 1;
+    return 1;
+  },
   specialMaxLevelForGrade(optionType, grade) {
+    if (grade < this.specialUnlockGrade(optionType)) return 0;
     return grade * 10;
   },
 

@@ -146,6 +146,7 @@ short version:
 | Trait/synergy percent display (Equipment tab) and `TraitRoll` Dps source | **Fixed 2026-09-04** — `rate_amount` (`TraitOptionData`, `TraitSynergyInfoData`) is per-mille (confirmed by decompiling `TraitSynergyController.GetStatModifications`), the same convention as Extra/Special/SoulUpgrade's `RateAmount`. Display now divides by 10 uniformly (replacing a guessed, inconsistent ">100 ? /100 : /1" heuristic); the Dps formula's `TraitRoll` source uses the raw value directly (no ×10 — that had been an unverified guess borrowed from the RateAmount fix and was wrong). |
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
+| Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
 | Farmable Items sources | Only 4/56 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss raids were **not** explored as reward sources. |
 | Combat damage formula (not used by app) | Mostly confirmed structurally; two basic-attack-only normalizer values in `CalculateDamageInternal` were left unidentified rather than guessed |
 
@@ -437,6 +438,35 @@ before (Special Upgrade caps) and values honesty over completeness.
     every function fixed above, these route through IL2CPP interface/vtable
     dispatch that would take meaningfully longer to trace by hand. Left
     `unmodeled` rather than guessed, consistent with this project's norm.
+14. User asked to specifically check for other "level-based unlock" gates
+    like the weapon one (entry #13), across every stat/effect/ability
+    system. Swept every remaining type-catalog table (Ability, Extra,
+    Special, Soul upgrade types; hero skill list) for an unlock-condition
+    field. Found one real, previously-unmodeled gate: **6 of the 11 Special
+    Upgrade stat types don't exist at Altar Grade 1** — FAST HEAL/LUCKY
+    PUNCH need grade 2, DUAL TRIGGER/SKILL DAMAGE need grade 3, TRIPLE
+    EDGE/SKILL COOLDOWN RATE need grade 4. The app had been showing all 11
+    as upgradable from grade 1. Confirmed by disassembling
+    `SpecialUpgradeManager.GetUnlockGrade` (RVA `0x250D6F0`): it calls
+    `SpecialUpgradeTypeData.GetGradeMaxLevel(grade)` for grade 1, 2, 3...
+    and returns the first grade whose `MaxLevelDatas` entry is nonzero —
+    e.g. FAST HEAL's `MaxLevelDatas` is `[0,10,25,45]`, so grade 1's entry
+    being 0 means it isn't unlocked yet. This is the SAME field whose exact
+    cap *numbers* were already known to be wrong (entry #8, fixed to a flat
+    `grade*10`) — but the zero/nonzero *pattern* turned out to be a
+    completely separate, still-valid fact encoded in the same column;
+    fixing the wrong numbers didn't mean the whole field was noise. Added
+    `Formulas.specialUnlockGrade()` (returns the first grade with a nonzero
+    `MaxLevelDatas` entry) and folded it into `specialMaxLevelForGrade`
+    (returns 0 below the unlock grade). `ui-equipment.js`'s Special tab now
+    shows locked types with a "🔒 Unlocks at Altar Grade N" row instead of
+    a stepper. Checked every other tree for the same pattern and found
+    nothing else: Ability/Extra/Soul upgrade TypeData tables carry no
+    grade/tier field at all (just a flat per-type level curve, no unlock
+    gate), and the hero skill list (`Costume_Skill_List`) has no unlock
+    condition table wired in but was already disclosed as raw IDs with an
+    explicit "not surfaced in this build" caveat — not a wrong-data bug,
+    just a pre-existing known gap.
 
 ## Open items / plausible next steps (not started)
 

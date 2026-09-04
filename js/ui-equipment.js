@@ -130,8 +130,19 @@ const EquipmentUI = {
   // left (color = which of the 4 trees, per the real screenshots — warm
   // brown for Ability, indigo for Special, magenta for Extra), title + desc
   // + a "current > next" value line in the middle, stepper on the right.
-  _card({ icon, accent, title, sub, curLabel, nextLabel, level, maxLevel }) {
+  _card({ icon, accent, title, sub, curLabel, nextLabel, level, maxLevel, lockedMsg }) {
     const atCap = level >= maxLevel;
+    if (lockedMsg) {
+      return `
+        <div class="upgrade-row upgrade-row--locked">
+          <div class="ur-icon" style="background:${accent};opacity:.5">${icon}</div>
+          <div class="ur-body">
+            <div class="ur-title">${escapeHtml(title)}</div>
+            <div class="ur-sub">${escapeHtml(sub || '')}</div>
+            <div class="ur-value" style="color:var(--ink-faint)">🔒 ${escapeHtml(lockedMsg)}</div>
+          </div>
+        </div>`;
+    }
     return `
       <div class="upgrade-row">
         <div class="ur-icon" style="background:${accent}">${icon}</div>
@@ -195,21 +206,25 @@ const EquipmentUI = {
     });
   },
 
+  // Some Special Upgrade types don't unlock at Altar Grade 1 — see the
+  // CONFIRMED note on Formulas.specialUnlockGrade. Locked types show a
+  // "Unlocks at Altar Grade N" message instead of a stepper.
   _renderSpecial(grid) {
     const globalGrade = State.data.upgrades.special.__grade || 1;
     const cards = Game.db.SpecialUpgradeTypeData.map(type => {
       const rec = State.data.upgrades.special[type.OptionType] || { grade: globalGrade, level: 0 };
+      const unlockGrade = Formulas.specialUnlockGrade(type.OptionType);
       const maxLevel = Formulas.specialMaxLevelForGrade(type.OptionType, globalGrade);
       const row = Formulas.specialRow(type.OptionType, rec.level);
       const nextRow = rec.level < maxLevel ? Formulas.specialRow(type.OptionType, rec.level + 1) : null;
-      return { type, level: rec.level, maxLevel, row, nextRow };
+      return { type, level: rec.level, maxLevel, row, nextRow, unlockGrade, locked: globalGrade < unlockGrade };
     });
     const gradeHTML = `
       <div class="upgrade-row upgrade-row--grade">
         <div class="ur-icon" style="background:var(--tree-special)">⛩</div>
         <div class="ur-body">
           <div class="ur-title">Altar Grade</div>
-          <div class="ur-sub">How far you've progressed the Special Upgrade altar overall — caps how high each stat below can go.</div>
+          <div class="ur-sub">How far you've progressed the Special Upgrade altar overall — caps how high each stat below can go, and unlocks later stats entirely.</div>
         </div>
         <div class="stepper">
           <button data-grade-step="-1">−</button>
@@ -217,11 +232,12 @@ const EquipmentUI = {
           <button data-grade-step="1">+</button>
         </div>
       </div>`;
-    grid.innerHTML = gradeHTML + cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
+    grid.innerHTML = gradeHTML + cards.map(({ type, level, maxLevel, row, nextRow, unlockGrade, locked }) => this._card({
       icon: '✦', accent: 'var(--tree-special)', title: type.Title_en, sub: type.Description_en,
       curLabel: row ? `${fmtNum(row.RateAmount / 10)}%` : '0%',
       nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount / 10)}%` : null,
       level, maxLevel,
+      lockedMsg: locked ? `Unlocks at Altar Grade ${unlockGrade}` : null,
     })).join('');
 
     const setGrade = (g) => {
@@ -237,6 +253,7 @@ const EquipmentUI = {
     grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
       if (i === 0) return; // grade row handled above
       const c = cards[i - 1];
+      if (c.locked) return; // no stepper to wire
       this._wireCard(el, c.level, c.maxLevel, (v) => State.setSpecialLevel(c.type.OptionType, globalGrade, v));
     });
   },
