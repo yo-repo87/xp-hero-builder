@@ -4,33 +4,49 @@
 
 const WeaponsUI = {
 
+  // Layout matches the real in-game Equipment screen: 3 slots flanking each
+  // side of a center hero-preview panel, slot 1 marked MAIN (real screen's
+  // top-left slot is a distinct, larger "main hand" slot).
   render() {
     const grid = document.getElementById('weapon-slot-grid');
-    grid.innerHTML = State.data.weapons.map((slot, i) => this._slotHTML(slot, i)).join('');
+    const left = [0, 1, 2].map(i => this._slotHTML(State.data.weapons[i], i)).join('');
+    const right = [3, 4, 5].map(i => this._slotHTML(State.data.weapons[i], i)).join('');
+    const hero = State.getActiveHero();
+    const costume = hero && Game.index.costumeById.get(hero.costumeId);
+    grid.innerHTML = `
+      <div class="equip-rig">
+        <div class="equip-col">${left}</div>
+        <div class="equip-center">
+          ${costume ? `
+            <div class="equip-center-portrait" style="${rarityStyle(costume.rarity)}"><img src="${Game.heroIcon(costume)}" onerror="onImgError(this)" alt=""></div>
+            <div class="equip-center-name">${escapeHtml(costume.Name_en)}</div>` : `
+            <div class="equip-center-portrait empty">?</div>
+            <div class="equip-center-name" style="color:var(--ink-faint)">No active hero</div>`}
+        </div>
+        <div class="equip-col">${right}</div>
+      </div>`;
     grid.querySelectorAll('.weapon-slot').forEach(el => {
       el.addEventListener('click', () => this.openPicker(Number(el.dataset.slot)));
     });
   },
 
   _slotHTML(slot, i) {
+    const mainTag = i === 0 ? `<span class="slot-main-tag">MAIN</span>` : '';
     if (!slot) {
       return `
         <div class="weapon-slot" data-slot="${i}">
-          <span class="slot-label">Weapon ${i + 1}</span>
+          ${mainTag}
+          <span class="slot-level-badge slot-level-badge--empty">Lv —</span>
           <div class="slot-empty-icon">+</div>
-          <div class="slot-name" style="color:var(--ink-faint)">Empty Slot</div>
         </div>`;
     }
     const w = Game.index.weaponById.get(slot.weaponId);
     if (!w) return this._slotHTML(null, i);
-    const r = Game.rarityColor(w.Rarity);
     return `
       <div class="weapon-slot filled" data-slot="${i}" style="${rarityStyle(w.Rarity)}">
-        <span class="slot-label">Weapon ${i + 1}</span>
+        ${mainTag}
         <span class="slot-level-badge">Lv ${slot.level}</span>
         <div class="slot-art"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
-        <div class="slot-name">${escapeHtml(w.Name_en)}</div>
-        <div class="slot-meta">${rarityPip(w.Rarity)}${escapeHtml(weaponCategoryName(w.Category))}</div>
       </div>`;
   },
 

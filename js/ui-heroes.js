@@ -100,30 +100,32 @@ const HeroesUI = {
               <div class="stat-pill"><span class="stat-name">HP ${full.base.interpolated ? '(interp.)' : ''}</span><span class="stat-val">${fmtNum(full.base.hp)}</span></div>
             </div>
 
-            <h4 style="margin:14px 0 6px;font-size:.9rem">Level</h4>
+            <h4 class="section-head"><span class="section-head-icon">⬆</span>Level Up</h4>
             <div class="level-control">
               <input type="range" id="lvl-slider" min="1" max="${c.Max_Lv}" value="${hero.level}">
               <span class="level-num mono" id="lvl-num">${hero.level} / ${c.Max_Lv}</span>
             </div>
 
-            <h4 style="margin:14px 0 6px;font-size:.9rem">Star Grade (Enhance)</h4>
+            <h4 class="section-head"><span class="section-head-icon">★</span>Upgrade <span class="section-head-sub">(Star Grade)</span></h4>
             <div class="level-control">
               <input type="range" id="star-slider" min="1" max="${c.Max_Grade}" value="${hero.starGrade}">
               <span class="level-num mono">${rarityStar(true)}${hero.starGrade} / ${c.Max_Grade}</span>
             </div>
 
             ${evoRows.length ? `
-            <h4 style="margin:14px 0 6px;font-size:.9rem">Evolution</h4>
+            <h4 class="section-head"><span class="section-head-icon">👑</span>Evolve</h4>
             <div class="level-control">
               <input type="range" id="evo-slider" min="0" max="${evoRows[evoRows.length - 1].Rarity}" value="${hero.evoRarity}">
               <span class="level-num mono">${hero.evoRarity === 0 ? 'None' : 'Tier ' + hero.evoRarity}</span>
             </div>` : ''}
 
-            <h4 style="margin:16px 0 6px;font-size:.9rem">Stat Bonuses Unlocked</h4>
-            <div class="stat-list">
+            <h4 class="section-head" style="margin-top:16px">Stat Bonuses Unlocked</h4>
+            <div class="milestone-list">
               ${full.bonuses.length === 0 ? `<span style="color:var(--ink-faint);font-size:.82rem">None yet at this level/star/evolution.</span>` :
                 full.bonuses.map(b => `
-                  <div class="stat-pill"><span class="stat-name">${escapeHtml(b.stat ? b.stat.Title_en : 'Stat ' + b.type)}</span><span class="stat-val">+${fmtNum(b.value)}${b.value < 10 ? '' : ''}</span></div>
+                  <div class="milestone-row">
+                    <span class="milestone-label">${escapeHtml(b.stat ? b.stat.Title_en : 'Stat ' + b.type)} +${fmtNum(b.value)}</span>
+                  </div>
                 `).join('')}
             </div>
 

@@ -115,17 +115,25 @@ const EquipmentUI = {
     if (this.activeTree === 'soul') return this._renderSoul(grid);
   },
 
-  _card(iconLabel, title, sub, valueLabel, level, maxLevel, onStep) {
+  // Row layout matches the real Upgrades screen: colored icon slot on the
+  // left (color = which of the 4 trees, per the real screenshots — warm
+  // brown for Ability, indigo for Special, magenta for Extra), title + desc
+  // + a "current > next" value line in the middle, stepper on the right.
+  _card({ icon, accent, title, sub, curLabel, nextLabel, level, maxLevel }) {
+    const atCap = level >= maxLevel;
     return `
-      <div class="upgrade-card">
-        <div class="uc-head"><div class="uc-icon">${iconLabel}</div><div class="uc-title">${escapeHtml(title)}</div></div>
-        <div class="uc-sub">${escapeHtml(sub || '')}</div>
-        <div class="stat-pill" style="margin-bottom:8px"><span class="stat-name">Current effect</span><span class="stat-val">${valueLabel}</span></div>
+      <div class="upgrade-row">
+        <div class="ur-icon" style="background:${accent}">${icon}</div>
+        <div class="ur-body">
+          <div class="ur-title">${escapeHtml(title)}</div>
+          <div class="ur-sub">${escapeHtml(sub || '')}</div>
+          <div class="ur-value">${curLabel}${!atCap && nextLabel ? ` <span class="ur-arrow">›</span> <span class="ur-next">${nextLabel}</span>` : ''}</div>
+          <div class="ur-level">Level ${level} / ${maxLevel}</div>
+        </div>
         <div class="stepper" data-stepper>
           <button data-step="-1">−</button>
           <input type="number" data-level-input min="0" max="${maxLevel}" value="${level}">
           <button data-step="1">+</button>
-          <span style="color:var(--ink-faint);font-size:.72rem">/ ${maxLevel}</span>
         </div>
       </div>`;
   },
@@ -143,12 +151,16 @@ const EquipmentUI = {
       const level = State.data.upgrades.ability[type.id] || 0;
       const maxLevel = Formulas.abilityMaxLevel(type.id);
       const row = Formulas.abilityRow(type.id, level);
-      return { type, level, maxLevel, row };
+      const nextRow = level < maxLevel ? Formulas.abilityRow(type.id, level + 1) : null;
+      return { type, level, maxLevel, row, nextRow };
     });
-    grid.innerHTML = cards.map(({ type, level, maxLevel, row }) =>
-      this._card('⬆', type.Title_en, type.Desc_en, row ? `+${fmtNum(row.EffectAmount)}` : '—', level, maxLevel)
-    ).join('');
-    grid.querySelectorAll('.upgrade-card').forEach((el, i) => {
+    grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
+      icon: '⬆', accent: 'var(--tree-ability)', title: type.Title_en, sub: type.Desc_en,
+      curLabel: row ? `+${fmtNum(row.EffectAmount)}` : '+0',
+      nextLabel: nextRow ? `+${fmtNum(nextRow.EffectAmount)}` : null,
+      level, maxLevel,
+    })).join('');
+    grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
       this._wireCard(el, cards[i].level, cards[i].maxLevel, (v) => State.setAbilityLevel(cards[i].type.id, v));
     });
   },
@@ -158,12 +170,16 @@ const EquipmentUI = {
       const level = State.data.upgrades.extra[type.OptionType] || 0;
       const maxLevel = Formulas.extraMaxLevel(type.OptionType);
       const row = Formulas.extraRow(type.OptionType, level);
-      return { type, level, maxLevel, row };
+      const nextRow = level < maxLevel ? Formulas.extraRow(type.OptionType, level + 1) : null;
+      return { type, level, maxLevel, row, nextRow };
     });
-    grid.innerHTML = cards.map(({ type, level, maxLevel, row }) =>
-      this._card('✚', type.Title_en, type.Description_en, row ? `+${fmtNum(row.RateAmount)}%` : '—', level, maxLevel)
-    ).join('');
-    grid.querySelectorAll('.upgrade-card').forEach((el, i) => {
+    grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
+      icon: '✚', accent: 'var(--tree-extra)', title: type.Title_en, sub: type.Description_en,
+      curLabel: row ? `${fmtNum(row.RateAmount)}%` : '0%',
+      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount)}%` : null,
+      level, maxLevel,
+    })).join('');
+    grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
       this._wireCard(el, cards[i].level, cards[i].maxLevel, (v) => State.setExtraLevel(cards[i].type.OptionType, v));
     });
   },
@@ -174,22 +190,28 @@ const EquipmentUI = {
       const rec = State.data.upgrades.special[type.OptionType] || { grade: globalGrade, level: 0 };
       const maxLevel = Formulas.specialMaxLevelForGrade(type.OptionType, globalGrade);
       const row = Formulas.specialRow(type.OptionType, rec.level);
-      return { type, level: rec.level, maxLevel, row };
+      const nextRow = rec.level < maxLevel ? Formulas.specialRow(type.OptionType, rec.level + 1) : null;
+      return { type, level: rec.level, maxLevel, row, nextRow };
     });
     const gradeHTML = `
-      <div class="upgrade-card" style="grid-column:1/-1;background:var(--panel-raised)">
-        <div class="uc-head"><div class="uc-icon">⛩</div><div class="uc-title">Altar Grade</div></div>
-        <div class="uc-sub">How far you've progressed the Special Upgrade altar overall — caps how high each stat below can go.</div>
+      <div class="upgrade-row upgrade-row--grade">
+        <div class="ur-icon" style="background:var(--tree-special)">⛩</div>
+        <div class="ur-body">
+          <div class="ur-title">Altar Grade</div>
+          <div class="ur-sub">How far you've progressed the Special Upgrade altar overall — caps how high each stat below can go.</div>
+        </div>
         <div class="stepper">
           <button data-grade-step="-1">−</button>
           <input type="number" id="grade-input" min="1" max="5" value="${globalGrade}">
           <button data-grade-step="1">+</button>
-          <span style="color:var(--ink-faint);font-size:.72rem">/ 5</span>
         </div>
       </div>`;
-    grid.innerHTML = gradeHTML + cards.map(({ type, level, maxLevel, row }) =>
-      this._card('✦', type.Title_en, type.Description_en, row ? `+${fmtNum(row.RateAmount)}%` : '—', level, maxLevel)
-    ).join('');
+    grid.innerHTML = gradeHTML + cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
+      icon: '✦', accent: 'var(--tree-special)', title: type.Title_en, sub: type.Description_en,
+      curLabel: row ? `${fmtNum(row.RateAmount)}%` : '0%',
+      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount)}%` : null,
+      level, maxLevel,
+    })).join('');
 
     const setGrade = (g) => {
       g = Math.max(1, Math.min(5, g));
@@ -201,8 +223,8 @@ const EquipmentUI = {
     grid.querySelector('[data-grade-step="1"]').addEventListener('click', () => setGrade(globalGrade + 1));
     grid.querySelector('#grade-input').addEventListener('change', (e) => setGrade(Number(e.target.value) || 1));
 
-    grid.querySelectorAll('.upgrade-card').forEach((el, i) => {
-      if (i === 0) return; // grade card handled above
+    grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
+      if (i === 0) return; // grade row handled above
       const c = cards[i - 1];
       this._wireCard(el, c.level, c.maxLevel, (v) => State.setSpecialLevel(c.type.OptionType, globalGrade, v));
     });
@@ -213,12 +235,16 @@ const EquipmentUI = {
       const level = State.data.upgrades.soul[type.OptionType] || 0;
       const maxLevel = Formulas.soulMaxLevel(type.OptionType);
       const row = Formulas.soulRow(type.OptionType, level);
-      return { type, level, maxLevel, row };
+      const nextRow = level < maxLevel ? Formulas.soulRow(type.OptionType, level + 1) : null;
+      return { type, level, maxLevel, row, nextRow };
     });
-    grid.innerHTML = cards.map(({ type, level, maxLevel, row }) =>
-      this._card('❖', type.Title_en, type.Description_en, row ? `+${fmtNum(row.RateAmount)}%` : '—', level, maxLevel)
-    ).join('');
-    grid.querySelectorAll('.upgrade-card').forEach((el, i) => {
+    grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
+      icon: '❖', accent: 'var(--tree-soul)', title: type.Title_en, sub: type.Description_en,
+      curLabel: row ? `${fmtNum(row.RateAmount)}%` : '0%',
+      nextLabel: nextRow ? `${fmtNum(nextRow.RateAmount)}%` : null,
+      level, maxLevel,
+    })).join('');
+    grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
       this._wireCard(el, cards[i].level, cards[i].maxLevel, (v) => State.setSoulLevel(cards[i].type.OptionType, v));
     });
   },

@@ -224,6 +224,57 @@ before (Special Upgrade caps) and values honesty over completeness.
    read it (`Formulas.totalDpsBreakdown`'s `CostumeEquipMainWeaponBonusOption`
    source, and the Guide tab's "Recommended Stat Focus" advice, which
    rendered a fully empty `<ul>` for any Sword-leaning loadout).
+10. User came back with 7 real phone screenshots of their own account (via
+    Google Drive share links — plain `curl`/anonymous-browser access got a
+    sign-in wall even with "anyone with the link" sharing, which resolved
+    itself once the user re-shared; a `usp=sharing` link opened directly in
+    a fresh Playwright browser context, and the actual images were pulled
+    via `ctx.request.get()` on the page's real `<img src>`, upsized by
+    editing the `=w####-h####` suffix Google's image-serving CDN uses).
+    **These screenshots were not committed anywhere** — they show the
+    user's real account (level, currency balances, actual roster), not just
+    generic game UI, and the repo is public. Findings were written up here
+    instead. What they showed, and what changed as a result:
+    - The **Equipment screen** flanks the character preview with 3 weapon
+      slots on each side (not a plain 6-across row like this app had), each
+      slot a pink/salmon rounded-square with a level badge, and the
+      top-left slot marked "MAIN". Rebuilt `ui-weapons.js`/`.weapon-slot` to
+      match — `.equip-rig`/`.equip-col`/`.equip-center` in `style.css`, with
+      the active hero's portrait standing in for the real screen's 3D
+      character model in the center (no 3D asset exists to actually render
+      one). Found and fixed a real bug in the process: the new `--ring-img`
+      custom property (rarity circle art) was 404ing everywhere because
+      `url()` inside a CSS custom property resolves relative to the
+      *stylesheet that consumes it* (`css/style.css`), not the HTML page
+      that sets the property inline — `Game.rarityCircle/rarityRibbon/
+      rarityGrade` in `data.js` needed a `../` prefix that plain `<img src>`
+      paths (`weaponIcon` etc.) don't; this had been silently broken since
+      the original reskin pass and nothing had actually surfaced it as a
+      visible bug before now.
+    - The **Upgrades screen** (Ability/Special/Extra tabs) is a stacked list
+      of wide horizontal rows — icon in a colored slot on the left (brown
+      for Ability, indigo for Special, magenta for Extra — Soul wasn't in
+      any screenshot, given its own teal accent by inference), title/desc/
+      "current › next" value in the middle, stepper on the right — not the
+      card grid this app had. Rebuilt as `.upgrade-row` in both
+      `ui-equipment.js` and `style.css`; also added a real "current › next"
+      preview (this app already had the data for it via `abilityRow`/
+      `extraRow`/`specialRow`/`soulRow` at level+1, just wasn't showing it).
+    - The **hero detail screen** has three real tabs — "Level Up", "Upgrade"
+      (= star grade), "Evolve" — confirmed this app's three mechanics map
+      1:1 to those, just needed the real names/icons (⬆/★/👑). Its per-level
+      bonus list is a stacked pill style, not a stat grid — adopted that for
+      "Stat Bonuses Unlocked" (`.milestone-row`). One thing from the
+      screenshot deliberately **not** copied: some of the real game's
+      milestone rows carry an "ALL HERO" tag (account-wide bonuses vs.
+      hero-specific ones) — this app's own bonus list is built entirely
+      from this hero's own `CostumeLevelOptionData`/etc., which are already
+      hero-specific by construction, so tagging them "ALL HERO" would have
+      been factually wrong. Caught before shipping, not after.
+    - The **Traits screen** turned out to run on a completely different
+      *blue* color theme, not brown/parchment — deliberately left
+      unmatched (documented below) rather than fragmenting the app's visual
+      identity into a per-tab patchwork on the strength of one screenshot.
 
 ## Open items / plausible next steps (not started)
 
@@ -250,7 +301,22 @@ before (Special Upgrade caps) and values honesty over completeness.
   were deliberately **not** used for this app's 5 tabs — they're 4 specific
   icons for whatever real menu items they represent, not a generic
   4-or-5-tab template, and forcing them onto mismatched tabs would be
-  actively misleading rather than authentic. If real screenshots of the
-  game ever become available, revisit layout/composition — this reskin used
-  real textures/colors/font but the *arrangement* is still this app's own
-  judgment call, not a copy of a seen screen.
+  actively misleading rather than authentic.
+- The Traits tab still uses the app's one brown/parchment theme, but the one
+  real screenshot seen of it shows the actual game runs that screen on a
+  completely different *blue* theme. Deliberately not chased — matching it
+  would mean guessing how many *other* unseen screens also have their own
+  bespoke theme, and fragmenting this app's visual identity on the strength
+  of a single data point seemed worse than staying internally consistent.
+  Revisit if more screenshots of Traits (or other screens) surface.
+- The Weapons tab's center "hero preview" is a 2D portrait standing in for
+  the real screen's animated 3D character model — there's no 3D asset to
+  actually render one, so this is the closest honest equivalent, not a
+  literal copy.
+- 7 screenshots of the user's own account were used to correct layout for
+  Equipment, Upgrades, and the hero detail screen (see chronological log
+  entry 10) — not committed to the repo (personal account data, public
+  repo). If the user provides more screenshots later, the biggest unseen
+  gaps are: the Farmable Items tab has no real-game equivalent to compare
+  against at all (it's this app's own invention, not a screen the game
+  has), and the Guide tab similarly has no real analog.
