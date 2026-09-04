@@ -57,9 +57,20 @@ function rarityPip(tier) {
   return `<span class="rarity-pip" style="background:${r.c}" title="${r.name}"></span>`;
 }
 
+// Full inline-style string wiring up a tier's real in-game rarity art
+// (icon-background ring + ribbon + grade plate) as CSS custom properties,
+// for use anywhere a card/detail-art element needs the authentic chrome.
+function rarityStyle(tier) {
+  return `--rc:${Game.rarityColor(tier).c};--ring-img:url('${Game.rarityCircle(tier)}');--ribbon-img:url('${Game.rarityRibbon(tier)}');--grade-img:url('${Game.rarityGrade(tier)}')`;
+}
+
 function rarityTag(tier) {
   const r = Game.rarityColor(tier);
-  return `<span class="tag rarity" style="--rc:${r.c}">${r.name}</span>`;
+  return `<span class="rarity-ribbon-badge" style="--ribbon-img:url('${Game.rarityRibbon(tier)}')">${r.name}</span>`;
+}
+
+function rarityStar(filled, maxed) {
+  return `<span class="rt-star${filled ? ' filled' : ''}${maxed ? ' maxed' : ''}"></span>`;
 }
 
 function weaponCategoryName(catId) {

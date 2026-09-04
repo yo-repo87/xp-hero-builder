@@ -29,12 +29,12 @@ const HeroesUI = {
     if (!c) return '';
     const isActive = State.data.activeHeroId === hero.id;
     return `
-      <div class="hero-card ${isActive ? 'active' : ''}" data-hero="${hero.id}">
+      <div class="hero-card ${isActive ? 'active' : ''}" data-hero="${hero.id}" style="${rarityStyle(c.rarity)}">
         ${isActive ? '<span class="hc-active-badge">Active</span>' : ''}
         <button class="hc-remove" title="Remove">✕</button>
         <img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
         <div class="hc-name">${escapeHtml(c.Name_en)}</div>
-        <div class="hc-meta">${rarityPip(c.rarity)}Lv ${hero.level} · ★${hero.starGrade}</div>
+        <div class="hc-meta">Lv ${hero.level} · ${rarityStar(true)}${hero.starGrade}</div>
       </div>`;
   },
 
@@ -49,7 +49,7 @@ const HeroesUI = {
           : `<div class="picker-grid">${available.map(c => {
               const r = Game.rarityColor(c.rarity);
               return `
-              <div class="picker-card" data-costume="${c.id}" style="border-color:${r.c}55">
+              <div class="picker-card" data-costume="${c.id}" style="${rarityStyle(c.rarity)}">
                 <img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
                 <div class="pc-name">${escapeHtml(c.Name_en)}</div>
                 <div class="pc-tag">${rarityPip(c.rarity)}${r.name}</div>
@@ -80,10 +80,10 @@ const HeroesUI = {
       body.innerHTML = `
         <div class="detail-layout">
           <div>
-            <div class="detail-art" style="--rc:${r.c}"><img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt=""></div>
+            <div class="detail-art" style="${rarityStyle(c.rarity)}"><img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt=""></div>
             <div class="action-row" style="margin-top:10px">
               <button class="btn ${State.data.activeHeroId === hero.id ? 'btn-gold' : ''}" id="active-btn" style="flex:1">
-                ${State.data.activeHeroId === hero.id ? '★ Active Hero' : 'Set as Active'}
+                ${State.data.activeHeroId === hero.id ? rarityStar(true, true) + ' Active Hero' : 'Set as Active'}
               </button>
             </div>
           </div>
@@ -109,7 +109,7 @@ const HeroesUI = {
             <h4 style="margin:14px 0 6px;font-size:.9rem">Star Grade (Enhance)</h4>
             <div class="level-control">
               <input type="range" id="star-slider" min="1" max="${c.Max_Grade}" value="${hero.starGrade}">
-              <span class="level-num mono">★ ${hero.starGrade} / ${c.Max_Grade}</span>
+              <span class="level-num mono">${rarityStar(true)}${hero.starGrade} / ${c.Max_Grade}</span>
             </div>
 
             ${evoRows.length ? `

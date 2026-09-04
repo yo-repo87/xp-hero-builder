@@ -1,0 +1,770 @@
+{
+ "Btn_Arrow_Cream": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   38.0,
+   50.0
+  ]
+ },
+ "Btn_Blue_H64": {
+  "border_LBRT": [
+   32.0,
+   32.0,
+   32.0,
+   32.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Btn_Close": {
+  "border_LBRT": [
+   35.0,
+   37.0,
+   34.0,
+   36.0
+  ],
+  "size": [
+   70.0,
+   74.0
+  ]
+ },
+ "Btn_Close_01": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   72.0,
+   76.0
+  ]
+ },
+ "Btn_Gray": {
+  "border_LBRT": [
+   36.0,
+   36.0,
+   36.0,
+   36.0
+  ],
+  "size": [
+   72.0,
+   72.0
+  ]
+ },
+ "Btn_Green_H102": {
+  "border_LBRT": [
+   19.0,
+   27.0,
+   19.0,
+   25.0
+  ],
+  "size": [
+   56.0,
+   102.0
+  ]
+ },
+ "Btn_Green_H128": {
+  "border_LBRT": [
+   53.0,
+   60.0,
+   53.0,
+   60.0
+  ],
+  "size": [
+   114.0,
+   128.0
+  ]
+ },
+ "Btn_Green_H84": {
+  "border_LBRT": [
+   16.0,
+   40.0,
+   16.0,
+   40.0
+  ],
+  "size": [
+   38.0,
+   87.0
+  ]
+ },
+ "Btn_Red": {
+  "border_LBRT": [
+   32.0,
+   32.0,
+   32.0,
+   32.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Btn_Yellow_H128": {
+  "border_LBRT": [
+   53.0,
+   60.0,
+   53.0,
+   60.0
+  ],
+  "size": [
+   114.0,
+   128.0
+  ]
+ },
+ "Btn_Yellow_H60": {
+  "border_LBRT": [
+   15.0,
+   0.0,
+   15.0,
+   0.0
+  ],
+  "size": [
+   46.0,
+   60.0
+  ]
+ },
+ "Circle_WeaponBg_Ancient": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Epic": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Eternal": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Exotic": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Fine": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Legendary": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Mythic": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Normal": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Circle_WeaponBg_Rare": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Frame_Brown_R14": {
+  "border_LBRT": [
+   30.0,
+   30.0,
+   30.0,
+   30.0
+  ],
+  "size": [
+   70.0,
+   70.0
+  ]
+ },
+ "Frame_Green": {
+  "border_LBRT": [
+   25.0,
+   25.0,
+   25.0,
+   25.0
+  ],
+  "size": [
+   58.0,
+   58.0
+  ]
+ },
+ "Frame_Grey": {
+  "border_LBRT": [
+   25.0,
+   25.0,
+   25.0,
+   25.0
+  ],
+  "size": [
+   58.0,
+   58.0
+  ]
+ },
+ "Frame_Item": {
+  "border_LBRT": [
+   22.0,
+   29.0,
+   22.0,
+   24.0
+  ],
+  "size": [
+   58.0,
+   62.0
+  ]
+ },
+ "Frame_R20": {
+  "border_LBRT": [
+   30.0,
+   40.0,
+   30.0,
+   20.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Frame_Red": {
+  "border_LBRT": [
+   23.0,
+   29.0,
+   23.0,
+   20.0
+  ],
+  "size": [
+   58.0,
+   58.0
+  ]
+ },
+ "Frame_Traits_Blue": {
+  "border_LBRT": [
+   31.0,
+   31.0,
+   31.0,
+   31.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Frame_Traits_Purple": {
+  "border_LBRT": [
+   31.0,
+   31.0,
+   31.0,
+   31.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Frame_Yellow": {
+  "border_LBRT": [
+   22.0,
+   27.0,
+   22.0,
+   18.0
+  ],
+  "size": [
+   58.0,
+   58.0
+  ]
+ },
+ "Gauge_Base_01": {
+  "border_LBRT": [
+   12.0,
+   15.0,
+   12.0,
+   15.0
+  ],
+  "size": [
+   27.0,
+   33.0
+  ]
+ },
+ "Gauge_Bg_H28": {
+  "border_LBRT": [
+   12.0,
+   12.0,
+   12.0,
+   12.0
+  ],
+  "size": [
+   32.0,
+   28.0
+  ]
+ },
+ "Gauge_Green01": {
+  "border_LBRT": [
+   10.0,
+   10.0,
+   10.0,
+   10.0
+  ],
+  "size": [
+   24.0,
+   24.0
+  ]
+ },
+ "Gauge_Open_Yellow_R12": {
+  "border_LBRT": [
+   12.0,
+   0.0,
+   12.0,
+   0.0
+  ],
+  "size": [
+   32.0,
+   48.0
+  ]
+ },
+ "Gauge_Orange01": {
+  "border_LBRT": [
+   10.0,
+   10.0,
+   10.0,
+   10.0
+  ],
+  "size": [
+   24.0,
+   24.0
+  ]
+ },
+ "Gauge_Pink01": {
+  "border_LBRT": [
+   10.0,
+   10.0,
+   10.0,
+   10.0
+  ],
+  "size": [
+   24.0,
+   24.0
+  ]
+ },
+ "Gauge_Special_UpGrade_Green": {
+  "border_LBRT": [
+   16.0,
+   0.0,
+   16.0,
+   0.0
+  ],
+  "size": [
+   28.0,
+   30.0
+  ]
+ },
+ "Gauge_Weapon_Level_Yellow": {
+  "border_LBRT": [
+   11.0,
+   0.0,
+   11.0,
+   0.0
+  ],
+  "size": [
+   26.0,
+   26.0
+  ]
+ },
+ "Grade_Ancient": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Epic": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Eternal": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   128.0,
+   38.0
+  ]
+ },
+ "Grade_Exotic": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Fine": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Legendary": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Mythic": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Normal": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Grade_Rare": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   134.0,
+   40.0
+  ]
+ },
+ "Icn_Lock_03": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Icon_Check": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Icon_star": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   80.0,
+   76.0
+  ]
+ },
+ "Icon_star_grey": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   80.0,
+   76.0
+  ]
+ },
+ "Icon_star_rainbow": {
+  "border_LBRT": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "size": [
+   80.0,
+   76.0
+  ]
+ },
+ "Panel_Brown_R10": {
+  "border_LBRT": [
+   53.0,
+   35.0,
+   53.0,
+   35.0
+  ],
+  "size": [
+   106.0,
+   70.0
+  ]
+ },
+ "Panel_Header_Brown_R10": {
+  "border_LBRT": [
+   53.0,
+   42.0,
+   53.0,
+   42.0
+  ],
+  "size": [
+   106.0,
+   126.0
+  ]
+ },
+ "Popup_Bg_Blue": {
+  "border_LBRT": [
+   24.8358211517334,
+   27.701492309570312,
+   24.8358211517334,
+   23.880596160888672
+  ],
+  "size": [
+   64.0,
+   64.0
+  ]
+ },
+ "Popup_Bg_White": {
+  "border_LBRT": [
+   25.0,
+   45.0,
+   25.0,
+   25.0
+  ],
+  "size": [
+   76.0,
+   76.0
+  ]
+ },
+ "Ribbon_Ancient": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Epic": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Eternal": {
+  "border_LBRT": [
+   97.0,
+   0.0,
+   97.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Exotic": {
+  "border_LBRT": [
+   97.0,
+   0.0,
+   97.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Fine": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Legendary": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Mythic": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Nomal": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ },
+ "Ribbon_Rare": {
+  "border_LBRT": [
+   128.0,
+   0.0,
+   128.0,
+   0.0
+  ],
+  "size": [
+   256.0,
+   64.0
+  ]
+ }
+}

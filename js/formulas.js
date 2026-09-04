@@ -362,7 +362,11 @@ const Formulas = {
         const w = Game.index.weaponById.get(slot0.weaponId);
         const cat = w && Game.index.weaponCategoryById.get(w.Category);
         if (cat) {
-          const types = toArray(cat.Class_OptionType), values = toArray(cat.Class_OptionValue);
+          // Class_OptionType/Value come through as a plain string (not an
+          // array) for categories with only one bonus stat (e.g. Sword),
+          // unlike the multi-value categories — normalize both shape and
+          // type here or the lookup below silently no-ops for those.
+          const types = toArray(cat.Class_OptionType).map(Number), values = toArray(cat.Class_OptionValue);
           const i = types.indexOf(1);
           val = i >= 0 ? num(values[i]) : 0;
           note = `Weapon 1’s category (${cat.Name_en}) class-affinity bonus`;

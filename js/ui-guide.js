@@ -25,7 +25,7 @@ const GuideUI = {
             return `
               <div class="guide-hero-item ${h.id === heroId ? 'active' : ''}" data-hero="${h.id}">
                 <img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
-                <div><div class="gh-name">${escapeHtml(c.Name_en)}</div><div class="gh-meta">Lv ${h.level} · ★${h.starGrade}</div></div>
+                <div><div class="gh-name">${escapeHtml(c.Name_en)}</div><div class="gh-meta">Lv ${h.level} · ${rarityStar(true)}${h.starGrade}</div></div>
               </div>`;
           }).join('')}
         </div>
@@ -46,7 +46,7 @@ const GuideUI = {
 
     panel.innerHTML = `
       <div class="detail-name" style="margin-bottom:2px">${escapeHtml(c.Name_en)}</div>
-      <div class="detail-desc">Lv ${hero.level}/${c.Max_Lv} · ★${hero.starGrade}/${c.Max_Grade}${hero.evoRarity ? ` · Evolution Tier ${hero.evoRarity}` : ''}</div>
+      <div class="detail-desc">Lv ${hero.level}/${c.Max_Lv} · ${rarityStar(true)}${hero.starGrade}/${c.Max_Grade}${hero.evoRarity ? ` · Evolution Tier ${hero.evoRarity}` : ''}</div>
       ${this._dpsEstimateHTML(heroId)}
       ${advice.map(block => `
         <div class="advice-block">
@@ -203,10 +203,15 @@ function buildAdvice(hero, costume) {
     const dominant = [...catCounts.entries()].sort((a, b) => b[1] - a[1])[0];
     if (dominant) {
       const cat = Game.index.weaponCategoryById.get(dominant[0]);
-      const types = toArray(cat.Class_OptionType);
+      // Class_OptionType comes through as a plain string (not an array) for
+      // categories with only one bonus stat (e.g. Sword) — normalize both
+      // shape and type or the id lookup below silently misses those.
+      const types = toArray(cat.Class_OptionType).map(Number);
       const statNames = types.map(t => Game.index.statById.get(t)?.Title_en).filter(Boolean);
       if (statNames.length) {
         items.push(`Your loadout leans <b>${escapeHtml(cat.Class_Name_en)}</b> (${escapeHtml(cat.Name_en)}) — that archetype's natural strengths are <b>${statNames.map(escapeHtml).join(', ')}</b>. Favor Ability/Extra/Special/Soul upgrades in those stats for this hero.`);
+      } else {
+        items.push(`Your loadout leans <b>${escapeHtml(cat.Class_Name_en)}</b> (${escapeHtml(cat.Name_en)}).`);
       }
     } else {
       items.push(`Equip weapons to get a class-specific stat recommendation here.`);

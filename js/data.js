@@ -20,17 +20,23 @@ const DATA_FILES = [
   'MinimapRewardData', 'StageData', 'RewardGroupData',
 ];
 
-// Rarity/tier color ramp shared by weapons (1-9) and heroes (1-8).
+// Rarity/tier system shared by weapons (1-9) and heroes (1-8). Names come
+// directly from the game's own localization (CODEX_RARITY_* keys); the
+// ordering (1=Normal ... 9=Eternal) matches how those keys are authored in
+// the Locale table and lines up with the WeaponData/BalancingData_Rarity
+// integer scale. `c` is the real color sampled directly from each tier's
+// actual in-game rarity-ring art (assets/img/ui/circle/), not invented.
+// `art` is the sprite-name stem used across circle/ribbon/grade art.
 const RARITY_COLORS = {
-  1: { name: 'Common',      c: '#8b93a5' },
-  2: { name: 'Uncommon',    c: '#4fb56b' },
-  3: { name: 'Rare',        c: '#3f8ff2' },
-  4: { name: 'Epic',        c: '#a565e8' },
-  5: { name: 'Heroic',      c: '#e2559a' },
-  6: { name: 'Legendary',   c: '#f0a63d' },
-  7: { name: 'Mythic',      c: '#ea4b4b' },
-  8: { name: 'Ancestral',   c: '#28c9d6' },
-  9: { name: 'Transcendent',c: '#f2d23d' },
+  1: { name: 'Normal',    art: 'Normal',    c: '#74969c' },
+  2: { name: 'Fine',      art: 'Fine',      c: '#529b10' },
+  3: { name: 'Rare',      art: 'Rare',      c: '#2974d5' },
+  4: { name: 'Epic',      art: 'Epic',      c: '#a700db' },
+  5: { name: 'Legendary', art: 'Legendary', c: '#e48400' },
+  6: { name: 'Ancient',   art: 'Ancient',   c: '#ff4357' },
+  7: { name: 'Mythic',    art: 'Mythic',    c: '#0b9c89' },
+  8: { name: 'Exotic',    art: 'Exotic',    c: '#df5a90' },
+  9: { name: 'Eternal',   art: 'Eternal',   c: '#7bb2c9' },
 };
 
 const Game = {
@@ -145,6 +151,12 @@ const Game = {
   chestIcon(chest) { return `assets/img/chests/${chest.PrefabName}.png`; },
 
   rarityColor(tier) { return RARITY_COLORS[tier] || RARITY_COLORS[1]; },
+
+  // Real in-game rarity chrome — the game's own per-tier circular icon
+  // background ring, ribbon banner, and text-plate badge (not redrawn).
+  rarityCircle(tier) { return `assets/img/ui/circle/Circle_WeaponBg_${this.rarityColor(tier).art}.png`; },
+  rarityRibbon(tier) { const a = this.rarityColor(tier).art; return `assets/img/ui/ribbon/Ribbon_${a === 'Normal' ? 'Nomal' : a}.png`; },
+  rarityGrade(tier) { return `assets/img/ui/grade/Grade_${this.rarityColor(tier).art}.png`; },
 
   // Full fusion chain for a weapon (walks NextTierID both directions).
   weaponChain(weaponId) {

@@ -25,7 +25,7 @@ const WeaponsUI = {
     if (!w) return this._slotHTML(null, i);
     const r = Game.rarityColor(w.Rarity);
     return `
-      <div class="weapon-slot filled" data-slot="${i}" style="border-color:${r.c}66">
+      <div class="weapon-slot filled" data-slot="${i}" style="${rarityStyle(w.Rarity)}">
         <span class="slot-label">Weapon ${i + 1}</span>
         <span class="slot-level-badge">Lv ${slot.level}</span>
         <div class="slot-art"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
@@ -54,7 +54,7 @@ const WeaponsUI = {
             const r = Game.rarityColor(w.Rarity);
             const isCurrent = currentSlot && currentSlot.weaponId === w.id;
             return `
-              <div class="picker-card ${isCurrent ? 'selected' : ''}" data-weapon="${w.id}" style="border-color:${r.c}55">
+              <div class="picker-card ${isCurrent ? 'selected' : ''}" data-weapon="${w.id}" style="${rarityStyle(w.Rarity)}">
                 <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
                 <div class="pc-name">${escapeHtml(w.Name_en)}</div>
                 <div class="pc-tag">${rarityPip(w.Rarity)}${r.name}</div>
@@ -113,7 +113,7 @@ const WeaponsUI = {
       body.innerHTML = `
         <div class="detail-layout">
           <div>
-            <div class="detail-art" style="--rc:${r.c}"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
+            <div class="detail-art" style="${rarityStyle(w.Rarity)}"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
             ${chain.length > 1 ? `
               <div style="margin-top:10px;font-size:.74rem;color:var(--ink-muted)">
                 Fusion chain: ${chain.map(c => c.id === w.id ? `<b style="color:var(--ink)">${escapeHtml(c.Name_en)}</b>` : escapeHtml(c.Name_en)).join(' → ')}

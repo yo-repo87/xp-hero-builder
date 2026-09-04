@@ -2,6 +2,8 @@
 
 A fan-made, unofficial companion tool for **XP Hero: Weapon RPG** (`io.supercent.weaponrpg`, published by Supercent). Mirror your in-game heroes and weapon loadout, manage traits and upgrade trees, and get build advice tailored to your current setup — all client-side, no login, no server.
 
+The UI is skinned with the game's own real chrome — buttons, panels, rarity icons, and the display font are all extracted directly from the APK (colors sampled from the actual textures, corner-stretch insets read from each sprite's real Unity metadata), not redrawn. No composed screenshots were available to build from, so the overall layout is this app's own design, not a copy of a specific screen — see `assets/img/ui/MANIFEST.md` for the full asset inventory.
+
 **Not affiliated with or endorsed by Supercent.** All weapon/hero names, artwork, and game-balance numbers are Supercent's property, extracted from the game's own asset/data files for this non-commercial community tool. If you're Supercent and would like this taken down, open an issue.
 
 ## What it does

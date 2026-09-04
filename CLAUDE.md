@@ -198,6 +198,32 @@ before (Special Upgrade caps) and values honesty over completeness.
    Root-caused via full empirical re-derivation of `SpecialUpgradeLevelData`
    (found `MaxLevelDatas` was the wrong table entirely — real cap is uniform
    `grade*10`), fixed, verified, shipped.
+9. User asked to reskin the UI to match the real game's menus. No screenshots
+   were available (user explicitly declined to provide any — asked once via
+   `AskUserQuestion`, proceed with extracted-assets-only per their answer);
+   instead extracted 755 real UI chrome sprites (buttons, panels, frames,
+   gauges, rarity circle/ribbon/grade art, star icons, etc.) via a dedicated
+   fork — manifest at `assets/img/ui/MANIFEST.md`, real 9-slice border insets
+   read straight from each sprite's Unity metadata at
+   `assets/img/ui/nine-slice.json` (not guessed). Also discovered from the
+   game's own Locale table that the real rarity tier names/order are Normal,
+   Fine, Rare, Epic, Legendary, Ancient, Mythic, Exotic, Eternal (1-9) —
+   corrected `RARITY_COLORS` in `data.js`, which had invented wrong names.
+   Rebuilt `css/style.css` around a warm brown/parchment palette (colors
+   sampled from the real textures, not invented) with `border-image`-based
+   9-slice buttons/panels, the game's real display font (`BakbakOne`, a
+   legitimate open Google Font that happens to be what the game itself
+   uses), and real star icons/rarity chrome wired into every tab via a new
+   `rarityStyle()`/`rarityStar()` helper in `ui-common.js`. All existing
+   class names were kept so the JS structure barely changed — this was
+   almost entirely a CSS + asset-extraction effort, not a rewrite. Caught
+   and fixed a real pre-existing bug along the way (unrelated to the reskin,
+   found by chance while testing it): `WeaponCategoryData.Class_OptionType`
+   comes through as a bare string for Sword specifically (every other
+   category has it as a number array), silently breaking two features that
+   read it (`Formulas.totalDpsBreakdown`'s `CostumeEquipMainWeaponBonusOption`
+   source, and the Guide tab's "Recommended Stat Focus" advice, which
+   rendered a fully empty `<ul>` for any Sword-leaning loadout).
 
 ## Open items / plausible next steps (not started)
 
@@ -216,3 +242,15 @@ before (Special Upgrade caps) and values honesty over completeness.
   prefixed ones already used) — revisit if a relevant table turns up.
 - If re-extracting art/data ever becomes necessary and the scratchpad is
   gone, you need a fresh APK download link from the user first.
+- Reskin polish not done: native `<input type=range>` sliders (weapon/hero
+  level, star grade) still use the browser's default track styling, not a
+  real `Gauge_*` texture — `.rt-gauge`/`.rt-gauge-fill` classes exist in
+  `style.css` for this but nothing wires them to the actual slider elements
+  yet. The real bottom-nav tab icons (`assets/img/ui/misc_tab/Button_Tab_*`)
+  were deliberately **not** used for this app's 5 tabs — they're 4 specific
+  icons for whatever real menu items they represent, not a generic
+  4-or-5-tab template, and forcing them onto mismatched tabs would be
+  actively misleading rather than authentic. If real screenshots of the
+  game ever become available, revisit layout/composition — this reskin used
+  real textures/colors/font but the *arrangement* is still this app's own
+  judgment call, not a copy of a seen screen.

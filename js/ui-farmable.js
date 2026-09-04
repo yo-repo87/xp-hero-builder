@@ -47,7 +47,7 @@ const FarmableUI = {
       const r = Game.rarityColor(item.Rarity);
       const total = sources.guaranteed.length + sources.chest.length;
       return `
-        <div class="picker-card farm-card" data-item="${item.id}" style="border-color:${r.c}55">
+        <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
           <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
           <div class="pc-name">${escapeHtml(item.Name_en)}</div>
           <div class="pc-tag">${rarityPip(item.Rarity)}${r.name}</div>
@@ -89,7 +89,7 @@ const FarmableUI = {
       <div class="modal-header"><h3>${escapeHtml(item.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
         <div class="detail-layout">
-          <div class="detail-art" style="--rc:${r.c}"><img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt=""></div>
+          <div class="detail-art" style="${rarityStyle(item.Rarity)}"><img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt=""></div>
           <div>
             <div class="detail-name">${escapeHtml(item.Name_en)}</div>
             <div class="detail-tags">${rarityTag(item.Rarity)}</div>
