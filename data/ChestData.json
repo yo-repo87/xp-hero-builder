@@ -1,0 +1,74 @@
+[
+ {
+  "Name": "Wooden Chest",
+  "PrefabName": "Item_Chest_Wood",
+  "RateGroupId": 1,
+  "RevealTimeSec": 120,
+  "RewardGroupId": 101,
+  "id": 1
+ },
+ {
+  "Name": "Rare Chest",
+  "PrefabName": "Item_Chest_Silver",
+  "RateGroupId": 2,
+  "RevealTimeSec": 300,
+  "RewardGroupId": 102,
+  "id": 2
+ },
+ {
+  "Name": "Legendary Chest",
+  "PrefabName": "Item_Chest_Gold",
+  "RateGroupId": 3,
+  "RevealTimeSec": 900,
+  "RewardGroupId": 103,
+  "id": 3
+ },
+ {
+  "Name": "Wooden Chest_2",
+  "PrefabName": "Item_Chest_Wood",
+  "RateGroupId": 1,
+  "RevealTimeSec": 120,
+  "RewardGroupId": 201,
+  "id": 4
+ },
+ {
+  "Name": "Rare Chest_2",
+  "PrefabName": "Item_Chest_Silver",
+  "RateGroupId": 2,
+  "RevealTimeSec": 300,
+  "RewardGroupId": 202,
+  "id": 5
+ },
+ {
+  "Name": "Legendary Chest_2",
+  "PrefabName": "Item_Chest_Gold",
+  "RateGroupId": 3,
+  "RevealTimeSec": 900,
+  "RewardGroupId": 203,
+  "id": 6
+ },
+ {
+  "Name": "Wooden Chest_2",
+  "PrefabName": "Item_Chest_Wood",
+  "RateGroupId": 1,
+  "RevealTimeSec": 120,
+  "RewardGroupId": 301,
+  "id": 7
+ },
+ {
+  "Name": "Rare Chest_2",
+  "PrefabName": "Item_Chest_Silver",
+  "RateGroupId": 2,
+  "RevealTimeSec": 300,
+  "RewardGroupId": 302,
+  "id": 8
+ },
+ {
+  "Name": "Legendary Chest_2",
+  "PrefabName": "Item_Chest_Gold",
+  "RateGroupId": 3,
+  "RevealTimeSec": 900,
+  "RewardGroupId": 303,
+  "id": 9
+ }
+]

@@ -10,6 +10,7 @@ A fan-made, unofficial companion tool for **XP Hero: Weapon RPG** (`io.supercent
 - **Heroes tab** — add every hero you own, each with independent level / star grade / evolution tier, and mark which one is currently active.
 - **Equipment tab** — the trait loadout (2 groups × 5 synergy slots) and the four account-wide upgrade trees: Ability, Extra, Special, Soul.
 - **Guide tab** — pick one of your heroes and get build advice computed live from your actual loadout (weapon category synergy, loadout health, growth pacing, trait coverage, recommended stat focus) — not a static tip list. It also shows an **Estimated Total DPS** using the game's real, decompilation-confirmed `Dps` formula, wired up to every system this app already tracks (player level, ability tree, all 6 weapons, hero grade/level/evolution, Special/Extra/Soul upgrades, trait synergy) — expand "Show full formula breakdown" for a per-source table with each value tagged as data-mapped, manual input, or not modeled, so you can see exactly which parts are solid and which are estimates.
+- **Farmable Items tab** — every material/currency item in the game (real icon, real rarity), and for each one, exactly where it comes from: guaranteed drops from named story bosses, or real weighted drop-rate percentages from the game's actual chest reward tables. Click an item, then "View Map" to see it pinned — using the item's own icon as the marker — onto the real chapter/stage progression path it's found on.
 - **Import / Export** — your whole build (heroes + weapons + traits + upgrades) is one portable JSON file. Export it, hand it to someone else, they import it and see exactly your setup.
 
 ## Running it locally
@@ -42,6 +43,7 @@ A few things worth knowing before you treat every number here as gospel:
 - **Hero base stats** are sampled at checkpoint levels (1, 10, 20, …, 130) and linearly interpolated in between — the UI flags interpolated values.
 - **Trait slots**: the mapping from "which of the 10 trait slots" to "which stat types can go there" was reconstructed from the game's synergy data tables and has since been **confirmed correct by decompiling `TraitSynergyController.CalculateSynergyTokens`** — the client really does tally how many filled slots share the same rolled stat type, exactly as this app models it.
 - **Currency/cost item names** (gold vs. gems vs. various tickets) weren't fully resolved to display names in this pass — costs show as raw item-type codes where a friendly name wasn't available.
+- **Farmable Items coverage**: only 4 of the 56 catalog items (Gold, BlueStone, EXP, Wood) currently show a confirmed farm source. That's not a bug — it's the honest result of what's *cleanly* resolvable from the extracted data: chest drop tables (`ChestData` → `RewardGroupData`) and guaranteed story-boss kills (`MinimapRewardData`) both resolve to real item IDs with no guessing involved, so those are shown. Everything else almost certainly comes from systems this pass didn't map — shop purchases, missions, quests, chapter-clear rewards, boss raids — rather than being unobtainable in-game. A few `MinimapRewardData` rows also reference item IDs (e.g. hero shards) outside the 56-row `StackableItemData` catalog entirely, likely a separate reward-id namespace not yet extracted; those are silently skipped rather than shown incorrectly. Expanding coverage is a reasonable follow-up, not attempted here. There's also no literal map-coordinate data anywhere in the game's assets — the "map" popup is the real chapter/stage list, not a fabricated terrain map.
 
 If you find a spot where the math clearly doesn't match what you see in-game, it's most likely one of the above — PRs welcome. See [`docs/game_logic_deep_dive.md`](docs/game_logic_deep_dive.md) for the full decompilation writeup (combat damage formula, gacha weight resolution, and every `EStatContentType` source) if you want the derivation, not just the conclusion — raw disassembly is in `docs/decompiled/`.
 
@@ -58,12 +60,16 @@ js/
   ui-weapons.js         weapon slot grid + picker/upgrade modal
   ui-heroes.js          hero roster + picker + enhance modal
   ui-equipment.js       traits + Ability/Extra/Special/Soul upgrade trees
+  ui-farmable.js         item catalog + drop-rate/location lookup + stage-map popup
   ui-guide.js           per-hero advice engine
   ui-importexport.js     save-file download/upload
   app.js               bootstrap
-data/*.json         extracted, typed, English-labeled game-balance tables (34 tables)
+data/*.json         extracted, typed, English-labeled game-balance tables (41 tables)
 assets/img/weapons/  84 weapon icons, named by weapon id
 assets/img/heroes/   24 hero icons, named by costume id
+assets/img/items/    47 item icons, named by icon sprite name
+assets/img/enemies/  154 enemy portraits, named by icon sprite name
+assets/img/chests/   3 chest icons (Wooden/Rare/Legendary)
 ```
 
 Your build is saved to `localStorage` automatically (nothing leaves your browser); Export/Import let you move it between browsers or share it.

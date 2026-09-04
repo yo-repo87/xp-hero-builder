@@ -26,6 +26,7 @@
     WeaponsUI.render();
     HeroesUI.render();
     EquipmentUI.render();
+    FarmableUI.render();
     GuideUI.render();
     setActiveTab(State.data.ui.activeTab);
   }

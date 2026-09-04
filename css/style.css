@@ -310,6 +310,40 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 .de-tag--unmodeled { color: var(--ink-faint); border-color: var(--line); border-style: dashed; }
 @media (max-width: 700px) { .de-row { grid-template-columns: 1fr; gap: 2px; } .de-val { text-align: left; } }
 
+/* ---------- Farmable Items tab ---------- */
+.farm-card { min-height: 150px; }
+.farm-source-row {
+  display: flex; align-items: center; gap: 12px; background: var(--panel);
+  border: 1px solid var(--line-soft); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px;
+}
+.farm-source-thumb { width: 40px; height: 40px; object-fit: contain; background: var(--panel-raised); border-radius: 8px; flex-shrink: 0; }
+.farm-source-info { flex: 1; min-width: 0; }
+.fs-title { font-size: 0.84rem; font-weight: 700; }
+.fs-sub { font-size: 0.72rem; color: var(--ink-muted); margin-top: 1px; }
+
+.boss-portrait-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
+.boss-portrait { display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px 8px 8px; font-size: 0.84rem; font-weight: 700; }
+.boss-portrait img { width: 52px; height: 52px; object-fit: contain; background: var(--panel-raised); border-radius: 8px; }
+
+.stage-map-row { margin-bottom: 22px; }
+.stage-map-chapter { font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 10px; }
+.stage-map-path { display: flex; align-items: flex-start; overflow-x: auto; padding: 14px 4px 8px; gap: 0; }
+.stage-node { display: flex; flex-direction: column; align-items: center; width: 88px; flex-shrink: 0; position: relative; }
+.stage-node-circle {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--panel-raised); border: 2px solid var(--line);
+  display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-muted); font-size: 0.9rem;
+}
+.stage-node.hit .stage-node-circle { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 0 3px var(--gold-soft); }
+.stage-node-label { font-size: 0.68rem; text-align: center; color: var(--ink-muted); margin-top: 6px; line-height: 1.25; }
+.stage-node.hit .stage-node-label { color: var(--ink); font-weight: 700; }
+.stage-node-pin {
+  position: absolute; top: -22px; width: 26px; height: 26px; object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.6)); animation: pin-bounce 1.4s ease-in-out infinite;
+}
+@keyframes pin-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.stage-node-connector { flex: 1; min-width: 16px; height: 2px; background: var(--line); margin-top: 20px; }
+
 .empty-state {
   text-align: center; padding: 50px 20px; color: var(--ink-muted);
   border: 1px dashed var(--line); border-radius: var(--radius);

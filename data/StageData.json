@@ -1,0 +1,182 @@
+[
+ {
+  "Name": "STAGE_NAME_GREENHAVEN",
+  "UnlockCondEnemyID": -1,
+  "chapter": 1,
+  "id": 1,
+  "product_id": 40101,
+  "stage": 1,
+  "Name_en": "Greenhaven"
+ },
+ {
+  "Name": "STAGE_NAME_SANDEVIL_DESERT",
+  "UnlockCondEnemyID": 1102,
+  "chapter": 1,
+  "id": 2,
+  "product_id": 40102,
+  "stage": 2,
+  "Name_en": "Sandevil Desert"
+ },
+ {
+  "Name": "STAGE_NAME_EBONHOLLOW",
+  "UnlockCondEnemyID": 2103,
+  "chapter": 1,
+  "id": 3,
+  "product_id": 40103,
+  "stage": 3,
+  "Name_en": "Ebonhollow"
+ },
+ {
+  "Name": "STAGE_NAME_FROSTBOUND",
+  "UnlockCondEnemyID": 3103,
+  "chapter": 1,
+  "id": 4,
+  "product_id": 40104,
+  "stage": 4,
+  "Name_en": "Frostbound"
+ },
+ {
+  "Name": "STAGE_NAME_VERDANT_RUINS",
+  "UnlockCondEnemyID": 4103,
+  "chapter": 1,
+  "id": 5,
+  "product_id": 40105,
+  "stage": 5,
+  "Name_en": "Verdant Ruins"
+ },
+ {
+  "Name": "STAGE_NAME_HELLFIRE_CHASM",
+  "UnlockCondEnemyID": 5103,
+  "chapter": 1,
+  "id": 6,
+  "product_id": 40106,
+  "stage": 6,
+  "Name_en": "Hellfire Chasm"
+ },
+ {
+  "Name": "STAGE_NAME_2_1",
+  "UnlockCondEnemyID": 6104,
+  "chapter": 2,
+  "id": 7,
+  "product_id": 40201,
+  "stage": 1,
+  "Name_en": "Fortress of Hope"
+ },
+ {
+  "Name": "STAGE_NAME_2_2",
+  "UnlockCondEnemyID": 2010601,
+  "chapter": 2,
+  "id": 8,
+  "product_id": 40202,
+  "stage": 2,
+  "Name_en": "Blackbarrow"
+ },
+ {
+  "Name": "STAGE_NAME_2_3",
+  "UnlockCondEnemyID": 2020601,
+  "chapter": 2,
+  "id": 9,
+  "product_id": 40203,
+  "stage": 3,
+  "Name_en": "Twilight Forest"
+ },
+ {
+  "Name": "STAGE_NAME_2_4",
+  "UnlockCondEnemyID": 2030602,
+  "chapter": 2,
+  "id": 10,
+  "product_id": 40204,
+  "stage": 4,
+  "Name_en": "Water Temple"
+ },
+ {
+  "Name": "STAGE_NAME_2_5",
+  "UnlockCondEnemyID": 2040601,
+  "chapter": 2,
+  "id": 11,
+  "product_id": 40205,
+  "stage": 5,
+  "Name_en": "Redrock Valley"
+ },
+ {
+  "Name": "STAGE_NAME_2_6",
+  "UnlockCondEnemyID": 2050601,
+  "chapter": 2,
+  "id": 12,
+  "product_id": 40206,
+  "stage": 6,
+  "Name_en": "Frosthold"
+ },
+ {
+  "Name": "STAGE_NAME_2_7",
+  "UnlockCondEnemyID": 2060503,
+  "chapter": 2,
+  "id": 13,
+  "product_id": 40207,
+  "stage": 7,
+  "Name_en": "Frozen Throne"
+ },
+ {
+  "Name": "STAGE_NAME_3_1",
+  "UnlockCondEnemyID": 2060601,
+  "chapter": 3,
+  "id": 14,
+  "product_id": 40301,
+  "stage": 1,
+  "Name_en": "Downtown"
+ },
+ {
+  "Name": "STAGE_NAME_3_2",
+  "UnlockCondEnemyID": 3010601,
+  "chapter": 3,
+  "id": 15,
+  "product_id": 40302,
+  "stage": 2,
+  "Name_en": "Ruined Downtown"
+ },
+ {
+  "Name": "STAGE_NAME_3_3",
+  "UnlockCondEnemyID": 3020601,
+  "chapter": 3,
+  "id": 16,
+  "product_id": 40303,
+  "stage": 3,
+  "Name_en": "Hanok Village"
+ },
+ {
+  "Name": "STAGE_NAME_3_4",
+  "UnlockCondEnemyID": 3030601,
+  "chapter": 3,
+  "id": 17,
+  "product_id": 40304,
+  "stage": 4,
+  "Name_en": "Jeju Island"
+ },
+ {
+  "Name": "STAGE_NAME_3_5",
+  "UnlockCondEnemyID": 3040601,
+  "chapter": 3,
+  "id": 18,
+  "product_id": 40305,
+  "stage": 5,
+  "Name_en": "Amusement Park"
+ },
+ {
+  "Name": "STAGE_NAME_3_6",
+  "UnlockCondEnemyID": 3050601,
+  "chapter": 3,
+  "id": 19,
+  "product_id": 40306,
+  "stage": 6,
+  "Name_en": "The Dome"
+ },
+ {
+  "Name": "STAGE_NAME_3_7",
+  "UnlockCondEnemyID": 3060601,
+  "chapter": 3,
+  "id": 20,
+  "product_id": 40307,
+  "stage": 7,
+  "Name_en": "Dimensional Rift"
+ }
+]

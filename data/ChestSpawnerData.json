@@ -1,0 +1,110 @@
+[
+ {
+  "ChestRespawnOrder": "1,1,2,1",
+  "RespawnCoolTimeSec": 300,
+  "id": 101,
+  "key": "Chest_Stage1"
+ },
+ {
+  "ChestRespawnOrder": "1,1,2,1",
+  "RespawnCoolTimeSec": 300,
+  "id": 102,
+  "key": "Chest_Stage2"
+ },
+ {
+  "ChestRespawnOrder": "1,2,1,2",
+  "RespawnCoolTimeSec": 700,
+  "id": 103,
+  "key": "Chest_Stage3"
+ },
+ {
+  "ChestRespawnOrder": "2,3,1",
+  "RespawnCoolTimeSec": 900,
+  "id": 104,
+  "key": "Chest_Stage4"
+ },
+ {
+  "ChestRespawnOrder": "2,2,1,3",
+  "RespawnCoolTimeSec": 1300,
+  "id": 105,
+  "key": "Chest_Stage5"
+ },
+ {
+  "ChestRespawnOrder": "2,3,3,2",
+  "RespawnCoolTimeSec": 1800,
+  "id": 106,
+  "key": "Chest_Stage6"
+ },
+ {
+  "ChestRespawnOrder": "1,1,2,1",
+  "RespawnCoolTimeSec": 300,
+  "id": 107,
+  "key": "Chest_Stage7"
+ },
+ {
+  "ChestRespawnOrder": "1,1,2,1",
+  "RespawnCoolTimeSec": 700,
+  "id": 108,
+  "key": "Chest_Stage8"
+ },
+ {
+  "ChestRespawnOrder": "1,2,1,2",
+  "RespawnCoolTimeSec": 900,
+  "id": 109,
+  "key": "Chest_Stage9"
+ },
+ {
+  "ChestRespawnOrder": "2,3,1",
+  "RespawnCoolTimeSec": 1300,
+  "id": 110,
+  "key": "Chest_Stage10"
+ },
+ {
+  "ChestRespawnOrder": "2,2,1,3",
+  "RespawnCoolTimeSec": 1800,
+  "id": 111,
+  "key": "Chest_Stage11"
+ },
+ {
+  "ChestRespawnOrder": "2,3,3,2",
+  "RespawnCoolTimeSec": 2100,
+  "id": 112,
+  "key": "Chest_Stage12"
+ },
+ {
+  "ChestRespawnOrder": "4,4,5,4",
+  "RespawnCoolTimeSec": 300,
+  "id": 113,
+  "key": "Chest_Stage14"
+ },
+ {
+  "ChestRespawnOrder": "4,4,5,4",
+  "RespawnCoolTimeSec": 700,
+  "id": 114,
+  "key": "Chest_Stage15"
+ },
+ {
+  "ChestRespawnOrder": "4,5,4,5",
+  "RespawnCoolTimeSec": 900,
+  "id": 115,
+  "key": "Chest_Stage16"
+ },
+ {
+  "ChestRespawnOrder": "5,6,4",
+  "RespawnCoolTimeSec": 1300,
+  "id": 116,
+  "key": "Chest_Stage17"
+ },
+ {
+  "ChestRespawnOrder": "5,5,4,6",
+  "RespawnCoolTimeSec": 1800,
+  "id": 117,
+  "key": "Chest_Stage18"
+ },
+ {
+  "ChestRespawnOrder": "5,6,6,5",
+  "RespawnCoolTimeSec": 2100,
+  "id": 118,
+  "key": "Chest_Stage19"
+ }
+]

@@ -16,6 +16,8 @@ const DATA_FILES = [
   'SoulUpgradeTypeData', 'SoulUpgradeLevelData',
   'StatData', 'BalancingData_Rarity', 'BalancingData_Currency',
   'PlayerLevelData', 'BlessingBuffData',
+  'StackableItemData', 'EnemyData', 'ChestData', 'ChestSpawnerData',
+  'MinimapRewardData', 'StageData', 'RewardGroupData',
 ];
 
 // Rarity/tier color ramp shared by weapons (1-9) and heroes (1-8).
@@ -72,6 +74,38 @@ const Game = {
     idx.blessingBuffByType = groupBy(this.db.BlessingBuffData, b => b.buff_type);
     for (const arr of idx.blessingBuffByType.values()) arr.sort((a, b) => a.buff_level - b.buff_level);
 
+    // --- Farmable items -----------------------------------------------------
+    idx.itemById = new Map(this.db.StackableItemData.map(i => [i.id, i]));
+    idx.enemyById = new Map(this.db.EnemyData.map(e => [e.id, e]));
+    idx.chestById = new Map(this.db.ChestData.map(c => [c.id, c]));
+    idx.stageById = new Map(this.db.StageData.map(s => [s.id, s]));
+    idx.stageByChapterStage = new Map(this.db.StageData.map(s => [`${s.chapter}:${s.stage}`, s]));
+    idx.rewardRowsByGroup = groupBy(this.db.RewardGroupData, r => r.Group);
+
+    // Parse "Chest_Stage14" -> stage id 14 on each spawner.
+    idx.chestSpawnersByStageId = new Map();
+    for (const sp of this.db.ChestSpawnerData) {
+      const m = /Stage(\d+)/.exec(sp.key || '');
+      if (m) idx.chestSpawnersByStageId.set(Number(m[1]), sp);
+    }
+    // Which stage(s) each chest (by ChestData.id) actually spawns at, via
+    // ChestSpawnerData.ChestRespawnOrder (a cycle of ChestData ids per stage).
+    idx.stageIdsByChestId = new Map();
+    for (const [stageId, sp] of idx.chestSpawnersByStageId.entries()) {
+      const order = String(sp.ChestRespawnOrder || '').split(',').map(s => Number(s.trim())).filter(n => !Number.isNaN(n));
+      for (const chestId of new Set(order)) {
+        if (!idx.stageIdsByChestId.has(chestId)) idx.stageIdsByChestId.set(chestId, []);
+        idx.stageIdsByChestId.get(chestId).push(stageId);
+      }
+    }
+
+    // MinimapRewardData rows grouped by their reward (item or weapon) so the
+    // farmable-items view can look up guaranteed boss-kill sources per item.
+    idx.minimapRewardsByItem = groupBy(
+      this.db.MinimapRewardData.filter(r => r.reward_type === 'StackableItem'),
+      r => r.reward_id
+    );
+
     idx.traitOptionById = new Map(this.db.TraitOptionData.map(t => [t.id, t]));
     idx.traitOptionsByGroupRarity = groupBy(this.db.TraitOptionData, t => `${t.option_group_id}:${t.option_rarity}`);
     idx.traitOptionTypeById = new Map(this.db.TraitOptionTypeData.map(t => [t.option_type ?? t.id, t]));
@@ -102,6 +136,9 @@ const Game = {
 
   weaponIcon(weapon) { return `assets/img/weapons/${weapon.id}.png`; },
   heroIcon(costume) { return `assets/img/heroes/${costume.id}.png`; },
+  itemIcon(item) { return `assets/img/items/${item.PackageIcon}.png`; },
+  enemyIcon(enemy) { return `assets/img/enemies/${enemy.IconSprite}.png`; },
+  chestIcon(chest) { return `assets/img/chests/${chest.PrefabName}.png`; },
 
   rarityColor(tier) { return RARITY_COLORS[tier] || RARITY_COLORS[1]; },
 

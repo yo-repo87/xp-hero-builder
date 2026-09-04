@@ -1,0 +1,182 @@
+[
+ {
+  "chapter": 1,
+  "enemy_id": 1102,
+  "id": 1,
+  "reward_amount": 100,
+  "reward_id": 3,
+  "reward_type": "StackableItem",
+  "stage": 1
+ },
+ {
+  "chapter": 1,
+  "enemy_id": 2103,
+  "id": 2,
+  "reward_amount": 10,
+  "reward_id": 201,
+  "reward_type": "StackableItem",
+  "stage": 2
+ },
+ {
+  "chapter": 1,
+  "enemy_id": 3103,
+  "id": 3,
+  "reward_amount": 1,
+  "reward_id": 2004,
+  "reward_type": "Weapon",
+  "stage": 3
+ },
+ {
+  "chapter": 1,
+  "enemy_id": 4103,
+  "id": 4,
+  "reward_amount": 2,
+  "reward_id": 2003,
+  "reward_type": "StackableItem",
+  "stage": 4
+ },
+ {
+  "chapter": 1,
+  "enemy_id": 5103,
+  "id": 5,
+  "reward_amount": 3,
+  "reward_id": 2003,
+  "reward_type": "StackableItem",
+  "stage": 5
+ },
+ {
+  "chapter": 1,
+  "enemy_id": 6104,
+  "id": 6,
+  "reward_amount": 1,
+  "reward_id": 3005,
+  "reward_type": "Weapon",
+  "stage": 6
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2010601,
+  "id": 7,
+  "reward_amount": 3,
+  "reward_id": 2003,
+  "reward_type": "StackableItem",
+  "stage": 1
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2020601,
+  "id": 8,
+  "reward_amount": 3,
+  "reward_id": 2003,
+  "reward_type": "StackableItem",
+  "stage": 2
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2030602,
+  "id": 9,
+  "reward_amount": 1,
+  "reward_id": 1006,
+  "reward_type": "Weapon",
+  "stage": 3
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2040601,
+  "id": 10,
+  "reward_amount": 3,
+  "reward_id": 2003,
+  "reward_type": "StackableItem",
+  "stage": 4
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2050601,
+  "id": 11,
+  "reward_amount": 3,
+  "reward_id": 2003,
+  "reward_type": "StackableItem",
+  "stage": 5
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2060503,
+  "id": 12,
+  "reward_amount": 1,
+  "reward_id": 6006,
+  "reward_type": "Weapon",
+  "stage": 6
+ },
+ {
+  "chapter": 2,
+  "enemy_id": 2060601,
+  "id": 13,
+  "reward_amount": 1,
+  "reward_id": 2007,
+  "reward_type": "Weapon",
+  "stage": 7
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3010601,
+  "id": 14,
+  "reward_amount": 3,
+  "reward_id": 2004,
+  "reward_type": "StackableItem",
+  "stage": 1
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3020601,
+  "id": 15,
+  "reward_amount": 3,
+  "reward_id": 2004,
+  "reward_type": "StackableItem",
+  "stage": 2
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3030601,
+  "id": 16,
+  "reward_amount": 1,
+  "reward_id": 3006,
+  "reward_type": "Weapon",
+  "stage": 3
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3040601,
+  "id": 17,
+  "reward_amount": 3,
+  "reward_id": 2004,
+  "reward_type": "StackableItem",
+  "stage": 4
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3050601,
+  "id": 18,
+  "reward_amount": 3,
+  "reward_id": 2004,
+  "reward_type": "StackableItem",
+  "stage": 5
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3060601,
+  "id": 19,
+  "reward_amount": 1,
+  "reward_id": 4007,
+  "reward_type": "Weapon",
+  "stage": 6
+ },
+ {
+  "chapter": 3,
+  "enemy_id": 3060602,
+  "id": 20,
+  "reward_amount": 1,
+  "reward_id": 5008,
+  "reward_type": "Weapon",
+  "stage": 7
+ }
+]
