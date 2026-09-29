@@ -18,8 +18,13 @@ upgrades) so they can plan builds and get advice.
 - **Repo:** https://github.com/yo-repo87/xp-hero-builder (**public** — see
   Risk Accepted below)
 - **Local path:** `/home/pi/Claude/HeroBuilder`
-- Static HTML/CSS/vanilla-JS, no build step, no backend. State lives in
-  `localStorage` + JSON import/export.
+- Static HTML/CSS/vanilla-JS, no build step. State lives in `localStorage` +
+  JSON import/export — **with one deliberate exception**: crowd-sourced
+  Farmable Items reports (added 2026-09-29) go through a small self-hosted
+  n8n webhook + Data Table, so they're shared across every visitor rather
+  than trapped in one person's browser. See "Community Reports backend"
+  below for the full writeup. Everything else in the app remains
+  fully static/serverless.
 
 ## Risk accepted — read before touching anything art-related
 
@@ -155,6 +160,75 @@ confirmed or cleanly inferred, the app shows it as zero/unmodeled/manual
 input with an explanation, rather than presenting a guess as fact. If you
 extend this app, keep that norm — the user has corrected wrong assumptions
 before (Special Upgrade caps) and values honesty over completeness.
+
+## Community Reports backend (the one non-static piece)
+
+Added 2026-09-29 after the user explicitly asked for it (see chronological
+log below) and chose, via `AskUserQuestion`, to make Farmable Items reports
+**shared across every visitor** rather than kept local-only. Since this app
+has no server of its own, the backend lives on the user's own self-hosted
+infrastructure (same box as Homer/Portainer/other services — see the
+`/home/pi/Claude/HomerDashboard` project for that side of things):
+
+- **n8n instance:** `https://n8n.arc-it.uk/` (Docker container `heavenly_eats_n8n`
+  on this machine, reverse-proxied). Personal project "Unnamed Project"
+  (id `LDmpFyIPBR1tIkLV`) — the only project on this n8n account.
+- **Workflow:** "XP Hero Builder - Farmable Reports API" (id `2YxPo48UppaVLnNy`),
+  active. Two webhook triggers:
+  - `POST https://n8n.arc-it.uk/webhook/xp-hero-farmable-submit` — body
+    `{item_id, item_name, stage_id, stage_label, enemy_id, enemy_name, note,
+    reporter}`, validates `item_id > 0` and `enemy_name`/`stage_label`
+    non-empty, inserts a row, responds `{success:true, id}` or (400)
+    `{success:false, error}`.
+  - `GET https://n8n.arc-it.uk/webhook/xp-hero-farmable-list` — returns every
+    report as a plain JSON array (empty table → `[]`, not an empty body —
+    this needed `alwaysOutputData: true` on the Data Table "get" node plus a
+    manual `.filter(i => i.json.id != null)` in the response expression,
+    since n8n's webhook auto-closes with an empty 200 body when the
+    downstream Respond node never executes on zero input items — a real
+    footgun, not a one-off bug, see the incident note below).
+  - Both webhooks restrict `allowedOrigins` to `https://yo-repo87.github.io`
+    only (CORS) — loosen to `*` temporarily for local testing, always
+    restore afterward.
+- **Data Table:** `xp_hero_farmable_reports` (id `HKQxH7LOZjiEfHXb`), columns
+  `item_id`/`item_name` (number/string), `stage_id`/`stage_label`
+  (number/string — `stage_id` is a real `StageData.id`, so the frontend
+  resolves chapter/stage/enemy portrait from it via `Game.index.stageById`;
+  `stage_label` is a denormalized display string so the list endpoint is
+  self-contained), `enemy_id`/`enemy_name`, `note`, `reporter` — plus n8n's
+  own auto `id`/`createdAt`/`updatedAt`.
+- **Frontend:** `js/community-reports.js` (new file, fetch wrapper +
+  in-memory cache) + `js/ui-farmable.js` (renders a "Community Reports
+  (player-submitted, unverified)" section per item, visually distinct —
+  dashed blue border, "USER-REPORTED" tag — from the confirmed ChestData/
+  MinimapRewardData sources above it; a "📢 Report a Find" button opens a
+  form with a real stage dropdown and a type-to-filter enemy picker sourced
+  from `Game.db.StageData`/`Game.db.EnemyData`; submitted reports also plug
+  into the existing `openMap()` pin system so a reported find shows up on
+  the chapter/stage map with the reported enemy's portrait, exactly like a
+  confirmed guaranteed-boss-drop source). All rendered report text goes
+  through `escapeHtml` — this endpoint takes public, unauthenticated input,
+  so treat it as untrusted and never relax that.
+- Every report is explicitly unverified player input, not extracted game
+  data — never let it get relabeled/mixed in as "confirmed."
+
+**Incident note, for anyone extending this further:** building this
+triggered a real subagent-coordination failure worth knowing about. Two
+`fork` subagents were accidentally spawned early in the session (one from a
+mis-issued placeholder prompt, one meant to cancel it) and, despite being
+told to do nothing, both went on to independently build large chunks of
+this exact same feature in the background — one created a duplicate n8n
+Data Table and workflow within seconds of the main session's own, the other
+later deleted the main session's workflow mid-task while "standing down."
+Resolved by force-killing the runaway fork (`TaskStop`), fully deleting all
+duplicate n8n workflows/tables, and rebuilding one clean workflow from
+scratch — but the frontend files the forks had already written
+(`community-reports.js`, the report form in `ui-farmable.js`, supporting
+CSS) turned out to be solid, well-scoped work independently converging on
+the same design, so they were kept and verified rather than thrown away.
+If you ever fork yourself mid-task on this project again: confirm a fork
+actually stopped (`ListAgents`, not just a queued message) before trusting
+shared mutable state — like this n8n account — to be uncontested.
 
 ## Git / deploy
 
@@ -467,6 +541,27 @@ before (Special Upgrade caps) and values honesty over completeness.
     condition table wired in but was already disclosed as raw IDs with an
     explicit "not surfaced in this build" caveat — not a wrong-data bug,
     just a pre-existing known gap.
+15. User asked whether the Farmable Items tab could let users report finding
+    a specific item at a specific location from a specific creature, so
+    reports could show up on the map as "what creature to focus on." Since
+    the app is fully static with no backend, this meant a real architecture
+    decision — asked via `AskUserQuestion`: personal-only (localStorage),
+    shared-across-visitors (needs a real backend), or user curates it
+    manually and it ships as static data. User picked shared-across-
+    visitors. Built a small self-hosted backend on the user's own n8n
+    instance (webhook + Data Table) — full details in "Community Reports
+    backend" above, including a subagent-coordination incident during the
+    build (two accidentally-spawned forks independently built large parts
+    of this same feature in the background despite being told to stop; see
+    that section for what happened and how it was resolved). End state:
+    one clean n8n workflow + Data Table, `js/community-reports.js` (new),
+    and a "Report a Find" flow in `ui-farmable.js` with a real stage/enemy
+    picker, all verified end-to-end via Playwright (submit → shows in the
+    item's Community Reports section → shows on the map with the reported
+    enemy's portrait as the pin). Community reports are always rendered
+    `escapeHtml`'d and visually tagged "USER-REPORTED" / dashed-blue-border,
+    kept structurally separate from the confirmed ChestData/
+    MinimapRewardData sources so the two are never confused.
 
 ## Open items / plausible next steps (not started)
 

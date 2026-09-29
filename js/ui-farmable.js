@@ -21,6 +21,8 @@ const FarmableUI = {
   filterRarity: 'all',
 
   render() {
+    if (!CommunityReports.loaded) CommunityReports.fetchAll().then(() => this.render());
+
     const grid = document.getElementById('farmable-grid');
     const filters = document.getElementById('farmable-filters');
     if (!filters.dataset.wired) {
@@ -85,6 +87,21 @@ const FarmableUI = {
         <button class="btn btn-sm">View Map</button>
       </div>`).join('');
 
+    const reports = CommunityReports.forItem(itemId);
+    const communityHTML = reports.map((rep, i) => {
+      const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
+      const stage = rep.stage_id ? Game.index.stageById.get(rep.stage_id) : null;
+      return `
+      <div class="farm-source-row farm-source-row--community" data-map-community="${i}">
+        <img class="farm-source-thumb" src="${enemy ? Game.enemyIcon(enemy) : ''}" onerror="onImgError(this)" alt="">
+        <div class="farm-source-info">
+          <div class="fs-title"><span class="tag tag--community">USER-REPORTED</span> Slay <b>${escapeHtml(rep.enemy_name || 'Unknown creature')}</b></div>
+          <div class="fs-sub">${escapeHtml(rep.stage_label || 'Location not given')}${rep.note ? ` — "${escapeHtml(rep.note)}"` : ''}${rep.reporter ? ` <span style="color:var(--ink-faint)">— ${escapeHtml(rep.reporter)}</span>` : ''}</div>
+        </div>
+        ${stage ? '<button class="btn btn-sm">View Map</button>' : ''}
+      </div>`;
+    }).join('');
+
     UI.openModal(`
       <div class="modal-header"><h3>${escapeHtml(item.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
@@ -100,11 +117,18 @@ const FarmableUI = {
             ${sources.guaranteed.length === 0 && sources.chest.length === 0 ? `
               <div class="caveat">No confirmed farm source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (missions, events, shop, etc.), not that it's unobtainable.</div>` : `
               <div class="caveat">Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item.</div>`}
+
+            <h4 style="margin:14px 0 6px;font-size:.9rem">Community Reports <span style="color:var(--ink-muted);font-weight:500">(player-submitted, unverified)</span></h4>
+            ${communityHTML || `<span style="color:var(--ink-faint);font-size:.82rem">No player reports yet for this item.</span>`}
+            <div class="action-row" style="margin-top:8px">
+              <button class="btn btn-gold" id="report-find-btn">📢 Report a Find</button>
+            </div>
           </div>
         </div>
       </div>
     `);
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    document.getElementById('report-find-btn').addEventListener('click', () => this.openReportForm(item));
 
     document.querySelectorAll('[data-map-guaranteed]').forEach(el => {
       el.addEventListener('click', () => {
@@ -119,6 +143,98 @@ const FarmableUI = {
         const pins = s.stages.map(st => ({ chapter: st.chapter, stageId: st.id, label: s.chest.Name }));
         this.openMap(item, pins);
       });
+    });
+    document.querySelectorAll('[data-map-community]').forEach(el => {
+      el.addEventListener('click', () => {
+        const rep = reports[Number(el.dataset.mapCommunity)];
+        const stage = Game.index.stageById.get(rep.stage_id);
+        if (!stage) return;
+        const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
+        this.openMap(item, [{ chapter: stage.chapter, stageId: stage.id, label: rep.enemy_name, enemy }]);
+      });
+    });
+  },
+
+  openReportForm(item) {
+    const stages = Game.db.StageData.slice().sort((a, b) => a.chapter - b.chapter || a.stage - b.stage);
+    const enemies = Game.db.EnemyData.slice().sort((a, b) => a.Name_en.localeCompare(b.Name_en));
+
+    UI.openModal(`
+      <div class="modal-header"><h3>Report a Find — ${escapeHtml(item.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-body">
+        <div class="caveat">Submitted here goes to a shared, public list anyone using this site can see — don't include personal info. Pick the real stage and creature you got this from; it helps everyone else farm it too.</div>
+        <div class="form-field">
+          <label for="report-stage">Where (chapter · stage)</label>
+          <select id="report-stage">
+            <option value="">— Select a stage —</option>
+            ${stages.map(s => `<option value="${s.id}">Chapter ${s.chapter} · Stage ${s.stage} — ${escapeHtml(s.Name_en)}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="report-enemy-filter">Creature to slay</label>
+          <input type="text" id="report-enemy-filter" placeholder="Type to filter...">
+          <select id="report-enemy" size="6">
+            <option value="">— Select a creature —</option>
+            ${enemies.map(e => `<option value="${e.id}" data-name="${escapeHtml(e.Name_en.toLowerCase())}">${escapeHtml(e.Name_en)}</option>`).join('')}
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="report-note">Note (optional)</label>
+          <textarea id="report-note" maxlength="300" placeholder="e.g. dropped on repeat clears, rare drop, etc."></textarea>
+        </div>
+        <div class="form-field">
+          <label for="report-name">Your name/handle (optional)</label>
+          <input type="text" id="report-name" maxlength="40" placeholder="Anonymous">
+        </div>
+        <div class="action-row">
+          <button class="btn btn-gold" id="report-submit-btn">Submit Report</button>
+          <button class="btn" id="report-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    `);
+    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    document.getElementById('report-cancel-btn').addEventListener('click', () => this.openDetail(item.id));
+
+    const enemyFilter = document.getElementById('report-enemy-filter');
+    const enemySelect = document.getElementById('report-enemy');
+    enemyFilter.addEventListener('input', () => {
+      const q = enemyFilter.value.trim().toLowerCase();
+      enemySelect.querySelectorAll('option[data-name]').forEach(opt => {
+        opt.hidden = q.length > 0 && !opt.dataset.name.includes(q);
+      });
+    });
+
+    document.getElementById('report-submit-btn').addEventListener('click', async (e) => {
+      const stageSel = document.getElementById('report-stage');
+      const enemySel = document.getElementById('report-enemy');
+      const stageId = Number(stageSel.value) || 0;
+      const enemyId = Number(enemySel.value) || 0;
+      const stage = stageId ? Game.index.stageById.get(stageId) : null;
+      const enemy = enemyId ? Game.index.enemyById.get(enemyId) : null;
+      const note = document.getElementById('report-note').value.trim();
+      const reporter = document.getElementById('report-name').value.trim();
+
+      if (!stage || !enemy) {
+        UI.toast('Pick both a stage and a creature first');
+        return;
+      }
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+      try {
+        await CommunityReports.submit({
+          itemId: item.id, itemName: item.Name_en,
+          stageId: stage.id, stageLabel: `Chapter ${stage.chapter} · Stage ${stage.stage} — ${stage.Name_en}`,
+          enemyId: enemy.id, enemyName: enemy.Name_en,
+          note, reporter,
+        });
+        UI.toast('Report submitted — thank you!');
+        this.openDetail(item.id);
+      } catch (err) {
+        UI.toast(`Couldn't submit: ${err.message}`);
+        btn.disabled = false;
+        btn.textContent = 'Submit Report';
+      }
     });
   },
 
