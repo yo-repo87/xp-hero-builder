@@ -17,7 +17,7 @@ const DATA_FILES = [
   'StatData', 'BalancingData_Rarity', 'BalancingData_Currency',
   'PlayerLevelData', 'BlessingBuffData',
   'StackableItemData', 'EnemyData', 'ChestData', 'ChestSpawnerData',
-  'MinimapRewardData', 'StageData', 'RewardGroupData',
+  'MinimapRewardData', 'StageData', 'RewardGroupData', 'StageMapLayout',
 ];
 
 // Rarity/tier system shared by weapons (1-9) and heroes (1-8). Names come
@@ -37,6 +37,16 @@ const RARITY_COLORS = {
   7: { name: 'Mythic',    art: 'Mythic',    c: '#0b9c89' },
   8: { name: 'Exotic',    art: 'Exotic',    c: '#df5a90' },
   9: { name: 'Eternal',   art: 'Eternal',   c: '#7bb2c9' },
+};
+
+// Real chapter names, resolved from the game's own Locale table
+// (CHAPTER1_NAME/etc — via the real ChapterData table, 3 rows only; the
+// game has no name yet for chapter 4+). Chapters beyond 3 fall back to a
+// plain "Chapter N" label rather than inventing a name.
+const CHAPTER_NAMES = {
+  1: 'Lost Sanctuary',
+  2: 'Fallen Kingdoms',
+  3: 'Invaded City',
 };
 
 // E_BonusOption (compiled C# enum, TypeDefIndex 5592) — the option-type
@@ -113,6 +123,12 @@ const Game = {
     idx.stageByChapterStage = new Map(this.db.StageData.map(s => [`${s.chapter}:${s.stage}`, s]));
     idx.rewardRowsByGroup = groupBy(this.db.RewardGroupData, r => r.Group);
 
+    // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —
+    // exact normalized x/y/w/h per chapter+stage, extracted straight from
+    // the actual Minimap popup prefab's RectTransform data, not estimated.
+    idx.stageMapLayoutByChapterStage = new Map(this.db.StageMapLayout.map(r => [`${r.chapter}:${r.stage}`, r]));
+    idx.stageMapLayoutByChapter = groupBy(this.db.StageMapLayout, r => r.chapter);
+
     // Parse "Chest_Stage14" -> stage id 14 on each spawner.
     idx.chestSpawnersByStageId = new Map();
     for (const sp of this.db.ChestSpawnerData) {
@@ -177,6 +193,8 @@ const Game = {
   itemIcon(item) { return `assets/img/items/${item.PackageIcon}.png`; },
   enemyIcon(enemy) { return `assets/img/enemies/${enemy.IconSprite}.png`; },
   chestIcon(chest) { return `assets/img/chests/${chest.PrefabName}.png`; },
+  stageMapTile(layoutRow) { return `assets/img/map/${layoutRow.sprite}.png`; },
+  chapterName(chapter) { return CHAPTER_NAMES[chapter] || `Chapter ${chapter}`; },
 
   // No per-enemy chapter field exists in EnemyData — every enemy's own
   // internal `key` encodes it instead (e.g. "CH3_GreenOrc" -> chapter 3).

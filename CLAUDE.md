@@ -116,21 +116,33 @@ js/
   ui-weapons.js               Weapons tab: 6 slots + picker/upgrade modal
   ui-heroes.js                Heroes tab: roster + picker + enhance modal
   ui-equipment.js             Equipment tab: traits (2x5 slots) + 4 upgrade trees
-  ui-farmable.js               Farmable Items tab: item catalog + drop sources + stage map
+  ui-farmable.js               Farmable Items tab: item catalog + drop sources
   ui-monsters.js               Monsters tab: full bestiary, chapter + boss/non-boss filters
+  ui-map.js                    shared "View Map" popup (real in-game minimap — see below),
+                                used by both Farmable Items and Monsters
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
-data/*.json                 42 extracted, typed, English-labeled game-balance tables
+data/*.json                 43 extracted, typed, English-labeled game-balance tables
 assets/img/weapons/          84 icons, filename = WeaponData.id
 assets/img/heroes/           24 icons, filename = CostumeData.id
-assets/img/items/            47 icons, filename = StackableItemData.PackageIcon
-assets/img/enemies/          154 portraits, filename = EnemyData.IconSprite (208 EnemyData
-                              rows share these — reused across chapter re-skins/raid
-                              difficulty tiers; 15 rows, mostly Chapter-1 raid bosses,
-                              reference an IconSprite that was never captured — see
-                              Monsters tab entry in the chronological log)
+assets/img/items/            56 icons, filename = StackableItemData.PackageIcon (104
+                              StackableItemData rows; 48 share icons across rarity/type
+                              variants; 8 rows — mostly Weapon Scroll tiers — reference an
+                              icon that was never captured, a pre-existing gap unrelated to
+                              the 2026-09-30 catalog refresh)
+assets/img/enemies/          154 + 37 portraits, filename = EnemyData.IconSprite (245
+                              EnemyData rows share these — reused across chapter re-skins/
+                              raid difficulty tiers; 44 rows across 15 distinct Chapter-1
+                              raid-boss sprites, plus all 37 new Hero's Tomb rows, reference
+                              an IconSprite that isn't in the
+                              base+split APK's asset tree at all — likely downloaded as a
+                              separate remote AssetBundle this app's extraction can't reach
+                              — see Monsters tab / real-map-art chronological log entries)
 assets/img/chests/           3 icons, filename = ChestData.PrefabName
+assets/img/map/              21 real per-stage minimap tile images (chapters 1-3 only,
+                              see data/StageMapLayout.json), filename = the game's own
+                              sprite name
 docs/game_logic_deep_dive.md  decompilation writeup (formulas, confidence levels)
 docs/decompiled/*.asm.txt     raw annotated AArch64 disassembly
 ```
@@ -157,7 +169,9 @@ short version:
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
-| Farmable Items sources | Only 4/56 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss raids were **not** explored as reward sources. |
+| Farmable Items sources | Only 4/104 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss/challenge-tower/hero's-tomb raids were **not** explored as reward sources (the latter three pay out via a "Rune" system this app doesn't model yet — see Open Items). |
+| Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
+| Item/enemy catalog (`StackableItemData`/`EnemyData`) | Refreshed 2026-09-30 from a newer APK (v26.2.0 vs. the original v25.3.0) — 56→104 items, 208→245 enemies, verified backward-compatible (all old ids/names unchanged) before merging. The 37 new enemies (a new "Hero's Tomb" mode) have no face art anywhere in the extracted asset tree — likely a remote-only AssetBundle, not a gap in the extraction itself. |
 | Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
 | Combat damage formula (not used by app) | Mostly confirmed structurally; two basic-attack-only normalizer values in `CalculateDamageInternal` were left unidentified rather than guessed |
 
@@ -235,6 +249,115 @@ the same design, so they were kept and verified rather than thrown away.
 If you ever fork yourself mid-task on this project again: confirm a fork
 actually stopped (`ListAgents`, not just a queued message) before trusting
 shared mutable state — like this n8n account — to be uncontested.
+
+## Real map art + a second-APK data refresh (2026-09-30)
+
+The Farmable Items map used to be an honest but abstract stand-in: a plain
+level-select-style path, explicitly caveated as "not a fabricated terrain
+map" because the *original* extraction pass genuinely found no map-related
+art or coordinate data. The user later asked for the real thing and
+provided a **fresh APK download link** (v26.2.0, vs. the original v25.3.0 —
+the signed URL from the very first extraction had long expired, exactly as
+this file's "ephemeral scratchpad" warning predicted). That fresh APK was
+re-unpacked and re-scanned from scratch (a full `UnityPy` catalog pass over
+all ~8,700 `assets/bin/Data` files, cataloging every TextAsset/Texture2D/
+Sprite/MonoBehaviour/GameObject name — memory-safe, one file loaded at a
+time, same shared-host RAM discipline as the original IL2CPP pass).
+
+**What was found and is now real, not fabricated:**
+- The game's actual **Minimap popup** exists as one big, fully-serialized
+  Unity prefab file (all GameObjects/RectTransforms/MonoBehaviours bundled
+  in a single asset, unlike almost everything else which is one-sprite-per-
+  file) — meaning its real UI layout could be read directly: parsed the
+  full GameObject/RectTransform hierarchy (not just texture names) to pull
+  every `Stage1`..`Stage7` node's **real `anchoredPosition`/`sizeDelta`**
+  for Chapters 1, 2, and 3, normalized against the prefab's real 720×600
+  canvas into 0-1 x/y/w/h — see `data/StageMapLayout.json` (20 rows, one
+  per real `StageData` row, chapters 1-3 only — same coverage this app
+  already had everywhere else stages are tracked, not less).
+- Real per-stage tile art: Chapter 3 ships full unique colorful tile
+  illustrations (`Img_Chapter03_Stage_01..07`); Chapters 1-2 in the
+  *current* game files only ship a dimmed white silhouette per tile
+  (`Img_Dim_Chapter0{1,2}_Stage_0N` — confirmed by pixel-inspecting one:
+  solid white fill, no color detail at all). Read straightforwardly as
+  "once a chapter is fully cleared, the game keeps only a dimmed/completed
+  silhouette and drops the full-color unique art" — not a bug or a gap to
+  fill, just what a live game trims to save size; shown exactly as extracted,
+  not colorized or invented. All 20 tiles exported to `assets/img/map/`.
+  A `Img_Chapter03_Stage_Subway` sprite exists but has no matching position
+  data anywhere in the prefab hierarchy — extracted but not used, rather
+  than guessing a placement for it.
+- Real chapter names — a `ChapterData` table (3 rows only, chapters 1-3)
+  gives a `chapter_name_key` per chapter, resolved via the real Locale
+  table: **Chapter 1 = "Lost Sanctuary", Chapter 2 = "Fallen Kingdoms",
+  Chapter 3 = "Invaded City"**. Chapters beyond 3 have no name in the
+  game's own data yet (Locale lookups for `CHAPTER4_NAME` etc. are empty)
+  — `Game.chapterName()` falls back to a plain "Chapter N" label for those
+  rather than inventing one. Hardcoded as `CHAPTER_NAMES` in `data.js`
+  (only 3 rows, not worth a JSON file).
+- New shared renderer: `js/ui-map.js`'s `MapUI.open(title, pins)` draws one
+  real chapter-map card per chapter referenced by the given pins, each
+  tile positioned/sized from `StageMapLayout.json`, with the caller's icon
+  (an item for Farmable Items, an enemy portrait for Monsters) pinned on
+  the exact real tile. Both `FarmableUI.openMap()` and the Monsters tab's
+  new "View Map" button (shown only when a boss has a confirmed
+  `MinimapRewardData` stage tie) now call this instead of the old abstract
+  path — the old `.stage-node*` CSS/markup was fully replaced, not kept
+  alongside.
+- Went looking for a bigger "world map" (all 20 chapters on one continuous
+  background) too, since the user asked for a thorough search — found only
+  small (≈70×70px) `IMG_Mark_Stage1..20`/`IMG_BossMark_Stage1..20` marker
+  icons with no accompanying background texture or coordinate table
+  anywhere in the asset tree. Concluded these are decorative bullets for a
+  plain scrolling chapter-*list* screen, not points on a continuous map —
+  there is no single-continuous-world-map asset in this game to extract.
+
+**Same session, the user separately asked to also locate more farmable
+item sources/monsters.** The fresh APK's data tables turned out to have
+grown substantially since v25.3.0:
+- `StackableItemData`: 56 → **104** rows. Verified byte-for-byte backward
+  compatible (all 56 old ids/names unchanged) before merging in the 48 new
+  ones — resolved their `Name_en`/`Desc_en` via the same real-Locale
+  convention as everything else, and exported real icon art for all 9
+  unique new icon sprites they use (into `assets/img/items/`, one filename
+  correction applied: the data's own `PackageIcon` field for the 3 "Hero
+  Shard Pack" rarities says `Stackable_Costume_CardPack_T{3,5,7}`, but the
+  actual sprite asset is named `Stackable_CostumeCardPack_T{3,5,7}` — no
+  underscore between "Costume" and "CardPack". A real inconsistency in the
+  game's own data, not an extraction error — resolved by storing the icon
+  file under the corrected name so `Game.itemIcon()` still resolves it
+  correctly without any special-casing in app code).
+- `EnemyData`: 208 → **245** rows, merged the same way. All 37 new rows are
+  reskinned/costume enemies for a brand-new **"Hero's Tomb"** dungeon mode
+  (`key` prefix `HeroTomb_*`, not the usual `CHn_` — correctly bucketed
+  under the Monsters tab's existing "Special/Raid" filter with zero code
+  changes). Most aren't localized into English yet in this build (Locale
+  has no translation for e.g. `ENEMY_NAME_HEROTOMB_SPIDER`) — shown as the
+  raw key text, the same graceful fallback this app already uses
+  everywhere else Locale is missing a string. None of their 37 face-icon
+  sprites (`Face_HeroTomb_*`, `HeroTomb_Costume_*`) exist anywhere in the
+  base+split APK's asset tree — they're likely fetched at runtime as a
+  separate remote AssetBundle this extraction method can't reach (unlike
+  the 15 pre-existing Chapter-1-raid-boss icons also missing, which are a
+  known, separate, older gap). They fall back to the same `onImgError`
+  dimming as every other missing-art case in this app.
+- **Did NOT attempt to wire the new item/enemy data into more Farmable
+  Items *sources*, even though that was explicitly asked.** Reason: the
+  three plausible new source tables (`BossRaidStageData` 24 rows,
+  `ChallengeTowerStageData` 250 rows, `HeroTombStageData` 20 rows — none of
+  which existed in the original extraction) do tie specific enemies to
+  specific reward groups, but tracing those reward groups through the
+  fresh, much-larger `RewardGroupData` (837 → 1019 rows) shows most of
+  their payouts are a **"Rune"** item type (see `HeroTombStageData`'s own
+  `view_reward_types: "StackableItem,StackableItem,Rune,Rune,Rune,Rune"`)
+  that has no matching data table anywhere in this app — `RewardType`
+  values on these rows (`1`, `RewardParam` like `8101`/`8201`/`8002`) don't
+  correspond to `StackableItemData` ids at all, unlike the existing
+  Chest→`RewardGroupData` pipeline's `RewardType==4` convention. Modeling
+  Runes properly (their own extracted table, their own UI, their own place
+  in the Dps formula/equipment system) is a genuinely new feature, not a
+  quick data-table swap — flagged in Open Items below rather than
+  guessed at or rushed into this session.
 
 ## Git / deploy
 
@@ -593,14 +716,49 @@ shared mutable state — like this n8n account — to be uncontested.
     Unity asset tree was already gone by this session — see the ephemeral-
     scratchpad warning near the top of this file, which is exactly the
     situation it warned about).
+17. User asked for the Farmable Items "View Map" popup to show the actual
+    in-game map with the farmable creature positioned on it, instead of the
+    honest-but-abstract stand-in from entry #7. Since the original
+    extraction had genuinely found no map art/coordinates, this needed a
+    fresh APK — user provided one (v26.2.0). Full writeup of what was found
+    and built (a real Minimap prefab's exact stage positions, real tile
+    art, real chapter names, the new shared `js/ui-map.js`) is in "Real map
+    art + a second-APK data refresh" above. Mid-task, the user also asked
+    to locate more farmable item drop locations/monsters given the fresh
+    APK was already in hand — merged in the fresh, much larger
+    `StackableItemData` (56→104) and `EnemyData` (208→245) tables (verified
+    backward-compatible first), but deliberately stopped short of wiring
+    the new `BossRaidStageData`/`ChallengeTowerStageData`/
+    `HeroTombStageData` tables into more Farmable Items *sources* once it
+    became clear their payouts run through a brand-new "Rune" item system
+    this app has no data table or model for at all — see Open Items.
 
 ## Open items / plausible next steps (not started)
 
-- 15 of 208 `EnemyData` rows (mostly Chapter-1 raid bosses) reference an
-  `IconSprite` with no matching file under `assets/img/enemies/` — needs a
-  fresh APK + re-extraction pass to fill in, not fixable from what's already
-  in this repo. See Monsters tab chronological log entry for the full list
-  context.
+- A new **"Rune"** item/reward type was discovered in the v26.2.0 data
+  (`BossRaidStageData`, `ChallengeTowerStageData`, and `HeroTombStageData`
+  all pay out mostly Runes via reward-group rows whose `RewardType`/
+  `RewardParam` values don't correspond to anything in `StackableItemData`)
+  — this app has never extracted a Rune data table or modeled the system at
+  all. Properly expanding Farmable Items / Monsters coverage using these
+  three new stage tables needs that groundwork first, not just a table
+  refresh. Real extracted data to start from: `data/` doesn't have these
+  tables committed yet, but the raw schemas were confirmed during the
+  2026-09-30 session (see above) — would need a fresh APK re-pull if the
+  scratchpad is gone by the time this is picked up.
+- The new Hero's Tomb enemies (`EnemyData` ids 2100001-2200021, 37 rows)
+  have no face-icon art anywhere in the base+split APK — likely a
+  remote-only AssetBundle this extraction method (static APK unpacking)
+  can't reach. Would need actual network-traffic capture of the game
+  fetching its remote content bundles, a meaningfully different extraction
+  approach, not just "try re-extracting the APK again."
+
+- 44 `EnemyData` rows (15 distinct Chapter-1 raid-boss sprites) reference an
+  `IconSprite` missing from `assets/img/enemies/`. **Already re-checked
+  against a fresh APK (2026-09-30, v26.2.0)** and these specific sprites
+  still aren't present anywhere in the base+split asset tree — a plain
+  re-extraction won't fix this; see the Hero's Tomb icon bullet above for
+  the likely reason (remote-only AssetBundle content).
 - Expand Farmable Items coverage beyond the 4 currently-confirmed items —
   would need to explore shop/mission/quest/chapter-reward/boss-raid systems'
   `RewardGroupData` associations (the reward-group resolution mechanism

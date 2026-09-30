@@ -10,11 +10,10 @@
 //     ids), and ChestSpawnerData.ChestRespawnOrder ties each chest to the
 //     specific stage(s) it actually spawns at.
 //
-// There's no literal x/y map-coordinate data anywhere in the extracted
-// assets, so the "map" popup is honestly built from the game's own stage
-// list per chapter (a level-select-style path of stage nodes), with the
-// item's own icon pinned on whichever node(s) are the real source — not a
-// fabricated terrain map.
+// "View Map" opens the game's REAL minimap layout (see js/ui-map.js) — real
+// per-stage tile art and exact tile positions extracted from the game's own
+// UI files, with the item's own icon pinned on whichever tile(s) are the
+// real source.
 // ---------------------------------------------------------------------------
 
 const FarmableUI = {
@@ -134,13 +133,13 @@ const FarmableUI = {
       el.addEventListener('click', () => {
         const { chapter, stageId } = JSON.parse(el.dataset.mapGuaranteed);
         const s = sources.guaranteed.find(x => x.stage?.id === stageId);
-        this.openMap(item, [{ chapter, stageId, label: s?.enemy?.Name_en, enemy: s?.enemy }]);
+        this.openMap(item, [{ chapter, stage: s?.stage?.stage, label: s?.enemy?.Name_en, enemy: s?.enemy }]);
       });
     });
     document.querySelectorAll('[data-map-chest]').forEach(el => {
       el.addEventListener('click', () => {
         const s = sources.chest[Number(el.dataset.mapChest)];
-        const pins = s.stages.map(st => ({ chapter: st.chapter, stageId: st.id, label: s.chest.Name }));
+        const pins = s.stages.map(st => ({ chapter: st.chapter, stage: st.stage, label: s.chest.Name }));
         this.openMap(item, pins);
       });
     });
@@ -150,7 +149,7 @@ const FarmableUI = {
         const stage = Game.index.stageById.get(rep.stage_id);
         if (!stage) return;
         const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
-        this.openMap(item, [{ chapter: stage.chapter, stageId: stage.id, label: rep.enemy_name, enemy }]);
+        this.openMap(item, [{ chapter: stage.chapter, stage: stage.stage, label: rep.enemy_name, enemy }]);
       });
     });
   },
@@ -238,47 +237,22 @@ const FarmableUI = {
     });
   },
 
-  // pins: [{chapter, stageId, label, enemy?}]
+  // pins: [{chapter, stage, label, enemy?}] — opens the real in-game map
+  // (see js/ui-map.js) with the item's own icon pinned on its real source
+  // tile(s).
   openMap(item, pins) {
-    const byChapter = groupBy(pins, p => p.chapter);
-    const chapters = [...byChapter.keys()].sort((a, b) => a - b);
-
     const bossPortraits = pins.filter(p => p.enemy).map(p => p.enemy);
+    const beforeHTML = bossPortraits.length ? `
+      <div class="boss-portrait-row">
+        ${bossPortraits.map(e => `
+          <div class="boss-portrait">
+            <img src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt="">
+            <div>${escapeHtml(e.Name_en)}${e.NickName_en ? `<div class="fs-sub">"${escapeHtml(e.NickName_en)}"</div>` : ''}</div>
+          </div>`).join('')}
+      </div>` : '';
 
-    const chapterRows = chapters.map(ch => {
-      const stages = Game.db.StageData.filter(s => s.chapter === ch).sort((a, b) => a.stage - b.stage);
-      const highlightIds = new Set(byChapter.get(ch).map(p => p.stageId));
-      return `
-        <div class="stage-map-row">
-          <div class="stage-map-chapter">Chapter ${ch}</div>
-          <div class="stage-map-path">
-            ${stages.map(s => `
-              <div class="stage-node ${highlightIds.has(s.id) ? 'hit' : ''}">
-                ${highlightIds.has(s.id) ? `<img class="stage-node-pin" src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">` : ''}
-                <div class="stage-node-circle">${s.stage}</div>
-                <div class="stage-node-label">${escapeHtml(s.Name_en)}</div>
-              </div>
-            `).join('<div class="stage-node-connector"></div>')}
-          </div>
-        </div>`;
-    }).join('');
-
-    UI.openModal(`
-      <div class="modal-header"><h3>${escapeHtml(item.Name_en)} — Where to Farm</h3><button class="modal-close" id="modal-close">✕</button></div>
-      <div class="modal-body">
-        ${bossPortraits.length ? `
-          <div class="boss-portrait-row">
-            ${bossPortraits.map(e => `
-              <div class="boss-portrait">
-                <img src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt="">
-                <div>${escapeHtml(e.Name_en)}${e.NickName_en ? `<div class="fs-sub">"${escapeHtml(e.NickName_en)}"</div>` : ''}</div>
-              </div>`).join('')}
-          </div>` : ''}
-        ${chapterRows}
-        <div class="caveat">There's no literal in-game world-map coordinate data in the extracted assets — this shows the real chapter/stage progression path with the exact stage(s) this item comes from pinned using the item's own icon, rather than a fabricated terrain map.</div>
-      </div>
-    `);
-    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    const mapPins = pins.map(p => ({ chapter: p.chapter, stage: p.stage, iconUrl: Game.itemIcon(item), label: p.label }));
+    MapUI.open(`${item.Name_en} — Where to Farm`, mapPins, beforeHTML);
   },
 };
 

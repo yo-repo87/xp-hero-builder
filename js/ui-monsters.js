@@ -16,7 +16,8 @@
 // Desert"). Checked against EnemyType before picking this: EnemyType 2 rows
 // ALL have a NickName_en (46/46), but 4 more bosses are typed 0/1 and would
 // be missed by EnemyType alone — NickName_en presence is the cleaner,
-// complete signal (50 bosses total out of 208 enemies).
+// complete signal (54 bosses total out of 245 enemies, after the 2026-09-30
+// catalog refresh added 4 new Hero's Tomb bosses — see CLAUDE.md).
 //
 // Exact stage (not just chapter) is only shown for the 20 enemies with a
 // confirmed MinimapRewardData tie — the same guaranteed-boss-drop data the
@@ -24,10 +25,12 @@
 // game's own data, not one specific stage, so this app doesn't claim
 // otherwise for the rest.
 //
-// 15 of 208 enemies (mostly the Chapter 1 raid-boss set) reference an
-// IconSprite that wasn't captured in this app's original asset-extraction
-// pass — they fall back to the standard onImgError placeholder like any
-// other missing asset elsewhere in the app, rather than being hidden.
+// 81 of 245 enemies reference an IconSprite this app has no art for: 44
+// rows (15 distinct Chapter-1 raid-boss sprites) missing since the original
+// extraction, plus all 37 new Hero's Tomb enemies (added 2026-09-30) whose
+// face art isn't in the base+split APK at all — likely a remote-only
+// AssetBundle. Both fall back to the standard onImgError placeholder like
+// any other missing asset elsewhere in the app, rather than being hidden.
 // ---------------------------------------------------------------------------
 
 const MonstersUI = {
@@ -128,6 +131,8 @@ const MonstersUI = {
               <div class="stat-pill"><span class="stat-name">Location</span><span class="stat-val">${ch !== null ? `Chapter ${ch}` : 'Special/Raid'}${tie ? ` · Stage ${tie.stage}` : ''}</span></div>
             </div>
 
+            ${tie ? `<div class="action-row"><button class="btn btn-gold" id="monster-map-btn">View Map</button></div>` : ''}
+
             ${tie
               ? `<div class="caveat">Confirmed spawn location: Chapter ${tie.chapter}, Stage ${tie.stage} — this is also a guaranteed boss-drop source, see the Farmable Items tab for exactly what it drops.</div>`
               : isBoss
@@ -138,5 +143,8 @@ const MonstersUI = {
       </div>
     `);
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    document.getElementById('monster-map-btn')?.addEventListener('click', () => {
+      MapUI.open(`${e.Name_en} — Location`, [{ chapter: tie.chapter, stage: tie.stage, iconUrl: Game.enemyIcon(e), label: e.Name_en }]);
+    });
   },
 };

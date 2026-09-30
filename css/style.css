@@ -536,24 +536,31 @@ footer.app-footer {
   border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill; border-image-width: 8px; border-style: solid; border-width: 8px; background-color: var(--parchment-light); }
 .boss-portrait img { width: 52px; height: 52px; object-fit: contain; background: var(--parchment); border-radius: 8px; }
 
-.stage-map-row { margin-bottom: 22px; }
-.stage-map-chapter { font-size: 0.74rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 10px; font-family: 'Baloo 2', sans-serif; }
-.stage-map-path { display: flex; align-items: flex-start; overflow-x: auto; padding: 14px 4px 8px; gap: 0; }
-.stage-node { display: flex; flex-direction: column; align-items: center; width: 88px; flex-shrink: 0; position: relative; }
-.stage-node-circle {
-  width: 40px; height: 40px; border-radius: 50%; background: var(--parchment-light); border: 2px solid var(--line);
-  display: flex; align-items: center; justify-content: center; font-weight: 800; font-family: 'JetBrains Mono', monospace;
-  color: var(--ink-muted); font-size: 0.88rem;
+/* Real in-game minimap — see js/ui-map.js. .chapter-map-canvas is a fixed
+   720:600 aspect box (the real Minimap prefab's own canvas size); each
+   .map-tile is positioned with the exact normalized x/y/w/h extracted from
+   that prefab's real RectTransform data, not estimated. */
+.chapter-map-card { margin-bottom: 24px; }
+.chapter-map-title { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-muted); margin-bottom: 10px; font-family: 'Baloo 2', sans-serif; }
+.chapter-map-canvas {
+  position: relative; width: 100%; aspect-ratio: 720 / 600; max-width: 640px;
+  border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill; border-image-width: 14px; border-style: solid; border-width: 14px;
+  background: var(--wood-dark); border-radius: 10px; overflow: hidden;
 }
-.stage-node.hit .stage-node-circle { border-color: var(--gold); color: #a5580e; box-shadow: 0 0 0 3px var(--gold-soft); background: #fff; }
-.stage-node-label { font-size: 0.66rem; text-align: center; color: var(--ink-muted); margin-top: 6px; line-height: 1.25; }
-.stage-node.hit .stage-node-label { color: var(--ink); font-weight: 700; }
-.stage-node-pin {
-  position: absolute; top: -22px; width: 26px; height: 26px; object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,.5)); animation: pin-bounce 1.4s ease-in-out infinite;
+.map-tile { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
+.map-tile-art { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
+.map-tile-num {
+  position: absolute; bottom: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--wood-darker); color: #e8d5b8; font-size: 0.62rem; font-weight: 800; font-family: 'JetBrains Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
 }
-@keyframes pin-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-.stage-node-connector { flex: 1; min-width: 16px; height: 2px; background: var(--line); margin-top: 20px; }
+.map-tile.hit .map-tile-art { filter: drop-shadow(0 0 6px var(--gold)) drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
+.map-tile-pin {
+  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  width: 34px; height: 34px; object-fit: contain; border-radius: 50%; background: var(--parchment-light);
+  border: 2px solid var(--gold); box-shadow: 0 2px 6px rgba(0,0,0,.5); animation: pin-bounce 1.4s ease-in-out infinite;
+}
+@keyframes pin-bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
