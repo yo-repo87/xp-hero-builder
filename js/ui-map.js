@@ -84,19 +84,15 @@ const MapUI = {
 // Only chapters 1-3 are covered (same as everywhere else in this app).
 // ---------------------------------------------------------------------------
 const SpawnMapUI = {
-  open(enemy) {
+  // Returns the inner HTML (canvas + legend + caveat, no modal chrome) for
+  // embedding directly into another popup — e.g. the Monsters tab's own
+  // detail modal, which shows this inline rather than behind an extra
+  // click. Returns '' if this enemy's chapter has no spawn-position data.
+  renderInline(enemy) {
     const chapter = Game.enemyChapter(enemy);
     const allInChapter = (chapter !== null && Game.index.spawnPointsByChapter.get(chapter)) || [];
     const ownPoints = Game.index.spawnPointsByEnemyId.get(enemy.id) || [];
-
-    if (!allInChapter.length) {
-      UI.openModal(`
-        <div class="modal-header"><h3>${escapeHtml(enemy.Name_en)} — Spawn Positions</h3><button class="modal-close" id="modal-close">✕</button></div>
-        <div class="modal-body"><div class="caveat">No real spawn-position data was found in the extracted game files for this enemy's chapter.</div></div>
-      `);
-      document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
-      return;
-    }
+    if (!allInChapter.length) return '';
 
     const xs = allInChapter.map(p => p.x), zs = allInChapter.map(p => p.z);
     const minX = Math.min(...xs), maxX = Math.max(...xs);
@@ -147,14 +143,9 @@ const SpawnMapUI = {
       ? `<svg class="spawn-path-layer" viewBox="0 0 100 100" preserveAspectRatio="none">${pathsHTML}</svg>`
       : '';
 
-    UI.openModal(`
-      <div class="modal-header"><h3>${escapeHtml(enemy.Name_en)} — Spawn Positions</h3><button class="modal-close" id="modal-close">✕</button></div>
-      <div class="modal-body">
-        <div class="spawn-map-canvas">${pathsSvg}${dotsHTML}</div>
-        <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
-        <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''}</div>
-      </div>
-    `);
-    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    return `
+      <div class="spawn-map-canvas">${pathsSvg}${dotsHTML}</div>
+      <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
+      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''}</div>`;
   },
 };

@@ -31,6 +31,13 @@
 // face art isn't in the base+split APK at all — likely a remote-only
 // AssetBundle. Both fall back to the standard onImgError placeholder like
 // any other missing asset elsewhere in the app, rather than being hidden.
+//
+// The detail modal embeds SpawnMapUI.renderInline() directly (no extra
+// click) for any enemy with real spawn-position data — see
+// CLAUDE.md's "Enemy spawn points" entry. That's a genuinely different
+// coordinate system from the "View Story-Stage Map" button below it
+// (MapUI, real story-stage board, only shown for the 20 enemies with a
+// confirmed MinimapRewardData tie) — kept visually separate on purpose.
 // ---------------------------------------------------------------------------
 
 const MonstersUI = {
@@ -109,6 +116,7 @@ const MonstersUI = {
     const ch = Game.enemyChapter(e);
     const tie = Game.index.minimapRewardByEnemyId.get(enemyId);
     const spawnPoints = Game.index.spawnPointsByEnemyId.get(enemyId) || [];
+    const spawnMapHTML = spawnPoints.length ? SpawnMapUI.renderInline(e) : '';
 
     UI.openModal(`
       <div class="modal-header"><h3>${escapeHtml(e.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
@@ -132,27 +140,25 @@ const MonstersUI = {
               <div class="stat-pill"><span class="stat-name">Location</span><span class="stat-val">${ch !== null ? `Chapter ${ch}` : 'Special/Raid'}${tie ? ` · Stage ${tie.stage}` : ''}</span></div>
             </div>
 
-            <div class="action-row">
-              ${tie ? `<button class="btn btn-gold" id="monster-map-btn">View Map</button>` : ''}
-              ${spawnPoints.length ? `<button class="btn" id="monster-spawn-btn">View Spawn Positions (${spawnPoints.length})</button>` : ''}
-            </div>
+            ${tie ? `<div class="action-row"><button class="btn btn-gold" id="monster-map-btn">View Story-Stage Map</button></div>` : ''}
 
             ${tie
               ? `<div class="caveat">Confirmed spawn location: Chapter ${tie.chapter}, Stage ${tie.stage} — this is also a guaranteed boss-drop source, see the Farmable Items tab for exactly what it drops.</div>`
               : isBoss
                 ? `<div class="caveat">This boss doesn't have a confirmed exact stage in the extracted data — only its chapter is known.</div>`
                 : `<div class="caveat">Regular enemies roam their whole chapter rather than one specific stage in this game's own data, so only chapter-level location is shown here.</div>`}
-            ${spawnPoints.length ? `<div class="caveat">Also has ${spawnPoints.length} real in-world spawn point${spawnPoints.length === 1 ? '' : 's'} confirmed from the game's own free-roam exploration data — see "View Spawn Positions".</div>` : ''}
           </div>
         </div>
+
+        ${spawnMapHTML ? `
+          <div class="section-title" style="margin-top:20px"><h3 style="font-size:1rem">Spawn &amp; Patrol Map</h3></div>
+          ${spawnMapHTML}
+        ` : ''}
       </div>
     `);
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
     document.getElementById('monster-map-btn')?.addEventListener('click', () => {
       MapUI.open(`${e.Name_en} — Location`, [{ chapter: tie.chapter, stage: tie.stage, iconUrl: Game.enemyIcon(e), label: e.Name_en }]);
-    });
-    document.getElementById('monster-spawn-btn')?.addEventListener('click', () => {
-      SpawnMapUI.open(e);
     });
   },
 };

@@ -433,11 +433,22 @@ in `js/ui-map.js`, alongside but structurally separate from `MapUI`) — a
 scatter canvas normalized to each chapter's own real spawn-point bounding
 box, showing every spawn point as the real enemy's own portrait icon
 (matching how `MapUI`'s pins already work), the selected monster's own
-spawn point(s) enlarged with a gold ring on top of the rest; a "View Spawn
-Positions (N)" button in the Monsters tab detail modal (`js/ui-monsters.js`)
-for any enemy with a `data/EnemySpawnPoints.json` tie;
+spawn point(s) enlarged with a gold ring on top of the rest;
 `.spawn-map-canvas`/`.spawn-dot`/`.spawn-map-legend` CSS. Verified
 end-to-end with headless Playwright passes, no console errors.
+
+**UX follow-up, same session**: user asked for the spawn/patrol map to
+appear directly when a monster is clicked, not behind an extra button.
+`SpawnMapUI.open()` (full standalone modal) was split into
+`SpawnMapUI.renderInline(enemy)` (returns just the canvas/legend/caveat
+markup, no modal chrome, `''` if the enemy's chapter has no spawn data) so
+`js/ui-monsters.js`'s `openDetail()` can embed it directly under the
+existing stat block in the same popup — no "View Spawn Positions" button
+anymore, the map is just there. The separate "View Map" button (the real
+story-stage board, `MapUI`, only shown for the 20 enemies with a confirmed
+`MinimapRewardData` tie) stayed a button and was relabeled "View
+Story-Stage Map" to make the distinction from the now-always-inline
+spawn/patrol map clearer.
 
 **Patrol paths (same session, follow-up).** User asked "can patrol paths
 be shown on the spawn map?" — real waypoint data existed for this too:
