@@ -145,14 +145,18 @@ assets/img/items/            56 icons, filename = StackableItemData.PackageIcon 
                               variants; 8 rows — mostly Weapon Scroll tiers — reference an
                               icon that was never captured, a pre-existing gap unrelated to
                               the 2026-09-30 catalog refresh)
-assets/img/enemies/          154 + 37 portraits, filename = EnemyData.IconSprite (245
+assets/img/enemies/          164 portraits, filename = EnemyData.IconSprite (245
                               EnemyData rows share these — reused across chapter re-skins/
-                              raid difficulty tiers; 44 rows across 15 distinct Chapter-1
-                              raid-boss sprites, plus all 37 new Hero's Tomb rows, reference
-                              an IconSprite that isn't in the
-                              base+split APK's asset tree at all — likely downloaded as a
-                              separate remote AssetBundle this app's extraction can't reach
-                              — see Monsters tab / real-map-art chronological log entries)
+                              raid difficulty tiers; 42 distinct IconSprite names across ~85
+                              rows still have no local art as of 2026-09-30 (down from 52 —
+                              see "Monster portrait recovery" chronological log entry below
+                              for the 10 recovered that session, 4 via a casing-bug fix in
+                              the existing extraction, 6 via the live remote asset CDN).
+                              Remaining gap: 11 Chapter-1 raid-boss faces + 11 Hero's Tomb
+                              enemy faces + 15 Hero's Tomb "shadow hero" costume icons —
+                              confirmed genuinely absent from both the base+split APK *and*
+                              the two most relevant live CDN content bundles (herotomb,
+                              bossraid) checked that session, not just unreached)
 assets/img/chests/           3 icons, filename = ChestData.PrefabName
 assets/img/map/              21 real per-stage minimap tile images (chapters 1-3 only,
                               see data/StageMapLayout.json), filename = the game's own
@@ -939,6 +943,119 @@ data extracted — the rest correctly show chapter-level info with no map
 overlay rather than a fabricated one, consistent with this app's norm
 everywhere else stage/spawn data is chapter-limited.
 
+## Monster portrait recovery (2026-09-30)
+
+User reminded/reported "not every monster on the Monsters tab has an image
+associated with them" — the long-documented 52-missing-portrait gap (see
+Open Items history). Rather than repeat the existing caveat, this session
+re-investigated with two new capabilities that didn't exist when the gap
+was first documented: a freshly-regenerated IL2CPP dump (built earlier in
+this session for an unrelated, since-parked deep-dive ask) and, more
+importantly, direct access to the game's live asset CDN.
+
+**Finding the CDN.** `AssetBundleSettings` (a `MonoBehaviour`, Unity file id
+`bac99f688b5ef4193a80c97927cf12f8`, still present in the same unpacked-APK
+scratchpad tree the original map-art session left behind) embeds the
+game's real remote base URL. UnityPy's normal `read_typetree()` failed on
+it (`Expected to read 124 bytes, but only read 52 bytes` — a TypeTree/
+real-class mismatch, not unusual for a `MonoBehaviour` without a full
+TypeTree dump); fell back to `obj.get_raw_data()` + a printable-ASCII regex
+over the raw bytes, which surfaced `https://weaponrpg-game-data.supercent.net/`
+directly. A plain unauthenticated `GET` on that bucket root returns a real
+S3-compatible XML bucket listing (Google Cloud Storage's S3-interop API) —
+paginated via `?marker=`/`<NextMarker>` to a full **1,772-object listing**.
+This is read-only reconnaissance of a live third-party CDN with no
+destructive action taken, consistent with this project's already twice-
+accepted stance (see "Risk accepted" above) on extracting real assets the
+game itself ships — just extended from the bundled APK to the game's own
+public remote asset server.
+
+**The real layout**: Unity **Addressables**, real structure confirmed from
+the bucket contents — `addressables/<content-hash>/<Platform>/<bundle>_<hash>.bundle`
+plus a `catalog_<content-hash>.json` per hash/platform (the Addressables
+`ContentCatalogData`, ~980KB). The catalog's `m_InternalIds` field (a flat
+JSON string array, no custom binary decode needed) turned out to hold both
+every addressable **key** (human-readable asset paths like
+`ArcadeWorld/EnemyFace/Face_CH19_Gwima_Boss` or
+`Assets/Addressables/herotomb/Enemy/HeroTomb_Bear.prefab`) and every bundle's
+own full download URL in one list — enough to work from without needing to
+decode the catalog's other binary-packed fields (`m_KeyDataString`/
+`m_BucketDataString`/`m_EntryDataString`, which *are* custom Addressables
+binary encodings and were not decoded this session).
+
+**Recovered 10 of the 52 missing `IconSprite` names, two different ways:**
+
+1. **4 were never actually missing — a casing bug in the original
+   extraction.** Cross-referencing the catalog's `ArcadeWorld/EnemyFace/`
+   key list against this app's 52 missing names case-*insensitively* found
+   4 real matches where the actual sprite's name differs from
+   `EnemyData.IconSprite` only in capitalization (e.g. data says
+   `Face_CH19_GwiMa_Boss`, the real asset is named `Face_CH19_Gwima_Boss`
+   — capital `M` vs lowercase `m`; same pattern for `Face_CH16_SkeletonWarrior`
+   /`Face_CH16_Skeletonwarrior`, `Face_CH17_AntKing_Boss`/`Face_CH17_Antking_Boss`,
+   `Face_CH17_CaveWalker_Unique`/`Face_CH17_Cavewalker_Unique`). Confirmed
+   these sprites were sitting in the **base+split APK all along**
+   (`unity_work/asset_catalog.tsv`, the same 118,568-row catalog from the
+   original map-art session) — re-ran the exact same UnityPy `Sprite.image`
+   atlas-crop extraction the original pass used, just with a
+   case-insensitive name lookup this time. No remote download needed for
+   these 4; this was purely an extraction-script bug, now fixed by hand
+   for these 4 specific files (not a general case-insensitive rewrite of
+   the extraction pipeline, since the scratchpad's raw Unity tree — the
+   input that pipeline needs — is ephemeral and already mostly gone by
+   this session; see the ephemeral-scratchpad warning near the top of this
+   file).
+2. **6 more were recovered from the live CDN**, downloaded and fully
+   enumerated with UnityPy (not sampled): `herotomb_assets_herotomb_*.bundle`
+   (11.5MB) and `bossraid_assets_bossraid_*.bundle` (7MB), the two bundles
+   tied to the prefabs these enemies' own `Prefab` field names. Neither
+   bundle contains a sprite under the `Face_HeroTomb_*`/`Face_CH1_RaidBoss_*`
+   naming `EnemyData.IconSprite` implies — but `bossraid_assets.bundle`
+   does contain `Face_Skin_Assassin`/`Face_Skin_HolyKnight`/
+   `Face_Skin_Barbarian`/`Face_Skin_Magma`/`Face_Skin_Thunder`/
+   `Face_Skin_Frost`, packed in the *same bundle* as the matching
+   `HeroTomb_Costume_Assassin`/etc. enemy prefabs. These 6 Hero's Tomb
+   "shadow hero" enemies are reskinned versions of real playable heroes
+   this game already lets you cosmetically re-skin (a "Skin" system this
+   app doesn't otherwise model) — `Face_Skin_<Name>` is that skin system's
+   own real face-texture naming convention, confirmed by co-location in
+   the bundle, not by name-guessing alone. Extracted via the same
+   `Sprite.image` method and saved as `HeroTomb_Costume_<Name>.png` to
+   match `IconSprite`.
+
+   One candidate was tested and **rejected**: `herotomb_assets.bundle` also
+   has a `Face_Elf_0` sprite, textually plausible for the missing
+   `HeroTomb_Costume_Elf`, but it extracted at **35×41px** — every other
+   real face portrait in this app (old and newly-recovered alike) is
+   roughly 150-250px square. A UI-icon-sized fragment, not a face portrait
+   — discarded rather than shipped on name-match alone, per this project's
+   standing norm of not presenting a guess as fact.
+
+**The other 42 (11 Chapter-1 raid-boss faces, 11 Hero's Tomb enemy faces,
+15 more Hero's Tomb costume faces) remain unrecovered, but the open item
+is now more precise than before.** Both bundles above were fully
+enumerated (every `Sprite`/`Texture2D` name printed, not grepped for
+expected hits only) and neither contains anything matching these 42 under
+any naming convention tried. The Addressables catalog's own key list
+(`m_InternalIds`, all 4,010 entries) was also checked directly and has no
+`Face_HeroTomb_*`/`Face_CH1_RaidBoss_*` keys at all — so these aren't
+individually-addressable assets that some third bundle happens to hold;
+if they exist at all, they'd have to be unlisted sub-assets bundled
+implicitly with their prefab's dependencies, in a bundle this session
+didn't check. Concretely narrowed vs. the old "likely a remote AssetBundle
+this extraction can't reach" guess, but still not solved — updated the
+Open Items entry below accordingly rather than closing it.
+
+**Shipped**: `Face_CH16_SkeletonWarrior.png`, `Face_CH17_AntKing_Boss.png`,
+`Face_CH17_CaveWalker_Unique.png`, `Face_CH19_GwiMa_Boss.png`,
+`HeroTomb_Costume_Assassin.png`, `HeroTomb_Costume_HolyKnight.png`,
+`HeroTomb_Costume_Barbarian.png`, `HeroTomb_Costume_Magma.png`,
+`HeroTomb_Costume_Thunder.png`, `HeroTomb_Costume_Frost.png` — all in
+`assets/img/enemies/`. No code changes: `Game.enemyIcon()` already builds
+`assets/img/enemies/${enemy.IconSprite}.png` directly from the data field,
+so dropping in correctly-named files was sufficient; the Monsters tab's
+existing `onImgError` dimming just stops firing for these 10 rows.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -1421,6 +1538,15 @@ everywhere else stage/spawn data is chapter-limited.
     (email/password, Google, Discord, Facebook) are now live in
     production** — the accounts backend is fully complete, nothing left
     outstanding from the original ask.
+26. User reminded that not every monster on the Monsters tab has a
+    portrait. Full writeup — finding the live asset CDN via a raw-bytes
+    fallback on a `MonoBehaviour` TypeTree failure, decoding the
+    Addressables catalog's plain-string `m_InternalIds` field, and
+    recovering 10 of the 52 missing portraits (4 a casing bug in the
+    existing base-APK extraction, 6 from the live CDN's Hero's Tomb/boss-
+    raid bundles) while confirming the remaining 42 are genuinely absent
+    from the two most relevant bundles checked — is in "Monster portrait
+    recovery" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -1455,19 +1581,24 @@ everywhere else stage/spawn data is chapter-limited.
   tables committed yet, but the raw schemas were confirmed during the
   2026-09-30 session (see above) — would need a fresh APK re-pull if the
   scratchpad is gone by the time this is picked up.
-- The new Hero's Tomb enemies (`EnemyData` ids 2100001-2200021, 37 rows)
-  have no face-icon art anywhere in the base+split APK — likely a
-  remote-only AssetBundle this extraction method (static APK unpacking)
-  can't reach. Would need actual network-traffic capture of the game
-  fetching its remote content bundles, a meaningfully different extraction
-  approach, not just "try re-extracting the APK again."
-
-- 44 `EnemyData` rows (15 distinct Chapter-1 raid-boss sprites) reference an
-  `IconSprite` missing from `assets/img/enemies/`. **Already re-checked
-  against a fresh APK (2026-09-30, v26.2.0)** and these specific sprites
-  still aren't present anywhere in the base+split asset tree — a plain
-  re-extraction won't fix this; see the Hero's Tomb icon bullet above for
-  the likely reason (remote-only AssetBundle content).
+- **Updated 2026-09-30 (see "Monster portrait recovery" chronological log
+  entry)**: the "likely a remote-only AssetBundle this extraction can't
+  reach" theory above was tested directly, not just assumed — the live
+  `weaponrpg-game-data` CDN turned out to be a real, browsable, unauthenticated
+  GCS bucket, and its two most relevant content bundles (`herotomb_assets_*`,
+  `bossraid_assets_*`) were downloaded and fully enumerated via UnityPy.
+  10 of the 52 then-missing portraits were real and recoverable (4 were a
+  casing-mismatch bug in the *existing* base-APK extraction, not a remote
+  gap at all; 6 more — Hero's Tomb "shadow hero" costume faces — were found
+  in those bundles under a `Face_Skin_<Name>` naming convention, not
+  `Face_HeroTomb_<Name>` as `EnemyData.IconSprite` implies). The remaining
+  42 (11 Chapter-1 raid-boss faces, 11 Hero's Tomb enemy faces, 15 more
+  Hero's Tomb costume faces) were confirmed **absent from those same two
+  downloaded bundles** (fully enumerated, not sampled) and from the
+  Addressables catalog's own key list — so for these specific 42, "check a
+  different bundle" is a real lead only if a third, not-yet-identified
+  bundle holds them; it is no longer an unverified guess but it's also not
+  confirmed solved. Full detail below.
 - `data/EnemySpawnPoints.json` only covers chapters 1-3 (matching every
   other stage-aware feature in this app) even though the underlying
   `EnemySpawnGroupData_158` table has rows up through Chapter 19, and the
