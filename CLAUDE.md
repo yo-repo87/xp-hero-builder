@@ -354,8 +354,14 @@ Playwright, including clicking the real "Continue with Google" button
 through to Google's actual "Sign in to continue to arc-it.uk" consent
 screen with no `redirect_uri_mismatch`/`invalid_client` error, confirming
 the whole chain (button → `GET /auth/google` → Google) is correctly
-wired. Facebook and Discord remain unconfigured (optional, same
-degrade-gracefully behavior — their buttons just don't render yet).
+wired. **Discord is now live too** (same day, follow-up) — same process
+(user registered the app in Discord's Developer Portal, handed over
+Client ID/Secret), same verification standard: clicked "Continue with
+Discord" through to Discord's real `discord.com/login` page with the full
+OAuth authorize redirect (client_id/redirect_uri/scope) correctly
+preserved in the `redirect_to` param for after login, no errors. Only
+Facebook remains unconfigured (optional, same degrade-gracefully
+behavior — button just doesn't render yet).
 
 **Frontend**: `js/auth.js` (session client — access token kept in memory
 only, never localStorage, since it's a 15-minute JWT and losing it on tab
@@ -1318,6 +1324,14 @@ everywhere else stage/spawn data is chapter-limited.
     verified end-to-end including clicking through to Google's real
     consent screen with no redirect/client-id errors. Accounts backend is
     now fully live in production.
+24. User asked to set up Discord sign-in too. Same process as Google:
+    user registered the app in Discord's Developer Portal, provided
+    Client ID/Secret, wired into `server/.env`, container restarted,
+    verified end-to-end via Playwright click-through to Discord's real
+    login page with the OAuth authorize params correctly preserved for
+    post-login redirect. Three of four planned sign-in methods now live
+    (email/password, Google, Discord) — only Facebook left, same
+    on-request process whenever wanted.
 
 ## Open items / plausible next steps (not started)
 
@@ -1334,9 +1348,14 @@ everywhere else stage/spawn data is chapter-limited.
   rewrites DNS-challenge credentials from the database (only fresh
   creation does) which was silently breaking *two other, unrelated*
   certs (`*.selfhosted.vip` covering 19 live hosts, and `selfhosted.vip`)
-  — is in "Accounts backend" → "NPM/Cloudflare setup" above. Remaining
-  optional: Facebook and Discord OAuth, same one-provider-at-a-time
-  process, same graceful degradation if left undone.
+  — is in "Accounts backend" → "NPM/Cloudflare setup" above. **Discord is
+  now also live** (2026-09-30, same day) — verified end-to-end the same
+  way as Google: real click-through to `discord.com/login` with the full
+  OAuth authorize redirect correctly preserved in `redirect_to`, no
+  client-id/redirect-uri errors. Only Facebook remains unconfigured —
+  same one-step process (register the app, hand over Client ID/Secret)
+  whenever wanted, same graceful degradation (button just doesn't render)
+  until then.
 - No migration framework is wired up for the `xpherobuilder` Postgres
   database yet (`server/db/schema.sql` is a point-in-time record of what
   was run by hand, not a re-runnable migration) — fine at this scale, but
