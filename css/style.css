@@ -547,7 +547,8 @@ footer.app-footer {
   border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill; border-image-width: 14px; border-style: solid; border-width: 14px;
   background: var(--wood-dark); border-radius: 10px; overflow: hidden;
 }
-.map-tile { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
+.map-tile { position: absolute; z-index: 1; transform: translate(-50%, -50%); display: flex; align-items: center; justify-content: center; }
+.map-tile.hit { z-index: 5; }
 .map-tile-art { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
 .map-tile-num {
   position: absolute; bottom: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%;
@@ -556,7 +557,7 @@ footer.app-footer {
 }
 .map-tile.hit .map-tile-art { filter: drop-shadow(0 0 6px var(--gold)) drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
 .map-tile-pin {
-  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  position: absolute; z-index: 10; top: -8px; left: 50%; transform: translateX(-50%);
   width: 34px; height: 34px; object-fit: contain; border-radius: 50%; background: var(--parchment-light);
   border: 2px solid var(--gold); box-shadow: 0 2px 6px rgba(0,0,0,.5); animation: pin-bounce 1.4s ease-in-out infinite;
 }
