@@ -108,6 +108,7 @@ const MonstersUI = {
     const isBoss = !!e.NickName_en;
     const ch = Game.enemyChapter(e);
     const tie = Game.index.minimapRewardByEnemyId.get(enemyId);
+    const spawnPoints = Game.index.spawnPointsByEnemyId.get(enemyId) || [];
 
     UI.openModal(`
       <div class="modal-header"><h3>${escapeHtml(e.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
@@ -131,13 +132,17 @@ const MonstersUI = {
               <div class="stat-pill"><span class="stat-name">Location</span><span class="stat-val">${ch !== null ? `Chapter ${ch}` : 'Special/Raid'}${tie ? ` · Stage ${tie.stage}` : ''}</span></div>
             </div>
 
-            ${tie ? `<div class="action-row"><button class="btn btn-gold" id="monster-map-btn">View Map</button></div>` : ''}
+            <div class="action-row">
+              ${tie ? `<button class="btn btn-gold" id="monster-map-btn">View Map</button>` : ''}
+              ${spawnPoints.length ? `<button class="btn" id="monster-spawn-btn">View Spawn Positions (${spawnPoints.length})</button>` : ''}
+            </div>
 
             ${tie
               ? `<div class="caveat">Confirmed spawn location: Chapter ${tie.chapter}, Stage ${tie.stage} — this is also a guaranteed boss-drop source, see the Farmable Items tab for exactly what it drops.</div>`
               : isBoss
                 ? `<div class="caveat">This boss doesn't have a confirmed exact stage in the extracted data — only its chapter is known.</div>`
                 : `<div class="caveat">Regular enemies roam their whole chapter rather than one specific stage in this game's own data, so only chapter-level location is shown here.</div>`}
+            ${spawnPoints.length ? `<div class="caveat">Also has ${spawnPoints.length} real in-world spawn point${spawnPoints.length === 1 ? '' : 's'} confirmed from the game's own free-roam exploration data — see "View Spawn Positions".</div>` : ''}
           </div>
         </div>
       </div>
@@ -145,6 +150,9 @@ const MonstersUI = {
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
     document.getElementById('monster-map-btn')?.addEventListener('click', () => {
       MapUI.open(`${e.Name_en} — Location`, [{ chapter: tie.chapter, stage: tie.stage, iconUrl: Game.enemyIcon(e), label: e.Name_en }]);
+    });
+    document.getElementById('monster-spawn-btn')?.addEventListener('click', () => {
+      SpawnMapUI.open(e);
     });
   },
 };

@@ -67,3 +67,65 @@ const MapUI = {
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
   },
 };
+
+// ---------------------------------------------------------------------------
+// SpawnMapUI — "View Spawn Positions" popup for the Monsters tab.
+//
+// This is a SEPARATE feature from MapUI above, plotting a completely
+// different coordinate system: real (x,z) world-placement Transform
+// positions of every individual enemy spawn instance, extracted straight
+// from the game's own EnemySpawnGroups scene data (see
+// data/EnemySpawnPoints.json and CLAUDE.md's "Enemy spawn points" entry).
+// These positions live in the game's free-roam exploration world space
+// (each chapter occupies its own distinct region of one shared coordinate
+// space — not the discrete story-stage board MapUI renders above), so
+// this is deliberately a different-looking scatter view rather than being
+// forced onto the stage-tile board, where it wouldn't mean anything.
+// Only chapters 1-3 are covered (same as everywhere else in this app).
+// ---------------------------------------------------------------------------
+const SpawnMapUI = {
+  open(enemy) {
+    const chapter = Game.enemyChapter(enemy);
+    const allInChapter = (chapter !== null && Game.index.spawnPointsByChapter.get(chapter)) || [];
+    const ownPoints = Game.index.spawnPointsByEnemyId.get(enemy.id) || [];
+
+    if (!allInChapter.length) {
+      UI.openModal(`
+        <div class="modal-header"><h3>${escapeHtml(enemy.Name_en)} — Spawn Positions</h3><button class="modal-close" id="modal-close">✕</button></div>
+        <div class="modal-body"><div class="caveat">No real spawn-position data was found in the extracted game files for this enemy's chapter.</div></div>
+      `);
+      document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+      return;
+    }
+
+    const xs = allInChapter.map(p => p.x), zs = allInChapter.map(p => p.z);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minZ = Math.min(...zs), maxZ = Math.max(...zs);
+    const pad = 0.08; // breathing room so edge dots aren't clipped
+    const spanX = (maxX - minX) || 1, spanZ = (maxZ - minZ) || 1;
+    const norm = (p) => ({
+      left: (pad + (1 - 2 * pad) * (p.x - minX) / spanX) * 100,
+      top: (pad + (1 - 2 * pad) * (p.z - minZ) / spanZ) * 100,
+    });
+
+    const ownIds = new Set(ownPoints.map(p => p.key + p.x + p.z));
+    const dotsHTML = allInChapter.map(p => {
+      const isOwn = ownIds.has(p.key + p.x + p.z);
+      const otherEnemy = Game.index.enemyById.get(p.enemy_data_id);
+      const label = otherEnemy ? otherEnemy.Name_en : p.key;
+      const pos = norm(p);
+      return `
+        <div class="spawn-dot${isOwn ? ' own' : ''}" style="left:${pos.left.toFixed(2)}%;top:${pos.top.toFixed(2)}%;" title="${escapeHtml(label)}${p.is_patrol ? ' (patrols)' : ''}"></div>`;
+    }).join('');
+
+    UI.openModal(`
+      <div class="modal-header"><h3>${escapeHtml(enemy.Name_en)} — Spawn Positions</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-body">
+        <div class="spawn-map-canvas">${dotsHTML}</div>
+        <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)</div>
+        <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.</div>
+      </div>
+    `);
+    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+  },
+};

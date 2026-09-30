@@ -563,6 +563,22 @@ footer.app-footer {
 }
 @keyframes pin-bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
 
+.spawn-map-canvas {
+  position: relative; width: 100%; aspect-ratio: 4 / 3; max-width: 640px;
+  border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill; border-image-width: 14px; border-style: solid; border-width: 14px;
+  background: var(--wood-dark); border-radius: 10px; overflow: hidden; margin-bottom: 10px;
+}
+.spawn-dot {
+  position: absolute; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+  background: var(--ink-muted); border: 1px solid rgba(0,0,0,.4); opacity: 0.75;
+}
+.spawn-dot.own {
+  width: 18px; height: 18px; margin: -9px 0 0 -9px; background: var(--gold);
+  border: 2px solid var(--parchment-light); box-shadow: 0 0 8px var(--gold); opacity: 1; z-index: 2;
+}
+.spawn-map-legend { font-size: 0.78rem; color: var(--ink-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.spawn-map-legend .spawn-dot { margin: 0; }
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }

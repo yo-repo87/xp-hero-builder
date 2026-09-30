@@ -18,6 +18,7 @@ const DATA_FILES = [
   'PlayerLevelData', 'BlessingBuffData',
   'StackableItemData', 'EnemyData', 'ChestData', 'ChestSpawnerData',
   'MinimapRewardData', 'StageData', 'RewardGroupData', 'StageMapLayout',
+  'EnemySpawnPoints',
 ];
 
 // Rarity/tier system shared by weapons (1-9) and heroes (1-8). Names come
@@ -155,6 +156,16 @@ const Game = {
     // Same table, keyed by enemy instead — lets the Monsters tab show a
     // boss's one confirmed exact stage (no enemy has more than one row here).
     idx.minimapRewardByEnemyId = new Map(this.db.MinimapRewardData.map(r => [r.enemy_id, r]));
+
+    // Real placed-in-world enemy spawn point coordinates (see CLAUDE.md
+    // "Enemy spawn points" entry) — extracted by walking the actual Transform
+    // hierarchy of the game's own EnemySpawnGroups scene data, joined against
+    // EnemySpawnGroupData_158's key->EnemyDataId table. Coordinates are real
+    // (x,z) positions in the game's own free-roam world space for that
+    // chapter's region — a DIFFERENT coordinate system from StageMapLayout's
+    // story-stage board tiles above, not directly comparable to it.
+    idx.spawnPointsByEnemyId = groupBy(this.db.EnemySpawnPoints, p => p.enemy_data_id);
+    idx.spawnPointsByChapter = groupBy(this.db.EnemySpawnPoints, p => p.chapter);
 
     idx.traitOptionById = new Map(this.db.TraitOptionData.map(t => [t.id, t]));
     idx.traitOptionsByGroupRarity = groupBy(this.db.TraitOptionData, t => `${t.option_group_id}:${t.option_rarity}`);

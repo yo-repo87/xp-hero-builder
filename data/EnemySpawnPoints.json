@@ -1,0 +1,792 @@
+[
+ {
+  "key": "CH1_Spawn_Mandragora",
+  "chapter": 1,
+  "enemy_data_id": 1001,
+  "is_patrol": false,
+  "respawn_cool_time": 15.0,
+  "retreat_range": 8.0,
+  "x": -29.19,
+  "z": -29.04
+ },
+ {
+  "key": "CH1_Spawn_Mandragora_2",
+  "chapter": 1,
+  "enemy_data_id": 1001,
+  "is_patrol": false,
+  "respawn_cool_time": 15.0,
+  "retreat_range": 8.0,
+  "x": -24.5,
+  "z": -32.05
+ },
+ {
+  "key": "CH1_Spawn_Mandragora_3",
+  "chapter": 1,
+  "enemy_data_id": 1001,
+  "is_patrol": false,
+  "respawn_cool_time": 15.0,
+  "retreat_range": 8.0,
+  "x": -17.24,
+  "z": -32.4
+ },
+ {
+  "key": "CH1_Spawn_Mandragora_Island",
+  "chapter": 1,
+  "enemy_data_id": 1001,
+  "is_patrol": false,
+  "respawn_cool_time": 15.0,
+  "retreat_range": 8.0,
+  "x": -43.12,
+  "z": -52.14
+ },
+ {
+  "key": "CH1_Spawn_Mushroom",
+  "chapter": 1,
+  "enemy_data_id": 1003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -29.62,
+  "z": -40.92
+ },
+ {
+  "key": "CH1_Spawn_Slime_2",
+  "chapter": 1,
+  "enemy_data_id": 1002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -19.08,
+  "z": -41.21
+ },
+ {
+  "key": "CH1_Spawn_Slime_Elite",
+  "chapter": 1,
+  "enemy_data_id": 1101,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 5.0,
+  "x": -14.72,
+  "z": -50.44
+ },
+ {
+  "key": "CH1_Spawn_Spider",
+  "chapter": 1,
+  "enemy_data_id": 1004,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -20.23,
+  "z": -24.32
+ },
+ {
+  "key": "CH1_Spawn_Spider_2",
+  "chapter": 1,
+  "enemy_data_id": 1004,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -20.07,
+  "z": -22.51
+ },
+ {
+  "key": "CH1_Spawn_Spider_2",
+  "chapter": 1,
+  "enemy_data_id": 1004,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -17.05,
+  "z": -21.06
+ },
+ {
+  "key": "CH1_Spawn_Wood_Boss",
+  "chapter": 1,
+  "enemy_data_id": 1102,
+  "is_patrol": false,
+  "respawn_cool_time": 480.0,
+  "retreat_range": 5.0,
+  "x": -28.14,
+  "z": -21.2
+ },
+ {
+  "key": "CH2_Spawn_Bat_1",
+  "chapter": 2,
+  "enemy_data_id": 99001,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": -48.71,
+  "z": -27.83
+ },
+ {
+  "key": "CH2_Spawn_Bat_2",
+  "chapter": 2,
+  "enemy_data_id": 99001,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": -48.71,
+  "z": -27.83
+ },
+ {
+  "key": "CH2_Spawn_Cactus_1",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -6.45,
+  "z": -2.21
+ },
+ {
+  "key": "CH2_Spawn_Cactus_1",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -12.46,
+  "z": -4.51
+ },
+ {
+  "key": "CH2_Spawn_Cactus_1",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -9.63,
+  "z": -5.33
+ },
+ {
+  "key": "CH2_Spawn_Cactus_1",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -7.29,
+  "z": -5.87
+ },
+ {
+  "key": "CH2_Spawn_Cactus_1",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -8.38,
+  "z": -10.71
+ },
+ {
+  "key": "CH2_Spawn_Cactus_2",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -5.61,
+  "z": -3.59
+ },
+ {
+  "key": "CH2_Spawn_Cactus_2",
+  "chapter": 2,
+  "enemy_data_id": 2001,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -10.49,
+  "z": 0.04
+ },
+ {
+  "key": "CH2_Spawn_Dragon_Elite",
+  "chapter": 2,
+  "enemy_data_id": 20001,
+  "is_patrol": false,
+  "respawn_cool_time": 2370.0,
+  "retreat_range": 5.0,
+  "x": 21.3,
+  "z": 26.2
+ },
+ {
+  "key": "CH2_Spawn_Goblin_1",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -13.9,
+  "z": 22.21
+ },
+ {
+  "key": "CH2_Spawn_Goblin_1",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -10.67,
+  "z": 20.07
+ },
+ {
+  "key": "CH2_Spawn_Goblin_1",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -5.31,
+  "z": 14.16
+ },
+ {
+  "key": "CH2_Spawn_Goblin_1",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -1.77,
+  "z": 13.34
+ },
+ {
+  "key": "CH2_Spawn_Goblin_2",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -13.38,
+  "z": 23.1
+ },
+ {
+  "key": "CH2_Spawn_Goblin_2",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -6.26,
+  "z": 14.77
+ },
+ {
+  "key": "CH2_Spawn_Goblin_2",
+  "chapter": 2,
+  "enemy_data_id": 2002,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": -0.91,
+  "z": 24.59
+ },
+ {
+  "key": "CH2_Spawn_Goblin_Elite",
+  "chapter": 2,
+  "enemy_data_id": 2102,
+  "is_patrol": false,
+  "respawn_cool_time": 1200.0,
+  "retreat_range": 5.0,
+  "x": -2.47,
+  "z": 21.57
+ },
+ {
+  "key": "CH2_Spawn_Goblin_Gold",
+  "chapter": 2,
+  "enemy_data_id": 2021,
+  "is_patrol": true,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": -9.2,
+  "z": -15.74
+ },
+ {
+  "key": "CH2_Spawn_Goblin_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2012,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": -5.21,
+  "z": 6.35
+ },
+ {
+  "key": "CH2_Spawn_Goblin_Unique_2",
+  "chapter": 2,
+  "enemy_data_id": 2012,
+  "is_patrol": true,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": -14.52,
+  "z": 16.05
+ },
+ {
+  "key": "CH2_Spawn_Golem_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2011,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": -8.19,
+  "z": 28.66
+ },
+ {
+  "key": "CH2_Spawn_Golem_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2011,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 4.48,
+  "z": 1.19
+ },
+ {
+  "key": "CH2_Spawn_Golem_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2011,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": -19.38,
+  "z": 3.13
+ },
+ {
+  "key": "CH2_Spawn_Mimic_Elite",
+  "chapter": 2,
+  "enemy_data_id": 2101,
+  "is_patrol": false,
+  "respawn_cool_time": 840.0,
+  "retreat_range": 5.0,
+  "x": -13.14,
+  "z": 1.38
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 16.44,
+  "z": 11.68
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 20.15,
+  "z": 6.83
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 14.42,
+  "z": 4.89
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 25.09,
+  "z": 9.01
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 18.81,
+  "z": -0.55
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 19.73,
+  "z": -8.2
+ },
+ {
+  "key": "CH2_Spawn_Spider_1",
+  "chapter": 2,
+  "enemy_data_id": 2003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 14.03,
+  "z": -12.37
+ },
+ {
+  "key": "CH2_Spawn_Spider_Boss",
+  "chapter": 2,
+  "enemy_data_id": 2103,
+  "is_patrol": false,
+  "respawn_cool_time": 1560.0,
+  "retreat_range": 5.0,
+  "x": 26.84,
+  "z": -1.4
+ },
+ {
+  "key": "CH2_Spawn_Spider_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2013,
+  "is_patrol": true,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 20.26,
+  "z": -11.06
+ },
+ {
+  "key": "CH2_Spawn_Spider_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2013,
+  "is_patrol": true,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 19.51,
+  "z": 8.78
+ },
+ {
+  "key": "CH2_Spawn_Spider_Unique",
+  "chapter": 2,
+  "enemy_data_id": 2013,
+  "is_patrol": true,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 19.06,
+  "z": -3.11
+ },
+ {
+  "key": "CH3_Spawn_Elephant",
+  "chapter": 3,
+  "enemy_data_id": 3021,
+  "is_patrol": true,
+  "respawn_cool_time": 600.0,
+  "retreat_range": 8.0,
+  "x": 39.8,
+  "z": -22.9
+ },
+ {
+  "key": "CH3_Spawn_Elephant",
+  "chapter": 3,
+  "enemy_data_id": 3021,
+  "is_patrol": true,
+  "respawn_cool_time": 600.0,
+  "retreat_range": 8.0,
+  "x": 6.63,
+  "z": -64.09
+ },
+ {
+  "key": "CH3_Spawn_Elephant",
+  "chapter": 3,
+  "enemy_data_id": 3021,
+  "is_patrol": true,
+  "respawn_cool_time": 600.0,
+  "retreat_range": 8.0,
+  "x": 9.55,
+  "z": -34.45
+ },
+ {
+  "key": "CH3_Spawn_Frog_1",
+  "chapter": 3,
+  "enemy_data_id": 3003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 36.3,
+  "z": -45.32
+ },
+ {
+  "key": "CH3_Spawn_Frog_1",
+  "chapter": 3,
+  "enemy_data_id": 3003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 41.02,
+  "z": -36.76
+ },
+ {
+  "key": "CH3_Spawn_Frog_1",
+  "chapter": 3,
+  "enemy_data_id": 3003,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 41.68,
+  "z": -52.82
+ },
+ {
+  "key": "CH3_Spawn_Frog_Elite",
+  "chapter": 3,
+  "enemy_data_id": 3102,
+  "is_patrol": false,
+  "respawn_cool_time": 2280.0,
+  "retreat_range": 5.0,
+  "x": 46.82,
+  "z": -46.08
+ },
+ {
+  "key": "CH3_Spawn_Frog_Unique",
+  "chapter": 3,
+  "enemy_data_id": 3012,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 36.3,
+  "z": -45.32
+ },
+ {
+  "key": "CH3_Spawn_Frog_Unique",
+  "chapter": 3,
+  "enemy_data_id": 3012,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 43.24,
+  "z": -37.76
+ },
+ {
+  "key": "CH3_Spawn_Frog_Unique",
+  "chapter": 3,
+  "enemy_data_id": 3012,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 42.85,
+  "z": -54.13
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 16.38,
+  "z": -54.4
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 40.11,
+  "z": -22.02
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 23.0,
+  "z": -63.1
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 16.58,
+  "z": -43.14
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 31.68,
+  "z": -54.84
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 27.91,
+  "z": -46.14
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 33.66,
+  "z": -34.77
+ },
+ {
+  "key": "CH3_Spawn_Ghost_1",
+  "chapter": 3,
+  "enemy_data_id": 3001,
+  "is_patrol": false,
+  "respawn_cool_time": 120.0,
+  "retreat_range": 8.0,
+  "x": 9.83,
+  "z": -65.61
+ },
+ {
+  "key": "CH3_Spawn_Ghost_Unique",
+  "chapter": 3,
+  "enemy_data_id": 3013,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 3.23,
+  "z": -59.46
+ },
+ {
+  "key": "CH3_Spawn_Ghost_Unique",
+  "chapter": 3,
+  "enemy_data_id": 3013,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 21.17,
+  "z": -60.69
+ },
+ {
+  "key": "CH3_Spawn_Ghost_Unique",
+  "chapter": 3,
+  "enemy_data_id": 3013,
+  "is_patrol": false,
+  "respawn_cool_time": 180.0,
+  "retreat_range": 8.0,
+  "x": 10.59,
+  "z": -51.68
+ },
+ {
+  "key": "CH3_Spawn_Golem_Boss",
+  "chapter": 3,
+  "enemy_data_id": 3103,
+  "is_patrol": false,
+  "respawn_cool_time": 2640.0,
+  "retreat_range": 5.0,
+  "x": 16.58,
+  "z": -70.57
+ },
+ {
+  "key": "CH3_Spawn_Mushroom_1",
+  "chapter": 3,
+  "enemy_data_id": 3002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 12.53,
+  "z": -34.22
+ },
+ {
+  "key": "CH3_Spawn_Mushroom_1",
+  "chapter": 3,
+  "enemy_data_id": 3002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 26.75,
+  "z": -28.15
+ },
+ {
+  "key": "CH3_Spawn_Mushroom_1",
+  "chapter": 3,
+  "enemy_data_id": 3002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 16.64,
+  "z": -32.05
+ },
+ {
+  "key": "CH3_Spawn_Mushroom_1",
+  "chapter": 3,
+  "enemy_data_id": 3002,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 32.15,
+  "z": -28.29
+ },
+ {
+  "key": "CH3_Spawn_Mushroom_2",
+  "chapter": 3,
+  "enemy_data_id": 3002,
+  "is_patrol": true,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 24.85,
+  "z": -28.24
+ },
+ {
+  "key": "CH3_Spawn_Skeleton_1",
+  "chapter": 3,
+  "enemy_data_id": 3004,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 21.11,
+  "z": -60.12
+ },
+ {
+  "key": "CH3_Spawn_Skeleton_1",
+  "chapter": 3,
+  "enemy_data_id": 3004,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 9.96,
+  "z": -50.86
+ },
+ {
+  "key": "CH3_Spawn_Skeleton_1",
+  "chapter": 3,
+  "enemy_data_id": 3004,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 9.24,
+  "z": -67.22
+ },
+ {
+  "key": "CH3_Spawn_Skeleton_1",
+  "chapter": 3,
+  "enemy_data_id": 3004,
+  "is_patrol": false,
+  "respawn_cool_time": 8.0,
+  "retreat_range": 8.0,
+  "x": 4.86,
+  "z": -57.21
+ },
+ {
+  "key": "CH3_Spawn_Wood_Elite",
+  "chapter": 3,
+  "enemy_data_id": 3101,
+  "is_patrol": false,
+  "respawn_cool_time": 1920.0,
+  "retreat_range": 5.0,
+  "x": 23.14,
+  "z": -35.13
+ }
+]

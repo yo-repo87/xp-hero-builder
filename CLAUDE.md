@@ -118,12 +118,15 @@ js/
   ui-equipment.js             Equipment tab: traits (2x5 slots) + 4 upgrade trees
   ui-farmable.js               Farmable Items tab: item catalog + drop sources
   ui-monsters.js               Monsters tab: full bestiary, chapter + boss/non-boss filters
-  ui-map.js                    shared "View Map" popup (real in-game minimap — see below),
-                                used by both Farmable Items and Monsters
+  ui-map.js                    MapUI (shared "View Map" popup, real in-game minimap — see
+                                below, used by Farmable Items + Monsters) and SpawnMapUI
+                                (real enemy spawn-position scatter view, Monsters only —
+                                see "Enemy spawn points" below; a deliberately separate
+                                coordinate system from MapUI, not the same map)
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
-data/*.json                 43 extracted, typed, English-labeled game-balance tables
+data/*.json                 44 extracted, typed, English-labeled game-balance tables
 assets/img/weapons/          84 icons, filename = WeaponData.id
 assets/img/heroes/           24 icons, filename = CostumeData.id
 assets/img/items/            56 icons, filename = StackableItemData.PackageIcon (104
@@ -358,6 +361,84 @@ grown substantially since v25.3.0:
   in the Dps formula/equipment system) is a genuinely new feature, not a
   quick data-table swap — flagged in Open Items below rather than
   guessed at or rushed into this session.
+
+## Enemy spawn points (2026-09-30, same session)
+
+User asked to "locate spawn points in game for specific monsters and add
+them to the map. Search hard" — a request for actual in-game physical
+spawn coordinates (distinct from the chapter/stage-level location the
+Monsters tab already showed). The same still-intact scratchpad from the
+map-art work above (`unity_work/asset_catalog.tsv`, 118,568 rows) had a
+direct, unambiguous lead: `ChapterData.enemy_spawn_group_path` (already
+extracted, never chased) points at real Unity resources literally named
+`Chapter1/EnemySpawnGroups`, `EnemySpawnGroups_CH2`, `EnemySpawnGroups_CH3`.
+
+**What was found and how**, using the exact same "load one bundled file
+with UnityPy, walk its GameObject→Transform hierarchy" technique that
+extracted the real Minimap stage positions:
+
+- The catalog had two files with a root `GameObject` literally named
+  `EnemySpawnGroups`. One (`a921333...`) is the FULL Chapter 1 world scene
+  (`World_Chapter1` root, 2048 distinct object names — real terrain,
+  buildings, `BossRaidHabitats_Chapter1`, portals, etc., loaded via
+  `Resources` per `ChapterData`). The other (`cc94616...`, 223 distinct
+  object names, an `AssetBundle`) is a lightweight standalone copy of just
+  the enemy-prefab + spawn-point subtree, no terrain. **Comparing the two
+  proved they contain byte-identical spawn position data** (124/124 rows
+  match exactly on key+container+x+z) — this is one shared spawn-layout
+  template, not two independently-designed levels.
+- A `TextAsset` named `EnemySpawnGroupData_158` (never previously
+  extracted — not one of the original 41+ tables) is the real data-side
+  half: one row per spawn-group key (e.g. `CH2_Spawn_Bat_1`) with
+  `EnemyDataId`, `IsPatrol`, `RespawnCoolTime`, `RetreatRange`. It has no
+  coordinates of its own — those only exist in the scene Transform data.
+- Walking the Transform hierarchy of the full-world file confirmed the
+  real structure: `World_Chapter1 → EnemySpawnGroups → Chapter1_N`
+  (container per real chapter, N=1..6, plus a `Chapter1_Fly` bucket for
+  flying-type enemies and a `PatrolPathGroup`) `→ AutoTargetGroup_<Monster>
+  → <actual spawn-point Transform, real local (x,y,z)>`. Every single
+  `EnemyDataId` in `EnemySpawnGroupData_158` was cross-checked against
+  `EnemyData.json`'s own `id` field and **all 28 distinct ids used by
+  chapters 1-3 resolve cleanly** (e.g. `1001`→`CH1_Mandragora`,
+  `2103`→`CH2_Spider_Boss`/"Scarlet", `99002`→`CH3_Bat`) — a real,
+  confirmed join, not a guess.
+- **Honest caveat, and the reason this isn't plotted on the existing
+  story-stage board map**: all 124 spawn points across `Chapter1_1..6`
+  share ONE continuous coordinate space (chapters occupy distinct,
+  non-overlapping x/z regions of it — e.g. Chapter 1's region is roughly
+  x:-43..-14, Chapter 2's is x:-49..27, Chapter 3's is x:3..47), matching
+  a real free-roam/exploration world (the same file also contains
+  `InvasionPortal`, `ChapterGate_1`, `BossRaidHabitats_Chapter1` —
+  apparatus for a "boss raid" open-world mode). This is a **different
+  in-game system from the discrete Stage 1-N board** `StageMapLayout.json`
+  models — a real per-stage `LocationEnterTrigger_Stage1..6` trigger-volume
+  hierarchy does exist in this same file, but it lives in a completely
+  separate branch of the scene graph from `EnemySpawnGroups` and bucketing
+  spawn points against it by nearest-checkpoint produced results that
+  don't line up (e.g. every Chapter 3 spawn nearest-matched Stage 1 — the
+  two systems just don't correspond). Forcing this data onto the
+  stage-tile board would have meant presenting a guess as fact, which this
+  project's norm explicitly rejects — so it's shipped as its own,
+  clearly-differently-labeled visualization instead (see below), with an
+  explicit in-UI caveat that the two coordinate systems aren't comparable.
+- Filtered to chapters 1-3 (this app's only modeled chapters) → **79 real
+  spawn-point rows** (Chapter 1: 11, Chapter 2: 36, Chapter 3: 32) across
+  28 distinct monsters, saved as `data/EnemySpawnPoints.json`
+  (`key`, `chapter`, `enemy_data_id`, `is_patrol`, `respawn_cool_time`,
+  `retreat_range`, `x`, `z`).
+
+**Shipped**: `data/EnemySpawnPoints.json` (new table); `data.js`'s
+`idx.spawnPointsByEnemyId`/`idx.spawnPointsByChapter`; `SpawnMapUI` (new,
+in `js/ui-map.js`, alongside but structurally separate from `MapUI`) — a
+scatter-dot canvas normalized to each chapter's own real spawn-point
+bounding box, highlighting the selected monster's own spawn point(s) in
+gold against every other spawn point in that chapter's free-roam world in
+grey; a "View Spawn Positions (N)" button in the Monsters tab detail modal
+(`js/ui-monsters.js`) for any enemy with a `data/EnemySpawnPoints.json`
+tie; `.spawn-map-canvas`/`.spawn-dot`/`.spawn-map-legend` CSS. Verified
+end-to-end with a headless Playwright pass (Monsters tab → Chapter 1 →
+Mandragora → View Spawn Positions → 4 own dots highlighted correctly among
+11 total Chapter-1 dots, no console errors from this feature).
 
 ## Git / deploy
 
@@ -732,6 +813,12 @@ grown substantially since v25.3.0:
     `HeroTombStageData` tables into more Farmable Items *sources* once it
     became clear their payouts run through a brand-new "Rune" item system
     this app has no data table or model for at all — see Open Items.
+18. User asked to "locate spawn points in game for specific monsters and
+    add them to the map. Search hard." Full writeup (methodology, the
+    shared-coordinate-space finding, why it's a separate visualization from
+    the story-stage board) is in "Enemy spawn points" above. Shipped
+    `data/EnemySpawnPoints.json` (79 real rows, chapters 1-3) and a new
+    `SpawnMapUI` scatter-dot popup wired into the Monsters tab.
 
 ## Open items / plausible next steps (not started)
 
@@ -759,6 +846,26 @@ grown substantially since v25.3.0:
   still aren't present anywhere in the base+split asset tree — a plain
   re-extraction won't fix this; see the Hero's Tomb icon bullet above for
   the likely reason (remote-only AssetBundle content).
+- `data/EnemySpawnPoints.json` only covers chapters 1-3 (matching every
+  other stage-aware feature in this app) even though the underlying
+  `EnemySpawnGroupData_158` table has rows up through Chapter 19, and the
+  shared coordinate-space file physically contains chapters 1-6's spawn
+  positions already. Extending to chapters 4-6 would just be a filter
+  change (the data's already extracted, see the scratchpad's
+  `unity_work/all_spawn_positions.json` if it's still around); chapters
+  7-19 would need locating whichever further AssetBundles hold their
+  copies of this same shared template.
+- The exact real-world meaning of the `EnemySpawnGroups` scene's
+  `Chapter1_N` container numbering vs. the separate
+  `LocationEnterTrigger_Stage1..6` trigger volumes (both found in the same
+  Chapter-1 world file) was never fully resolved — see "Enemy spawn
+  points" above. They don't correspond to each other by nearest-position
+  bucketing, so this app deliberately does NOT claim per-stage (only
+  per-chapter) precision for spawn points. If a future session figures out
+  what these two systems actually are relative to each other (most likely:
+  the free-roam/boss-raid open-world mode vs. the story-stage mode being
+  genuinely different systems with different level geometry), the spawn
+  scatter view could potentially gain real per-stage subdivision.
 - Expand Farmable Items coverage beyond the 4 currently-confirmed items —
   would need to explore shop/mission/quest/chapter-reward/boss-raid systems'
   `RewardGroupData` associations (the reward-group resolution mechanism
