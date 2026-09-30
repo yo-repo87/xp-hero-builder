@@ -621,6 +621,25 @@ type — see the confidence-table row above for the exact breakdown).
 Verified end-to-end with Playwright: Crimson Orb → all 3 real monster
 rows render → "Track on Map" opens the correct monster's own detail.
 
+**Follow-up, same session**: user asked to check this same mechanism
+against every other farmable item, not just Crimson Orb, and make sure
+both spawn points and patrol routes show for all of them. Nothing new to
+build — `idx.killDropsByItemId`/`sources.kill` above were already
+data-driven across the whole `EnemyData` table, not special-cased to
+Crimson Orb, so this was a verification pass rather than new code.
+Confirmed all 8 items this mechanism resolves (BlueStone, Gem, Red Orb,
+Pink Orb, Crimson Orb, Azure Orb, Soul Orb, Attribute Points — 100
+enemies total, up to 28 tied to a single item) render their full Monster
+Drops list correctly, sorted by chapter, with working "Track on Map"
+buttons. Spot-checked a case with a real patrol route (Red Orb → Goblin
+Warrior, `CH2_Goblin_Unique`) and confirmed the gold patrol loop draws
+correctly from this entry point too, not just from the Monsters tab
+directly. Honest caveat (pre-existing, not new): only 7-ish of these 100
+enemies fall in chapters 1-3, the only chapters with real spawn/patrol
+data extracted — the rest correctly show chapter-level info with no map
+overlay rather than a fabricated one, consistent with this app's norm
+everywhere else stage/spawn data is chapter-limited.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
