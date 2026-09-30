@@ -136,6 +136,9 @@ const Game = {
       this.db.MinimapRewardData.filter(r => r.reward_type === 'StackableItem'),
       r => r.reward_id
     );
+    // Same table, keyed by enemy instead — lets the Monsters tab show a
+    // boss's one confirmed exact stage (no enemy has more than one row here).
+    idx.minimapRewardByEnemyId = new Map(this.db.MinimapRewardData.map(r => [r.enemy_id, r]));
 
     idx.traitOptionById = new Map(this.db.TraitOptionData.map(t => [t.id, t]));
     idx.traitOptionsByGroupRarity = groupBy(this.db.TraitOptionData, t => `${t.option_group_id}:${t.option_rarity}`);
@@ -174,6 +177,18 @@ const Game = {
   itemIcon(item) { return `assets/img/items/${item.PackageIcon}.png`; },
   enemyIcon(enemy) { return `assets/img/enemies/${enemy.IconSprite}.png`; },
   chestIcon(chest) { return `assets/img/chests/${chest.PrefabName}.png`; },
+
+  // No per-enemy chapter field exists in EnemyData — every enemy's own
+  // internal `key` encodes it instead (e.g. "CH3_GreenOrc" -> chapter 3).
+  // Confirmed consistent: every enemy sharing a "CHn_" prefix also shares
+  // one exact ThemeId, and for chapters 1-3 (the only ones with extracted
+  // StageData) it lines up with the real chapter numbers used everywhere
+  // else in the app. Returns null for the handful of enemies with no "CHn_"
+  // prefix (raid/special content, e.g. "World3_Dron_1").
+  enemyChapter(enemy) {
+    const m = /^CH(\d+)_/.exec(enemy.key || '');
+    return m ? Number(m[1]) : null;
+  },
 
   rarityColor(tier) { return RARITY_COLORS[tier] || RARITY_COLORS[1]; },
 

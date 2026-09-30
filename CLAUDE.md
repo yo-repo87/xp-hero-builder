@@ -117,6 +117,7 @@ js/
   ui-heroes.js                Heroes tab: roster + picker + enhance modal
   ui-equipment.js             Equipment tab: traits (2x5 slots) + 4 upgrade trees
   ui-farmable.js               Farmable Items tab: item catalog + drop sources + stage map
+  ui-monsters.js               Monsters tab: full bestiary, chapter + boss/non-boss filters
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
@@ -124,7 +125,11 @@ data/*.json                 42 extracted, typed, English-labeled game-balance ta
 assets/img/weapons/          84 icons, filename = WeaponData.id
 assets/img/heroes/           24 icons, filename = CostumeData.id
 assets/img/items/            47 icons, filename = StackableItemData.PackageIcon
-assets/img/enemies/          154 portraits, filename = EnemyData.IconSprite
+assets/img/enemies/          154 portraits, filename = EnemyData.IconSprite (208 EnemyData
+                              rows share these — reused across chapter re-skins/raid
+                              difficulty tiers; 15 rows, mostly Chapter-1 raid bosses,
+                              reference an IconSprite that was never captured — see
+                              Monsters tab entry in the chronological log)
 assets/img/chests/           3 icons, filename = ChestData.PrefabName
 docs/game_logic_deep_dive.md  decompilation writeup (formulas, confidence levels)
 docs/decompiled/*.asm.txt     raw annotated AArch64 disassembly
@@ -153,6 +158,7 @@ short version:
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
 | Farmable Items sources | Only 4/56 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss raids were **not** explored as reward sources. |
+| Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
 | Combat damage formula (not used by app) | Mostly confirmed structurally; two basic-attack-only normalizer values in `CalculateDamageInternal` were left unidentified rather than guessed |
 
 **General rule this project follows**: if a table→formula mapping can't be
@@ -562,9 +568,39 @@ shared mutable state — like this n8n account — to be uncontested.
     `escapeHtml`'d and visually tagged "USER-REPORTED" / dashed-blue-border,
     kept structurally separate from the confirmed ChestData/
     MinimapRewardData sources so the two are never confused.
+16. User asked for a new tab listing every in-game monster with real
+    artwork, filterable by chapter/stage and boss/non-boss. `EnemyData` (208
+    rows) has no explicit chapter column and no boss flag, so both had to be
+    derived and cross-checked rather than assumed — see the "Monsters tab
+    chapter grouping" confidence-table row above for exactly how (chapter
+    from each enemy's own `key` prefix, confirmed via matching `ThemeId`
+    per chapter; boss = has a real `NickName_en` title, confirmed more
+    complete than `EnemyType` alone). Exact per-stage filtering only exists
+    for the 20 enemies with a `MinimapRewardData` tie (the same guaranteed-
+    boss data the Farmable Items tab already uses) — regular monsters roam
+    a whole chapter in this game's own data, so the UI doesn't invent
+    stage-level precision it doesn't have; those 20 show their confirmed
+    exact stage on top of chapter. Shipped `js/ui-monsters.js` (new),
+    `Game.enemyChapter()` + `idx.minimapRewardByEnemyId` (`data.js`), a grid
+    with chapter-chip + boss/non-boss filters, and a detail modal with real
+    stats/story text/location. Also discovered in passing (not fixed, just
+    disclosed): 15 of 208 `EnemyData` rows — mostly the Chapter-1 raid-boss
+    set (Anubis, Cerberus, Mummy, etc.) — reference an `IconSprite` that was
+    never captured in the original asset-extraction pass; they fall back to
+    this app's standard dimmed-broken-image handling (`onImgError`, used
+    everywhere else for missing art) rather than being hidden or faked.
+    Re-extracting them would need a fresh APK (the scratchpad with the raw
+    Unity asset tree was already gone by this session — see the ephemeral-
+    scratchpad warning near the top of this file, which is exactly the
+    situation it warned about).
 
 ## Open items / plausible next steps (not started)
 
+- 15 of 208 `EnemyData` rows (mostly Chapter-1 raid bosses) reference an
+  `IconSprite` with no matching file under `assets/img/enemies/` — needs a
+  fresh APK + re-extraction pass to fill in, not fixable from what's already
+  in this repo. See Monsters tab chronological log entry for the full list
+  context.
 - Expand Farmable Items coverage beyond the 4 currently-confirmed items —
   would need to explore shop/mission/quest/chapter-reward/boss-raid systems'
   `RewardGroupData` associations (the reward-group resolution mechanism
