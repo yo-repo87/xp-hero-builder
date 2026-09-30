@@ -1,0 +1,21 @@
+{
+  "name": "xpherobuilder-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Auth + persistent-save backend for XP Hero Builder. The static site (GitHub Pages) works fully without this service; this only powers optional account sign-in and cross-device save sync.",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.12.0"
+  }
+}

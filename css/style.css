@@ -524,12 +524,19 @@ footer.app-footer {
 
 .form-field { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 0.76rem; font-weight: 700; color: var(--ink-muted); font-family: 'Baloo 2', sans-serif; }
-.form-field select, .form-field input[type=text], .form-field textarea {
+.form-field select, .form-field input[type=text], .form-field input[type=email], .form-field input[type=password], .form-field textarea {
   background: var(--parchment-light); border: 1px solid var(--line-soft); border-radius: 8px;
   padding: 8px 10px; font-size: 0.84rem; color: var(--ink); font-family: 'Baloo 2', sans-serif;
 }
 .form-field textarea { resize: vertical; min-height: 60px; }
 .form-field select[size] { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+
+.oauth-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+.oauth-btn { width: 100%; }
+.auth-divider { text-align: center; font-size: 0.76rem; color: var(--ink-faint); margin-bottom: 14px; position: relative; }
+.auth-divider::before, .auth-divider::after { content: ''; position: absolute; top: 50%; width: 40%; height: 1px; background: var(--line-soft); }
+.auth-divider::before { left: 0; }
+.auth-divider::after { right: 0; }
 
 /* Real in-game minimap — see js/ui-map.js. .chapter-map-canvas is a fixed
    720:600 aspect box (the real Minimap prefab's own canvas size); each

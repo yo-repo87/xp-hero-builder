@@ -21,6 +21,16 @@
 
   State.init();
   ImportExportUI.init();
+  AccountUI.init();
+  await Auth.init(); // silent session resume — no-op if not signed in or backend unreachable
+  AccountUI.renderHeader();
+
+  const authParam = new URLSearchParams(location.search).get('auth');
+  if (authParam) {
+    if (authParam === 'success' && Auth.user) UI.toast(`Signed in as ${Auth.user.displayName}`);
+    else if (authParam === 'error') UI.toast("Sign-in didn't go through — try again");
+    history.replaceState({}, '', location.pathname);
+  }
 
   function renderAll() {
     WeaponsUI.render();

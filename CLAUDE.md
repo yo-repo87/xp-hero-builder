@@ -18,13 +18,22 @@ upgrades) so they can plan builds and get advice.
 - **Repo:** https://github.com/yo-repo87/xp-hero-builder (**public** — see
   Risk Accepted below)
 - **Local path:** `/home/pi/Claude/HeroBuilder`
-- Static HTML/CSS/vanilla-JS, no build step. State lives in `localStorage` +
-  JSON import/export — **with one deliberate exception**: crowd-sourced
-  Farmable Items reports (added 2026-09-29) go through a small self-hosted
-  n8n webhook + Data Table, so they're shared across every visitor rather
-  than trapped in one person's browser. See "Community Reports backend"
-  below for the full writeup. Everything else in the app remains
-  fully static/serverless.
+- Static HTML/CSS/vanilla-JS, no build step, still deploys via GitHub
+  Pages — **but as of 2026-09-30 this is no longer a purely serverless
+  app**. Two deliberate backend exceptions exist, both fully optional
+  (the site works completely without either):
+  1. Crowd-sourced Farmable Items reports (added 2026-09-29) go through a
+     small self-hosted n8n webhook + Data Table, shared across every
+     visitor. See "Community Reports backend" below.
+  2. Optional user accounts + cross-device save persistence (added
+     2026-09-30) — a real dedicated Node/Express backend
+     (`server/`) talking to a Postgres database on the user's own
+     `shared_postgres` container, with email/password login plus
+     Google/Facebook/Discord OAuth. See "Accounts backend" below — this
+     is a genuinely different scale of addition from #1 (a whole
+     standalone service + database, not a couple of webhooks) and is
+     documented there in full.
+  Everything else in the app remains fully static/client-only.
 
 ## Risk accepted — read before touching anything art-related
 
@@ -184,7 +193,7 @@ input with an explanation, rather than presenting a guess as fact. If you
 extend this app, keep that norm — the user has corrected wrong assumptions
 before (Special Upgrade caps) and values honesty over completeness.
 
-## Community Reports backend (the one non-static piece)
+## Community Reports backend (backend exception #1 of 2 — see also "Accounts backend" below)
 
 Added 2026-09-29 after the user explicitly asked for it (see chronological
 log below) and chose, via `AskUserQuestion`, to make Farmable Items reports
@@ -252,6 +261,110 @@ the same design, so they were kept and verified rather than thrown away.
 If you ever fork yourself mid-task on this project again: confirm a fork
 actually stopped (`ListAgents`, not just a queued message) before trusting
 shared mutable state — like this n8n account — to be uncontested.
+
+## Accounts backend (backend exception #2 of 2, 2026-09-30)
+
+User asked for optional user accounts with cross-device persistence — sign
+up/in with email+password plus Google/Facebook/Discord OAuth — while the
+site stays **fully usable with no account at all** (localStorage remains
+the default, unconditionally). Two architecture questions were asked via
+`AskUserQuestion` before writing anything, since both were real,
+consequential decisions:
+1. **Backend shape**: n8n-workflow-based (matching Community Reports'
+   pattern) vs. a real dedicated Node/Express service. User picked the
+   dedicated service, but qualified it: "check for existing postgres
+   instances that would be used for the data" rather than assuming a new
+   one — a real ask that changed the plan (see below).
+2. **Save data shape**: one JSON blob per save (reusing the app's existing
+   Export/Import format exactly) vs. fully normalized per-entity tables.
+   User picked the JSON-blob approach — simplest, and it's the same format
+   already battle-tested by local Export/Import, so `State.exportJSON()`/
+   `State.importJSON()` needed zero changes to be reusable for cloud sync.
+
+**Postgres: found and reused an existing shared instance, didn't create a
+new one.** `docker ps` on this box turned up two Postgres containers:
+`heavenly_eats_postgres` (dedicated to that one app stack) and
+`shared_postgres` (`pgvector/pgvector:pg16`, on its own
+`shared-postgres-net` Docker network). Checked `shared_postgres` for an
+existing convention before assuming anything: it already hosts one
+dedicated database *and* one same-named owner role per app —
+`dollartree`/`financemgr`/`inventory`/`mtg`/`yourspace`/`yugioh`, each
+`owner = database name`. Followed that exact convention rather than
+inventing a new one: created role `xpherobuilder` (random generated
+password) and database `xpherobuilder` owned by it, then applied
+`server/db/schema.sql` (4 tables: `users`, `oauth_identities`,
+`refresh_tokens`, `saves` — see that file for the exact DDL, and
+`server/README.md` for the auth model writeup: short-lived stateless JWT
+access tokens, rotating opaque refresh tokens stored **hashed** in
+Postgres for real revocability, OAuth via a hand-rolled generic
+authorization-code-flow helper parameterized per provider rather than a
+dependency like Passport — only 3 providers, each just a URL set + a
+profile-field mapping, not worth the dependency weight).
+
+**Reverse proxy: found and matched the existing convention here too,
+rather than guessing.** Needed a real HTTPS hostname for the backend
+(OAuth providers require it for redirect URIs, and the refresh-token
+cookie needs `Secure` + a real origin to be trustworthy cross-site).
+`nginx-proxy-manager-sqlite` runs this box's reverse proxy — read its
+`proxy_host` table directly (`docker cp` its sqlite db out, inspect,
+delete the copy) rather than guessing a Forward Hostname format, and
+found every single existing entry — including n8n's own
+(`n8n.arc-it.uk` → `192.168.50.211:5680`) — uses the **host's LAN IP +
+published Docker port**, never a container name (the proxy container
+isn't even on `shared-postgres-net`, so container-name resolution
+wouldn't have worked anyway). Matched it exactly: the plan is
+`xpherobuilder-api.arc-it.uk` → `192.168.50.211:3141`. **This one step is
+still a manual action for the user** — no NPM API token was available in
+this session to create the proxy host programmatically, and direct SQLite
+writes were deliberately avoided (NPM's own backend process handles SSL
+cert issuance and nginx config regen as a side effect of going through its
+real API/UI, which a raw INSERT would skip, potentially leaving the entry
+half-configured) — see Open Items.
+
+**Container**: built `server/Dockerfile` (plain `node:20-alpine`), ran it
+as `xpherobuilder_backend` on `shared-postgres-net` (so it reaches
+`shared_postgres` by Docker DNS hostname, confirmed working — this is
+exactly why it's on that network and not just publishing a port), also
+publishing host port `3141` (matching the established `_backend` →
+`x1` port-suffix convention this box already uses: yourspace 3101,
+yugioh 3111, mtg 3121). Confirmed both container name and port with the
+user via `AskUserQuestion` before creating anything, since a persistent
+publicly-exposed service is a step up from the fully-reversible database
+creation that preceded it.
+
+**OAuth apps (Google/Facebook/Discord): this part genuinely needs the
+user, not something that can be done from this session.** Each provider
+requires signing up for a developer account and registering an OAuth app
+through that provider's own console — Google Cloud Console, Facebook
+Developers, Discord Developer Portal — which produces a Client ID +
+Client Secret only the account owner can generate. `server/.env.example`
+documents the exact redirect URI each provider needs
+(`https://xpherobuilder-api.arc-it.uk/auth/<provider>/callback`) and
+which two env vars to fill in per provider. **The system is built to
+degrade gracefully around this**: `GET /auth/providers` only reports a
+provider as available once both its env vars are actually set, and the
+frontend's sign-in modal only renders an OAuth button for providers that
+come back configured — so email/password sign-in is fully live today,
+and each OAuth provider just switches on the moment its two secrets are
+added to `server/.env` and the container is restarted, no code changes
+needed.
+
+**Frontend**: `js/auth.js` (session client — access token kept in memory
+only, never localStorage, since it's a 15-minute JWT and losing it on tab
+close is fine; refresh token is an httpOnly cross-site cookie the browser
+manages, silently resumed on page load via `POST /auth/refresh`) and
+`js/ui-account.js` (sign-in/sign-up modal, "My Account" modal with a
+manual — not auto-syncing — Save/Load/Delete cloud-saves list, deliberately
+mirroring the existing Export/Import UX so nothing can silently overwrite
+a local build). Wired into `index.html`/`app.js` alongside the existing
+tab/state bootstrap. **Verified fully end-to-end with Playwright against
+the real running container and real `shared_postgres` database**
+(register → cloud save created → full page reload → session silently
+resumed from the httpOnly cookie with no user action, confirmed by the
+header still showing the signed-in name after reload) — not just curl
+tests against the API in isolation. Test data cleaned up from the real
+database afterward (`DELETE FROM users WHERE email LIKE
+'playwright-test%'`, cascades to their saves via the FK).
 
 ## Real map art + a second-APK data refresh (2026-09-30)
 
@@ -1091,9 +1204,69 @@ everywhere else stage/spawn data is chapter-limited.
     oversized embedded map pushing its own controls off the bottom of the
     modal) — full root-cause writeup and fix in "Enemy spawn points" →
     "Bug fix... maps run off screen" above.
+21. User asked to remove all manual Community Reports. Checked the live
+    `xp_hero_farmable_reports` Data Table first rather than assuming
+    (`mcp__n8n__n8n_manage_datatable`) — found exactly 6 rows, all "Red
+    Orb", all submitted within a 6-minute window with no reporter name
+    (clearly test data from when that feature was verified, not real
+    player activity). Dry-ran the delete filter first, confirmed it
+    matched only those 6 rows, then deleted and verified via the live
+    public list endpoint that it now returns `[]`. The "Report a Find"
+    feature itself was left fully intact — only the existing data was
+    cleared, per what was actually asked.
+22. User asked for optional user accounts (email/password + Google/
+    Facebook/Discord OAuth) with persistent cross-device build data,
+    backed by an existing Postgres instance on the user's network, while
+    keeping the site fully usable with no account. Full writeup — the two
+    `AskUserQuestion` architecture decisions, finding and reusing the
+    existing `shared_postgres` container's established one-db-one-role-
+    per-app convention instead of creating a new instance, finding and
+    matching nginx-proxy-manager's existing host-IP-plus-port proxy
+    convention by reading its sqlite db directly, the new dedicated
+    `server/` Node/Express backend, and the Playwright-verified frontend
+    integration — is in "Accounts backend" above. Two things remain
+    genuinely outside this session's control and are tracked in Open
+    Items: the user manually adding the nginx-proxy-manager entry (2-line
+    curl/UI step), and the user registering OAuth apps with Google/
+    Facebook/Discord to get real Client ID/Secret pairs (each provider's
+    login button switches on automatically the moment its two secrets
+    land in `server/.env` — no code changes needed to activate one).
 
 ## Open items / plausible next steps (not started)
 
+- **Accounts backend needs two manual steps from the user before it's live
+  publicly** (see "Accounts backend" above for full context):
+  1. Add an nginx-proxy-manager proxy host: domain
+     `xpherobuilder-api.arc-it.uk`, scheme `http`, forward host/IP
+     `192.168.50.211`, forward port `3141` (exactly matching every other
+     entry already in that instance, e.g. n8n's own
+     `192.168.50.211:5680`) — needs the NPM web UI or a real API token
+     neither of which this session had.
+  2. Register an OAuth app with each provider you want live (Google Cloud
+     Console, Facebook Developers, Discord Developer Portal), each with
+     redirect URI `https://xpherobuilder-api.arc-it.uk/auth/<provider>/
+     callback`, and put the resulting Client ID + Client Secret into
+     `server/.env` (see `.env.example` for the exact var names) — then
+     restart the `xpherobuilder_backend` container. Each provider is
+     fully independent and optional: `GET /auth/providers` and the
+     frontend's sign-in modal both only light up a provider once its two
+     vars are actually set, so doing these one at a time (or never) is
+     completely fine — email/password sign-in already works today with
+     zero further setup.
+  Until #1 is done, `Auth.API_BASE` in `js/auth.js` points at a domain
+  that doesn't resolve yet — the app degrades exactly as designed (every
+  fetch fails silently, "Sign In" button does nothing harmful, rest of
+  the app is completely unaffected) rather than breaking anything.
+- No migration framework is wired up for the `xpherobuilder` Postgres
+  database yet (`server/db/schema.sql` is a point-in-time record of what
+  was run by hand, not a re-runnable migration) — fine at this scale, but
+  worth revisiting if the schema needs to evolve more than once or twice
+  more.
+- The accounts system currently syncs manually (Save/Load buttons, no
+  auto-sync, no conflict resolution) — deliberately, to avoid a save
+  silently clobbering local data. A future "auto-sync on sign-in" feature
+  would need real conflict-resolution UX (which build wins when local and
+  cloud have both changed) that wasn't designed or asked for here.
 - A new **"Rune"** item/reward type was discovered in the v26.2.0 data
   (`BossRaidStageData`, `ChallengeTowerStageData`, and `HeroTombStageData`
   all pay out mostly Runes via reward-group rows whose `RewardType`/
