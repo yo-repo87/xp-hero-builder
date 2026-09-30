@@ -4,3 +4,4 @@ node_modules/
 launch.sh
 .pgpass_xpherobuilder
 server/.env
+.npm_admin_password

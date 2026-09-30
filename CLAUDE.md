@@ -347,7 +347,15 @@ frontend's sign-in modal only renders an OAuth button for providers that
 come back configured — so email/password sign-in is fully live today,
 and each OAuth provider just switches on the moment its two secrets are
 added to `server/.env` and the container is restarted, no code changes
-needed.
+needed. **Google is now live** (set up 2026-09-30, same day as the rest of
+this backend) — user created the OAuth app in Google Cloud Console
+themselves and handed over the Client ID/Secret; verified end-to-end with
+Playwright, including clicking the real "Continue with Google" button
+through to Google's actual "Sign in to continue to arc-it.uk" consent
+screen with no `redirect_uri_mismatch`/`invalid_client` error, confirming
+the whole chain (button → `GET /auth/google` → Google) is correctly
+wired. Facebook and Discord remain unconfigured (optional, same
+degrade-gracefully behavior — their buttons just don't render yet).
 
 **Frontend**: `js/auth.js` (session client — access token kept in memory
 only, never localStorage, since it's a 15-minute JWT and losing it on tab
@@ -365,6 +373,75 @@ header still showing the signed-in name after reload) — not just curl
 tests against the API in isolation. Test data cleaned up from the real
 database afterward (`DELETE FROM users WHERE email LIKE
 'playwright-test%'`, cascades to their saves via the FK).
+
+### NPM/Cloudflare setup (same session, follow-up)
+
+Getting `xpherobuilder-api.arc-it.uk` actually live took three separate,
+genuinely distinct diagnoses — worth recording precisely since each one
+is a real, non-obvious gotcha that could bite again:
+
+1. **No NPM credentials in this session.** Found the admin user
+   (`matthew.gibson041387@protonmail.com`) via NPM's own sqlite db but had
+   no password. User asked for a reset rather than doing it manually —
+   backed up `/data/database.sqlite` first, generated a new bcrypt hash
+   using NPM's *own* bundled `bcrypt` module (`docker exec ... node -e
+   "require('bcrypt').hash(...)"`, guarantees format compatibility rather
+   than risking a mismatched hash algorithm/cost), wrote it into the
+   `auth` table (`type='password'`), restarted the container, confirmed
+   login via the real `/api/tokens` endpoint before doing anything else.
+2. **First cert request 522'd.** Root cause wasn't port-80 forwarding —
+   this box uses a **Cloudflare Tunnel** (`cloudflared`, token-based, no
+   local ingress config file), and the new subdomain simply wasn't in the
+   tunnel's Public Hostname list yet. User added
+   `xpherobuilder-api.arc-it.uk → http://192.168.50.211:80` (confirmed
+   first that every *other* working `arc-it.uk` subdomain uses that exact
+   same target — they all share one tunnel entry point, NPM disambiguates
+   by `Host` header afterward, so there's no "port already taken"
+   concern despite it looking like one). Cert then issued fine via
+   NPM's `/api/nginx/certificates` (had to drop `letsencrypt_email`/
+   `letsencrypt_agree` from the request body — NPM 2.15.1's schema
+   validator rejects them for this endpoint even though the *combined*
+   proxy-host-creation endpoint accepts them; only `{"dns_challenge":
+   false}` is valid here — found by reading NPM's own bundled JSON
+   schema files in the container rather than guessing further).
+3. **Cert issued fine, but the public URL 301-redirected to itself.**
+   Traced via nginx's own `access_log` (which logs `$scheme` per
+   request): the tunnel relays Cloudflare's already-terminated-HTTPS
+   request to the origin as **plain HTTP**, and NPM's `ssl_forced` option
+   was redirecting that internal hop back to HTTPS — a redirect
+   `cloudflared` just relays verbatim rather than following, so the
+   client saw an infinite-looking loop. Fix: turned `ssl_forced` off for
+   this one host (Cloudflare's edge already handles public-facing HTTPS;
+   the tunnel hop doesn't need to redundantly enforce it too). Confirmed
+   this by literally reading `/data/nginx/conf.d/include/force-ssl.conf`
+   inside the container rather than guessing at nginx's redirect
+   condition.
+
+**Separately, fixing this surfaced a real pre-existing bug affecting two
+unrelated certs.** `*.selfhosted.vip` (used by 19 other live proxy hosts
+— n8n, jellyfin, plex, and more) and `selfhosted.vip` were both failing
+their scheduled Let's Encrypt DNS-challenge renewals with "Invalid access
+token." User supplied a fresh Cloudflare API token, which verified as
+fully valid and correctly scoped (checked directly against Cloudflare's
+own API, and by replicating certbot's exact
+`cf.zones.list(name=..., per_page=1)` call inside the container) — yet
+renewal kept failing with the same error even with the new token
+confirmed live. Root cause, found by reading NPM's own
+`/app/internal/certificate.js`: **NPM's "renew" action never rewrites
+the on-disk DNS-credentials file from the current database value — only
+a fresh certificate *creation* does.** `renewLetsEncryptSslWithDnsChallenge`
+just runs `certbot renew`, which reuses a credentials file NPM deletes
+right after every run; there is no code path that regenerates it before
+a renewal. So updating the stored token was necessary but not
+sufficient — the real fix was deleting and recreating both certificates
+(which does go through the credential-writing code path), then
+reattaching the new certificate IDs to all 20 affected proxy hosts via
+the API. Confirmed via a direct DB query that zero hosts still
+referenced the deleted cert IDs afterward, plus spot-checked 5 live
+public URLs across both domains. **If a DNS-challenge cert's Cloudflare
+credentials in this NPM instance ever need updating again: delete +
+recreate the certificate, don't just hit "renew" — renewing will accept
+the update in the database and then silently keep failing anyway.**
 
 ## Real map art + a second-APK data refresh (2026-09-30)
 
@@ -1231,32 +1308,35 @@ everywhere else stage/spawn data is chapter-limited.
     Facebook/Discord to get real Client ID/Secret pairs (each provider's
     login button switches on automatically the moment its two secrets
     land in `server/.env` — no code changes needed to activate one).
+23. User asked to actually set up the nginx-proxy-manager entry — full
+    troubleshooting writeup (NPM password reset, the Cloudflare Tunnel
+    Public Hostname finding, the force-SSL redirect loop, and the
+    unrelated-but-discovered DNS-credential-renewal bug that had been
+    silently breaking 2 other certs covering 20 total hosts) is in
+    "Accounts backend" → "NPM/Cloudflare setup" above. Same-day follow-up:
+    user provided Google OAuth credentials, wired into `server/.env`,
+    verified end-to-end including clicking through to Google's real
+    consent screen with no redirect/client-id errors. Accounts backend is
+    now fully live in production.
 
 ## Open items / plausible next steps (not started)
 
-- **Accounts backend needs two manual steps from the user before it's live
-  publicly** (see "Accounts backend" above for full context):
-  1. Add an nginx-proxy-manager proxy host: domain
-     `xpherobuilder-api.arc-it.uk`, scheme `http`, forward host/IP
-     `192.168.50.211`, forward port `3141` (exactly matching every other
-     entry already in that instance, e.g. n8n's own
-     `192.168.50.211:5680`) — needs the NPM web UI or a real API token
-     neither of which this session had.
-  2. Register an OAuth app with each provider you want live (Google Cloud
-     Console, Facebook Developers, Discord Developer Portal), each with
-     redirect URI `https://xpherobuilder-api.arc-it.uk/auth/<provider>/
-     callback`, and put the resulting Client ID + Client Secret into
-     `server/.env` (see `.env.example` for the exact var names) — then
-     restart the `xpherobuilder_backend` container. Each provider is
-     fully independent and optional: `GET /auth/providers` and the
-     frontend's sign-in modal both only light up a provider once its two
-     vars are actually set, so doing these one at a time (or never) is
-     completely fine — email/password sign-in already works today with
-     zero further setup.
-  Until #1 is done, `Auth.API_BASE` in `js/auth.js` points at a domain
-  that doesn't resolve yet — the app degrades exactly as designed (every
-  fetch fails silently, "Sign In" button does nothing harmful, rest of
-  the app is completely unaffected) rather than breaking anything.
+- **Accounts backend is now fully live publicly** (as of 2026-09-30,
+  same day as everything else — see "Accounts backend" above). Both
+  manual steps that were blocking this are done: the nginx-proxy-manager
+  entry for `xpherobuilder-api.arc-it.uk` exists and serves real HTTPS,
+  and Google OAuth is registered and verified working end-to-end. Full
+  writeup of a genuinely tricky diagnosis along the way — a Cloudflare
+  522 that turned out to be about the *Tunnel's* Public Hostname routing
+  (not port-forwarding), then a redirect loop caused by NPM's origin
+  force-SSL fighting the tunnel's plaintext-to-origin hop, then a
+  completely separate discovery that NPM's own "renew" action never
+  rewrites DNS-challenge credentials from the database (only fresh
+  creation does) which was silently breaking *two other, unrelated*
+  certs (`*.selfhosted.vip` covering 19 live hosts, and `selfhosted.vip`)
+  — is in "Accounts backend" → "NPM/Cloudflare setup" above. Remaining
+  optional: Facebook and Discord OAuth, same one-provider-at-a-time
+  process, same graceful degradation if left undone.
 - No migration framework is wired up for the `xpherobuilder` Postgres
   database yet (`server/db/schema.sql` is a point-in-time record of what
   was run by hand, not a re-runnable migration) — fine at this scale, but
