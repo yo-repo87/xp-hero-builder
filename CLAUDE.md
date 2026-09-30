@@ -172,7 +172,7 @@ short version:
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
-| Farmable Items sources | Only 4/104 catalog items (Gold, BlueStone, EXP, Wood) have a confirmed source. This is real, not a bug — only chest drop tables (`ChestData`→`RewardGroupData`) and guaranteed boss kills (`MinimapRewardData`) resolve without guessing. Shop, missions, quests, chapter-clear rewards, and boss/challenge-tower/hero's-tomb raids were **not** explored as reward sources (the latter three pay out via a "Rune" system this app doesn't model yet — see Open Items). |
+| Farmable Items sources | **21/103** catalog items have a confirmed source as of 2026-09-30 (was 4/103 before that day's "Monster kill drops" discovery — see below). Three source types resolve without guessing: direct per-kill drops (`EnemyData.DropItemType`/`DropItemType2`, 8 items, 100 enemies), chest drop tables (`ChestData`→`RewardGroupData`, 13 items), and guaranteed boss kills (`MinimapRewardData`, 4 items — 3 items appear in more than one source type, hence 21 not 25). Shop, missions, quests, chapter-clear rewards, and boss/challenge-tower/hero's-tomb raids were **not** explored as reward sources (the latter three pay out via a "Rune" system this app doesn't model yet — see Open Items). |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
 | Item/enemy catalog (`StackableItemData`/`EnemyData`) | Refreshed 2026-09-30 from a newer APK (v26.2.0 vs. the original v25.3.0) — 56→104 items, 208→245 enemies, verified backward-compatible (all old ids/names unchanged) before merging. The 37 new enemies (a new "Hero's Tomb" mode) have no face art anywhere in the extracted asset tree — likely a remote-only AssetBundle, not a gap in the extraction itself. |
 | Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
@@ -561,6 +561,66 @@ Cleaned up now-dead code as part of this: `openMap()`'s unused
 pin now goes through the new `MonstersUI.openDetail` path instead) and
 its corresponding CSS were removed rather than left stale.
 
+## Monster kill drops — a third Farmable Items source type (2026-09-30)
+
+User asked where to find Crimson Orb, this app said "no confirmed source"
+(honest, per the norm above — `computeFarmSources()` only ever checked
+`MinimapRewardData` and `ChestData`/`RewardGroupData`), and the user
+pushed back with a concrete real-world correction: "it should be a
+monster drop, if i'm not mistaken the corrupted dryad should drop the
+crimson orb." That was the lead — checked `EnemyData`'s own per-enemy
+`DropItemType`/`DropItemType2` fields (two independent drop slots per
+enemy row), which this app had never once read despite having the table
+open for everything else. **100 of 245 `EnemyData` rows have at least one
+of these set** — a real, substantial, previously entirely-unmodeled
+third source mechanism, distinct from both systems this app already
+tracked.
+
+The field values (e.g. `1`, `3`, `201`, `203`) are small integers that
+don't match `StackableItemData.id` directly — confirmed by checking:
+there's no item with `id == 203`. They match `StackableItemData.Type`
+instead, which turned out to be a clean, **globally 1:1-unique** type
+code across the entire 103-row item catalog (verified by grouping every
+item by its own `Type` field — every value maps to exactly one item, no
+collisions, no gaps in the resolution). So `DropItemType2: 203` on an
+`EnemyData` row unambiguously means "drops `StackableItemData` id 10
+(Crimson Orb, `Type: 203`)" — no guessing required once the field
+mapping was found.
+
+Three enemies actually have `DropItemType`/`DropItemType2 == 203`:
+**Twisted Dryad** (`CH9_DryadGuardian_Unique`, id `2030201`, Chapter 9),
+**Death Priest** (`CH8_SkeletonMage_Unique`, id `2020202`, Chapter 8), and
+**Stone Titan** (`CH9_MountainGiant_Elite`, id `2030203`, Chapter 9) — not
+the plain "Corrupted Dryad" (`CH9_Dryad`, id `2030102`) the user actually
+named, which has no drop configured on its own row at all. Likely just a
+naming mix-up between two similarly-themed Chapter 9 "corrupted forest
+spirit" variants rather than a data problem — flagged directly to the
+user rather than silently substituting a different monster's name.
+
+**Honest gap, kept explicit in the in-UI caveat**: each drop slot also
+carries a `DropItemPieceCount`/`DropItemPieceCount2` field alongside its
+`DropItemAmount`/`DropItemAmount2` — sometimes equal to the amount,
+sometimes not (e.g. Stone Titan: amount 10, pieces 5). Neither this
+field's exact meaning nor whether these drops are guaranteed-every-kill
+vs. rolled against some chance this table doesn't capture was decompiled
+or otherwise confirmed — shown as raw data with an honest caveat rather
+than asserted as fact, consistent with this project's norm.
+
+**Shipped**: `data.js`'s `idx.itemByType` (Type → item) and
+`idx.killDropsByItemId` (item id → `[{enemy, amount, pieces}]`, built by
+walking both drop slots of every `EnemyData` row); `computeFarmSources()`
+gained a third `sources.kill` array; the item detail modal
+(`js/ui-farmable.js`) gained a "Monster Drops" section (shown first, above
+Guaranteed Boss Drops and Chest Drop Rates, since it's now the largest
+category) whose rows reuse the exact same `data-track-enemy` + "Track on
+Map" pattern the guaranteed/community rows already established — clicking
+through lands on that monster's full detail view (real spawn position +
+patrol route, when available). Raised confirmed-source coverage from
+4/103 to **21/103** catalog items (some items have more than one source
+type — see the confidence-table row above for the exact breakdown).
+Verified end-to-end with Playwright: Crimson Orb → all 3 real monster
+rows render → "Track on Map" opens the correct monster's own detail.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -945,7 +1005,24 @@ its corresponding CSS were removed rather than left stale.
     matched to 16 of the 79 spawn rows (full writeup, including a real
     coordinate-frame bug caught mid-extraction, in "Enemy spawn points" →
     "Patrol paths" above), now drawn as SVG polyline loops on the same
-    scatter view.
+    scatter view. Two more same-session follow-ups: both maps gained real
+    pan/zoom (shared `MapZoom` module, see "Enemy spawn points" → "Pan/zoom"
+    above), and Farmable Items' monster-tied sources now route straight to
+    `MonstersUI.openDetail()` instead of pinning the item icon on the
+    story-stage board (see "Enemy spawn points" → "Farmable Items now
+    routes to the monster" above).
+19. User asked where to find Crimson Orb, then corrected this app's "no
+    confirmed source" answer with a real lead ("the corrupted dryad should
+    drop the crimson orb") — found a genuine third, previously-unmodeled
+    Farmable Items source mechanism as a result. Full writeup in "Monster
+    kill drops" above. `EnemyData.DropItemType`/`DropItemType2` (100 of 245
+    enemies have one set) resolve through `StackableItemData.Type` (a
+    confirmed 1:1-unique type code, not `.id`) to real items — raised
+    confirmed-source coverage from 4/103 to 21/103 catalog items. Shipped
+    `idx.itemByType`/`idx.killDropsByItemId` (`data.js`), `sources.kill`
+    (`computeFarmSources`), and a new "Monster Drops" section in the item
+    detail modal reusing the existing "Track on Map" → `MonstersUI.openDetail`
+    pattern.
 
 ## Open items / plausible next steps (not started)
 
@@ -993,11 +1070,16 @@ its corresponding CSS were removed rather than left stale.
   the free-roam/boss-raid open-world mode vs. the story-stage mode being
   genuinely different systems with different level geometry), the spawn
   scatter view could potentially gain real per-stage subdivision.
-- Expand Farmable Items coverage beyond the 4 currently-confirmed items —
-  would need to explore shop/mission/quest/chapter-reward/boss-raid systems'
-  `RewardGroupData` associations (the reward-group resolution mechanism
-  itself is understood and working; it's the *other* systems' group IDs
-  that haven't been mapped).
+- Expand Farmable Items coverage beyond the 21 currently-confirmed items
+  (was 4 before the 2026-09-30 "Monster kill drops" discovery — see above)
+  — would need to explore shop/mission/quest/chapter-reward/boss-raid
+  systems' `RewardGroupData` associations (the reward-group resolution
+  mechanism itself is understood and working; it's the *other* systems'
+  group IDs that haven't been mapped). `DropItemType`/`DropItemType2` cover
+  100 enemies but plenty more `EnemyData` rows have neither set — worth a
+  fresh look if a later APK pull reveals more drop fields per enemy, or if
+  the "pieces" field's real meaning gets decompiled and turns out to gate
+  which enemies actually drop something reliably.
 - `BlessingBuffData` was extracted (`data/BlessingBuffData.json`) but never
   wired into anything — 3 buff types, unclear which (if any) maps to a stat
   the app tracks.

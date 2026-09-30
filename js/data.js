@@ -124,6 +124,30 @@ const Game = {
     idx.stageByChapterStage = new Map(this.db.StageData.map(s => [`${s.chapter}:${s.stage}`, s]));
     idx.rewardRowsByGroup = groupBy(this.db.RewardGroupData, r => r.Group);
 
+    // Direct per-kill item drops — a third farm-source mechanism, distinct
+    // from guaranteed boss rewards (MinimapRewardData) and chest tables
+    // (ChestData/RewardGroupData), found 2026-09-30 after a user report
+    // that Crimson Orb is a real monster drop even though neither of the
+    // other two systems had it. EnemyData.DropItemType/DropItemType2 (two
+    // independent slots per enemy) reference StackableItemData.Type — a
+    // stable per-item type code confirmed 1:1-unique across the whole
+    // catalog (every Type value maps to exactly one item id) — NOT
+    // StackableItemData.id directly. See CLAUDE.md "Monster kill drops".
+    idx.itemByType = new Map(this.db.StackableItemData.filter(i => i.Type != null && i.Type !== -1).map(i => [i.Type, i]));
+    idx.killDropsByItemId = new Map();
+    for (const e of this.db.EnemyData) {
+      for (const slot of ['', '2']) {
+        const type = e[`DropItemType${slot}`];
+        if (type == null || type === -1) continue;
+        const item = idx.itemByType.get(type);
+        if (!item) continue;
+        if (!idx.killDropsByItemId.has(item.id)) idx.killDropsByItemId.set(item.id, []);
+        idx.killDropsByItemId.get(item.id).push({
+          enemy: e, amount: e[`DropItemAmount${slot}`], pieces: e[`DropItemPieceCount${slot}`],
+        });
+      }
+    }
+
     // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —
     // exact normalized x/y/w/h per chapter+stage, extracted straight from
     // the actual Minimap popup prefab's RectTransform data, not estimated.

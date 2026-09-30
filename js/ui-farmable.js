@@ -54,7 +54,7 @@ const FarmableUI = {
     grid.innerHTML = items.map(item => {
       const sources = computeFarmSources(item.id);
       const r = Game.rarityColor(item.Rarity);
-      const total = sources.guaranteed.length + sources.chest.length;
+      const total = sources.guaranteed.length + sources.chest.length + sources.kill.length;
       return `
         <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
           <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
@@ -73,6 +73,16 @@ const FarmableUI = {
     const item = Game.index.itemById.get(itemId);
     const sources = computeFarmSources(itemId);
     const r = Game.rarityColor(item.Rarity);
+
+    const killHTML = sources.kill.slice().sort((a, b) => (a.chapter ?? 99) - (b.chapter ?? 99) || a.enemy.Name_en.localeCompare(b.enemy.Name_en)).map(s => `
+      <div class="farm-source-row" data-track-enemy="${s.enemy.id}">
+        <img class="farm-source-thumb" src="${Game.enemyIcon(s.enemy)}" onerror="onImgError(this)" alt="">
+        <div class="farm-source-info">
+          <div class="fs-title">Kill <b>${escapeHtml(s.enemy.Name_en)}</b>${s.enemy.NickName_en ? ` <span style="font-style:italic;font-weight:400">"${escapeHtml(s.enemy.NickName_en)}"</span>` : ''}</div>
+          <div class="fs-sub">${s.chapter !== null ? `Chapter ${s.chapter}` : 'Special/Raid'} · drops ×${fmtNum(s.amount)}${s.pieces !== s.amount ? ` (${fmtNum(s.pieces)} piece${s.pieces === 1 ? '' : 's'})` : ''}</div>
+        </div>
+        <button class="btn btn-sm">Track on Map</button>
+      </div>`).join('');
 
     const guaranteedHTML = sources.guaranteed.map(s => `
       <div class="farm-source-row" data-track-enemy="${s.enemy ? s.enemy.id : ''}">
@@ -119,11 +129,12 @@ const FarmableUI = {
             <div class="detail-tags">${rarityTag(item.Rarity)}</div>
             ${item.Desc_en ? `<div class="detail-desc">${escapeHtml(item.Desc_en)}</div>` : ''}
 
+            ${sources.kill.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Monster Drops</h4>${killHTML}` : ''}
             ${sources.guaranteed.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Guaranteed Boss Drops</h4>${guaranteedHTML}` : ''}
             ${sources.chest.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Chest Drop Rates</h4>${chestHTML}` : ''}
-            ${sources.guaranteed.length === 0 && sources.chest.length === 0 ? `
+            ${sources.kill.length === 0 && sources.guaranteed.length === 0 && sources.chest.length === 0 ? `
               <div class="caveat">No confirmed farm source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (missions, events, shop, etc.), not that it's unobtainable.</div>` : `
-              <div class="caveat">Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item.</div>`}
+              <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item.</div>`}
 
             <h4 style="margin:14px 0 6px;font-size:.9rem">Community Reports <span style="color:var(--ink-muted);font-weight:500">(player-submitted, unverified)</span></h4>
             ${communityHTML || `<span style="color:var(--ink-faint);font-size:.82rem">No player reports yet for this item.</span>`}
@@ -251,7 +262,11 @@ const FarmableUI = {
 };
 
 function computeFarmSources(itemId) {
-  const sources = { guaranteed: [], chest: [] };
+  const sources = { guaranteed: [], chest: [], kill: [] };
+
+  for (const r of (Game.index.killDropsByItemId.get(itemId) || [])) {
+    sources.kill.push({ enemy: r.enemy, amount: r.amount, pieces: r.pieces, chapter: Game.enemyChapter(r.enemy) });
+  }
 
   for (const r of (Game.index.minimapRewardsByItem.get(itemId) || [])) {
     const enemy = Game.index.enemyById.get(r.enemy_id);
