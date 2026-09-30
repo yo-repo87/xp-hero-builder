@@ -29,9 +29,11 @@ upgrades) so they can plan builds and get advice.
      2026-09-30) — a real dedicated Node/Express backend
      (`server/`) talking to a Postgres database on the user's own
      `shared_postgres` container, with email/password login plus
-     Google/Facebook/Discord OAuth. See "Accounts backend" below — this
-     is a genuinely different scale of addition from #1 (a whole
-     standalone service + database, not a couple of webhooks) and is
+     Google/Facebook/Discord OAuth (all four now live in production, set
+     up incrementally through 2026-09-30 — see "Accounts backend" below
+     for exactly what and when). This is a genuinely different scale of
+     addition from #1 (a whole standalone service + database, not a
+     couple of webhooks) and is
      documented there in full.
   Everything else in the app remains fully static/client-only.
 
@@ -359,9 +361,14 @@ wired. **Discord is now live too** (same day, follow-up) — same process
 Client ID/Secret), same verification standard: clicked "Continue with
 Discord" through to Discord's real `discord.com/login` page with the full
 OAuth authorize redirect (client_id/redirect_uri/scope) correctly
-preserved in the `redirect_to` param for after login, no errors. Only
-Facebook remains unconfigured (optional, same degrade-gracefully
-behavior — button just doesn't render yet).
+preserved in the `redirect_to` param for after login, no errors.
+**Facebook is now live too** (same day, follow-up) — user created a
+Consumer-type app in Facebook Developers with the Facebook Login product
+added, registered the same-shaped redirect URI, handed over App
+ID/Secret; verified via click-through to Facebook's real login page,
+with its `next`/`cancel_url` params showing the app id and redirect URI
+were correctly recognized (no "URL Blocked" error). **All four sign-in
+methods are now live**: email/password, Google, Discord, Facebook.
 
 **Frontend**: `js/auth.js` (session client — access token kept in memory
 only, never localStorage, since it's a 15-minute JWT and losing it on tab
@@ -1329,33 +1336,30 @@ everywhere else stage/spawn data is chapter-limited.
     Client ID/Secret, wired into `server/.env`, container restarted,
     verified end-to-end via Playwright click-through to Discord's real
     login page with the OAuth authorize params correctly preserved for
-    post-login redirect. Three of four planned sign-in methods now live
-    (email/password, Google, Discord) — only Facebook left, same
-    on-request process whenever wanted.
+    post-login redirect.
+25. User asked to set up Facebook sign-in, the last of the four planned
+    methods. Same process again: user created the app in Facebook
+    Developers (Consumer type + Facebook Login product), provided App
+    ID/Secret, wired in, verified end-to-end via Playwright click-through
+    to Facebook's real login page — the `next`/`cancel_url` params show
+    Facebook correctly recognized the app id and registered redirect URI,
+    no "URL Blocked"/app-config error. **All four sign-in methods
+    (email/password, Google, Discord, Facebook) are now live in
+    production** — the accounts backend is fully complete, nothing left
+    outstanding from the original ask.
 
 ## Open items / plausible next steps (not started)
 
-- **Accounts backend is now fully live publicly** (as of 2026-09-30,
-  same day as everything else — see "Accounts backend" above). Both
-  manual steps that were blocking this are done: the nginx-proxy-manager
-  entry for `xpherobuilder-api.arc-it.uk` exists and serves real HTTPS,
-  and Google OAuth is registered and verified working end-to-end. Full
-  writeup of a genuinely tricky diagnosis along the way — a Cloudflare
-  522 that turned out to be about the *Tunnel's* Public Hostname routing
-  (not port-forwarding), then a redirect loop caused by NPM's origin
-  force-SSL fighting the tunnel's plaintext-to-origin hop, then a
-  completely separate discovery that NPM's own "renew" action never
-  rewrites DNS-challenge credentials from the database (only fresh
-  creation does) which was silently breaking *two other, unrelated*
-  certs (`*.selfhosted.vip` covering 19 live hosts, and `selfhosted.vip`)
-  — is in "Accounts backend" → "NPM/Cloudflare setup" above. **Discord is
-  now also live** (2026-09-30, same day) — verified end-to-end the same
-  way as Google: real click-through to `discord.com/login` with the full
-  OAuth authorize redirect correctly preserved in `redirect_to`, no
-  client-id/redirect-uri errors. Only Facebook remains unconfigured —
-  same one-step process (register the app, hand over Client ID/Secret)
-  whenever wanted, same graceful degradation (button just doesn't render)
-  until then.
+- Accounts backend is fully live publicly, all four sign-in methods
+  working (email/password, Google, Discord, Facebook) — see "Accounts
+  backend" above for the full build writeup and the NPM/Cloudflare
+  troubleshooting story from getting `xpherobuilder-api.arc-it.uk` live
+  (a Cloudflare Tunnel Public Hostname gap, a force-SSL redirect loop
+  against the tunnel's plaintext-to-origin hop, and an NPM bug where
+  "renew" never rewrites DNS-challenge credentials from the database —
+  all in "Accounts backend" → "NPM/Cloudflare setup"). Nothing left open
+  here unless the user wants to expand it further (auto-sync, structured
+  per-entity save data, etc. — see the other bullets below on those).
 - No migration framework is wired up for the `xpherobuilder` Postgres
   database yet (`server/db/schema.sql` is a point-in-time record of what
   was run by hand, not a re-runnable migration) — fine at this scale, but
