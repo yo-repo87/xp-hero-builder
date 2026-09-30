@@ -155,7 +155,7 @@ const MonstersUI = {
           ${spawnMapHTML}
         ` : ''}
       </div>
-    `);
+    `, { onMount: (el) => MapZoom.wire(el) });
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
     document.getElementById('monster-map-btn')?.addEventListener('click', () => {
       MapUI.open(`${e.Name_en} — Location`, [{ chapter: tie.chapter, stage: tie.stage, iconUrl: Game.enemyIcon(e), label: e.Name_en }]);

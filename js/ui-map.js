@@ -19,6 +19,159 @@
 // own coverage exactly) — there is no equivalent for chapters 4+.
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// MapZoom — shared pan/zoom behavior for both map canvases above (the real
+// story-stage board and the spawn/patrol overlay). Wraps a canvas's inner
+// content in a fixed-size "viewport" + a transformed "stage" div; wheel
+// zooms centered on the cursor, dragging pans, and +/−/reset buttons cover
+// touch/no-scroll-wheel cases. Pinch-to-zoom works via the Pointer Events
+// API (mouse, touch, and pen all go through the same code path).
+// ---------------------------------------------------------------------------
+const MapZoom = {
+  MIN: 1, MAX: 5, STEP: 0.5,
+
+  // Wraps `innerHTML` (whatever a canvas's content would have been) with the
+  // pan/zoom chrome. `canvasClass` is the existing canvas class(es) that
+  // carry the border-image frame/aspect-ratio/background — those stay put
+  // and become the fixed-size "viewport"; only their content now lives in
+  // a transformable `.map-zoom-stage` child.
+  wrapHTML(canvasClass, innerHTML) {
+    return `
+      <div class="map-zoom-wrap">
+        <div class="${canvasClass} map-zoom-viewport">
+          <div class="map-zoom-stage">${innerHTML}</div>
+        </div>
+        <div class="map-zoom-controls">
+          <button type="button" class="map-zoom-btn" data-zoom-action="out" title="Zoom out">−</button>
+          <button type="button" class="map-zoom-btn" data-zoom-action="reset" title="Reset view">⟲</button>
+          <button type="button" class="map-zoom-btn" data-zoom-action="in" title="Zoom in">+</button>
+        </div>
+      </div>`;
+  },
+
+  // Call after the HTML above is actually in the DOM (e.g. from an
+  // openModal onMount) to wire up every zoomable map found under `root`.
+  wire(root) {
+    root.querySelectorAll('.map-zoom-wrap').forEach(wrap => this.wireOne(wrap));
+  },
+
+  wireOne(wrap) {
+    const viewport = wrap.querySelector('.map-zoom-viewport');
+    const stage = wrap.querySelector('.map-zoom-stage');
+    if (!viewport || !stage) return;
+
+    let scale = 1, panX = 0, panY = 0;
+    const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+    const clampPan = () => {
+      const vw = viewport.clientWidth, vh = viewport.clientHeight;
+      panX = clamp(panX, vw * (1 - scale), 0);
+      panY = clamp(panY, vh * (1 - scale), 0);
+    };
+    const apply = () => {
+      stage.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+      viewport.classList.toggle('zoomed', scale > 1);
+    };
+    // Zoom by `factor`, keeping the content point currently under
+    // (anchorX, anchorY) — viewport-relative pixels — fixed on screen.
+    const zoomAt = (factor, anchorX, anchorY) => {
+      const newScale = clamp(scale * factor, this.MIN, this.MAX);
+      if (newScale === scale) return;
+      const localX = (anchorX - panX) / scale, localY = (anchorY - panY) / scale;
+      scale = newScale;
+      panX = anchorX - localX * scale;
+      panY = anchorY - localY * scale;
+      clampPan(); apply();
+    };
+    const reset = () => { scale = 1; panX = 0; panY = 0; apply(); };
+
+    viewport.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const rect = viewport.getBoundingClientRect();
+      const factor = e.deltaY < 0 ? 1.25 : 0.8;
+      zoomAt(factor, e.clientX - rect.left, e.clientY - rect.top);
+    }, { passive: false });
+
+    stage.addEventListener('dragstart', (e) => e.preventDefault());
+
+    // Pointer Events unify mouse/touch/pen: one finger (or the mouse)
+    // drags to pan; a second finger starts a pinch-zoom-and-pan gesture,
+    // computed fresh from a snapshot taken when the second pointer lands.
+    const pointers = new Map(); // pointerId -> {x, y} in viewport-relative px
+    let mode = null; // 'pan' | 'pinch'
+    let panStart = null; // {x, y, panX, panY}
+    let pinchStart = null; // {dist, midX, midY, scale, panX, panY}
+
+    const rectXY = (e) => {
+      const rect = viewport.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+    const twoPointerGeometry = () => {
+      const pts = [...pointers.values()];
+      const dx = pts[0].x - pts[1].x, dy = pts[0].y - pts[1].y;
+      return { dist: Math.hypot(dx, dy), midX: (pts[0].x + pts[1].x) / 2, midY: (pts[0].y + pts[1].y) / 2 };
+    };
+
+    viewport.addEventListener('pointerdown', (e) => {
+      viewport.setPointerCapture(e.pointerId);
+      pointers.set(e.pointerId, rectXY(e));
+      if (pointers.size === 1) {
+        mode = 'pan';
+        panStart = { ...rectXY(e), panX, panY };
+      } else if (pointers.size === 2) {
+        mode = 'pinch';
+        const g = twoPointerGeometry();
+        pinchStart = { ...g, scale, panX, panY };
+      }
+    });
+
+    viewport.addEventListener('pointermove', (e) => {
+      if (!pointers.has(e.pointerId)) return;
+      pointers.set(e.pointerId, rectXY(e));
+
+      if (mode === 'pan' && pointers.size === 1) {
+        const p = rectXY(e);
+        panX = panStart.panX + (p.x - panStart.x);
+        panY = panStart.panY + (p.y - panStart.y);
+        clampPan(); apply();
+      } else if (mode === 'pinch' && pointers.size === 2) {
+        const g = twoPointerGeometry();
+        const newScale = clamp(pinchStart.scale * (g.dist / (pinchStart.dist || 1)), this.MIN, this.MAX);
+        const localX = (pinchStart.midX - pinchStart.panX) / pinchStart.scale;
+        const localY = (pinchStart.midY - pinchStart.panY) / pinchStart.scale;
+        scale = newScale;
+        panX = g.midX - localX * scale;
+        panY = g.midY - localY * scale;
+        clampPan(); apply();
+      }
+    });
+
+    const endPointer = (e) => {
+      pointers.delete(e.pointerId);
+      if (pointers.size === 1) {
+        // Resume single-finger panning from here without a jump.
+        const [remaining] = pointers.values();
+        mode = 'pan';
+        panStart = { x: remaining.x, y: remaining.y, panX, panY };
+      } else if (pointers.size === 0) {
+        mode = null;
+      }
+    };
+    viewport.addEventListener('pointerup', endPointer);
+    viewport.addEventListener('pointercancel', endPointer);
+
+    wrap.querySelectorAll('.map-zoom-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.zoomAction;
+        const vw = viewport.clientWidth, vh = viewport.clientHeight;
+        if (action === 'in') zoomAt(1 + this.STEP, vw / 2, vh / 2);
+        else if (action === 'out') zoomAt(1 / (1 + this.STEP), vw / 2, vh / 2);
+        else reset();
+      });
+    });
+  },
+};
+
 const MapUI = {
   // Real per-chapter tile board markup (the actual Minimap prefab layout —
   // see file header). Shared by open() below and by SpawnMapUI, which
@@ -59,7 +212,7 @@ const MapUI = {
       return `
         <div class="chapter-map-card">
           <div class="chapter-map-title">Chapter ${ch} — ${escapeHtml(Game.chapterName(ch))}</div>
-          <div class="chapter-map-canvas">${this.tilesHTML(ch, pinByStage)}</div>
+          ${MapZoom.wrapHTML('chapter-map-canvas', this.tilesHTML(ch, pinByStage))}
         </div>`;
     }).join('');
 
@@ -68,9 +221,9 @@ const MapUI = {
       <div class="modal-body">
         ${beforeHTML}
         ${cardsHTML}
-        <div class="caveat">This is the game's own real minimap layout — exact stage tile positions and art extracted directly from the game's own UI files, not a fabricated map. Only Chapters 1-3 have this data (same coverage as everywhere else this app tracks stages). Chapter 3 shows the game's full unique tile art; Chapters 1-2 only ship a dimmed "cleared" silhouette per tile in the current game files, so that's shown as-is rather than inventing missing color art.</div>
+        <div class="caveat">This is the game's own real minimap layout — exact stage tile positions and art extracted directly from the game's own UI files, not a fabricated map. Only Chapters 1-3 have this data (same coverage as everywhere else this app tracks stages). Chapter 3 shows the game's full unique tile art; Chapters 1-2 only ship a dimmed "cleared" silhouette per tile in the current game files, so that's shown as-is rather than inventing missing color art. Scroll/pinch to zoom, drag to pan.</div>
       </div>
-    `);
+    `, { onMount: (el) => MapZoom.wire(el) });
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
   },
 };
@@ -164,12 +317,13 @@ const SpawnMapUI = {
     const boardTilesHTML = MapUI.tilesHTML(chapter);
     const hasBoard = boardTilesHTML.length > 0;
 
+    const stageInnerHTML = `
+      ${hasBoard ? `<div class="spawn-overlay-board">${boardTilesHTML}</div><div class="spawn-overlay-scrim"></div>` : ''}
+      ${pathsSvg}${dotsHTML}`;
+
     return `
-      <div class="chapter-map-canvas spawn-overlay-canvas">
-        ${hasBoard ? `<div class="spawn-overlay-board">${boardTilesHTML}</div><div class="spawn-overlay-scrim"></div>` : ''}
-        ${pathsSvg}${dotsHTML}
-      </div>
+      ${MapZoom.wrapHTML('chapter-map-canvas spawn-overlay-canvas', stageInnerHTML)}
       <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
-      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''}</div>`;
+      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''} Scroll/pinch to zoom, drag to pan.</div>`;
   },
 };

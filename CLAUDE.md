@@ -472,6 +472,29 @@ to specific story-stage tiles (see above), so the board here is doing
 `.spawn-overlay-board`/`.spawn-overlay-scrim` CSS layered under the
 existing dot/path layers (z-index 0/1 vs. 2/3/4).
 
+**Pan/zoom (same session, follow-up).** User asked for both map types to
+be scrollable and zoomable. Added a shared `MapZoom` module
+(`js/ui-map.js`) used by both: `MapZoom.wrapHTML(canvasClass, innerHTML)`
+wraps a canvas's content in a fixed-size `.map-zoom-viewport` (keeps the
+existing border-image/aspect-ratio/background) plus a transformable
+`.map-zoom-stage` child (all the existing percentage-positioned tiles/
+dots/SVG paths moved here unchanged — they don't care that their
+containing block now also has a CSS transform on it); `MapZoom.wire(root)`
+walks a just-mounted DOM subtree and attaches the interaction handlers,
+called via `UI.openModal`'s existing `onMount` hook (no changes needed to
+that API) from both `MapUI.open()` and `ui-monsters.js`'s `openDetail()`.
+Interaction: mouse wheel zooms centered on the cursor; drag pans (mouse or
+single-finger touch); pinch-to-zoom works via the Pointer Events API (one
+code path handles mouse/touch/pen — tracks up to 2 active pointers,
+computes scale from the distance between them and pans to keep their
+midpoint's content-space anchor fixed, recomputed fresh from a snapshot
+taken when the second finger lands so simultaneous pan+zoom gestures don't
+drift); floating +/−/reset buttons cover the no-wheel/no-touch case.
+Panning is clamped so the content can't be dragged fully out of view (at
+1x zoom, panning is a no-op by construction — nothing to reveal). Each
+map card gets independent zoom state, including the multi-chapter case
+(Farmable Items' "View Map" can show several chapter cards in one modal).
+
 **Patrol paths (same session, follow-up).** User asked "can patrol paths
 be shown on the spawn map?" — real waypoint data existed for this too:
 `EnemySpawnGroups` has a `PatrolPathGroup` sibling container (direct child

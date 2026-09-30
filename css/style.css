@@ -563,13 +563,34 @@ footer.app-footer {
 }
 @keyframes pin-bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
 
+/* MapZoom (js/ui-map.js) — pan/zoom chrome shared by both map canvases.
+   .map-zoom-viewport is the fixed-size frame (reuses whatever canvas class
+   it's paired with for border-image/aspect-ratio/background); everything
+   that used to be the canvas's direct content now lives in
+   .map-zoom-stage, which JS transforms (translate+scale) while the
+   viewport clips it via overflow:hidden. touch-action:none hands pinch/pan
+   gestures to our own Pointer Events code instead of the browser's. */
+.map-zoom-wrap { position: relative; margin-bottom: 10px; max-width: 640px; }
+.map-zoom-viewport { touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.map-zoom-viewport:active { cursor: grabbing; }
+.map-zoom-stage { position: absolute; inset: 0; transform-origin: 0 0; will-change: transform; }
+.map-zoom-controls {
+  position: absolute; right: 8px; bottom: 8px; z-index: 20; display: flex; flex-direction: column; gap: 4px;
+}
+.map-zoom-btn {
+  width: 30px; height: 30px; border-radius: 6px; border: 1px solid rgba(0,0,0,.4);
+  background: var(--wood-darker); color: #e8d5b8; font-size: 1rem; font-weight: 800; line-height: 1;
+  cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,.4); display: flex; align-items: center; justify-content: center;
+}
+.map-zoom-btn:hover { filter: brightness(1.2); }
+.map-zoom-btn:active { filter: brightness(0.9); }
+
 /* SpawnMapUI overlays real spawn/patrol data on top of MapUI's own real
    chapter-map-canvas art (see ui-map.js's SpawnMapUI header comment for
    why — no real free-roam-world terrain art exists to use instead). The
    board (.spawn-overlay-board) and a darkening scrim sit at the bottom of
    the stack so the real portrait dots/gold patrol lines read clearly on
    top of the busy tile art underneath. */
-.spawn-overlay-canvas { margin-bottom: 10px; }
 .spawn-overlay-board { position: absolute; inset: 0; z-index: 0; }
 .spawn-overlay-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(20, 12, 6, 0.55); }
 .spawn-dot {
