@@ -450,6 +450,28 @@ story-stage board, `MapUI`, only shown for the 20 enemies with a confirmed
 Story-Stage Map" to make the distinction from the now-always-inline
 spawn/patrol map clearer.
 
+**Real chapter art as backdrop (same session, follow-up).** User asked to
+overlay the spawn/patrol data "over the appropriate chapter map," then
+clarified mid-turn: reuse the same real map art Farmable Items already
+uses if that's easier. It was — checked first whether any real top-down
+terrain/radar art exists for the free-roam world itself (searched the
+`World_Chapter1` file and the whole asset catalog for anything
+minimap/radar/worldmap-shaped; found nothing beyond one unrelated small
+UI icon), so there's no way to render an accurate backdrop for that
+coordinate space specifically. Reused `MapUI`'s own real per-chapter tile
+board instead — extracted its tile-rendering logic into a shared
+`MapUI.tilesHTML(chapter, pinByStage?)` so `SpawnMapUI.renderInline()`
+can render that same real board (dimmed Chapter 1-2 art / full-color
+Chapter 3 art, exactly as `assets/img/map/` already has it) as a
+contextual backdrop under a darkening scrim, with spawn dots/patrol lines
+overlaid on top. **Important honesty note, kept explicit in the in-UI
+caveat**: this places dots across the *whole* chapter board, not aligned
+to individual tiles — the free-roam coordinate system still doesn't map
+to specific story-stage tiles (see above), so the board here is doing
+"which chapter" contextual framing, not tile-precise placement. New
+`.spawn-overlay-board`/`.spawn-overlay-scrim` CSS layered under the
+existing dot/path layers (z-index 0/1 vs. 2/3/4).
+
 **Patrol paths (same session, follow-up).** User asked "can patrol paths
 be shown on the spawn map?" — real waypoint data existed for this too:
 `EnemySpawnGroups` has a `PatrolPathGroup` sibling container (direct child

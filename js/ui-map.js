@@ -20,6 +20,24 @@
 // ---------------------------------------------------------------------------
 
 const MapUI = {
+  // Real per-chapter tile board markup (the actual Minimap prefab layout —
+  // see file header). Shared by open() below and by SpawnMapUI, which
+  // overlays free-roam spawn/patrol data on top of this same real art
+  // instead of a blank canvas. pinByStage: optional Map(stage -> pin).
+  tilesHTML(chapter, pinByStage = new Map()) {
+    const layoutRows = (Game.index.stageMapLayoutByChapter.get(chapter) || []).slice().sort((a, b) => a.stage - b.stage);
+    return layoutRows.map(row => {
+      const pin = pinByStage.get(row.stage);
+      const style = `left:${(row.x * 100).toFixed(2)}%;top:${(row.y * 100).toFixed(2)}%;width:${(row.w * 100).toFixed(2)}%;height:${(row.h * 100).toFixed(2)}%;`;
+      return `
+        <div class="map-tile${pin ? ' hit' : ''}" style="${style}">
+          <img class="map-tile-art" src="${Game.stageMapTile(row)}" onerror="onImgError(this)" alt="">
+          <div class="map-tile-num">${row.stage}</div>
+          ${pin ? `<img class="map-tile-pin" src="${pin.iconUrl}" onerror="onImgError(this)" alt="" title="${escapeHtml(pin.label || '')}">` : ''}
+        </div>`;
+    }).join('');
+  },
+
   // pins: [{ chapter, stage, iconUrl, label }]
   // beforeHTML: optional extra markup inserted above the map cards (e.g. a
   // boss-portrait row).
@@ -27,10 +45,10 @@ const MapUI = {
     const chapters = [...new Set(pins.map(p => p.chapter))].sort((a, b) => a - b);
 
     const cardsHTML = chapters.map(ch => {
-      const layoutRows = (Game.index.stageMapLayoutByChapter.get(ch) || []).slice().sort((a, b) => a.stage - b.stage);
+      const hasLayout = (Game.index.stageMapLayoutByChapter.get(ch) || []).length > 0;
       const pinByStage = new Map(pins.filter(p => p.chapter === ch).map(p => [p.stage, p]));
 
-      if (!layoutRows.length) {
+      if (!hasLayout) {
         return `
           <div class="chapter-map-card">
             <div class="chapter-map-title">Chapter ${ch} — ${escapeHtml(Game.chapterName(ch))}</div>
@@ -38,21 +56,10 @@ const MapUI = {
           </div>`;
       }
 
-      const tilesHTML = layoutRows.map(row => {
-        const pin = pinByStage.get(row.stage);
-        const style = `left:${(row.x * 100).toFixed(2)}%;top:${(row.y * 100).toFixed(2)}%;width:${(row.w * 100).toFixed(2)}%;height:${(row.h * 100).toFixed(2)}%;`;
-        return `
-          <div class="map-tile${pin ? ' hit' : ''}" style="${style}">
-            <img class="map-tile-art" src="${Game.stageMapTile(row)}" onerror="onImgError(this)" alt="">
-            <div class="map-tile-num">${row.stage}</div>
-            ${pin ? `<img class="map-tile-pin" src="${pin.iconUrl}" onerror="onImgError(this)" alt="" title="${escapeHtml(pin.label || '')}">` : ''}
-          </div>`;
-      }).join('');
-
       return `
         <div class="chapter-map-card">
           <div class="chapter-map-title">Chapter ${ch} — ${escapeHtml(Game.chapterName(ch))}</div>
-          <div class="chapter-map-canvas">${tilesHTML}</div>
+          <div class="chapter-map-canvas">${this.tilesHTML(ch, pinByStage)}</div>
         </div>`;
     }).join('');
 
@@ -69,18 +76,26 @@ const MapUI = {
 };
 
 // ---------------------------------------------------------------------------
-// SpawnMapUI — "View Spawn Positions" popup for the Monsters tab.
+// SpawnMapUI — inline "Spawn & Patrol Map" for the Monsters tab detail modal.
 //
-// This is a SEPARATE feature from MapUI above, plotting a completely
-// different coordinate system: real (x,z) world-placement Transform
-// positions of every individual enemy spawn instance, extracted straight
-// from the game's own EnemySpawnGroups scene data (see
-// data/EnemySpawnPoints.json and CLAUDE.md's "Enemy spawn points" entry).
-// These positions live in the game's free-roam exploration world space
-// (each chapter occupies its own distinct region of one shared coordinate
-// space — not the discrete story-stage board MapUI renders above), so
-// this is deliberately a different-looking scatter view rather than being
-// forced onto the stage-tile board, where it wouldn't mean anything.
+// Plots a genuinely different coordinate system from MapUI's discrete
+// story-stage board: real (x,z) world-placement Transform positions of
+// every individual enemy spawn instance, extracted straight from the
+// game's own EnemySpawnGroups scene data (see data/EnemySpawnPoints.json
+// and CLAUDE.md's "Enemy spawn points" entry). These positions live in
+// the game's free-roam exploration world space (each chapter occupies its
+// own distinct region of one shared coordinate space), which does NOT map
+// to specific story-stage tiles — bucketing attempts by nearest stage
+// checkpoint produced nonsense (see CLAUDE.md). There's also no real
+// top-down terrain/radar art for that free-roam world anywhere in the
+// extracted asset tree to use as an accurate backdrop.
+//
+// So the overlay drawn here uses the one piece of real per-chapter map art
+// this app has — MapUI's own real story-stage tile board — as a
+// *contextual* backdrop (this chapter, not that one), spreading the real
+// spawn/patrol data across the whole board rather than pinning dots to
+// individual tiles, which the data doesn't support. The caveat text below
+// says this explicitly so it never reads as tile-precise placement.
 // Only chapters 1-3 are covered (same as everywhere else in this app).
 // ---------------------------------------------------------------------------
 const SpawnMapUI = {
@@ -143,9 +158,18 @@ const SpawnMapUI = {
       ? `<svg class="spawn-path-layer" viewBox="0 0 100 100" preserveAspectRatio="none">${pathsHTML}</svg>`
       : '';
 
+    // Real per-chapter tile board (MapUI's own art) as a contextual backdrop
+    // — see the file-header note above for why this is a backdrop, not a
+    // tile-precise placement.
+    const boardTilesHTML = MapUI.tilesHTML(chapter);
+    const hasBoard = boardTilesHTML.length > 0;
+
     return `
-      <div class="spawn-map-canvas">${pathsSvg}${dotsHTML}</div>
+      <div class="chapter-map-canvas spawn-overlay-canvas">
+        ${hasBoard ? `<div class="spawn-overlay-board">${boardTilesHTML}</div><div class="spawn-overlay-scrim"></div>` : ''}
+        ${pathsSvg}${dotsHTML}
+      </div>
       <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
-      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''}</div>`;
+      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''}</div>`;
   },
 };

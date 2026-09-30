@@ -563,29 +563,32 @@ footer.app-footer {
 }
 @keyframes pin-bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-4px); } }
 
-.spawn-map-canvas {
-  position: relative; width: 100%; aspect-ratio: 4 / 3; max-width: 640px;
-  border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill; border-image-width: 14px; border-style: solid; border-width: 14px;
-  background: var(--wood-dark); border-radius: 10px; overflow: hidden; margin-bottom: 10px;
-}
+/* SpawnMapUI overlays real spawn/patrol data on top of MapUI's own real
+   chapter-map-canvas art (see ui-map.js's SpawnMapUI header comment for
+   why — no real free-roam-world terrain art exists to use instead). The
+   board (.spawn-overlay-board) and a darkening scrim sit at the bottom of
+   the stack so the real portrait dots/gold patrol lines read clearly on
+   top of the busy tile art underneath. */
+.spawn-overlay-canvas { margin-bottom: 10px; }
+.spawn-overlay-board { position: absolute; inset: 0; z-index: 0; }
+.spawn-overlay-scrim { position: absolute; inset: 0; z-index: 1; background: rgba(20, 12, 6, 0.55); }
 .spawn-dot {
   position: absolute; width: 20px; height: 20px; margin: -10px 0 0 -10px; border-radius: 50%;
-  background: var(--wood-darker); border: 1px solid rgba(0,0,0,.5); opacity: 0.7; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
+  background: var(--wood-darker); border: 1px solid rgba(0,0,0,.5); opacity: 0.85; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; z-index: 3;
 }
 .spawn-dot img { width: 100%; height: 100%; object-fit: cover; }
 .spawn-dot.own {
   width: 34px; height: 34px; margin: -17px 0 0 -17px; background: var(--parchment-light);
-  border: 2px solid var(--gold); box-shadow: 0 0 8px var(--gold); opacity: 1; z-index: 2;
+  border: 2px solid var(--gold); box-shadow: 0 0 8px var(--gold); opacity: 1; z-index: 4;
 }
 .spawn-map-legend { font-size: 0.78rem; color: var(--ink-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.spawn-map-legend .spawn-dot { width: 16px; height: 16px; margin: 0; }
-.spawn-map-legend .spawn-dot.own { width: 22px; height: 22px; margin: 0; }
-.spawn-path-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-.spawn-path { fill: none; stroke: var(--ink-muted); stroke-width: 0.4; stroke-dasharray: 1.2 1; opacity: 0.45; vector-effect: non-scaling-stroke; }
-.spawn-path.own { stroke: var(--gold); stroke-width: 0.7; opacity: 0.9; }
+.spawn-map-legend .spawn-dot { width: 16px; height: 16px; margin: 0; position: static; }
+.spawn-map-legend .spawn-dot.own { width: 22px; height: 22px; margin: 0; position: static; }
+.spawn-path-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.spawn-path { fill: none; stroke: var(--parchment-light); stroke-width: 0.4; stroke-dasharray: 1.2 1; opacity: 0.55; vector-effect: non-scaling-stroke; }
+.spawn-path.own { stroke: var(--gold); stroke-width: 0.8; opacity: 0.95; }
 .spawn-path-swatch { display: inline-block; width: 20px; height: 2px; background: var(--gold); vertical-align: middle; }
-.spawn-map-legend .spawn-dot { margin: 0; }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
