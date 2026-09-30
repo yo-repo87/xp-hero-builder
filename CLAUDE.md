@@ -370,6 +370,27 @@ with its `next`/`cancel_url` params showing the app id and redirect URI
 were correctly recognized (no "URL Blocked" error). **All four sign-in
 methods are now live**: email/password, Google, Discord, Facebook.
 
+**Real bug caught immediately after shipping, same day**: user tried
+Google sign-in for real and hit GitHub's own 404 ("There isn't a GitHub
+Pages site here") right after logging into Google. Root cause: the OAuth
+callback's post-login redirect used bare `FRONTEND_ORIGIN`
+(`https://yo-repo87.github.io`) — correct for CORS (the `Origin` header
+never has a path), but this repo is a GitHub *project* page, not a
+`username.github.io` root-org repo, so the real site lives under
+`/xp-hero-builder/`. Hitting the bare origin alone is exactly this 404.
+Added a separate `FRONTEND_REDIRECT_URL` env var
+(`https://yo-repo87.github.io/xp-hero-builder/`) used only for the 3
+`res.redirect()` calls in `auth.js` (new `frontendUrl()` helper, falls
+back to `FRONTEND_ORIGIN + '/'` if unset so a plain root-domain
+deployment still works without extra config) — `FRONTEND_ORIGIN` itself
+stays untouched for CORS. Verified the fix two ways: curl against the
+callback's error branch confirms the redirect target is now the real
+page (and that page returns `200`, not a 404); Playwright confirms the
+site → Google half of the flow was never broken (real consent screen,
+no errors) — the bug was specifically in the Google → callback →
+frontend leg, now fixed for all three providers at once (all three
+redirect call sites shared the same bug).
+
 **Frontend**: `js/auth.js` (session client — access token kept in memory
 only, never localStorage, since it's a 15-minute JWT and losing it on tab
 close is fine; refresh token is an httpOnly cross-site cookie the browser

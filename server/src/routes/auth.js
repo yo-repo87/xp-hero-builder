@@ -28,6 +28,21 @@ const REFRESH_COOKIE_OPTS = {
 };
 const STATE_COOKIE_OPTS = { httpOnly: true, secure: true, sameSite: 'none', maxAge: 5 * 60 * 1000, path: '/auth' };
 
+// FRONTEND_ORIGIN is the bare origin (scheme+host, no path) — that's all
+// CORS's Origin header ever contains, so app.js's cors() config uses it
+// as-is. But the actual page GitHub Pages serves for a *project* repo
+// (not a username.github.io root repo) lives under a /reponame/ path —
+// hitting the bare origin alone 404s ("There isn't a GitHub Pages site
+// here"). OAuth callback redirects need the real page URL, so they use
+// this instead, which defaults to FRONTEND_ORIGIN + '/' only if
+// FRONTEND_REDIRECT_URL isn't set (keeps a plain root-domain deployment
+// working without extra config, while this app's own real deployment
+// sets FRONTEND_REDIRECT_URL explicitly in .env).
+function frontendUrl() {
+  const base = process.env.FRONTEND_REDIRECT_URL || process.env.FRONTEND_ORIGIN;
+  return base.endsWith('/') ? base : `${base}/`;
+}
+
 function publicUser(row) {
   return { id: row.id, email: row.email, displayName: row.display_name, emailVerified: row.email_verified };
 }
@@ -126,7 +141,7 @@ router.get('/:provider/callback', async (req, res) => {
   res.clearCookie(cookieName, { path: '/auth' });
 
   if (!configuredProviders().includes(provider) || !code || !state || state !== expectedState) {
-    return res.redirect(`${process.env.FRONTEND_ORIGIN}/?auth=error`);
+    return res.redirect(`${frontendUrl()}?auth=error`);
   }
 
   try {
@@ -174,7 +189,7 @@ router.get('/:provider/callback', async (req, res) => {
       await client.query('COMMIT');
 
       await issueSession(res, userId, req.headers['user-agent']);
-      res.redirect(`${process.env.FRONTEND_ORIGIN}/?auth=success`);
+      res.redirect(`${frontendUrl()}?auth=success`);
     } catch (err) {
       await client.query('ROLLBACK');
       throw err;
@@ -183,7 +198,7 @@ router.get('/:provider/callback', async (req, res) => {
     }
   } catch (err) {
     console.error(`${provider} OAuth callback failed`, err);
-    res.redirect(`${process.env.FRONTEND_ORIGIN}/?auth=error`);
+    res.redirect(`${frontendUrl()}?auth=error`);
   }
 });
 
