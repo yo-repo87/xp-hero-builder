@@ -127,12 +127,32 @@ const SpawnMapUI = {
         </div>`;
     }).join('');
 
+    // Real patrol-route polylines (see CLAUDE.md "Enemy spawn points" entry)
+    // — only the ~20% of spawn instances flagged `is_patrol` have one. Every
+    // patrolling instance in this chapter is drawn faint for context; the
+    // selected monster's own route(s) are drawn bright gold on top.
+    const patrolling = allInChapter.filter(p => p.patrol_path && p.patrol_path.length);
+    const polyPoints = (p) => {
+      const loop = [...p.patrol_path, p.patrol_path[0]]; // close the loop
+      return loop.map(([x, z]) => {
+        const n = norm({ x, z });
+        return `${n.left.toFixed(2)},${n.top.toFixed(2)}`;
+      }).join(' ');
+    };
+    const pathsHTML = patrolling.map(p => {
+      const isOwn = ownIds.has(p.key + p.x + p.z);
+      return `<polyline class="spawn-path${isOwn ? ' own' : ''}" points="${polyPoints(p)}" />`;
+    }).join('');
+    const pathsSvg = pathsHTML
+      ? `<svg class="spawn-path-layer" viewBox="0 0 100 100" preserveAspectRatio="none">${pathsHTML}</svg>`
+      : '';
+
     UI.openModal(`
       <div class="modal-header"><h3>${escapeHtml(enemy.Name_en)} — Spawn Positions</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
-        <div class="spawn-map-canvas">${dotsHTML}</div>
-        <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)</div>
-        <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.</div>
+        <div class="spawn-map-canvas">${pathsSvg}${dotsHTML}</div>
+        <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
+        <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''}</div>
       </div>
     `);
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());

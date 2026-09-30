@@ -581,6 +581,10 @@ footer.app-footer {
 .spawn-map-legend { font-size: 0.78rem; color: var(--ink-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .spawn-map-legend .spawn-dot { width: 16px; height: 16px; margin: 0; }
 .spawn-map-legend .spawn-dot.own { width: 22px; height: 22px; margin: 0; }
+.spawn-path-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+.spawn-path { fill: none; stroke: var(--ink-muted); stroke-width: 0.4; stroke-dasharray: 1.2 1; opacity: 0.45; vector-effect: non-scaling-stroke; }
+.spawn-path.own { stroke: var(--gold); stroke-width: 0.7; opacity: 0.9; }
+.spawn-path-swatch { display: inline-block; width: 20px; height: 2px; background: var(--gold); vertical-align: middle; }
 .spawn-map-legend .spawn-dot { margin: 0; }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }

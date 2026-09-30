@@ -430,15 +430,51 @@ extracted the real Minimap stage positions:
 **Shipped**: `data/EnemySpawnPoints.json` (new table); `data.js`'s
 `idx.spawnPointsByEnemyId`/`idx.spawnPointsByChapter`; `SpawnMapUI` (new,
 in `js/ui-map.js`, alongside but structurally separate from `MapUI`) — a
-scatter-dot canvas normalized to each chapter's own real spawn-point
-bounding box, highlighting the selected monster's own spawn point(s) in
-gold against every other spawn point in that chapter's free-roam world in
-grey; a "View Spawn Positions (N)" button in the Monsters tab detail modal
-(`js/ui-monsters.js`) for any enemy with a `data/EnemySpawnPoints.json`
-tie; `.spawn-map-canvas`/`.spawn-dot`/`.spawn-map-legend` CSS. Verified
-end-to-end with a headless Playwright pass (Monsters tab → Chapter 1 →
-Mandragora → View Spawn Positions → 4 own dots highlighted correctly among
-11 total Chapter-1 dots, no console errors from this feature).
+scatter canvas normalized to each chapter's own real spawn-point bounding
+box, showing every spawn point as the real enemy's own portrait icon
+(matching how `MapUI`'s pins already work), the selected monster's own
+spawn point(s) enlarged with a gold ring on top of the rest; a "View Spawn
+Positions (N)" button in the Monsters tab detail modal (`js/ui-monsters.js`)
+for any enemy with a `data/EnemySpawnPoints.json` tie;
+`.spawn-map-canvas`/`.spawn-dot`/`.spawn-map-legend` CSS. Verified
+end-to-end with headless Playwright passes, no console errors.
+
+**Patrol paths (same session, follow-up).** User asked "can patrol paths
+be shown on the spawn map?" — real waypoint data existed for this too:
+`EnemySpawnGroups` has a `PatrolPathGroup` sibling container (direct child
+of `EnemySpawnGroups`, alongside the `Chapter1_N` spawn containers) with
+16 named sub-groups (`PathSpider_CH1_1`, `PathCactus_2`, `PathGoblin_Gold`,
+etc. — one `PathTest` dev-only entry excluded), each holding an ordered
+`Path1`, `Path2`, ... chain of waypoint Transforms. **A real extraction
+bug was caught and fixed during this**: the first pass computed cumulative
+positions stopping at `World_Chapter1` (the file's overall scene root),
+while the original spawn-point extraction had stopped at `EnemySpawnGroups`
+itself (its own local subtree root) — two different reference frames,
+`EnemySpawnGroups` itself having a nonzero offset from `World_Chapter1`.
+This produced patrol loops sitting a consistent ~15-20 units away from
+their matching monster's real spawn point in every case — a systematic
+tell that the frames didn't match, not real level design. Recomputed with
+the correct (matching) stop point and every patrol loop's centroid landed
+within 1-8 units of its real spawn point (well inside that monster's own
+`retreat_range`), confirming the fix.
+
+Path-group → spawn-instance assignment: matched by monster family parsed
+from each group's name (`PathElephant_*` → the `CH3_Spawn_Elephant`
+instances, etc. — count matches exactly for every one of the 8 families,
+16 patrol groups ↔ 16 `is_patrol:true` spawn rows, zero left over), then
+for families with more than one instance, brute-force permutation search
+over the (at most 3!) orderings to find the assignment minimizing total
+group-centroid-to-spawn-point distance. Stored as an optional `patrol_path`
+array (ordered `[x,z]` waypoints) on the matching rows in
+`data/EnemySpawnPoints.json` (16 of 79 rows have one — patrol is genuinely
+the exception, not the norm, for this data).
+
+`SpawnMapUI` now draws these as an SVG polyline layer under the dots: every
+patrolling instance in the current chapter gets a faint dashed grey loop
+for context, the selected monster's own route(s) draw bright gold and
+closed (the last waypoint connects back to the first — these read as
+patrol loops, not one-way paths). New CSS: `.spawn-path-layer`/
+`.spawn-path`/`.spawn-path-swatch`.
 
 ## Git / deploy
 
@@ -818,7 +854,13 @@ Mandragora → View Spawn Positions → 4 own dots highlighted correctly among
     shared-coordinate-space finding, why it's a separate visualization from
     the story-stage board) is in "Enemy spawn points" above. Shipped
     `data/EnemySpawnPoints.json` (79 real rows, chapters 1-3) and a new
-    `SpawnMapUI` scatter-dot popup wired into the Monsters tab.
+    `SpawnMapUI` scatter-dot popup wired into the Monsters tab. Follow-up
+    same session: user asked whether patrol paths could be shown too —
+    real waypoint-loop data existed (`PatrolPathGroup`), extracted and
+    matched to 16 of the 79 spawn rows (full writeup, including a real
+    coordinate-frame bug caught mid-extraction, in "Enemy spawn points" →
+    "Patrol paths" above), now drawn as SVG polyline loops on the same
+    scatter view.
 
 ## Open items / plausible next steps (not started)
 
