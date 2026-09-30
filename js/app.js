@@ -22,8 +22,7 @@
   State.init();
   ImportExportUI.init();
   AccountUI.init();
-  await Auth.init(); // silent session resume — no-op if not signed in or backend unreachable
-  AccountUI.renderHeader();
+  await Auth.init(); // silent session resume — no-op if not signed in or backend unreachable; Auth.subscribe already re-renders the header/profile tab if it succeeds
 
   const authParam = new URLSearchParams(location.search).get('auth');
   if (authParam) {

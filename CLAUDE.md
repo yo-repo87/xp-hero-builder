@@ -391,6 +391,42 @@ no errors) — the bug was specifically in the Google → callback →
 frontend leg, now fixed for all three providers at once (all three
 redirect call sites shared the same bug).
 
+**Header/Profile UX follow-up (same day)**: user asked for the header
+button to directly toggle Sign In ↔ Sign Off (rather than opening an
+account modal once signed in), plus a dedicated Profile tab with a
+personalized icon defaulting to the user's initials. Reworked
+`js/ui-account.js`: `#btn-account` is now a straight toggle (`Auth.user
+? signOut() : openAuthModal()`, no modal in between when signed in); a
+new `#tab-profile` nav tab (hidden via the `hidden` attribute when
+signed out) holds what used to be the "My Account" modal's content —
+cloud-save list, "Save Current Build to Cloud" — rendered into
+`#profile-root`, participating in the app's existing generic tab-switch
+system (`State.setTab('profile')`, no changes needed to `app.js`'s
+`setActiveTab()`). Avatar: two-letter initials from `displayName`
+("Matthew Gibson" → "MG", single-word names take the first two letters),
+background color deterministically hashed from the user's id (`hash %
+360` → HSL hue) so different people's avatars are visually distinct
+without any actual uploaded image — explicitly designed as a *default*,
+not a ceiling: nothing here stops a future real-avatar-upload feature
+from overriding it per user. **Real bug caught during Playwright
+verification, fixed same session**: `.tab-btn--profile { display: flex;
+... }` was declared as a plain class rule, which — per CSS's cascade —
+overrides the browser's default `[hidden] { display: none }` UA-stylesheet
+rule (a class-scoped `display` declaration always wins over the
+attribute-based default, regardless of the `hidden` attribute actually
+being present). The tab was visually showing even when logged out.
+Fixed with `.tab-btn--profile[hidden] { display: none; }` +
+`.tab-btn--profile:not([hidden]) { display: flex; ... }` so the `hidden`
+attribute is explicitly respected. Signing out while on the Profile tab
+also redirects to the Weapons tab (`onAuthChange()` checks
+`State.data.ui.activeTab === 'profile'`) rather than leaving the user
+stranded on a tab that just disappeared. Verified end-to-end with
+Playwright: logged-out state (tab hidden, "Sign In"), logged-in state
+(tab visible with correct initials avatar in both the small tab icon and
+the large profile-page version, "Sign Off"), sign-off (tab hidden again,
+active tab reverts to Weapons) — including the single-word-name initials
+fallback ("Bob" → "BO").
+
 **Frontend**: `js/auth.js` (session client — access token kept in memory
 only, never localStorage, since it's a 15-minute JWT and losing it on tab
 close is fine; refresh token is an httpOnly cross-site cookie the browser

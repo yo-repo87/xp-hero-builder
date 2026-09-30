@@ -176,7 +176,22 @@ a { color: inherit; }
 }
 .tab-btn:hover { color: #fff; }
 .tab-btn.active { background: var(--gold); color: #3a2a05; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2); }
+.tab-btn--profile[hidden] { display: none; }
+.tab-btn--profile:not([hidden]) { display: flex; align-items: center; gap: 6px; padding: 4px 14px 4px 4px; }
 .header-actions { display: flex; gap: 8px; }
+
+/* Personalized avatar — a colored initials badge by default (see
+   ui-account.js's avatarColorFor/initialsFor); nothing here stops a
+   future "upload a real picture" feature from overriding it per user. */
+.profile-avatar {
+  display: inline-flex; align-items: center; justify-content: center; border-radius: 50%;
+  color: #fff; font-family: 'Baloo 2', sans-serif; font-weight: 800; flex-shrink: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.profile-avatar--tab { width: 26px; height: 26px; font-size: 0.72rem; }
+.profile-avatar--large { width: 64px; height: 64px; font-size: 1.4rem; }
+.profile-tab-label { font-size: 0.88rem; }
+.profile-header { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
 
 .btn {
   border: 1px solid #00000022; background: var(--parchment-light); color: var(--ink);
