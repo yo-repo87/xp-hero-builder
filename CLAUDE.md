@@ -532,6 +532,35 @@ closed (the last waypoint connects back to the first — these read as
 patrol loops, not one-way paths). New CSS: `.spawn-path-layer`/
 `.spawn-path`/`.spawn-path-swatch`.
 
+**Farmable Items now routes to the monster, not just the item (same
+session, follow-up).** User asked to shift Farmable Items' reporting
+toward the monster and its patrol route rather than the item icon, "so
+all of the farmable monsters can be targeted using the map." Previously
+every source row's "View Map" button (guaranteed boss drops, chest drops,
+and community reports alike) opened the discrete story-stage board with
+the *item's* icon pinned on a tile — useful for chests (no monster
+involved) but not for a boss/community-reported creature, where the real
+useful thing is "where do I go stand." Split the behavior by source type
+in `js/ui-farmable.js`:
+- Guaranteed-drop and community-report rows (both already name a real
+  enemy) now have a **"Track on Map"** button that calls
+  `MonstersUI.openDetail(enemyId)` directly — the exact same rich monster
+  popup the Monsters tab uses, so a farmable source click lands you on
+  that monster's real spawn-position + patrol-route overlay (plus its
+  confirmed story-stage tile and "View Story-Stage Map" button, if it has
+  one via `MinimapRewardData`). No new rendering code needed — this is
+  pure reuse of what "Enemy spawn points"/"Patrol paths" above already
+  built.
+- Chest-drop rows keep the old item-icon-pinned-on-tile-board behavior
+  (`openMap()`, now simplified) since a chest has no monster to track —
+  forcing a "monster" framing onto a chest source would be dishonest, so
+  this deliberately stayed different rather than unifying for its own
+  sake.
+Cleaned up now-dead code as part of this: `openMap()`'s unused
+`boss-portrait-row` markup (every call site that could pass an `enemy`
+pin now goes through the new `MonstersUI.openDetail` path instead) and
+its corresponding CSS were removed rather than left stale.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,

@@ -10,10 +10,18 @@
 //     ids), and ChestSpawnerData.ChestRespawnOrder ties each chest to the
 //     specific stage(s) it actually spawns at.
 //
-// "View Map" opens the game's REAL minimap layout (see js/ui-map.js) — real
-// per-stage tile art and exact tile positions extracted from the game's own
-// UI files, with the item's own icon pinned on whichever tile(s) are the
-// real source.
+// "View Map" behavior is intentionally split by source type, because only
+// one of the two actually has a monster to go find:
+//   - Guaranteed boss drops and community reports both name a specific
+//     enemy, so their "Track on Map" button routes straight into that
+//     monster's own full detail view (MonstersUI.openDetail) — the real
+//     spawn-position + patrol-route overlay this app already builds for
+//     the Monsters tab, so a farmable item's source is something you can
+//     actually go stand next to in-game, not just a stage number.
+//   - Chest drops have no monster at all (a chest just spawns at a stage),
+//     so those keep the item's own icon pinned on the real story-stage
+//     tile board (js/ui-map.js's MapUI) — the only representation that
+//     makes sense for a source with no creature attached.
 // ---------------------------------------------------------------------------
 
 const FarmableUI = {
@@ -67,13 +75,13 @@ const FarmableUI = {
     const r = Game.rarityColor(item.Rarity);
 
     const guaranteedHTML = sources.guaranteed.map(s => `
-      <div class="farm-source-row" data-map-guaranteed='${JSON.stringify({ chapter: s.stage?.chapter, stageId: s.stage?.id })}'>
+      <div class="farm-source-row" data-track-enemy="${s.enemy ? s.enemy.id : ''}">
         <img class="farm-source-thumb" src="${s.enemy ? Game.enemyIcon(s.enemy) : ''}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title">Guaranteed — defeat <b>${escapeHtml(s.enemy ? s.enemy.Name_en : 'Unknown')}</b></div>
           <div class="fs-sub">${s.stage ? `Chapter ${s.stage.chapter} · Stage ${s.stage.stage} — ${escapeHtml(s.stage.Name_en)}` : 'Location unknown'} · drops ×${s.amount}</div>
         </div>
-        <button class="btn btn-sm">View Map</button>
+        ${s.enemy ? '<button class="btn btn-sm">Track on Map</button>' : ''}
       </div>`).join('');
 
     const chestHTML = sources.chest.map((s, i) => `
@@ -91,13 +99,13 @@ const FarmableUI = {
       const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
       const stage = rep.stage_id ? Game.index.stageById.get(rep.stage_id) : null;
       return `
-      <div class="farm-source-row farm-source-row--community" data-map-community="${i}">
+      <div class="farm-source-row farm-source-row--community" data-track-enemy="${enemy ? enemy.id : ''}">
         <img class="farm-source-thumb" src="${enemy ? Game.enemyIcon(enemy) : ''}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title"><span class="tag tag--community">USER-REPORTED</span> Slay <b>${escapeHtml(rep.enemy_name || 'Unknown creature')}</b></div>
           <div class="fs-sub">${escapeHtml(rep.stage_label || 'Location not given')}${rep.note ? ` — "${escapeHtml(rep.note)}"` : ''}${rep.reporter ? ` <span style="color:var(--ink-faint)">— ${escapeHtml(rep.reporter)}</span>` : ''}</div>
         </div>
-        ${stage ? '<button class="btn btn-sm">View Map</button>' : ''}
+        ${enemy ? '<button class="btn btn-sm">Track on Map</button>' : ''}
       </div>`;
     }).join('');
 
@@ -129,27 +137,20 @@ const FarmableUI = {
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
     document.getElementById('report-find-btn').addEventListener('click', () => this.openReportForm(item));
 
-    document.querySelectorAll('[data-map-guaranteed]').forEach(el => {
-      el.addEventListener('click', () => {
-        const { chapter, stageId } = JSON.parse(el.dataset.mapGuaranteed);
-        const s = sources.guaranteed.find(x => x.stage?.id === stageId);
-        this.openMap(item, [{ chapter, stage: s?.stage?.stage, label: s?.enemy?.Name_en, enemy: s?.enemy }]);
-      });
+    // Guaranteed-drop and community-report rows both name a real enemy —
+    // route straight to that monster's own detail view (real spawn
+    // position + patrol route overlay, plus its story-stage tile if it
+    // has one) rather than just pinning the item icon on a stage tile.
+    document.querySelectorAll('[data-track-enemy]').forEach(el => {
+      const enemyId = Number(el.dataset.trackEnemy);
+      if (!enemyId) return;
+      el.querySelector('button')?.addEventListener('click', () => MonstersUI.openDetail(enemyId));
     });
     document.querySelectorAll('[data-map-chest]').forEach(el => {
       el.addEventListener('click', () => {
         const s = sources.chest[Number(el.dataset.mapChest)];
         const pins = s.stages.map(st => ({ chapter: st.chapter, stage: st.stage, label: s.chest.Name }));
         this.openMap(item, pins);
-      });
-    });
-    document.querySelectorAll('[data-map-community]').forEach(el => {
-      el.addEventListener('click', () => {
-        const rep = reports[Number(el.dataset.mapCommunity)];
-        const stage = Game.index.stageById.get(rep.stage_id);
-        if (!stage) return;
-        const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
-        this.openMap(item, [{ chapter: stage.chapter, stage: stage.stage, label: rep.enemy_name, enemy }]);
       });
     });
   },
@@ -237,22 +238,15 @@ const FarmableUI = {
     });
   },
 
-  // pins: [{chapter, stage, label, enemy?}] — opens the real in-game map
-  // (see js/ui-map.js) with the item's own icon pinned on its real source
-  // tile(s).
+  // pins: [{chapter, stage, label}] — opens the real in-game story-stage
+  // board (see js/ui-map.js) with the item's own icon pinned on its real
+  // source tile(s). Only used for chest sources now — chests have no
+  // monster to track, so the item icon is the right thing to pin here.
+  // Guaranteed/community sources route to MonstersUI.openDetail instead
+  // (see the click-wiring above).
   openMap(item, pins) {
-    const bossPortraits = pins.filter(p => p.enemy).map(p => p.enemy);
-    const beforeHTML = bossPortraits.length ? `
-      <div class="boss-portrait-row">
-        ${bossPortraits.map(e => `
-          <div class="boss-portrait">
-            <img src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt="">
-            <div>${escapeHtml(e.Name_en)}${e.NickName_en ? `<div class="fs-sub">"${escapeHtml(e.NickName_en)}"</div>` : ''}</div>
-          </div>`).join('')}
-      </div>` : '';
-
     const mapPins = pins.map(p => ({ chapter: p.chapter, stage: p.stage, iconUrl: Game.itemIcon(item), label: p.label }));
-    MapUI.open(`${item.Name_en} — Where to Farm`, mapPins, beforeHTML);
+    MapUI.open(`${item.Name_en} — Where to Farm`, mapPins);
   },
 };
 

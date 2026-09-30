@@ -531,11 +531,6 @@ footer.app-footer {
 .form-field textarea { resize: vertical; min-height: 60px; }
 .form-field select[size] { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
 
-.boss-portrait-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 18px; }
-.boss-portrait { display: flex; align-items: center; gap: 10px; border-radius: 10px; padding: 8px 14px 8px 8px; font-size: 0.84rem; font-weight: 700; font-family: 'Baloo 2', sans-serif; color: var(--ink);
-  border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill; border-image-width: 8px; border-style: solid; border-width: 8px; background-color: var(--parchment-light); }
-.boss-portrait img { width: 52px; height: 52px; object-fit: contain; background: var(--parchment); border-radius: 8px; }
-
 /* Real in-game minimap — see js/ui-map.js. .chapter-map-canvas is a fixed
    720:600 aspect box (the real Minimap prefab's own canvas size); each
    .map-tile is positioned with the exact normalized x/y/w/h extracted from
