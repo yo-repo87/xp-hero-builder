@@ -952,6 +952,23 @@ everywhere else stage/spawn data is chapter-limited.
 - Deploys via GitHub Pages (branch `main`, root). **After every push, Pages
   takes ~1-2 minutes to rebuild** — a 404 right after pushing is normal, not
   a bug; it resolves itself.
+- **Cache-busting (added 2026-09-30)**: every `<script src="js/...">` and
+  the `<link rel="stylesheet">` in `index.html` carries a `?v=<short
+  commit hash>` query string. GitHub Pages serves these with
+  `Cache-Control: max-age=600` (10 min) — without a version string, a
+  visitor who loaded the site shortly before a deploy can keep seeing the
+  *old* JS/CSS for up to 10 minutes after a push even though the new
+  files are already live (confirmed this exact scenario: user reported a
+  just-shipped feature "not showing up," direct `curl` against the live
+  URLs proved the new code was already deployed correctly — it was pure
+  browser caching of the old asset URLs). **Whenever you change any
+  `js/*.js` or `css/style.css` file, bump the `?v=` on every reference in
+  `index.html` to the new commit's short hash** (`git log -1
+  --format=%h` after committing) as part of that same change — otherwise
+  this exact confusion recurs on every future update. `index.html` itself
+  is also subject to the 10-minute cache, but that's normal/expected (a
+  hard refresh always fixes it); the query-string bump is what makes a
+  *normal* revisit reliably pick up new JS/CSS without requiring one.
 
 ## Chronological summary of work done
 
