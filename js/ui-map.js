@@ -109,20 +109,29 @@ const SpawnMapUI = {
     });
 
     const ownIds = new Set(ownPoints.map(p => p.key + p.x + p.z));
-    const dotsHTML = allInChapter.map(p => {
+    // Sort so the selected monster's own dots render last (on top of the crowd).
+    const ordered = allInChapter.slice().sort((a, b) => {
+      const aOwn = ownIds.has(a.key + a.x + a.z) ? 1 : 0;
+      const bOwn = ownIds.has(b.key + b.x + b.z) ? 1 : 0;
+      return aOwn - bOwn;
+    });
+    const dotsHTML = ordered.map(p => {
       const isOwn = ownIds.has(p.key + p.x + p.z);
       const otherEnemy = Game.index.enemyById.get(p.enemy_data_id);
       const label = otherEnemy ? otherEnemy.Name_en : p.key;
+      const iconUrl = otherEnemy ? Game.enemyIcon(otherEnemy) : '';
       const pos = norm(p);
       return `
-        <div class="spawn-dot${isOwn ? ' own' : ''}" style="left:${pos.left.toFixed(2)}%;top:${pos.top.toFixed(2)}%;" title="${escapeHtml(label)}${p.is_patrol ? ' (patrols)' : ''}"></div>`;
+        <div class="spawn-dot${isOwn ? ' own' : ''}" style="left:${pos.left.toFixed(2)}%;top:${pos.top.toFixed(2)}%;" title="${escapeHtml(label)}${p.is_patrol ? ' (patrols)' : ''}">
+          <img src="${iconUrl}" onerror="onImgError(this)" alt="">
+        </div>`;
     }).join('');
 
     UI.openModal(`
       <div class="modal-header"><h3>${escapeHtml(enemy.Name_en)} — Spawn Positions</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
         <div class="spawn-map-canvas">${dotsHTML}</div>
-        <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)</div>
+        <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)</div>
         <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They plot each monster's position <em>relative to every other spawn point in this chapter's own free-roam world region</em>, which is a genuinely different coordinate system from the story-stage board map shown elsewhere in this app (that one tracks discrete Stage 1-N progress tiles; this one tracks continuous in-world placement) — the two aren't on the same scale and shouldn't be compared directly. Only Chapters 1-3 have this data extracted.</div>
       </div>
     `);
