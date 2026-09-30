@@ -85,7 +85,14 @@ const MapZoom = {
     };
     const reset = () => { scale = 1; panX = 0; panY = 0; apply(); };
 
+    // Only zoom on Ctrl+wheel (also how browsers report trackpad
+    // pinch-to-zoom gestures) — a plain scroll over the map falls through
+    // to the page/modal's own scroll instead of being captured. Capturing
+    // every wheel tick unconditionally used to trap the mouse over a tall
+    // map, making the rest of the modal (legend/caveat/controls below it)
+    // feel permanently unreachable — reported as "maps run off screen".
     viewport.addEventListener('wheel', (e) => {
+      if (!e.ctrlKey) return;
       e.preventDefault();
       const rect = viewport.getBoundingClientRect();
       const factor = e.deltaY < 0 ? 1.25 : 0.8;
@@ -94,9 +101,15 @@ const MapZoom = {
 
     stage.addEventListener('dragstart', (e) => e.preventDefault());
 
-    // Pointer Events unify mouse/touch/pen: one finger (or the mouse)
-    // drags to pan; a second finger starts a pinch-zoom-and-pan gesture,
-    // computed fresh from a snapshot taken when the second pointer lands.
+    // Pointer Events unify mouse/touch/pen, but touch needs different
+    // handling from mouse for the same "don't trap the user's scroll"
+    // reason as the wheel handler above: a single mouse-drag pans (mouse
+    // has no competing native gesture to protect), but a single TOUCH
+    // is left alone — CSS `touch-action: pan-y` lets it fall through to
+    // the browser's own vertical scroll of the modal. Only once a second
+    // finger lands do we take over (pinch-zoom-and-pan, computed fresh
+    // from a snapshot taken when that second pointer lands); a two-finger
+    // drag without pinching just pans via the midpoint.
     const pointers = new Map(); // pointerId -> {x, y} in viewport-relative px
     let mode = null; // 'pan' | 'pinch'
     let panStart = null; // {x, y, panX, panY}
@@ -113,12 +126,14 @@ const MapZoom = {
     };
 
     viewport.addEventListener('pointerdown', (e) => {
-      viewport.setPointerCapture(e.pointerId);
       pointers.set(e.pointerId, rectXY(e));
       if (pointers.size === 1) {
+        if (e.pointerType === 'touch') return; // let native scroll handle a lone finger
+        viewport.setPointerCapture(e.pointerId);
         mode = 'pan';
         panStart = { ...rectXY(e), panX, panY };
       } else if (pointers.size === 2) {
+        pointers.forEach((_, id) => { try { viewport.setPointerCapture(id); } catch { /* already released */ } });
         mode = 'pinch';
         const g = twoPointerGeometry();
         pinchStart = { ...g, scale, panX, panY };
@@ -148,12 +163,14 @@ const MapZoom = {
 
     const endPointer = (e) => {
       pointers.delete(e.pointerId);
-      if (pointers.size === 1) {
-        // Resume single-finger panning from here without a jump.
+      if (pointers.size === 1 && e.pointerType !== 'touch') {
+        // Resume single-pointer panning from here without a jump (mouse
+        // only — a lone remaining finger after a pinch goes back to
+        // native scroll rather than resuming a pan it never opted into).
         const [remaining] = pointers.values();
         mode = 'pan';
         panStart = { x: remaining.x, y: remaining.y, panX, panY };
-      } else if (pointers.size === 0) {
+      } else {
         mode = null;
       }
     };
@@ -221,7 +238,7 @@ const MapUI = {
       <div class="modal-body">
         ${beforeHTML}
         ${cardsHTML}
-        <div class="caveat">This is the game's own real minimap layout — exact stage tile positions and art extracted directly from the game's own UI files, not a fabricated map. Only Chapters 1-3 have this data (same coverage as everywhere else this app tracks stages). Chapter 3 shows the game's full unique tile art; Chapters 1-2 only ship a dimmed "cleared" silhouette per tile in the current game files, so that's shown as-is rather than inventing missing color art. Scroll/pinch to zoom, drag to pan.</div>
+        <div class="caveat">This is the game's own real minimap layout — exact stage tile positions and art extracted directly from the game's own UI files, not a fabricated map. Only Chapters 1-3 have this data (same coverage as everywhere else this app tracks stages). Chapter 3 shows the game's full unique tile art; Chapters 1-2 only ship a dimmed "cleared" silhouette per tile in the current game files, so that's shown as-is rather than inventing missing color art. Drag to pan; Ctrl+scroll, pinch, or the +/− buttons to zoom.</div>
       </div>
     `, { onMount: (el) => MapZoom.wire(el) });
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
@@ -324,6 +341,6 @@ const SpawnMapUI = {
     return `
       ${MapZoom.wrapHTML('chapter-map-canvas spawn-overlay-canvas', stageInnerHTML)}
       <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
-      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''} Scroll/pinch to zoom, drag to pan.</div>`;
+      <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''} Drag to pan; Ctrl+scroll, pinch, or the +/− buttons to zoom.</div>`;
   },
 };

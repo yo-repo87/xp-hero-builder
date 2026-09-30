@@ -483,17 +483,56 @@ containing block now also has a CSS transform on it); `MapZoom.wire(root)`
 walks a just-mounted DOM subtree and attaches the interaction handlers,
 called via `UI.openModal`'s existing `onMount` hook (no changes needed to
 that API) from both `MapUI.open()` and `ui-monsters.js`'s `openDetail()`.
-Interaction: mouse wheel zooms centered on the cursor; drag pans (mouse or
-single-finger touch); pinch-to-zoom works via the Pointer Events API (one
-code path handles mouse/touch/pen — tracks up to 2 active pointers,
-computes scale from the distance between them and pans to keep their
-midpoint's content-space anchor fixed, recomputed fresh from a snapshot
-taken when the second finger lands so simultaneous pan+zoom gestures don't
-drift); floating +/−/reset buttons cover the no-wheel/no-touch case.
-Panning is clamped so the content can't be dragged fully out of view (at
-1x zoom, panning is a no-op by construction — nothing to reveal). Each
-map card gets independent zoom state, including the multi-chapter case
-(Farmable Items' "View Map" can show several chapter cards in one modal).
+Interaction (see the "maps run off screen" fix below for why plain
+scroll/single-finger-drag don't zoom/pan): Ctrl+wheel zooms centered on
+the cursor; mouse-drag pans; pinch-to-zoom (a real second finger, or a
+trackpad pinch, which browsers report as Ctrl+wheel) works via the
+Pointer Events API (one code path handles mouse/touch/pen — tracks up to
+2 active pointers, computes scale from the distance between them and pans
+to keep their midpoint's content-space anchor fixed, recomputed fresh
+from a snapshot taken when the second finger lands so simultaneous
+pan+zoom gestures don't drift); floating +/−/reset buttons cover the
+no-modifier/no-pinch case. Panning is clamped so the content can't be
+dragged fully out of view (at 1x zoom, panning is a no-op by construction
+— nothing to reveal). Each map card gets independent zoom state,
+including the multi-chapter case (Farmable Items' "View Map" can show
+several chapter cards in one modal).
+
+**Bug fix, same session: "maps run off screen or out of frame in their
+windows."** Two real, distinct causes, both fixed:
+1. **Scroll-trapping.** The wheel handler originally called
+   `e.preventDefault()` on every wheel tick over the map to zoom it — so
+   scrolling the mouse wheel while the cursor happened to be over the
+   (large) map canvas didn't scroll the modal at all, it zoomed the map
+   instead. Since the map sits above its own legend/caveat/zoom-controls
+   *and* often above more monster detail, this made everything below it
+   feel permanently stuck/unreachable. Changed to Ctrl+wheel-only for
+   zoom (the standard embedded-map convention — Google Maps embeds do the
+   same thing for the same reason) so a plain scroll falls through to the
+   page. The equivalent touch case (`touch-action: none` handed the
+   browser's entire gesture space to our own pan/pinch code, so a single
+   finger swiped over the map panned it instead of scrolling the modal)
+   got the same fix: CSS `touch-action: pan-y` plus gating the JS pan
+   logic to `pointerType !== 'touch'` for a lone pointer, so one finger
+   scrolls natively and only a second finger landing engages the custom
+   pinch/pan handling.
+2. **Genuinely oversized embedded map.** Separately, the *embedded*
+   overlay (inside the Monsters tab / Farmable Items "Track on Map" flow)
+   was inheriting the real story-stage board's 720:600 aspect ratio from
+   `.chapter-map-canvas`, which is tall enough on its own to push its
+   legend/caveat/zoom-controls off the bottom of a typical browser window
+   once stacked under a full monster stat block — confirmed by measuring
+   `.map-zoom-viewport`'s bounding box against `.modal`'s: the canvas
+   bottom edge sat ~200px past the modal's own bottom edge before this
+   fix. Added a `.spawn-overlay-canvas { aspect-ratio: 16/10; }` override
+   (the *standalone* story-stage board keeps the authentic 720:600 ratio
+   — it doesn't share space with other content) and bumped `.modal`'s
+   `max-height` from 88vh to 92vh. Verified by measurement: canvas bottom
+   edge is now comfortably inside the modal's on a normal desktop window,
+   and on a narrow/short (mobile-sized) viewport where some scrolling is
+   still unavoidable, confirmed the map/legend/caveat/controls are all
+   genuinely reachable by scrolling (not clipped or trapped) — the second
+   fix above is what makes that scroll actually work on touch.
 
 **Patrol paths (same session, follow-up).** User asked "can patrol paths
 be shown on the spawn map?" — real waypoint data existed for this too:
@@ -1041,7 +1080,17 @@ everywhere else stage/spawn data is chapter-limited.
     `idx.itemByType`/`idx.killDropsByItemId` (`data.js`), `sources.kill`
     (`computeFarmSources`), and a new "Monster Drops" section in the item
     detail modal reusing the existing "Track on Map" → `MonstersUI.openDetail`
-    pattern.
+    pattern. Verified this was already fully generic (not special-cased to
+    Crimson Orb) across all 8 items the mechanism resolves, per a same-day
+    follow-up ask.
+20. User reported "not every monster/item has a map, and also that the
+    maps seem to run off screen or out of frame in their windows." The
+    first is expected/honest (only Chapters 1-3 have real spawn/patrol
+    data — explained, not "fixed" with a guess); the second was a real
+    bug, actually two of them (wheel/touch scroll-trapping, and an
+    oversized embedded map pushing its own controls off the bottom of the
+    modal) — full root-cause writeup and fix in "Enemy spawn points" →
+    "Bug fix... maps run off screen" above.
 
 ## Open items / plausible next steps (not started)
 
