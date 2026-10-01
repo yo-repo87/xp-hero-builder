@@ -142,21 +142,30 @@ assets/img/weapons/          84 icons, filename = WeaponData.id
 assets/img/heroes/           24 icons, filename = CostumeData.id
 assets/img/items/            56 icons, filename = StackableItemData.PackageIcon (104
                               StackableItemData rows; 48 share icons across rarity/type
-                              variants; 8 rows — mostly Weapon Scroll tiers — reference an
-                              icon that was never captured, a pre-existing gap unrelated to
-                              the 2026-09-30 catalog refresh)
-assets/img/enemies/          164 portraits, filename = EnemyData.IconSprite (245
+                              variants; 8 rows — the 7 tiered Weapon Scroll icons
+                              (`Stackable_WeaponScroll_{Fine,Rare,Epic,Legendary,Ancient,
+                              Mythic,Exotic}`) — reference an icon that was never captured.
+                              Confirmed 2026-10-01: these ARE real individually-addressable
+                              keys in the live Addressables catalog (unlike the missing
+                              enemy faces below) but were searched for and not found in any
+                              of 15 fully-enumerated live CDN bundles, nor in the base+split
+                              APK (the "Normal" tier's own GameObject in the APK turned out
+                              to be an unrelated 3D world-pickup prop, not the 2D icon) —
+                              see "More missing artwork recovery")
+assets/img/enemies/          166 portraits, filename = EnemyData.IconSprite (245
                               EnemyData rows share these — reused across chapter re-skins/
-                              raid difficulty tiers; 42 distinct IconSprite names across ~85
-                              rows still have no local art as of 2026-09-30 (down from 52 —
-                              see "Monster portrait recovery" chronological log entry below
-                              for the 10 recovered that session, 4 via a casing-bug fix in
-                              the existing extraction, 6 via the live remote asset CDN).
-                              Remaining gap: 11 Chapter-1 raid-boss faces + 11 Hero's Tomb
-                              enemy faces + 15 Hero's Tomb "shadow hero" costume icons —
-                              confirmed genuinely absent from both the base+split APK *and*
-                              the two most relevant live CDN content bundles (herotomb,
-                              bossraid) checked that session, not just unreached)
+                              raid difficulty tiers; 40 distinct IconSprite names across ~85
+                              rows still have no local art as of 2026-10-01 (down from 52 —
+                              see "Monster portrait recovery" and "More missing artwork
+                              recovery" chronological log entries below: 10 recovered
+                              2026-09-30, 2 more 2026-10-01, all confirmed real portrait art
+                              from the live remote asset CDN or a casing-bug fix in the
+                              existing extraction, never guessed). Remaining gap: 11
+                              Chapter-1 raid-boss faces + 11 Hero's Tomb enemy faces + 11
+                              Hero's Tomb "shadow hero" costume icons — confirmed genuinely
+                              absent from the base+split APK *and* 15 live CDN content
+                              bundles (≈83MB, every bundle under the current build hash)
+                              fully enumerated as of 2026-10-01, not just unreached)
 assets/img/chests/           3 icons, filename = ChestData.PrefabName
 assets/img/map/              21 real per-stage minimap tile images (chapters 1-3 only,
                               see data/StageMapLayout.json), filename = the game's own
@@ -1549,6 +1558,77 @@ click-through, S-Tier Chest Key correctly shows both its farm sources
 and its recipe in the same modal, zero console errors, full tab sweep
 clean.
 
+## More missing artwork recovery (2026-10-01, same session follow-up)
+
+User asked to keep chasing the remaining missing art (40 enemy portraits,
+7 item icons at the time) and specifically floated the right lead: some
+assets are downloaded by the game at load time — the same live
+`weaponrpg-game-data` CDN discovered in "Monster portrait recovery"
+above. Picked that back up: re-fetched a **fresh** bucket listing
+(1,806 objects now, up from 1,772 — the live game updated since that
+session) and downloaded today's newest Addressables catalog
+(`addressables/21f79b6b.../Android/catalog_21f79b6b....json`, built
+2026-10-01, one day newer than the one used previously).
+
+**Confirmed via the catalog that the 7 missing item icons
+(`Stackable_WeaponScroll_{Fine,Rare,Epic,Legendary,Ancient,Mythic,Exotic}`)
+are real, individually-addressable keys** (`ArcadeWorld/Stackable/
+Stackable_WeaponScroll_<Tier>`) — unlike the enemy faces, these aren't
+embedded-only sub-assets. Chased down which bundle actually holds them:
+checked the base+split APK first (confirmed absent — only the "Normal"
+tier has a real `Sprite`/`Texture2D` locally; the other 7 tiers exist
+only as unrelated 3D world-pickup prefabs whose `SpriteRenderer`
+references a generic "WhiteCircle" shadow decal, not the item's own 2D
+icon, so there was genuinely nothing to extract from those prefab files
+despite the name match), then downloaded and fully enumerated **all 15
+remote bundles under the newest build hash** (≈83MB total: bossraid,
+bossraid_outgame, chapter2, chapter2_enemy, chapter3, chapter3_enemy,
+herotomb, herotomb_outgame, and 6 `liveopsevent_*` bundles, two of them
+brand new since the last session — `chapter2_enemy`/`chapter3_enemy`
+didn't exist in the Sep-30 listing) — **zero matches for any Weapon
+Scroll tier sprite in any of them.** These 7 icons remain unrecovered;
+the bundle that actually holds them (if any single one does — Unity
+Addressables can also duplicate small shared UI assets across several
+groups rather than owning them in exactly one place) wasn't identified.
+Properly resolving this would need decoding the Addressables catalog's
+binary `m_BucketDataString`/`m_EntryDataString` fields for a real
+key→bundle lookup instead of brute-force bundle enumeration — not done
+this session (see Open Items).
+
+**The same 15-bundle sweep did recover 2 more enemy portraits**, found
+by broadening the earlier session's search beyond just the 2 bundles
+checked back then: `liveopsevent_bossraid_ranking_assets_*.bundle` (a
+bundle that didn't exist to check in the prior session — it's new to
+the live CDN) contains `Face_Skin_DevilHunter` and `Face_Skin_Elf`,
+matching 2 of the still-missing Hero's Tomb "shadow hero" costumes
+(`HeroTomb_Costume_DevilHunter`, `HeroTomb_Costume_Elf`) via the same
+confirmed `Face_Skin_<Name>` convention established last session.
+Extracted at real portrait resolution (248×220 and 235×210 — clearly
+real face art, not a UI-fragment false positive like the rejected
+`Face_Elf_0` from last session) and saved as
+`HeroTomb_Costume_DevilHunter.png`/`HeroTomb_Costume_Elf.png`.
+
+**Confirmed genuinely still absent, not just unreached**: searched every
+one of the 15 downloaded bundles' full `Sprite`/`Texture2D` name list
+(not a targeted grep — the complete list was enumerated and checked)
+for every remaining missing name. Zero matches anywhere for the 11
+`Face_CH1_RaidBoss_*` enemy faces, the 11 `Face_HeroTomb_*` enemy faces,
+or 11 of the remaining 13 `HeroTomb_Costume_*` names (Berserker,
+Cactus, Cat, Cop, Cow, Cupid, Dragon, Pirate, Guardian, Princess,
+Ranger, Skull — 6 of these happen to share a name with an existing
+playable hero this app already has real portrait art for, but that art
+was deliberately **not** reused as a stand-in here, consistent with
+last session's explicit reasoning: no real evidence ties a Hero's Tomb
+"shadow" reskin's face to the base hero's own portrait art, so
+substituting it would be presenting a guess as fact).
+
+**Shipped**: `HeroTomb_Costume_DevilHunter.png`, `HeroTomb_Costume_Elf.png`
+in `assets/img/enemies/` — no code changes needed, same as every prior
+portrait recovery (`Game.enemyIcon()` resolves by filename directly).
+Missing-enemy-portrait count: 42 → **40**. Missing-item-icon count
+unchanged at 7 (searched hard, confirmed not recoverable from any
+currently-known bundle). Verified both new files serve correctly.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2115,6 +2195,18 @@ clean.
     Stones and S-Tier Chest Key — and shipped a green "🔨 CRAFTABLE"
     tag/section with clickable ingredient rows that jump to each
     ingredient's own detail. Full writeup in "Craftable items" above.
+32. User asked to keep chasing missing artwork, correctly guessing the
+    lead: assets downloaded at load time from the CDN found in "Monster
+    portrait recovery." Re-fetched a fresh bucket listing (grew to 1,806
+    objects) and the newest catalog, downloaded and fully enumerated all
+    15 remote bundles under the current build (≈83MB), and recovered 2
+    more real enemy portraits (`Face_Skin_DevilHunter`/`Face_Skin_Elf` in
+    a bundle — `liveopsevent_bossraid_ranking` — that didn't exist to
+    check in the prior session). Also traced down that the 7 missing
+    Weapon Scroll tier item icons are real addressable keys (unlike the
+    enemy faces) but confirmed them absent from all 15 bundles checked —
+    narrowed, not solved. Full writeup in "More missing artwork recovery"
+    above.
 
 ## Open items / plausible next steps (not started)
 
