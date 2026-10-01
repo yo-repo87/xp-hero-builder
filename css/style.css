@@ -537,6 +537,13 @@ footer.app-footer {
 .farm-source-row--community { border-style: dashed; border-color: var(--blue); background: #6c8de614; }
 .tag--community { background: var(--blue); color: #fff; }
 
+/* Shop Exclusive tag/row — distinguishes "buy with currency in the Shop"
+   (not earned via gameplay) from every other real farm/drop source above
+   it, same visual-distinction principle as Community Reports but its own
+   color so the two are never confused with each other either. */
+.farm-source-row--shop { border-style: dashed; border-color: var(--gold); background: #feda1614; }
+.tag--shop { background: var(--gold); color: var(--wood-dark); }
+
 .form-field { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 0.76rem; font-weight: 700; color: var(--ink-muted); font-family: 'Baloo 2', sans-serif; }
 .form-field select, .form-field input[type=text], .form-field input[type=email], .form-field input[type=password], .form-field textarea {

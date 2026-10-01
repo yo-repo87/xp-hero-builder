@@ -79,12 +79,18 @@ const FarmableUI = {
       const r = Game.rarityColor(item.Rarity);
       const total = sources.guaranteed.length + sources.chest.length + sources.kill.length
         + sources.bossRaid.length + sources.tower.length + sources.heroTomb.length + sources.other.length;
+      const shopOnly = total === 0 && Game.index.shopCostsByItemId.has(item.id);
+      const sourceTag = total > 0
+        ? `${total} known source${total > 1 ? 's' : ''}`
+        : shopOnly
+          ? `<span class="tag tag--shop">🛒 SHOP EXCLUSIVE</span>`
+          : `<span style="color:var(--ink-faint)">source not identified</span>`;
       return `
         <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
           <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
           <div class="pc-name">${escapeHtml(item.Name_en)}</div>
           <div class="pc-tag">${rarityPip(item.Rarity)}${r.name}</div>
-          <div class="pc-tag" style="margin-top:2px">${total > 0 ? `${total} known source${total > 1 ? 's' : ''}` : `<span style="color:var(--ink-faint)">source not identified</span>`}</div>
+          <div class="pc-tag" style="margin-top:2px">${sourceTag}</div>
         </div>`;
     }).join('');
 
@@ -97,6 +103,13 @@ const FarmableUI = {
     const item = Game.index.itemById.get(itemId);
     const sources = computeFarmSources(itemId);
     const r = Game.rarityColor(item.Rarity);
+    const farmTotal = sources.guaranteed.length + sources.chest.length + sources.kill.length
+      + sources.bossRaid.length + sources.tower.length + sources.heroTomb.length + sources.other.length;
+    // Only surfaced when there's no real gameplay-earned source at all —
+    // a Shop listing isn't "farming," so it stays out of the count above
+    // and only appears as a fallback answer, not an additional source
+    // line on items that already have a real one.
+    const shopCosts = farmTotal === 0 ? (Game.index.shopCostsByItemId.get(itemId) || null) : null;
 
     const killHTML = sources.kill.slice().sort((a, b) => (a.chapter ?? 99) - (b.chapter ?? 99) || a.enemy.Name_en.localeCompare(b.enemy.Name_en)).map(s => `
       <div class="farm-source-row" data-track-enemy="${s.enemy.id}">
@@ -194,8 +207,18 @@ const FarmableUI = {
             ${sources.tower.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Challenge Tower Rewards</h4>${towerHTML}` : ''}
             ${sources.heroTomb.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Hero's Tomb Rewards</h4>${heroTombHTML}` : ''}
             ${sources.other.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Other Confirmed Sources</h4>${otherHTML}` : ''}
-            ${sources.kill.length === 0 && sources.guaranteed.length === 0 && sources.chest.length === 0 && sources.bossRaid.length === 0 && sources.tower.length === 0 && sources.heroTomb.length === 0 && sources.other.length === 0 ? `
-              <div class="caveat">No confirmed farm source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (shop, chapter-clear rewards, player-level rewards, etc.), not that it's unobtainable.</div>` : `
+            ${shopCosts ? `
+              <h4 style="margin:14px 0 6px;font-size:.9rem">🛒 Shop Exclusive <span style="color:var(--ink-muted);font-weight:500">(no gameplay drop/earn source found)</span></h4>
+              <div class="farm-source-row farm-source-row--shop">
+                <div class="farm-source-info">
+                  <div class="fs-title">Buy in the in-game Shop</div>
+                  <div class="fs-sub">Confirmed real purchase cost${shopCosts.length > 1 ? 's include' : ' is'}: ${shopCosts.map(escapeHtml).join(', ')}${shopCosts.length >= 5 ? ' (and more — this is a sample, not every price tier)' : ''}</div>
+                </div>
+              </div>
+            ` : ''}
+            ${farmTotal === 0 && !shopCosts ? `
+              <div class="caveat">No confirmed source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (chapter-clear rewards, player-level rewards, etc.), not that it's unobtainable.</div>` : farmTotal === 0 ? `
+              <div class="caveat">This item has no confirmed gameplay drop/earn source — only a Shop listing. Costs shown above come straight from the game's own real \`ShopProductCostData\` table (not guessed), but this app doesn't track every price tier or whether a listing is time-limited — check the live Shop for the exact current offer.</div>` : `
               <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item. Boss Raid / Hero's Tomb / Invasion Ranking percentages work the same way, from their own reward tables; Challenge Tower and 7-Day Carnival rewards are flat and guaranteed (no weighted roll exists in those tables). "Other Confirmed Sources" covers Mission, Invasion, and Lucky Spin rewards — real reward-table data, but this app doesn't model exactly how to unlock/progress each of those modes, so these show the real reward math, not a walkthrough.</div>`}
 
             <h4 style="margin:14px 0 6px;font-size:.9rem">Community Reports <span style="color:var(--ink-muted);font-weight:500">(player-submitted, unverified)</span></h4>

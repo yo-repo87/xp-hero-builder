@@ -23,6 +23,7 @@ const DATA_FILES = [
   'InvasionRankingTierRewardData', 'InvasionPassRewardData', 'LuckySpinRewardData',
   'SevenDayCarnivalRewardData', 'QuestData', 'BossRaidRankingRewardData',
   'FivePackGiftRewardData', 'FootboardProductRVRewardData', 'NewCostumeRevenuePassRewardData',
+  'ShopItemSources',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -438,6 +439,26 @@ const Game = {
       const gate = r.level === -1 ? 'no level gate' : `Lv.${r.level}`;
       pushOther(item.id, { source: 'Revenue Pass', title: `season ${r.group_order} — ${gate}${r.is_vip ? ' (VIP track)' : ''}`, pct: null, amount: r.reward_amount });
     }
+
+    // Shop-exclusive items — found 2026-10-01 per a direct user request to
+    // mark items that have no farm/earn source but ARE confirmed buyable in
+    // the in-game Shop, so users aren't left with a bare "not identified."
+    // Precomputed in Python at extraction time (ShopProductRewardData's
+    // item_id -> .Type, cross-referenced against ShopProductData for
+    // currently-enabled products and ShopProductCostData for real cost —
+    // too much cross-table joining to repeat cleanly client-side) and
+    // restricted to only the items that have NO other confirmed source
+    // anywhere else in this file — this is deliberately NOT folded into
+    // idx.otherDropsByItemId/computeFarmSources' "known sources" count,
+    // since a Gem/currency purchase isn't "farming" and blurring the two
+    // would misrepresent what this tab is actually answering. Zero-cost
+    // placeholder rows (a `cost_value` of 0 — the same kind of inert
+    // reserved-slot pattern seen elsewhere in this app's reward tables)
+    // are already filtered out at precompute time. See CLAUDE.md "Shop
+    // Exclusive marking" for the full methodology and honesty caveats.
+    idx.shopCostsByItemId = new Map(
+      Object.entries(this.db.ShopItemSources).map(([id, costs]) => [Number(id), costs])
+    );
 
     // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —
     // exact normalized x/y/w/h per chapter+stage, extracted straight from

@@ -187,7 +187,7 @@ short version:
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
-| Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. The remaining 67 items are **not a research gap**: 44 are shop-exclusive (Selection Chests/Shard Packs — confirmed via `ShopProductData`→`ShopProductCostData`, every single row costs real money or Gems, never free), 6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward), and the rest are a short, specific, genuinely-unresolved list (Challenge Ticket, Raid Ticket, Heroes' Tomb Ticket, etc.) rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
+| Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **24 items are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with a distinct "🛒 SHOP EXCLUSIVE" tag rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
 | Item/enemy catalog (`StackableItemData`/`EnemyData`) | Refreshed 2026-09-30 from a newer APK (v26.2.0 vs. the original v25.3.0) — 56→104 items, 208→245 enemies, verified backward-compatible (all old ids/names unchanged) before merging. The 37 new enemies (a new "Hero's Tomb" mode) have no face art anywhere in the extracted asset tree — likely a remote-only AssetBundle, not a gap in the extraction itself. |
 | Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
@@ -1373,22 +1373,28 @@ that data only exists in the remote-CDN `chapter2`/`chapter3` scene
 bundles, not the base APK — not fetched this session, flagged in Open
 Items.
 
-**Checked but deliberately left excluded, with reasoning**:
+**Checked but deliberately left out of the "farmable" count, with
+reasoning — corrected 2026-10-01, see "Shop Exclusive marking" below**:
 - `ShopDynamicReward` (3,600 rows) and `ShopProductRewardData`
   (1,009 rows), plus their newly-found companions `ShopProductData`
   (777 rows) and `ShopProductCostData` (829 rows) — traced the full
-  chain this time rather than just assuming. `ShopProductCostData.cost_type`
-  is only ever `1` or `2` (never `0`/free) — every single shop product in
-  this table costs either real money or in-game Gems. Even the
-  Gem-costing ones are a *currency conversion*, not a drop/earn
-  mechanism, so including them would blur this tab's actual meaning
-  ("where do I farm this") — this is the same principled boundary this
-  app already drew for IAP, just confirmed with real cost data instead
-  of assumed from naming. This is also where the 44
+  chain. **This session's first pass at this got the conclusion wrong**:
+  it read `ShopProductCostData.cost_type` (only ever `1` or `2`) as
+  "real money or Gems, never free" without actually checking what those
+  two cost *types* pay in. The real, verified breakdown (done properly
+  in a same-day follow-up, see "Shop Exclusive marking"): only **12 of
+  829** cost rows (`org_price_iap > 0`) are real money — the other 817
+  are priced in ordinary in-game currencies (Gold, Gems, Chest Keys,
+  Orbs, Shards, Raid Tokens, Invasion Shop Coin...), i.e. this "Shop" is
+  overwhelmingly an in-game *crafting/exchange* system, not an IAP
+  storefront. Still correctly kept **out of the farmable-source count**
+  (spending currency isn't "farming," and conflating the two would
+  misrepresent what this tab answers) — but now surfaced explicitly as
+  "Shop Exclusive" with its real cost, instead of silently excluded, once
+  a direct user request asked for exactly that. This is also where the
   "Weapon/Melee/Ranged/S-Rank Selection Chest" and "Hero Shard Pack"/
-  "Hero Shard Selection Box" catalog items (the bulk of what's still
-  zero-source) actually come from — confirmed via their
-  `reward_group_id`s, not guessed.
+  "Hero Shard Selection Box" catalog items actually come from — confirmed
+  via their `reward_group_id`s, not guessed.
 - `LevelUpRewardData` — re-confirmed still unresolvable (see earlier in
   this file), no new angle found.
 - The 6 remaining tiered "Weapon Scroll (Fine/Rare/Epic/.../Exotic)"
@@ -1418,6 +1424,76 @@ vague "more to find." **36/103 items have a confirmed, real,
 gameplay-earned source** — this is very close to this game's actual
 ceiling for "earnable without spending money or converting currency,"
 not an incomplete search.
+
+## Shop Exclusive marking (2026-10-01, same session follow-up)
+
+User asked directly: for items with no farm source, mark them as Shop
+Exclusive in the UI so visitors know where to actually get them, rather
+than leaving a bare "source not identified." This meant going back and
+properly resolving `ShopProductRewardData`/`ShopProductData`/
+`ShopProductCostData` instead of the shallow pass above that stopped at
+"every row costs real money or Gems, never free" — which **turned out to
+be wrong** once actually checked field-by-field (see the correction in
+the confidence table and "Chasing 100% item coverage" above).
+
+**What's really in `ShopProductCostData`**: `org_price_iap` (a real
+cents-value real-money price) is nonzero on only **12 of 829** rows —
+the other 817 are priced in ordinary catalog currencies via `cost_param`
+(resolved through the same `.Type` convention as everything else in this
+pipeline — Gold, Gems, Chest Keys, Orbs, Shards, Raid Tokens, Invasion
+Shop Coin). Concretely: `Eternal Stone Dagger` costs 20 Earth Orb + 20
+Night Orb + 20 Leaf Orb (a real crafting recipe, built entirely from
+already-farmable materials, not a cash purchase at all). This is a
+genuinely more useful and more accurate "where do I get this" answer
+than "excluded as IAP" — it just isn't *farming* in the sense this tab's
+other sections mean, so it stays a clearly-separate, clearly-labeled
+fallback rather than folding into the main source count.
+
+**Resolution chain** (precomputed in Python at extraction time, not
+replicated client-side — too many cross-table joins to do cleanly in
+JS): `ShopProductRewardData.item_id` (when `reward_type===1`) resolves
+via `.Type` exactly like every other source in this app, giving which
+item a given shop listing's `group_id` sells; `ShopProductData.reward_group_id
+=== ShopProductRewardData.group_id` (a per-shop-system namespace,
+**not** the shared `RewardGroupData.Group` table every other source uses
+— confirmed by checking: resolving `ShopProductData.reward_group_id`
+against `RewardGroupData` instead, as an earlier same-session draft of
+this code briefly did, returned *coincidentally real-looking but wrong*
+results, the same `Group`-id-collision risk already flagged for
+`FivePackGiftSegmentData` — caught and fixed before shipping, not
+after) ties a listing to its real product; `ShopProductData.cost_group_id
+=== ShopProductCostData.group_id` gives its real cost(s); only
+**currently-`enable==TRUE`** products are used, and zero-value cost rows
+(a placeholder pattern seen elsewhere in this app's reward tables) are
+filtered out. The "which reward_type values are safe to trust" check
+itself was done per-row (does *this specific* `item_id` resolve via the
+globally-unique `.Type` space), not per-table — `reward_type` values
+2/5/6/7/9 mix real `StackableItem` references with ids from some other,
+unidentified category in the *same* bucket, so only rows that
+individually resolve cleanly were kept, from any `reward_type`. This
+raised the confirmed shop-item count from the 21 found checking only the
+single cleanest `reward_type` to a real **24** once mined more carefully
+(added Stone, Gold Sack, Gold Package).
+
+**Shipped**: `data/ShopItemSources.json` (new, precomputed table — item
+id → up to 5 real cost-option strings, cheapest first), `idx.shopCostsByItemId`
+(`data.js`), and in `js/ui-farmable.js`: grid cards for zero-farm-source
+items now show a gold "🛒 SHOP EXCLUSIVE" tag instead of a bare "source
+not identified" when shop data exists; the item detail modal gains a
+matching "🛒 Shop Exclusive" section (dashed gold border, same
+visual-distinction pattern Community Reports already established for
+"this is a different kind of source," so a shop listing is never
+confused with a real drop) showing the real purchase cost(s) and an
+honest caveat that this app doesn't track every price tier or whether a
+listing is time-limited. Deliberately **not** counted toward the
+"known sources" number shown elsewhere — a currency purchase isn't
+farming, and blurring the two would misrepresent what the rest of this
+tab is answering. Verified end-to-end with Playwright: 24 items
+correctly tagged on the grid, detail modal renders real cost data for
+Eternal Stone Dagger/Hero Shard Selection Box/Raid Ticket, items that
+are genuinely unresolved (e.g. Weapon Selection Chest) correctly still
+show "source not identified" rather than being over-tagged, zero console
+errors, full tab sweep clean.
 
 ## Git / deploy
 
@@ -1953,15 +2029,27 @@ not an incomplete search.
     treasure chests), and extracted 16 real Chapter 1 spawn coordinates
     using the same technique as the prior session's `EnemySpawnPoints`
     work — committed but not yet wired into any UI. Traced
-    `ShopProductData`→`ShopProductCostData` end-to-end and confirmed
-    every shop product costs real money or Gems, never free — the 44
-    "Selection Chest"/"Shard Pack" zero-source items are correctly
-    excluded, not a gap. Raised confirmed coverage from 34/103 to
+    `ShopProductData`→`ShopProductCostData` end-to-end; a first-pass read
+    of `cost_type` concluded every shop product costs real money or
+    Gems, never free (this turned out to be wrong, corrected the same
+    day — see entry 30). Raised confirmed coverage from 34/103 to
     36/103, and — more importantly — established that this is close to
     the real ceiling for gameplay-earned items in this game, not an
-    incomplete search. Full writeup, including exactly which of the
-    remaining 67 items are shop-exclusive vs. genuinely still
-    unresolved, is in "Chasing 100% item coverage" above.
+    incomplete search. Full writeup is in "Chasing 100% item coverage"
+    above.
+30. User asked directly: mark Shop Exclusive items as such in the
+    Farmable Items UI so visitors know where to get them. This meant
+    properly re-resolving the Shop tables instead of the shallow pass in
+    entry 29 — found that read was wrong: only 12 of 829
+    `ShopProductCostData` rows are real money, the other 817 are priced
+    in ordinary farmable in-game currencies (a crafting/exchange system,
+    not an IAP storefront). Corrected the confidence table and Chasing
+    100% writeup, resolved 24 items' real shop costs (precomputed into
+    `data/ShopItemSources.json`), and shipped a distinct gold "🛒 SHOP
+    EXCLUSIVE" tag/section in `js/ui-farmable.js` — kept deliberately out
+    of the "known sources" count, since a purchase isn't farming, but no
+    longer left as a bare "source not identified" either. Full writeup
+    in "Shop Exclusive marking" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -2045,29 +2133,31 @@ not an incomplete search.
   the free-roam/boss-raid open-world mode vs. the story-stage mode being
   genuinely different systems with different level geometry), the spawn
   scatter view could potentially gain real per-stage subdivision.
-- Farmable Items coverage: **36/103** as of 2026-10-01 (was a true 11,
-  then 25, then 34, then 36 across that day's three sessions — see
-  "Boss Raid / Challenge Tower / Hero's Tomb rewards", "More item/monster
-  location data", and "Chasing 100% item coverage" above, including two
-  real bugs fixed in the pre-existing Guaranteed/Chest source types along
-  the way). **Every `*Reward*`-named table in the game has now been
-  checked** — wired in, or excluded with a real, verified reason (not an
-  assumption): `ShopDynamicReward`/`ShopProductRewardData`/`ShopProductData`/
-  `ShopProductCostData` were traced end-to-end and confirmed every single
-  row costs real money or Gems (never free) — genuinely excluded, not
-  just deprioritized. `LevelUpRewardData` has no `.Type`-matching field
-  at all — genuinely unresolvable without guessing, not unchecked.
-  **What's actually still open**: the remaining 67 zero-source items are
-  44 shop-exclusive Selection Chests/Shard Packs (correctly excluded, not
-  a gap), 6 crafting-only tiered Weapon Scrolls (searched for everywhere,
-  not found as a reward anywhere — likely only obtainable by converting
-  lower tiers, a mechanic this app doesn't model), and a short specific
-  list of real remaining gaps: Challenge Ticket, Raid Ticket, Heroes'
-  Tomb Ticket, Home Return Portal Ticket (×2), Rv Skip Ticket, Evolution
-  Potion, Stone (id 7), Gold Sack/Package. `DropItemType`/`DropItemType2`
-  cover 100 enemies but plenty more `EnemyData` rows have neither set —
-  worth a fresh look if a later APK pull reveals more drop fields per
-  enemy, or if the "pieces" field's real meaning gets decompiled.
+- Farmable Items coverage: **36/103 real gameplay sources + 24 more
+  confirmed Shop Exclusive** as of 2026-10-01 (was a true 11, then 25,
+  then 34, then 36, then +24 Shop Exclusive across that day's four
+  sessions — see "Boss Raid / Challenge Tower / Hero's Tomb rewards",
+  "More item/monster location data", "Chasing 100% item coverage", and
+  "Shop Exclusive marking" above, including two real bugs fixed in the
+  pre-existing Guaranteed/Chest source types, and one wrong same-day
+  conclusion about the Shop ("real money or Gems, never free") caught
+  and corrected before it went stale). **Every `*Reward*`-named table in
+  the game has now been checked** — wired in, or excluded with a real,
+  verified reason (not an assumption). `LevelUpRewardData` has no
+  `.Type`-matching field at all — genuinely unresolvable without
+  guessing, not unchecked. **What's actually still open**: 43 items
+  remain genuinely zero-source (farm *and* shop) — ~6 are crafting-only
+  tiered Weapon Scrolls (searched for everywhere, not found as a reward
+  or shop listing — likely only obtainable by converting lower tiers, a
+  mechanic this app doesn't model), the rest (several Selection Chest
+  variants whose `reward_type` category didn't resolve cleanly via
+  `.Type`, Rv Skip Ticket, Home Return Portal Ticket ×2) are a short,
+  specific list rather than a vague "keep looking" — see "Shop Exclusive
+  marking" for exactly which `reward_type` values were trusted and why.
+  `DropItemType`/`DropItemType2` cover 100 enemies but plenty more
+  `EnemyData` rows have neither set — worth a fresh look if a later APK
+  pull reveals more drop fields per enemy, or if the "pieces" field's
+  real meaning gets decompiled.
   `HeroTombRuneDropData`'s own `gacha_reward_id`/`gacha_reward_count`/
   `gacha_reward_drop_rate` fields (a second, unexplored bonus-roll layer)
   are also still open.
