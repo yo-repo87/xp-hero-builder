@@ -23,7 +23,7 @@ const DATA_FILES = [
   'InvasionRankingTierRewardData', 'InvasionPassRewardData', 'LuckySpinRewardData',
   'SevenDayCarnivalRewardData', 'QuestData', 'BossRaidRankingRewardData',
   'FivePackGiftRewardData', 'FootboardProductRVRewardData', 'NewCostumeRevenuePassRewardData',
-  'ShopItemSources',
+  'ShopItemSources', 'CraftableItems',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -448,16 +448,41 @@ const Game = {
     // currently-enabled products and ShopProductCostData for real cost —
     // too much cross-table joining to repeat cleanly client-side) and
     // restricted to only the items that have NO other confirmed source
-    // anywhere else in this file — this is deliberately NOT folded into
-    // idx.otherDropsByItemId/computeFarmSources' "known sources" count,
-    // since a Gem/currency purchase isn't "farming" and blurring the two
-    // would misrepresent what this tab is actually answering. Zero-cost
-    // placeholder rows (a `cost_value` of 0 — the same kind of inert
-    // reserved-slot pattern seen elsewhere in this app's reward tables)
-    // are already filtered out at precompute time. See CLAUDE.md "Shop
-    // Exclusive marking" for the full methodology and honesty caveats.
+    // anywhere else in this file, AND are not in craftRecipeByItemId below
+    // (a real multi-item recipe gets the more specific "Craftable"
+    // treatment instead of the generic "buy for currency" one) — this is
+    // deliberately NOT folded into idx.otherDropsByItemId/
+    // computeFarmSources' "known sources" count, since a Gem/currency
+    // purchase isn't "farming" and blurring the two would misrepresent
+    // what this tab is actually answering. Zero-cost placeholder rows (a
+    // `cost_value` of 0 — the same kind of inert reserved-slot pattern
+    // seen elsewhere in this app's reward tables) are already filtered
+    // out at precompute time. See CLAUDE.md "Shop Exclusive marking" for
+    // the full methodology and honesty caveats.
     idx.shopCostsByItemId = new Map(
       Object.entries(this.db.ShopItemSources).map(([id, costs]) => [Number(id), costs])
+    );
+
+    // Craftable items — found 2026-10-01 per a direct follow-up user
+    // request to distinguish real crafting recipes from a plain currency
+    // purchase. Same source tables as Shop Exclusive above, but a
+    // DIFFERENT, stricter signal: only a product listing whose cost is 2+
+    // DISTINCT item types in the SAME listing counts as a "recipe" — a
+    // single-item cost (170 Gem, 80 Invasion Shop Coin, etc.) is still a
+    // currency purchase, not crafting, and stays in shopCostsByItemId
+    // instead. `EXP` (item id 4) is explicitly excluded from counting as
+    // an ingredient — it shows up as a flat "+1 EXP" tax alongside the
+    // real cost (usually Gem) on dozens of unrelated generic listings,
+    // not a meaningful recipe component; including it would have wrongly
+    // flagged already-farmable items like Gold/BlueStone/Weapon Scroll as
+    // "craftable." Only 7 items in the whole game survive this check —
+    // the 6 Eternal Stones (each a real 3-Orb recipe matching their own
+    // in-game description, e.g. "Used for Eternal Dagger merge") and
+    // S-Tier Chest Key (1 of each of the 6 Orb types). S-Tier Chest Key
+    // already has a real farm source too (Boss Raid Ranking) — shown
+    // alongside it, not instead of it, since both are genuinely true.
+    idx.craftRecipeByItemId = new Map(
+      Object.entries(this.db.CraftableItems).map(([id, recipe]) => [Number(id), recipe])
     );
 
     // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —

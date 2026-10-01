@@ -544,6 +544,12 @@ footer.app-footer {
 .farm-source-row--shop { border-style: dashed; border-color: var(--gold); background: #feda1614; }
 .tag--shop { background: var(--gold); color: var(--wood-dark); }
 
+/* Craftable tag/row — a real multi-item recipe (built from other farmed
+   items, not currency), distinct from both a plain farm source and a
+   Shop currency purchase so none of the three get confused. */
+.farm-source-row--craft { border-style: dashed; border-color: var(--green); background: #6ad71e14; }
+.tag--craft { background: var(--green); color: var(--wood-dark); }
+
 .form-field { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 0.76rem; font-weight: 700; color: var(--ink-muted); font-family: 'Baloo 2', sans-serif; }
 .form-field select, .form-field input[type=text], .form-field input[type=email], .form-field input[type=password], .form-field textarea {

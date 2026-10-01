@@ -79,12 +79,15 @@ const FarmableUI = {
       const r = Game.rarityColor(item.Rarity);
       const total = sources.guaranteed.length + sources.chest.length + sources.kill.length
         + sources.bossRaid.length + sources.tower.length + sources.heroTomb.length + sources.other.length;
-      const shopOnly = total === 0 && Game.index.shopCostsByItemId.has(item.id);
-      const sourceTag = total > 0
-        ? `${total} known source${total > 1 ? 's' : ''}`
-        : shopOnly
-          ? `<span class="tag tag--shop">🛒 SHOP EXCLUSIVE</span>`
-          : `<span style="color:var(--ink-faint)">source not identified</span>`;
+      const craftable = Game.index.craftRecipeByItemId.has(item.id);
+      const shopOnly = total === 0 && !craftable && Game.index.shopCostsByItemId.has(item.id);
+      const sourceTag = craftable
+        ? `<span class="tag tag--craft">🔨 CRAFTABLE</span>`
+        : total > 0
+          ? `${total} known source${total > 1 ? 's' : ''}`
+          : shopOnly
+            ? `<span class="tag tag--shop">🛒 SHOP EXCLUSIVE</span>`
+            : `<span style="color:var(--ink-faint)">source not identified</span>`;
       return `
         <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
           <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
@@ -110,6 +113,18 @@ const FarmableUI = {
     // and only appears as a fallback answer, not an additional source
     // line on items that already have a real one.
     const shopCosts = farmTotal === 0 ? (Game.index.shopCostsByItemId.get(itemId) || null) : null;
+    // Craftable recipes show regardless of other sources (unlike Shop
+    // Exclusive above) — a real recipe is worth knowing about even for an
+    // item that's also independently farmable (see S-Tier Chest Key).
+    const craftRecipe = Game.index.craftRecipeByItemId.get(itemId) || null;
+
+    const emptyStateCaveat = farmTotal > 0
+      ? `<div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item. Boss Raid / Hero's Tomb / Invasion Ranking percentages work the same way, from their own reward tables; Challenge Tower and 7-Day Carnival rewards are flat and guaranteed (no weighted roll exists in those tables). "Other Confirmed Sources" covers Mission, Invasion, and Lucky Spin rewards — real reward-table data, but this app doesn't model exactly how to unlock/progress each of those modes, so these show the real reward math, not a walkthrough.</div>`
+      : craftRecipe
+        ? '' // the Craftable section's own caveat above already covers this case
+        : shopCosts
+          ? `<div class="caveat">This item has no confirmed gameplay drop/earn source — only a Shop listing. Costs shown above come straight from the game's own real \`ShopProductCostData\` table (not guessed), but this app doesn't track every price tier or whether a listing is time-limited — check the live Shop for the exact current offer.</div>`
+          : `<div class="caveat">No confirmed source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (chapter-clear rewards, player-level rewards, etc.), not that it's unobtainable.</div>`;
 
     const killHTML = sources.kill.slice().sort((a, b) => (a.chapter ?? 99) - (b.chapter ?? 99) || a.enemy.Name_en.localeCompare(b.enemy.Name_en)).map(s => `
       <div class="farm-source-row" data-track-enemy="${s.enemy.id}">
@@ -207,6 +222,23 @@ const FarmableUI = {
             ${sources.tower.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Challenge Tower Rewards</h4>${towerHTML}` : ''}
             ${sources.heroTomb.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Hero's Tomb Rewards</h4>${heroTombHTML}` : ''}
             ${sources.other.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Other Confirmed Sources</h4>${otherHTML}` : ''}
+            ${craftRecipe ? `
+              <h4 style="margin:14px 0 6px;font-size:.9rem">🔨 Craftable</h4>
+              <div class="caveat" style="border-color:var(--gold)">Combine these at a real in-game crafting/merge listing — not a drop, but built entirely from other items you farm, not currency.</div>
+              ${craftRecipe.map(ing => {
+                const ingItem = Game.index.itemById.get(ing.item_id);
+                if (!ingItem) return '';
+                return `
+                <div class="farm-source-row farm-source-row--craft" data-craft-ingredient="${ing.item_id}">
+                  <img class="farm-source-thumb" src="${Game.itemIcon(ingItem)}" onerror="onImgError(this)" alt="">
+                  <div class="farm-source-info">
+                    <div class="fs-title">${escapeHtml(ingItem.Name_en)}</div>
+                    <div class="fs-sub">requires ×${fmtNum(ing.amount)}</div>
+                  </div>
+                  <button class="btn btn-sm">View Item</button>
+                </div>`;
+              }).join('')}
+            ` : ''}
             ${shopCosts ? `
               <h4 style="margin:14px 0 6px;font-size:.9rem">🛒 Shop Exclusive <span style="color:var(--ink-muted);font-weight:500">(no gameplay drop/earn source found)</span></h4>
               <div class="farm-source-row farm-source-row--shop">
@@ -216,10 +248,7 @@ const FarmableUI = {
                 </div>
               </div>
             ` : ''}
-            ${farmTotal === 0 && !shopCosts ? `
-              <div class="caveat">No confirmed source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (chapter-clear rewards, player-level rewards, etc.), not that it's unobtainable.</div>` : farmTotal === 0 ? `
-              <div class="caveat">This item has no confirmed gameplay drop/earn source — only a Shop listing. Costs shown above come straight from the game's own real \`ShopProductCostData\` table (not guessed), but this app doesn't track every price tier or whether a listing is time-limited — check the live Shop for the exact current offer.</div>` : `
-              <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item. Boss Raid / Hero's Tomb / Invasion Ranking percentages work the same way, from their own reward tables; Challenge Tower and 7-Day Carnival rewards are flat and guaranteed (no weighted roll exists in those tables). "Other Confirmed Sources" covers Mission, Invasion, and Lucky Spin rewards — real reward-table data, but this app doesn't model exactly how to unlock/progress each of those modes, so these show the real reward math, not a walkthrough.</div>`}
+            ${emptyStateCaveat}
 
             <h4 style="margin:14px 0 6px;font-size:.9rem">Community Reports <span style="color:var(--ink-muted);font-weight:500">(player-submitted, unverified)</span></h4>
             ${communityHTML || `<span style="color:var(--ink-faint);font-size:.82rem">No player reports yet for this item.</span>`}
@@ -248,6 +277,10 @@ const FarmableUI = {
         const pins = s.stages.map(st => ({ chapter: st.chapter, stage: st.stage, label: s.chest.Name }));
         this.openMap(item, pins);
       });
+    });
+    document.querySelectorAll('[data-craft-ingredient]').forEach(el => {
+      const ingId = Number(el.dataset.craftIngredient);
+      el.querySelector('button')?.addEventListener('click', () => this.openDetail(ingId));
     });
   },
 

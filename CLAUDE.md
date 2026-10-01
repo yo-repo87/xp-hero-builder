@@ -187,7 +187,7 @@ short version:
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
-| Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **24 items are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with a distinct "🛒 SHOP EXCLUSIVE" tag rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
+| Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **7 items are confirmed Craftable** (a real multi-item recipe — see "Craftable items") and **18 more are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with distinct "🔨 CRAFTABLE" / "🛒 SHOP EXCLUSIVE" tags rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
 | Item/enemy catalog (`StackableItemData`/`EnemyData`) | Refreshed 2026-09-30 from a newer APK (v26.2.0 vs. the original v25.3.0) — 56→104 items, 208→245 enemies, verified backward-compatible (all old ids/names unchanged) before merging. The 37 new enemies (a new "Hero's Tomb" mode) have no face art anywhere in the extracted asset tree — likely a remote-only AssetBundle, not a gap in the extraction itself. |
 | Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
@@ -1495,6 +1495,60 @@ are genuinely unresolved (e.g. Weapon Selection Chest) correctly still
 show "source not identified" rather than being over-tagged, zero console
 errors, full tab sweep clean.
 
+## Craftable items (2026-10-01, same session follow-up)
+
+User asked a direct follow-up: items obtained through crafting should be
+marked "Craftable" with their required ingredients, distinct from a
+plain Shop purchase. This meant going back into the same
+`ShopProductData`/`ShopProductRewardData`/`ShopProductCostData` chain
+"Shop Exclusive marking" had just resolved and applying a stricter,
+different signal: a real **recipe** is a single product listing whose
+cost is **2+ distinct item types at once**, not a single
+item/currency paid in some quantity. "170 Gem" is a currency purchase;
+"20 Earth Orb + 20 Night Orb + 20 Leaf Orb" is a recipe.
+
+**A real false-positive was caught and filtered before shipping**: a
+naive first pass flagged already-farmable items like Gold, BlueStone,
+and Weapon Scroll as "craftable," each apparently costing "1 EXP + 50
+Gem." `EXP` (catalog item id 4) turned out to be a near-universal 1-unit
+"tax" tacked onto dozens of unrelated generic Gem-purchase listings
+across the whole shop table, not a meaningful recipe ingredient —
+excluding it from the ingredient count dropped these false positives
+immediately, leaving only genuine multi-material recipes.
+
+**Result: exactly 7 items in the whole game have a real crafting
+recipe** — the 6 **Eternal Stones** (Dagger/Sword/Mace/Crossbow/Gun/Wand,
+each a 3-Orb recipe, e.g. Eternal Stone Dagger = 20 Earth Orb + 20 Night
+Orb + 20 Leaf Orb — confirmed consistent with the item's own real
+description, "Used for Eternal Dagger merge") and **S-Tier Chest Key**
+(1 of each of the 6 Orb types). S-Tier Chest Key is a special case worth
+noting: it *also* has a real farm source (Boss Raid Ranking rewards,
+found in "Boss Raid / Challenge Tower / Hero's Tomb rewards" above) — both
+are genuinely true at once, so its detail view shows both sections
+rather than picking one. The 6 Eternal Stones move out of the Shop
+Exclusive bucket entirely (they were there before this session) since
+"Craftable" is the more specific and accurate label for them.
+
+**Shipped**: `data/CraftableItems.json` (new, precomputed — item id →
+ordered ingredient list of `{item_id, amount}`, using real item ids so
+the UI can link to each ingredient's own detail, not just show a name);
+`data/ShopItemSources.json` regenerated to exclude the now-reclassified
+6 Eternal Stones; `idx.craftRecipeByItemId` (`data.js`); in
+`js/ui-farmable.js`: grid cards for craftable items show a green "🔨
+CRAFTABLE" tag (takes priority over the known-source count, since it's
+the more specific/actionable answer); the detail modal gains a matching
+"🔨 Craftable" section (dashed green border, its own color distinct from
+both the blue Community Reports and gold Shop Exclusive treatments) —
+each ingredient row shows the real item's icon/name/amount and a "View
+Item" button that jumps straight to that ingredient's own detail via
+the existing `openDetail()`, so a user can trace a full recipe chain
+(e.g. click into Earth Orb to see where *that* farms from) without
+leaving the tab. Verified end-to-end with Playwright: 7 cards correctly
+tagged, Eternal Stone Dagger's 3 ingredients render with working
+click-through, S-Tier Chest Key correctly shows both its farm sources
+and its recipe in the same modal, zero console errors, full tab sweep
+clean.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2050,6 +2104,17 @@ errors, full tab sweep clean.
     of the "known sources" count, since a purchase isn't farming, but no
     longer left as a bare "source not identified" either. Full writeup
     in "Shop Exclusive marking" above.
+31. User asked a direct follow-up: mark items obtained through crafting
+    as "Craftable" with their required ingredients, distinct from a
+    plain Shop purchase. Applied a stricter signal (2+ distinct item
+    types in one product listing = a recipe, vs. a single item/currency
+    = a purchase) to the same Shop tables, catching and filtering a real
+    false-positive along the way (`EXP` acting as a near-universal "+1"
+    tax on unrelated listings, which had wrongly flagged already-farmable
+    items as craftable). Found exactly 7 real recipes — the 6 Eternal
+    Stones and S-Tier Chest Key — and shipped a green "🔨 CRAFTABLE"
+    tag/section with clickable ingredient rows that jump to each
+    ingredient's own detail. Full writeup in "Craftable items" above.
 
 ## Open items / plausible next steps (not started)
 
