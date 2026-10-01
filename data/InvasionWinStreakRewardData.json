@@ -1,0 +1,578 @@
+[
+ {
+  "group": 1001,
+  "id": 1,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 50,
+  "reward_type": 6
+ },
+ {
+  "group": 1001,
+  "id": 2,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 30,
+  "reward_type": 5
+ },
+ {
+  "group": 1002,
+  "id": 3,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 100,
+  "reward_type": 6
+ },
+ {
+  "group": 1002,
+  "id": 4,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 40,
+  "reward_type": 5
+ },
+ {
+  "group": 1003,
+  "id": 5,
+  "item_type": 1,
+  "rarity": 3,
+  "reward_amount": 150,
+  "reward_type": 6
+ },
+ {
+  "group": 1003,
+  "id": 6,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 50,
+  "reward_type": 3
+ },
+ {
+  "group": 1004,
+  "id": 7,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 200,
+  "reward_type": 6
+ },
+ {
+  "group": 1004,
+  "id": 8,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 60,
+  "reward_type": 5
+ },
+ {
+  "group": 1005,
+  "id": 9,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 250,
+  "reward_type": 6
+ },
+ {
+  "group": 1005,
+  "id": 10,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 70,
+  "reward_type": 5
+ },
+ {
+  "group": 1006,
+  "id": 11,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 300,
+  "reward_type": 6
+ },
+ {
+  "group": 1006,
+  "id": 12,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 1,
+  "reward_type": 2103
+ },
+ {
+  "group": 1011,
+  "id": 13,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 100,
+  "reward_type": 6
+ },
+ {
+  "group": 1011,
+  "id": 14,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 40,
+  "reward_type": 5
+ },
+ {
+  "group": 1012,
+  "id": 15,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 200,
+  "reward_type": 6
+ },
+ {
+  "group": 1012,
+  "id": 16,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 50,
+  "reward_type": 5
+ },
+ {
+  "group": 1013,
+  "id": 17,
+  "item_type": 1,
+  "rarity": 3,
+  "reward_amount": 300,
+  "reward_type": 6
+ },
+ {
+  "group": 1013,
+  "id": 18,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 75,
+  "reward_type": 3
+ },
+ {
+  "group": 1014,
+  "id": 19,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 400,
+  "reward_type": 6
+ },
+ {
+  "group": 1014,
+  "id": 20,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 100,
+  "reward_type": 5
+ },
+ {
+  "group": 1015,
+  "id": 21,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 500,
+  "reward_type": 6
+ },
+ {
+  "group": 1015,
+  "id": 22,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 200,
+  "reward_type": 5
+ },
+ {
+  "group": 1016,
+  "id": 23,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 600,
+  "reward_type": 6
+ },
+ {
+  "group": 1016,
+  "id": 24,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 2,
+  "reward_type": 2103
+ },
+ {
+  "group": 1021,
+  "id": 25,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 125,
+  "reward_type": 6
+ },
+ {
+  "group": 1021,
+  "id": 26,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 60,
+  "reward_type": 5
+ },
+ {
+  "group": 1022,
+  "id": 27,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 250,
+  "reward_type": 6
+ },
+ {
+  "group": 1022,
+  "id": 28,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 75,
+  "reward_type": 5
+ },
+ {
+  "group": 1023,
+  "id": 29,
+  "item_type": 1,
+  "rarity": 3,
+  "reward_amount": 375,
+  "reward_type": 6
+ },
+ {
+  "group": 1023,
+  "id": 30,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 113,
+  "reward_type": 3
+ },
+ {
+  "group": 1024,
+  "id": 31,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 500,
+  "reward_type": 6
+ },
+ {
+  "group": 1024,
+  "id": 32,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 150,
+  "reward_type": 5
+ },
+ {
+  "group": 1025,
+  "id": 33,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 625,
+  "reward_type": 6
+ },
+ {
+  "group": 1025,
+  "id": 34,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 300,
+  "reward_type": 5
+ },
+ {
+  "group": 1026,
+  "id": 35,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 750,
+  "reward_type": 6
+ },
+ {
+  "group": 1026,
+  "id": 36,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 2,
+  "reward_type": 2103
+ },
+ {
+  "group": 1031,
+  "id": 37,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 150,
+  "reward_type": 6
+ },
+ {
+  "group": 1031,
+  "id": 38,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 80,
+  "reward_type": 5
+ },
+ {
+  "group": 1032,
+  "id": 39,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 300,
+  "reward_type": 6
+ },
+ {
+  "group": 1032,
+  "id": 40,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 100,
+  "reward_type": 5
+ },
+ {
+  "group": 1033,
+  "id": 41,
+  "item_type": 1,
+  "rarity": 3,
+  "reward_amount": 450,
+  "reward_type": 6
+ },
+ {
+  "group": 1033,
+  "id": 42,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 150,
+  "reward_type": 3
+ },
+ {
+  "group": 1034,
+  "id": 43,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 600,
+  "reward_type": 6
+ },
+ {
+  "group": 1034,
+  "id": 44,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 200,
+  "reward_type": 5
+ },
+ {
+  "group": 1035,
+  "id": 45,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 750,
+  "reward_type": 6
+ },
+ {
+  "group": 1035,
+  "id": 46,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 400,
+  "reward_type": 5
+ },
+ {
+  "group": 1036,
+  "id": 47,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 900,
+  "reward_type": 6
+ },
+ {
+  "group": 1036,
+  "id": 48,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 3,
+  "reward_type": 2103
+ },
+ {
+  "group": 1041,
+  "id": 49,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 200,
+  "reward_type": 6
+ },
+ {
+  "group": 1041,
+  "id": 50,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 100,
+  "reward_type": 5
+ },
+ {
+  "group": 1042,
+  "id": 51,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 400,
+  "reward_type": 6
+ },
+ {
+  "group": 1042,
+  "id": 52,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 200,
+  "reward_type": 5
+ },
+ {
+  "group": 1043,
+  "id": 53,
+  "item_type": 1,
+  "rarity": 3,
+  "reward_amount": 600,
+  "reward_type": 6
+ },
+ {
+  "group": 1043,
+  "id": 54,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 200,
+  "reward_type": 3
+ },
+ {
+  "group": 1044,
+  "id": 55,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 800,
+  "reward_type": 6
+ },
+ {
+  "group": 1044,
+  "id": 56,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 300,
+  "reward_type": 5
+ },
+ {
+  "group": 1045,
+  "id": 57,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 1000,
+  "reward_type": 6
+ },
+ {
+  "group": 1045,
+  "id": 58,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 500,
+  "reward_type": 5
+ },
+ {
+  "group": 1046,
+  "id": 59,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 1200,
+  "reward_type": 6
+ },
+ {
+  "group": 1046,
+  "id": 60,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 5,
+  "reward_type": 2103
+ },
+ {
+  "group": 1051,
+  "id": 61,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 300,
+  "reward_type": 6
+ },
+ {
+  "group": 1051,
+  "id": 62,
+  "item_type": 1,
+  "rarity": 1,
+  "reward_amount": 200,
+  "reward_type": 5
+ },
+ {
+  "group": 1052,
+  "id": 63,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 500,
+  "reward_type": 6
+ },
+ {
+  "group": 1052,
+  "id": 64,
+  "item_type": 1,
+  "rarity": 2,
+  "reward_amount": 300,
+  "reward_type": 5
+ },
+ {
+  "group": 1053,
+  "id": 65,
+  "item_type": 1,
+  "rarity": 3,
+  "reward_amount": 800,
+  "reward_type": 6
+ },
+ {
+  "group": 1053,
+  "id": 66,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 300,
+  "reward_type": 3
+ },
+ {
+  "group": 1054,
+  "id": 67,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 1000,
+  "reward_type": 6
+ },
+ {
+  "group": 1054,
+  "id": 68,
+  "item_type": 1,
+  "rarity": 5,
+  "reward_amount": 400,
+  "reward_type": 5
+ },
+ {
+  "group": 1055,
+  "id": 69,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 1300,
+  "reward_type": 6
+ },
+ {
+  "group": 1055,
+  "id": 70,
+  "item_type": 1,
+  "rarity": 7,
+  "reward_amount": 700,
+  "reward_type": 5
+ },
+ {
+  "group": 1056,
+  "id": 71,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 1500,
+  "reward_type": 6
+ },
+ {
+  "group": 1056,
+  "id": 72,
+  "item_type": 1,
+  "rarity": 8,
+  "reward_amount": 5,
+  "reward_type": 2103
+ }
+]

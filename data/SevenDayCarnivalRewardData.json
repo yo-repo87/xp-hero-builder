@@ -1,0 +1,394 @@
+[
+ {
+  "id": 101,
+  "order": 3,
+  "reward_amount": 10,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 102,
+  "order": 4,
+  "reward_amount": 20,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 103,
+  "order": 5,
+  "reward_amount": 30,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 104,
+  "order": 6,
+  "reward_amount": 40,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 105,
+  "order": 7,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 106,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 107,
+  "order": 9,
+  "reward_amount": 200,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 108,
+  "order": 10,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 109,
+  "order": 11,
+  "reward_amount": 400,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 110,
+  "order": 12,
+  "reward_amount": 500,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 111,
+  "order": 1,
+  "reward_amount": 5,
+  "reward_param": 5001,
+  "reward_type": 1,
+  "slot_rarity": 3
+ },
+ {
+  "id": 112,
+  "order": 2,
+  "reward_amount": 10,
+  "reward_param": 5001,
+  "reward_type": 1,
+  "slot_rarity": 3
+ },
+ {
+  "id": 113,
+  "order": 3,
+  "reward_amount": 15,
+  "reward_param": 5001,
+  "reward_type": 1,
+  "slot_rarity": 3
+ },
+ {
+  "id": 121,
+  "order": 6,
+  "reward_amount": 1,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 3
+ },
+ {
+  "id": 122,
+  "order": 7,
+  "reward_amount": 2,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 3
+ },
+ {
+  "id": 123,
+  "order": 8,
+  "reward_amount": 5,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 8
+ },
+ {
+  "id": 211,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 1004,
+  "reward_type": 2,
+  "slot_rarity": 4
+ },
+ {
+  "id": 212,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 2004,
+  "reward_type": 2,
+  "slot_rarity": 4
+ },
+ {
+  "id": 213,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 3004,
+  "reward_type": 2,
+  "slot_rarity": 4
+ },
+ {
+  "id": 214,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 4004,
+  "reward_type": 2,
+  "slot_rarity": 4
+ },
+ {
+  "id": 215,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 5004,
+  "reward_type": 2,
+  "slot_rarity": 4
+ },
+ {
+  "id": 216,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 6004,
+  "reward_type": 2,
+  "slot_rarity": 4
+ },
+ {
+  "id": 221,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 1005,
+  "reward_type": 2,
+  "slot_rarity": 5
+ },
+ {
+  "id": 222,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 2005,
+  "reward_type": 2,
+  "slot_rarity": 5
+ },
+ {
+  "id": 223,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 3005,
+  "reward_type": 2,
+  "slot_rarity": 5
+ },
+ {
+  "id": 224,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 4005,
+  "reward_type": 2,
+  "slot_rarity": 5
+ },
+ {
+  "id": 225,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 5005,
+  "reward_type": 2,
+  "slot_rarity": 5
+ },
+ {
+  "id": 226,
+  "order": 8,
+  "reward_amount": 1,
+  "reward_param": 6005,
+  "reward_type": 2,
+  "slot_rarity": 5
+ },
+ {
+  "id": 301,
+  "order": 8,
+  "reward_amount": 10,
+  "reward_param": 3,
+  "reward_type": 7,
+  "slot_rarity": 1
+ },
+ {
+  "id": 302,
+  "order": 8,
+  "reward_amount": 10,
+  "reward_param": 4,
+  "reward_type": 7,
+  "slot_rarity": 1
+ },
+ {
+  "id": 303,
+  "order": 8,
+  "reward_amount": 10,
+  "reward_param": 5,
+  "reward_type": 7,
+  "slot_rarity": 1
+ },
+ {
+  "id": 304,
+  "order": 8,
+  "reward_amount": 30,
+  "reward_param": 6,
+  "reward_type": 7,
+  "slot_rarity": 2
+ },
+ {
+  "id": 305,
+  "order": 8,
+  "reward_amount": 30,
+  "reward_param": 10,
+  "reward_type": 7,
+  "slot_rarity": 2
+ },
+ {
+  "id": 306,
+  "order": 8,
+  "reward_amount": 30,
+  "reward_param": 2,
+  "reward_type": 7,
+  "slot_rarity": 2
+ },
+ {
+  "id": 307,
+  "order": 8,
+  "reward_amount": 30,
+  "reward_param": 13,
+  "reward_type": 7,
+  "slot_rarity": 2
+ },
+ {
+  "id": 308,
+  "order": 8,
+  "reward_amount": 50,
+  "reward_param": 8,
+  "reward_type": 7,
+  "slot_rarity": 3
+ },
+ {
+  "id": 309,
+  "order": 8,
+  "reward_amount": 50,
+  "reward_param": 9,
+  "reward_type": 7,
+  "slot_rarity": 3
+ },
+ {
+  "id": 310,
+  "order": 8,
+  "reward_amount": 50,
+  "reward_param": 11,
+  "reward_type": 7,
+  "slot_rarity": 3
+ },
+ {
+  "id": 311,
+  "order": 8,
+  "reward_amount": 70,
+  "reward_param": 14,
+  "reward_type": 7,
+  "slot_rarity": 4
+ },
+ {
+  "id": 312,
+  "order": 8,
+  "reward_amount": 70,
+  "reward_param": 15,
+  "reward_type": 7,
+  "slot_rarity": 4
+ },
+ {
+  "id": 313,
+  "order": 8,
+  "reward_amount": 70,
+  "reward_param": 16,
+  "reward_type": 7,
+  "slot_rarity": 4
+ },
+ {
+  "id": 314,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 17,
+  "reward_type": 7,
+  "slot_rarity": 5
+ },
+ {
+  "id": 315,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 18,
+  "reward_type": 7,
+  "slot_rarity": 5
+ },
+ {
+  "id": 316,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 19,
+  "reward_type": 7,
+  "slot_rarity": 6
+ },
+ {
+  "id": 317,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 7,
+  "reward_type": 7,
+  "slot_rarity": 6
+ },
+ {
+  "id": 318,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 12,
+  "reward_type": 7,
+  "slot_rarity": 7
+ },
+ {
+  "id": 319,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 20,
+  "reward_type": 7,
+  "slot_rarity": 7
+ },
+ {
+  "id": 320,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 21,
+  "reward_type": 7,
+  "slot_rarity": 8
+ },
+ {
+  "id": 321,
+  "order": 8,
+  "reward_amount": 100,
+  "reward_param": 22,
+  "reward_type": 7,
+  "slot_rarity": 8
+ }
+]

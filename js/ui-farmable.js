@@ -2,9 +2,10 @@
 // ui-farmable.js — "Farmable Items" tab: the item catalog plus, per item,
 // exactly where it comes from — sourced from real game data, not guessed.
 //
-// Six source types are modeled, all fully resolved from confirmed data
+// A dozen source types are modeled, all fully resolved from confirmed data
 // (see CLAUDE.md "Monster kill drops" and "Boss Raid / Challenge Tower /
-// Hero's Tomb rewards" for the full writeups and confidence checks):
+// Hero's Tomb rewards" plus "More item/monster location data" for the
+// full writeups and confidence checks):
 //   - "Guaranteed" drops: MinimapRewardData ties a specific named boss enemy
 //     in a specific chapter/stage to a guaranteed item reward.
 //   - "Chest" drops: ChestData -> RewardGroupData gives a real weighted drop
@@ -25,6 +26,12 @@
 //     idx.resolveRewardGroup in data.js).
 //   - "Challenge Tower" rewards: ChallengeTowerStageData encodes its reward
 //     directly as parallel arrays, no RewardGroupData indirection at all.
+//   - "Other Confirmed Sources" (Mission / Invasion / Lucky Spin / 7-Day
+//     Carnival): six more tables, all resolving the exact same way (either
+//     through idx.resolveRewardGroup, or a field holding a .Type code
+//     directly), folded into one combined idx.otherDropsByItemId since
+//     they're all the same shape — see its comment in data.js for exactly
+//     which field on which table does the resolving.
 //
 // "View Map" / "Track on Map" behavior is intentionally split by source
 // type, because only some of them actually have a monster to go find:
@@ -71,7 +78,7 @@ const FarmableUI = {
       const sources = computeFarmSources(item.id);
       const r = Game.rarityColor(item.Rarity);
       const total = sources.guaranteed.length + sources.chest.length + sources.kill.length
-        + sources.bossRaid.length + sources.tower.length + sources.heroTomb.length;
+        + sources.bossRaid.length + sources.tower.length + sources.heroTomb.length + sources.other.length;
       return `
         <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
           <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
@@ -147,6 +154,14 @@ const FarmableUI = {
         </div>
       </div>`).join('');
 
+    const otherHTML = sources.other.slice().sort((a, b) => a.source.localeCompare(b.source) || a.title.localeCompare(b.title)).map(s => `
+      <div class="farm-source-row">
+        <div class="farm-source-info">
+          <div class="fs-title"><span class="tag">${escapeHtml(s.source)}</span> ${escapeHtml(s.title)}${s.pct != null ? ` <span class="mono" style="color:var(--gold)">${fmtNum(s.pct)}%</span>` : ''}</div>
+          <div class="fs-sub">yields ${s.amount != null ? fmtNum(s.amount) : (s.amountMin === s.amountMax ? s.amountMin : `${s.amountMin}-${s.amountMax}`)}</div>
+        </div>
+      </div>`).join('');
+
     const reports = CommunityReports.forItem(itemId);
     const communityHTML = reports.map((rep, i) => {
       const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
@@ -178,9 +193,10 @@ const FarmableUI = {
             ${sources.bossRaid.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Boss Raid Rewards</h4>${bossRaidHTML}` : ''}
             ${sources.tower.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Challenge Tower Rewards</h4>${towerHTML}` : ''}
             ${sources.heroTomb.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Hero's Tomb Rewards</h4>${heroTombHTML}` : ''}
-            ${sources.kill.length === 0 && sources.guaranteed.length === 0 && sources.chest.length === 0 && sources.bossRaid.length === 0 && sources.tower.length === 0 && sources.heroTomb.length === 0 ? `
-              <div class="caveat">No confirmed farm source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (missions, events, shop, etc.), not that it's unobtainable.</div>` : `
-              <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item. Boss Raid / Hero's Tomb percentages work the same way, from their own reward tables; Challenge Tower rewards are flat and guaranteed on every floor clear (no weighted roll exists in that table). None of these three modes' exact unlock requirements or stage-location coordinates are modeled in this app yet — they show the real reward math, not where to walk.</div>`}
+            ${sources.other.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Other Confirmed Sources</h4>${otherHTML}` : ''}
+            ${sources.kill.length === 0 && sources.guaranteed.length === 0 && sources.chest.length === 0 && sources.bossRaid.length === 0 && sources.tower.length === 0 && sources.heroTomb.length === 0 && sources.other.length === 0 ? `
+              <div class="caveat">No confirmed farm source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (shop, chapter-clear rewards, player-level rewards, etc.), not that it's unobtainable.</div>` : `
+              <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item. Boss Raid / Hero's Tomb / Invasion Ranking percentages work the same way, from their own reward tables; Challenge Tower and 7-Day Carnival rewards are flat and guaranteed (no weighted roll exists in those tables). "Other Confirmed Sources" covers Mission, Invasion, and Lucky Spin rewards — real reward-table data, but this app doesn't model exactly how to unlock/progress each of those modes, so these show the real reward math, not a walkthrough.</div>`}
 
             <h4 style="margin:14px 0 6px;font-size:.9rem">Community Reports <span style="color:var(--ink-muted);font-weight:500">(player-submitted, unverified)</span></h4>
             ${communityHTML || `<span style="color:var(--ink-faint);font-size:.82rem">No player reports yet for this item.</span>`}
@@ -308,11 +324,12 @@ const FarmableUI = {
 };
 
 function computeFarmSources(itemId) {
-  const sources = { guaranteed: [], chest: [], kill: [], bossRaid: [], tower: [], heroTomb: [] };
+  const sources = { guaranteed: [], chest: [], kill: [], bossRaid: [], tower: [], heroTomb: [], other: [] };
 
   sources.bossRaid = Game.index.bossRaidDropsByItemId.get(itemId) || [];
   sources.tower = Game.index.towerDropsByItemId.get(itemId) || [];
   sources.heroTomb = Game.index.heroTombDropsByItemId.get(itemId) || [];
+  sources.other = Game.index.otherDropsByItemId.get(itemId) || [];
 
   for (const r of (Game.index.killDropsByItemId.get(itemId) || [])) {
     sources.kill.push({ enemy: r.enemy, amount: r.amount, pieces: r.pieces, chapter: Game.enemyChapter(r.enemy) });

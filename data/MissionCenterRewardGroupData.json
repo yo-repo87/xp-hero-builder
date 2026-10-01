@@ -1,0 +1,135 @@
+[
+ {
+  "id": 10001,
+  "reward_count": 50,
+  "reward_group_id": 1001,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 10002,
+  "reward_count": 3,
+  "reward_group_id": 1002,
+  "reward_param": 2002,
+  "reward_type": 1
+ },
+ {
+  "id": 10003,
+  "reward_count": 100,
+  "reward_group_id": 1003,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 10004,
+  "reward_count": 100,
+  "reward_group_id": 1004,
+  "reward_param": 301,
+  "reward_type": 1
+ },
+ {
+  "id": 10005,
+  "reward_count": 250,
+  "reward_group_id": 1005,
+  "reward_param": 5,
+  "reward_type": 1
+ },
+ {
+  "id": 10006,
+  "reward_count": 300,
+  "reward_group_id": 1006,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 10007,
+  "reward_count": 3,
+  "reward_group_id": 1007,
+  "reward_param": 2103,
+  "reward_type": 1
+ },
+ {
+  "id": 10008,
+  "reward_count": 400,
+  "reward_group_id": 1007,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 10009,
+  "reward_count": 300,
+  "reward_group_id": 1007,
+  "reward_param": 301,
+  "reward_type": 1
+ },
+ {
+  "id": 20001,
+  "reward_count": 20,
+  "reward_group_id": 2001,
+  "reward_param": 1,
+  "reward_type": 1
+ },
+ {
+  "id": 20002,
+  "reward_count": 30,
+  "reward_group_id": 2002,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 20003,
+  "reward_count": 3,
+  "reward_group_id": 2003,
+  "reward_param": 7,
+  "reward_type": 1
+ },
+ {
+  "id": 20004,
+  "reward_count": 100,
+  "reward_group_id": 2004,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 20005,
+  "reward_count": 1,
+  "reward_group_id": 2005,
+  "reward_param": 2003,
+  "reward_type": 1
+ },
+ {
+  "id": 30001,
+  "reward_count": 200,
+  "reward_group_id": 3001,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 30002,
+  "reward_count": 200,
+  "reward_group_id": 3002,
+  "reward_param": 301,
+  "reward_type": 1
+ },
+ {
+  "id": 30003,
+  "reward_count": 250,
+  "reward_group_id": 3003,
+  "reward_param": 3,
+  "reward_type": 1
+ },
+ {
+  "id": 30004,
+  "reward_count": 400,
+  "reward_group_id": 3004,
+  "reward_param": 5,
+  "reward_type": 1
+ },
+ {
+  "id": 30005,
+  "reward_count": 3,
+  "reward_group_id": 3005,
+  "reward_param": 2103,
+  "reward_type": 1
+ }
+]

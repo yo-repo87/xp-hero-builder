@@ -19,7 +19,9 @@ const DATA_FILES = [
   'StackableItemData', 'EnemyData', 'ChestData', 'ChestSpawnerData',
   'MinimapRewardData', 'StageData', 'RewardGroupData', 'StageMapLayout',
   'EnemySpawnPoints', 'BossRaidStageData', 'ChallengeTowerStageData',
-  'HeroTombRuneDropData',
+  'HeroTombRuneDropData', 'MissionCenterRewardGroupData', 'InvasionWinStreakRewardData',
+  'InvasionRankingTierRewardData', 'InvasionPassRewardData', 'LuckySpinRewardData',
+  'SevenDayCarnivalRewardData',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -247,6 +249,105 @@ const Game = {
           floor: row.difficulty, enemyType: row.enemy_type, pct: r.pct, amountMin: r.amountMin, amountMax: r.amountMax,
         });
       }
+    }
+
+    // Meta-mode rewards — a 7th-through-12th farm-source mechanism, found
+    // 2026-10-01 while widening the search for the 78 catalog items that
+    // still had zero confirmed source after the Boss Raid/Challenge
+    // Tower/Hero's Tomb pass above. Six real tables, all resolving via the
+    // same confirmed StackableItemData.Type convention used everywhere
+    // else in this pipeline (verified zero-orphan on every row actually
+    // used below), folded into one combined index since they're all the
+    // same shape (a labeled reward row, sometimes with a weighted %):
+    //   - MissionCenterRewardGroupData: `reward_param` -> .Type directly
+    //     (no RewardGroupData indirection — this table already IS the
+    //     resolved reward list, one row per mission-reward slot).
+    //   - InvasionWinStreakRewardData: its own `reward_type` field holds
+    //     the .Type code directly (a misleading field name — there's no
+    //     separate "param" field on this table at all).
+    //   - InvasionRankingTierRewardData: `reward_group_id` resolves through
+    //     the normal idx.resolveRewardGroup (RewardType==1) pipeline.
+    //   - InvasionPassRewardData: `stackableItem_type` -> .Type directly,
+    //     but ONLY on `item_type===1` rows — `item_type===7` rows also set
+    //     `stackableItem_type` but to values that don't correspond to real
+    //     items when checked (likely a Hero/Weapon reward category reusing
+    //     the field name for something else) — skipped rather than guessed.
+    //   - LuckySpinRewardData: `reward_param` -> .Type, weighted by `weight`
+    //     within each `preset_id` (a spin wheel, not a `Rate`/`BundleGroup`
+    //     table like the chest/raid ones, so weighted manually here).
+    //   - SevenDayCarnivalRewardData: `reward_param` -> .Type, one fixed
+    //     reward per `order` (day number) — no weight field exists, so
+    //     these are flat/deterministic like Challenge Tower floors.
+    // Every table above also has rows using OTHER reward_type codes (2, 7,
+    // etc. — almost certainly Weapon/Hero rewards, a different reward
+    // category this app's item catalog doesn't cover) — only the
+    // confirmed StackableItem-resolving rows are included here.
+    idx.otherDropsByItemId = new Map();
+    const pushOther = (itemId, row) => {
+      if (!idx.otherDropsByItemId.has(itemId)) idx.otherDropsByItemId.set(itemId, []);
+      idx.otherDropsByItemId.get(itemId).push(row);
+    };
+
+    for (const r of this.db.MissionCenterRewardGroupData) {
+      if (r.reward_type !== 1) continue;
+      const item = idx.itemByType.get(r.reward_param);
+      if (!item) continue;
+      pushOther(item.id, { source: 'Mission', title: `Mission reward (group ${r.reward_group_id})`, pct: null, amount: r.reward_count });
+    }
+
+    for (const r of this.db.InvasionWinStreakRewardData) {
+      if (r.item_type !== 1) continue;
+      const item = idx.itemByType.get(r.reward_type);
+      if (!item) continue;
+      pushOther(item.id, { source: 'Invasion', title: `Win Streak reward (checkpoint group ${r.group})`, pct: null, amount: r.reward_amount });
+    }
+
+    for (const r of this.db.InvasionRankingTierRewardData) {
+      for (const res of idx.resolveRewardGroup(r.reward_group_id)) {
+        pushOther(res.item.id, {
+          source: 'Invasion',
+          title: `Ranking reward — ${r.tier_type} tier, rank ${r.rank_range_min}-${r.rank_range_max} (${r.period_type})`,
+          pct: res.pct, amountMin: res.amountMin, amountMax: res.amountMax,
+        });
+      }
+    }
+
+    for (const r of this.db.InvasionPassRewardData) {
+      if (r.item_type !== 1) continue;
+      const item = idx.itemByType.get(r.stackableItem_type);
+      if (!item) continue;
+      // unlock_level is a real sentinel -1 for rows gated by unlock_point
+      // instead (a separate point-milestone track alongside the pass's
+      // level track, confirmed by the paired real unlock_point value on
+      // every -1 row rather than it also being 0/missing).
+      const gate = r.unlock_level === -1 ? `${r.unlock_point} pts` : `Lv.${r.unlock_level}`;
+      pushOther(item.id, { source: 'Invasion', title: `Invasion Pass season ${r.group_order} — unlock ${gate}${r.is_vip ? ' (VIP track)' : ''}`, pct: null, amount: r.reward_amount });
+    }
+
+    const spinWeightByPreset = new Map();
+    for (const r of this.db.LuckySpinRewardData) {
+      if (r.reward_type !== 1) continue;
+      if (!spinWeightByPreset.has(r.preset_id)) spinWeightByPreset.set(r.preset_id, 0);
+      spinWeightByPreset.set(r.preset_id, spinWeightByPreset.get(r.preset_id) + r.weight);
+    }
+    for (const r of this.db.LuckySpinRewardData) {
+      if (r.reward_type !== 1) continue;
+      const item = idx.itemByType.get(r.reward_param);
+      if (!item) continue;
+      const total = spinWeightByPreset.get(r.preset_id) || 0;
+      if (total <= 0) continue;
+      pushOther(item.id, {
+        source: 'Lucky Spin',
+        title: `Spin reward${r.is_free ? ' (free spin)' : ''}`,
+        pct: (r.weight / total) * 100, amount: r.reward_amount,
+      });
+    }
+
+    for (const r of this.db.SevenDayCarnivalRewardData) {
+      if (r.reward_type !== 1) continue;
+      const item = idx.itemByType.get(r.reward_param);
+      if (!item) continue;
+      pushOther(item.id, { source: '7-Day Carnival', title: `Day ${r.order}`, pct: null, amount: r.reward_amount });
     }
 
     // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —
