@@ -1695,6 +1695,75 @@ Missing-enemy-portrait count: 40 → **34**. Verified end-to-end with
 Playwright: all 6 files serve correctly, Anubis's own Monsters-tab
 detail view renders the real portrait.
 
+## Exhausted the remaining 34 — confirmed genuinely unrecoverable, not just unfound (2026-10-01, same session)
+
+User asked to re-check the Monsters tab for everyone still missing art
+and apply the same technique that found Anubis (reading a bundle's full
+sprite list rather than grepping for the expected name) to the rest.
+Did exactly that — a much more thorough pass than "More missing artwork
+recovery" above, including two new leads that turned out to be real
+dead ends, confirmed rather than assumed.
+
+**Pass 1 — broad re-search across all 15 current bundles.** Dumped
+every `Sprite`/`Texture2D` name from all 15 downloaded bundles into one
+combined list (3,288 rows) and grepped it for every remaining missing
+enemy's core name (Coffin, ExplosiveMummy, FrostBud, IceFlower, Mummy,
+and all 11 Hero's Tomb enemy names + 13 costume names), plus manually
+read the complete list of every `Img_`-prefixed sprite across all 15
+bundles end to end (the exact convention that found Anubis). Zero
+genuine hits — every apparent match was a false positive from loose
+substring matching (e.g. "Cop" matching "Copy", "Skull" matching an
+unrelated generic UI icon).
+
+**Pass 2 — checked whether this live CDN prunes old content, using the
+real file-size history as a signal.** The bucket listing's own historical
+entries revealed `herotomb_assets_*.bundle` was **16.3MB in the earliest
+available build (2026-09-07/08) vs. 11.5MB today** — a genuine ~5MB drop,
+a real lead worth chasing (unlike the false-positive greps above).
+Downloaded the oldest available version and compared directly: the
+`Sprite` list is **byte-identical** between old and new (same 117 names) —
+the size difference comes entirely from 3D content (the old build has
+15,158 GameObjects/8,439 MeshRenderers vs. far fewer now, almost
+certainly duplicate/unoptimized monster prefabs that got cleaned up),
+not any removed 2D icon. Checked the same history for
+`bossraid_outgame_assets` too (where Anubis's real art was found) and
+downloaded its own oldest available version (2026-09-09) — same result,
+the extra 5 raid bosses (Coffin/ExplosiveMummy/FrostBud/IceFlower/Mummy)
+aren't in that older build either.
+
+**Pass 3 — inspected real GameObject component trees directly**, the
+same technique that explained *why* Anubis's icon wasn't on the monster
+prefab itself. Checked `HeroTomb_Bear`, `HeroTomb_Lich`, `HeroTomb_Spider`,
+and `HeroTomb_Costume_Berserker`'s real prefabs (in the old, larger
+build) — every one has the exact same component shape as the Boss Raid
+monsters (Transform + a combat-stats MonoBehaviour + physics/nav
+components, nothing icon-holding). Combined with `herotomb_outgame`'s
+own full sprite list (dumped in the prior session — 137 names, all
+generic "Tomb Of Heroes" UI chrome, not a single per-monster name) and
+the real generic tier-badge icons that DO exist there
+(`Icn_Tomb_Of_Heroes_Monster_Boss`/`_Elite`/`_Nomal`), the most likely
+real explanation: **Hero's Tomb's live UI shows a generic Boss/Elite/
+Normal tier badge per monster, not an individually-illustrated portrait**
+— unlike Boss Raid, which has a small, curated roster of named bosses
+worth a dedicated "reveal" splash image each. If that's right, there
+may be no 2D per-monster art to find for Hero's Tomb at all, in any
+build, because the live game itself may never render one.
+
+**Conclusion, stated plainly**: the remaining 34 (5 Chapter-1 raid
+bosses with no active `BossRaidStageData` rows + 11 Hero's Tomb enemy
+faces + 13 Hero's Tomb costume faces — the `Face_HeroTomb_Elf _Archer`
+entry's odd embedded space is the data's own typo, not an extraction
+artifact) are now backed by real, multi-angle negative evidence — not
+merely "not found in a grep" but "checked under every naming convention
+discovered so far, checked historical versions for pruned content,
+and checked the actual prefab component trees for an unnamed
+reference" — across every bundle this live CDN currently serves. No
+further leads identified this session. If more art ever surfaces, it
+would most likely require either a fresh APK/CDN snapshot after a
+future game update that adds Hero's Tomb portrait art for the first
+time, or decoding the Addressables binary catalog properly instead of
+bundle-content enumeration (still not done — see Open Items).
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2285,6 +2354,23 @@ detail view renders the real portrait.
     confirmed the other 5 (no active rows) are genuinely still absent
     everywhere. Missing-enemy-portrait count: 40 → 34. Full writeup in
     "Why Anubis's art specifically was missing" above.
+34. User reported Coffin/ExplosiveMummy/FrostBud/IceFlower/Mummy (and
+    others) still missing and asked to re-check the Monsters tab and
+    apply the same technique to everyone else. Did a much more thorough
+    3-pass search than before: broad re-grep of all 15 bundles' full
+    sprite lists, a real historical-pruning lead (`herotomb_assets` was
+    5MB bigger in the earliest available build) chased down and
+    confirmed to be unrelated 3D-model bloat rather than removed icons
+    (the `Sprite` list is byte-identical old vs. new), and direct
+    inspection of real monster prefabs' component trees (confirmed none
+    of them hold an icon reference anywhere, old build or new). Net
+    result: no new art recovered this pass, but the remaining 34 are now
+    backed by real multi-angle negative evidence rather than "not found
+    in a grep" — including a plausible, evidence-based explanation for
+    why Hero's Tomb specifically may have no per-monster art to find at
+    all (the real UI likely shows a generic Boss/Elite/Normal tier badge
+    instead, unlike Boss Raid's curated named-boss roster). Full writeup
+    in "Exhausted the remaining 34" above.
 
 ## Open items / plausible next steps (not started)
 
