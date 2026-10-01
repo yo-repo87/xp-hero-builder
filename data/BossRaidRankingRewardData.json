@@ -1,0 +1,83 @@
+[
+ {
+  "id": 1,
+  "percentile_from": 0.0,
+  "percentile_to": 0.0,
+  "rank_from": 1,
+  "rank_to": 1,
+  "reward_group_id": 110010,
+  "tier_type": 1
+ },
+ {
+  "id": 2,
+  "percentile_from": 0.0,
+  "percentile_to": 0.0,
+  "rank_from": 2,
+  "rank_to": 2,
+  "reward_group_id": 110020,
+  "tier_type": 1
+ },
+ {
+  "id": 3,
+  "percentile_from": 0.0,
+  "percentile_to": 0.0,
+  "rank_from": 3,
+  "rank_to": 3,
+  "reward_group_id": 110030,
+  "tier_type": 1
+ },
+ {
+  "id": 4,
+  "percentile_from": 0.0,
+  "percentile_to": 0.0,
+  "rank_from": 4,
+  "rank_to": 10,
+  "reward_group_id": 110040,
+  "tier_type": 1
+ },
+ {
+  "id": 5,
+  "percentile_from": 0.0,
+  "percentile_to": 0.0,
+  "rank_from": 11,
+  "rank_to": 100,
+  "reward_group_id": 110050,
+  "tier_type": 1
+ },
+ {
+  "id": 6,
+  "percentile_from": 10.0,
+  "percentile_to": 20.0,
+  "rank_from": 0,
+  "rank_to": 0,
+  "reward_group_id": 110060,
+  "tier_type": 2
+ },
+ {
+  "id": 7,
+  "percentile_from": 20.0,
+  "percentile_to": 30.0,
+  "rank_from": 0,
+  "rank_to": 0,
+  "reward_group_id": 110070,
+  "tier_type": 2
+ },
+ {
+  "id": 8,
+  "percentile_from": 30.0,
+  "percentile_to": 50.0,
+  "rank_from": 0,
+  "rank_to": 0,
+  "reward_group_id": 110080,
+  "tier_type": 2
+ },
+ {
+  "id": 9,
+  "percentile_from": 50.0,
+  "percentile_to": 100.0,
+  "rank_from": 0,
+  "rank_to": 0,
+  "reward_group_id": 110090,
+  "tier_type": 2
+ }
+]

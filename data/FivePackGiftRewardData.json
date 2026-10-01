@@ -1,0 +1,394 @@
+[
+ {
+  "amount": 200,
+  "id": 1,
+  "item_type": 1,
+  "reward_day_group": 101,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 1,
+  "id": 2,
+  "item_type": 1,
+  "reward_day_group": 101,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2103
+ },
+ {
+  "amount": 400,
+  "id": 3,
+  "item_type": 1,
+  "reward_day_group": 102,
+  "slot_rarity_type": 6,
+  "stackableItem_type": 5
+ },
+ {
+  "amount": 200,
+  "id": 4,
+  "item_type": 1,
+  "reward_day_group": 102,
+  "slot_rarity_type": 3,
+  "stackableItem_type": 6
+ },
+ {
+  "amount": 100,
+  "id": 5,
+  "item_type": 1,
+  "reward_day_group": 103,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 3
+ },
+ {
+  "amount": 500,
+  "id": 6,
+  "item_type": 1,
+  "reward_day_group": 103,
+  "slot_rarity_type": 6,
+  "stackableItem_type": 5
+ },
+ {
+  "amount": 150,
+  "id": 7,
+  "item_type": 1,
+  "reward_day_group": 104,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 3
+ },
+ {
+  "amount": 150,
+  "id": 8,
+  "item_type": 1,
+  "reward_day_group": 104,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 500,
+  "id": 9,
+  "item_type": 1,
+  "reward_day_group": 105,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 2,
+  "id": 10,
+  "item_type": 1,
+  "reward_day_group": 105,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2004
+ },
+ {
+  "amount": 500,
+  "id": 11,
+  "item_type": 1,
+  "reward_day_group": 201,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 2,
+  "id": 12,
+  "item_type": 1,
+  "reward_day_group": 201,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2004
+ },
+ {
+  "amount": 300,
+  "id": 13,
+  "item_type": 1,
+  "reward_day_group": 202,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 3
+ },
+ {
+  "amount": 500,
+  "id": 14,
+  "item_type": 1,
+  "reward_day_group": 202,
+  "slot_rarity_type": 1,
+  "stackableItem_type": 5
+ },
+ {
+  "amount": 300,
+  "id": 15,
+  "item_type": 1,
+  "reward_day_group": 203,
+  "slot_rarity_type": 3,
+  "stackableItem_type": 6
+ },
+ {
+  "amount": 2,
+  "id": 16,
+  "item_type": 1,
+  "reward_day_group": 203,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2103
+ },
+ {
+  "amount": 500,
+  "id": 17,
+  "item_type": 1,
+  "reward_day_group": 204,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 50,
+  "id": 18,
+  "item_type": 1,
+  "reward_day_group": 204,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 203
+ },
+ {
+  "amount": 30,
+  "id": 19,
+  "item_type": 1,
+  "reward_day_group": 204,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 204
+ },
+ {
+  "amount": 1350,
+  "id": 20,
+  "item_type": 1,
+  "reward_day_group": 205,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 3
+ },
+ {
+  "amount": 500,
+  "id": 21,
+  "item_type": 1,
+  "reward_day_group": 301,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 10,
+  "id": 22,
+  "item_type": 1,
+  "reward_day_group": 301,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2004
+ },
+ {
+  "amount": 1000,
+  "id": 23,
+  "item_type": 1,
+  "reward_day_group": 302,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 3
+ },
+ {
+  "amount": 500,
+  "id": 24,
+  "item_type": 1,
+  "reward_day_group": 302,
+  "slot_rarity_type": 3,
+  "stackableItem_type": 6
+ },
+ {
+  "amount": 1000,
+  "id": 25,
+  "item_type": 1,
+  "reward_day_group": 303,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 1000,
+  "id": 26,
+  "item_type": 1,
+  "reward_day_group": 303,
+  "slot_rarity_type": 6,
+  "stackableItem_type": 5
+ },
+ {
+  "amount": 1000,
+  "id": 27,
+  "item_type": 1,
+  "reward_day_group": 303,
+  "slot_rarity_type": 3,
+  "stackableItem_type": 6
+ },
+ {
+  "amount": 1500,
+  "id": 28,
+  "item_type": 1,
+  "reward_day_group": 304,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 3
+ },
+ {
+  "amount": 500,
+  "id": 29,
+  "item_type": 1,
+  "reward_day_group": 304,
+  "slot_rarity_type": 2,
+  "stackableItem_type": 6001
+ },
+ {
+  "amount": 10,
+  "id": 30,
+  "item_type": 1,
+  "reward_day_group": 305,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2103
+ },
+ {
+  "amount": 10,
+  "id": 31,
+  "item_type": 1,
+  "reward_day_group": 305,
+  "slot_rarity_type": 8,
+  "stackableItem_type": 2004
+ },
+ {
+  "amount": 1,
+  "id": 32,
+  "item_type": 2,
+  "reward_day_group": 1001,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 4104
+ },
+ {
+  "amount": 1,
+  "id": 33,
+  "item_type": 2,
+  "reward_day_group": 1001,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 1104
+ },
+ {
+  "amount": 1,
+  "id": 34,
+  "item_type": 2,
+  "reward_day_group": 1001,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 6104
+ },
+ {
+  "amount": 1,
+  "id": 35,
+  "item_type": 2,
+  "reward_day_group": 1001,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 2104
+ },
+ {
+  "amount": 1,
+  "id": 36,
+  "item_type": 2,
+  "reward_day_group": 1001,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 5104
+ },
+ {
+  "amount": 1,
+  "id": 37,
+  "item_type": 2,
+  "reward_day_group": 1001,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 3104
+ },
+ {
+  "amount": 1,
+  "id": 38,
+  "item_type": 2,
+  "reward_day_group": 1002,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 4104
+ },
+ {
+  "amount": 1,
+  "id": 39,
+  "item_type": 2,
+  "reward_day_group": 1002,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 1104
+ },
+ {
+  "amount": 1,
+  "id": 40,
+  "item_type": 2,
+  "reward_day_group": 1002,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 6104
+ },
+ {
+  "amount": 1,
+  "id": 41,
+  "item_type": 2,
+  "reward_day_group": 1002,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 2104
+ },
+ {
+  "amount": 1,
+  "id": 42,
+  "item_type": 2,
+  "reward_day_group": 1002,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 5104
+ },
+ {
+  "amount": 1,
+  "id": 43,
+  "item_type": 2,
+  "reward_day_group": 1002,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 3104
+ },
+ {
+  "amount": 1,
+  "id": 44,
+  "item_type": 2,
+  "reward_day_group": 1003,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 4104
+ },
+ {
+  "amount": 1,
+  "id": 45,
+  "item_type": 2,
+  "reward_day_group": 1003,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 1104
+ },
+ {
+  "amount": 1,
+  "id": 46,
+  "item_type": 2,
+  "reward_day_group": 1003,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 6104
+ },
+ {
+  "amount": 1,
+  "id": 47,
+  "item_type": 2,
+  "reward_day_group": 1003,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 2104
+ },
+ {
+  "amount": 1,
+  "id": 48,
+  "item_type": 2,
+  "reward_day_group": 1003,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 5104
+ },
+ {
+  "amount": 1,
+  "id": 49,
+  "item_type": 2,
+  "reward_day_group": 1003,
+  "slot_rarity_type": 4,
+  "stackableItem_type": 3104
+ }
+]

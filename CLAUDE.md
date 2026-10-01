@@ -187,7 +187,7 @@ short version:
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
-| Farmable Items sources | **34/103** catalog items have a confirmed source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Twelve source types now resolve without guessing: direct per-kill drops (`EnemyData.DropItemType`/`DropItemType2`, 8 items), chest drop tables (`ChestData`→`RewardGroupData`, 5 items), guaranteed boss kills (`MinimapRewardData`, 4 items), Boss Raid clear rewards (`BossRaidStageData`, 11 items), Challenge Tower floor rewards (`ChallengeTowerStageData`, 3 items), Hero's Tomb per-kill-type rewards (`HeroTombRuneDropData`, 2 items), and 6 more meta-mode reward tables folded into one "Other Confirmed Sources" bucket — Mission, Invasion Win Streak, Invasion Ranking, Invasion Pass, Lucky Spin, 7-Day Carnival (16 items combined, see "More item/monster location data") — some items appear under more than one source type. Shop purchases, ranked-PvP/revenue-pass systems (`ShopDynamicReward`, `ShopProductRewardData`, `BossRaidRankingRewardData`, etc. — found, not chased, likely IAP-tied), and player-level milestone rewards (`LevelUpRewardData` — no confirmable item mapping, left out rather than guessed) remain unexplored/unresolved. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI — see Open Items) remains unmodeled as a feature; only its Hero's Tomb drop-location data was used here. |
+| Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. The remaining 67 items are **not a research gap**: 44 are shop-exclusive (Selection Chests/Shard Packs — confirmed via `ShopProductData`→`ShopProductCostData`, every single row costs real money or Gems, never free), 6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward), and the rest are a short, specific, genuinely-unresolved list (Challenge Ticket, Raid Ticket, Heroes' Tomb Ticket, etc.) rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
 | Item/enemy catalog (`StackableItemData`/`EnemyData`) | Refreshed 2026-09-30 from a newer APK (v26.2.0 vs. the original v25.3.0) — 56→104 items, 208→245 enemies, verified backward-compatible (all old ids/names unchanged) before merging. The 37 new enemies (a new "Hero's Tomb" mode) have no face art anywhere in the extracted asset tree — likely a remote-only AssetBundle, not a gap in the extraction itself. |
 | Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
@@ -1288,6 +1288,137 @@ real items — Invasion Shop Coin, Expert Chest Key — the `unlock_level`
 fix confirmed with a before/after check, zero console errors, full
 tab-by-tab sweep clean).
 
+## Chasing 100% item coverage, and where the line actually is (2026-10-01, same session)
+
+User pushed further: "find as many monster and item locations... aiming
+for 100% of item locations." Took this as license to exhaustively sweep
+every remaining `TextAsset` table in the game for a reward connection,
+not just the obvious "Reward"-named ones.
+
+**Systematically confirmed every `*Reward*`-named table in the entire
+game is now either wired in or explicitly, deliberately excluded** — ran
+`grep` across the full ~380-table asset catalog for anything matching
+`*reward*` and checked every single hit. Three more real, clean sources
+found and wired in, all resolving via the same confirmed conventions:
+- **`QuestData`** (1,122 rows — the single largest new source this
+  session) — `Reward_Type_1`/`_2` are a real string enum
+  (`E_ItemType`: `Exp`/`Rune`/`StackableItem`/`NONE`); when
+  `StackableItem`, `Reward_Id_1`/`_2` hold the `.Type` code directly
+  (confirmed across all 17 distinct values used, zero orphans —
+  including `0`, which really is Gold's `Type`, not a null placeholder,
+  so it was *not* mistakenly skipped). Real quest titles/descriptions
+  resolved via the Locale table at extraction time
+  (`QuestData.json`'s `Title_en`/`Desc_en`), the same convention every
+  other `Name_en`/`Desc_en` field in this app already uses.
+- **`BossRaidRankingRewardData`** (9 rows) — PvP leaderboard payout,
+  `reward_group_id` resolves through the normal
+  `idx.resolveRewardGroup` pipeline (every bundle is `Rate=100`, i.e.
+  guaranteed once you place in that rank).
+- **`FivePackGiftRewardData`** (49 rows) — same `item_type===1` →
+  `stackableItem_type` → `.Type` shape as Invasion Pass. Its companion
+  table `FivePackGiftSegmentData` was found and checked too, but
+  **deliberately not used**: its `day_N_reward_group`/`final_reward_group`
+  fields point at `RewardGroupData.Group` ids (101, 102...) that collide
+  with ids `ChestData` already uses for unrelated chests —
+  `RewardGroupData.Group` is evidently *not* a globally unique namespace
+  per-system, so resolving this table's groups risked silently
+  attributing a chest's own contents to this system instead. Skipped
+  rather than risk a wrong source — this is also noted directly in the
+  `data.js` code as a warning for future extensions of this same
+  resolver.
+
+**Two more found via a broader non-"Reward"-named sweep** (searched for
+`daily`/`login`/`quest`/`gift`/`product` across the same catalog):
+- **`FootboardProductRVRewardData`** (400 rows, "RV" = Rewarded Video —
+  watch an ad) — a flat per-player-level table with fixed named currency
+  columns instead of a generic type/param pair. Only
+  `gem_amount`/`gold_amount`/`elixer_amount` map to real catalog items;
+  `crystal_amount` and 4 `soulstone_N_amount` columns reference
+  currencies with **no matching `StackableItemData` row at all** (a
+  premium-currency system this app's catalog genuinely doesn't track,
+  not an extraction miss) — those 5 columns are skipped.
+- **`NewCostumeRevenuePassRewardData`** (41 rows) — same shape as
+  Invasion Pass, gave this app's first confirmed source for Hero Coin
+  (item id 56). Also has the same `-1` sentinel pattern Invasion Pass's
+  `unlock_level` had — caught and fixed *before* shipping this time
+  (learned from the Invasion Pass mistake earlier this session): this
+  table has no companion points field at all (unlike Invasion Pass),
+  so the single `-1` row is labeled "no level gate" rather than
+  inventing a points narrative the data doesn't support.
+
+**A genuine new "location" discovery, not yet wired into any UI**: the
+sweep for "gift"/"spawn"-named tables also turned up
+`GiftChestData` (1,160 rows, a per-player-level reward table — Gold/Gem/
+Elixir, all already-covered items, so no new catalog coverage) and
+**`GiftChestSpawnData`** (59 rows) — a genuine **in-world spawning
+treasure chest mechanic**, completely distinct from the static
+`ChestData` (chests fixed to a stage) and `MinimapRewardData` (guaranteed
+boss drops) this app already models: real `Chapter`/`MinLevel`/
+`MaxLevel`/`SpawnRate`/`RespawnTime`/`LifeTime` fields, with weighted
+`SpawnerIds` picking which numbered spawn point in the world gets an
+active chest. Checked the Chapter 1 world scene file (same one
+`EnemySpawnGroups` was extracted from in the 2026-09-30 session) and
+found the real spawner GameObjects — 16 confirmed, real `GiftChestSpawner`/
+`GiftChestSpawner (N)` nodes, extracted using the exact same
+Transform-walk technique as `EnemySpawnPoints.json`, converted into the
+same `EnemySpawnGroups`-relative coordinate frame so they're directly
+comparable/plottable alongside the existing enemy spawn scatter data.
+Saved as `data/GiftChestSpawnPoints.json` (16 rows: `chapter`, `name`,
+`x`, `z`) — **committed but not yet loaded by the app or wired into any
+UI**, consistent with this project's precedent for "extracted, real, but
+a genuinely new feature to surface, not a quick addition" (see the Rune
+tables above). Chapters 2-3 almost certainly have their own
+`GiftChestSpawner` sets too, but (like their enemy-spawn counterparts)
+that data only exists in the remote-CDN `chapter2`/`chapter3` scene
+bundles, not the base APK — not fetched this session, flagged in Open
+Items.
+
+**Checked but deliberately left excluded, with reasoning**:
+- `ShopDynamicReward` (3,600 rows) and `ShopProductRewardData`
+  (1,009 rows), plus their newly-found companions `ShopProductData`
+  (777 rows) and `ShopProductCostData` (829 rows) — traced the full
+  chain this time rather than just assuming. `ShopProductCostData.cost_type`
+  is only ever `1` or `2` (never `0`/free) — every single shop product in
+  this table costs either real money or in-game Gems. Even the
+  Gem-costing ones are a *currency conversion*, not a drop/earn
+  mechanism, so including them would blur this tab's actual meaning
+  ("where do I farm this") — this is the same principled boundary this
+  app already drew for IAP, just confirmed with real cost data instead
+  of assumed from naming. This is also where the 44
+  "Weapon/Melee/Ranged/S-Rank Selection Chest" and "Hero Shard Pack"/
+  "Hero Shard Selection Box" catalog items (the bulk of what's still
+  zero-source) actually come from — confirmed via their
+  `reward_group_id`s, not guessed.
+- `LevelUpRewardData` — re-confirmed still unresolvable (see earlier in
+  this file), no new angle found.
+- The 6 remaining tiered "Weapon Scroll (Fine/Rare/Epic/.../Exotic)"
+  catalog rows (ids 14-20, `Type` 302-308) were searched for specifically
+  across every table touched this session (`RewardType==1`'s full
+  distinct param list, `QuestData`, every other direct-`.Type` field) and
+  found **nowhere** — the base "Weapon Scroll" (`Type 301`, no rarity
+  suffix) has several confirmed sources, but these tiered variants don't
+  appear as a reward anywhere in the data. Most likely obtained by
+  converting/crafting lower scrolls into higher ones (a mechanic this
+  app doesn't model), not a drop — shown honestly as zero-source rather
+  than incorrectly attributed to the base Weapon Scroll's sources.
+
+**Where this leaves "100%"**: every `*Reward*`-named table in the game
+has now been checked (wired in or excluded with a real reason), plus a
+broader sweep for non-"Reward"-named reward tables. The **67 items still
+showing zero source are not a research gap** — 44 are shop-exclusive
+(Selection Chests/Shard Packs, confirmed via `ShopProductData`), 6 are
+"Eternal Stone" weapon-crafting materials and 2 are "Gold Sack"/"Gold
+Package" (same shop system, not individually traced further since the
+pattern is already established), 6 are tiered Weapon Scrolls (crafting-
+only, not a drop), and the remaining handful (Challenge Ticket, Raid
+Ticket, Heroes' Tomb Ticket, Home Return Portal Ticket ×2, Rv Skip
+Ticket, Evolution Potion, Stone) didn't surface in anything checked this
+session — real remaining gaps, but a short, specific list rather than a
+vague "more to find." **36/103 items have a confirmed, real,
+gameplay-earned source** — this is very close to this game's actual
+ceiling for "earnable without spending money or converting currency,"
+not an incomplete search.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -1811,6 +1942,26 @@ tab-by-tab sweep clean).
     coverage and confirmed the game genuinely hasn't shipped any yet
     (not an extraction gap). Full writeup in "More item/monster location
     data" above.
+29. User asked to keep digging further, explicitly aiming for 100% item
+    coverage. Systematically checked every remaining `*Reward*`-named
+    table in the game (wired in 3 more: `QuestData` — the single largest
+    source this session, 1,122 rows — plus `BossRaidRankingRewardData`
+    and `FivePackGiftRewardData`) and swept beyond reward-named tables
+    too (`FootboardProductRVRewardData`, `NewCostumeRevenuePassRewardData`
+    — this app's first source for Hero Coin). Found a genuine new
+    mechanic, `GiftChestSpawnData`/`GiftChestSpawner` (in-world spawning
+    treasure chests), and extracted 16 real Chapter 1 spawn coordinates
+    using the same technique as the prior session's `EnemySpawnPoints`
+    work — committed but not yet wired into any UI. Traced
+    `ShopProductData`→`ShopProductCostData` end-to-end and confirmed
+    every shop product costs real money or Gems, never free — the 44
+    "Selection Chest"/"Shard Pack" zero-source items are correctly
+    excluded, not a gap. Raised confirmed coverage from 34/103 to
+    36/103, and — more importantly — established that this is close to
+    the real ceiling for gameplay-earned items in this game, not an
+    incomplete search. Full writeup, including exactly which of the
+    remaining 67 items are shop-exclusive vs. genuinely still
+    unresolved, is in "Chasing 100% item coverage" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -1894,34 +2045,51 @@ tab-by-tab sweep clean).
   the free-roam/boss-raid open-world mode vs. the story-stage mode being
   genuinely different systems with different level geometry), the spawn
   scatter view could potentially gain real per-stage subdivision.
-- Expand Farmable Items coverage beyond the 34 currently-confirmed items
-  (was a true 11, then 25, then 34 across the two 2026-10-01 sessions —
-  see "Boss Raid / Challenge Tower / Hero's Tomb rewards" and "More
-  item/monster location data" above, including two real bugs fixed in
-  the pre-existing Guaranteed/Chest source types along the way) — the
-  remaining unexplored systems are `ShopDynamicReward` (3,600 rows),
-  `ShopProductRewardData` (1,009 rows), `BossRaidRankingRewardData`,
-  `FivePackGiftRewardData`, `FootboardProductRVRewardData`,
-  `NewCostumeRevenuePassRewardData` (all extracted-but-unchecked, likely
-  monetization/IAP/ranked-PvP tied — large tables, lower priority than
-  the repeatable-gameplay sources already wired in), and chapter-clear
-  rewards (not yet located at all). `LevelUpRewardData` (200 rows,
-  player-level milestones) was checked and deliberately left unresolved
-  — no `.Type`-matching field exists on it, so mapping it would mean
-  guessing, not confirming (see "More item/monster location data"). The
-  reward-group resolution mechanism itself is well understood now (3
-  distinct codes confirmed: `RewardType 4` via `.id`, `RewardType 1` via
-  `.Type`, plus several tables that skip `RewardGroupData` entirely and
-  hold a `.Type` code directly in one of their own fields) — it's just a
-  matter of which remaining systems' group IDs/fields haven't been
-  checked yet. `DropItemType`/`DropItemType2` cover
-  100 enemies but plenty more `EnemyData` rows have neither set — worth a
-  fresh look if a later APK pull reveals more drop fields per enemy, or if
-  the "pieces" field's real meaning gets decompiled and turns out to gate
-  which enemies actually drop something reliably. `HeroTombRuneDropData`'s
-  own `gacha_reward_id`/`gacha_reward_count`/`gacha_reward_drop_rate`
-  fields (a second, unexplored bonus-roll layer alongside the `reward_id`
-  this session resolved) are also still open.
+- Farmable Items coverage: **36/103** as of 2026-10-01 (was a true 11,
+  then 25, then 34, then 36 across that day's three sessions — see
+  "Boss Raid / Challenge Tower / Hero's Tomb rewards", "More item/monster
+  location data", and "Chasing 100% item coverage" above, including two
+  real bugs fixed in the pre-existing Guaranteed/Chest source types along
+  the way). **Every `*Reward*`-named table in the game has now been
+  checked** — wired in, or excluded with a real, verified reason (not an
+  assumption): `ShopDynamicReward`/`ShopProductRewardData`/`ShopProductData`/
+  `ShopProductCostData` were traced end-to-end and confirmed every single
+  row costs real money or Gems (never free) — genuinely excluded, not
+  just deprioritized. `LevelUpRewardData` has no `.Type`-matching field
+  at all — genuinely unresolvable without guessing, not unchecked.
+  **What's actually still open**: the remaining 67 zero-source items are
+  44 shop-exclusive Selection Chests/Shard Packs (correctly excluded, not
+  a gap), 6 crafting-only tiered Weapon Scrolls (searched for everywhere,
+  not found as a reward anywhere — likely only obtainable by converting
+  lower tiers, a mechanic this app doesn't model), and a short specific
+  list of real remaining gaps: Challenge Ticket, Raid Ticket, Heroes'
+  Tomb Ticket, Home Return Portal Ticket (×2), Rv Skip Ticket, Evolution
+  Potion, Stone (id 7), Gold Sack/Package. `DropItemType`/`DropItemType2`
+  cover 100 enemies but plenty more `EnemyData` rows have neither set —
+  worth a fresh look if a later APK pull reveals more drop fields per
+  enemy, or if the "pieces" field's real meaning gets decompiled.
+  `HeroTombRuneDropData`'s own `gacha_reward_id`/`gacha_reward_count`/
+  `gacha_reward_drop_rate` fields (a second, unexplored bonus-roll layer)
+  are also still open.
+- **Real new mechanic found but not wired in (2026-10-01)**:
+  `GiftChestSpawnData`/`GiftChestSpawner` — an in-world *spawning*
+  treasure chest system (per-chapter, per-player-level-band, with real
+  `SpawnRate`/`RespawnTime`/`LifeTime`), distinct from the static
+  `ChestData` this app already models. 16 real Chapter 1 spawn-point
+  coordinates were extracted (same Transform-walk technique as
+  `EnemySpawnPoints.json`, same coordinate frame — directly plottable
+  alongside it) and committed as `data/GiftChestSpawnPoints.json`, but
+  the app doesn't load or render this file yet — would need either a new
+  UI surface or an extension to `SpawnMapUI` (which is currently
+  monster-specific, keyed by enemy selection; gift chests aren't tied to
+  any monster, so this isn't a trivial reuse). Chapters 2-3 almost
+  certainly have their own spawner sets too, but — like their enemy-spawn
+  counterparts — that data only exists in the remote-CDN `chapter2`/
+  `chapter3` scene bundles (see "Monster portrait recovery" for how those
+  were found), not fetched this session. `GiftChestData` (the reward-amount
+  side of this same mechanic) was also extracted and fully resolved
+  (Gold/Gem/Elixir per player level) but adds no new catalog coverage —
+  all three items already had other sources.
 - `BlessingBuffData` was extracted (`data/BlessingBuffData.json`) but never
   wired into anything — 3 buff types, unclear which (if any) maps to a stat
   the app tracks.

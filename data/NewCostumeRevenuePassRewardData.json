@@ -1,0 +1,411 @@
+[
+ {
+  "group_order": 101,
+  "id": 1001,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 0,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1002,
+  "item_type": 7,
+  "level": 2,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1003,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 4,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1004,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 6,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1005,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 10,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1006,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 14,
+  "rarity_type": 8,
+  "reward_amount": 8,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1007,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 18,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1008,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 22,
+  "rarity_type": 8,
+  "reward_amount": 8,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1009,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 26,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1010,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 30,
+  "rarity_type": 8,
+  "reward_amount": 10,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1011,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 32,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1012,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 34,
+  "rarity_type": 8,
+  "reward_amount": 10,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1013,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 36,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1014,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 38,
+  "rarity_type": 8,
+  "reward_amount": 12,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1015,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 42,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1016,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 46,
+  "rarity_type": 8,
+  "reward_amount": 12,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1017,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 50,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1018,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 54,
+  "rarity_type": 8,
+  "reward_amount": 15,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 1019,
+  "is_vip": false,
+  "item_type": 1,
+  "level": 58,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 1020,
+  "is_vip": false,
+  "item_type": 7,
+  "level": 64,
+  "rarity_type": 8,
+  "reward_amount": 15,
+  "stackableItem_type": 23
+ },
+ {
+  "group_order": 101,
+  "id": 2001,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 0,
+  "rarity_type": 8,
+  "reward_amount": 3,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2002,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 2,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2003,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 4,
+  "rarity_type": 8,
+  "reward_amount": 3,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2004,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 6,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2005,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 10,
+  "rarity_type": 8,
+  "reward_amount": 4,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2006,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 14,
+  "rarity_type": 8,
+  "reward_amount": 8,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2007,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 18,
+  "rarity_type": 8,
+  "reward_amount": 4,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2008,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 22,
+  "rarity_type": 8,
+  "reward_amount": 8,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2009,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 26,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2010,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 30,
+  "rarity_type": 8,
+  "reward_amount": 10,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2011,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 32,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2012,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 34,
+  "rarity_type": 8,
+  "reward_amount": 10,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2013,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 36,
+  "rarity_type": 8,
+  "reward_amount": 5,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2014,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 38,
+  "rarity_type": 8,
+  "reward_amount": 12,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2015,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 42,
+  "rarity_type": 8,
+  "reward_amount": 6,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2016,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 46,
+  "rarity_type": 8,
+  "reward_amount": 12,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2017,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 50,
+  "rarity_type": 8,
+  "reward_amount": 7,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2018,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 54,
+  "rarity_type": 8,
+  "reward_amount": 15,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 2019,
+  "is_vip": true,
+  "item_type": 1,
+  "level": 58,
+  "rarity_type": 8,
+  "reward_amount": 8,
+  "stackableItem_type": 8501
+ },
+ {
+  "group_order": 101,
+  "id": 2020,
+  "is_vip": true,
+  "item_type": 7,
+  "level": 64,
+  "rarity_type": 8,
+  "reward_amount": 15,
+  "stackableItem_type": 24
+ },
+ {
+  "group_order": 101,
+  "id": 3001,
+  "is_vip": true,
+  "item_type": 1,
+  "level": -1,
+  "rarity_type": 8,
+  "reward_amount": 1,
+  "stackableItem_type": 8501
+ }
+]

@@ -21,7 +21,8 @@ const DATA_FILES = [
   'EnemySpawnPoints', 'BossRaidStageData', 'ChallengeTowerStageData',
   'HeroTombRuneDropData', 'MissionCenterRewardGroupData', 'InvasionWinStreakRewardData',
   'InvasionRankingTierRewardData', 'InvasionPassRewardData', 'LuckySpinRewardData',
-  'SevenDayCarnivalRewardData',
+  'SevenDayCarnivalRewardData', 'QuestData', 'BossRaidRankingRewardData',
+  'FivePackGiftRewardData', 'FootboardProductRVRewardData', 'NewCostumeRevenuePassRewardData',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -348,6 +349,94 @@ const Game = {
       const item = idx.itemByType.get(r.reward_param);
       if (!item) continue;
       pushOther(item.id, { source: '7-Day Carnival', title: `Day ${r.order}`, pct: null, amount: r.reward_amount });
+    }
+
+    // Quest rewards — found 2026-10-01 while widening the search further.
+    // QuestData.Reward_Type_1/2 are already a real string enum
+    // (`E_ItemType`: Exp/Rune/StackableItem/NONE) rather than the usual
+    // bare int code — when it's 'StackableItem', Reward_Id_1/2 holds the
+    // .Type code directly (confirmed across all 17 distinct values used,
+    // zero orphans — including `0`, which is a real, valid Type: Gold, not
+    // a null/placeholder). Two reward slots per quest, resolved the same
+    // way. Real quest title/desc resolved via the Locale table at
+    // extraction time (QuestData.json's Title_en/Desc_en), same convention
+    // as every other Name_en/Desc_en field in this app's data.
+    for (const r of this.db.QuestData) {
+      for (const [typeField, idField, valField] of [
+        ['Reward_Type_1', 'Reward_Id_1', 'Reward_Value_1'],
+        ['Reward_Type_2', 'Reward_Id_2', 'Reward_Value_2'],
+      ]) {
+        if (r[typeField] !== 'StackableItem') continue;
+        const item = idx.itemByType.get(r[idField]);
+        if (!item) continue;
+        pushOther(item.id, { source: 'Quest', title: r.Title_en || r.Title, pct: null, amount: r[valField] });
+      }
+    }
+
+    // Boss Raid ranking rewards — PvP-style leaderboard payout, resolved
+    // through the normal idx.resolveRewardGroup pipeline like Invasion
+    // Ranking above (every bundle here is Rate=100, i.e. guaranteed once
+    // you place in that rank — not a weighted roll).
+    for (const r of this.db.BossRaidRankingRewardData) {
+      for (const res of idx.resolveRewardGroup(r.reward_group_id)) {
+        pushOther(res.item.id, {
+          source: 'Boss Raid Ranking',
+          title: `Rank ${r.rank_from}${r.rank_to !== r.rank_from ? `-${r.rank_to}` : ''}`,
+          pct: res.pct, amountMin: res.amountMin, amountMax: res.amountMax,
+        });
+      }
+    }
+
+    // Five-Pack Gift rewards — `item_type===1` rows' `stackableItem_type`
+    // -> .Type directly (confirmed, zero orphans), grouped by
+    // `reward_day_group`. Deliberately NOT using the companion
+    // FivePackGiftSegmentData table's own `day_N_reward_group`/
+    // `final_reward_group` fields — those route back through
+    // idx.resolveRewardGroup, but the specific Group ids they reference
+    // (101, 102...) collide with Group ids ChestData already uses for
+    // unrelated chests (RewardGroupData.Group is evidently NOT a globally
+    // unique namespace per-system), so resolving them here risked
+    // attributing a chest's own contents to this system instead —
+    // skipped rather than risk a wrong source.
+    for (const r of this.db.FivePackGiftRewardData) {
+      if (r.item_type !== 1) continue;
+      const item = idx.itemByType.get(r.stackableItem_type);
+      if (!item) continue;
+      pushOther(item.id, { source: 'Five-Pack Gift', title: `Day group ${r.reward_day_group}`, pct: null, amount: r.amount });
+    }
+
+    // Footboard "RV" (Rewarded Video — watch an ad) rewards — a flat,
+    // per-player-level table with fixed named currency columns instead of
+    // a generic type/param pair. Only gem_amount/gold_amount/elixer_amount
+    // map to real catalog items (Gem/Gold/Elixir) — crystal_amount and the
+    // 4 soulstone_N_amount columns reference currencies with no matching
+    // StackableItemData row at all (likely a separate premium-currency
+    // system this app's catalog doesn't track), so those 5 columns are
+    // skipped rather than guessed at.
+    const RV_FIELD_TO_TYPE = { gem_amount: 3, gold_amount: 0, elixer_amount: 5 };
+    for (const r of this.db.FootboardProductRVRewardData) {
+      for (const [field, type] of Object.entries(RV_FIELD_TO_TYPE)) {
+        if (!r[field]) continue;
+        const item = idx.itemByType.get(type);
+        if (!item) continue;
+        pushOther(item.id, { source: 'Watch Ad', title: `Lv.${r.level} ad reward`, pct: null, amount: r[field] });
+      }
+    }
+
+    // New Costume Revenue Pass rewards — same shape as Invasion Pass
+    // above (item_type===1 rows' stackableItem_type -> .Type directly,
+    // item_type===7 rows skipped — same non-stackable category this app
+    // can't resolve). `level` has the same `-1` sentinel pattern as
+    // Invasion Pass's `unlock_level`, but this table has no companion
+    // points field at all (only 1 row uses it) — shown as "no level gate"
+    // rather than inventing a points narrative Invasion Pass's real data
+    // supported but this table doesn't.
+    for (const r of this.db.NewCostumeRevenuePassRewardData) {
+      if (r.item_type !== 1) continue;
+      const item = idx.itemByType.get(r.stackableItem_type);
+      if (!item) continue;
+      const gate = r.level === -1 ? 'no level gate' : `Lv.${r.level}`;
+      pushOther(item.id, { source: 'Revenue Pass', title: `season ${r.group_order} — ${gate}${r.is_vip ? ' (VIP track)' : ''}`, pct: null, amount: r.reward_amount });
     }
 
     // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —
