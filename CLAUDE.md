@@ -187,7 +187,7 @@ short version:
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
-| Farmable Items sources | **21/103** catalog items have a confirmed source as of 2026-09-30 (was 4/103 before that day's "Monster kill drops" discovery — see below). Three source types resolve without guessing: direct per-kill drops (`EnemyData.DropItemType`/`DropItemType2`, 8 items, 100 enemies), chest drop tables (`ChestData`→`RewardGroupData`, 13 items), and guaranteed boss kills (`MinimapRewardData`, 4 items — 3 items appear in more than one source type, hence 21 not 25). Shop, missions, quests, chapter-clear rewards, and boss/challenge-tower/hero's-tomb raids were **not** explored as reward sources (the latter three pay out via a "Rune" system this app doesn't model yet — see Open Items). |
+| Farmable Items sources | **25/103** catalog items have a confirmed source as of 2026-10-01 (was a true 11/103 immediately before that session — this row previously claimed 21/103, which was itself wrong; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain the gap). Six source types now resolve without guessing: direct per-kill drops (`EnemyData.DropItemType`/`DropItemType2`, 8 items), chest drop tables (`ChestData`→`RewardGroupData`, 5 items), guaranteed boss kills (`MinimapRewardData`, 4 items), Boss Raid clear rewards (`BossRaidStageData`, 11 items), Challenge Tower floor rewards (`ChallengeTowerStageData`, 3 items), and Hero's Tomb per-kill-type rewards (`HeroTombRuneDropData`, 2 items) — some items appear under more than one source type. Shop, missions, quests, and chapter-clear rewards were **not** explored as reward sources. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI — see Open Items) remains unmodeled as a feature; only its Hero's Tomb drop-location data was used here. |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
 | Item/enemy catalog (`StackableItemData`/`EnemyData`) | Refreshed 2026-09-30 from a newer APK (v26.2.0 vs. the original v25.3.0) — 56→104 items, 208→245 enemies, verified backward-compatible (all old ids/names unchanged) before merging. The 37 new enemies (a new "Hero's Tomb" mode) have no face art anywhere in the extracted asset tree — likely a remote-only AssetBundle, not a gap in the extraction itself. |
 | Monsters tab chapter grouping | **Inferred, not an explicit data field** — `EnemyData` has no per-enemy chapter column, so `Game.enemyChapter()` parses it from each enemy's own `key` (e.g. `CH3_GreenOrc` → 3). Cross-checked, not assumed blind: every enemy sharing one `CHn_` prefix also shares one exact `ThemeId`, and for chapters 1-3 (the only chapters with extracted `StageData`) it lines up with the real chapter numbers used everywhere else in the app. A handful of enemies have no `CHn_` prefix (e.g. `World3_Dron_1`) and are bucketed as "Special/Raid" rather than guessing a chapter. "Boss" = has a `NickName_en` — checked against `EnemyType` first (every `EnemyType 2` row has one, 46/46) but 4 more confirmed bosses are typed 0/1, so `NickName_en` presence is the complete signal, `EnemyType` alone isn't. Exact stage (vs. just chapter) is only shown for the 20 enemies with a confirmed `MinimapRewardData` tie — same data the Farmable Items tab uses. |
@@ -1056,6 +1056,159 @@ Open Items entry below accordingly rather than closing it.
 so dropping in correctly-named files was sufficient; the Monsters tab's
 existing `onImgError` dimming just stops firing for these 10 rows.
 
+## Boss Raid / Challenge Tower / Hero's Tomb rewards, and two real bugs fixed (2026-10-01)
+
+User asked to keep deep-diving the APK data for item/monster location
+coverage, following directly on from "Monster portrait recovery" above
+("plenty of data is still missing"). Picked up the "Rune" reward-type
+thread flagged as an Open Item during the 2026-09-30 session (where
+`BossRaidStageData`/`ChallengeTowerStageData`/`HeroTombStageData` were
+found to pay out mostly through a "Rune" system with no matching data
+table — modeling Runes properly was explicitly parked as too large for
+that session). The scratchpad's unpacked APK (`unpack/base_extracted/`)
+was still intact, so this picked up with direct UnityPy extraction again,
+no fresh APK needed.
+
+**Found the real Rune data tables** — 9 of them, all sitting in the base
+APK the whole time, never previously extracted: `RuneData` (115 rows, one
+per hero/costume), `RuneGradeData` (8 grades), `RuneTypeData` (4 types),
+`RuneOptionTypeData` (28 rows), `RuneUniqueOptionData` (115 rows),
+`RuneLevelBonusGroupData` (440 rows), `RuneLevelCostData` (1440 rows),
+`RuneBreakRewardData` (1440 rows), `HeroTombRuneDropData` (80 rows). Fully
+modeling the equip-a-rune-on-a-hero system itself (its own UI, its own
+place in the Dps formula) is still out of scope — genuinely a new feature,
+not today's ask — but `HeroTombRuneDropData` turned out to be exactly the
+missing link for *where Rune Powder (and other items) actually come from*,
+without needing the rest of the Rune system built first.
+
+**The chase that got there**: `HeroTombRuneDropData.reward_id` (values
+like `200000`, `201100`) don't match any Rune table's own `id` space —
+cross-checked against `RewardGroupData.Group` instead and they match
+exactly. Resolving those groups revealed a reward code this app had never
+decoded: **`RewardType==1`**, which resolves via `RewardParam ->
+StackableItemData.Type` — the *exact same* convention `idx.itemByType`
+already uses for Monster Drops (see "Monster kill drops" above), just on
+a different source table. Verified by checking **every one of the 898
+`RewardType==1` rows in the whole table**: all 26 distinct `RewardParam`
+values resolve cleanly via `.Type` with zero orphans (Rune Powder,
+Bluestone, Gem, Weapon Scroll, Raid Soul 1-6, Weapon Piece Melee/Range,
+Raid Token/Exp, Trait Point, chest keys, and more) — not a coincidental
+partial match, a complete, confirmed mapping.
+
+That same resolver unlocked two more previously-untouched tables:
+- **`BossRaidStageData`** (24 rows) ties 6 named Chapter-1 raid bosses —
+  Crystal Crab, Anubis, Blood Lord, Frozen Bloom, Rosalia, Cerberus — at 4
+  difficulty tiers each (Normal/Hard/Extreme/Hell) to two reward groups:
+  `clear_reward_group_id` (every clear) and `first_clear_reward_group_id`
+  (one-time). The tie is real and confirmed, not assumed: each row's
+  `enemy_id` resolves cleanly to this app's own already-committed
+  `EnemyData` rows (e.g. `1110001` → `CH1_RaidBoss_CrystalCrab_Normal`) —
+  the same 6-of-11 Chapter-1 raid bosses this app already shows (missing
+  portrait art for all of them, see "Monster portrait recovery" above,
+  still unrecovered) now have a confirmed, farmable item source and a
+  real "Track on Map" tie into the Monsters tab.
+- **`ChallengeTowerStageData`** (250 rows, floors 1-250 across multiple
+  chapters) encodes its own reward directly as two parallel arrays
+  (`reward_param_array`/`reward_amount_array`) with **no**
+  `RewardGroupData` indirection at all — a flat, guaranteed reward per
+  floor clear (Gold/Gem/Weapon Scroll, confirmed via the same `.Type`
+  check), not a weighted roll.
+
+**Two real, previously-shipped bugs found and fixed while re-auditing the
+*existing* two source types for this same work** (not hypothetical —
+both were live on the deployed site):
+- **Guaranteed boss drops were using the wrong id space.**
+  `idx.minimapRewardsByItem` keyed `MinimapRewardData` rows directly by
+  their raw `reward_id` and the lookup in `computeFarmSources` then
+  queried it by `StackableItemData.id` — but `reward_id` on a
+  `StackableItem`-type row is in `.Type` space, the same convention as
+  everywhere else in this pipeline, not `.id`. It had been silently
+  "working" for exactly one row by coincidence (`reward_id 3` is Gem's
+  real `Type`, but `.id 3` is BlueStone — so the app was showing BlueStone
+  as having a guaranteed boss-kill source that actually belongs to Gem).
+  Fixed by resolving `reward_id` through `idx.itemByType` before keying
+  the map, matching the convention used everywhere else. Guaranteed-source
+  coverage went from 1 real item to the correct 4 (Gem, Red Orb, Warrior
+  Chest Key, S-Tier Chest Key).
+- **Chest drop tables were silently missing half their own reward rows.**
+  `computeFarmSources`'s chest loop only ever checked `RewardType === 4`
+  (resolved via `.id`) — but a chest's own `RewardGroupData` bundles
+  genuinely mix TWO reward codes in the same bundle: `RewardType 4` *and*
+  `RewardType 1` (resolved via `.Type`, the same code found above). The
+  `RewardType 1` rows (BlueStone, Weapon Scroll) were being silently
+  dropped entirely — not shown as a 0% chance, just absent, since the
+  `!== 4` check skipped them before any resolution was attempted. Fixed
+  by resolving both codes; also skip `Rate === 0` rows (real rows this
+  table carries — reserved/locked bundle slots, confirmed present but
+  inert — that would otherwise render a confusing "0%" chance rather than
+  being silently absent like before). Chest-source coverage went from 3
+  items to 5 (added BlueStone and Weapon Scroll).
+
+These two bugs were caught specifically *because* this session's new
+`RewardType==1` discovery gave a reason to re-examine the two existing
+reward-reading code paths side by side — worth remembering as a pattern:
+when a new confirmed convention surfaces, re-check whether any *existing*
+code already had the same field confusion.
+
+**Confirmed-source coverage raised from 11/103 (the true pre-session
+count — see honesty note below) to 25/103** catalog items — Monster
+Drops 8, Guaranteed 4, Chest 5, Boss Raid 11, Challenge Tower 3, Hero's
+Tomb 2 (some items appear under more than one source type).
+
+**Honesty note on the coverage number**: this file's confidence table
+previously claimed "21/103" for Farmable Items sources (4
+guaranteed + 13 chest + 8 kill, 3 overlapping). Re-measured directly
+against the live `computeFarmSources()` output before touching any code
+this session and got **11/103**, not 21 — the "4 guaranteed" and "13
+chest" figures were themselves already wrong in the committed app (the
+two bugs above are exactly why: 1 real guaranteed item, not 4; 3 real
+chest items, not 13). The doc had drifted from the real app state at some
+earlier point. Corrected both in the same pass rather than leaving a
+discrepancy for a future session to trip over.
+
+**A real pre-existing data-staleness gap, also fixed**: `data/RewardGroupData.json`
+in this repo was still the original 837-row table from the first
+extraction (v25.3.0). The 2026-09-30 session had already pulled a fresh,
+1019-row version from the v26.2.0 APK during its own investigation (per
+that session's own notes) but never actually committed it — all of
+today's new Boss Raid / Hero's Tomb groups (`200000`+, `90110101`+) only
+exist in the newer table. Before swapping it in, checked for backward
+compatibility the same way this project always does: diffed every
+`RewardGroupData` row belonging to the 9 `Group` ids this app's existing
+`ChestData` actually references (101-303) between old and new — byte-for-
+byte identical, zero changes. Safe to replace outright. Also committed
+`data/BossRaidStageData.json` (24 rows), `data/ChallengeTowerStageData.json`
+(250 rows), `data/HeroTombRuneDropData.json` (80 rows) — all newly
+extracted this session, converted from the raw schema-row format to this
+app's usual typed-JSON convention (see `data/*.json` elsewhere).
+
+**Shipped**: the 4 new/updated `data/*.json` tables above;
+`idx.resolveRewardGroup()`, `idx.bossRaidDropsByItemId`,
+`idx.towerDropsByItemId`, `idx.heroTombDropsByItemId` (`data.js`); the
+`idx.minimapRewardsByItem`/chest-loop bug fixes (`data.js`/`ui-farmable.js`);
+three new sections in the item detail modal ("Boss Raid Rewards",
+"Challenge Tower Rewards", "Hero's Tomb Rewards") reusing the existing
+"Track on Map" → `MonstersUI.openDetail` pattern for Boss Raid rows (a
+real named enemy) and plain info rows for Tower/Hero's Tomb (no single
+enemy to tie to — Tower fights an array of enemies per floor, Hero's Tomb
+drops are keyed by monster *category* not a specific enemy id, so neither
+forces a fake "track this monster" affordance it can't back up). Verified
+end-to-end with Playwright: all three new sections render for real items
+(Rune Dust/Gem/Weapon Scroll/Water Orb), "Track on Map" from a Boss Raid
+row correctly opens Crystal Crab's own monster detail, zero new console
+errors, and a full tab-by-tab sweep of the rest of the app confirmed no
+regressions from either the RewardGroupData swap or the two bug fixes.
+
+**Not pursued this session, for later**: `HeroTombRuneDropData` also
+carries `gacha_reward_id`/`gacha_reward_count`/`gacha_reward_drop_rate`
+fields alongside the `reward_id` this session resolved — a second,
+unexplored bonus-roll layer, left as raw data rather than guessed at.
+`RuneBreakRewardData`/`RuneLevelCostData` (both extracted, not yet
+wired into anything) describe the cost/reward of leveling and
+"breaking" a rune — real data for a future "model the actual Rune
+system" feature, not touched here since it's genuinely new scope, not a
+quick source-table addition like today's work.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -1547,6 +1700,26 @@ existing `onImgError` dimming just stops firing for these 10 rows.
     raid bundles) while confirming the remaining 42 are genuinely absent
     from the two most relevant bundles checked — is in "Monster portrait
     recovery" above.
+27. User asked to keep deep-diving the APK for item/monster location data,
+    since "plenty of data is still missing." Picked up the "Rune" reward
+    type parked as an Open Item the prior session — found and extracted
+    all 9 real Rune data tables (sitting in the base APK all along), and
+    traced `HeroTombRuneDropData`/`BossRaidStageData` through a
+    previously-undecoded `RewardGroupData.RewardType==1` convention
+    (resolves via `.Type`, confirmed across all 898 rows of that type).
+    While re-auditing the existing Guaranteed/Chest source types for this
+    same work, found and fixed two real, previously-shipped bugs: Guaranteed
+    boss drops were keyed by the wrong id space (showing BlueStone's source
+    as Gem's by coincidence), and Chest drops were silently missing every
+    `RewardType==1` row in their own reward bundles. Also discovered and
+    corrected a stale doc claim (this file previously said "21/103"
+    Farmable Items coverage; the true pre-session figure was 11/103, now
+    25/103) and committed a newer, previously-unmerged 1019-row
+    `RewardGroupData.json` (verified backward-compatible against every
+    group this app's existing `ChestData` references before swapping it
+    in). Full writeup, including the two bugs and the honesty note on the
+    doc discrepancy, is in "Boss Raid / Challenge Tower / Hero's Tomb
+    rewards" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -1570,17 +1743,28 @@ existing `onImgError` dimming just stops firing for these 10 rows.
   silently clobbering local data. A future "auto-sync on sign-in" feature
   would need real conflict-resolution UX (which build wins when local and
   cloud have both changed) that wasn't designed or asked for here.
-- A new **"Rune"** item/reward type was discovered in the v26.2.0 data
-  (`BossRaidStageData`, `ChallengeTowerStageData`, and `HeroTombStageData`
-  all pay out mostly Runes via reward-group rows whose `RewardType`/
-  `RewardParam` values don't correspond to anything in `StackableItemData`)
-  — this app has never extracted a Rune data table or modeled the system at
-  all. Properly expanding Farmable Items / Monsters coverage using these
-  three new stage tables needs that groundwork first, not just a table
-  refresh. Real extracted data to start from: `data/` doesn't have these
-  tables committed yet, but the raw schemas were confirmed during the
-  2026-09-30 session (see above) — would need a fresh APK re-pull if the
-  scratchpad is gone by the time this is picked up.
+- **Updated 2026-10-01 (see "Boss Raid / Challenge Tower / Hero's Tomb
+  rewards" above)**: the "Rune" reward type flagged here is now mostly
+  understood, not just discovered. `RewardType==1` in `RewardGroupData`
+  (resolved via `StackableItemData.Type`, confirmed across all 898 rows of
+  that type, zero orphans) turned out to cover Rune Powder, Raid Souls,
+  Weapon Pieces, and more — enough to wire `BossRaidStageData` and
+  `HeroTombRuneDropData` (via its own `HeroTombRuneDropData`) into real
+  Farmable Items sources without needing the Rune *equip* system built
+  first. **What's still genuinely open**: the actual Rune system itself —
+  equipping a Rune on a hero, leveling it, its own stat contribution to
+  the Dps formula. All 9 of its real data tables were extracted this
+  session and are sitting in the scratchpad
+  (`unity_work/textassets/Rune*.json`, `HeroTombRuneDropData.json`) but
+  only committed to `data/` for the one (`HeroTombRuneDropData`) this
+  session actually used — `RuneData`/`RuneGradeData`/`RuneTypeData`/
+  `RuneOptionTypeData`/`RuneUniqueOptionData`/`RuneLevelBonusGroupData`/
+  `RuneLevelCostData`/`RuneBreakRewardData` are extracted but not yet
+  committed or wired into any UI. This is a real new feature (its own
+  equip slots, its own detail modal, its own Dps source) not a quick
+  table swap — would need a fresh APK re-pull only if the scratchpad is
+  gone by the time this is picked up; otherwise the raw files are already
+  in hand, just not yet converted/committed.
 - **Updated 2026-09-30 (see "Monster portrait recovery" chronological log
   entry)**: the "likely a remote-only AssetBundle this extraction can't
   reach" theory above was tested directly, not just assumed — the live
@@ -1619,16 +1803,22 @@ existing `onImgError` dimming just stops firing for these 10 rows.
   the free-roam/boss-raid open-world mode vs. the story-stage mode being
   genuinely different systems with different level geometry), the spawn
   scatter view could potentially gain real per-stage subdivision.
-- Expand Farmable Items coverage beyond the 21 currently-confirmed items
-  (was 4 before the 2026-09-30 "Monster kill drops" discovery — see above)
-  — would need to explore shop/mission/quest/chapter-reward/boss-raid
+- Expand Farmable Items coverage beyond the 25 currently-confirmed items
+  (was a true 11, then 25 after the 2026-10-01 "Boss Raid / Challenge
+  Tower / Hero's Tomb rewards" session — see above, including two real
+  bugs fixed in the pre-existing Guaranteed/Chest source types along the
+  way) — would need to explore shop/mission/quest/chapter-reward
   systems' `RewardGroupData` associations (the reward-group resolution
-  mechanism itself is understood and working; it's the *other* systems'
-  group IDs that haven't been mapped). `DropItemType`/`DropItemType2` cover
+  mechanism itself is understood and working for both its `RewardType`
+  codes now — 4 via `.id`, 1 via `.Type` — it's the *other* systems' group
+  IDs that haven't been mapped). `DropItemType`/`DropItemType2` cover
   100 enemies but plenty more `EnemyData` rows have neither set — worth a
   fresh look if a later APK pull reveals more drop fields per enemy, or if
   the "pieces" field's real meaning gets decompiled and turns out to gate
-  which enemies actually drop something reliably.
+  which enemies actually drop something reliably. `HeroTombRuneDropData`'s
+  own `gacha_reward_id`/`gacha_reward_count`/`gacha_reward_drop_rate`
+  fields (a second, unexplored bonus-roll layer alongside the `reward_id`
+  this session resolved) are also still open.
 - `BlessingBuffData` was extracted (`data/BlessingBuffData.json`) but never
   wired into anything — 3 buff types, unclear which (if any) maps to a stat
   the app tracks.

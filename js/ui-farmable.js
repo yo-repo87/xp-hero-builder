@@ -2,16 +2,32 @@
 // ui-farmable.js — "Farmable Items" tab: the item catalog plus, per item,
 // exactly where it comes from — sourced from real game data, not guessed.
 //
-// Two source types are modeled, both fully resolved from confirmed data:
+// Six source types are modeled, all fully resolved from confirmed data
+// (see CLAUDE.md "Monster kill drops" and "Boss Raid / Challenge Tower /
+// Hero's Tomb rewards" for the full writeups and confidence checks):
 //   - "Guaranteed" drops: MinimapRewardData ties a specific named boss enemy
 //     in a specific chapter/stage to a guaranteed item reward.
 //   - "Chest" drops: ChestData -> RewardGroupData gives a real weighted drop
-//     table per chest (RewardType 4 rows resolve cleanly to StackableItemData
-//     ids), and ChestSpawnerData.ChestRespawnOrder ties each chest to the
-//     specific stage(s) it actually spawns at.
+//     table per chest. Fixed 2026-10-01: a chest's own bundles mix TWO reward
+//     codes (RewardType 4, resolved via StackableItemData.id, and RewardType
+//     1, resolved via .Type — the previous code only implemented the first,
+//     silently dropping every chest's BlueStone/Weapon Scroll rows). Zero-Rate
+//     rows (locked/placeholder slots this table carries but the live client
+//     apparently never rolls) are skipped rather than shown as a false "0%".
+//     ChestSpawnerData.ChestRespawnOrder ties each chest to the specific
+//     stage(s) it actually spawns at.
+//   - "Monster" drops: EnemyData's own DropItemType/DropItemType2 fields,
+//     resolved via StackableItemData.Type (idx.itemByType).
+//   - "Boss Raid" / "Hero's Tomb" rewards: BossRaidStageData /
+//     HeroTombRuneDropData each point at a RewardGroupData group too, but
+//     via RewardType==1 (also resolved via .Type, NOT the chest convention's
+//     .id match — a different code in the same table, see
+//     idx.resolveRewardGroup in data.js).
+//   - "Challenge Tower" rewards: ChallengeTowerStageData encodes its reward
+//     directly as parallel arrays, no RewardGroupData indirection at all.
 //
-// "View Map" behavior is intentionally split by source type, because only
-// one of the two actually has a monster to go find:
+// "View Map" / "Track on Map" behavior is intentionally split by source
+// type, because only some of them actually have a monster to go find:
 //   - Guaranteed boss drops and community reports both name a specific
 //     enemy, so their "Track on Map" button routes straight into that
 //     monster's own full detail view (MonstersUI.openDetail) — the real
@@ -54,7 +70,8 @@ const FarmableUI = {
     grid.innerHTML = items.map(item => {
       const sources = computeFarmSources(item.id);
       const r = Game.rarityColor(item.Rarity);
-      const total = sources.guaranteed.length + sources.chest.length + sources.kill.length;
+      const total = sources.guaranteed.length + sources.chest.length + sources.kill.length
+        + sources.bossRaid.length + sources.tower.length + sources.heroTomb.length;
       return `
         <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
           <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
@@ -104,6 +121,32 @@ const FarmableUI = {
         <button class="btn btn-sm">View Map</button>
       </div>`).join('');
 
+    const bossRaidHTML = sources.bossRaid.slice().sort((a, b) => a.enemy.Name_en.localeCompare(b.enemy.Name_en) || a.pct - b.pct).map(s => `
+      <div class="farm-source-row" data-track-enemy="${s.enemy.id}">
+        <img class="farm-source-thumb" src="${Game.enemyIcon(s.enemy)}" onerror="onImgError(this)" alt="">
+        <div class="farm-source-info">
+          <div class="fs-title">Boss Raid — defeat <b>${escapeHtml(s.enemy.Name_en)}</b> (${s.difficulty}) <span class="mono" style="color:var(--gold)">${fmtNum(s.pct)}%</span></div>
+          <div class="fs-sub">${s.repeatable ? 'Every clear' : 'First clear only'} · yields ${s.amountMin === s.amountMax ? s.amountMin : `${s.amountMin}-${s.amountMax}`}</div>
+        </div>
+        <button class="btn btn-sm">Track on Map</button>
+      </div>`).join('');
+
+    const towerHTML = sources.tower.slice().sort((a, b) => a.floor - b.floor).map(s => `
+      <div class="farm-source-row">
+        <div class="farm-source-info">
+          <div class="fs-title">Challenge Tower — clear <b>Floor ${s.floor}</b></div>
+          <div class="fs-sub">Chapter ${s.chapter} · guaranteed ×${fmtNum(s.amount)}</div>
+        </div>
+      </div>`).join('');
+
+    const heroTombHTML = sources.heroTomb.slice().sort((a, b) => a.floor - b.floor || a.enemyType.localeCompare(b.enemyType)).map(s => `
+      <div class="farm-source-row">
+        <div class="farm-source-info">
+          <div class="fs-title">Hero's Tomb — kill a <b>${escapeHtml(s.enemyType)}</b>-type monster <span class="mono" style="color:var(--gold)">${fmtNum(s.pct)}%</span></div>
+          <div class="fs-sub">Floor ${s.floor} · yields ${s.amountMin === s.amountMax ? s.amountMin : `${s.amountMin}-${s.amountMax}`}</div>
+        </div>
+      </div>`).join('');
+
     const reports = CommunityReports.forItem(itemId);
     const communityHTML = reports.map((rep, i) => {
       const enemy = rep.enemy_id ? Game.index.enemyById.get(rep.enemy_id) : null;
@@ -132,9 +175,12 @@ const FarmableUI = {
             ${sources.kill.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Monster Drops</h4>${killHTML}` : ''}
             ${sources.guaranteed.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Guaranteed Boss Drops</h4>${guaranteedHTML}` : ''}
             ${sources.chest.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Chest Drop Rates</h4>${chestHTML}` : ''}
-            ${sources.kill.length === 0 && sources.guaranteed.length === 0 && sources.chest.length === 0 ? `
+            ${sources.bossRaid.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Boss Raid Rewards</h4>${bossRaidHTML}` : ''}
+            ${sources.tower.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Challenge Tower Rewards</h4>${towerHTML}` : ''}
+            ${sources.heroTomb.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Hero's Tomb Rewards</h4>${heroTombHTML}` : ''}
+            ${sources.kill.length === 0 && sources.guaranteed.length === 0 && sources.chest.length === 0 && sources.bossRaid.length === 0 && sources.tower.length === 0 && sources.heroTomb.length === 0 ? `
               <div class="caveat">No confirmed farm source found for this item in the extracted data — it likely comes from a system this app hasn't mapped yet (missions, events, shop, etc.), not that it's unobtainable.</div>` : `
-              <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item.</div>`}
+              <div class="caveat">Monster Drops come directly from that enemy's own EnemyData row (DropItemType/DropItemType2 fields) — confirmed real per-kill drops, though whether they're guaranteed on every kill or roll against some other chance this table doesn't capture wasn't independently verified, and the "pieces" count shown alongside the drop amount (when it differs) is the field's own second number, not yet decompiled to confirm exactly what it means. Guaranteed drops come directly from the game's own boss-reward table. Chest percentages are this chest's real weighted drop table, normalized within its reward bundle — a chest with multiple bundles may show more than one line per item. Boss Raid / Hero's Tomb percentages work the same way, from their own reward tables; Challenge Tower rewards are flat and guaranteed on every floor clear (no weighted roll exists in that table). None of these three modes' exact unlock requirements or stage-location coordinates are modeled in this app yet — they show the real reward math, not where to walk.</div>`}
 
             <h4 style="margin:14px 0 6px;font-size:.9rem">Community Reports <span style="color:var(--ink-muted);font-weight:500">(player-submitted, unverified)</span></h4>
             ${communityHTML || `<span style="color:var(--ink-faint);font-size:.82rem">No player reports yet for this item.</span>`}
@@ -262,7 +308,11 @@ const FarmableUI = {
 };
 
 function computeFarmSources(itemId) {
-  const sources = { guaranteed: [], chest: [], kill: [] };
+  const sources = { guaranteed: [], chest: [], kill: [], bossRaid: [], tower: [], heroTomb: [] };
+
+  sources.bossRaid = Game.index.bossRaidDropsByItemId.get(itemId) || [];
+  sources.tower = Game.index.towerDropsByItemId.get(itemId) || [];
+  sources.heroTomb = Game.index.heroTombDropsByItemId.get(itemId) || [];
 
   for (const r of (Game.index.killDropsByItemId.get(itemId) || [])) {
     sources.kill.push({ enemy: r.enemy, amount: r.amount, pieces: r.pieces, chapter: Game.enemyChapter(r.enemy) });
@@ -281,7 +331,14 @@ function computeFarmSources(itemId) {
       const totalWeight = bundleRows.reduce((s, r) => s + r.Rate, 0);
       if (totalWeight <= 0) continue;
       for (const r of bundleRows) {
-        if (r.RewardType !== 4 || r.RewardParam !== itemId) continue;
+        if (r.Rate <= 0) continue;
+        // RewardType 4 resolves via StackableItemData.id directly; RewardType 1
+        // (found 2026-10-01 — the same bundles mix both codes) resolves via
+        // .Type, same convention as Monster/Boss Raid/Hero's Tomb drops above.
+        let resolvedId = null;
+        if (r.RewardType === 4) resolvedId = r.RewardParam;
+        else if (r.RewardType === 1) { const it = Game.index.itemByType.get(r.RewardParam); resolvedId = it ? it.id : null; }
+        if (resolvedId !== itemId) continue;
         const stageIds = Game.index.stageIdsByChestId.get(chest.id) || [];
         const stages = stageIds.map(id => Game.index.stageById.get(id)).filter(Boolean);
         sources.chest.push({

@@ -18,8 +18,16 @@ const DATA_FILES = [
   'PlayerLevelData', 'BlessingBuffData',
   'StackableItemData', 'EnemyData', 'ChestData', 'ChestSpawnerData',
   'MinimapRewardData', 'StageData', 'RewardGroupData', 'StageMapLayout',
-  'EnemySpawnPoints',
+  'EnemySpawnPoints', 'BossRaidStageData', 'ChallengeTowerStageData',
+  'HeroTombRuneDropData',
 ];
+
+// BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
+// against the real prefab names each difficulty's enemy_id resolves to
+// (e.g. enemy_id for difficulty 10 is CH1_RaidBoss_CrystalCrab_Normal,
+// for 40 it's ..._Hell — see CLAUDE.md "Boss Raid / Challenge Tower /
+// Hero's Tomb rewards").
+const BOSSRAID_DIFFICULTY_NAMES = { 10: 'Normal', 20: 'Hard', 30: 'Extreme', 40: 'Hell' };
 
 // Rarity/tier system shared by weapons (1-9) and heroes (1-8). Names come
 // directly from the game's own localization (CODEX_RARITY_* keys); the
@@ -148,6 +156,99 @@ const Game = {
       }
     }
 
+    // Resolves a RewardGroupData Group id into real catalog items via the
+    // RewardType==1 convention: RewardParam -> StackableItemData.Type (the
+    // SAME idx.itemByType lookup killDropsByItemId above already uses).
+    // Confirmed 2026-10-01 by checking every one of the 898 RewardType==1
+    // rows in the whole table: all 26 distinct RewardParam values resolve
+    // cleanly via itemByType with zero orphans. This is a DIFFERENT
+    // RewardType than chests use (RewardType==4, resolved via
+    // StackableItemData.id directly in ui-farmable.js's own chest loop,
+    // left untouched) — the two codes coexist in the same table for
+    // different source systems. RewardType==0 rows are real "nothing"
+    // filler slots (RewardParam always -1) and are skipped, not errors.
+    // See CLAUDE.md "Boss Raid / Challenge Tower / Hero's Tomb rewards".
+    idx.resolveRewardGroup = (groupId) => {
+      const rows = idx.rewardRowsByGroup.get(groupId) || [];
+      const byBundle = groupBy(rows, r => r.BundleGroup);
+      const out = [];
+      for (const bundleRows of byBundle.values()) {
+        const total = bundleRows.reduce((s, r) => s + r.Rate, 0);
+        if (total <= 0) continue;
+        for (const r of bundleRows) {
+          if (r.RewardType !== 1 || r.Rate <= 0) continue;
+          const item = idx.itemByType.get(r.RewardParam);
+          if (!item) continue;
+          out.push({ item, pct: (r.Rate / total) * 100, amountMin: r.RewardCount_Min, amountMax: r.RewardCount_Max });
+        }
+      }
+      return out;
+    };
+
+    // Boss Raid clear rewards — a 4th farm-source mechanism, found
+    // 2026-10-01. BossRaidStageData ties 6 named Chapter-1 raid bosses (at
+    // 4 difficulty tiers each, confirmed via enemy_id resolving to the
+    // real CH1_RaidBoss_*_Normal/Hard/Extreme/Hell EnemyData rows) to two
+    // reward groups each: clear_reward_group_id (repeatable every clear)
+    // and first_clear_reward_group_id (one-time bonus only). Both resolve
+    // through the same RewardGroupData pipeline as everything else.
+    idx.bossRaidDropsByItemId = new Map();
+    for (const row of this.db.BossRaidStageData) {
+      const enemy = idx.enemyById.get(row.enemy_id);
+      if (!enemy) continue;
+      const difficulty = BOSSRAID_DIFFICULTY_NAMES[row.bossraid_difficulty] || `Difficulty ${row.bossraid_difficulty}`;
+      for (const [groupId, repeatable] of [[row.clear_reward_group_id, true], [row.first_clear_reward_group_id, false]]) {
+        if (!groupId) continue;
+        for (const r of idx.resolveRewardGroup(groupId)) {
+          if (!idx.bossRaidDropsByItemId.has(r.item.id)) idx.bossRaidDropsByItemId.set(r.item.id, []);
+          idx.bossRaidDropsByItemId.get(r.item.id).push({
+            enemy, difficulty, repeatable, pct: r.pct, amountMin: r.amountMin, amountMax: r.amountMax,
+          });
+        }
+      }
+    }
+
+    // Challenge Tower floor-clear rewards — a 5th farm-source mechanism,
+    // found 2026-10-01. Unlike every other source here, ChallengeTowerStageData
+    // encodes its rewards directly as two parallel comma-separated arrays
+    // (reward_param_array / reward_amount_array) with no RewardGroupData
+    // indirection at all — confirmed by resolving all 3 distinct param
+    // values (0, 3, 301) via itemByType (Gold, Gem, Weapon Scroll), zero
+    // orphans. Every one of the 250 floors gives a flat, guaranteed reward
+    // on clear (no Rate/weight field exists on this table), so these show
+    // as guaranteed, not a percentage chance.
+    idx.towerDropsByItemId = new Map();
+    for (const row of this.db.ChallengeTowerStageData) {
+      const params = String(row.reward_param_array).split(',').map(Number);
+      const amounts = String(row.reward_amount_array).split(',').map(Number);
+      params.forEach((p, i) => {
+        const item = idx.itemByType.get(p);
+        if (!item) return;
+        if (!idx.towerDropsByItemId.has(item.id)) idx.towerDropsByItemId.set(item.id, []);
+        idx.towerDropsByItemId.get(item.id).push({ floor: row.floor, chapter: row.chapter, amount: amounts[i] });
+      });
+    }
+
+    // Hero's Tomb per-kill-type rewards — a 6th farm-source mechanism,
+    // found 2026-10-01 while tracing the "Rune" reward type discovered in
+    // the v26.2.0 refresh (see CLAUDE.md Open Items). HeroTombRuneDropData
+    // ties a specific floor (`difficulty`, really a floor number 1-20 —
+    // confirmed matching HeroTombStageData.id 1:1, not a tiered-difficulty
+    // scale despite the field name) and a monster category killed there
+    // (`enemy_type`: Normal/Elite/Unique/Boss, not a specific enemy id) to
+    // a reward group (`reward_id`) via the same resolver above. This is
+    // how this app's first confirmed source for Rune Powder (item id 96)
+    // was found — previously had zero confirmed sources.
+    idx.heroTombDropsByItemId = new Map();
+    for (const row of this.db.HeroTombRuneDropData) {
+      for (const r of idx.resolveRewardGroup(row.reward_id)) {
+        if (!idx.heroTombDropsByItemId.has(r.item.id)) idx.heroTombDropsByItemId.set(r.item.id, []);
+        idx.heroTombDropsByItemId.get(r.item.id).push({
+          floor: row.difficulty, enemyType: row.enemy_type, pct: r.pct, amountMin: r.amountMin, amountMax: r.amountMax,
+        });
+      }
+    }
+
     // Real in-game minimap layout (see CLAUDE.md "Real map art" entry) —
     // exact normalized x/y/w/h per chapter+stage, extracted straight from
     // the actual Minimap popup prefab's RectTransform data, not estimated.
@@ -173,10 +274,25 @@ const Game = {
 
     // MinimapRewardData rows grouped by their reward (item or weapon) so the
     // farmable-items view can look up guaranteed boss-kill sources per item.
-    idx.minimapRewardsByItem = groupBy(
-      this.db.MinimapRewardData.filter(r => r.reward_type === 'StackableItem'),
-      r => r.reward_id
-    );
+    // Fixed 2026-10-01: `reward_id` on a StackableItem row is in
+    // StackableItemData.Type space, NOT .id — the exact same convention as
+    // EnemyData's DropItemType/DropItemType2 and RewardGroupData's
+    // RewardType==1 (see idx.itemByType/resolveRewardGroup above). The
+    // previous code keyed this map directly by the raw reward_id and then
+    // looked it up by .id in computeFarmSources, which only "worked" by
+    // coincidence for the one row whose Type number happened to collide
+    // with a different item's id (reward_id 3 is really Gem's Type, but
+    // id 3 is BlueStone — so this was silently showing BlueStone as having
+    // a guaranteed boss-drop source that actually belongs to Gem). Found
+    // while re-auditing Farmable Items source coverage end-to-end.
+    idx.minimapRewardsByItem = new Map();
+    for (const r of this.db.MinimapRewardData) {
+      if (r.reward_type !== 'StackableItem') continue;
+      const item = idx.itemByType.get(r.reward_id);
+      if (!item) continue;
+      if (!idx.minimapRewardsByItem.has(item.id)) idx.minimapRewardsByItem.set(item.id, []);
+      idx.minimapRewardsByItem.get(item.id).push(r);
+    }
     // Same table, keyed by enemy instead — lets the Monsters tab show a
     // boss's one confirmed exact stage (no enemy has more than one row here).
     idx.minimapRewardByEnemyId = new Map(this.db.MinimapRewardData.map(r => [r.enemy_id, r]));

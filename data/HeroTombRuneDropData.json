@@ -1,0 +1,802 @@
+[
+ {
+  "difficulty": 1,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 0,
+  "gacha_reward_id": 200000,
+  "id": 1,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 1,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 500,
+  "gacha_reward_id": 200000,
+  "id": 2,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 1,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 2,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 200000,
+  "id": 3,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 1,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 5,
+  "gacha_reward_drop_rate": 2000,
+  "gacha_reward_id": 200000,
+  "id": 4,
+  "reward_id": 200100
+ },
+ {
+  "difficulty": 2,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 0,
+  "gacha_reward_id": 200000,
+  "id": 11,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 2,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 625,
+  "gacha_reward_id": 200000,
+  "id": 12,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 2,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 2,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 200000,
+  "id": 13,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 2,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 5,
+  "gacha_reward_drop_rate": 2500,
+  "gacha_reward_id": 200000,
+  "id": 14,
+  "reward_id": 200100
+ },
+ {
+  "difficulty": 3,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 0,
+  "gacha_reward_id": 200000,
+  "id": 21,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 3,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 750,
+  "gacha_reward_id": 200000,
+  "id": 22,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 3,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 2,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 200000,
+  "id": 23,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 3,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 5,
+  "gacha_reward_drop_rate": 3000,
+  "gacha_reward_id": 200000,
+  "id": 24,
+  "reward_id": 200100
+ },
+ {
+  "difficulty": 4,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 0,
+  "gacha_reward_id": 200000,
+  "id": 31,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 4,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 875,
+  "gacha_reward_id": 200000,
+  "id": 32,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 4,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 2,
+  "gacha_reward_drop_rate": 1750,
+  "gacha_reward_id": 200000,
+  "id": 33,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 4,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 5,
+  "gacha_reward_drop_rate": 3500,
+  "gacha_reward_id": 200000,
+  "id": 34,
+  "reward_id": 200100
+ },
+ {
+  "difficulty": 5,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 0,
+  "gacha_reward_id": 200000,
+  "id": 41,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 5,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 200000,
+  "id": 42,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 5,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 2,
+  "gacha_reward_drop_rate": 2000,
+  "gacha_reward_id": 200000,
+  "id": 43,
+  "reward_id": 200000
+ },
+ {
+  "difficulty": 5,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 5,
+  "gacha_reward_drop_rate": 4000,
+  "gacha_reward_id": 200000,
+  "id": 44,
+  "reward_id": 200100
+ },
+ {
+  "difficulty": 6,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 51,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 6,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 52,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 6,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 53,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 6,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 54,
+  "reward_id": 201100
+ },
+ {
+  "difficulty": 7,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 61,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 7,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 201000,
+  "id": 62,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 7,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 201000,
+  "id": 63,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 7,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 201000,
+  "id": 64,
+  "reward_id": 201100
+ },
+ {
+  "difficulty": 8,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 71,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 8,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 201000,
+  "id": 72,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 8,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 201000,
+  "id": 73,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 8,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 201000,
+  "id": 74,
+  "reward_id": 201100
+ },
+ {
+  "difficulty": 9,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 81,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 9,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 201000,
+  "id": 82,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 9,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 201000,
+  "id": 83,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 9,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 201000,
+  "id": 84,
+  "reward_id": 201100
+ },
+ {
+  "difficulty": 10,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 201000,
+  "id": 91,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 10,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 201000,
+  "id": 92,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 10,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 201000,
+  "id": 93,
+  "reward_id": 201000
+ },
+ {
+  "difficulty": 10,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 201000,
+  "id": 94,
+  "reward_id": 201100
+ },
+ {
+  "difficulty": 11,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 101,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 11,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 102,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 11,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 103,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 11,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 104,
+  "reward_id": 202100
+ },
+ {
+  "difficulty": 12,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 111,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 12,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 202000,
+  "id": 112,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 12,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 202000,
+  "id": 113,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 12,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 202000,
+  "id": 114,
+  "reward_id": 202100
+ },
+ {
+  "difficulty": 13,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 121,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 13,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 202000,
+  "id": 122,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 13,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 202000,
+  "id": 123,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 13,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 202000,
+  "id": 124,
+  "reward_id": 202100
+ },
+ {
+  "difficulty": 14,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 131,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 14,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 202000,
+  "id": 132,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 14,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 202000,
+  "id": 133,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 14,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 202000,
+  "id": 134,
+  "reward_id": 202100
+ },
+ {
+  "difficulty": 15,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 202000,
+  "id": 141,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 15,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 202000,
+  "id": 142,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 15,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 202000,
+  "id": 143,
+  "reward_id": 202000
+ },
+ {
+  "difficulty": 15,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 202000,
+  "id": 144,
+  "reward_id": 202100
+ },
+ {
+  "difficulty": 16,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 151,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 16,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 152,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 16,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 153,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 16,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 154,
+  "reward_id": 203100
+ },
+ {
+  "difficulty": 17,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 161,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 17,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 203000,
+  "id": 162,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 17,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 203000,
+  "id": 163,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 17,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1125,
+  "gacha_reward_id": 203000,
+  "id": 164,
+  "reward_id": 203100
+ },
+ {
+  "difficulty": 18,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 171,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 18,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 203000,
+  "id": 172,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 18,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 203000,
+  "id": 173,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 18,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1250,
+  "gacha_reward_id": 203000,
+  "id": 174,
+  "reward_id": 203100
+ },
+ {
+  "difficulty": 19,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 181,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 19,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 203000,
+  "id": 182,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 19,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 203000,
+  "id": 183,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 19,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1375,
+  "gacha_reward_id": 203000,
+  "id": 184,
+  "reward_id": 203100
+ },
+ {
+  "difficulty": 20,
+  "drop_rate": 100,
+  "enemy_type": "Normal",
+  "gacha_reward_count": 0,
+  "gacha_reward_drop_rate": 1000,
+  "gacha_reward_id": 203000,
+  "id": 191,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 20,
+  "drop_rate": 1000,
+  "enemy_type": "Elite",
+  "gacha_reward_count": 1,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 203000,
+  "id": 192,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 20,
+  "drop_rate": 5000,
+  "enemy_type": "Unique",
+  "gacha_reward_count": 3,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 203000,
+  "id": 193,
+  "reward_id": 203000
+ },
+ {
+  "difficulty": 20,
+  "drop_rate": 10000,
+  "enemy_type": "Boss",
+  "gacha_reward_count": 10,
+  "gacha_reward_drop_rate": 1500,
+  "gacha_reward_id": 203000,
+  "id": 194,
+  "reward_id": 203100
+ }
+]
