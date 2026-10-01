@@ -152,20 +152,23 @@ assets/img/items/            56 icons, filename = StackableItemData.PackageIcon 
                               APK (the "Normal" tier's own GameObject in the APK turned out
                               to be an unrelated 3D world-pickup prop, not the 2D icon) —
                               see "More missing artwork recovery")
-assets/img/enemies/          166 portraits, filename = EnemyData.IconSprite (245
+assets/img/enemies/          172 portraits, filename = EnemyData.IconSprite (245
                               EnemyData rows share these — reused across chapter re-skins/
-                              raid difficulty tiers; 40 distinct IconSprite names across ~85
+                              raid difficulty tiers; 34 distinct IconSprite names across ~85
                               rows still have no local art as of 2026-10-01 (down from 52 —
-                              see "Monster portrait recovery" and "More missing artwork
-                              recovery" chronological log entries below: 10 recovered
-                              2026-09-30, 2 more 2026-10-01, all confirmed real portrait art
-                              from the live remote asset CDN or a casing-bug fix in the
-                              existing extraction, never guessed). Remaining gap: 11
-                              Chapter-1 raid-boss faces + 11 Hero's Tomb enemy faces + 11
-                              Hero's Tomb "shadow hero" costume icons — confirmed genuinely
-                              absent from the base+split APK *and* 15 live CDN content
-                              bundles (≈83MB, every bundle under the current build hash)
-                              fully enumerated as of 2026-10-01, not just unreached)
+                              see "Monster portrait recovery", "More missing artwork
+                              recovery", and "Why Anubis's art specifically was missing"
+                              chronological log entries below: 10 recovered 2026-09-30, 8
+                              more 2026-10-01, all confirmed real art — 6 of those 8 are
+                              full-body Boss Raid "reveal" key art under a completely
+                              different naming scheme (`Img_<Name>`) than the data field's
+                              `Face_CH1_RaidBoss_<Name>` implies, found by reading a bundle's
+                              full sprite list instead of grepping for the expected name).
+                              Remaining gap: 5 Chapter-1 raid bosses with no active
+                              `BossRaidStageData` rows (not currently rotating content) + 11
+                              Hero's Tomb enemy faces + 11 Hero's Tomb "shadow hero" costume
+                              icons — confirmed genuinely absent from the base+split APK
+                              *and* every live CDN bundle checked, not just unreached)
 assets/img/chests/           3 icons, filename = ChestData.PrefabName
 assets/img/map/              21 real per-stage minimap tile images (chapters 1-3 only,
                               see data/StageMapLayout.json), filename = the game's own
@@ -1629,6 +1632,69 @@ Missing-enemy-portrait count: 42 → **40**. Missing-item-icon count
 unchanged at 7 (searched hard, confirmed not recoverable from any
 currently-known bundle). Verified both new files serve correctly.
 
+## Why Anubis's art specifically was missing — found and fixed (2026-10-01, same session)
+
+User asked directly why the Chapter-1 raid boss art (naming Anubis) kept
+coming up empty despite the exhaustive bundle sweep above. This had a
+real, findable answer rather than just "the asset doesn't exist" —
+investigated properly instead of repeating the prior conclusion.
+
+**Root cause**: `EnemyData.IconSprite` for these bosses follows the
+game's standard per-chapter-enemy naming convention
+(`Face_CH1_RaidBoss_Anubis`, matching every other enemy's
+`Face_CH<N>_<Name>` pattern) — and that convention's real asset group,
+`ArcadeWorld/EnemyFace`, genuinely has zero Raid Boss entries (confirmed
+again against today's freshest catalog). But the *data field* following
+that naming convention doesn't mean the *art* was ever produced under
+that name. Boss Raid is a flashier, separate feature with its own
+dedicated promotional "boss reveal" key art, shipped under a
+**completely different naming scheme** (`Img_<Name>`/`Img_<Name>_Glow`)
+in a bundle this session had already downloaded for the Shop Exclusive
+work (`bossraid_outgame_assets_*.bundle`) but had only grepped for
+narrow target strings in, not read as a full unfiltered list — the
+earlier "More missing artwork recovery" pass's bundle sweep checked for
+the *expected* name pattern and found nothing, which is a different
+conclusion from "the art doesn't exist."
+
+Dumping that bundle's **complete** Sprite name list (137 real UI/art
+asset names, not filtered) turned up `Img_Anubis`, `Img_Anubis_Glow`,
+`Img_BloodLord(_Glow)`, `Img_Cerberus(_Glow)`, `Img_CrystalCrab(_Glow)`,
+`Img_FrozenBloom(_Glow)`, `Img_Rosalia(_Glow)` — real, high-resolution
+(≈330-510px), full-body character key art for exactly the **6 raid
+bosses that have active `BossRaidStageData` difficulty-tier rows**
+(Normal/Hard/Extreme/Hell — see "Boss Raid / Challenge Tower / Hero's
+Tomb rewards" above). Confirmed by inspecting the real prefab's own
+component tree first (`CH1_RaidBoss_Anubis_Normal` in
+`bossraid_assets.bundle` — Transform/MonoBehaviour(combat
+stats)/SphereCollider/Rigidbody/NavMeshAgent, no icon-holding component
+at all on the 3D prefab itself) that the face icon was never going to be
+attached to the monster prefab the way a regular numbered-chapter
+enemy's is — it lives entirely in the separate menu/lobby ("outgame")
+UI bundle instead, as dedicated promotional art, not a generic face
+icon.
+
+**Why the other 5 (`Coffin`, `ExplosiveMummy`, `FrostBud`, `IceFlower`,
+`Mummy`) are still genuinely missing, confirmed not just unfound**:
+searched for `Img_<Name>`/`Img_<Name>_Glow` (and a looser substring
+match) for all 5 across all 15 downloaded bundles — zero hits anywhere.
+These 5 have no `BossRaidStageData` rows at all (no difficulty tiers,
+not part of the currently-active Boss Raid rotation) — consistent with
+them simply never having received this same dedicated key-art treatment
+because they aren't live/rotating content in the current build, not a
+gap in this extraction.
+
+**This art is full-body "key art," not a tight face crop** like the
+regular per-chapter enemy icons — an honest visual difference from the
+rest of the Monsters tab grid, shown as-is (not cropped or altered)
+rather than force-fit to match, consistent with this project's norm of
+presenting real extracted art exactly as shipped.
+
+**Shipped**: `Face_CH1_RaidBoss_{Anubis,BloodLord,Cerberus,CrystalCrab,
+FrozenBloom,Rosalia}.png` in `assets/img/enemies/` — no code changes.
+Missing-enemy-portrait count: 40 → **34**. Verified end-to-end with
+Playwright: all 6 files serve correctly, Anubis's own Monsters-tab
+detail view renders the real portrait.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2207,6 +2273,18 @@ currently-known bundle). Verified both new files serve correctly.
     enemy faces) but confirmed them absent from all 15 bundles checked —
     narrowed, not solved. Full writeup in "More missing artwork recovery"
     above.
+33. User asked directly why Anubis's art specifically kept coming up
+    missing. Investigated properly instead of repeating the prior
+    conclusion: the real cause was that Boss Raid's promotional "reveal"
+    key art ships under a completely different naming scheme
+    (`Img_Anubis`, not `Face_CH1_RaidBoss_Anubis`) in a bundle
+    (`bossraid_outgame_assets`) already downloaded but only grepped for
+    the expected name, not read as a full list. Dumping its complete
+    sprite list found real full-body art for all 6 raid bosses with
+    active `BossRaidStageData` rows (the currently-rotating ones);
+    confirmed the other 5 (no active rows) are genuinely still absent
+    everywhere. Missing-enemy-portrait count: 40 → 34. Full writeup in
+    "Why Anubis's art specifically was missing" above.
 
 ## Open items / plausible next steps (not started)
 
