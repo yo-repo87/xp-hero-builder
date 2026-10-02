@@ -135,6 +135,7 @@ js/
                                 see "Enemy spawn points" below; a deliberately separate
                                 coordinate system from MapUI, not the same map)
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
+                                + Next Best Upgrade advisor
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
 data/*.json                 71 extracted, typed, English-labeled game-balance tables
@@ -2177,6 +2178,86 @@ Runes); and the Gift Chest spawn map / slider gauge-texture reskin
 options the user didn't pick this time (still open, still real, see
 Open Items).
 
+## Next Best Upgrade advisor (2026-10-02)
+
+Same session, immediate follow-up: asked again what else was worth
+building, offered the same two still-open options from last time (Gift
+Chest spawn map, slider gauge-texture reskin) plus one new idea, and
+picked the new one — a feature that ranks a hero's available upgrades by
+real Dps impact, using the app's own already-confirmed Total DPS formula
+rather than any new game-data extraction at all.
+
+**Design**: rather than hand-deriving a second formula (a partial
+derivative of the real one, which would be a brand-new, unverified piece
+of math shadowing the actual confirmed `totalDpsBreakdown`), this
+literally **runs the real formula twice** per candidate — mutate one
+piece of `State.data` by exactly one step, call
+`Formulas.totalDpsBreakdown(heroId)` again, read the new `.dps`, then
+synchronously revert the mutation before returning. Since this all
+happens within one plain synchronous function call with no
+`State.notify()`/`persist()` anywhere in it, there's no risk of a
+stray render or localStorage write mid-simulation — verified directly
+by diffing a full `JSON.stringify(State.data)` snapshot taken
+immediately before and after calling `Formulas.nextBestUpgrades()`, byte
+for byte identical across multiple scenarios (fresh hero, heavily
+leveled hero with ability/extra/soul/special all invested).
+
+**Candidates evaluated** (every directly-steppable, single-click lever
+the app's own formula already reads from): one weapon-level+1 candidate
+per filled, not-maxed equipped slot; hero level+1, star grade+1, and
+next evolution tier (if available); and the four upgrade trees' own
+"Power"-type track (`OptionType 1` — the exact same track
+`totalDpsBreakdown`'s `Ability`/`ExtraUpgrade`/`SpecialUpgrade`/
+`SoulUpgrade` sources already read), each capped against its own real
+max (`abilityMaxLevel`/`extraMaxLevel`/`specialMaxLevelForGrade`/
+`soulMaxLevel`) so maxed-out levers never show up as "available."
+Special specifically needed its account-wide Altar Grade
+(`State.data.upgrades.special.__grade`, the same field
+`ui-equipment.js`'s global-grade stepper already writes) rather than a
+per-type grade, and is also gated behind `specialUnlockGrade(1)` so a
+locked type never gets simulated. **Deliberately excluded**: trait
+rolls (rolled, not leveled — there's no single "+1 step" for a trait),
+VIP bonus (a manual numeric input, same reasoning), and Runes (not wired
+into this formula at all, per "Rune system" above — including any of
+these would be comparing apples to oranges against the genuinely
+steppable levers).
+
+A zero-or-negative computed delta (which does happen — e.g. a single
+Ability level-up at a low checkpoint-curve resolution, or a weak
+early weapon's near-zero per-level DPS, can legitimately round to 0
+Dps difference once the whole formula rounds its final output) is
+filtered out rather than shown as a confusing "+0 Dps" row — confirmed
+this is real rounding behavior, not a bug, by testing both a level-1
+fresh hero (where almost every candidate correctly produces zero
+candidates at all, since everything is too small to move the rounded
+total) and a heavily-developed one (level 60, star 3, ability 50/extra
+30/soul 20/special grade 2 level 5, weapon equipped) where 6 real,
+sensibly-ordered candidates appeared (Star Grade +149 > Level +91 >
+Soul +14 > Evolve +12 > Extra ≈ Special +6 each).
+
+**Shipped**: `Formulas.nextBestUpgrades(heroId)` (`formulas.js`, right
+after `totalDpsBreakdown`); a new "🎯 Next Best Upgrade" panel in the
+Guide tab (`ui-guide.js`'s `_nextUpgradeHTML`), rendered directly below
+the existing Total DPS estimate panel, showing the top 5 ranked
+candidates as clickable rows (🏆 on the top pick) — clicking one jumps
+to wherever that upgrade actually lives (`State.setTab()`, and for
+hero-level/star/evolution rows, also opens that hero's enhance modal
+directly via `HeroesUI.openEnhance()` so there's no second click needed
+to find the right slider). New CSS: `.nbu-row`/`.nbu-delta`, built with
+`flex-wrap: wrap` from the start (applying the lesson from the Rune
+panel's mobile-overflow bug fixed earlier this same session) so a long
+label and its Dps delta stack cleanly on narrow screens instead of
+risking the same class of overflow.
+
+Verified end-to-end with Playwright, desktop and iPhone-13-width mobile:
+a full 6-tab desktop sweep plus the dedicated mobile flow above, zero
+console/page errors, zero horizontal overflow at any point; confirmed
+zero state mutation leaks from the simulation itself via the
+`JSON.stringify` snapshot diff described above; confirmed the ranking
+is sensible and the numbers match manually re-running
+`totalDpsBreakdown` before/after a real (non-simulated) change via
+the UI.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2830,7 +2911,17 @@ Open Items).
     the new Rune panel (same root-cause class as the Monsters-tab bug
     from earlier the same day — a non-wrapping component used for
     content it wasn't designed to hold). Full writeup in "Rune system"
-    above.
+    above. Immediate same-day follow-up: asked again what else was
+    worth building, and picked a new third option (a "Next Best
+    Upgrade" advisor) over the same two still-open Gift Chest map /
+    gauge-reskin choices. Shipped by literally re-running the already-
+    confirmed Total DPS formula once per candidate upgrade (one step on
+    weapon level, hero level/star/evolution, or any of the 4 upgrade
+    trees' Power track) rather than deriving a new, separate formula —
+    ranks real simulated Dps deltas in a new Guide tab panel, with
+    state mutated and synchronously reverted per candidate (verified
+    zero leakage via a full state snapshot diff). Full writeup in "Next
+    Best Upgrade advisor" above.
 
 ## Open items / plausible next steps (not started)
 

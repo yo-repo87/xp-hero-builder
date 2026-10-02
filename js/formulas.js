@@ -594,4 +594,101 @@ const Formulas = {
 
     return { sources: src, flatBase, heroTerm, rawBase, mult1, mult2, mult3, dps, hero };
   },
+
+  // --- Next Best Upgrade (Guide tab) ----------------------------------------
+  // For each of this hero's directly-steppable progression levers (weapon
+  // level, hero level/star grade/evolution, and the four upgrade trees'
+  // own "Power"-type track — the exact same inputs totalDpsBreakdown's
+  // Weapon/CostumeEquipping*/Ability/ExtraUpgrade/SpecialUpgrade/
+  // SoulUpgrade sources already read above), simulates stepping it by
+  // exactly one unit and re-runs the REAL totalDpsBreakdown formula to
+  // see the resulting Dps delta — rather than hand-deriving a partial
+  // derivative, which would be a second, unverified formula shadowing
+  // the first. State is mutated and synchronously reverted within this
+  // one call; nothing here calls State.notify()/persist(), so it never
+  // touches localStorage or triggers a re-render. Trait rolls, VIP, and
+  // Runes are deliberately excluded — traits are rolled not leveled, VIP
+  // is a manual input with no step to simulate, and Runes aren't wired
+  // into this formula at all (see "Rune system" in CLAUDE.md), so
+  // including any of them here would compare apples to oranges.
+  nextBestUpgrades(heroId) {
+    const hero = State.getHero(heroId);
+    if (!hero) return [];
+    const costume = Game.index.costumeById.get(hero.costumeId);
+    const baseline = this.totalDpsBreakdown(heroId).dps;
+    const candidates = [];
+
+    const tryStep = (label, nav, mutate, revert) => {
+      mutate();
+      const delta = this.totalDpsBreakdown(heroId).dps - baseline;
+      revert();
+      if (delta > 0) candidates.push({ label, delta, nav });
+    };
+
+    State.data.weapons.forEach((slot, i) => {
+      if (!slot) return;
+      const w = Game.index.weaponById.get(slot.weaponId);
+      if (!w || slot.level >= this.weaponMaxLevel(w)) return;
+      tryStep(`${w.Name_en} (Weapon ${i + 1}) → Lv ${slot.level + 1}`, 'weapons',
+        () => { slot.level += 1; }, () => { slot.level -= 1; });
+    });
+
+    if (hero.level < costume.Max_Lv) {
+      tryStep(`${costume.Name_en} Level → ${hero.level + 1}`, 'heroes',
+        () => { hero.level += 1; }, () => { hero.level -= 1; });
+    }
+    if (hero.starGrade < costume.Max_Grade) {
+      tryStep(`${costume.Name_en} Star Grade → ${hero.starGrade + 1}`, 'heroes',
+        () => { hero.starGrade += 1; }, () => { hero.starGrade -= 1; });
+    }
+    {
+      const next = this.heroEvolutionRows(costume).find(r => r.Rarity > hero.evoRarity);
+      if (next) {
+        const prev = hero.evoRarity;
+        tryStep(`${costume.Name_en} Evolve → Tier ${next.Rarity}`, 'heroes',
+          () => { hero.evoRarity = next.Rarity; }, () => { hero.evoRarity = prev; });
+      }
+    }
+
+    {
+      const level = State.data.upgrades.ability[1] || 0;
+      if (level < this.abilityMaxLevel(1)) {
+        tryStep(`Ability "POWER" → Lv ${level + 1}`, 'equipment',
+          () => { State.data.upgrades.ability[1] = level + 1; }, () => { State.data.upgrades.ability[1] = level; });
+      }
+    }
+    {
+      const level = State.data.upgrades.extra[1] || 0;
+      if (level < this.extraMaxLevel(1)) {
+        tryStep(`Extra "Bulk Up" → Lv ${level + 1}`, 'equipment',
+          () => { State.data.upgrades.extra[1] = level + 1; }, () => { State.data.upgrades.extra[1] = level; });
+      }
+    }
+    {
+      // __grade is the account-wide Altar Grade (ui-equipment.js's
+      // globalGrade) — each type's own {grade,level} record just mirrors
+      // whatever the global grade was when last saved, same convention
+      // State.setSpecialLevel already uses.
+      const globalGrade = State.data.upgrades.special.__grade || 1;
+      if (globalGrade >= this.specialUnlockGrade(1)) {
+        const rec = State.data.upgrades.special[1];
+        const level = rec ? rec.level : 0;
+        if (level < this.specialMaxLevelForGrade(1, globalGrade)) {
+          tryStep(`Special "MASSIVE MUSCLE" → Lv ${level + 1}`, 'equipment',
+            () => { State.data.upgrades.special[1] = { grade: globalGrade, level: level + 1 }; },
+            () => { State.data.upgrades.special[1] = rec; });
+        }
+      }
+    }
+    {
+      const level = State.data.upgrades.soul[1] || 0;
+      if (level < this.soulMaxLevel(1)) {
+        tryStep(`Soul "Battle Boost" → Lv ${level + 1}`, 'equipment',
+          () => { State.data.upgrades.soul[1] = level + 1; }, () => { State.data.upgrades.soul[1] = level; });
+      }
+    }
+
+    candidates.sort((a, b) => b.delta - a.delta);
+    return candidates;
+  },
 };

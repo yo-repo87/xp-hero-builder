@@ -367,6 +367,13 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 /* Milestone rows — matches the real Level Up tab's unlock-list style. */
 .milestone-list { display: flex; flex-direction: column; gap: 6px; }
 .milestone-row { background: var(--parchment); border-radius: 999px; padding: 8px 14px; font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+
+.nbu-row {
+  background: var(--parchment); border-radius: 999px; padding: 8px 14px; font-size: 0.82rem; font-weight: 600; color: var(--ink);
+  display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; cursor: pointer; transition: background .12s;
+}
+.nbu-row:hover { background: var(--parchment-light); }
+.nbu-row .nbu-delta { color: #a5580e; font-family: 'JetBrains Mono', monospace; font-weight: 800; flex-shrink: 0; }
 .milestone-row--locked { background: transparent; border: 1px dashed var(--ink-faint); color: var(--ink-faint); font-weight: 500; }
 
 .caveat {

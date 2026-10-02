@@ -48,6 +48,7 @@ const GuideUI = {
       <div class="detail-name" style="margin-bottom:2px">${escapeHtml(c.Name_en)}</div>
       <div class="detail-desc">Lv ${hero.level}/${c.Max_Lv} · ${rarityStar(true)}${hero.starGrade}/${c.Max_Grade}${hero.evoRarity ? ` · Evolution Tier ${hero.evoRarity}` : ''}</div>
       ${this._dpsEstimateHTML(heroId)}
+      ${this._nextUpgradeHTML(heroId)}
       ${advice.map(block => `
         <div class="advice-block">
           <h4><span class="severity-dot ${block.sev}"></span>${escapeHtml(block.title)}</h4>
@@ -62,6 +63,34 @@ const GuideUI = {
     panel.querySelector('#player-vip-input').addEventListener('change', (e) => {
       State.setPlayerVip(Math.max(0, Number(e.target.value) || 0));
     });
+    panel.querySelectorAll('[data-nbu-nav]').forEach(el => {
+      el.addEventListener('click', () => {
+        State.setTab(el.dataset.nbuNav);
+        if (el.dataset.nbuNav === 'heroes') HeroesUI.openEnhance(heroId);
+      });
+    });
+  },
+
+  // Ranks this hero's directly-steppable upgrades by real simulated Dps
+  // gain (Formulas.nextBestUpgrades — see that function's own comment for
+  // exactly what's included/excluded and why). Clicking a row jumps to
+  // wherever that upgrade actually lives.
+  _nextUpgradeHTML(heroId) {
+    const upgrades = Formulas.nextBestUpgrades(heroId).slice(0, 5);
+    return `
+      <div class="dps-estimate" style="margin-top:14px">
+        <div class="de-label" style="margin-bottom:8px">🎯 Next Best Upgrade</div>
+        ${upgrades.length === 0
+          ? `<span style="color:var(--ink-faint);font-size:.82rem">Everything steppable here is already maxed, or no active hero is set.</span>`
+          : `<div class="milestone-list">
+              ${upgrades.map((u, i) => `
+                <div class="nbu-row" data-nbu-nav="${u.nav}">
+                  <span>${i === 0 ? '🏆 ' : ''}${escapeHtml(u.label)}</span>
+                  <span class="nbu-delta">+${fmtNum(u.delta)} Dps</span>
+                </div>`).join('')}
+            </div>`}
+        <div class="caveat" style="margin-top:10px">Each row is computed by actually re-running the Dps formula above with that one change applied, then reverting — real simulated deltas for this hero's loadout right now, not an estimate. Trait rolls, VIP, and Runes are excluded (traits are rolled not leveled, VIP has no single "step," and Runes aren't wired into this formula at all — see CLAUDE.md).</div>
+      </div>`;
   },
 
   _dpsEstimateHTML(heroId) {
