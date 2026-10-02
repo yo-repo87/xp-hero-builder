@@ -1836,6 +1836,117 @@ Test account deleted from the real `shared_postgres` database afterward
 its save via the FK) — same cleanup discipline as every previous
 against-production test in this project.
 
+## Mobile layout (2026-10-02)
+
+User asked for "a mobile app version of the page that loads when a user
+accesses the site from a mobile phone or tablet and the regular page
+loads when accessed by a PC," pointing at the `YourSpace` project's
+`MobileNav.jsx` for inspiration. That component turned out to be a
+useful pattern reference but NOT a literal template: YourSpace's own
+"mobile app" is itself just one React SPA with a component conditionally
+shown via Tailwind's `md:hidden` breakpoint class — i.e. one codebase,
+CSS-breakpoint-driven layout swap, not a server-side device split or a
+separate bundle. That's the right model for HeroBuilder too (GitHub
+Pages can't do real server-side UA sniffing anyway, and a true second
+page/bundle would mean keeping two copies of every tab's logic in sync)
+— so this shipped as a pure CSS-media-query layer on the EXISTING
+single `index.html`/`style.css`/vanilla-JS app, no build step or
+framework introduced, adapting YourSpace's fixed-top-bar +
+fixed-bottom-tab-bar + compact-overflow-menu interaction pattern rather
+than porting any of its code.
+
+**What changed, under `@media (max-width: 860px)`** (phones and
+portrait tablets; desktops/landscape tablets above that width see the
+unchanged existing layout):
+- The header shrinks to brand + Sign In/Off + a new "⋮" button. The 6
+  main tabs (`#tabs`'s pill row) are hidden via
+  `#tabs > .tab-btn:not(.tab-btn--profile) { display:none }` — note this
+  keeps `#tab-profile` itself untouched and still fully functional
+  (same real element, just restyled by the surrounding rule going
+  transparent), so signed-in profile access needs no duplicate markup
+  or extra JS at all.
+- A new fixed bottom tab bar (`<nav id="mobile-tabs">` in `index.html`,
+  `.mobile-tabbar`/`.mobile-tab-btn` in `style.css`) holds the 6 main
+  tabs as icon+label buttons. Each button reuses the existing
+  `.tab-btn` class and `data-tab` attribute, so `app.js`'s
+  `setActiveTab()` (already a blanket `document.querySelectorAll('.tab-btn')`,
+  not scoped to the desktop `#tabs` container) keeps it in sync for
+  free — the only new JS is a second `wireTabClicks('mobile-tabs')`
+  call (factored out of the existing inline listener into a tiny
+  reusable `wireTabClicks(containerId)` helper that both the desktop
+  and mobile nav now call) and `env(safe-area-inset-bottom, 0px)`
+  padding for iOS home-indicator clearance.
+- Import/Export/Reset (no room for 3 extra buttons on a phone-width
+  header) move into a "⋯"-triggered modal — reusing the app's own
+  existing `UI.openModal()` system (not a new dropdown component) and
+  calling the real `ImportExportUI.exportFile()`/`.reset()` methods and
+  the real hidden `#file-import` input directly, so there's no
+  duplicated import/export/reset logic anywhere — the mobile menu is
+  pure wiring, zero new business logic.
+- `main`'s bottom padding and the toast's bottom offset both account for
+  the new fixed bar's height + safe-area inset so neither gets hidden
+  behind it. Virtual-keyboard-avoidance (which YourSpace's `MobileNav`
+  handles via a `visualViewport` resize listener) was deliberately
+  **not** ported — checked first whether HeroBuilder has any main-page
+  text inputs a keyboard could cover, and it doesn't: the only text
+  inputs are the auth modal's email/password fields and the "Report a
+  Find" modal's two text fields, both already inside a modal (z-index
+  100) that sits above the bottom bar (z-index 50) regardless, so there
+  was no real problem to solve by porting that complexity.
+- Existing picker/roster grids (`auto-fill`/`minmax` CSS Grid) and
+  several components' own pre-existing narrow-viewport media queries
+  (`.equip-rig`, `.upgrade-row`, `.detail-layout`, `.guide-layout`,
+  `.de-row`) already reflow correctly at phone width — verified via
+  Playwright screenshots at an iPhone-13-sized viewport (Weapons,
+  Monsters, Farmable Items, Equipment, Guide tabs) and a tablet-portrait
+  width (810px), not just assumed from reading the CSS.
+
+**A real, substantial pre-existing bug found and fixed in the process
+(not caused by this mobile work, but only ever visible at a narrow
+viewport, which nothing had tested before)**: switching to the Monsters
+tab at a 390px-wide viewport made `window.innerWidth` itself balloon
+from 390 to 514px — confirmed via Chrome DevTools Protocol's
+`Page.getLayoutMetrics()` that the browser's **layout viewport**
+(`clientWidth`) was inflating to 514 while the real **visual viewport**
+stayed correctly pinned at 390 (`scale:1`), i.e. a genuine "page content
+forces the layout viewport wider than the device" condition, not a
+measurement artifact — confirmed reproducible with zero Playwright
+clicks involved (triggered purely by `State.setTab('monsters')`), and
+confirmed NOT caused by any single oversized element (an exhaustive
+`getBoundingClientRect()` sweep of every element under
+`#panel-monsters` found nothing wider than its 362px-wide grid
+container). The 245-card unpaginated Monsters grid produces a very tall
+page (~22,000px), and this is a known class of mobile-browser behavior
+where an extreme-aspect-ratio page can trigger the layout viewport to
+re-expand horizontally in a way that doesn't fully reproduce from
+inspecting individual element widths — rather than keep chasing the
+exact internal trigger, applied the standard, broadly-safe fix:
+`overflow-x: hidden` on `html, body` (previously absent from this
+app's CSS entirely). Verified via the same CDP layout-metrics check
+that this fully pins `layoutViewport`/`contentSize.width` to 390 across
+all 6 tabs post-fix, with no loss of any content (nothing in this app
+relies on intentional horizontal page scroll — all internal
+horizontal-scroll surfaces like the map canvases use their own
+`overflow` containers, untouched by this change). Without this fix, the
+new fixed-position bottom tab bar (`left:0;right:0`) would stretch to
+match the inflated layout viewport on the Monsters tab specifically,
+visibly hanging off the right edge of the real screen — this is also
+why plain visual-only testing (screenshots at just the Weapons tab, as
+an easy first smoke test) would have shipped this bug: it only
+reproduces on the one unusually-tall, unpaginated tab, which is exactly
+why this project's `CLAUDE.md` methodology note (Playwright testing
+across every tab, not just the one feature touched) exists.
+
+Verified end-to-end with Playwright across both the new mobile layout
+and the unchanged desktop layout in the same test run: mobile bottom-nav
+tab switching (`active` class sync confirmed on the real button
+elements, not just the panel), the "⋯" overflow modal opening and its
+3 actions correctly wired, zero horizontal overflow on any of the 6
+tabs at phone width, the profile-avatar-in-header path untouched and
+still functioning, and a full desktop-viewport pass confirming the
+mobile nav stays `display:none` and the original header/tabs/actions
+render exactly as before (no regression from the new CSS/markup).
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2443,6 +2554,22 @@ against-production test in this project.
     all (the real UI likely shows a generic Boss/Elite/Normal tier badge
     instead, unlike Boss Raid's curated named-boss roster). Full writeup
     in "Exhausted the remaining 34" above.
+35. User asked for a real behavior change plus reported a real bug in
+    the same message: signing in should auto-load the newest cloud save,
+    local changes should keep it auto-updated, and signing out should
+    clear the on-screen build — separately noting that signing out was
+    actually leaving the previous account's heroes/weapons visible. The
+    sign-out bug was real and simple (`onAuthChange()` never touched
+    `State.data` on that transition) — fixed by calling the same
+    `State.resetAll()` the Reset button uses. The auto-sync behavior is
+    a deliberate reversal of the accounts feature's original manual-only
+    design, built and verified end-to-end against the real production
+    backend (register with no cloud save → auto-created one → a real
+    local change auto-saved within the debounce window, confirmed
+    directly against the live API → sign out → local state confirmed
+    reset to zero → sign back in → confirmed the build and `activeSaveId`
+    both correctly restored). Full writeup in "Auto-sync cloud saves"
+    above.
 
 ## Open items / plausible next steps (not started)
 

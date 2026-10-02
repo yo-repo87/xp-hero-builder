@@ -41,7 +41,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { height: 100%; overflow-x: hidden; }
 body {
   margin: 0;
   background:
@@ -179,6 +179,10 @@ a { color: inherit; }
 .tab-btn--profile[hidden] { display: none; }
 .tab-btn--profile:not([hidden]) { display: flex; align-items: center; gap: 6px; padding: 4px 14px 4px 4px; }
 .header-actions { display: flex; gap: 8px; }
+.mobile-menu-btn { display: none; font-size: 1.1rem; font-weight: 900; padding: 8px 12px; line-height: 1; }
+
+/* ---------- mobile bottom tab bar (phones/tablets, see @media block below) ---------- */
+.mobile-tabbar { display: none; }
 
 /* Personalized avatar — a colored initials badge by default (see
    ui-account.js's avatarColorFor/initialsFor); nothing here stops a
@@ -655,3 +659,53 @@ footer.app-footer {
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
+
+/* =========================================================================
+   Mobile layout (phones/tablets — anything under 860px, portrait tablets
+   included). Deliberately a CSS-breakpoint toggle on the SAME markup/JS,
+   not a separate page or bundle: nothing on GitHub Pages can do real
+   server-side device detection, and this way desktop/mobile always share
+   one source of truth (tabs, state, auth) with zero duplication. Inspired
+   by the fixed-top-bar + fixed-bottom-tab-bar pattern in the YourSpace
+   project's MobileNav.jsx (itself just a Tailwind `md:hidden` breakpoint
+   toggle under the hood) — adapted here in plain CSS since this app has no
+   build step/framework.
+   ========================================================================= */
+@media (max-width: 860px) {
+  /* Header shrinks to brand + account/profile + a "⋯" overflow menu for
+     Import/Export/Reset. The 6 main tabs move to the new bottom bar below;
+     the profile avatar button stays right where it is (it's still the
+     same real #tab-profile element, just restyled) rather than being
+     duplicated. */
+  .header-row { padding: 10px 14px; gap: 10px; }
+  .brand { font-size: 0.98rem; }
+  .brand .brand-mark { width: 30px; height: 30px; font-size: 1rem; }
+  #tabs > .tab-btn:not(.tab-btn--profile) { display: none; }
+  #tabs { background: none; border: none; padding: 0; }
+  .header-actions .btn { display: none; }
+  .header-actions #btn-account, .header-actions .mobile-menu-btn { display: inline-flex; }
+
+  main { padding: 16px 14px calc(78px + env(safe-area-inset-bottom, 0px)); }
+
+  .mobile-tabbar {
+    display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: linear-gradient(0deg, var(--wood-darker), #3d2c1c);
+    border-top: 3px solid var(--wood-darker);
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.35);
+    padding: 6px 2px calc(6px + env(safe-area-inset-bottom, 0px));
+  }
+  .mobile-tab-btn {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2px; padding: 6px 2px; border-radius: 10px; background: transparent;
+  }
+  .mobile-tab-btn.active { background: transparent; box-shadow: none; color: var(--gold); }
+  .mtb-icon { font-size: 1.25rem; line-height: 1; }
+  .mtb-label { font-size: 0.6rem; font-weight: 700; font-family: 'Baloo 2', sans-serif; letter-spacing: 0.01em; }
+
+  .toast { bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
+
+  /* Everything else (picker/roster grids, modals, detail layouts) already
+     uses auto-fill/minmax grids or its own narrow-viewport media query
+     (see .equip-rig, .upgrade-row, .detail-layout, .guide-layout above) —
+     those reflow correctly without any mobile-specific override here. */
+}
