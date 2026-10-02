@@ -130,10 +130,13 @@ js/
   ui-farmable.js               Farmable Items tab: item catalog + drop sources
   ui-monsters.js               Monsters tab: full bestiary, chapter + boss/non-boss filters
   ui-map.js                    MapUI (shared "View Map" popup, real in-game minimap — see
-                                below, used by Farmable Items + Monsters) and SpawnMapUI
+                                below, used by Farmable Items + Monsters), SpawnMapUI
                                 (real enemy spawn-position scatter view, Monsters only —
                                 see "Enemy spawn points" below; a deliberately separate
-                                coordinate system from MapUI, not the same map)
+                                coordinate system from MapUI, not the same map), and
+                                GiftChestMapUI (in-world gift chest spawn points,
+                                Farmable Items only — see "Gift Chest spawn map" below;
+                                reuses SpawnMapUI's board-as-backdrop technique)
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
                                 + Next Best Upgrade advisor
   ui-importexport.js           save-file download/upload
@@ -2258,6 +2261,91 @@ is sensible and the numbers match manually re-running
 `totalDpsBreakdown` before/after a real (non-simulated) change via
 the UI.
 
+## Gift Chest spawn map (2026-10-02)
+
+User asked directly for this one, the last of the two remaining options
+offered alongside the Rune system and the Next Best Upgrade advisor —
+the last genuinely open "real data, no UI" gap this project had been
+tracking since the 2026-10-01 session that found it.
+
+**The raw tables were still sitting in the same intact scratchpad** that
+supplied the Rune system earlier this session —
+`unity_work/textassets/GiftChestSpawnData.json` (60 schema+data rows)
+and `GiftChestData.json` (1,161 rows) — so no fresh APK pull was needed
+here either.
+
+**What the mechanic table actually says, read directly rather than
+re-trusting the one-line prior summary**: `GiftChestSpawnData` has real
+rows for **all 3 chapters** (19 for Chapter 1, 20 each for Chapters 2
+and 3) — not just Chapter 1 as the position data implied. Each row is a
+player-level bracket (`MinLevel`/`MaxLevel`) naming which numbered
+`SpawnerIds` are eligible to produce a chest at that level, with a
+parallel `SpawnWeights` array — later brackets reference more spawner
+ids cumulatively (bracket 1 references just id `1`; by Chapter 1's
+highest bracket, all 16 ids 1-16 are referenced somewhere). `SpawnRate`/
+`RespawnTime`/`LifeTime` are uniform across every single Chapter 1
+bracket (600/300/300 — confirmed by checking, not assumed), so those are
+shown as one simple fact rather than a row-by-row table. **Honest
+caveat, not glossed over**: there's no numeric spawner-ID field on the
+*position* extraction (`GiftChestSpawnPoints.json`'s 16 rows only ever
+had Unity's own auto-generated GameObject names — "GiftChestSpawner",
+"GiftChestSpawner (1)".."GiftChestSpawner (14)", and one oddly-named
+"GiftChestSpawner 2" breaking that pattern) — so there's no confirmed
+join from "`SpawnerIds` 7" to "this specific dot." Rather than guess a
+name→id mapping (even though a plausible-looking one exists by simple
+elimination), the map shows all 16 real points together with one
+chapter-wide "active between player level X–Y" range, not a per-dot
+claim.
+
+**`GiftChestData`** (the reward-amount side) resolves cleanly via the
+same `StackableItemData.Type` convention this app's whole reward
+pipeline already uses — `currency_type` 0/3/5 are confirmed Gold/Gem/
+Elixir. Mentioned in the caveat text for completeness, but not built
+into its own UI section: all three items already have other confirmed
+farmable sources, so this table doesn't change any coverage numbers,
+and a full per-player-level reward table felt like scope beyond what
+was actually asked for (a spawn *map*).
+
+**Real icon, not a reused substitute.** Checked the asset catalog for
+anything actually named for this mechanic before reaching for the
+existing generic `Item_Chest_{Wood,Silver,Gold}.png` art already in the
+app — found a real `AcquireGiftChest` Sprite (89×94px, a genuine gift-
+box icon, clearly the UI's own "you got a gift chest" art) and extracted
+it the same way every other icon in this app has been — confirmed by
+viewing the exported PNG before shipping, not shipped on a name match
+alone.
+
+**UI**: reused `SpawnMapUI`'s exact established pattern — the real
+per-chapter story-stage tile board as a contextual "which chapter"
+backdrop (not tile-precise placement, same honest caveat language as
+there, since this is the identical `EnemySpawnGroups`-relative
+coordinate frame per the 2026-10-01 session's own notes) — rather than
+inventing a new visualization style. New `GiftChestMapUI.open()`
+(`js/ui-map.js`, appended after `SpawnMapUI`) builds one card per
+chapter with real coordinates, normalizing (x,z) into 0-1 the same way
+`SpawnMapUI.renderInline()` already does. Entry point: a new "🎁 View
+In-World Gift Chest Spawns" button at the top of the Farmable Items tab
+(`index.html`/`js/ui-farmable.js`) — this mechanic isn't tied to any one
+item or monster, so unlike every other "View Map"/"Track on Map" button
+in this app (which hang off a specific item or enemy's detail view),
+this one needed its own standalone entry point rather than reusing an
+existing click target.
+
+**Shipped**: `data/GiftChestSpawnData.json` (new, 59 typed rows —
+`Chapter` resolved from the raw `E_Chapter` string enum to a plain
+number matching this app's convention everywhere else, `SpawnerIds`/
+`SpawnWeights` parsed from comma-separated strings into real arrays);
+`assets/img/chests/AcquireGiftChest.png` (new icon); `GiftChestSpawnPoints`
+(already-committed from 2026-10-01, loaded into `Game.db` for the first
+time here) wired into `data.js`'s `DATA_FILES` plus two new indices
+(`idx.giftChestSpawnPointsByChapter`/`idx.giftChestSpawnDataByChapter`);
+`GiftChestMapUI` (`js/ui-map.js`); the new button + its click wiring.
+Verified end-to-end with Playwright on both desktop and iPhone-13-width
+mobile: all 16 real spawn points render with the real gift-box icon,
+legend shows the correct chapter-wide level range (1-1300, matching the
+real data), zero console/page errors, zero horizontal overflow, and a
+full 6-tab regression sweep confirmed no regressions elsewhere.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2921,7 +3009,18 @@ the UI.
     ranks real simulated Dps deltas in a new Guide tab panel, with
     state mutated and synchronously reverted per candidate (verified
     zero leakage via a full state snapshot diff). Full writeup in "Next
-    Best Upgrade advisor" above.
+    Best Upgrade advisor" above. User then asked directly for the one
+    remaining option from the two feature-recommendation rounds this
+    same day: the Gift Chest spawn map, a real in-world spawning-chest
+    mechanic found back on 2026-10-01 but never wired in. Picked up the
+    raw `GiftChestSpawnData`/`GiftChestData` tables (still in the same
+    scratchpad), found they actually cover all 3 chapters (not just
+    Chapter 1 as previously summarized) though only Chapter 1 has real
+    plotted spawn-point coordinates, extracted a real `AcquireGiftChest`
+    icon rather than reusing an existing generic chest sprite, and
+    shipped a new standalone map entry point on the Farmable Items tab
+    reusing the Monsters tab's spawn-overlay-on-real-tile-board pattern.
+    Full writeup in "Gift Chest spawn map" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -3030,25 +3129,24 @@ the UI.
   `HeroTombRuneDropData`'s own `gacha_reward_id`/`gacha_reward_count`/
   `gacha_reward_drop_rate` fields (a second, unexplored bonus-roll layer)
   are also still open.
-- **Real new mechanic found but not wired in (2026-10-01)**:
-  `GiftChestSpawnData`/`GiftChestSpawner` — an in-world *spawning*
-  treasure chest system (per-chapter, per-player-level-band, with real
-  `SpawnRate`/`RespawnTime`/`LifeTime`), distinct from the static
-  `ChestData` this app already models. 16 real Chapter 1 spawn-point
-  coordinates were extracted (same Transform-walk technique as
-  `EnemySpawnPoints.json`, same coordinate frame — directly plottable
-  alongside it) and committed as `data/GiftChestSpawnPoints.json`, but
-  the app doesn't load or render this file yet — would need either a new
-  UI surface or an extension to `SpawnMapUI` (which is currently
-  monster-specific, keyed by enemy selection; gift chests aren't tied to
-  any monster, so this isn't a trivial reuse). Chapters 2-3 almost
-  certainly have their own spawner sets too, but — like their enemy-spawn
-  counterparts — that data only exists in the remote-CDN `chapter2`/
-  `chapter3` scene bundles (see "Monster portrait recovery" for how those
-  were found), not fetched this session. `GiftChestData` (the reward-amount
-  side of this same mechanic) was also extracted and fully resolved
-  (Gold/Gem/Elixir per player level) but adds no new catalog coverage —
-  all three items already had other sources.
+- **Updated 2026-10-02 (see "Gift Chest spawn map" above) — this item is
+  now shipped, not open.** A "🎁 View In-World Gift Chest Spawns" button
+  on the Farmable Items tab opens a real map of the 16 Chapter 1
+  `GiftChestSpawner` positions, reusing the Monsters tab's spawn-overlay
+  pattern (real story-stage tile board as contextual backdrop, same
+  honest "which chapter, not which tile" caveat). **What's still
+  genuinely open**: Chapters 2-3 have this mechanic configured in
+  `GiftChestSpawnData` (level brackets, spawn rate, etc. — all
+  extracted and committed) but their real spawner coordinates still only
+  exist in the remote-CDN `chapter2`/`chapter3` scene bundles, not
+  fetched; and there's no confirmed join from a specific `SpawnerIds`
+  number to a specific extracted spawn point, so the map shows one
+  chapter-wide active-level range rather than claiming which dot
+  activates when. `GiftChestData` (the reward-amount side — Gold/Gem/
+  Elixir per player level) remains extracted but not separately
+  surfaced anywhere, since all three items already have other confirmed
+  sources and showing per-level reward amounts didn't seem worth a
+  dedicated UI on its own.
 - `BlessingBuffData` was extracted (`data/BlessingBuffData.json`) but never
   wired into anything — 3 buff types, unclear which (if any) maps to a stat
   the app tracks.

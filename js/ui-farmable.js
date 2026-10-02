@@ -53,6 +53,12 @@ const FarmableUI = {
   render() {
     if (!CommunityReports.loaded) CommunityReports.fetchAll().then(() => this.render());
 
+    const giftChestBtn = document.getElementById('btn-giftchest-map');
+    if (!giftChestBtn.dataset.wired) {
+      giftChestBtn.addEventListener('click', () => GiftChestMapUI.open());
+      giftChestBtn.dataset.wired = '1';
+    }
+
     const grid = document.getElementById('farmable-grid');
     const filters = document.getElementById('farmable-filters');
     if (!filters.dataset.wired) {

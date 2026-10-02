@@ -344,3 +344,80 @@ const SpawnMapUI = {
       <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Only Chapters 1-3 have this data extracted.${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158 — most enemies just stand still at their spawn point.' : ''} Drag to pan; Ctrl+scroll, pinch, or the +/− buttons to zoom.</div>`;
   },
 };
+
+// ---------------------------------------------------------------------------
+// GiftChestMapUI — "View In-World Gift Chest Spawns" (Farmable Items tab).
+//
+// A genuinely different mechanic from both MapUI's static story-stage
+// ChestData (chests fixed to a stage) and MinimapRewardData (guaranteed
+// boss drops): real in-world SPAWNING treasure chests, extracted from
+// GiftChestSpawner GameObjects in the same Chapter 1 world-scene file
+// EnemySpawnPoints came from, converted into that exact same coordinate
+// frame (see data/GiftChestSpawnPoints.json and CLAUDE.md "Gift Chest
+// spawn map"). Reuses SpawnMapUI's real-tile-board-as-contextual-backdrop
+// technique and the same honest "this is which chapter, not which tile"
+// caveat — same reasoning as there, not re-derived.
+//
+// Only Chapter 1 has real plotted coordinates (same reason as
+// EnemySpawnPoints — Chapters 2-3's spawner GameObjects live in remote-CDN
+// scene bundles never fetched). GiftChestSpawnData's own level-bracket/
+// SpawnerIds config DOES cover all 3 chapters, and genuinely gates which
+// of the 16 points are "live" at a given player level — but there's no
+// confirmed join between a specific SpawnerIds number and a specific
+// extracted GameObject name (the position dump has no numeric spawner ID
+// field, just Unity's own auto-generated GameObject names), so this
+// deliberately does NOT claim "dot N activates at level Y" — only the
+// chapter-wide level range, which the data does support directly.
+const GiftChestMapUI = {
+  open() {
+    const chapters = [...new Set(Game.db.GiftChestSpawnPoints.map(p => p.chapter))].sort((a, b) => a - b);
+
+    const cardsHTML = chapters.map(ch => {
+      const points = Game.index.giftChestSpawnPointsByChapter.get(ch) || [];
+      const xs = points.map(p => p.x), zs = points.map(p => p.z);
+      const minX = Math.min(...xs), maxX = Math.max(...xs);
+      const minZ = Math.min(...zs), maxZ = Math.max(...zs);
+      const pad = 0.08;
+      const spanX = (maxX - minX) || 1, spanZ = (maxZ - minZ) || 1;
+      const norm = (p) => ({
+        left: (pad + (1 - 2 * pad) * (p.x - minX) / spanX) * 100,
+        top: (pad + (1 - 2 * pad) * (p.z - minZ) / spanZ) * 100,
+      });
+      const dotsHTML = points.map(p => {
+        const pos = norm(p);
+        return `
+          <div class="spawn-dot" style="left:${pos.left.toFixed(2)}%;top:${pos.top.toFixed(2)}%;" title="${escapeHtml(p.name)}">
+            <img src="assets/img/chests/AcquireGiftChest.png" alt="">
+          </div>`;
+      }).join('');
+
+      const boardTilesHTML = MapUI.tilesHTML(ch);
+      const hasBoard = boardTilesHTML.length > 0;
+      const stageInnerHTML = `
+        ${hasBoard ? `<div class="spawn-overlay-board">${boardTilesHTML}</div><div class="spawn-overlay-scrim"></div>` : ''}
+        ${dotsHTML}`;
+
+      const brackets = Game.index.giftChestSpawnDataByChapter.get(ch) || [];
+      const levelRange = brackets.length
+        ? `active between player level ${Math.min(...brackets.map(b => b.MinLevel))}-${Math.max(...brackets.map(b => b.MaxLevel))}`
+        : null;
+
+      return `
+        <div class="chapter-map-card">
+          <div class="chapter-map-title">Chapter ${ch} — ${escapeHtml(Game.chapterName(ch))}</div>
+          ${points.length ? MapZoom.wrapHTML('chapter-map-canvas spawn-overlay-canvas', stageInnerHTML)
+            : `<div class="caveat">No real spawn-point coordinates extracted for this chapter yet (see caveat below).</div>`}
+          <div class="spawn-map-legend">Gift Chest spawns: ${points.length} real spawn point${points.length === 1 ? '' : 's'} in Chapter ${ch}${levelRange ? ` - ${levelRange}` : ''}</div>
+        </div>`;
+    }).join('');
+
+    UI.openModal(`
+      <div class="modal-header"><h3>In-World Gift Chest Spawns</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-body">
+        ${cardsHTML}
+        <div class="caveat">A genuine in-world mechanic distinct from the static chests shown elsewhere in this app: these spawn points appear and can be collected, then go on cooldown and respawn. Positions are real extracted GiftChestSpawner Transform coordinates (16 confirmed in Chapter 1, same technique as the Monsters tab's enemy spawn points), overlaid on the real story-stage tile board as contextual "which chapter" framing only — like the Monsters tab's spawn overlay, this free-roam coordinate space doesn't map to specific story-stage tiles, so dot position relative to a tile isn't meaningful. The game's own data (GiftChestSpawnData) confirms which of the 16 points are eligible to be active scales up with your player level across the whole chapter, but there's no confirmed link from a specific point to a specific level bracket, so that's shown as one chapter-wide range rather than guessed per-dot. Per the same data (uniform across every Chapter 1 bracket): a new chest becomes available roughly every 600, stays collectible for 300, and the spot respawns 300 after that (raw field units, likely seconds, not independently confirmed). Rewards are Gold, Gem, or Elixir scaled by player level (GiftChestData) — all three already have other confirmed farmable sources, so this doesn't add new item coverage, just a real place to go stand. Chapters 2-3 have this same mechanic configured in the data but their real spawner coordinates live in remote CDN scene bundles this extraction never fetched, so only Chapter 1 is plotted. Drag to pan; Ctrl+scroll, pinch, or the +/- buttons to zoom.</div>
+      </div>
+    `, { onMount: (el) => MapZoom.wire(el) });
+    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+  },
+};

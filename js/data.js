@@ -27,6 +27,7 @@ const DATA_FILES = [
   'RuneData', 'RuneGradeData', 'RuneTypeData', 'RuneOptionTypeData',
   'RuneUniqueOptionData', 'RuneLevelBonusGroupData', 'RuneLevelCostData',
   'RuneBreakRewardData',
+  'GiftChestSpawnPoints', 'GiftChestSpawnData',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -594,6 +595,16 @@ const Game = {
     for (const arr of idx.runeLevelBonusByGroup.values()) arr.sort((a, b) => a.Level - b.Level);
     idx.runeLevelCostByKey = new Map(this.db.RuneLevelCostData.map(r => [`${r.TypeID}:${r.GradeID}:${r.Level}`, r]));
     idx.runeBreakRewardByKey = new Map(this.db.RuneBreakRewardData.map(r => [`${r.TypeID}:${r.GradeID}:${r.Level}`, r]));
+
+    // Gift Chest in-world spawn mechanic (extracted 2026-10-01, wired in
+    // 2026-10-02 — see CLAUDE.md "Gift Chest spawn map"). Real spawn-point
+    // Transform positions only exist for Chapter 1 (Chapters 2-3's
+    // equivalent GameObjects live in remote-CDN scene bundles this
+    // extraction never fetched) — GiftChestSpawnData itself does have
+    // Chapter 2/3 rows (the level-bracket/spawner-id config), just no
+    // matching real coordinates to plot for them yet.
+    idx.giftChestSpawnPointsByChapter = groupBy(this.db.GiftChestSpawnPoints, p => p.chapter);
+    idx.giftChestSpawnDataByChapter = groupBy(this.db.GiftChestSpawnData, r => r.Chapter);
   },
 
   weaponIcon(weapon) { return `assets/img/weapons/${weapon.id}.png`; },
