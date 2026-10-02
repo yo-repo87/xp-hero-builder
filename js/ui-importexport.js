@@ -43,7 +43,8 @@ const ImportExportUI = {
   },
 
   reset() {
-    if (confirm('Reset your entire build? This clears all heroes, weapons, traits, and upgrades from this browser. Export first if you want a backup.')) {
+    const cloudNote = Auth.user && AccountUI.activeSaveId ? ' This will also overwrite your active cloud save.' : '';
+    if (confirm(`Reset your entire build? This clears all heroes, weapons, traits, and upgrades from this browser.${cloudNote} Export first if you want a backup.`)) {
       State.resetAll();
       UI.toast('Build reset');
     }

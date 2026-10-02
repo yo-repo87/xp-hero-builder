@@ -41,6 +41,18 @@ function paintAvatar(el, user) {
 const AccountUI = {
   mode: 'login', // 'login' | 'register', for the auth modal
 
+  // The cloud save this device currently mirrors — set on sign-in (to the
+  // most recently updated save), on "Save as New Build" (to the new one),
+  // or on "Load" (to whichever was loaded). Every local change auto-syncs
+  // here while it's set; null means "signed out" or "no cloud save yet,"
+  // in which case auto-sync is a no-op.
+  activeSaveId: null,
+  _suppressAutoSave: false, // true only while we're programmatically importing a cloud save, so loading one doesn't immediately re-save it
+  _saveDebounceTimer: null,
+  _lastSyncAt: null,
+  _syncError: null,
+  _wasSignedIn: false, // tracks sign-in/out *transitions* in onAuthChange, since Auth.subscribe also fires for unrelated re-renders
+
   init() {
     document.getElementById('btn-account').addEventListener('click', () => {
       if (Auth.user) this.signOut();
@@ -48,6 +60,11 @@ const AccountUI = {
     });
     document.getElementById('tab-profile').addEventListener('click', () => State.setTab('profile'));
     Auth.subscribe(() => this.onAuthChange());
+    // Every local change (weapons, heroes, traits, upgrades...) runs
+    // through State.notify() — this is the one hook point that lets
+    // "changes auto-sync to the cloud" apply everywhere without each
+    // individual State.set*() call needing to know about accounts.
+    State.subscribe(() => this.scheduleAutoSave());
     this.onAuthChange();
   },
 
@@ -56,6 +73,87 @@ const AccountUI = {
     this.renderProfileTab();
     // Don't strand the user on a tab that just disappeared.
     if (!Auth.user && State.data.ui.activeTab === 'profile') State.setTab('weapons');
+
+    if (Auth.user && !this._wasSignedIn) {
+      // Just signed in — either a fresh login or a silently-resumed
+      // session from a previous visit. Either way, pull the most recent
+      // cloud save down so this device picks up where any other one
+      // left off, same as the user explicitly asked for.
+      this._wasSignedIn = true;
+      this.syncOnSignIn();
+    } else if (!Auth.user && this._wasSignedIn) {
+      // Just signed out. The screen was mirroring that account's cloud
+      // save, so clear it rather than leave a signed-out session still
+      // showing a signed-in account's heroes/weapons/etc.
+      this._wasSignedIn = false;
+      this.activeSaveId = null;
+      this._lastSyncAt = null;
+      this._syncError = null;
+      State.resetAll();
+    }
+  },
+
+  // Pulls the newest cloud save (Auth.listSaves() is already sorted
+  // newest-first by the server) and makes it the local build. First-time
+  // sign-in with no cloud save yet instead pushes whatever's currently
+  // local up as the first one, so there's something for future auto-syncs
+  // to write to rather than silently doing nothing.
+  async syncOnSignIn() {
+    try {
+      const saves = await Auth.listSaves();
+      if (saves.length > 0) {
+        const save = await Auth.loadSave(saves[0].id);
+        this._suppressAutoSave = true;
+        State.importJSON(JSON.stringify(save.data));
+        this._suppressAutoSave = false;
+        this.activeSaveId = save.id;
+        this._lastSyncAt = new Date();
+        UI.toast(`Loaded your most recent cloud save, "${save.name}"`);
+      } else {
+        const save = await Auth.createSave('My Build', State.data);
+        this.activeSaveId = save.id;
+        this._lastSyncAt = new Date();
+        UI.toast('Cloud sync started for this build');
+      }
+    } catch (err) {
+      UI.toast(`Couldn't sync your cloud save: ${err.message}`);
+    }
+    this.renderSavesList();
+    this._renderSyncStatus();
+  },
+
+  // Debounced so a burst of edits (e.g. dragging a level slider) collapses
+  // into one PUT a moment after the user stops, not one per tick.
+  scheduleAutoSave() {
+    if (!Auth.user || !this.activeSaveId || this._suppressAutoSave) return;
+    clearTimeout(this._saveDebounceTimer);
+    this._saveDebounceTimer = setTimeout(() => this._doAutoSave(), 1500);
+  },
+
+  async _doAutoSave() {
+    if (!Auth.user || !this.activeSaveId) return;
+    try {
+      await Auth.updateSave(this.activeSaveId, { data: State.data });
+      this._lastSyncAt = new Date();
+      this._syncError = null;
+    } catch (err) {
+      this._syncError = err.message;
+    }
+    this._renderSyncStatus();
+  },
+
+  _renderSyncStatus() {
+    const el = document.getElementById('acct-sync-status');
+    if (!el) return;
+    if (this._syncError) {
+      el.textContent = `⚠️ Cloud sync failed: ${this._syncError}`;
+      el.style.color = 'var(--danger, #a33)';
+    } else if (this._lastSyncAt) {
+      el.textContent = `☁️ Synced ${this._lastSyncAt.toLocaleTimeString()}`;
+      el.style.color = 'var(--ink-faint)';
+    } else {
+      el.textContent = '';
+    }
   },
 
   renderHeader() {
@@ -82,7 +180,7 @@ const AccountUI = {
     UI.openModal(`
       <div class="modal-header"><h3>${isRegister ? 'Create Account' : 'Sign In'}</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
-        <div class="caveat">An account is entirely optional — everything in this app already works fully without one, saved locally in your browser. Signing in just lets a build follow you across devices via a small self-hosted backend.</div>
+        <div class="caveat">An account is entirely optional — everything in this app already works fully without one, saved locally in your browser. Signing in loads your most recent cloud save automatically (replacing what's here now) and keeps it synced across devices from then on via a small self-hosted backend.</div>
 
         ${oauthButtons ? `<div class="oauth-row">${oauthButtons}</div><div class="auth-divider">or</div>` : ''}
 
@@ -161,16 +259,18 @@ const AccountUI = {
         </div>
       </div>
 
-      <div class="action-row" style="margin:14px 0">
-        <button class="btn btn-gold" id="acct-save-new">☁️ Save Current Build to Cloud</button>
+      <div class="action-row" style="margin:14px 0;align-items:center">
+        <button class="btn btn-gold" id="acct-save-new">☁️ Save as New Build</button>
+        <span id="acct-sync-status" style="font-size:.78rem"></span>
       </div>
 
       <h4 style="margin:14px 0 6px;font-size:.9rem">Cloud Saves</h4>
       <div id="acct-saves-list"><span style="color:var(--ink-faint);font-size:.82rem">Loading…</span></div>
-      <div class="caveat">Loading/saving here is manual (like Export/Import) — it doesn't auto-sync in the background, so nothing here can silently overwrite your current local build.</div>
+      <div class="caveat">Your build auto-syncs to the cloud a moment after each change, and signing in anywhere loads your most recent cloud save automatically — replacing whatever was here before. "Save as New Build" starts a separate named save; "Load" switches which save auto-syncs from here on. Export first if you want an offline backup that auto-sync can't touch.</div>
     `;
     document.getElementById('acct-save-new').addEventListener('click', () => this.saveCurrentBuild());
     this.renderSavesList();
+    this._renderSyncStatus();
   },
 
   async renderSavesList() {
@@ -182,7 +282,7 @@ const AccountUI = {
         ? saves.map(s => `
           <div class="farm-source-row" data-save-id="${s.id}">
             <div class="farm-source-info">
-              <div class="fs-title">${escapeHtml(s.name)}</div>
+              <div class="fs-title">${escapeHtml(s.name)}${s.id === this.activeSaveId ? ' <span class="tag" style="font-size:.6rem">ACTIVE</span>' : ''}</div>
               <div class="fs-sub">Updated ${new Date(s.updated_at).toLocaleString()}</div>
             </div>
             <button class="btn btn-sm" data-load-save="${s.id}">Load</button>
@@ -205,9 +305,13 @@ const AccountUI = {
     const name = prompt('Name this save:', `My Build — ${new Date().toLocaleDateString()}`);
     if (!name) return;
     try {
-      await Auth.createSave(name, State.data);
-      UI.toast('Saved to cloud');
+      const save = await Auth.createSave(name, State.data);
+      this.activeSaveId = save.id; // this new save is now the one auto-sync writes to
+      this._lastSyncAt = new Date();
+      this._syncError = null;
+      UI.toast('Saved to cloud — this build will auto-sync here from now on');
       this.renderSavesList();
+      this._renderSyncStatus();
     } catch (err) {
       UI.toast(`Couldn't save: ${err.message}`);
     }
@@ -217,9 +321,17 @@ const AccountUI = {
     if (!confirm('Load this cloud save? It will replace your current local build (export it first if you want a backup).')) return;
     try {
       const save = await Auth.loadSave(id);
+      this._suppressAutoSave = true;
       State.importJSON(JSON.stringify(save.data));
-      UI.toast(`Loaded "${save.name}"`);
+      this._suppressAutoSave = false;
+      this.activeSaveId = id; // future changes now sync to this save instead
+      this._lastSyncAt = new Date();
+      this._syncError = null;
+      UI.toast(`Loaded "${save.name}" — this build will auto-sync here from now on`);
+      this.renderSavesList();
+      this._renderSyncStatus();
     } catch (err) {
+      this._suppressAutoSave = false;
       UI.toast(`Couldn't load: ${err.message}`);
     }
   },
@@ -228,7 +340,12 @@ const AccountUI = {
     if (!confirm('Delete this cloud save? This cannot be undone.')) return;
     try {
       await Auth.deleteSave(id);
+      if (this.activeSaveId === id) {
+        this.activeSaveId = null; // nothing left to auto-sync to until the user picks/creates another
+        this._lastSyncAt = null;
+      }
       this.renderSavesList();
+      this._renderSyncStatus();
     } catch (err) {
       UI.toast(`Couldn't delete: ${err.message}`);
     }

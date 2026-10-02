@@ -447,11 +447,12 @@ fallback ("Bob" → "BO").
 only, never localStorage, since it's a 15-minute JWT and losing it on tab
 close is fine; refresh token is an httpOnly cross-site cookie the browser
 manages, silently resumed on page load via `POST /auth/refresh`) and
-`js/ui-account.js` (sign-in/sign-up modal, "My Account" modal with a
-manual — not auto-syncing — Save/Load/Delete cloud-saves list, deliberately
-mirroring the existing Export/Import UX so nothing can silently overwrite
-a local build). Wired into `index.html`/`app.js` alongside the existing
-tab/state bootstrap. **Verified fully end-to-end with Playwright against
+`js/ui-account.js` (sign-in/sign-up modal, a Profile tab with a
+Save/Load/Delete cloud-saves list — **originally manual-only by design,
+changed to full auto-sync 2026-10-01 per a direct user request, see
+"Auto-sync cloud saves" below for the current real behavior**). Wired
+into `index.html`/`app.js` alongside the existing tab/state bootstrap.
+**Verified fully end-to-end with Playwright against
 the real running container and real `shared_postgres` database**
 (register → cloud save created → full page reload → session silently
 resumed from the httpOnly cookie with no user action, confirmed by the
@@ -1764,6 +1765,77 @@ future game update that adds Hero's Tomb portrait art for the first
 time, or decoding the Addressables binary catalog properly instead of
 bundle-content enumeration (still not done — see Open Items).
 
+## Auto-sync cloud saves (2026-10-01)
+
+User asked for a real behavior change plus reported a real bug in the
+same message: (1) signing in should automatically load the newest cloud
+save, (2) local changes should automatically keep that save updated, and
+(3) signing out should clear the on-screen build — and separately
+reported that signing out was actually leaving the previous account's
+heroes/weapons visible, which they'd noticed directly. This is a
+deliberate reversal of the accounts feature's original manual-only
+design (see "Accounts backend" above) — the user was told the tradeoff
+explicitly in the UI copy (now updated) rather than silently assumed.
+
+**The sign-out bug was real and simple**: `onAuthChange()` only ever
+re-rendered the header/profile tab on a sign-out transition — it never
+touched `State.data` at all, so whatever was loaded (locally, or from a
+previously-loaded cloud save) just stayed on screen. Fixed by calling
+the same `State.resetAll()` the "Reset" button already uses, on the
+`Auth.user` → signed-out transition specifically (tracked via a new
+`_wasSignedIn` flag on `AccountUI`, since `Auth.subscribe` also fires
+for unrelated re-renders, not just real sign-in/out transitions).
+
+**Auto-sync design**: `AccountUI.activeSaveId` is the one cloud save
+this device currently mirrors — set on sign-in (to the newest save, or
+a freshly-created one if the account has none yet), on "Save as New
+Build," or on "Load." Every `State.notify()` call (the single hook point
+already used for both persistence and re-rendering) schedules a
+debounced (1.5s) `PUT /saves/:id` via a new `scheduleAutoSave()`/
+`_doAutoSave()` pair — one hook covers every kind of edit (weapons,
+heroes, traits, upgrades) with no per-feature wiring needed, same as how
+local persistence already works. A `_suppressAutoSave` flag guards the
+one case that would otherwise immediately re-save data right back where
+it came from: programmatically importing a just-loaded cloud save.
+
+**Honest tradeoff, stated plainly** (and now in the Profile tab's own
+caveat text, not just here): auto-load-on-sign-in **replaces** whatever
+was on screen, including unsaved local-only progress if a newer cloud
+save exists — this is exactly what was asked for, not an oversight, but
+it is a real behavior change from the old "nothing here can silently
+overwrite your current local build" guarantee. Export remains available
+as an auto-sync-independent manual backup for anyone who wants one.
+First-time sign-in with no cloud save yet does the safe thing instead —
+pushes whatever's currently local up as the first save, so no data is
+lost and future edits have somewhere to sync to.
+
+**Shipped**: `AccountUI.activeSaveId`/`syncOnSignIn()`/
+`scheduleAutoSave()`/`_doAutoSave()`/`_renderSyncStatus()` in
+`js/ui-account.js`; a small "☁️ Synced HH:MM:SS" / "⚠️ Cloud sync
+failed: ..." status line in the Profile tab, updated after every sync
+attempt; an "ACTIVE" tag on whichever cloud save in the list is
+currently being auto-synced; `saveCurrentBuild()`/`loadCloudSave()`/
+`deleteCloudSave()` all updated to keep `activeSaveId` correct when the
+user manually creates/switches/removes a save; the Reset confirmation
+dialog (`js/ui-importexport.js`) now warns when it's also about to
+overwrite an active cloud save. No server changes — `PUT /saves/:id`
+already existed and already does exactly a "patch this save's data"
+operation.
+
+**Verified fully end-to-end against the real production backend and
+real database** (not a mock): registered a fresh test account with zero
+existing cloud saves → confirmed `syncOnSignIn()` auto-created the first
+save from local state → called `State.addHero()` directly (a real local
+change) → waited past the debounce window → fetched the save directly
+from the live API and confirmed its hero count matches local → signed
+out → confirmed local hero count dropped to 0 (the bug, fixed) → signed
+back in → confirmed the hero reappeared and `activeSaveId` resolved to
+the same save. Zero new console errors across a full tab sweep.
+Test account deleted from the real `shared_postgres` database afterward
+(`DELETE FROM users WHERE email LIKE 'playwright-test%'`, cascades to
+its save via the FK) — same cleanup discipline as every previous
+against-production test in this project.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2389,11 +2461,15 @@ bundle-content enumeration (still not done — see Open Items).
   was run by hand, not a re-runnable migration) — fine at this scale, but
   worth revisiting if the schema needs to evolve more than once or twice
   more.
-- The accounts system currently syncs manually (Save/Load buttons, no
-  auto-sync, no conflict resolution) — deliberately, to avoid a save
-  silently clobbering local data. A future "auto-sync on sign-in" feature
-  would need real conflict-resolution UX (which build wins when local and
-  cloud have both changed) that wasn't designed or asked for here.
+- **Updated 2026-10-01 (see "Auto-sync cloud saves" below)**: the
+  accounts system now auto-syncs — this bullet's original concern
+  (silent clobbering) is a real, accepted tradeoff of the feature as
+  explicitly requested, not an oversight. Still genuinely open: there's
+  no conflict resolution at all (last write wins, no merge, no
+  "cloud and local both changed since last sync" detection) — fine for
+  the realistic single-user-multi-device case this was built for, but
+  worth real design if this app ever needs to handle two tabs/devices
+  editing concurrently.
 - **Updated 2026-10-01 (see "Boss Raid / Challenge Tower / Hero's Tomb
   rewards" above)**: the "Rune" reward type flagged here is now mostly
   understood, not just discovered. `RewardType==1` in `RewardGroupData`
