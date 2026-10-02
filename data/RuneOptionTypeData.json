@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "OptionType": 1,
+    "Desc": "RUNE_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER"
+  },
+  {
+    "id": 2,
+    "OptionType": 2,
+    "Desc": "RUNE_OPTION_TYPE_NAME_2",
+    "Desc_en": "CRITICAL DAMAGE"
+  },
+  {
+    "id": 3,
+    "OptionType": 3,
+    "Desc": "RUNE_OPTION_TYPE_NAME_3",
+    "Desc_en": "LIFESTEAL"
+  },
+  {
+    "id": 4,
+    "OptionType": 4,
+    "Desc": "RUNE_OPTION_TYPE_NAME_4",
+    "Desc_en": "SKILL COOLDOWN"
+  },
+  {
+    "id": 5,
+    "OptionType": 5,
+    "Desc": "RUNE_OPTION_TYPE_NAME_5",
+    "Desc_en": "HP"
+  },
+  {
+    "id": 6,
+    "OptionType": 6,
+    "Desc": "RUNE_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY"
+  },
+  {
+    "id": 7,
+    "OptionType": 7,
+    "Desc": "RUNE_OPTION_TYPE_NAME_7",
+    "Desc_en": "DODGE"
+  },
+  {
+    "id": 8,
+    "OptionType": 8,
+    "Desc": "RUNE_OPTION_TYPE_NAME_8",
+    "Desc_en": "MOVE SPEED"
+  },
+  {
+    "id": 9,
+    "OptionType": 9,
+    "Desc": "RUNE_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE"
+  },
+  {
+    "id": 10,
+    "OptionType": 10,
+    "Desc": "RUNE_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED"
+  },
+  {
+    "id": 11,
+    "OptionType": 11,
+    "Desc": "RUNE_OPTION_TYPE_NAME_11",
+    "Desc_en": "BAG"
+  },
+  {
+    "id": 12,
+    "OptionType": 12,
+    "Desc": "RUNE_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE"
+  },
+  {
+    "id": 13,
+    "OptionType": 13,
+    "Desc": "RUNE_OPTION_TYPE_NAME_13",
+    "Desc_en": "DOUBLE ATTACK"
+  },
+  {
+    "id": 14,
+    "OptionType": 14,
+    "Desc": "RUNE_OPTION_TYPE_NAME_14",
+    "Desc_en": "TRIPLE ATTACK"
+  },
+  {
+    "id": 15,
+    "OptionType": 15,
+    "Desc": "RUNE_OPTION_TYPE_NAME_15",
+    "Desc_en": "GOLD GAIN"
+  },
+  {
+    "id": 16,
+    "OptionType": 16,
+    "Desc": "RUNE_OPTION_TYPE_NAME_16",
+    "Desc_en": "EXP GAIN"
+  },
+  {
+    "id": 17,
+    "OptionType": 17,
+    "Desc": "RUNE_OPTION_TYPE_NAME_17",
+    "Desc_en": "ENHANCED ATTACK"
+  },
+  {
+    "id": 18,
+    "OptionType": 18,
+    "Desc": "RUNE_OPTION_TYPE_NAME_18",
+    "Desc_en": "ENEMY HEALING REDUCTION"
+  },
+  {
+    "id": 19,
+    "OptionType": 19,
+    "Desc": "RUNE_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE"
+  },
+  {
+    "id": 20,
+    "OptionType": 20,
+    "Desc": "RUNE_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE"
+  },
+  {
+    "id": 21,
+    "OptionType": 21,
+    "Desc": "RUNE_OPTION_TYPE_NAME_21",
+    "Desc_en": "STATUS EFFECT RESISTANCE"
+  },
+  {
+    "id": 22,
+    "OptionType": 22,
+    "Desc": "RUNE_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK"
+  },
+  {
+    "id": 23,
+    "OptionType": 23,
+    "Desc": "RUNE_OPTION_TYPE_NAME_23",
+    "Desc_en": "DAGGER DAMAGE"
+  },
+  {
+    "id": 24,
+    "OptionType": 24,
+    "Desc": "RUNE_OPTION_TYPE_NAME_24",
+    "Desc_en": "SWORD DAMAGE"
+  },
+  {
+    "id": 25,
+    "OptionType": 25,
+    "Desc": "RUNE_OPTION_TYPE_NAME_25",
+    "Desc_en": "MORNINGSTAR DAMAGE"
+  },
+  {
+    "id": 26,
+    "OptionType": 26,
+    "Desc": "RUNE_OPTION_TYPE_NAME_26",
+    "Desc_en": "GUN DAMAGE"
+  },
+  {
+    "id": 27,
+    "OptionType": 27,
+    "Desc": "RUNE_OPTION_TYPE_NAME_27",
+    "Desc_en": "WAND DAMAGE"
+  },
+  {
+    "id": 28,
+    "OptionType": 28,
+    "Desc": "RUNE_OPTION_TYPE_NAME_28",
+    "Desc_en": "CROSSBOW DAMAGE"
+  }
+]

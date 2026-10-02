@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "RuneType": 1,
+    "Name": "RuneTypeName_01",
+    "Name_en": "HERO RUNE"
+  },
+  {
+    "id": 2,
+    "RuneType": 101,
+    "Name": "RuneTypeName_02",
+    "Name_en": "MELEE RUNE"
+  },
+  {
+    "id": 3,
+    "RuneType": 102,
+    "Name": "RuneTypeName_03",
+    "Name_en": "RANGED RUNE"
+  },
+  {
+    "id": 4,
+    "RuneType": 103,
+    "Name": "RuneTypeName_04",
+    "Name_en": "UNIVERSAL RUNE"
+  }
+]

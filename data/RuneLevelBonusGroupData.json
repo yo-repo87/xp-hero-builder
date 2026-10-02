@@ -1,0 +1,4402 @@
+[
+  {
+    "id": 1,
+    "GroupID": 11,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 11,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 2,
+    "GroupID": 11,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 3,
+    "GroupID": 12,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 12,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 4,
+    "GroupID": 12,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 5,
+    "GroupID": 12,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 12,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 6,
+    "GroupID": 13,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 13,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 7,
+    "GroupID": 13,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 8,
+    "GroupID": 13,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 13,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 9,
+    "GroupID": 13,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 10,
+    "GroupID": 14,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 14,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 11,
+    "GroupID": 14,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 12,
+    "GroupID": 14,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 14,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 13,
+    "GroupID": 14,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 14,
+    "GroupID": 14,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 14,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 15,
+    "GroupID": 15,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 15,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 16,
+    "GroupID": 15,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 17,
+    "GroupID": 15,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 15,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 18,
+    "GroupID": 15,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 19,
+    "GroupID": 15,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 15,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 20,
+    "GroupID": 15,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 2,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_2",
+    "Desc_en": "CRITICAL DAMAGE {0}"
+  },
+  {
+    "id": 21,
+    "GroupID": 16,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 16,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 22,
+    "GroupID": 16,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 23,
+    "GroupID": 16,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 16,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 24,
+    "GroupID": 16,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 25,
+    "GroupID": 16,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 16,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 26,
+    "GroupID": 16,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 2,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_2",
+    "Desc_en": "CRITICAL DAMAGE {0}"
+  },
+  {
+    "id": 27,
+    "GroupID": 16,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 16,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 28,
+    "GroupID": 17,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 17,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 29,
+    "GroupID": 17,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 30,
+    "GroupID": 17,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 17,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 31,
+    "GroupID": 17,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 32,
+    "GroupID": 17,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 17,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 33,
+    "GroupID": 17,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 2,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_2",
+    "Desc_en": "CRITICAL DAMAGE {0}"
+  },
+  {
+    "id": 34,
+    "GroupID": 17,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 17,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 35,
+    "GroupID": 17,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 250,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 36,
+    "GroupID": 18,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 18,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 37,
+    "GroupID": 18,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 38,
+    "GroupID": 18,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 18,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 39,
+    "GroupID": 18,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 40,
+    "GroupID": 18,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 18,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 41,
+    "GroupID": 18,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 2,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_2",
+    "Desc_en": "CRITICAL DAMAGE {0}"
+  },
+  {
+    "id": 42,
+    "GroupID": 18,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 18,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 43,
+    "GroupID": 18,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 400,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 44,
+    "GroupID": 18,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 18,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 45,
+    "GroupID": 21,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 21,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 46,
+    "GroupID": 21,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 47,
+    "GroupID": 22,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 22,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 48,
+    "GroupID": 22,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 49,
+    "GroupID": 22,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 22,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 50,
+    "GroupID": 23,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 23,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 51,
+    "GroupID": 23,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 52,
+    "GroupID": 23,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 23,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 53,
+    "GroupID": 23,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 54,
+    "GroupID": 24,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 55,
+    "GroupID": 24,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 56,
+    "GroupID": 24,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 57,
+    "GroupID": 24,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 58,
+    "GroupID": 24,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 59,
+    "GroupID": 25,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 60,
+    "GroupID": 25,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 61,
+    "GroupID": 25,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 62,
+    "GroupID": 25,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 63,
+    "GroupID": 25,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 64,
+    "GroupID": 25,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 65,
+    "GroupID": 26,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 66,
+    "GroupID": 26,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 67,
+    "GroupID": 26,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 68,
+    "GroupID": 26,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 69,
+    "GroupID": 26,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 70,
+    "GroupID": 26,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 71,
+    "GroupID": 26,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 72,
+    "GroupID": 27,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 73,
+    "GroupID": 27,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 74,
+    "GroupID": 27,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 75,
+    "GroupID": 27,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 76,
+    "GroupID": 27,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 77,
+    "GroupID": 27,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 78,
+    "GroupID": 27,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 79,
+    "GroupID": 27,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 24,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_24",
+    "Desc_en": "SWORD DAMAGE {0}"
+  },
+  {
+    "id": 80,
+    "GroupID": 28,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 81,
+    "GroupID": 28,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 82,
+    "GroupID": 28,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 83,
+    "GroupID": 28,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 84,
+    "GroupID": 28,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 85,
+    "GroupID": 28,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 86,
+    "GroupID": 28,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 87,
+    "GroupID": 28,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 24,
+    "Value": 550,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_24",
+    "Desc_en": "SWORD DAMAGE {0}"
+  },
+  {
+    "id": 88,
+    "GroupID": 28,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 89,
+    "GroupID": 31,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 21,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 90,
+    "GroupID": 31,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 91,
+    "GroupID": 32,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 22,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 92,
+    "GroupID": 32,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 93,
+    "GroupID": 32,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 22,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 94,
+    "GroupID": 33,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 23,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 95,
+    "GroupID": 33,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 96,
+    "GroupID": 33,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 23,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 97,
+    "GroupID": 33,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 98,
+    "GroupID": 34,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 99,
+    "GroupID": 34,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 100,
+    "GroupID": 34,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 101,
+    "GroupID": 34,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 102,
+    "GroupID": 34,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 103,
+    "GroupID": 35,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 104,
+    "GroupID": 35,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 105,
+    "GroupID": 35,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 106,
+    "GroupID": 35,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 107,
+    "GroupID": 35,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 108,
+    "GroupID": 35,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 109,
+    "GroupID": 36,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 110,
+    "GroupID": 36,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 111,
+    "GroupID": 36,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 112,
+    "GroupID": 36,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 113,
+    "GroupID": 36,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 114,
+    "GroupID": 36,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 115,
+    "GroupID": 36,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 116,
+    "GroupID": 37,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 117,
+    "GroupID": 37,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 118,
+    "GroupID": 37,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 119,
+    "GroupID": 37,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 120,
+    "GroupID": 37,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 121,
+    "GroupID": 37,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 122,
+    "GroupID": 37,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 123,
+    "GroupID": 37,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 25,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_25",
+    "Desc_en": "MORNINGSTAR DAMAGE {0}"
+  },
+  {
+    "id": 124,
+    "GroupID": 38,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 125,
+    "GroupID": 38,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 126,
+    "GroupID": 38,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 127,
+    "GroupID": 38,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 128,
+    "GroupID": 38,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 129,
+    "GroupID": 38,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 130,
+    "GroupID": 38,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 131,
+    "GroupID": 38,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 25,
+    "Value": 550,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_25",
+    "Desc_en": "MORNINGSTAR DAMAGE {0}"
+  },
+  {
+    "id": 132,
+    "GroupID": 38,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 133,
+    "GroupID": 41,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 21,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 134,
+    "GroupID": 41,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 135,
+    "GroupID": 42,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 22,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 136,
+    "GroupID": 42,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 137,
+    "GroupID": 42,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 22,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 138,
+    "GroupID": 43,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 23,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 139,
+    "GroupID": 43,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 140,
+    "GroupID": 43,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 23,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 141,
+    "GroupID": 43,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 142,
+    "GroupID": 44,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 143,
+    "GroupID": 44,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 144,
+    "GroupID": 44,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 145,
+    "GroupID": 44,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 146,
+    "GroupID": 44,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 24,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 147,
+    "GroupID": 45,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 148,
+    "GroupID": 45,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 149,
+    "GroupID": 45,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 150,
+    "GroupID": 45,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 151,
+    "GroupID": 45,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 25,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 152,
+    "GroupID": 45,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 153,
+    "GroupID": 46,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 154,
+    "GroupID": 46,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 155,
+    "GroupID": 46,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 156,
+    "GroupID": 46,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 157,
+    "GroupID": 46,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 158,
+    "GroupID": 46,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 159,
+    "GroupID": 46,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 26,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 160,
+    "GroupID": 47,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 161,
+    "GroupID": 47,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 162,
+    "GroupID": 47,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 163,
+    "GroupID": 47,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 164,
+    "GroupID": 47,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 165,
+    "GroupID": 47,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 166,
+    "GroupID": 47,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 27,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 167,
+    "GroupID": 47,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 23,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_23",
+    "Desc_en": "DAGGER DAMAGE {0}"
+  },
+  {
+    "id": 168,
+    "GroupID": 48,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 169,
+    "GroupID": 48,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 170,
+    "GroupID": 48,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 171,
+    "GroupID": 48,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 20,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_20",
+    "Desc_en": "MELEE DAMAGE {0}"
+  },
+  {
+    "id": 172,
+    "GroupID": 48,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 173,
+    "GroupID": 48,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 174,
+    "GroupID": 48,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 175,
+    "GroupID": 48,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 23,
+    "Value": 550,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_23",
+    "Desc_en": "DAGGER DAMAGE {0}"
+  },
+  {
+    "id": 176,
+    "GroupID": 48,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 28,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 177,
+    "GroupID": 51,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 31,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 178,
+    "GroupID": 51,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 179,
+    "GroupID": 52,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 32,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 180,
+    "GroupID": 52,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 181,
+    "GroupID": 52,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 32,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 182,
+    "GroupID": 53,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 33,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 183,
+    "GroupID": 53,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 184,
+    "GroupID": 53,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 33,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 185,
+    "GroupID": 53,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 186,
+    "GroupID": 54,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 187,
+    "GroupID": 54,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 188,
+    "GroupID": 54,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 189,
+    "GroupID": 54,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 190,
+    "GroupID": 54,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 191,
+    "GroupID": 55,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 192,
+    "GroupID": 55,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 193,
+    "GroupID": 55,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 194,
+    "GroupID": 55,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 195,
+    "GroupID": 55,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 196,
+    "GroupID": 55,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 197,
+    "GroupID": 56,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 198,
+    "GroupID": 56,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 199,
+    "GroupID": 56,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 200,
+    "GroupID": 56,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 201,
+    "GroupID": 56,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 202,
+    "GroupID": 56,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 203,
+    "GroupID": 56,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 204,
+    "GroupID": 57,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 205,
+    "GroupID": 57,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 206,
+    "GroupID": 57,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 207,
+    "GroupID": 57,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 208,
+    "GroupID": 57,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 209,
+    "GroupID": 57,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 210,
+    "GroupID": 57,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 211,
+    "GroupID": 57,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 28,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_28",
+    "Desc_en": "CROSSBOW DAMAGE {0}"
+  },
+  {
+    "id": 212,
+    "GroupID": 58,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 213,
+    "GroupID": 58,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 214,
+    "GroupID": 58,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 215,
+    "GroupID": 58,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 216,
+    "GroupID": 58,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 217,
+    "GroupID": 58,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 218,
+    "GroupID": 58,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 219,
+    "GroupID": 58,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 28,
+    "Value": 550,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_28",
+    "Desc_en": "CROSSBOW DAMAGE {0}"
+  },
+  {
+    "id": 220,
+    "GroupID": 58,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 221,
+    "GroupID": 61,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 31,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 222,
+    "GroupID": 61,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 223,
+    "GroupID": 62,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 32,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 224,
+    "GroupID": 62,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 225,
+    "GroupID": 62,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 32,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 226,
+    "GroupID": 63,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 33,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 227,
+    "GroupID": 63,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 228,
+    "GroupID": 63,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 33,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 229,
+    "GroupID": 63,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 230,
+    "GroupID": 64,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 231,
+    "GroupID": 64,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 232,
+    "GroupID": 64,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 233,
+    "GroupID": 64,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 234,
+    "GroupID": 64,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 235,
+    "GroupID": 65,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 236,
+    "GroupID": 65,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 237,
+    "GroupID": 65,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 238,
+    "GroupID": 65,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 239,
+    "GroupID": 65,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 240,
+    "GroupID": 65,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 241,
+    "GroupID": 66,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 242,
+    "GroupID": 66,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 243,
+    "GroupID": 66,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 244,
+    "GroupID": 66,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 245,
+    "GroupID": 66,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 246,
+    "GroupID": 66,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 247,
+    "GroupID": 66,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 248,
+    "GroupID": 67,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 249,
+    "GroupID": 67,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 250,
+    "GroupID": 67,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 251,
+    "GroupID": 67,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 252,
+    "GroupID": 67,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 253,
+    "GroupID": 67,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 254,
+    "GroupID": 67,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 255,
+    "GroupID": 67,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 27,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_27",
+    "Desc_en": "WAND DAMAGE {0}"
+  },
+  {
+    "id": 256,
+    "GroupID": 68,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 257,
+    "GroupID": 68,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 258,
+    "GroupID": 68,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 259,
+    "GroupID": 68,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 260,
+    "GroupID": 68,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 261,
+    "GroupID": 68,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 262,
+    "GroupID": 68,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 263,
+    "GroupID": 68,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 27,
+    "Value": 550,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_27",
+    "Desc_en": "WAND DAMAGE {0}"
+  },
+  {
+    "id": 264,
+    "GroupID": 68,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 265,
+    "GroupID": 71,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 31,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 266,
+    "GroupID": 71,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 267,
+    "GroupID": 72,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 32,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 268,
+    "GroupID": 72,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 269,
+    "GroupID": 72,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 32,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 270,
+    "GroupID": 73,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 33,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 271,
+    "GroupID": 73,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 272,
+    "GroupID": 73,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 33,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 273,
+    "GroupID": 73,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 274,
+    "GroupID": 74,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 275,
+    "GroupID": 74,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 276,
+    "GroupID": 74,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 277,
+    "GroupID": 74,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 278,
+    "GroupID": 74,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 34,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 279,
+    "GroupID": 75,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 280,
+    "GroupID": 75,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 281,
+    "GroupID": 75,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 282,
+    "GroupID": 75,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 283,
+    "GroupID": 75,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 35,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 284,
+    "GroupID": 75,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 285,
+    "GroupID": 76,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 286,
+    "GroupID": 76,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 287,
+    "GroupID": 76,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 288,
+    "GroupID": 76,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 289,
+    "GroupID": 76,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 290,
+    "GroupID": 76,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 291,
+    "GroupID": 76,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 36,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 292,
+    "GroupID": 77,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 293,
+    "GroupID": 77,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 294,
+    "GroupID": 77,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 295,
+    "GroupID": 77,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 296,
+    "GroupID": 77,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 297,
+    "GroupID": 77,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 298,
+    "GroupID": 77,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 37,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 299,
+    "GroupID": 77,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 26,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_26",
+    "Desc_en": "GUN DAMAGE {0}"
+  },
+  {
+    "id": 300,
+    "GroupID": 78,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 301,
+    "GroupID": 78,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 1,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_1",
+    "Desc_en": "TOTAL POWER {0}"
+  },
+  {
+    "id": 302,
+    "GroupID": 78,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 303,
+    "GroupID": 78,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 19,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_19",
+    "Desc_en": "RANGED DAMAGE {0}"
+  },
+  {
+    "id": 304,
+    "GroupID": 78,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 305,
+    "GroupID": 78,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 22,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_22",
+    "Desc_en": "BASIC ATTACK {0}"
+  },
+  {
+    "id": 306,
+    "GroupID": 78,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 307,
+    "GroupID": 78,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 26,
+    "Value": 550,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_26",
+    "Desc_en": "GUN DAMAGE {0}"
+  },
+  {
+    "id": 308,
+    "GroupID": 78,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 38,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 309,
+    "GroupID": 81,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 41,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 310,
+    "GroupID": 81,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 311,
+    "GroupID": 82,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 42,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 312,
+    "GroupID": 82,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 313,
+    "GroupID": 82,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 42,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 314,
+    "GroupID": 83,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 43,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 315,
+    "GroupID": 83,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 316,
+    "GroupID": 83,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 43,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 317,
+    "GroupID": 83,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 6,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY {0}"
+  },
+  {
+    "id": 318,
+    "GroupID": 84,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 319,
+    "GroupID": 84,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 320,
+    "GroupID": 84,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 321,
+    "GroupID": 84,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 6,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY {0}"
+  },
+  {
+    "id": 322,
+    "GroupID": 84,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 323,
+    "GroupID": 85,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 324,
+    "GroupID": 85,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 325,
+    "GroupID": 85,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 326,
+    "GroupID": 85,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 6,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY {0}"
+  },
+  {
+    "id": 327,
+    "GroupID": 85,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 328,
+    "GroupID": 85,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 21,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_21",
+    "Desc_en": "STATUS EFFECT RESISTANCE {0}"
+  },
+  {
+    "id": 329,
+    "GroupID": 86,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 330,
+    "GroupID": 86,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 331,
+    "GroupID": 86,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 332,
+    "GroupID": 86,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 6,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY {0}"
+  },
+  {
+    "id": 333,
+    "GroupID": 86,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 334,
+    "GroupID": 86,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 21,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_21",
+    "Desc_en": "STATUS EFFECT RESISTANCE {0}"
+  },
+  {
+    "id": 335,
+    "GroupID": 86,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 336,
+    "GroupID": 87,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 337,
+    "GroupID": 87,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 338,
+    "GroupID": 87,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 339,
+    "GroupID": 87,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 6,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY {0}"
+  },
+  {
+    "id": 340,
+    "GroupID": 87,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 341,
+    "GroupID": 87,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 21,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_21",
+    "Desc_en": "STATUS EFFECT RESISTANCE {0}"
+  },
+  {
+    "id": 342,
+    "GroupID": 87,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 343,
+    "GroupID": 87,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 344,
+    "GroupID": 88,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 345,
+    "GroupID": 88,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 346,
+    "GroupID": 88,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 347,
+    "GroupID": 88,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 6,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_6",
+    "Desc_en": "HP RECOVERY {0}"
+  },
+  {
+    "id": 348,
+    "GroupID": 88,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 349,
+    "GroupID": 88,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 21,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_21",
+    "Desc_en": "STATUS EFFECT RESISTANCE {0}"
+  },
+  {
+    "id": 350,
+    "GroupID": 88,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 351,
+    "GroupID": 88,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 5,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_5",
+    "Desc_en": "MAX HP {0}"
+  },
+  {
+    "id": 352,
+    "GroupID": 88,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 353,
+    "GroupID": 91,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 41,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 354,
+    "GroupID": 91,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 355,
+    "GroupID": 92,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 42,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 356,
+    "GroupID": 92,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 357,
+    "GroupID": 92,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 42,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 358,
+    "GroupID": 93,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 43,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 359,
+    "GroupID": 93,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 360,
+    "GroupID": 93,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 43,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 361,
+    "GroupID": 93,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 362,
+    "GroupID": 94,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 363,
+    "GroupID": 94,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 364,
+    "GroupID": 94,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 365,
+    "GroupID": 94,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 366,
+    "GroupID": 94,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 367,
+    "GroupID": 95,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 368,
+    "GroupID": 95,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 369,
+    "GroupID": 95,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 370,
+    "GroupID": 95,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 371,
+    "GroupID": 95,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 372,
+    "GroupID": 95,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 4,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_4",
+    "Desc_en": "SKILL COOLDOWN {0}"
+  },
+  {
+    "id": 373,
+    "GroupID": 96,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 374,
+    "GroupID": 96,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 375,
+    "GroupID": 96,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 376,
+    "GroupID": 96,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 377,
+    "GroupID": 96,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 378,
+    "GroupID": 96,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 4,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_4",
+    "Desc_en": "SKILL COOLDOWN {0}"
+  },
+  {
+    "id": 379,
+    "GroupID": 96,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 380,
+    "GroupID": 97,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 381,
+    "GroupID": 97,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 60,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 382,
+    "GroupID": 97,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 383,
+    "GroupID": 97,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 384,
+    "GroupID": 97,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 385,
+    "GroupID": 97,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 4,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_4",
+    "Desc_en": "SKILL COOLDOWN {0}"
+  },
+  {
+    "id": 386,
+    "GroupID": 97,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 387,
+    "GroupID": 97,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 388,
+    "GroupID": 98,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 389,
+    "GroupID": 98,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 390,
+    "GroupID": 98,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 391,
+    "GroupID": 98,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 392,
+    "GroupID": 98,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 393,
+    "GroupID": 98,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 4,
+    "Value": 70,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_4",
+    "Desc_en": "SKILL COOLDOWN {0}"
+  },
+  {
+    "id": 394,
+    "GroupID": 98,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 395,
+    "GroupID": 98,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 12,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_12",
+    "Desc_en": "SKILL DAMAGE {0}"
+  },
+  {
+    "id": 396,
+    "GroupID": 98,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 397,
+    "GroupID": 101,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 41,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 398,
+    "GroupID": 101,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 399,
+    "GroupID": 102,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 42,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 400,
+    "GroupID": 102,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 401,
+    "GroupID": 102,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 42,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 402,
+    "GroupID": 103,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 43,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 403,
+    "GroupID": 103,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 404,
+    "GroupID": 103,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 43,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 405,
+    "GroupID": 103,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 9,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE {0}"
+  },
+  {
+    "id": 406,
+    "GroupID": 104,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 407,
+    "GroupID": 104,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 408,
+    "GroupID": 104,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 409,
+    "GroupID": 104,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 9,
+    "Value": 30,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE {0}"
+  },
+  {
+    "id": 410,
+    "GroupID": 104,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 44,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 411,
+    "GroupID": 105,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 412,
+    "GroupID": 105,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 413,
+    "GroupID": 105,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 414,
+    "GroupID": 105,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 9,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE {0}"
+  },
+  {
+    "id": 415,
+    "GroupID": 105,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 45,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 416,
+    "GroupID": 105,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 11,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_11",
+    "Desc_en": "BAG {0}"
+  },
+  {
+    "id": 417,
+    "GroupID": 106,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 418,
+    "GroupID": 106,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 419,
+    "GroupID": 106,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 420,
+    "GroupID": 106,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 9,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE {0}"
+  },
+  {
+    "id": 421,
+    "GroupID": 106,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 422,
+    "GroupID": 106,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 11,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_11",
+    "Desc_en": "BAG {0}"
+  },
+  {
+    "id": 423,
+    "GroupID": 106,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 46,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 424,
+    "GroupID": 107,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 425,
+    "GroupID": 107,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 426,
+    "GroupID": 107,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 427,
+    "GroupID": 107,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 9,
+    "Value": 50,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE {0}"
+  },
+  {
+    "id": 428,
+    "GroupID": 107,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 429,
+    "GroupID": 107,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 11,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_11",
+    "Desc_en": "BAG {0}"
+  },
+  {
+    "id": 430,
+    "GroupID": 107,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 47,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 431,
+    "GroupID": 107,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 8,
+    "Value": 100,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_8",
+    "Desc_en": "MOVE SPEED {0}"
+  },
+  {
+    "id": 432,
+    "GroupID": 108,
+    "Level": 1,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 433,
+    "GroupID": 108,
+    "Level": 10,
+    "GrantType": 1,
+    "OptionType": 10,
+    "Value": 200,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_10",
+    "Desc_en": "ATTACK SPEED {0}"
+  },
+  {
+    "id": 434,
+    "GroupID": 108,
+    "Level": 20,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 435,
+    "GroupID": 108,
+    "Level": 30,
+    "GrantType": 1,
+    "OptionType": 9,
+    "Value": 70,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_9",
+    "Desc_en": "CRITICAL CHANCE {0}"
+  },
+  {
+    "id": 436,
+    "GroupID": 108,
+    "Level": 40,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 437,
+    "GroupID": 108,
+    "Level": 50,
+    "GrantType": 1,
+    "OptionType": 11,
+    "Value": 300,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_11",
+    "Desc_en": "BAG {0}"
+  },
+  {
+    "id": 438,
+    "GroupID": 108,
+    "Level": 60,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  },
+  {
+    "id": 439,
+    "GroupID": 108,
+    "Level": 70,
+    "GrantType": 1,
+    "OptionType": 8,
+    "Value": 150,
+    "Desc": "RUNE_LEVELBONUS_OPTION_TYPE_NAME_8",
+    "Desc_en": "MOVE SPEED {0}"
+  },
+  {
+    "id": 440,
+    "GroupID": 108,
+    "Level": 80,
+    "GrantType": 2,
+    "OptionType": 0,
+    "Value": 48,
+    "Desc": "RUNE_LV_BONUS_ATTRIBUTE",
+    "Desc_en": "Grants 1 random attribute"
+  }
+]

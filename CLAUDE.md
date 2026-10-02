@@ -137,7 +137,11 @@ js/
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
-data/*.json                 44 extracted, typed, English-labeled game-balance tables
+data/*.json                 71 extracted, typed, English-labeled game-balance tables
+                             (this count has drifted upward many times as the
+                             project went on — see the chronological log
+                             below for what each addition was, rather than
+                             trusting this number to stay current for long)
 assets/img/weapons/          84 icons, filename = WeaponData.id
 assets/img/heroes/           24 icons, filename = CostumeData.id
 assets/img/items/            56 icons, filename = StackableItemData.PackageIcon (104
@@ -2001,6 +2005,178 @@ a full 6-tab sweep showed zero new console/page errors. Screenshots
 confirmed the buttons render at a comfortable thumb-sized tap target on
 both the hero and weapon detail modals, phone width included.
 
+## Rune system (2026-10-02)
+
+User asked what else should be added given everything learned about the
+game, was offered three concrete options via `AskUserQuestion` (the Rune
+system, the already-extracted-but-unwired Gift Chest spawn map, or a
+slider gauge-texture reskin) and picked the Rune system — the single
+largest confirmed-real gap this project had tracked (see Open Items: 9
+real data tables extracted back on 2026-10-01 during the "Boss Raid /
+Challenge Tower / Hero's Tomb rewards" session, but only one of them
+(`HeroTombRuneDropData`) ever got committed or wired in, with the rest
+explicitly parked as "a real new feature, not a quick table swap").
+
+**The scratchpad was still intact** (this session picked up the same
+`02f52606-...` session lineage), so no fresh APK pull was needed — the 8
+remaining raw Rune tables plus the full raw Locale table were sitting
+exactly where the prior session's own notes said they'd be
+(`unity_work/textassets/Rune*.json`).
+
+**What the data actually shows, confirmed by reading real rows rather
+than trusting the prior session's one-line summary** (which had called
+`RuneData` "115 rows, one per hero/costume" — true as a row count, false
+as a description once actually checked):
+- **115 `RuneData` rows split into two genuinely different kinds of
+  rune.** 43 rows (`TypeID 1`, "HERO RUNE") are hero-specific — tied to a
+  real `CostumeID` — covering 24 of this game's heroes (3 heroes, e.g.
+  Cupid, have 2 distinct named runes; the rest have exactly 1; the other
+  ~90 heroes have none yet). The other 72 rows (`TypeID 101/102/103` =
+  Melee/Ranged/Universal) all share `CostumeID 0` (equippable on any
+  hero) and break down as 3 named subtypes × 8 grades each (Melee:
+  Sword/Blunt/Dagger; Ranged: Gun/Staff/Bow; Universal:
+  Skill/Utility/Protect) — confirmed by checking the real per-subtype
+  `icon` field, not assumed from the name alone.
+- **Grade is baked into which row is equipped, not a separate player
+  stat** — exactly like a `WeaponData` fusion chain (confirmed by the
+  data itself: the 3 Melee subtypes each have 8 separate `RuneData` rows,
+  one per grade, each with its own `icon`/`prefab`/`level_bonus_group_id`
+  — not one row with a mutable grade field). Hero runes, by contrast,
+  only ever have 1 row per named rune at a single fixed `GradeID` (e.g.
+  both Cupid runes sit at grade 4, not grade 1) — there's no "fuse a hero
+  rune to a higher grade" mechanic visible in this data at all.
+  `RuneGradeData` (8 rows, `MaxLevel` 10/20/30.../80 per grade, 1:1 with
+  this game's real 1-8 rarity scale) gives each grade's level ceiling.
+- **The rune's own "Unique Option" (`RuneUniqueOptionData`, 115 rows,
+  1:1 via `UniqueOptionID`) is a real `base_value + value_per_level ×
+  level` formula** — and for hero runes specifically, its `Desc_en`
+  field is a genuine `{0}%`-templated description straight from the
+  game's own Locale (e.g. "Bonus Skill Damage increases by {0}%."),
+  confirmed present (not guessed) by actually reading the resolved
+  value, complete with a `<color=#0D9538>` rich-text tag the game's own
+  UI would render but this app's plain-text rendering strips (new
+  `stripRichText()` helper, `ui-common.js`). The 3 generic Melee/Ranged/
+  Universal families do **not** have a real description template at
+  all — every single one of their `Desc_en` values is just the plain
+  rarity-tier word ("Normal"/"Fine"/etc.), confirmed by checking every
+  row, not a one-off — so for those, `Formulas.runeUniqueOption()`
+  builds its own `"<Stat> +X%"` line from `RuneOptionTypeData`'s real
+  stat name (confirmed: `OptionType` codes 5/11/12/23-28 resolve
+  cleanly there — HP/Bag/Skill Damage/Dagger-Sword-Morningstar-Gun-
+  Wand-Crossbow Damage) instead of surfacing that rarity word as if it
+  were the effect text. **A real bug caught during Playwright
+  verification, fixed before shipping**: the first version of this
+  function applied the hero-rune `{0}`-template path universally, which
+  rendered a generic Dagger Rune's stat line as the literal word
+  "Normal" — caught by actually looking at the rendered screenshot, not
+  assumed correct from the code.
+- **Level-milestone bonuses** (`RuneLevelBonusGroupData`, 440 rows, keyed
+  by `GroupID` off `RuneData.LevelBonusGroupID` — same shape as
+  `WeaponLevelUpBonusGroup`) split into two real `GrantType` values:
+  `GrantType 1` (200 rows) is a confirmed fixed stat bonus with a real
+  `{0}`-templated desc (e.g. "TOTAL POWER {0}"); `GrantType 2` (240
+  rows) is a genuinely different mechanic — its own desc resolves to
+  "Grants 1 random attribute" with no further table describing what
+  gets rolled or how — shown honestly as locked/unresolved (🎲 icon,
+  "roll mechanic not decoded") rather than guessed at, per this
+  project's standing norm.
+- **Leveling cost and "break" (dismantle) refund** (`RuneLevelCostData`/
+  `RuneBreakRewardData`, 1440 rows each, keyed by `TypeID`+`GradeID`+
+  `Level` — shared across every named rune of that type/grade, not
+  per-specific-rune) resolve via the exact same `StackableItemData.Type`
+  convention this app's whole reward/cost pipeline already uses (e.g.
+  cost type `4002` → Rune Dust, confirmed zero-orphan). Shown as
+  informational text only ("Cost to reach Lv N: ...") — this app tracks
+  no currency/material inventory anywhere, same convention as the
+  existing weapon Scroll-cost display.
+- **No decompiled evidence ties Runes into the confirmed Dps formula**
+  (`docs/game_logic_deep_dive.md` doesn't mention Runes at all, and this
+  session didn't attempt new decompilation work to go looking) — so
+  Runes are shown as their own standalone stat panel on the hero, with
+  an explicit in-UI caveat, and are deliberately **not** folded into the
+  Guide tab's Total DPS estimate. This is the same discipline as
+  `CostumeOwnGradeOption`/`CostumeOwnLevelOption` being left `unmodeled`
+  rather than presenting an unconfirmed mapping as fact.
+
+**Real art, not placeholders.** Hero runes reuse the hero's own already-
+extracted portrait (`RuneData.Icon` for a hero rune is literally the
+same path as that hero's `CostumeData.IconSprite` — confirmed by
+checking the raw field, not assumed — so `Game.runeIcon()` just calls
+the existing `Game.heroIcon()` for these, zero new art needed). The 9
+generic Melee/Ranged/Universal icons (`Img_Rune_{Red,Blue,Yellow}_
+{Sword,Mace,Dagger,Crossbow,Wand,Gun,Defense,Skill,Utility}_S128`) were
+genuinely missing and got extracted fresh via the same UnityPy
+`Sprite.image` technique this project always uses, straight from the
+still-intact unpacked base APK (confirmed real icon art by viewing each
+exported PNG before shipping, same verification discipline as every
+prior art-recovery session) — saved to the new `assets/img/runes/`
+folder. Grade/rarity chrome (ring/ribbon/grade-plate) needed no new
+extraction at all — `RuneGradeData.Rarity` maps directly onto this
+app's existing 1-9 rarity scale, so `rarityStyle()`/`rarityTag()` just
+work as-is.
+
+**Shipped**: 8 new `data/Rune*.json` tables (typed + Locale-resolved
+via a one-off Python conversion script, following this project's usual
+convention — raw field names preserved, `_en` suffix added for
+resolved text); `assets/img/runes/` (9 new icons);
+`Game.index.rune*`/`Game.runeIcon()` (`data.js`);
+`Formulas.runeMaxLevel()`/`runeUniqueOption()`/`runeLevelBonusRows()`/
+`runeCostForLevel()`/`runeBreakRewardForLevel()` (`formulas.js`);
+`stripRichText()` (`ui-common.js`); a new "Rune" section in the hero
+enhance modal (`js/ui-heroes.js`) — equip/level/remove, reusing the
+`levelControlHTML`/`wireLevelControl` step-button sliders shipped
+earlier this same day, plus a "Choose a Rune" picker modal with 4 tabs
+(the hero's own named rune(s), and the 3 generic families' full 8-grade
+card lists) following the exact same flat-picker-grid pattern already
+established for weapons (no "fuse" UI — like weapons, you just pick
+whichever exact grade-tier card matches your real in-game rune, same as
+picking a specific fused weapon rarity directly from its picker); a new
+`rune: {runeDataId, level} | null` field per hero in `State` (round-
+trips cleanly through Export/Import with zero special-casing, verified).
+
+**A real mobile-layout bug found and fixed during Playwright
+verification, same session**: the Rune panel's header row (icon + name/
+tags + Change/Remove buttons) overflowed the viewport at phone width —
+traced to the classic CSS Grid "a child's intrinsic min-content width
+doesn't shrink to fit a `1fr` track" issue (same root-cause *class* as
+the Monsters-tab mobile bug fixed earlier this same day, a different
+specific trigger: this time a bare `.stat-pill` — a component built for
+short name:value pairs like "Atk Speed: 2.7/s" — being used for a full
+sentence-length rune description, which doesn't wrap and forced the
+whole grid column wider than the modal). Fixed two ways: swapped that
+`.stat-pill` for a `.milestone-row` (already proven to wrap correctly
+elsewhere in this exact modal), and restructured the header's Change/
+Remove buttons out of a fragile `flex-wrap`-on-one-row layout into their
+own explicit second row using the already-proven `.action-row` pattern,
+rather than relying on flex-wrap alone (which, when first tried, wrapped
+the buttons on top of the tags row instead of cleanly below it). New
+CSS: `.rune-panel`. Verified via the same `getBoundingClientRect()`
+widest-element sweep used in the mobile-layout work earlier today —
+zero elements exceeding the viewport afterward, screenshots confirmed
+clean wrapping with no overlap.
+
+Verified end-to-end with Playwright: equipped a hero's own named rune,
+stepped its level 1→3 via the new slider buttons (description and cost
+both recomputed correctly at each step — "1.05%"→"1.15%", "14 Rune
+Dust"→"17 Rune Dust + 2 BlueStone"), switched to the Melee tab (24
+cards = 3 subtypes × 8 grades, confirmed), equipped a generic Dagger
+Rune and confirmed its stat line now reads "DAGGER DAMAGE +0.11%" (the
+generic-rune bug fix), removed the rune and confirmed the panel reverts
+to "Choose a Rune," a full 6-tab desktop sweep plus the full mobile flow
+above — zero console/page errors throughout, zero horizontal overflow.
+
+**Deliberately not pursued this session** (parking these honestly rather
+than guessing): what `GrantType 2`'s random-attribute roll actually
+picks from or how (would need new decompilation work, not just data
+reading); whether Runes feed into the real Dps formula at all (same —
+no decompiled evidence either way); a "fuse a generic rune to the next
+grade" convenience flow (this app has never modeled owning multiple
+copies of anything or a fuse/convert action — equipping is pick-the-
+exact-row-you-have, same as weapons, so this wasn't a gap specific to
+Runes); and the Gift Chest spawn map / slider gauge-texture reskin
+options the user didn't pick this time (still open, still real, see
+Open Items).
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -2624,6 +2800,37 @@ both the hero and weapon detail modals, phone width included.
     reset to zero → sign back in → confirmed the build and `activeSaveId`
     both correctly restored). Full writeup in "Auto-sync cloud saves"
     above.
+36. User asked for a mobile layout (fixed bottom tab bar, compact header,
+    overflow menu for Import/Export/Reset) so phones/tablets get a
+    purpose-built nav instead of the desktop header reflowing awkwardly
+    — full writeup in "Mobile layout" above, including a real pre-existing
+    bug it surfaced (the Monsters tab's 245-card grid was inflating the
+    mobile layout viewport past the device width) fixed with a global
+    `overflow-x: hidden`. Same-day follow-up: user asked for −/+ step
+    buttons next to every slider so a value can be nudged by exactly 1
+    via a click instead of a precise drag — shipped as shared
+    `levelControlHTML()`/`wireLevelControl()` helpers in `ui-common.js`,
+    replacing every bare slider in the hero and weapon detail modals
+    (full writeup in "Slider step buttons" above). Same-day follow-up
+    again: asked what other features made sense given everything learned
+    about the game; offered 3 concrete options via `AskUserQuestion`
+    (Rune system / Gift Chest spawn map / slider gauge-texture reskin)
+    and picked the Rune system, the largest real gap this project had
+    tracked. Picked up the 8 Rune data tables extracted-but-never-
+    committed back on 2026-10-01, found the real hero-rune-vs-generic-
+    rune-family structure by actually reading rows rather than trusting
+    the prior session's one-line summary, extracted 9 new real icon
+    sprites for the 3 generic rune families, and shipped a full equip/
+    level/remove UI in the hero enhance modal — deliberately NOT wired
+    into the Total DPS estimate (no decompiled evidence ties Runes to
+    the confirmed Dps formula). Caught and fixed two real bugs before
+    shipping: a generic rune's stat line rendering the literal word
+    "Normal" instead of its real stat name (caught by reviewing a
+    screenshot, not just the code), and a mobile-viewport overflow in
+    the new Rune panel (same root-cause class as the Monsters-tab bug
+    from earlier the same day — a non-wrapping component used for
+    content it wasn't designed to hold). Full writeup in "Rune system"
+    above.
 
 ## Open items / plausible next steps (not started)
 
@@ -2651,28 +2858,21 @@ both the hero and weapon detail modals, phone width included.
   the realistic single-user-multi-device case this was built for, but
   worth real design if this app ever needs to handle two tabs/devices
   editing concurrently.
-- **Updated 2026-10-01 (see "Boss Raid / Challenge Tower / Hero's Tomb
-  rewards" above)**: the "Rune" reward type flagged here is now mostly
-  understood, not just discovered. `RewardType==1` in `RewardGroupData`
-  (resolved via `StackableItemData.Type`, confirmed across all 898 rows of
-  that type, zero orphans) turned out to cover Rune Powder, Raid Souls,
-  Weapon Pieces, and more — enough to wire `BossRaidStageData` and
-  `HeroTombRuneDropData` (via its own `HeroTombRuneDropData`) into real
-  Farmable Items sources without needing the Rune *equip* system built
-  first. **What's still genuinely open**: the actual Rune system itself —
-  equipping a Rune on a hero, leveling it, its own stat contribution to
-  the Dps formula. All 9 of its real data tables were extracted this
-  session and are sitting in the scratchpad
-  (`unity_work/textassets/Rune*.json`, `HeroTombRuneDropData.json`) but
-  only committed to `data/` for the one (`HeroTombRuneDropData`) this
-  session actually used — `RuneData`/`RuneGradeData`/`RuneTypeData`/
-  `RuneOptionTypeData`/`RuneUniqueOptionData`/`RuneLevelBonusGroupData`/
-  `RuneLevelCostData`/`RuneBreakRewardData` are extracted but not yet
-  committed or wired into any UI. This is a real new feature (its own
-  equip slots, its own detail modal, its own Dps source) not a quick
-  table swap — would need a fresh APK re-pull only if the scratchpad is
-  gone by the time this is picked up; otherwise the raw files are already
-  in hand, just not yet converted/committed.
+- **Updated 2026-10-02 (see "Rune system" above) — this item is now
+  shipped, not open.** The Rune equip/level/remove system is live in the
+  hero enhance modal: all 9 data tables committed and wired in, 9 new
+  icon sprites extracted for the 3 generic Melee/Ranged/Universal rune
+  families (hero-specific runes reuse the hero's own existing portrait
+  art), real formulas for the unique-option stat line and level-milestone
+  bonuses. **What's still genuinely open, stated honestly rather than
+  guessed at**: `GrantType 2` level-bonus rows ("grants 1 random
+  attribute") have no decoded roll mechanic — shown locked/unresolved,
+  not guessed; no decompiled evidence ties Runes into the real Dps
+  formula at all, so they're deliberately not folded into the Guide
+  tab's Total DPS estimate; `HeroTombRuneDropData`'s own
+  `gacha_reward_id`/`gacha_reward_count`/`gacha_reward_drop_rate` fields
+  (flagged back on 2026-10-01) remain a separate, still-unexplored
+  bonus-roll layer.
 - **Updated 2026-09-30 (see "Monster portrait recovery" chronological log
   entry)**: the "likely a remote-only AssetBundle this extraction can't
   reach" theory above was tested directly, not just assumed — the live

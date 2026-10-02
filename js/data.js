@@ -24,6 +24,9 @@ const DATA_FILES = [
   'SevenDayCarnivalRewardData', 'QuestData', 'BossRaidRankingRewardData',
   'FivePackGiftRewardData', 'FootboardProductRVRewardData', 'NewCostumeRevenuePassRewardData',
   'ShopItemSources', 'CraftableItems',
+  'RuneData', 'RuneGradeData', 'RuneTypeData', 'RuneOptionTypeData',
+  'RuneUniqueOptionData', 'RuneLevelBonusGroupData', 'RuneLevelCostData',
+  'RuneBreakRewardData',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -573,9 +576,38 @@ const Game = {
     idx.soulTypeByOptionType = new Map(this.db.SoulUpgradeTypeData.map(s => [s.OptionType, s]));
     idx.soulLevelsByOptionType = groupBy(this.db.SoulUpgradeLevelData, s => s.OptionType);
     for (const arr of idx.soulLevelsByOptionType.values()) arr.sort((a, b) => a.Level - b.Level);
+
+    // Rune system (extracted 2026-10-01, wired in 2026-10-02 — see
+    // CLAUDE.md "Rune system" for the full data-shape investigation).
+    // RuneData.CostumeID === 0 means one of the 3 generic Melee/Ranged/
+    // Universal rune families (equippable on any hero); nonzero means a
+    // hero-specific named rune. Each row is one equip-able "instance"
+    // (like a WeaponData fusion-chain link) — grade is baked into which
+    // row you pick, not a separately-tracked player stat.
+    idx.runeById = new Map(this.db.RuneData.map(r => [r.id, r]));
+    idx.runesByCostumeId = groupBy(this.db.RuneData, r => r.CostumeID);
+    idx.runeGradeById = new Map(this.db.RuneGradeData.map(g => [g.id, g]));
+    idx.runeTypeById = new Map(this.db.RuneTypeData.map(t => [t.id, t]));
+    idx.runeOptionTypeByType = new Map(this.db.RuneOptionTypeData.map(o => [o.OptionType, o]));
+    idx.runeUniqueOptionById = new Map(this.db.RuneUniqueOptionData.map(o => [o.id, o]));
+    idx.runeLevelBonusByGroup = groupBy(this.db.RuneLevelBonusGroupData, r => r.GroupID);
+    for (const arr of idx.runeLevelBonusByGroup.values()) arr.sort((a, b) => a.Level - b.Level);
+    idx.runeLevelCostByKey = new Map(this.db.RuneLevelCostData.map(r => [`${r.TypeID}:${r.GradeID}:${r.Level}`, r]));
+    idx.runeBreakRewardByKey = new Map(this.db.RuneBreakRewardData.map(r => [`${r.TypeID}:${r.GradeID}:${r.Level}`, r]));
   },
 
   weaponIcon(weapon) { return `assets/img/weapons/${weapon.id}.png`; },
+  // Hero-specific runes reuse the hero's own portrait (RuneData.Icon
+  // literally points at the same CostumeData.IconSprite path, confirmed
+  // by checking the raw extracted field — not a guess); the 3 generic
+  // rune families use their own real extracted icon set.
+  runeIcon(rune) {
+    if (rune.CostumeID) {
+      const c = this.index.costumeById.get(rune.CostumeID);
+      if (c) return this.heroIcon(c);
+    }
+    return `assets/img/runes/${rune.Icon.split('/').pop()}.png`;
+  },
   heroIcon(costume) { return `assets/img/heroes/${costume.id}.png`; },
   itemIcon(item) { return `assets/img/items/${item.PackageIcon}.png`; },
   enemyIcon(enemy) { return `assets/img/enemies/${enemy.IconSprite}.png`; },

@@ -82,6 +82,15 @@ function weaponClassName(catId) {
   return c ? c.Class_Name_en : '';
 }
 
+// Strips Unity rich-text tags (e.g. `<color=#0D9538>...</color>`) that show
+// up raw in a handful of description strings pulled straight from the
+// game's own Locale table (RuneUniqueOptionData.Desc_en, confirmed present
+// on ~40% of its rows) — this app renders plain text via escapeHtml, so an
+// un-stripped tag would otherwise show up as literal visible text.
+function stripRichText(s) {
+  return (s || '').replace(/<\/?color[^>]*>/gi, '');
+}
+
 function onImgError(img) {
   img.onerror = null;
   img.style.opacity = '0.25';

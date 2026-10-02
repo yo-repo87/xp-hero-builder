@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "Rarity": 1,
+    "MaxLevel": 10,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Nomal_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Nomal_Frame_S128"
+  },
+  {
+    "id": 2,
+    "Rarity": 2,
+    "MaxLevel": 20,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Fine_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Fine_Frame_S128"
+  },
+  {
+    "id": 3,
+    "Rarity": 3,
+    "MaxLevel": 30,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Rare_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Rare_Frame_S128"
+  },
+  {
+    "id": 4,
+    "Rarity": 4,
+    "MaxLevel": 40,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Epic_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Epic_Frame_S128"
+  },
+  {
+    "id": 5,
+    "Rarity": 5,
+    "MaxLevel": 50,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Legendary_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Legendary_Frame_S128"
+  },
+  {
+    "id": 6,
+    "Rarity": 6,
+    "MaxLevel": 60,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Ancient_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Ancient_Frame_S128"
+  },
+  {
+    "id": 7,
+    "Rarity": 7,
+    "MaxLevel": 70,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Mythic_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Mythic_Frame_S128"
+  },
+  {
+    "id": 8,
+    "Rarity": 8,
+    "MaxLevel": 80,
+    "HeroIconBackFrame": "Rune/Textures/Img_Rune_Exotic_Bg_S128",
+    "HeroIconFrontFrame": "Rune/Textures/Img_Rune_Exotic_Frame_S128"
+  }
+]

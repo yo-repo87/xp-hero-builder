@@ -81,7 +81,7 @@ const State = {
 
   addHero(costumeId) {
     if (this.data.heroes.some(h => h.costumeId === costumeId)) return;
-    const hero = { id: cryptoId(), costumeId, level: 1, starGrade: 1, evoRarity: 0 };
+    const hero = { id: cryptoId(), costumeId, level: 1, starGrade: 1, evoRarity: 0, rune: null }; // rune: {runeDataId, level} | null
     this.data.heroes.push(hero);
     if (this.data.activeHeroId === null) this.data.activeHeroId = hero.id;
     this.notify();

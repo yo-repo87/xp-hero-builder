@@ -239,6 +239,70 @@ const Formulas = {
     return { base, bonuses };
   },
 
+  // --- Runes ---------------------------------------------------------------
+  // Each equipped rune is one RuneData row (like a weapon fusion-chain
+  // link — grade is baked into which row is equipped, not a separate
+  // player stat) + a player-set level. No decompiled evidence ties Runes
+  // into the confirmed 17-source Dps formula (docs/game_logic_deep_dive.md
+  // doesn't mention Runes at all) — shown as its own stat panel, NOT folded
+  // into the Guide tab's Total DPS estimate, per this project's standing
+  // norm of not presenting an unconfirmed mapping as fact.
+
+  runeMaxLevel(rune) {
+    const grade = Game.index.runeGradeById.get(rune.GradeID);
+    return grade ? grade.MaxLevel : 1;
+  },
+
+  // The rune's own unique effect (RuneUniqueOptionData, base+perLevel*level).
+  // Hero-specific runes (OptionType 0) have a real `{0}%`-templated
+  // description straight from the game's own Locale (e.g. "Bonus Skill
+  // Damage increases by {0}%.") — used directly. The 3 generic Melee/
+  // Ranged/Universal rune families DON'T: their own Desc_en field is, on
+  // every single row, just the plain rarity-tier word ("Normal"/"Fine"/
+  // etc. — confirmed by checking every row, not a one-off) rather than a
+  // real description, so for those this builds "<Stat> +X%" from
+  // RuneOptionTypeData's real stat name instead of surfacing that rarity
+  // word as if it were the effect text. Rich-text `<color=...>` tags are
+  // stripped either way (see stripRichText in ui-common.js).
+  runeUniqueOption(rune, level) {
+    const opt = Game.index.runeUniqueOptionById.get(rune.UniqueOptionID);
+    if (!opt) return null;
+    const value = opt.BaseValue + opt.ValuePerLevel * level;
+    if (opt.OptionType === 0) {
+      return { opt, value, desc: stripRichText(opt.Desc_en).replace('{0}', fmtNum(value)) };
+    }
+    const statRow = Game.index.runeOptionTypeByType.get(opt.OptionType);
+    const statName = statRow ? statRow.Desc_en : `Option ${opt.OptionType}`;
+    return { opt, value, desc: `${statName} +${fmtNum(value)}%` };
+  },
+
+  // Level-milestone bonuses (RuneLevelBonusGroupData), same shape as
+  // weaponLevelBonusRows: every row in the rune's group, flagged
+  // unlocked/locked against the current level. GrantType 1 rows are a
+  // confirmed fixed stat bonus (real `{0}`-templated desc); GrantType 2
+  // ("grants 1 random attribute") is a real field but its actual roll
+  // mechanic was never decompiled — shown honestly, not guessed at.
+  runeLevelBonusRows(rune, level) {
+    const rows = Game.index.runeLevelBonusByGroup.get(rune.LevelBonusGroupID) || [];
+    return rows.map(row => ({
+      row,
+      unlocked: level >= row.Level,
+      desc: row.GrantType === 1 ? stripRichText(row.Desc_en).replace('{0}', fmtNum(row.Value)) : null,
+    }));
+  },
+
+  // Informational only (this app tracks no currency/material inventory
+  // anywhere — same convention as the weapon Scroll-cost display): what it
+  // costs to reach `level` from `level-1`, and what breaking the rune at
+  // `level` refunds. Both resolve real items via the same StackableItemData
+  // .Type convention used throughout this app's reward/cost pipeline.
+  runeCostForLevel(rune, level) {
+    return Game.index.runeLevelCostByKey.get(`${rune.TypeID}:${rune.GradeID}:${level}`) || null;
+  },
+  runeBreakRewardForLevel(rune, level) {
+    return Game.index.runeBreakRewardByKey.get(`${rune.TypeID}:${rune.GradeID}:${level}`) || null;
+  },
+
   // --- Ability / Extra / Special / Soul upgrade trees ---------------------
   // All four share a shape: a "type" catalog + a per-type level curve.
   // `level` is a plain integer counter the user dials up; we look up the
