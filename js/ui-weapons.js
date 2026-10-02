@@ -154,10 +154,7 @@ const WeaponsUI = {
             </div>
 
             <h4 style="margin:14px 0 6px;font-size:.9rem">Upgrade Level</h4>
-            <div class="level-control">
-              <input type="range" id="lvl-slider" min="1" max="${maxLevel}" value="${draft.level}">
-              <span class="level-num mono" id="lvl-num">${draft.level} / ${maxLevel}</span>
-            </div>
+            ${levelControlHTML('lvl-slider', 1, maxLevel, draft.level, `${draft.level} / ${maxLevel}`)}
             <div class="stat-list">
               <div class="stat-pill"><span class="stat-name">Weapon DPS (this weapon's slice)</span><span class="stat-val">${fmtNum(dps.total)}</span></div>
               <div class="stat-pill"><span class="stat-name">Rarity Multiplier</span><span class="stat-val">×${fmtNum(dps.mult)}</span></div>
@@ -183,10 +180,7 @@ const WeaponsUI = {
           </div>
         </div>`;
 
-      document.getElementById('lvl-slider').addEventListener('input', (e) => {
-        draft.level = Number(e.target.value);
-        renderBody();
-      });
+      wireLevelControl('lvl-slider', (level) => { draft.level = level; renderBody(); });
       document.getElementById('back-btn').addEventListener('click', () => this.openPicker(slotIndex));
       document.getElementById('equip-btn').addEventListener('click', () => {
         State.setWeaponSlot(slotIndex, w.id);
@@ -235,7 +229,7 @@ const WeaponsUI = {
             <span class="stat-name" style="flex:1">${escapeHtml((opt.PropertyName_en || '').replace('{0}', ''))}</span>
             <span class="stat-val">${checked ? `+${fmtNum((val - 1) * 100)}%` : '—'}</span>
           </label>
-          ${checked ? `<input type="range" data-affix-roll="${opt.id}" min="0" max="100" value="${pct}">` : ''}
+          ${checked ? levelControlHTML(`affix-roll-${opt.id}`, 0, 100, pct, `${pct}%`) : ''}
         </div>`;
     }).join('');
   },
@@ -252,13 +246,8 @@ const WeaponsUI = {
         rerender();
       });
     });
-    document.querySelectorAll('[data-affix-roll]').forEach(sl => {
-      sl.addEventListener('input', (e) => {
-        const id = Number(e.target.dataset.affixRoll);
-        const roll = draft.bonusRolls.find(r => r.optionId === id);
-        if (roll) roll.pct = Number(e.target.value);
-        rerender();
-      });
+    draft.bonusRolls.forEach(roll => {
+      wireLevelControl(`affix-roll-${roll.optionId}`, (pct) => { roll.pct = pct; rerender(); });
     });
   },
 };

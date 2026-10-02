@@ -347,9 +347,16 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 .stat-pill .stat-name { color: var(--ink-muted); }
 .stat-pill .stat-val { font-weight: 800; color: #a5580e; font-family: 'JetBrains Mono', monospace; }
 
-.level-control { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
-.level-control input[type=range] { flex: 1; accent-color: var(--gold); height: 14px; }
+.level-control { display: flex; align-items: center; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+.level-control input[type=range] { flex: 1; min-width: 80px; accent-color: var(--gold); height: 14px; }
 .level-control .level-num { min-width: 64px; text-align: right; font-weight: 800; font-family: 'JetBrains Mono', monospace; color: var(--ink); }
+.lc-step {
+  width: 32px; height: 32px; flex-shrink: 0; border-radius: 8px; border: none;
+  background: #2e2013; color: #f0d9b8; cursor: pointer; font-weight: 800; font-size: 1.1rem; line-height: 1;
+}
+.lc-step:hover { background: #1c1409; }
+.lc-step:active { transform: scale(0.92); }
+.lc-step:disabled { opacity: 0.35; cursor: not-allowed; }
 
 .action-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
 

@@ -101,23 +101,14 @@ const HeroesUI = {
             </div>
 
             <h4 class="section-head"><span class="section-head-icon">⬆</span>Level Up</h4>
-            <div class="level-control">
-              <input type="range" id="lvl-slider" min="1" max="${c.Max_Lv}" value="${hero.level}">
-              <span class="level-num mono" id="lvl-num">${hero.level} / ${c.Max_Lv}</span>
-            </div>
+            ${levelControlHTML('lvl-slider', 1, c.Max_Lv, hero.level, `${hero.level} / ${c.Max_Lv}`)}
 
             <h4 class="section-head"><span class="section-head-icon">★</span>Upgrade <span class="section-head-sub">(Star Grade)</span></h4>
-            <div class="level-control">
-              <input type="range" id="star-slider" min="1" max="${c.Max_Grade}" value="${hero.starGrade}">
-              <span class="level-num mono">${rarityStar(true)}${hero.starGrade} / ${c.Max_Grade}</span>
-            </div>
+            ${levelControlHTML('star-slider', 1, c.Max_Grade, hero.starGrade, `${rarityStar(true)}${hero.starGrade} / ${c.Max_Grade}`)}
 
             ${evoRows.length ? `
             <h4 class="section-head"><span class="section-head-icon">👑</span>Evolve</h4>
-            <div class="level-control">
-              <input type="range" id="evo-slider" min="0" max="${evoRows[evoRows.length - 1].Rarity}" value="${hero.evoRarity}">
-              <span class="level-num mono">${hero.evoRarity === 0 ? 'None' : 'Tier ' + hero.evoRarity}</span>
-            </div>` : ''}
+            ${levelControlHTML('evo-slider', 0, evoRows[evoRows.length - 1].Rarity, hero.evoRarity, hero.evoRarity === 0 ? 'None' : 'Tier ' + hero.evoRarity)}` : ''}
 
             <h4 class="section-head" style="margin-top:16px">Stat Bonuses Unlocked</h4>
             <div class="milestone-list">
@@ -138,18 +129,9 @@ const HeroesUI = {
           </div>
         </div>`;
 
-      document.getElementById('lvl-slider').addEventListener('input', (e) => {
-        State.updateHero(heroId, { level: Number(e.target.value) });
-        renderBody();
-      });
-      document.getElementById('star-slider').addEventListener('input', (e) => {
-        State.updateHero(heroId, { starGrade: Number(e.target.value) });
-        renderBody();
-      });
-      document.getElementById('evo-slider')?.addEventListener('input', (e) => {
-        State.updateHero(heroId, { evoRarity: Number(e.target.value) });
-        renderBody();
-      });
+      wireLevelControl('lvl-slider', (level) => { State.updateHero(heroId, { level }); renderBody(); });
+      wireLevelControl('star-slider', (starGrade) => { State.updateHero(heroId, { starGrade }); renderBody(); });
+      wireLevelControl('evo-slider', (evoRarity) => { State.updateHero(heroId, { evoRarity }); renderBody(); });
       document.getElementById('active-btn').addEventListener('click', () => {
         State.setActiveHero(hero.id);
         renderBody();

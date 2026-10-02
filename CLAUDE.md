@@ -1947,6 +1947,60 @@ still functioning, and a full desktop-viewport pass confirming the
 mobile nav stays `display:none` and the original header/tabs/actions
 render exactly as before (no regression from the new CSS/markup).
 
+## Slider step buttons (2026-10-02)
+
+User asked for "a set of buttons on any screen with a slider for
+adjusting levels one stat at a time rather than having to click on the
+slider every time... this would also help make the adjustments more
+accurate" — i.e. every bare `<input type=range>` in the app needed
+−/+ step buttons alongside it so a single click nudges the value by
+exactly 1, instead of needing to re-grab and drag the handle precisely
+(especially painful on a long range like a weapon's 1-130 level, or a
+touchscreen).
+
+This app already had two different existing patterns for numeric
+controls: a bare slider + readout (`.level-control`, used for hero
+level/star/evolution and weapon level) and a full −/+-button-plus-
+number-input `.stepper` (already used for the Ability/Extra/Special/
+Soul upgrade trees in the Equipment tab, which was never a slider to
+begin with). This request was specifically about the slider case —
+the stepper-based Equipment rows already had click-to-adjust buttons
+and needed no change.
+
+**Shipped**: two new shared helpers in `js/ui-common.js`,
+`levelControlHTML(id, min, max, value, labelHTML, step=1)` (renders the
+slider with a −/+ button on each side, auto-disabling a button once the
+value is already at that bound) and `wireLevelControl(id, onChange)`
+(wires the slider's own drag AND both buttons to one callback — every
+existing call site already had a full `renderBody()`/`rerender()` that
+recomputes everything else, so this only needed to hand back the new
+clamped value, not duplicate any state-update logic). Replaced every
+bare `.level-control` slider with this pair:
+- `js/ui-heroes.js` — level, star grade, and evolution tier sliders in
+  the hero enhance modal.
+- `js/ui-weapons.js` — the weapon upgrade-level slider, and the
+  per-affix roll% slider in the Rolled Bonus Affixes editor (this one
+  is dynamically keyed by `affix-roll-${opt.id}` since multiple can be
+  checked at once — `_wireAffixEvents` now loops `draft.bonusRolls` and
+  wires one `wireLevelControl` call per currently-checked affix).
+
+New CSS: `.lc-step` (32×32px dark circular-ish button matching the
+existing `.stepper button` look), plus `.level-control` gained
+`flex-wrap: wrap` and the slider got `min-width: 80px` so the row
+degrades gracefully rather than overflowing if ever squeezed
+(verified at phone width — see below — though in practice the existing
+`.detail-layout` single-column mobile breakpoint already gives this row
+plenty of room).
+
+Verified end-to-end with Playwright, both desktop and iPhone-13-width
+mobile viewports: hero level +1/+1/−1 clicks landed on the expected
+1→2→3→2 sequence and the − button correctly disabled at the min bound
+(1); weapon level and a checked affix's roll% both stepped correctly
+via their own buttons; zero horizontal overflow introduced on mobile;
+a full 6-tab sweep showed zero new console/page errors. Screenshots
+confirmed the buttons render at a comfortable thumb-sized tap target on
+both the hero and weapon detail modals, phone width included.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,

@@ -86,3 +86,35 @@ function onImgError(img) {
   img.onerror = null;
   img.style.opacity = '0.25';
 }
+
+// A slider flanked by −/+ step buttons, for every level/grade/roll-%
+// control in the app (hero level/star/evolution, weapon level, bonus
+// affix roll%). Clicking a button nudges the value by exactly one step
+// instead of needing to drag the slider precisely — more accurate, and
+// doesn't require re-grabbing the handle for every single adjustment.
+function levelControlHTML(id, min, max, value, labelHTML, step = 1) {
+  return `
+    <div class="level-control">
+      <button type="button" class="lc-step" data-lc="${id}" data-dir="-1" ${value <= min ? 'disabled' : ''} aria-label="Decrease">−</button>
+      <input type="range" id="${id}" min="${min}" max="${max}" step="${step}" value="${value}">
+      <button type="button" class="lc-step" data-lc="${id}" data-dir="1" ${value >= max ? 'disabled' : ''} aria-label="Increase">+</button>
+      <span class="level-num mono">${labelHTML}</span>
+    </div>`;
+}
+
+// Wires both the slider's own drag and its two step buttons to the same
+// onChange(value) callback — callers already have a full re-render that
+// recomputes everything else (DPS, milestones, etc.), so this only needs
+// to hand back the new clamped value.
+function wireLevelControl(id, onChange) {
+  const slider = document.getElementById(id);
+  if (!slider) return;
+  const min = Number(slider.min), max = Number(slider.max), step = Number(slider.step) || 1;
+  slider.addEventListener('input', (e) => onChange(Number(e.target.value)));
+  document.querySelectorAll(`[data-lc="${id}"]`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = Number(slider.value) + Number(btn.dataset.dir) * step;
+      onChange(Math.max(min, Math.min(max, next)));
+    });
+  });
+}
