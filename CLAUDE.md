@@ -160,23 +160,28 @@ assets/img/items/            56 icons, filename = StackableItemData.PackageIcon 
                               APK (the "Normal" tier's own GameObject in the APK turned out
                               to be an unrelated 3D world-pickup prop, not the 2D icon) —
                               see "More missing artwork recovery")
-assets/img/enemies/          172 portraits, filename = EnemyData.IconSprite (245
+assets/img/enemies/          185 portraits, filename = EnemyData.IconSprite (245
                               EnemyData rows share these — reused across chapter re-skins/
-                              raid difficulty tiers; 34 distinct IconSprite names across ~85
-                              rows still have no local art as of 2026-10-01 (down from 52 —
+                              raid difficulty tiers; 21 distinct IconSprite names across 32
+                              rows still have no local art as of 2026-10-03 (down from 52 —
                               see "Monster portrait recovery", "More missing artwork
-                              recovery", and "Why Anubis's art specifically was missing"
-                              chronological log entries below: 10 recovered 2026-09-30, 8
-                              more 2026-10-01, all confirmed real art — 6 of those 8 are
-                              full-body Boss Raid "reveal" key art under a completely
-                              different naming scheme (`Img_<Name>`) than the data field's
-                              `Face_CH1_RaidBoss_<Name>` implies, found by reading a bundle's
-                              full sprite list instead of grepping for the expected name).
+                              recovery", "Why Anubis's art specifically was missing", and
+                              "Decoding the real Addressables catalog" chronological log
+                              entries below: 10 recovered 2026-09-30, 8 more 2026-10-01, 13
+                              more 2026-10-03 — Hero's Tomb's full 13-name "shadow hero"
+                              costume gap, found via a real Addressables-catalog binary
+                              decode rather than bundle-content grepping — all confirmed real
+                              art. 6 of the 2026-10-01 batch are full-body Boss Raid "reveal"
+                              key art under a completely different naming scheme
+                              (`Img_<Name>`) than the data field's `Face_CH1_RaidBoss_<Name>`
+                              implies, found by reading a bundle's full sprite list instead
+                              of grepping for the expected name).
                               Remaining gap: 5 Chapter-1 raid bosses with no active
-                              `BossRaidStageData` rows (not currently rotating content) + 11
-                              Hero's Tomb enemy faces + 11 Hero's Tomb "shadow hero" costume
-                              icons — confirmed genuinely absent from the base+split APK
-                              *and* every live CDN bundle checked, not just unreached)
+                              `BossRaidStageData` rows (not currently rotating content) + 16
+                              Hero's Tomb enemy faces — confirmed genuinely absent from the
+                              base+split APK, every live CDN bundle checked, *and* (as of
+                              2026-10-03) the live Addressables catalog's own real key list,
+                              not just unreached)
 assets/img/chests/           3 icons, filename = ChestData.PrefabName
 assets/img/map/              21 real per-stage minimap tile images (chapters 1-3 only,
                               see data/StageMapLayout.json), filename = the game's own
@@ -2540,6 +2545,114 @@ properly rebuilt (`docker build`) and the container recreated from it
 deleted immediately after use — never left on disk) rather than just
 `docker cp`-patching the running container.
 
+## Decoding the real Addressables catalog, and 13 more missing portraits recovered (2026-10-03)
+
+User asked what else was worth doing and picked "chase the last missing
+artwork properly" — specifically, decoding the Addressables catalog's
+binary `m_BucketDataString`/`m_EntryDataString`/`m_KeyDataString` fields
+for a real key→bundle lookup, flagged as not-yet-done in Open Items ever
+since "Monster portrait recovery" (2026-09-30) first found this live CDN.
+Every prior art-recovery session (2026-09-30 through 2026-10-01, see the
+chronological log) worked by brute-force *enumerating bundle contents*
+and grepping for expected names — useful, but never actually used the
+catalog's own real key→location resolution logic, which is a different
+and more authoritative question ("what does the game's own Addressables
+system say this key resolves to," not "does this name appear in a
+bundle I happened to download").
+
+**Built a real decoder**, not a guess: `ContentCatalogData`'s 4 binary-
+packed fields follow Unity's own `com.unity.addressables` runtime
+serialization format exactly — `m_BucketDataString` is `[keyCount, then
+per-key: (offset-into-KeyData, entryCount, entry-indices[])]` as
+little-endian int32s; `m_KeyDataString` holds one tagged value per key
+(a 1-byte `ObjectType` enum + type-specific payload — ASCII/Unicode
+string, uint16/32, int32, Hash128, or a nested `SerializedType`); and
+`m_EntryDataString` is `[entryCount, then per-entry: 7 little-endian
+int32 fields]` (internalId index, provider index, dependency-key index,
+dep hash, extra-data index, primary-key index, resource-type index).
+Reimplemented this precisely in Python
+(`addrtools/decode_catalog.py` in the scratchpad), then **validated it
+against a known-good case before trusting it for anything new**:
+resolved `Face_Skin_DevilHunter` (a key whose containing bundle was
+already confirmed by brute force in the 2026-10-01 session) and got a
+real, internally-consistent entry back before using the tool on
+anything not already cross-checked.
+
+**The real finding, and it overturned the operating assumption of every
+prior art-recovery session**: `Costume/Costume_Face/Face_Skin_<Name>` is
+a real, complete key family in the catalog — one row per Hero's Tomb
+"shadow hero" costume, **all 26 of them**, including all 13 names every
+previous session had declared genuinely exhausted (Berserker, Cactus,
+Cat, Cop, Cow, Cupid, Dragon, Flame, Guardian, Pirate, Princess, Ranger,
+Skull). Every single one resolves via provider
+`LegacyResourcesProvider`, not `AssetBundleProvider` — meaning these
+assets were **never remote** at all. `LegacyResourcesProvider` means
+Unity's classic `Resources.Load()`, which only ever loads content
+compiled directly into the player build itself. Every prior session's
+negative result was real and correctly executed (these names genuinely
+aren't in any of the 15 downloaded bundles, because they were never
+going to be — they were sitting in the base APK's own serialized files
+the entire time, just never searched for under this specific
+`Face_Skin_<Name>` convention since every prior pass searched for
+`Face_HeroTomb_<Name>`/`HeroTomb_Costume_<Name>` instead, matching the
+*enemy data field's* own naming, not the asset's real name). Confirmed
+present in the base APK's own pre-existing 118,568-row asset catalog
+(`unity_work/asset_catalog.tsv`, from the original map-art session) by
+exact file-id lookup for all 13 before extracting — not assumed from the
+addressables key alone. Extracted via the project's usual `Sprite.image`
+technique, straight from the base APK's own serialized files (no
+download needed), and visually verified (not just non-zero file size)
+before shipping. 2 more generic-family names, `Face_Skin_Misty`/
+`Face_Skin_Vlad`, exist as real catalog keys but have no matching row in
+the (slightly older) local `asset_catalog.tsv` — likely added to the
+live game after that catalog scan was taken; not chased further this
+session since neither corresponds to any `HeroTomb_Costume_*` name this
+app's `EnemyData` actually references.
+
+**The same tool gave a real, stronger negative result for the other two
+still-missing categories**, not just silence. Both the 15 `Face_HeroTomb_*`
+enemy-face keys and the 5 `Face_CH1_RaidBoss_{Coffin,ExplosiveMummy,
+FrostBud,IceFlower,Mummy}` keys were searched for directly in the
+catalog's full real key list (not a bundle's content list) and
+**genuinely do not exist under any name** — the only catalog entries
+matching those monsters at all are their 3D `.prefab` keys (`herotomb/
+Enemy/HeroTomb_<Name>.prefab`, `bossraid/Enemy/CH1_RaidBoss_<Name>.prefab`)
+and unrelated VFX (`FX_*`/`B_*` bullet/effect keys) — no face/icon key
+of any kind. This is the authoritative version of "Exhausted the
+remaining 34"'s (2026-10-01) same conclusion, reached by asking the
+actual system that resolves these keys rather than inferring absence
+from what 15 downloaded bundles happened to contain.
+
+**Also properly re-chased the 7 missing Weapon Scroll tier item icons**
+with the same tool. `ArcadeWorld/Stackable/Stackable_WeaponScroll_<Tier>`
+*is* a real catalog key (confirmed back on 2026-10-01) and, like the
+Hero's Tomb faces, turned out to be `LegacyResourcesProvider` too — but
+resolves to a `GameObject`, not a `Sprite`/`Texture2D`. Opened that
+GameObject's real file directly: it has a `SpriteRenderer`, but its
+`m_Sprite` reference resolves (confirmed by walking the actual object
+reference, not assumed) to a generic `Shadow` sprite in a different
+file — the same "this is a 3D world-pickup prop with a generic ground
+shadow, not the item's own 2D icon" conclusion the 2026-10-01 session
+reached for the "Normal" tier specifically, now confirmed for the other
+7 tiers too via the real object graph rather than a name-based guess.
+Genuinely unrecoverable under any addressable key this game ships.
+
+**Shipped**: `HeroTomb_Costume_{Berserker,Cactus,Cat,Cop,Cow,Cupid,
+Dragon,Flame,Guardian,Pirate,Princess,Ranger,Skull}.png` in
+`assets/img/enemies/` — no code changes, same as every prior portrait
+recovery. Missing-enemy-portrait count: 34 → **21** (15 `Face_HeroTomb_*`
++ 5 `Face_CH1_RaidBoss_*`, now backed by the strongest evidence yet that
+they don't exist as addressable assets at all — not just "not found in
+a grep"). Missing-item-icon count unchanged at 7, now similarly
+confirmed via the real object graph rather than bundle enumeration. The
+decoder itself (`addrtools/decode_catalog.py` in the scratchpad) is a
+genuinely reusable tool for any future art/data chase against this
+game's live Addressables catalog — not committed to the repo (matches
+this project's existing convention of keeping one-off extraction
+tooling in the scratchpad, like `il2cpp_work/disas.py`), but the
+technique and validation method are fully written up here so a future
+session doesn't have to re-derive the binary format from scratch.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3258,6 +3371,25 @@ deleted immediately after use — never left on disk) rather than just
     confirming sign-in still completed. Full writeup, including the
     Docker-image-rebuild deployment note, in "OAuth mobile sign-in bug,
     found and fixed" above.
+40. User asked what else was worth doing and picked "chase the last
+    missing artwork properly" — decoding the Addressables catalog's
+    binary fields for a real key→bundle lookup, open since 2026-09-30.
+    Built and validated a real decoder for Unity's `ContentCatalogData`
+    binary format (bucket/key/entry structures), then used it to recover
+    all 13 still-missing Hero's Tomb costume icons at once — found they
+    follow a real `Costume/Costume_Face/Face_Skin_<Name>` convention
+    nobody had searched for (every prior session searched
+    `Face_HeroTomb_<Name>`/`HeroTomb_Costume_<Name>`, matching the data
+    field's own naming, not the asset's real name) and are
+    `LegacyResourcesProvider` entries — meaning they ship inside the base
+    APK itself, never remote, which is exactly why 15 bundles of brute-
+    force searching never found them. Also used the same tool to confirm,
+    via the catalog's actual key list rather than bundle-content
+    enumeration, that the remaining 21 missing enemy portraits and 7
+    missing Weapon Scroll icons genuinely have no addressable art asset
+    anywhere in the game — a stronger negative result than any prior
+    session reached. Full writeup in "Decoding the real Addressables
+    catalog, and 13 more missing portraits recovered" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -3314,10 +3446,19 @@ deleted immediately after use — never left on disk) rather than just
   42 (11 Chapter-1 raid-boss faces, 11 Hero's Tomb enemy faces, 15 more
   Hero's Tomb costume faces) were confirmed **absent from those same two
   downloaded bundles** (fully enumerated, not sampled) and from the
-  Addressables catalog's own key list — so for these specific 42, "check a
+  Addressables catalog's own key list (`m_InternalIds` plain-string
+  search only, at the time) — so for these specific 42, "check a
   different bundle" is a real lead only if a third, not-yet-identified
   bundle holds them; it is no longer an unverified guess but it's also not
-  confirmed solved. Full detail below.
+  confirmed solved. **Fully resolved 2026-10-03 (see "Decoding the real
+  Addressables catalog" above)**: a proper binary decode of the catalog
+  (not just `m_InternalIds`) found all remaining Hero's Tomb costume
+  faces under `Costume/Costume_Face/Face_Skin_<Name>` and confirmed
+  they're `LegacyResourcesProvider` (base-APK-local, never remote) — all
+  13 recovered. The remaining 21 (5 raid-boss + 16 Hero's Tomb enemy
+  faces) were re-confirmed via the same proper decode to have no
+  addressable art key at all, the strongest negative evidence reached
+  yet. Nothing left open in this specific thread.
 - `data/EnemySpawnPoints.json` only covers chapters 1-3 (matching every
   other stage-aware feature in this app) even though the underlying
   `EnemySpawnGroupData_158` table has rows up through Chapter 19, and the
