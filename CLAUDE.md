@@ -2653,6 +2653,74 @@ tooling in the scratchpad, like `il2cpp_work/disas.py`), but the
 technique and validation method are fully written up here so a future
 session doesn't have to re-derive the binary format from scratch.
 
+## Enemy spawn maps extended to chapters 4-6 (2026-10-03)
+
+User asked what else was worth doing and picked extending the Monsters
+tab's spawn/patrol map past chapter 3, an Open Item since the original
+"Enemy spawn points" session (2026-09-30) explicitly noted the raw
+coordinate dump physically contained chapters 4-6 already — it was just
+never filtered in, since this app's stage-aware features generally stop
+at chapter 3 (matching `StageData`'s own coverage) and nobody had
+revisited whether this specific table needed that same limit.
+
+**Confirmed before building anything**: the scratchpad's
+`unity_work/all_spawn_positions.json` (the original 124-row raw
+extraction, both its `fileA`/`fileB` copies) and
+`unity_work/textassets/EnemySpawnGroupData_158.bin` (214 rows — the
+EnemyDataId/IsPatrol/RespawnCoolTime/RetreatRange side) were both still
+intact. Grouping the 124 raw positions by their own key's `CHn_` prefix
+confirmed the committed 79-row chapters-1-3 file used exactly rows
+1/2/3, and the remaining 45 rows are real, confirmed chapters 4 (16, incl.
+2 flying-type instances), 5 (12), and 6 (17, incl. 3 flying-type) — not a
+guess, cross-checked against each row's own container name (`Chapter1_N`)
+agreeing with its key's `CHn_` prefix for every single row.
+
+**Joined and merged the same way chapters 1-3 originally were**: each of
+the 45 new rows' `key` resolves to exactly one `EnemySpawnGroupData_158`
+row (zero orphans) giving `EnemyDataId`/`IsPatrol`/etc., and every
+resulting `EnemyDataId` resolves cleanly to this app's own committed
+`EnemyData.json` (zero orphans there either). None of the 45 are
+patrol-type, so no new patrol-path work was needed. Merged into
+`data/EnemySpawnPoints.json`, with the original 79 rows verified
+byte-identical afterward (a pure 45-row addition, nothing rewritten).
+
+**Zero application code changes were needed for the core feature** —
+`idx.spawnPointsByChapter`/`spawnPointsByEnemyId` (`data.js`) are plain
+`groupBy` calls over the whole table with no chapter filter baked in, and
+`SpawnMapUI.renderInline()` already had a graceful `hasBoard` fallback
+for "no real story-stage tile board for this chapter" (that board only
+covers Chapters 1-3, via `StageMapLayout.json`) — written defensively
+from the start, even though it had never actually been exercised until
+now. Only the caveat text's hardcoded "Only Chapters 1-3 have this data
+extracted" needed updating, to accurately say 1-6 and explain the
+chapter-7+ gap (would need locating whichever further remote AssetBundles
+hold their own copies of this same shared spawn-layout template, per the
+original 2026-09-30 writeup).
+
+**A real, pre-existing (not new) behavior surfaced during verification,
+confirmed correct rather than a bug**: Chapter 5's "Bat" enemy
+(`CH5_Bat`, `EnemyData` id `99004`) shows no spawn map section at all,
+even though Chapter 5 overall has 12 real spawn points. Root cause: the
+raw position dump simply has no `CH5_Spawn_Bat_*` entry at all (checked
+directly — `EnemySpawnGroupData_158` defines the spawn *group* for
+Chapter 5 bats, but no matching Transform position was ever captured in
+the original scene extraction), and `ui-monsters.js`'s `openDetail()`
+gates the whole "Spawn & Patrol Map" section on *this specific enemy*
+having at least one own point (`spawnPoints.length ? ... : ''`), not on
+the chapter having any data at all — a deliberate, pre-existing design
+choice (this feature answers "where is THIS monster," not "what's
+happening in this chapter"), not something introduced by this session's
+extension work.
+
+**Shipped**: `data/EnemySpawnPoints.json` (45 new rows, chapters 4-6);
+`js/ui-map.js` caveat text update (no logic changes). Verified end-to-end
+with Playwright: Chapter 4's Frost Goblin renders its real 3-point spawn
+scatter correctly with the expected no-board fallback (screenshot
+confirmed clean layout); Chapter 6's Baal renders correctly too; Chapter
+1 re-confirmed still shows its real tile board (no regression); a full
+6-tab desktop sweep plus a Chapter-6 mobile detail-view pass, zero
+console/page errors throughout, zero horizontal overflow.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3390,6 +3458,20 @@ session doesn't have to re-derive the binary format from scratch.
     anywhere in the game — a stronger negative result than any prior
     session reached. Full writeup in "Decoding the real Addressables
     catalog, and 13 more missing portraits recovered" above.
+41. User asked what else was worth doing and picked extending the
+    Monsters tab's spawn/patrol map from chapters 1-3 to 4-6, an Open
+    Item since 2026-09-30 noting the raw coordinate dump already
+    physically contained them. Re-derived 45 new rows from the same raw
+    scratchpad data chapters 1-3 originally used (zero orphans joining
+    against either `EnemySpawnGroupData_158` or this app's own
+    `EnemyData.json`), merged them in with the original 79 rows
+    confirmed byte-identical. Needed zero application code changes for
+    the core feature — the chapter indices and `SpawnMapUI`'s "no real
+    tile board for this chapter" fallback were already chapter-agnostic
+    — only a hardcoded caveat string needed updating. Verified a real,
+    pre-existing (not new) "no spawn section for this specific monster"
+    behavior was correct, not a bug, during testing. Full writeup in
+    "Enemy spawn maps extended to chapters 4-6" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -3459,15 +3541,13 @@ session doesn't have to re-derive the binary format from scratch.
   faces) were re-confirmed via the same proper decode to have no
   addressable art key at all, the strongest negative evidence reached
   yet. Nothing left open in this specific thread.
-- `data/EnemySpawnPoints.json` only covers chapters 1-3 (matching every
-  other stage-aware feature in this app) even though the underlying
-  `EnemySpawnGroupData_158` table has rows up through Chapter 19, and the
-  shared coordinate-space file physically contains chapters 1-6's spawn
-  positions already. Extending to chapters 4-6 would just be a filter
-  change (the data's already extracted, see the scratchpad's
-  `unity_work/all_spawn_positions.json` if it's still around); chapters
-  7-19 would need locating whichever further AssetBundles hold their
-  copies of this same shared template.
+- **Updated 2026-10-03 (see "Enemy spawn maps extended to chapters 4-6"
+  above) — the chapters-4-6 half of this item is now shipped, not
+  open.** `data/EnemySpawnPoints.json` covers chapters 1-6. Still
+  genuinely open: `EnemySpawnGroupData_158` has rows up through Chapter
+  19, but chapters 7-19 would need locating whichever further remote
+  AssetBundles hold their own copies of this same shared spawn-layout
+  template — not attempted this session.
 - The exact real-world meaning of the `EnemySpawnGroups` scene's
   `Chapter1_N` container numbering vs. the separate
   `LocationEnterTrigger_Stage1..6` trigger volumes (both found in the same
