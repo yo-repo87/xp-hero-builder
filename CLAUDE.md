@@ -204,7 +204,7 @@ short version:
 | Hero Evolution bonus value | **Fixed 2026-09-04** by decompilation (`AddOwnEvolveStatModifications`) — was wrongly modeled as cumulative-sum across every reached tier; the real client does a single lookup at the exact current tier (`GetByCostumeAndRarity`) and multiplies its `OptionValue` by 10. |
 | Trait synergy token-counting | **Confirmed correct by decompilation** (`TraitSynergyController.CalculateSynergyTokens`) |
 | Trait/synergy percent display (Equipment tab) and `TraitRoll` Dps source | **Fixed 2026-09-04** — `rate_amount` (`TraitOptionData`, `TraitSynergyInfoData`) is per-mille (confirmed by decompiling `TraitSynergyController.GetStatModifications`), the same convention as Extra/Special/SoulUpgrade's `RateAmount`. Display now divides by 10 uniformly (replacing a guessed, inconsistent ">100 ? /100 : /1" heuristic); the Dps formula's `TraitRoll` source uses the raw value directly (no ×10 — that had been an unverified guess borrowed from the RateAmount fix and was wrong). |
-| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). `WeaponLevelBonus`, `CostumeOwnEvolutionOption`'s underlying data, and `TraitRoll` are now `confirmed`; `CostumeOwnGradeOption`/`CostumeOwnLevelOption` remain `unmodeled` — their real source functions (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`) were found but route through interface/vtable dispatch that wasn't fully traced by hand; left honestly at 0 rather than guessed. |
+| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). **Updated 2026-10-03**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption` (the interface/vtable-dispatch functions earlier left at 0) are now fully traced and `confirmed` — see "Own vs. Equipping Dps sources, confirmed" below for the full writeup, including a real pre-existing bug this surfaced and fixed in `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption`. `WeaponLevelBonus`, `CostumeOwnEvolutionOption`, and `TraitRoll` were already `confirmed`. Only `BlessingBuff` and `VipSubscription` remain genuinely unmodeled/manual now. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
 | Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **7 items are confirmed Craftable** (a real multi-item recipe — see "Craftable items") and **18 more are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with distinct "🔨 CRAFTABLE" / "🛒 SHOP EXCLUSIVE" tags rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
@@ -2346,6 +2346,106 @@ legend shows the correct chapter-wide level range (1-1300, matching the
 real data), zero console/page errors, zero horizontal overflow, and a
 full 6-tab regression sweep confirmed no regressions elsewhere.
 
+## Own vs. Equipping Dps sources, confirmed (2026-10-03)
+
+User picked this directly out of 3 offered options (the other two: a
+global search bar, and the slider gauge-texture reskin that's been
+offered — and passed on — twice now) as "any other features," explicitly
+choosing the hardest/riskiest one: finishing the IL2CPP decompilation of
+`CostumeOwnGradeOption`/`CostumeOwnLevelOption`, the last two sources in
+the Total DPS formula still left at a hardcoded 0 since 2026-09-04
+("found the real functions, but they route through interface/vtable
+dispatch — takes meaningfully longer to trace by hand"). This session
+finished that trace. Full technical writeup — the real disassembly,
+the `E_CostumeOptionStyle` enum, the exact filter logic — lives in
+`docs/game_logic_deep_dive.md` §6 and `docs/decompiled/
+costume_own_vs_equipping.asm.txt`; this entry covers what changed in the
+shipped app and why, plus the session's own research process.
+
+**The scratchpad's IL2CPP tooling was still intact** (same session
+lineage as every other 2026-10-02 addition) — `il2cpp_work/output/
+dump.cs` (the full RVA-annotated signature dump), the raw `libil2cpp.so`
+in the unpacked split APK, and `capstone` were all still reachable, so
+this picked up with zero fresh extraction needed. Built one small reusable
+tool first: `il2cpp_work/build_addr_map.py` parses `dump.cs` once into a
+`{RVA: signature}` pickle (131,175 entries — not all 211,059 methods
+have a body-carrying RVA comment, e.g. properties/fields), and `il2cpp_
+work/disas.py` wraps `capstone` + `pyelftools` (VA→file-offset via the
+ELF's own `PT_LOAD` segment table, not guessed) to disassemble from any
+RVA and auto-resolve every `bl`/`b` branch target to a real method name
+inline — the same "disassemble, cross-reference call targets against
+the address map" technique this project's original decompile pass used,
+just finally written down as a small reusable script instead of re-done
+ad hoc each time.
+
+**The real finding, and it was a genuine surprise, not just "filled in
+two zeros":** `CostumeOwnGradeOption`/`CostumeOwnLevelOption` (and,
+turns out, the already-shipped `CostumeOwnEvolutionOption` too) are
+**roster-wide sums**, not per-active-hero numbers. Traced the real
+entry point, `CostumeInventoryManager.GetStatModifications(costumeId)`
+(RVA `0x284B154`) — it calls `CalculateOwnStatModifications()` with
+**no `costumeId` argument at all**, which was the tell. That function's
+own body (RVA `0x284AD88`) loops the player's **entire owned-costume
+list**, and for every costume that's purchased, adds *that* costume's
+own Grade/Level/Evolution bonuses into one shared total — a real,
+intentional "your whole collection contributes a little, not just your
+main" design, not an extraction quirk. `State.data.heroes` (every hero
+the user has added in this app) is the direct, correct analog of "owned
+costumes" here.
+
+**The Own/Equipping split** turned out to be genuinely clean once
+found: both read the exact same `CostumeStarGradeOptionData`/
+`CostumeLevelOptionData` rows this app already had committed, just
+filtered by `OptionStyle` in opposite directions — `Own` wants
+`OptionStyle==Always_Option(2)` (applies regardless of which hero is
+active), `Equipping` wants `OptionStyle==EquipOnly_Option(1)` plus an
+explicit "is this the hero actually being evaluated" id check. Two
+genuinely non-overlapping subsets of the same data, confirmed by
+reading both compiled functions side by side rather than assumed from
+the naming alone. Values are used completely raw in both — no `×10`/
+`÷10` scaling anywhere, unlike several other sources this project has
+had to correct for exactly that (see chronological log entry #11).
+
+**A real, previously-shipped bug this surfaced and fixed in the same
+pass**: the app's existing `CostumeEquippingGradeOption`/
+`CostumeEquippingLevelOption` computation (via `heroStarBonuses()`/
+`heroLevelBonuses()`) summed **every** row regardless of `OptionStyle` —
+meaning once the new `Own` sources were wired to read the complementary
+`Always_Option` rows, the two sources would have double-counted every
+one of those rows between them. Fixed by adding dedicated,
+`OptionStyle`-filtered versions (`costumeEquippingGradeSum()`/
+`costumeEquippingLevelSum()`) used only by the Dps formula —
+`heroStarBonuses()`/`heroLevelBonuses()` themselves were deliberately
+**left untouched** (still unfiltered), since the Heroes tab's own "Stat
+Bonuses Unlocked" list is honestly answering "what does leveling/
+starring this hero get me" — every row, not just the Dps-formula's
+internal split — and filtering it would have made that list quietly
+*less* complete, not more correct.
+
+**Shipped**: `Formulas.costumeEquippingGradeSum()`/
+`costumeEquippingLevelSum()` (single hero, style-1 filtered) and
+`costumeOwnGradeSum()`/`costumeOwnLevelSum()`/`costumeOwnEvolutionSum()`
+(roster-wide, style-2 filtered — the latter replacing the old
+single-hero `heroEvolutionBonuses()` call `totalDpsBreakdown` used to
+make) in `formulas.js`, right after `heroFullStats()`; `totalDpsBreakdown`
+updated to use all five, with `CostumeOwnGradeOption`/
+`CostumeOwnLevelOption`/`CostumeOwnEvolutionOption`/
+`CostumeEquippingGradeOption`/`CostumeEquippingLevelOption` all upgraded
+from `unmodeled`/`mapped` to `confirmed` in the Guide tab's breakdown
+display, each with a note naming the real decompiled function.
+
+Verified end-to-end with Playwright: added a hero, leveled/starred it,
+confirmed `CostumeEquippingGradeOption`/`LevelOption` matched the
+expected values for that one hero; added a **second**, non-active hero
+and leveled it too — confirmed `CostumeOwnLevelOption` correctly
+**increased** (roster-wide sum picking up the new hero) while
+`CostumeEquippingGradeOption`/`LevelOption` stayed **exactly
+unchanged** (still scoped to only the active hero) — the precise
+behavior the decompiled split predicts; confirmed the Heroes tab's
+"Stat Bonuses Unlocked" list (deliberately left unfiltered) still shows
+every bonus row correctly; a full desktop 6-tab sweep plus the mobile
+Guide-tab flow, zero console/page errors throughout.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3021,6 +3121,23 @@ full 6-tab regression sweep confirmed no regressions elsewhere.
     shipped a new standalone map entry point on the Farmable Items tab
     reusing the Monsters tab's spawn-overlay-on-real-tile-board pattern.
     Full writeup in "Gift Chest spawn map" above.
+37. New session, next day. User asked again what else was worth adding
+    and picked the hardest of 3 offered options: finishing the IL2CPP
+    decompilation of `CostumeOwnGradeOption`/`CostumeOwnLevelOption`,
+    the Total DPS formula's last two unmodeled sources (parked since
+    2026-09-04 as "routes through interface/vtable dispatch, too slow
+    to trace by hand"). Finished the trace — real finding, not just
+    filling in zeros: these (and the already-shipped
+    `CostumeOwnEvolutionOption`) are genuine roster-wide "collection"
+    sums (every owned hero contributes, not just the active one),
+    confirmed via `CalculateOwnStatModifications()` taking no costumeId
+    argument and looping the player's whole costume list. Also found
+    and fixed a real pre-existing bug this surfaced: the shipped
+    `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption` summed
+    every row regardless of `OptionStyle`, which would have
+    double-counted against the new Own sources reading the complementary
+    style once wired in. Full writeup in "Own vs. Equipping Dps sources,
+    confirmed" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -3152,14 +3269,10 @@ full 6-tab regression sweep confirmed no regressions elsewhere.
   the app tracks.
 - `VipSubscription` source in the Total DPS formula has no matching data
   table at all — stays a manual input unless one is found.
-- `CostumeOwnGradeOption`/`CostumeOwnLevelOption` in the Total DPS formula
-  are deliberately zeroed. Their real source functions ARE now known
-  (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`, found
-  2026-09-04) but not disassembled to completion — they route through
-  IL2CPP interface/vtable dispatch (indirect calls resolved through a type
-  interface table at runtime), which takes meaningfully longer to trace by
-  hand than the direct-call functions fixed the same day. Worth revisiting
-  with more time/budget rather than assumed to be unreachable.
+- **Updated 2026-10-03 (see "Own vs. Equipping Dps sources, confirmed"
+  below) — this item is now shipped, not open.** `CostumeOwnGradeOption`/
+  `CostumeOwnLevelOption` are fully traced and wired into the Total DPS
+  formula as real, roster-wide sums.
 - If re-extracting art/data ever becomes necessary and the scratchpad is
   gone, you need a fresh APK download link from the user first.
 - Reskin polish not done: native `<input type=range>` sliders (weapon/hero

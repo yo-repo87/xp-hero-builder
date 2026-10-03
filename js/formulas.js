@@ -239,6 +239,98 @@ const Formulas = {
     return { base, bonuses };
   },
 
+  // --- Costume "Own" vs "Equipping" stat sources (Total DPS formula) -------
+  // CONFIRMED BY DECOMPILATION (2026-10-03): `GetStatModifications(costumeId)`
+  // (RVA 0x284B154) builds a hero's full stat-modification list by calling
+  // THREE separate functions and concatenating the results —
+  // `CalculateOwnStatModifications()` (no costumeId param!),
+  // `CalculateEquippingStatModifications(costumeId)`, and
+  // `CalculateEquippingStaticStatModifications(costumeId)`. Tracing
+  // `CalculateOwnStatModifications()` itself (RVA 0x284AD88) revealed the
+  // real surprise: it loops EVERY costume in the player's owned roster
+  // (not just the one costumeId passed in), and for each one that's
+  // purchased, adds ITS OWN `OptionStyle==Always_Option(2)` grade/level/
+  // evolution rows (`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`/
+  // `AddOwnEvolveStatModifications`, each gated by that hero's own current
+  // Star_Grade/Level/evolution tier) into one shared total. So
+  // `CostumeOwnGradeOption`/`CostumeOwnLevelOption`/`CostumeOwnEvolutionOption`
+  // are genuine ROSTER-WIDE "collection" sums — every hero you own and have
+  // developed contributes a little, regardless of which one is active —
+  // not a per-hero number. This app's `State.data.heroes` (every hero the
+  // user has added) is the direct analog of "owned/purchased costumes."
+  //
+  // `CalculateEquippingStatModifications(costumeId)` (RVA 0x284C10C/
+  // 0x284C5CC family), by contrast, genuinely IS scoped to one specific
+  // hero — confirmed via its own `OptionStyle==EquipOnly_Option(1)` filter
+  // plus an explicit `data.id == targetCostumeId` check. This is a
+  // DIFFERENT, non-overlapping subset of the SAME CostumeStarGradeOptionData/
+  // CostumeLevelOptionData rows (style 1 vs style 2) — real evidence that
+  // Own/Equipping were never meant to double-count, confirmed by reading
+  // both compiled functions side by side.
+  //
+  // heroStarBonuses()/heroLevelBonuses() (above) deliberately stay
+  // UNFILTERED by OptionStyle — they feed the Heroes tab's "Stat Bonuses
+  // Unlocked" list, which is honestly answering "what does leveling/
+  // starring this hero get me" (every row, regardless of style), not
+  // trying to isolate the Dps formula's own Own/Equipping split. The
+  // functions below are the Dps-formula-specific, style-filtered versions.
+
+  // Equipping: OptionStyle==1 only, gated by the hero's own grade/level.
+  costumeEquippingGradeSum(costume, starGrade, wantType = 1) {
+    let total = 0;
+    for (const r of (Game.index.costumeStarOptByGroup.get(costume.Star_Opt_GID) || [])) {
+      if (r.OptionStyle !== 1 || r.Star_Grade > starGrade) continue;
+      toArray(r.OptionType).forEach((t, i) => { if (Number(t) === wantType) total += num(toArray(r.OptionValue)[i]); });
+    }
+    return total;
+  },
+  costumeEquippingLevelSum(costume, level, wantType = 1) {
+    let total = 0;
+    for (const r of (Game.index.costumeLevelOptByGroup.get(costume.Lv_Opt_GID) || [])) {
+      if (r.optionStyle !== 1 || r.Level > level) continue;
+      if (r.OptionType === wantType) total += num(r.OptionValue);
+    }
+    return total;
+  },
+
+  // Own: OptionStyle==2, summed across every hero in the roster (each at
+  // its own grade/level/evolution — not the active hero's).
+  costumeOwnGradeSum(wantType = 1) {
+    let total = 0;
+    for (const hero of State.data.heroes) {
+      const costume = Game.index.costumeById.get(hero.costumeId);
+      if (!costume) continue;
+      for (const r of (Game.index.costumeStarOptByGroup.get(costume.Star_Opt_GID) || [])) {
+        if (r.OptionStyle !== 2 || r.Star_Grade > hero.starGrade) continue;
+        toArray(r.OptionType).forEach((t, i) => { if (Number(t) === wantType) total += num(toArray(r.OptionValue)[i]); });
+      }
+    }
+    return total;
+  },
+  costumeOwnLevelSum(wantType = 1) {
+    let total = 0;
+    for (const hero of State.data.heroes) {
+      const costume = Game.index.costumeById.get(hero.costumeId);
+      if (!costume) continue;
+      for (const r of (Game.index.costumeLevelOptByGroup.get(costume.Lv_Opt_GID) || [])) {
+        if (r.optionStyle !== 2 || r.Level > hero.level) continue;
+        if (r.OptionType === wantType) total += num(r.OptionValue);
+      }
+    }
+    return total;
+  },
+  costumeOwnEvolutionSum(wantType = 1) {
+    let total = 0;
+    for (const hero of State.data.heroes) {
+      const costume = Game.index.costumeById.get(hero.costumeId);
+      if (!costume) continue;
+      for (const b of this.heroEvolutionBonuses(costume, hero.evoRarity)) {
+        if (b.optionType === wantType) total += num(b.optionValue);
+      }
+    }
+    return total;
+  },
+
   // --- Runes ---------------------------------------------------------------
   // Each equipped rune is one RuneData row (like a weapon fusion-chain
   // link — grade is baked into which row is equipped, not a separate
@@ -502,33 +594,25 @@ const Formulas = {
       set('WeaponOption', weaponOption, 'mapped', 'Sum of equipped weapons’ rolled "Attack" bonus affixes, converted to per-mille');
     }
 
-    // Hero-related sources (all keyed off the hero passed in, treated as "the equipped hero").
-    let heroAttack = 0, heroGradePermille = 0, heroLevelPermille = 0, heroEvoPermille = 0;
+    // Hero-related sources. CostumeEquipping* are scoped to the active hero
+    // (hero passed into this function); CostumeOwn* are roster-wide sums —
+    // see the big comment above costumeOwnGradeSum() for the decompiled
+    // evidence (GetStatModifications -> CalculateOwnStatModifications,
+    // confirmed 2026-10-03) that these are genuinely two different things,
+    // not a guessed split.
+    let heroAttack = 0, heroGradePermille = 0, heroLevelPermille = 0;
     if (hero) {
       const costume = Game.index.costumeById.get(hero.costumeId);
       heroAttack = this.heroBaseStats(costume, hero.level).attack;
-      const starBonus = this.heroStarBonuses(costume, hero.starGrade)
-        .flatMap(b => b.optionType.map((t, i) => ({ t, v: b.optionValue[i] })))
-        .filter(x => x.t === 1).reduce((s, x) => s + num(x.v), 0);
-      const levelBonus = this.heroLevelBonuses(costume, hero.level)
-        .filter(b => b.optionType === 1).reduce((s, b) => s + num(b.optionValue), 0);
-      const evoBonus = this.heroEvolutionBonuses(costume, hero.evoRarity)
-        .filter(b => b.optionType === 1).reduce((s, b) => s + num(b.optionValue), 0);
-      heroGradePermille = starBonus;
-      heroLevelPermille = levelBonus;
-      heroEvoPermille = evoBonus;
+      heroGradePermille = this.costumeEquippingGradeSum(costume, hero.starGrade, 1);
+      heroLevelPermille = this.costumeEquippingLevelSum(costume, hero.level, 1);
     }
     set('CostumeEquippingLevelAttackOption', heroAttack, 'mapped', hero ? 'Active hero’s own base Attack (CostumeLevelData)' : 'No active hero selected');
-    set('CostumeEquippingGradeOption', heroGradePermille, 'mapped', 'Active hero’s Star Grade "Power" bonus rows (CostumeStarGradeOptionData, option_type 1)');
-    set('CostumeEquippingLevelOption', heroLevelPermille, 'mapped', 'Active hero’s per-level "Power" bonus rows (CostumeLevelOptionData, option_type 1)');
-    set('CostumeOwnEvolutionOption', heroEvoPermille, 'mapped', 'Active hero’s Evolution "Power" bonus rows (CostumeEvolutionData, option_type 1)');
-    // CostumeOwnGradeOption / CostumeOwnLevelOption deliberately left unmodeled: the
-    // decompile confirms these are DISTINCT from the Equipping-prefixed sources above,
-    // but there's no second data table found that's clearly "owning vs equipping" split
-    // — reusing the same numbers here would double-count, so these stay at 0 rather
-    // than guess.
-    set('CostumeOwnGradeOption', 0, 'unmodeled', 'No distinct data source found separate from CostumeEquippingGradeOption above');
-    set('CostumeOwnLevelOption', 0, 'unmodeled', 'No distinct data source found separate from CostumeEquippingLevelOption above');
+    set('CostumeEquippingGradeOption', heroGradePermille, 'confirmed', 'Active hero’s OptionStyle==EquipOnly_Option Star Grade rows (CostumeStarGradeOptionData, option_type 1) — confirmed via AddEquippingGradeStatModifications');
+    set('CostumeEquippingLevelOption', heroLevelPermille, 'confirmed', 'Active hero’s OptionStyle==EquipOnly_Option per-level rows (CostumeLevelOptionData, option_type 1) — confirmed via AddEquippingLevelStatModifications');
+    set('CostumeOwnEvolutionOption', this.costumeOwnEvolutionSum(1), 'confirmed', 'Sum of EVERY owned hero’s Evolution "Power" bonus (CostumeEvolutionData, option_type 1) — confirmed roster-wide via CalculateOwnStatModifications, not just the active hero');
+    set('CostumeOwnGradeOption', this.costumeOwnGradeSum(1), 'confirmed', 'Sum of EVERY owned hero’s OptionStyle==Always_Option Star Grade rows (CostumeStarGradeOptionData, option_type 1) — confirmed via AddOwnGradeStatModifications, roster-wide');
+    set('CostumeOwnLevelOption', this.costumeOwnLevelSum(1), 'confirmed', 'Sum of EVERY owned hero’s OptionStyle==Always_Option per-level rows (CostumeLevelOptionData, option_type 1) — confirmed via AddOwnLevelStatModifications, roster-wide');
 
     // CostumeEquipMainWeaponBonusOption — Weapon 1's category affinity bonus, if it grants Power (type 1).
     {

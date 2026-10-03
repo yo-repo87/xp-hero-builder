@@ -1,0 +1,1184 @@
+Decompiled 2026-10-03 to resolve CostumeOwnGradeOption/CostumeOwnLevelOption,
+the last two unmodeled sources in the Total DPS formula (see
+game_logic_deep_dive.md §7 for the full writeup). Confirms these are
+roster-wide sums (CalculateOwnStatModifications loops every owned costume,
+not just the one costumeId passed into GetStatModifications), filtered by
+E_CostumeOptionStyle (Own = Always_Option/2, Equipping = EquipOnly_Option/1)
+-- two genuinely non-overlapping subsets of the same CostumeStarGradeOptionData/
+CostumeLevelOptionData rows this app already has committed.
+
+====================================================================================================
+DISASSEMBLY: CostumeInventoryManager.GetStatModifications(int costumeId)  @ RVA 0x284B154
+====================================================================================================
+0x284B154:	stp	x30, x23, [sp, #-0x30]!
+0x284B158:	stp	x22, x21, [sp, #0x10]
+0x284B15C:	stp	x20, x19, [sp, #0x20]
+0x284B160:	adrp	x22, #0x4fe9000
+0x284B164:	adrp	x23, #0x4c18000
+0x284B168:	adrp	x20, #0x4c18000
+0x284B16C:	ldrb	w8, [x22, #0x5c2]
+0x284B170:	ldr	x23, [x23, #0x490]
+0x284B174:	ldr	x20, [x20, #0x488]
+0x284B178:	mov	w19, w1
+0x284B17C:	mov	x21, x0
+0x284B180:	tbnz	w8, #0, #0x284b1b0
+0x284B184:	adrp	x0, #0x4c40000
+0x284B188:	ldr	x0, [x0, #0x410]
+0x284B18C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B190:	adrp	x0, #0x4c18000
+0x284B194:	ldr	x0, [x0, #0x488]
+0x284B198:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B19C:	adrp	x0, #0x4c18000
+0x284B1A0:	ldr	x0, [x0, #0x490]
+0x284B1A4:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B1A8:	mov	w8, #1
+0x284B1AC:	strb	w8, [x22, #0x5c2]
+0x284B1B0:	ldr	x0, [x23]
+0x284B1B4:	bl	#0x1ef38f4   ; -> 0x1EF38F4
+0x284B1B8:	ldr	x1, [x20]
+0x284B1BC:	mov	x20, x0
+0x284B1C0:	bl	#0x3b1c208   ; -> 0x3B1C208
+0x284B1C4:	mov	x0, x21
+0x284B1C8:	bl	#0x284ad88   ; -> 0x284AD88  private IReadOnlyList<StatModification> CalculateOwnStatModifications() { }
+0x284B1CC:	mov	x22, x0
+0x284B1D0:	mov	x0, x21
+0x284B1D4:	mov	w1, w19
+0x284B1D8:	bl	#0x284b240   ; -> 0x284B240  private IReadOnlyList<StatModification> CalculateEquippingStatModifications(int costumeId) { }
+0x284B1DC:	mov	w1, w19
+0x284B1E0:	mov	x21, x0
+0x284B1E4:	bl	#0x284b35c   ; -> 0x284B35C  private IReadOnlyList<StatModification> CalculateEquippingStaticStatModifications(int costumeId) { }
+0x284B1E8:	cbz	x20, #0x284b23c
+0x284B1EC:	adrp	x23, #0x4c40000
+0x284B1F0:	ldr	x23, [x23, #0x410]
+0x284B1F4:	mov	x19, x0
+0x284B1F8:	mov	x0, x20
+0x284B1FC:	mov	x1, x22
+0x284B200:	ldr	x2, [x23]
+0x284B204:	bl	#0x3b1cdb4   ; -> 0x3B1CDB4
+0x284B208:	ldr	x2, [x23]
+0x284B20C:	mov	x0, x20
+0x284B210:	mov	x1, x21
+0x284B214:	bl	#0x3b1cdb4   ; -> 0x3B1CDB4
+0x284B218:	ldr	x2, [x23]
+0x284B21C:	mov	x0, x20
+0x284B220:	mov	x1, x19
+0x284B224:	bl	#0x3b1cdb4   ; -> 0x3B1CDB4
+0x284B228:	mov	x0, x20
+0x284B22C:	ldp	x20, x19, [sp, #0x20]
+0x284B230:	ldp	x22, x21, [sp, #0x10]
+0x284B234:	ldp	x30, x23, [sp], #0x30
+0x284B238:	ret	
+
+====================================================================================================
+DISASSEMBLY: CostumeInventoryManager.CalculateOwnStatModifications()  @ RVA 0x284AD88
+====================================================================================================
+0x284AD88:	str	x30, [sp, #-0x50]!
+0x284AD8C:	stp	x26, x25, [sp, #0x10]
+0x284AD90:	stp	x24, x23, [sp, #0x20]
+0x284AD94:	stp	x22, x21, [sp, #0x30]
+0x284AD98:	stp	x20, x19, [sp, #0x40]
+0x284AD9C:	adrp	x21, #0x4fe9000
+0x284ADA0:	adrp	x22, #0x4c18000
+0x284ADA4:	adrp	x19, #0x4c18000
+0x284ADA8:	ldrb	w8, [x21, #0x5c3]
+0x284ADAC:	ldr	x22, [x22, #0x490]
+0x284ADB0:	ldr	x19, [x19, #0x488]
+0x284ADB4:	mov	x20, x0
+0x284ADB8:	tbnz	w8, #0, #0x284ae18
+0x284ADBC:	adrp	x0, #0x4c0c000
+0x284ADC0:	ldr	x0, [x0, #0x5e0]
+0x284ADC4:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284ADC8:	adrp	x0, #0x4c0a000
+0x284ADCC:	ldr	x0, [x0, #0x1b0]
+0x284ADD0:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284ADD4:	adrp	x0, #0x4c4a000
+0x284ADD8:	ldr	x0, [x0, #0x268]
+0x284ADDC:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284ADE0:	adrp	x0, #0x4c4a000
+0x284ADE4:	ldr	x0, [x0, #0x270]
+0x284ADE8:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284ADEC:	adrp	x0, #0x4c0a000
+0x284ADF0:	ldr	x0, [x0, #0x1b8]
+0x284ADF4:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284ADF8:	adrp	x0, #0x4c18000
+0x284ADFC:	ldr	x0, [x0, #0x488]
+0x284AE00:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284AE04:	adrp	x0, #0x4c18000
+0x284AE08:	ldr	x0, [x0, #0x490]
+0x284AE0C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284AE10:	mov	w8, #1
+0x284AE14:	strb	w8, [x21, #0x5c3]
+0x284AE18:	ldr	x0, [x22]
+0x284AE1C:	bl	#0x1ef38f4   ; -> 0x1EF38F4
+0x284AE20:	ldr	x1, [x19]
+0x284AE24:	mov	x19, x0
+0x284AE28:	bl	#0x3b1c208   ; -> 0x3B1C208
+0x284AE2C:	ldr	x20, [x20, #0x10]
+0x284AE30:	cbz	x20, #0x284b054
+0x284AE34:	adrp	x10, #0x4c4a000
+0x284AE38:	ldr	x8, [x20]
+0x284AE3C:	ldr	x10, [x10, #0x268]
+0x284AE40:	ldrh	w9, [x8, #0x12e]
+0x284AE44:	ldr	x1, [x10]
+0x284AE48:	cbz	x9, #0x284ae6c
+0x284AE4C:	ldr	x10, [x8, #0xb0]
+0x284AE50:	add	x10, x10, #8
+0x284AE54:	ldur	x11, [x10, #-8]
+0x284AE58:	cmp	x11, x1
+0x284AE5C:	b.eq	#0x284ae7c
+0x284AE60:	subs	x9, x9, #1
+0x284AE64:	add	x10, x10, #0x10
+0x284AE68:	b.ne	#0x284ae54
+0x284AE6C:	mov	x0, x20
+0x284AE70:	mov	w2, wzr
+0x284AE74:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284AE78:	b	#0x284ae88   ; -> 0x284AE88
+0x284AE7C:	ldrsw	x9, [x10]
+0x284AE80:	add	x8, x8, x9, lsl #4
+0x284AE84:	add	x0, x8, #0x138
+0x284AE88:	ldp	x8, x1, [x0]
+0x284AE8C:	adrp	x23, #0x4c0a000
+0x284AE90:	ldr	x23, [x23, #0x1b0]
+0x284AE94:	mov	x0, x20
+0x284AE98:	blr	x8
+0x284AE9C:	mov	x20, x0
+0x284AEA0:	cbz	x0, #0x284b058
+0x284AEA4:	adrp	x24, #0x4c0a000
+0x284AEA8:	adrp	x25, #0x4c4a000
+0x284AEAC:	adrp	x26, #0x4c0c000
+0x284AEB0:	ldr	x24, [x24, #0x1b8]
+0x284AEB4:	ldr	x25, [x25, #0x270]
+0x284AEB8:	ldr	x26, [x26, #0x5e0]
+0x284AEBC:	ldr	x8, [x20]
+0x284AEC0:	ldr	x1, [x24]
+0x284AEC4:	ldrh	w9, [x8, #0x12e]
+0x284AEC8:	cbz	x9, #0x284aeec
+0x284AECC:	ldr	x10, [x8, #0xb0]
+0x284AED0:	add	x10, x10, #8
+0x284AED4:	ldur	x11, [x10, #-8]
+0x284AED8:	cmp	x11, x1
+0x284AEDC:	b.eq	#0x284aefc
+0x284AEE0:	subs	x9, x9, #1
+0x284AEE4:	add	x10, x10, #0x10
+0x284AEE8:	b.ne	#0x284aed4
+0x284AEEC:	mov	x0, x20
+0x284AEF0:	mov	w2, wzr
+0x284AEF4:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284AEF8:	b	#0x284af08   ; -> 0x284AF08
+0x284AEFC:	ldrsw	x9, [x10]
+0x284AF00:	add	x8, x8, x9, lsl #4
+0x284AF04:	add	x0, x8, #0x138
+0x284AF08:	ldp	x8, x1, [x0]
+0x284AF0C:	mov	x0, x20
+0x284AF10:	blr	x8
+0x284AF14:	tbz	w0, #0, #0x284afd4
+0x284AF18:	ldr	x8, [x20]
+0x284AF1C:	ldr	x1, [x25]
+0x284AF20:	ldrh	w9, [x8, #0x12e]
+0x284AF24:	cbz	x9, #0x284af48
+0x284AF28:	ldr	x10, [x8, #0xb0]
+0x284AF2C:	add	x10, x10, #8
+0x284AF30:	ldur	x11, [x10, #-8]
+0x284AF34:	cmp	x11, x1
+0x284AF38:	b.eq	#0x284af58
+0x284AF3C:	subs	x9, x9, #1
+0x284AF40:	add	x10, x10, #0x10
+0x284AF44:	b.ne	#0x284af30
+0x284AF48:	mov	x0, x20
+0x284AF4C:	mov	w2, wzr
+0x284AF50:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284AF54:	b	#0x284af64   ; -> 0x284AF64
+0x284AF58:	ldrsw	x9, [x10]
+0x284AF5C:	add	x8, x8, x9, lsl #4
+0x284AF60:	add	x0, x8, #0x138
+0x284AF64:	ldp	x8, x1, [x0]
+0x284AF68:	mov	x0, x20
+0x284AF6C:	blr	x8
+0x284AF70:	mov	x21, x0
+0x284AF74:	cbz	x0, #0x284aebc
+0x284AF78:	ldr	x0, [x26]
+0x284AF7C:	ldr	w22, [x21, #0x10]
+0x284AF80:	ldr	w8, [x0, #0xe0]
+0x284AF84:	cbnz	w8, #0x284af8c
+0x284AF88:	bl	#0x1ef37e0   ; -> 0x1EF37E0
+0x284AF8C:	mov	w0, w22
+0x284AF90:	bl	#0x2848f64   ; -> 0x2848F64  public static CostumeStatus GetCostumeStatus(int costumeID) { }
+0x284AF94:	mov	x22, x0
+0x284AF98:	cbz	x0, #0x284aebc
+0x284AF9C:	ldrb	w8, [x22, #0x20]
+0x284AFA0:	cbz	w8, #0x284aebc
+0x284AFA4:	mov	x1, x21
+0x284AFA8:	mov	x2, x22
+0x284AFAC:	mov	x3, x19
+0x284AFB0:	bl	#0x284b640   ; -> 0x284B640  private void <CalculateOwnStatModifications>g__AddOwnGradeStatModifications|53_0(CostumeData costumeData, CostumeStatus costumeStatus, List<StatModification> statModificationList) { }
+0x284AFB4:	mov	x1, x21
+0x284AFB8:	mov	x2, x22
+0x284AFBC:	mov	x3, x19
+0x284AFC0:	bl	#0x284baf4   ; -> 0x284BAF4  private void <CalculateOwnStatModifications>g__AddOwnLevelStatModifications|53_1(CostumeData costumeData, CostumeStatus costumeStatus, List<StatModification> statModificationList) { }
+0x284AFC4:	ldr	w1, [x21, #0x10]
+0x284AFC8:	mov	x2, x19
+0x284AFCC:	bl	#0x284bf3c   ; -> 0x284BF3C  private void AddOwnEvolveStatModifications(int costumeId, List<StatModification> modList) { }
+0x284AFD0:	b	#0x284aebc   ; -> 0x284AEBC
+0x284AFD4:	mov	x21, xzr
+0x284AFD8:	cbz	x20, #0x284b034
+0x284AFDC:	ldr	x8, [x20]
+0x284AFE0:	ldr	x1, [x23]
+0x284AFE4:	ldrh	w9, [x8, #0x12e]
+0x284AFE8:	cbz	x9, #0x284b00c
+0x284AFEC:	ldr	x10, [x8, #0xb0]
+0x284AFF0:	add	x10, x10, #8
+0x284AFF4:	ldur	x11, [x10, #-8]
+0x284AFF8:	cmp	x11, x1
+0x284AFFC:	b.eq	#0x284b01c
+0x284B000:	subs	x9, x9, #1
+0x284B004:	add	x10, x10, #0x10
+0x284B008:	b.ne	#0x284aff4
+0x284B00C:	mov	x0, x20
+0x284B010:	mov	w2, wzr
+0x284B014:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284B018:	b	#0x284b028   ; -> 0x284B028
+0x284B01C:	ldrsw	x9, [x10]
+0x284B020:	add	x8, x8, x9, lsl #4
+0x284B024:	add	x0, x8, #0x138
+0x284B028:	ldp	x8, x1, [x0]
+0x284B02C:	mov	x0, x20
+0x284B030:	blr	x8
+0x284B034:	cbnz	x21, #0x284b05c
+0x284B038:	mov	x0, x19
+0x284B03C:	ldp	x20, x19, [sp, #0x40]
+0x284B040:	ldp	x22, x21, [sp, #0x30]
+0x284B044:	ldp	x24, x23, [sp, #0x20]
+0x284B048:	ldp	x26, x25, [sp, #0x10]
+0x284B04C:	ldr	x30, [sp], #0x50
+0x284B050:	ret	
+
+====================================================================================================
+DISASSEMBLY: <CalculateOwnStatModifications>g__AddOwnGradeStatModifications|53_0  @ RVA 0x284B640
+====================================================================================================
+0x284B640:	sub	sp, sp, #0xd0
+0x284B644:	stp	x29, x30, [sp, #0x70]
+0x284B648:	stp	x28, x27, [sp, #0x80]
+0x284B64C:	stp	x26, x25, [sp, #0x90]
+0x284B650:	stp	x24, x23, [sp, #0xa0]
+0x284B654:	stp	x22, x21, [sp, #0xb0]
+0x284B658:	stp	x20, x19, [sp, #0xc0]
+0x284B65C:	adrp	x22, #0x4fe9000
+0x284B660:	ldrb	w8, [x22, #0x5e0]
+0x284B664:	mov	x20, x3
+0x284B668:	mov	x21, x2
+0x284B66C:	mov	x19, x1
+0x284B670:	tbnz	w8, #0, #0x284b6c4
+0x284B674:	adrp	x0, #0x4c0a000
+0x284B678:	ldr	x0, [x0, #0x1b0]
+0x284B67C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B680:	adrp	x0, #0x4c4a000
+0x284B684:	ldr	x0, [x0, #0x278]
+0x284B688:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B68C:	adrp	x0, #0x4c4a000
+0x284B690:	ldr	x0, [x0, #0x280]
+0x284B694:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B698:	adrp	x0, #0x4c0a000
+0x284B69C:	ldr	x0, [x0, #0x1b8]
+0x284B6A0:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B6A4:	adrp	x0, #0x4c23000
+0x284B6A8:	ldr	x0, [x0, #0x760]
+0x284B6AC:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B6B0:	adrp	x0, #0x4c09000
+0x284B6B4:	ldr	x0, [x0, #0xe48]
+0x284B6B8:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284B6BC:	mov	w8, #1
+0x284B6C0:	strb	w8, [x22, #0x5e0]
+0x284B6C4:	stp	xzr, xzr, [sp, #0x18]
+0x284B6C8:	str	xzr, [sp, #0x28]
+0x284B6CC:	cbz	x19, #0x284ba10
+0x284B6D0:	ldr	w1, [x19, #0x10]
+0x284B6D4:	bl	#0x284a2fc   ; -> 0x284A2FC  public IReadOnlyList<CostumeStarGradeOptionData> GetAchievedGradeOptionDataList(int costumeID) { }
+0x284B6D8:	cbz	x0, #0x284b9d8
+0x284B6DC:	adrp	x10, #0x4c4a000
+0x284B6E0:	ldr	x8, [x0]
+0x284B6E4:	ldr	x10, [x10, #0x278]
+0x284B6E8:	mov	x19, x0
+0x284B6EC:	ldrh	w9, [x8, #0x12e]
+0x284B6F0:	ldr	x1, [x10]
+0x284B6F4:	cbz	x9, #0x284b718
+0x284B6F8:	ldr	x10, [x8, #0xb0]
+0x284B6FC:	add	x10, x10, #8
+0x284B700:	ldur	x11, [x10, #-8]
+0x284B704:	cmp	x11, x1
+0x284B708:	b.eq	#0x284b728
+0x284B70C:	subs	x9, x9, #1
+0x284B710:	add	x10, x10, #0x10
+0x284B714:	b.ne	#0x284b700
+0x284B718:	mov	x0, x19
+0x284B71C:	mov	w2, wzr
+0x284B720:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284B724:	b	#0x284b734   ; -> 0x284B734
+0x284B728:	ldrsw	x9, [x10]
+0x284B72C:	add	x8, x8, x9, lsl #4
+0x284B730:	add	x0, x8, #0x138
+0x284B734:	ldp	x8, x1, [x0]
+0x284B738:	mov	x0, x19
+0x284B73C:	blr	x8
+0x284B740:	mov	x19, x0
+0x284B744:	cbz	x0, #0x284ba14
+0x284B748:	adrp	x23, #0x4c0a000
+0x284B74C:	adrp	x24, #0x4c4a000
+0x284B750:	adrp	x25, #0x4c09000
+0x284B754:	adrp	x26, #0x4c23000
+0x284B758:	ldr	x23, [x23, #0x1b8]
+0x284B75C:	ldr	x24, [x24, #0x280]
+0x284B760:	ldr	x25, [x25, #0xe48]
+0x284B764:	ldr	x26, [x26, #0x760]
+0x284B768:	mov	w27, #0x18
+0x284B76C:	ldr	x8, [x19]
+0x284B770:	ldr	x1, [x23]
+0x284B774:	ldrh	w9, [x8, #0x12e]
+0x284B778:	cbz	x9, #0x284b79c
+0x284B77C:	ldr	x10, [x8, #0xb0]
+0x284B780:	add	x10, x10, #8
+0x284B784:	ldur	x11, [x10, #-8]
+0x284B788:	cmp	x11, x1
+0x284B78C:	b.eq	#0x284b7ac
+0x284B790:	subs	x9, x9, #1
+0x284B794:	add	x10, x10, #0x10
+0x284B798:	b.ne	#0x284b784
+0x284B79C:	mov	x0, x19
+0x284B7A0:	mov	w2, wzr
+0x284B7A4:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284B7A8:	b	#0x284b7b8   ; -> 0x284B7B8
+0x284B7AC:	ldrsw	x9, [x10]
+0x284B7B0:	add	x8, x8, x9, lsl #4
+0x284B7B4:	add	x0, x8, #0x138
+0x284B7B8:	ldp	x8, x1, [x0]
+0x284B7BC:	mov	x0, x19
+0x284B7C0:	blr	x8
+0x284B7C4:	tbz	w0, #0, #0x284b96c
+0x284B7C8:	ldr	x8, [x19]
+0x284B7CC:	ldr	x1, [x24]
+0x284B7D0:	ldrh	w9, [x8, #0x12e]
+0x284B7D4:	cbz	x9, #0x284b7f8
+0x284B7D8:	ldr	x10, [x8, #0xb0]
+0x284B7DC:	add	x10, x10, #8
+0x284B7E0:	ldur	x11, [x10, #-8]
+0x284B7E4:	cmp	x11, x1
+0x284B7E8:	b.eq	#0x284b808
+0x284B7EC:	subs	x9, x9, #1
+0x284B7F0:	add	x10, x10, #0x10
+0x284B7F4:	b.ne	#0x284b7e0
+0x284B7F8:	mov	x0, x19
+0x284B7FC:	mov	w2, wzr
+0x284B800:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284B804:	b	#0x284b814   ; -> 0x284B814
+0x284B808:	ldrsw	x9, [x10]
+0x284B80C:	add	x8, x8, x9, lsl #4
+0x284B810:	add	x0, x8, #0x138
+0x284B814:	ldp	x8, x1, [x0]
+0x284B818:	mov	x0, x19
+0x284B81C:	blr	x8
+0x284B820:	mov	x22, x0
+0x284B824:	cbz	x0, #0x284ba08
+0x284B828:	ldr	w8, [x22, #0x2c]
+0x284B82C:	cmp	w8, #2
+0x284B830:	b.ne	#0x284b76c
+0x284B834:	cbz	x21, #0x284ba0c
+0x284B838:	ldr	w8, [x22, #0x48]
+0x284B83C:	ldr	w9, [x21, #0x18]
+0x284B840:	cmp	w8, w9
+0x284B844:	b.gt	#0x284b76c
+0x284B848:	ldr	x8, [x22, #0x50]
+0x284B84C:	cbz	x8, #0x284b968
+0x284B850:	mov	w28, #8
+0x284B854:	ldr	w10, [x8, #0x18]
+0x284B858:	sub	x9, x28, #8
+0x284B85C:	cmp	x9, w10, sxtw
+0x284B860:	b.ge	#0x284b76c
+0x284B864:	cmp	x9, x10
+0x284B868:	b.hs	#0x284b9f8
+0x284B86C:	ldr	x10, [x22, #0x58]
+0x284B870:	cbz	x10, #0x284b960
+0x284B874:	ldr	w11, [x10, #0x18]
+0x284B878:	cmp	x9, w11, sxtw
+0x284B87C:	b.ge	#0x284b960
+0x284B880:	cmp	x9, x11
+0x284B884:	b.hs	#0x284b9fc
+0x284B888:	ldr	w29, [x10, x28, lsl #2]
+0x284B88C:	cbz	w29, #0x284b960
+0x284B890:	ldr	w0, [x8, x28, lsl #2]
+0x284B894:	mov	x1, xzr
+0x284B898:	bl	#0x2a74d50   ; -> 0x2A74D50  public static EStat ToStat(E_BonusOption bonusOption) { }
+0x284B89C:	mov	w1, w0
+0x284B8A0:	ldr	x4, [x25]
+0x284B8A4:	scvtf	s0, w29
+0x284B8A8:	fcvtzs	x3, s0
+0x284B8AC:	add	x0, sp, #0x18
+0x284B8B0:	mov	w2, #7
+0x284B8B4:	mov	x5, xzr
+0x284B8B8:	bl	#0x2b2d9fc   ; -> 0x2B2D9FC  public void .ctor(EStat statType, EStatContentType contentType, long value, string source = "") { }
+0x284B8BC:	ldur	q0, [sp, #0x18]
+0x284B8C0:	ldr	x8, [sp, #0x28]
+0x284B8C4:	str	q0, [sp]
+0x284B8C8:	str	x8, [sp, #0x10]
+0x284B8CC:	cbz	x20, #0x284ba00
+0x284B8D0:	ldr	q0, [sp]
+0x284B8D4:	ldr	x8, [sp, #0x10]
+0x284B8D8:	ldr	x10, [x26]
+0x284B8DC:	str	q0, [sp, #0x30]
+0x284B8E0:	str	x8, [sp, #0x40]
+0x284B8E4:	ldr	w9, [x20, #0x1c]
+0x284B8E8:	ldr	x8, [x20, #0x10]
+0x284B8EC:	add	w9, w9, #1
+0x284B8F0:	str	w9, [x20, #0x1c]
+0x284B8F4:	cbz	x8, #0x284ba04
+0x284B8F8:	ldrsw	x9, [x20, #0x18]
+0x284B8FC:	ldr	w11, [x8, #0x18]
+0x284B900:	cmp	w9, w11
+0x284B904:	b.hs	#0x284b934
+0x284B908:	add	w10, w9, #1
+0x284B90C:	str	w10, [x20, #0x18]
+0x284B910:	ldr	x10, [sp, #0x40]
+0x284B914:	ldr	q0, [sp, #0x30]
+0x284B918:	nop	
+0x284B91C:	madd	x0, x9, x27, x8
+0x284B920:	str	x10, [x0, #0x30]!
+0x284B924:	stur	q0, [x0, #-0x10]
+0x284B928:	mov	x1, xzr
+0x284B92C:	bl	#0x1ef364c   ; -> 0x1EF364C
+0x284B930:	b	#0x284b95c   ; -> 0x284B95C
+0x284B934:	ldr	x8, [x10, #0x20]
+0x284B938:	ldr	q0, [sp, #0x30]
+0x284B93C:	ldr	x9, [sp, #0x40]
+0x284B940:	ldr	x8, [x8, #0xc0]
+0x284B944:	ldr	x2, [x8, #0x70]
+0x284B948:	str	q0, [sp, #0x50]
+0x284B94C:	str	x9, [sp, #0x60]
+0x284B950:	add	x1, sp, #0x50
+0x284B954:	mov	x0, x20
+0x284B958:	bl	#0x3b1cb24   ; -> 0x3B1CB24
+0x284B95C:	ldr	x8, [x22, #0x50]
+0x284B960:	add	x28, x28, #1
+0x284B964:	cbnz	x8, #0x284b854
+0x284B968:	bl	#0x1ef3904   ; -> 0x1EF3904
+0x284B96C:	mov	x20, xzr
+0x284B970:	cbz	x19, #0x284b9d4
+0x284B974:	adrp	x10, #0x4c0a000
+0x284B978:	ldr	x8, [x19]
+0x284B97C:	ldr	x10, [x10, #0x1b0]
+0x284B980:	ldrh	w9, [x8, #0x12e]
+0x284B984:	ldr	x1, [x10]
+0x284B988:	cbz	x9, #0x284b9ac
+0x284B98C:	ldr	x10, [x8, #0xb0]
+0x284B990:	add	x10, x10, #8
+0x284B994:	ldur	x11, [x10, #-8]
+0x284B998:	cmp	x11, x1
+0x284B99C:	b.eq	#0x284b9bc
+0x284B9A0:	subs	x9, x9, #1
+0x284B9A4:	add	x10, x10, #0x10
+0x284B9A8:	b.ne	#0x284b994
+0x284B9AC:	mov	x0, x19
+0x284B9B0:	mov	w2, wzr
+0x284B9B4:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284B9B8:	b	#0x284b9c8   ; -> 0x284B9C8
+0x284B9BC:	ldrsw	x9, [x10]
+0x284B9C0:	add	x8, x8, x9, lsl #4
+0x284B9C4:	add	x0, x8, #0x138
+0x284B9C8:	ldp	x8, x1, [x0]
+0x284B9CC:	mov	x0, x19
+0x284B9D0:	blr	x8
+0x284B9D4:	cbnz	x20, #0x284ba18
+0x284B9D8:	ldp	x20, x19, [sp, #0xc0]
+0x284B9DC:	ldp	x22, x21, [sp, #0xb0]
+0x284B9E0:	ldp	x24, x23, [sp, #0xa0]
+0x284B9E4:	ldp	x26, x25, [sp, #0x90]
+0x284B9E8:	ldp	x28, x27, [sp, #0x80]
+0x284B9EC:	ldp	x29, x30, [sp, #0x70]
+0x284B9F0:	add	sp, sp, #0xd0
+0x284B9F4:	ret	
+
+====================================================================================================
+DISASSEMBLY: <CalculateOwnStatModifications>g__AddOwnLevelStatModifications|53_1  @ RVA 0x284BAF4
+====================================================================================================
+0x284BAF4:	sub	sp, sp, #0xc0
+0x284BAF8:	stp	x30, x27, [sp, #0x70]
+0x284BAFC:	stp	x26, x25, [sp, #0x80]
+0x284BB00:	stp	x24, x23, [sp, #0x90]
+0x284BB04:	stp	x22, x21, [sp, #0xa0]
+0x284BB08:	stp	x20, x19, [sp, #0xb0]
+0x284BB0C:	adrp	x22, #0x4fe9000
+0x284BB10:	ldrb	w8, [x22, #0x5e1]
+0x284BB14:	mov	x20, x3
+0x284BB18:	mov	x21, x2
+0x284BB1C:	mov	x19, x1
+0x284BB20:	tbnz	w8, #0, #0x284bb74
+0x284BB24:	adrp	x0, #0x4c0a000
+0x284BB28:	ldr	x0, [x0, #0x1b0]
+0x284BB2C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284BB30:	adrp	x0, #0x4c4a000
+0x284BB34:	ldr	x0, [x0, #0x288]
+0x284BB38:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284BB3C:	adrp	x0, #0x4c4a000
+0x284BB40:	ldr	x0, [x0, #0x290]
+0x284BB44:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284BB48:	adrp	x0, #0x4c0a000
+0x284BB4C:	ldr	x0, [x0, #0x1b8]
+0x284BB50:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284BB54:	adrp	x0, #0x4c23000
+0x284BB58:	ldr	x0, [x0, #0x760]
+0x284BB5C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284BB60:	adrp	x0, #0x4c09000
+0x284BB64:	ldr	x0, [x0, #0xe48]
+0x284BB68:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284BB6C:	mov	w8, #1
+0x284BB70:	strb	w8, [x22, #0x5e1]
+0x284BB74:	stp	xzr, xzr, [sp, #0x18]
+0x284BB78:	str	xzr, [sp, #0x28]
+0x284BB7C:	cbz	x19, #0x284be60
+0x284BB80:	ldr	w1, [x19, #0x10]
+0x284BB84:	bl	#0x2849e60   ; -> 0x2849E60  public IReadOnlyList<CostumeLevelOptionData> GetAchievedLevelOptionDataList(int costumeID) { }
+0x284BB88:	cbz	x0, #0x284be34
+0x284BB8C:	adrp	x10, #0x4c4a000
+0x284BB90:	ldr	x8, [x0]
+0x284BB94:	ldr	x10, [x10, #0x288]
+0x284BB98:	mov	x19, x0
+0x284BB9C:	ldrh	w9, [x8, #0x12e]
+0x284BBA0:	ldr	x1, [x10]
+0x284BBA4:	cbz	x9, #0x284bbc8
+0x284BBA8:	ldr	x10, [x8, #0xb0]
+0x284BBAC:	add	x10, x10, #8
+0x284BBB0:	ldur	x11, [x10, #-8]
+0x284BBB4:	cmp	x11, x1
+0x284BBB8:	b.eq	#0x284bbd8
+0x284BBBC:	subs	x9, x9, #1
+0x284BBC0:	add	x10, x10, #0x10
+0x284BBC4:	b.ne	#0x284bbb0
+0x284BBC8:	mov	x0, x19
+0x284BBCC:	mov	w2, wzr
+0x284BBD0:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284BBD4:	b	#0x284bbe4   ; -> 0x284BBE4
+0x284BBD8:	ldrsw	x9, [x10]
+0x284BBDC:	add	x8, x8, x9, lsl #4
+0x284BBE0:	add	x0, x8, #0x138
+0x284BBE4:	ldp	x8, x1, [x0]
+0x284BBE8:	mov	x0, x19
+0x284BBEC:	blr	x8
+0x284BBF0:	mov	x19, x0
+0x284BBF4:	cbz	x0, #0x284be64
+0x284BBF8:	adrp	x23, #0x4c0a000
+0x284BBFC:	adrp	x24, #0x4c4a000
+0x284BC00:	adrp	x25, #0x4c09000
+0x284BC04:	adrp	x26, #0x4c23000
+0x284BC08:	ldr	x23, [x23, #0x1b8]
+0x284BC0C:	ldr	x24, [x24, #0x290]
+0x284BC10:	ldr	x25, [x25, #0xe48]
+0x284BC14:	ldr	x26, [x26, #0x760]
+0x284BC18:	mov	w27, #0x18
+0x284BC1C:	ldr	x8, [x19]
+0x284BC20:	ldr	x1, [x23]
+0x284BC24:	ldrh	w9, [x8, #0x12e]
+0x284BC28:	cbz	x9, #0x284bc4c
+0x284BC2C:	ldr	x10, [x8, #0xb0]
+0x284BC30:	add	x10, x10, #8
+0x284BC34:	ldur	x11, [x10, #-8]
+0x284BC38:	cmp	x11, x1
+0x284BC3C:	b.eq	#0x284bc5c
+0x284BC40:	subs	x9, x9, #1
+0x284BC44:	add	x10, x10, #0x10
+0x284BC48:	b.ne	#0x284bc34
+0x284BC4C:	mov	x0, x19
+0x284BC50:	mov	w2, wzr
+0x284BC54:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284BC58:	b	#0x284bc68   ; -> 0x284BC68
+0x284BC5C:	ldrsw	x9, [x10]
+0x284BC60:	add	x8, x8, x9, lsl #4
+0x284BC64:	add	x0, x8, #0x138
+0x284BC68:	ldp	x8, x1, [x0]
+0x284BC6C:	mov	x0, x19
+0x284BC70:	blr	x8
+0x284BC74:	tbz	w0, #0, #0x284bdc8
+0x284BC78:	ldr	x8, [x19]
+0x284BC7C:	ldr	x1, [x24]
+0x284BC80:	ldrh	w9, [x8, #0x12e]
+0x284BC84:	cbz	x9, #0x284bca8
+0x284BC88:	ldr	x10, [x8, #0xb0]
+0x284BC8C:	add	x10, x10, #8
+0x284BC90:	ldur	x11, [x10, #-8]
+0x284BC94:	cmp	x11, x1
+0x284BC98:	b.eq	#0x284bcb8
+0x284BC9C:	subs	x9, x9, #1
+0x284BCA0:	add	x10, x10, #0x10
+0x284BCA4:	b.ne	#0x284bc90
+0x284BCA8:	mov	x0, x19
+0x284BCAC:	mov	w2, wzr
+0x284BCB0:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284BCB4:	b	#0x284bcc4   ; -> 0x284BCC4
+0x284BCB8:	ldrsw	x9, [x10]
+0x284BCBC:	add	x8, x8, x9, lsl #4
+0x284BCC0:	add	x0, x8, #0x138
+0x284BCC4:	ldp	x8, x1, [x0]
+0x284BCC8:	mov	x0, x19
+0x284BCCC:	blr	x8
+0x284BCD0:	mov	x22, x0
+0x284BCD4:	cbz	x0, #0x284be50
+0x284BCD8:	mov	x0, x22
+0x284BCDC:	mov	x1, xzr
+0x284BCE0:	bl	#0x20cb7d4   ; -> 0x20CB7D4  public bool IsAlwaysApplied() { }
+0x284BCE4:	tbz	w0, #0, #0x284bc1c
+0x284BCE8:	cbz	x21, #0x284be54
+0x284BCEC:	ldr	w8, [x22, #0x24]
+0x284BCF0:	ldr	w9, [x21, #0x14]
+0x284BCF4:	cmp	w8, w9
+0x284BCF8:	b.gt	#0x284bc1c
+0x284BCFC:	ldr	w0, [x22, #0x30]
+0x284BD00:	mov	x1, xzr
+0x284BD04:	bl	#0x2a74d50   ; -> 0x2A74D50  public static EStat ToStat(E_BonusOption bonusOption) { }
+0x284BD08:	mov	w1, w0
+0x284BD0C:	ldrsw	x3, [x22, #0x34]
+0x284BD10:	ldr	x4, [x25]
+0x284BD14:	add	x0, sp, #0x18
+0x284BD18:	mov	w2, #8
+0x284BD1C:	mov	x5, xzr
+0x284BD20:	bl	#0x2b2d9fc   ; -> 0x2B2D9FC  public void .ctor(EStat statType, EStatContentType contentType, long value, string source = "") { }
+0x284BD24:	ldur	q0, [sp, #0x18]
+0x284BD28:	ldr	x8, [sp, #0x28]
+0x284BD2C:	str	q0, [sp]
+0x284BD30:	str	x8, [sp, #0x10]
+0x284BD34:	cbz	x20, #0x284be5c
+0x284BD38:	ldr	q0, [sp]
+0x284BD3C:	ldr	x8, [sp, #0x10]
+0x284BD40:	ldr	x10, [x26]
+0x284BD44:	str	q0, [sp, #0x30]
+0x284BD48:	str	x8, [sp, #0x40]
+0x284BD4C:	ldr	w9, [x20, #0x1c]
+0x284BD50:	ldr	x8, [x20, #0x10]
+0x284BD54:	add	w9, w9, #1
+0x284BD58:	str	w9, [x20, #0x1c]
+0x284BD5C:	cbz	x8, #0x284be58
+0x284BD60:	ldrsw	x9, [x20, #0x18]
+0x284BD64:	ldr	w11, [x8, #0x18]
+0x284BD68:	cmp	w9, w11
+0x284BD6C:	b.hs	#0x284bd9c
+0x284BD70:	add	w10, w9, #1
+0x284BD74:	str	w10, [x20, #0x18]
+0x284BD78:	ldr	x10, [sp, #0x40]
+0x284BD7C:	ldr	q0, [sp, #0x30]
+0x284BD80:	nop	
+0x284BD84:	madd	x0, x9, x27, x8
+0x284BD88:	str	x10, [x0, #0x30]!
+0x284BD8C:	stur	q0, [x0, #-0x10]
+0x284BD90:	mov	x1, xzr
+0x284BD94:	bl	#0x1ef364c   ; -> 0x1EF364C
+0x284BD98:	b	#0x284bc1c   ; -> 0x284BC1C
+0x284BD9C:	ldr	x8, [x10, #0x20]
+0x284BDA0:	ldr	q0, [sp, #0x30]
+0x284BDA4:	ldr	x9, [sp, #0x40]
+0x284BDA8:	ldr	x8, [x8, #0xc0]
+0x284BDAC:	ldr	x2, [x8, #0x70]
+0x284BDB0:	str	q0, [sp, #0x50]
+0x284BDB4:	str	x9, [sp, #0x60]
+0x284BDB8:	add	x1, sp, #0x50
+0x284BDBC:	mov	x0, x20
+0x284BDC0:	bl	#0x3b1cb24   ; -> 0x3B1CB24
+0x284BDC4:	b	#0x284bc1c   ; -> 0x284BC1C
+0x284BDC8:	mov	x20, xzr
+0x284BDCC:	cbz	x19, #0x284be30
+0x284BDD0:	adrp	x10, #0x4c0a000
+0x284BDD4:	ldr	x8, [x19]
+0x284BDD8:	ldr	x10, [x10, #0x1b0]
+0x284BDDC:	ldrh	w9, [x8, #0x12e]
+0x284BDE0:	ldr	x1, [x10]
+0x284BDE4:	cbz	x9, #0x284be08
+0x284BDE8:	ldr	x10, [x8, #0xb0]
+0x284BDEC:	add	x10, x10, #8
+0x284BDF0:	ldur	x11, [x10, #-8]
+0x284BDF4:	cmp	x11, x1
+0x284BDF8:	b.eq	#0x284be18
+0x284BDFC:	subs	x9, x9, #1
+0x284BE00:	add	x10, x10, #0x10
+0x284BE04:	b.ne	#0x284bdf0
+0x284BE08:	mov	x0, x19
+0x284BE0C:	mov	w2, wzr
+0x284BE10:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284BE14:	b	#0x284be24   ; -> 0x284BE24
+0x284BE18:	ldrsw	x9, [x10]
+0x284BE1C:	add	x8, x8, x9, lsl #4
+0x284BE20:	add	x0, x8, #0x138
+0x284BE24:	ldp	x8, x1, [x0]
+0x284BE28:	mov	x0, x19
+0x284BE2C:	blr	x8
+0x284BE30:	cbnz	x20, #0x284be68
+0x284BE34:	ldp	x20, x19, [sp, #0xb0]
+0x284BE38:	ldp	x22, x21, [sp, #0xa0]
+0x284BE3C:	ldp	x24, x23, [sp, #0x90]
+0x284BE40:	ldp	x26, x25, [sp, #0x80]
+0x284BE44:	ldp	x30, x27, [sp, #0x70]
+0x284BE48:	add	sp, sp, #0xc0
+0x284BE4C:	ret	
+
+====================================================================================================
+DISASSEMBLY: <CalculateEquippingStatModifications>g__AddEquippingGradeStatModifications|55_0  @ RVA 0x284C10C
+====================================================================================================
+0x284C10C:	sub	sp, sp, #0xd0
+0x284C110:	stp	x29, x30, [sp, #0x70]
+0x284C114:	stp	x28, x27, [sp, #0x80]
+0x284C118:	stp	x26, x25, [sp, #0x90]
+0x284C11C:	stp	x24, x23, [sp, #0xa0]
+0x284C120:	stp	x22, x21, [sp, #0xb0]
+0x284C124:	stp	x20, x19, [sp, #0xc0]
+0x284C128:	adrp	x19, #0x4fe9000
+0x284C12C:	ldrb	w8, [x19, #0x5e2]
+0x284C130:	mov	x20, x4
+0x284C134:	mov	x21, x3
+0x284C138:	mov	x22, x2
+0x284C13C:	mov	w23, w1
+0x284C140:	tbnz	w8, #0, #0x284c194
+0x284C144:	adrp	x0, #0x4c0a000
+0x284C148:	ldr	x0, [x0, #0x1b0]
+0x284C14C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C150:	adrp	x0, #0x4c4a000
+0x284C154:	ldr	x0, [x0, #0x278]
+0x284C158:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C15C:	adrp	x0, #0x4c4a000
+0x284C160:	ldr	x0, [x0, #0x280]
+0x284C164:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C168:	adrp	x0, #0x4c0a000
+0x284C16C:	ldr	x0, [x0, #0x1b8]
+0x284C170:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C174:	adrp	x0, #0x4c23000
+0x284C178:	ldr	x0, [x0, #0x760]
+0x284C17C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C180:	adrp	x0, #0x4c09000
+0x284C184:	ldr	x0, [x0, #0xe48]
+0x284C188:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C18C:	mov	w8, #1
+0x284C190:	strb	w8, [x19, #0x5e2]
+0x284C194:	stp	xzr, xzr, [sp, #0x18]
+0x284C198:	str	xzr, [sp, #0x28]
+0x284C19C:	cbz	x22, #0x284c4e8
+0x284C1A0:	ldr	w1, [x22, #0x10]
+0x284C1A4:	bl	#0x284a2fc   ; -> 0x284A2FC  public IReadOnlyList<CostumeStarGradeOptionData> GetAchievedGradeOptionDataList(int costumeID) { }
+0x284C1A8:	cbz	x0, #0x284c4b0
+0x284C1AC:	adrp	x10, #0x4c4a000
+0x284C1B0:	ldr	x8, [x0]
+0x284C1B4:	ldr	x10, [x10, #0x278]
+0x284C1B8:	mov	x19, x0
+0x284C1BC:	ldrh	w9, [x8, #0x12e]
+0x284C1C0:	ldr	x1, [x10]
+0x284C1C4:	cbz	x9, #0x284c1e8
+0x284C1C8:	ldr	x10, [x8, #0xb0]
+0x284C1CC:	add	x10, x10, #8
+0x284C1D0:	ldur	x11, [x10, #-8]
+0x284C1D4:	cmp	x11, x1
+0x284C1D8:	b.eq	#0x284c1f8
+0x284C1DC:	subs	x9, x9, #1
+0x284C1E0:	add	x10, x10, #0x10
+0x284C1E4:	b.ne	#0x284c1d0
+0x284C1E8:	mov	x0, x19
+0x284C1EC:	mov	w2, wzr
+0x284C1F0:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C1F4:	b	#0x284c204   ; -> 0x284C204
+0x284C1F8:	ldrsw	x9, [x10]
+0x284C1FC:	add	x8, x8, x9, lsl #4
+0x284C200:	add	x0, x8, #0x138
+0x284C204:	ldp	x8, x1, [x0]
+0x284C208:	mov	x0, x19
+0x284C20C:	blr	x8
+0x284C210:	mov	x19, x0
+0x284C214:	cbz	x0, #0x284c4ec
+0x284C218:	adrp	x25, #0x4c0a000
+0x284C21C:	adrp	x26, #0x4c4a000
+0x284C220:	adrp	x28, #0x4c23000
+0x284C224:	ldr	x25, [x25, #0x1b8]
+0x284C228:	ldr	x26, [x26, #0x280]
+0x284C22C:	ldr	x28, [x28, #0x760]
+0x284C230:	ldr	x8, [x19]
+0x284C234:	ldr	x1, [x25]
+0x284C238:	ldrh	w9, [x8, #0x12e]
+0x284C23C:	cbz	x9, #0x284c260
+0x284C240:	ldr	x10, [x8, #0xb0]
+0x284C244:	add	x10, x10, #8
+0x284C248:	ldur	x11, [x10, #-8]
+0x284C24C:	cmp	x11, x1
+0x284C250:	b.eq	#0x284c270
+0x284C254:	subs	x9, x9, #1
+0x284C258:	add	x10, x10, #0x10
+0x284C25C:	b.ne	#0x284c248
+0x284C260:	mov	x0, x19
+0x284C264:	mov	w2, wzr
+0x284C268:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C26C:	b	#0x284c27c   ; -> 0x284C27C
+0x284C270:	ldrsw	x9, [x10]
+0x284C274:	add	x8, x8, x9, lsl #4
+0x284C278:	add	x0, x8, #0x138
+0x284C27C:	ldp	x8, x1, [x0]
+0x284C280:	mov	x0, x19
+0x284C284:	blr	x8
+0x284C288:	tbz	w0, #0, #0x284c444
+0x284C28C:	ldr	x8, [x19]
+0x284C290:	ldr	x1, [x26]
+0x284C294:	ldrh	w9, [x8, #0x12e]
+0x284C298:	cbz	x9, #0x284c2bc
+0x284C29C:	ldr	x10, [x8, #0xb0]
+0x284C2A0:	add	x10, x10, #8
+0x284C2A4:	ldur	x11, [x10, #-8]
+0x284C2A8:	cmp	x11, x1
+0x284C2AC:	b.eq	#0x284c2cc
+0x284C2B0:	subs	x9, x9, #1
+0x284C2B4:	add	x10, x10, #0x10
+0x284C2B8:	b.ne	#0x284c2a4
+0x284C2BC:	mov	x0, x19
+0x284C2C0:	mov	w2, wzr
+0x284C2C4:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C2C8:	b	#0x284c2d8   ; -> 0x284C2D8
+0x284C2CC:	ldrsw	x9, [x10]
+0x284C2D0:	add	x8, x8, x9, lsl #4
+0x284C2D4:	add	x0, x8, #0x138
+0x284C2D8:	ldp	x8, x1, [x0]
+0x284C2DC:	mov	x0, x19
+0x284C2E0:	blr	x8
+0x284C2E4:	mov	x24, x0
+0x284C2E8:	cbz	x0, #0x284c4d8
+0x284C2EC:	ldr	w8, [x24, #0x2c]
+0x284C2F0:	cmp	w8, #1
+0x284C2F4:	b.ne	#0x284c230
+0x284C2F8:	ldr	w8, [x22, #0x10]
+0x284C2FC:	cmp	w8, w23
+0x284C300:	b.ne	#0x284c230
+0x284C304:	cbz	x21, #0x284c4e4
+0x284C308:	ldr	w8, [x24, #0x48]
+0x284C30C:	ldr	w9, [x21, #0x18]
+0x284C310:	cmp	w8, w9
+0x284C314:	b.gt	#0x284c230
+0x284C318:	ldr	x8, [x24, #0x50]
+0x284C31C:	cbz	x8, #0x284c440
+0x284C320:	mov	w29, #8
+0x284C324:	ldr	w10, [x8, #0x18]
+0x284C328:	sub	x9, x29, #8
+0x284C32C:	cmp	x9, w10, sxtw
+0x284C330:	b.ge	#0x284c230
+0x284C334:	cmp	x9, x10
+0x284C338:	b.hs	#0x284c4d0
+0x284C33C:	ldr	x10, [x24, #0x58]
+0x284C340:	cbz	x10, #0x284c438
+0x284C344:	ldr	w11, [x10, #0x18]
+0x284C348:	cmp	x9, w11, sxtw
+0x284C34C:	b.ge	#0x284c438
+0x284C350:	cmp	x9, x11
+0x284C354:	b.hs	#0x284c4d4
+0x284C358:	ldr	w27, [x10, x29, lsl #2]
+0x284C35C:	cbz	w27, #0x284c438
+0x284C360:	ldr	w0, [x8, x29, lsl #2]
+0x284C364:	mov	x1, xzr
+0x284C368:	bl	#0x2a74d50   ; -> 0x2A74D50  public static EStat ToStat(E_BonusOption bonusOption) { }
+0x284C36C:	mov	w1, w0
+0x284C370:	adrp	x8, #0x4c09000
+0x284C374:	ldr	x8, [x8, #0xe48]
+0x284C378:	scvtf	s0, w27
+0x284C37C:	fcvtzs	x3, s0
+0x284C380:	ldr	x4, [x8]
+0x284C384:	add	x0, sp, #0x18
+0x284C388:	mov	w2, #9
+0x284C38C:	mov	x5, xzr
+0x284C390:	bl	#0x2b2d9fc   ; -> 0x2B2D9FC  public void .ctor(EStat statType, EStatContentType contentType, long value, string source = "") { }
+0x284C394:	ldur	q0, [sp, #0x18]
+0x284C398:	ldr	x8, [sp, #0x28]
+0x284C39C:	str	q0, [sp]
+0x284C3A0:	str	x8, [sp, #0x10]
+0x284C3A4:	cbz	x20, #0x284c4dc
+0x284C3A8:	ldr	q0, [sp]
+0x284C3AC:	ldr	x8, [sp, #0x10]
+0x284C3B0:	ldr	x10, [x28]
+0x284C3B4:	str	q0, [sp, #0x30]
+0x284C3B8:	str	x8, [sp, #0x40]
+0x284C3BC:	ldr	w9, [x20, #0x1c]
+0x284C3C0:	ldr	x8, [x20, #0x10]
+0x284C3C4:	add	w9, w9, #1
+0x284C3C8:	str	w9, [x20, #0x1c]
+0x284C3CC:	cbz	x8, #0x284c4e0
+0x284C3D0:	ldrsw	x9, [x20, #0x18]
+0x284C3D4:	ldr	w11, [x8, #0x18]
+0x284C3D8:	cmp	w9, w11
+0x284C3DC:	b.hs	#0x284c40c
+0x284C3E0:	add	w10, w9, #1
+0x284C3E4:	str	w10, [x20, #0x18]
+0x284C3E8:	ldr	x10, [sp, #0x40]
+0x284C3EC:	ldr	q0, [sp, #0x30]
+0x284C3F0:	mov	w11, #0x18
+0x284C3F4:	madd	x0, x9, x11, x8
+0x284C3F8:	str	x10, [x0, #0x30]!
+0x284C3FC:	stur	q0, [x0, #-0x10]
+0x284C400:	mov	x1, xzr
+0x284C404:	bl	#0x1ef364c   ; -> 0x1EF364C
+0x284C408:	b	#0x284c434   ; -> 0x284C434
+0x284C40C:	ldr	x8, [x10, #0x20]
+0x284C410:	ldr	q0, [sp, #0x30]
+0x284C414:	ldr	x9, [sp, #0x40]
+0x284C418:	ldr	x8, [x8, #0xc0]
+0x284C41C:	ldr	x2, [x8, #0x70]
+0x284C420:	str	q0, [sp, #0x50]
+0x284C424:	str	x9, [sp, #0x60]
+0x284C428:	add	x1, sp, #0x50
+0x284C42C:	mov	x0, x20
+0x284C430:	bl	#0x3b1cb24   ; -> 0x3B1CB24
+0x284C434:	ldr	x8, [x24, #0x50]
+0x284C438:	add	x29, x29, #1
+0x284C43C:	cbnz	x8, #0x284c324
+0x284C440:	bl	#0x1ef3904   ; -> 0x1EF3904
+0x284C444:	mov	x20, xzr
+0x284C448:	cbz	x19, #0x284c4ac
+0x284C44C:	adrp	x10, #0x4c0a000
+0x284C450:	ldr	x8, [x19]
+0x284C454:	ldr	x10, [x10, #0x1b0]
+0x284C458:	ldrh	w9, [x8, #0x12e]
+0x284C45C:	ldr	x1, [x10]
+0x284C460:	cbz	x9, #0x284c484
+0x284C464:	ldr	x10, [x8, #0xb0]
+0x284C468:	add	x10, x10, #8
+0x284C46C:	ldur	x11, [x10, #-8]
+0x284C470:	cmp	x11, x1
+0x284C474:	b.eq	#0x284c494
+0x284C478:	subs	x9, x9, #1
+0x284C47C:	add	x10, x10, #0x10
+0x284C480:	b.ne	#0x284c46c
+0x284C484:	mov	x0, x19
+0x284C488:	mov	w2, wzr
+0x284C48C:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C490:	b	#0x284c4a0   ; -> 0x284C4A0
+0x284C494:	ldrsw	x9, [x10]
+0x284C498:	add	x8, x8, x9, lsl #4
+0x284C49C:	add	x0, x8, #0x138
+0x284C4A0:	ldp	x8, x1, [x0]
+0x284C4A4:	mov	x0, x19
+0x284C4A8:	blr	x8
+0x284C4AC:	cbnz	x20, #0x284c4f0
+0x284C4B0:	ldp	x20, x19, [sp, #0xc0]
+0x284C4B4:	ldp	x22, x21, [sp, #0xb0]
+0x284C4B8:	ldp	x24, x23, [sp, #0xa0]
+0x284C4BC:	ldp	x26, x25, [sp, #0x90]
+0x284C4C0:	ldp	x28, x27, [sp, #0x80]
+0x284C4C4:	ldp	x29, x30, [sp, #0x70]
+0x284C4C8:	add	sp, sp, #0xd0
+0x284C4CC:	ret	
+
+====================================================================================================
+DISASSEMBLY: <CalculateEquippingStatModifications>g__AddEquippingLevelStatModifications|55_1  @ RVA 0x284C5CC
+====================================================================================================
+0x284C5CC:	sub	sp, sp, #0xd0
+0x284C5D0:	stp	x29, x30, [sp, #0x70]
+0x284C5D4:	stp	x28, x27, [sp, #0x80]
+0x284C5D8:	stp	x26, x25, [sp, #0x90]
+0x284C5DC:	stp	x24, x23, [sp, #0xa0]
+0x284C5E0:	stp	x22, x21, [sp, #0xb0]
+0x284C5E4:	stp	x20, x19, [sp, #0xc0]
+0x284C5E8:	adrp	x19, #0x4fe9000
+0x284C5EC:	ldrb	w8, [x19, #0x5e3]
+0x284C5F0:	mov	x20, x4
+0x284C5F4:	mov	x21, x3
+0x284C5F8:	mov	x22, x2
+0x284C5FC:	mov	w23, w1
+0x284C600:	tbnz	w8, #0, #0x284c654
+0x284C604:	adrp	x0, #0x4c0a000
+0x284C608:	ldr	x0, [x0, #0x1b0]
+0x284C60C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C610:	adrp	x0, #0x4c4a000
+0x284C614:	ldr	x0, [x0, #0x288]
+0x284C618:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C61C:	adrp	x0, #0x4c4a000
+0x284C620:	ldr	x0, [x0, #0x290]
+0x284C624:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C628:	adrp	x0, #0x4c0a000
+0x284C62C:	ldr	x0, [x0, #0x1b8]
+0x284C630:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C634:	adrp	x0, #0x4c23000
+0x284C638:	ldr	x0, [x0, #0x760]
+0x284C63C:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C640:	adrp	x0, #0x4c09000
+0x284C644:	ldr	x0, [x0, #0xe48]
+0x284C648:	bl	#0x1ef36a8   ; -> 0x1EF36A8
+0x284C64C:	mov	w8, #1
+0x284C650:	strb	w8, [x19, #0x5e3]
+0x284C654:	stp	xzr, xzr, [sp, #0x18]
+0x284C658:	str	xzr, [sp, #0x28]
+0x284C65C:	cbz	x22, #0x284c950
+0x284C660:	ldr	w1, [x22, #0x10]
+0x284C664:	bl	#0x2849e60   ; -> 0x2849E60  public IReadOnlyList<CostumeLevelOptionData> GetAchievedLevelOptionDataList(int costumeID) { }
+0x284C668:	cbz	x0, #0x284c920
+0x284C66C:	adrp	x10, #0x4c4a000
+0x284C670:	ldr	x8, [x0]
+0x284C674:	ldr	x10, [x10, #0x288]
+0x284C678:	mov	x19, x0
+0x284C67C:	ldrh	w9, [x8, #0x12e]
+0x284C680:	ldr	x1, [x10]
+0x284C684:	cbz	x9, #0x284c6a8
+0x284C688:	ldr	x10, [x8, #0xb0]
+0x284C68C:	add	x10, x10, #8
+0x284C690:	ldur	x11, [x10, #-8]
+0x284C694:	cmp	x11, x1
+0x284C698:	b.eq	#0x284c6b8
+0x284C69C:	subs	x9, x9, #1
+0x284C6A0:	add	x10, x10, #0x10
+0x284C6A4:	b.ne	#0x284c690
+0x284C6A8:	mov	x0, x19
+0x284C6AC:	mov	w2, wzr
+0x284C6B0:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C6B4:	b	#0x284c6c4   ; -> 0x284C6C4
+0x284C6B8:	ldrsw	x9, [x10]
+0x284C6BC:	add	x8, x8, x9, lsl #4
+0x284C6C0:	add	x0, x8, #0x138
+0x284C6C4:	ldp	x8, x1, [x0]
+0x284C6C8:	mov	x0, x19
+0x284C6CC:	blr	x8
+0x284C6D0:	mov	x19, x0
+0x284C6D4:	cbz	x0, #0x284c954
+0x284C6D8:	adrp	x25, #0x4c0a000
+0x284C6DC:	adrp	x26, #0x4c4a000
+0x284C6E0:	adrp	x27, #0x4c09000
+0x284C6E4:	adrp	x28, #0x4c23000
+0x284C6E8:	ldr	x25, [x25, #0x1b8]
+0x284C6EC:	ldr	x26, [x26, #0x290]
+0x284C6F0:	ldr	x27, [x27, #0xe48]
+0x284C6F4:	ldr	x28, [x28, #0x760]
+0x284C6F8:	mov	w29, #0x18
+0x284C6FC:	ldr	x8, [x19]
+0x284C700:	ldr	x1, [x25]
+0x284C704:	ldrh	w9, [x8, #0x12e]
+0x284C708:	cbz	x9, #0x284c72c
+0x284C70C:	ldr	x10, [x8, #0xb0]
+0x284C710:	add	x10, x10, #8
+0x284C714:	ldur	x11, [x10, #-8]
+0x284C718:	cmp	x11, x1
+0x284C71C:	b.eq	#0x284c73c
+0x284C720:	subs	x9, x9, #1
+0x284C724:	add	x10, x10, #0x10
+0x284C728:	b.ne	#0x284c714
+0x284C72C:	mov	x0, x19
+0x284C730:	mov	w2, wzr
+0x284C734:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C738:	b	#0x284c748   ; -> 0x284C748
+0x284C73C:	ldrsw	x9, [x10]
+0x284C740:	add	x8, x8, x9, lsl #4
+0x284C744:	add	x0, x8, #0x138
+0x284C748:	ldp	x8, x1, [x0]
+0x284C74C:	mov	x0, x19
+0x284C750:	blr	x8
+0x284C754:	tbz	w0, #0, #0x284c8b4
+0x284C758:	ldr	x8, [x19]
+0x284C75C:	ldr	x1, [x26]
+0x284C760:	ldrh	w9, [x8, #0x12e]
+0x284C764:	cbz	x9, #0x284c788
+0x284C768:	ldr	x10, [x8, #0xb0]
+0x284C76C:	add	x10, x10, #8
+0x284C770:	ldur	x11, [x10, #-8]
+0x284C774:	cmp	x11, x1
+0x284C778:	b.eq	#0x284c798
+0x284C77C:	subs	x9, x9, #1
+0x284C780:	add	x10, x10, #0x10
+0x284C784:	b.ne	#0x284c770
+0x284C788:	mov	x0, x19
+0x284C78C:	mov	w2, wzr
+0x284C790:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C794:	b	#0x284c7a4   ; -> 0x284C7A4
+0x284C798:	ldrsw	x9, [x10]
+0x284C79C:	add	x8, x8, x9, lsl #4
+0x284C7A0:	add	x0, x8, #0x138
+0x284C7A4:	ldp	x8, x1, [x0]
+0x284C7A8:	mov	x0, x19
+0x284C7AC:	blr	x8
+0x284C7B0:	mov	x24, x0
+0x284C7B4:	cbz	x0, #0x284c940
+0x284C7B8:	mov	x0, x24
+0x284C7BC:	mov	x1, xzr
+0x284C7C0:	bl	#0x20cb7c4   ; -> 0x20CB7C4  public bool IsEquipOnly() { }
+0x284C7C4:	tbz	w0, #0, #0x284c6fc
+0x284C7C8:	ldr	w8, [x22, #0x10]
+0x284C7CC:	cmp	w8, w23
+0x284C7D0:	b.ne	#0x284c6fc
+0x284C7D4:	cbz	x21, #0x284c944
+0x284C7D8:	ldr	w8, [x24, #0x24]
+0x284C7DC:	ldr	w9, [x21, #0x14]
+0x284C7E0:	cmp	w8, w9
+0x284C7E4:	b.gt	#0x284c6fc
+0x284C7E8:	ldr	w0, [x24, #0x30]
+0x284C7EC:	mov	x1, xzr
+0x284C7F0:	bl	#0x2a74d50   ; -> 0x2A74D50  public static EStat ToStat(E_BonusOption bonusOption) { }
+0x284C7F4:	mov	w1, w0
+0x284C7F8:	ldrsw	x3, [x24, #0x34]
+0x284C7FC:	ldr	x4, [x27]
+0x284C800:	add	x0, sp, #0x18
+0x284C804:	mov	w2, #0xa
+0x284C808:	mov	x5, xzr
+0x284C80C:	bl	#0x2b2d9fc   ; -> 0x2B2D9FC  public void .ctor(EStat statType, EStatContentType contentType, long value, string source = "") { }
+0x284C810:	ldur	q0, [sp, #0x18]
+0x284C814:	ldr	x8, [sp, #0x28]
+0x284C818:	str	q0, [sp]
+0x284C81C:	str	x8, [sp, #0x10]
+0x284C820:	cbz	x20, #0x284c94c
+0x284C824:	ldr	q0, [sp]
+0x284C828:	ldr	x8, [sp, #0x10]
+0x284C82C:	ldr	x10, [x28]
+0x284C830:	str	q0, [sp, #0x30]
+0x284C834:	str	x8, [sp, #0x40]
+0x284C838:	ldr	w9, [x20, #0x1c]
+0x284C83C:	ldr	x8, [x20, #0x10]
+0x284C840:	add	w9, w9, #1
+0x284C844:	str	w9, [x20, #0x1c]
+0x284C848:	cbz	x8, #0x284c948
+0x284C84C:	ldrsw	x9, [x20, #0x18]
+0x284C850:	ldr	w11, [x8, #0x18]
+0x284C854:	cmp	w9, w11
+0x284C858:	b.hs	#0x284c888
+0x284C85C:	add	w10, w9, #1
+0x284C860:	str	w10, [x20, #0x18]
+0x284C864:	ldr	x10, [sp, #0x40]
+0x284C868:	ldr	q0, [sp, #0x30]
+0x284C86C:	nop	
+0x284C870:	madd	x0, x9, x29, x8
+0x284C874:	str	x10, [x0, #0x30]!
+0x284C878:	stur	q0, [x0, #-0x10]
+0x284C87C:	mov	x1, xzr
+0x284C880:	bl	#0x1ef364c   ; -> 0x1EF364C
+0x284C884:	b	#0x284c6fc   ; -> 0x284C6FC
+0x284C888:	ldr	x8, [x10, #0x20]
+0x284C88C:	ldr	q0, [sp, #0x30]
+0x284C890:	ldr	x9, [sp, #0x40]
+0x284C894:	ldr	x8, [x8, #0xc0]
+0x284C898:	ldr	x2, [x8, #0x70]
+0x284C89C:	str	q0, [sp, #0x50]
+0x284C8A0:	str	x9, [sp, #0x60]
+0x284C8A4:	add	x1, sp, #0x50
+0x284C8A8:	mov	x0, x20
+0x284C8AC:	bl	#0x3b1cb24   ; -> 0x3B1CB24
+0x284C8B0:	b	#0x284c6fc   ; -> 0x284C6FC
+0x284C8B4:	mov	x20, xzr
+0x284C8B8:	cbz	x19, #0x284c91c
+0x284C8BC:	adrp	x10, #0x4c0a000
+0x284C8C0:	ldr	x8, [x19]
+0x284C8C4:	ldr	x10, [x10, #0x1b0]
+0x284C8C8:	ldrh	w9, [x8, #0x12e]
+0x284C8CC:	ldr	x1, [x10]
+0x284C8D0:	cbz	x9, #0x284c8f4
+0x284C8D4:	ldr	x10, [x8, #0xb0]
+0x284C8D8:	add	x10, x10, #8
+0x284C8DC:	ldur	x11, [x10, #-8]
+0x284C8E0:	cmp	x11, x1
+0x284C8E4:	b.eq	#0x284c904
+0x284C8E8:	subs	x9, x9, #1
+0x284C8EC:	add	x10, x10, #0x10
+0x284C8F0:	b.ne	#0x284c8dc
+0x284C8F4:	mov	x0, x19
+0x284C8F8:	mov	w2, wzr
+0x284C8FC:	bl	#0x1f0575c   ; -> 0x1F0575C
+0x284C900:	b	#0x284c910   ; -> 0x284C910
+0x284C904:	ldrsw	x9, [x10]
+0x284C908:	add	x8, x8, x9, lsl #4
+0x284C90C:	add	x0, x8, #0x138
+0x284C910:	ldp	x8, x1, [x0]
+0x284C914:	mov	x0, x19
+0x284C918:	blr	x8
+0x284C91C:	cbnz	x20, #0x284c958
+0x284C920:	ldp	x20, x19, [sp, #0xc0]
+0x284C924:	ldp	x22, x21, [sp, #0xb0]
+0x284C928:	ldp	x24, x23, [sp, #0xa0]
+0x284C92C:	ldp	x26, x25, [sp, #0x90]
+0x284C930:	ldp	x28, x27, [sp, #0x80]
+0x284C934:	ldp	x29, x30, [sp, #0x70]
+0x284C938:	add	sp, sp, #0xd0
+0x284C93C:	ret	

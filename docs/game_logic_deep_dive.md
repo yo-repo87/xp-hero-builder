@@ -114,7 +114,61 @@ return (long)damage
 - `GachaItemWeightResolver.ResolveEffectiveWeight(gachaRateGroup, itemId, hasTierConfig)` (RVA 0x26182BC): looks up a per-`(rateGroup, itemId)` weight override in a config table; if none exists, falls back to `hasTierConfig ? 1 : 0` as the item's weight. Straightforward, matches the `DEFAULT_ITEM_WEIGHT = 1` constant already visible in the class's field list from the earlier signature dump, and is consistent with the `GachaItemWeightData`/`GachaRateData` tables already extracted into the Unity-assets fork's data.
 - `PityTierResolver` / `BuildAllTiers` / `GetFirstActivePityTierInOrder` (RVA 0x261ED74 / 0x261EE44): disassembled but not fully hand-traced in this pass (time-boxed in favor of the higher-value stat/trait findings above) — confirmed to exist and operate over a `List<PityTier>` built from `IBoxWishMeta`, consistent with a standard "first-matching-tier-in-priority-order" pity resolution, but the exact tier-priority comparison wasn't verified instruction-by-instruction. Not used by the shipped app (which doesn't simulate gacha pulls), so left unexplored beyond confirming the function exists and does what its name implies at a structural level.
 
-## 6. Changes made to the shipped app
+## 6. CONFIRMED (2026-10-03): `CostumeOwnGradeOption`/`CostumeOwnLevelOption` are real, roster-wide sums — not per-active-hero
+
+These were the last two of the 17 §1 sources still left at a hardcoded 0 in the shipped app, flagged in that earlier pass as "found but route through interface/vtable dispatch, not traced." Revisited with the real `libil2cpp.so` still reachable (same scratchpad as the original pass) and traced to completion.
+
+**Entry point**: `CostumeInventoryManager.GetStatModifications(int costumeId)` (RVA `0x284B154`) is what actually builds a hero's full stat-modification list — it calls three functions and concatenates their results:
+
+```
+GetStatModifications(costumeId):
+    own       = CalculateOwnStatModifications()                        // no costumeId param!
+    equip     = CalculateEquippingStatModifications(costumeId)
+    equipStat = CalculateEquippingStaticStatModifications(costumeId)
+    return own ++ equip ++ equipStat
+```
+
+The missing-costumeId-argument on `CalculateOwnStatModifications()` was the tell. Tracing its body (RVA `0x284AD88`) found the real mechanic: it reads the player's **entire owned-costume list** (a field on the manager, not the `costumeId` parameter), and for every costume where `CostumeStatus.IsPurchased` is true, calls three local functions against *that* costume's own data:
+
+```
+CalculateOwnStatModifications():
+    for each ownedCostume in AllOwnedCostumes:
+        status = GetCostumeStatus(ownedCostume.id)
+        if status == null or !status.IsPurchased: continue
+        AddOwnGradeStatModifications(ownedCostume, status, modList)     // RVA 0x284B640
+        AddOwnLevelStatModifications(ownedCostume, status, modList)     // RVA 0x284BAF4
+        AddOwnEvolveStatModifications(ownedCostume.id, modList)         // RVA 0x284BF3C
+    return modList
+```
+
+i.e. `CostumeOwnGradeOption`/`CostumeOwnLevelOption`/`CostumeOwnEvolutionOption` are a genuine **roster-wide "collection" bonus** — every hero the player owns and has developed contributes, regardless of which one is actively fighting. This is a real, intentional game-design pattern (common in gacha/idle games: investing in your bench, not just your main, still pays off a little), not an artifact of the decompile.
+
+**The Own/Equipping split itself**, confirmed by reading `AddOwnGradeStatModifications` and its sibling `AddEquippingGradeStatModifications` (RVA `0x284C10C`) side by side — both walk the exact same `CostumeStarGradeOptionData` rows (`GetAchievedGradeOptionDataList(costumeId)`), but filter on `OptionStyle` in opposite directions:
+
+```
+AddOwnGradeStatModifications(costumeData, costumeStatus, modList):        // "Own" -- contentType 7
+    for each row in GetAchievedGradeOptionDataList(costumeData.id):
+        if row.OptionStyle != Always_Option(2): continue
+        if row.Star_Grade > costumeStatus.Grade: continue
+        for (type, value) in zip(row.OptionTypeArray, row.OptionValueArray):
+            if value == 0: continue
+            modList.Add(new StatModification(ToStat(type), CostumeOwnGradeOption, value))   // raw value, no scaling
+
+AddEquippingGradeStatModifications(targetCostumeId, data, status, modList):   // "Equipping" -- contentType 9
+    for each row in GetAchievedGradeOptionDataList(data.id):
+        if row.OptionStyle != EquipOnly_Option(1): continue
+        if data.id != targetCostumeId: continue          // only the hero actually being evaluated
+        if row.Star_Grade > status.Grade: continue
+        ... same per-entry loop, contentType = CostumeEquippingGradeOption (9) ...
+```
+
+`E_CostumeOptionStyle` (found alongside `CostumeStarGradeOptionData`'s field list): `None=0, EquipOnly_Option=1, Always_Option=2, EquipOnly_Skill=3, Always_Skill=4`. `AddOwnLevelStatModifications`/`AddEquippingLevelStatModifications` (RVA `0x284BAF4`/`0x284C5CC`) do the identical thing one level down, against `CostumeLevelOptionData` (which has its own `IsAlwaysApplied()`/`IsEquipOnly()` methods doing the same style check), confirmed via the exact same read. Both "value" fields are used completely raw — no `×10`/`÷10` scaling anywhere in either function, unlike several other sources this project has had to correct for exactly that (see entry #11 in `CLAUDE.md`'s chronological log).
+
+**Net result**: these were never "no distinct data source" (as the app's old caveat said) — they're the *same* `CostumeStarGradeOptionData`/`CostumeLevelOptionData` rows this app already had committed and partially used, just needing the right `OptionStyle` filter and the right scope (whole roster vs. one hero) applied. This also surfaced a real, previously-shipped bug: the app's existing `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption` computation (via `heroStarBonuses`/`heroLevelBonuses`) summed **every** row regardless of `OptionStyle`, which — once `CostumeOwnGradeOption`/`CostumeOwnLevelOption` were added reading the complementary style-2 rows — would have double-counted every `Always_Option` row between the two sources. Fixed in the same pass (see `CLAUDE.md`'s "`CostumeOwnGradeOption`/`CostumeOwnLevelOption`" writeup for the shipped-code side of this).
+
+Raw disassembly: `docs/decompiled/costume_own_vs_equipping.asm.txt`.
+
+## 7. Changes made to the shipped app
 
 Edited `/home/pi/Claude/HeroBuilder/js/formulas.js` and `/home/pi/Claude/HeroBuilder/README.md`:
 
@@ -122,9 +176,11 @@ Edited `/home/pi/Claude/HeroBuilder/js/formulas.js` and `/home/pi/Claude/HeroBui
 - The trait-synergy caveat in both `formulas.js` and the README was tightened from "reconstructed, not confirmed" to "confirmed by decompilation" now that §3 verified it.
 - README's "How the data was sourced" section gets a new short paragraph pointing at this report for anyone who wants the full derivation.
 - No changes to `ui-*.js` or any displayed numbers — verified via a headless-browser pass (same method used when the app was first built) that the weapon detail modal, hero detail modal, and equipment tab all still render without console errors after the doc-comment edits.
+- **2026-10-03 (§6 above)**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption`/`CostumeOwnEvolutionOption` wired up for real (new `Formulas.costumeOwnGradeSum()`/`costumeOwnLevelSum()`/`costumeOwnEvolutionSum()`, each looping `State.data.heroes` — the app's roster, the direct analog of "owned costumes"); `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption` fixed to filter `OptionStyle==EquipOnly_Option` only (new `costumeEquippingGradeSum()`/`costumeEquippingLevelSum()`), correcting the double-counting risk described in §6. All five sources upgraded from `unmodeled`/`mapped` to `confirmed` in the Guide tab's Total DPS breakdown. `heroStarBonuses()`/`heroLevelBonuses()` themselves were left untouched (still unfiltered by `OptionStyle`) since the Heroes tab's "Stat Bonuses Unlocked" list legitimately wants every row, not just the Dps-formula's own split.
 
 ## Appendix: raw disassembly locations
 
 - `docs/decompiled/stat_calculators.asm.txt` (in this repo) — all `IStatCalculator` implementations + `StatCalculatorFactory`.
 - `docs/decompiled/batch2.asm.txt` (in this repo) — `TraitSynergyController.*`, `GachaItemWeightResolver.*`, `PityTierResolver.*`, `BattleManager.CalculateDamage*`.
+- `docs/decompiled/costume_own_vs_equipping.asm.txt` (in this repo) — `CostumeInventoryManager.GetStatModifications`/`CalculateOwnStatModifications`/`AddOwnGradeStatModifications`/`AddOwnLevelStatModifications`/`AddEquippingGradeStatModifications`/`AddEquippingLevelStatModifications`, see §6.
 - `$SCRATCH/ghidra_work/addr_map.pkl` (session scratchpad, not in repo) — pickled `{address: {Name, Signature, TypeSignature}}` for all 211,059 methods in the binary, reusable for any future targeted disassembly without re-parsing the 95MB `script.json`. Regenerate from `il2cpp_work/output/script.json` if needed later — it's a 5-line `json.load` + dict comprehension, not reproduced here since it's a derived cache, not source data.
