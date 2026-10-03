@@ -2446,6 +2446,100 @@ behavior the decompiled split predicts; confirmed the Heroes tab's
 every bonus row correctly; a full desktop 6-tab sweep plus the mobile
 Guide-tab flow, zero console/page errors throughout.
 
+## OAuth mobile sign-in bug, found and fixed (2026-10-03)
+
+User reported: "When trying to sign in using google, discord, and
+facebook on my mobile phone the authentication fails or never signs
+in." All four sign-in methods had been verified end-to-end back when the
+accounts backend was built (see "Accounts backend" above) — but those
+verifications were all done with desktop Playwright, never a real mobile
+browser, so a mobile-specific bug in a feature that "already worked" was
+a real gap rather than a regression anyone would have caught earlier.
+
+**Root cause, found by reading the callback code rather than guessing**:
+`GET /:provider/callback` (`server/src/routes/auth.js`) sets the
+long-lived refresh-token cookie (`issueSession()`) and redirects to
+`${frontendUrl()}?auth=success` — that's it. The frontend's own
+completion of sign-in was never driven by that query param directly;
+`js/app.js` only showed the "Signed in as ..." toast *if `Auth.user` was
+already populated*, which only happens if `Auth.init()`'s
+`_trySilentResume()` — a plain cross-site `fetch('/auth/refresh', {
+credentials: 'include' })` from `yo-repo87.github.io` to
+`xpherobuilder-api.arc-it.uk` — successfully read back the httpOnly
+refresh cookie that was just set, moments earlier, during the top-level
+OAuth redirect chain. **This is exactly the kind of cross-site cookie
+read that mobile browsers — Safari's Intelligent Tracking Prevention in
+particular — are specifically designed to block**, even for a cookie set
+instants before by a legitimate same-chain top-level redirect: ITP's
+"recent top-level interaction" exceptions are heuristic, version-
+dependent, and not reliably granted the moment a plain `fetch()`
+subresource request asks for that cookie back. So the provider's own
+login screen completes successfully and the backend's OAuth exchange
+genuinely succeeds server-side (new user row or linked identity, refresh
+token issued and stored) — but the browser's `fetch()` right after
+silently gets no cookie back, `Auth.user` never gets set, and the user
+lands back on the app looking exactly as if nothing happened. All three
+providers funnel through this identical post-callback resume step, which
+is why all three failed the same way — this was never a per-provider
+OAuth-config problem (each provider's own authorize/token exchange was
+already confirmed working individually when each was wired in, see
+"Accounts backend" above).
+
+**Fix**: stop depending on that fragile cross-site cookie read for the
+critical moment sign-in actually completes. The callback now mints the
+access token it already has (`issueSession()` already returns it) and
+hands it straight back via the URL **fragment** —
+`${frontendUrl()}#auth=success&token=<jwt>` — never `?auth=success`. A
+fragment is deliberately used over a query string since it's never sent
+to any server (not in the request line, not in `Referer` headers), so
+this doesn't introduce a new place the token could leak server-side.
+`Auth.init()` (`js/auth.js`) gained `_tryOAuthRedirect()`, called before
+`_trySilentResume()`: if the URL has `#auth=...`, it reads the token (if
+any), sets `Auth.accessToken` directly, calls the existing `_loadMe()`
+to populate `Auth.user`, strips the fragment via `history.replaceState`,
+and records `Auth.oauthRedirectResult` ('success'/'error') for
+`app.js`'s toast — and short-circuits the normal cookie-based silent
+resume entirely in that case, since the fragment already answered the
+question. The refresh cookie is still set exactly as before and remains
+the normal mechanism for a *returning* visit's silent resume (unrelated
+to the bug fixed here — not reported as broken, and a much lower-stakes
+failure mode than "can't sign in at all": worst case there, a user just
+has to sign in again).
+
+**Verified end-to-end against the real production backend and the real
+live site**, not a mock — three checks, iPhone-13 Playwright emulation
+throughout:
+1. A real account was registered via `POST /auth/register` (shares the
+   exact same `issueSession()`/JWT-signing code path the OAuth callback
+   uses) to get a real valid access token. Loaded
+   `.../#auth=success&token=<that real token>` with `/auth/refresh`
+   **forced to return 401 via Playwright route interception** — i.e.
+   deliberately simulating the exact mobile-cookie-blocked scenario this
+   fix targets — and confirmed sign-in still completed correctly:
+   `Auth.user` populated, header showed "Sign Off", Profile tab visible.
+   This is the core proof: sign-in no longer depends on that cookie read
+   at all.
+2. Loaded `.../#auth=error` and confirmed the toast
+   ("Sign-in didn't go through — try again") renders and the header
+   correctly stays "Sign In".
+3. `curl`'d the live callback endpoint directly with a deliberately
+   invalid `code`/`state` and confirmed the real redirect `Location`
+   header is now `.../#auth=error` (fragment, not query string).
+   Test account cleaned up from the real `shared_postgres` database
+   afterward (`DELETE FROM users WHERE email LIKE 'playwright-test%'`),
+   same discipline as every prior against-production test in this
+   project.
+
+**Deployment note**: the backend container (`xpherobuilder_backend`) had
+no bind-mount — its image was built once from `server/Dockerfile` and
+never rebuilt since. Patching the running container's filesystem
+directly would've been a live-only fix that a future `docker rm`+
+recreate from the stale image would silently undo, so the image was
+properly rebuilt (`docker build`) and the container recreated from it
+(env vars preserved via a one-time `docker inspect`-dumped env file,
+deleted immediately after use — never left on disk) rather than just
+`docker cp`-patching the running container.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3138,6 +3232,32 @@ Guide-tab flow, zero console/page errors throughout.
     double-counted against the new Own sources reading the complementary
     style once wired in. Full writeup in "Own vs. Equipping Dps sources,
     confirmed" above.
+38. User asked whether a user ID could be used to pull a player's real
+    account data (heroes/weapons/levels/traits) into the app directly.
+    Researched via decompilation (read-only, no live calls made) rather
+    than guessing: the game syncs through Firebase Auth + Cloud Firestore
+    under Supercent's own `weapon-rpg` Firebase project. Concluded this
+    isn't safely buildable without Supercent's cooperation — Google
+    OAuth's redirect-URI pre-registration and Android-client cert-hash
+    binding are structural blockers to originating valid sign-in for
+    someone else's Firebase project, not a technical gap to engineer
+    around — and said so plainly rather than attempting to defeat them.
+    Re-offered the previously-discussed screenshot-based import as the
+    practical alternative; not yet picked up.
+39. User reported Google/Discord/Facebook sign-in "fails or never signs
+    in" specifically on their mobile phone — all three sign-in methods
+    had been Playwright-verified end-to-end when built, but only ever
+    with desktop emulation. Found and fixed a real bug: the OAuth
+    callback's completion of sign-in secretly depended on a cross-site
+    `fetch('/auth/refresh', {credentials:'include'})` reading back the
+    httpOnly cookie it had just set — a read mobile browsers (Safari's
+    ITP especially) can silently refuse even moments after a legitimate
+    same-chain top-level redirect set it. Fixed by handing the access
+    token back directly via the URL fragment instead, verified by
+    forcing `/auth/refresh` to fail via Playwright route interception and
+    confirming sign-in still completed. Full writeup, including the
+    Docker-image-rebuild deployment note, in "OAuth mobile sign-in bug,
+    found and fixed" above.
 
 ## Open items / plausible next steps (not started)
 
