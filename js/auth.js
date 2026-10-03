@@ -23,6 +23,10 @@ const Auth = {
   subscribe(fn) { this._listeners.push(fn); },
   _notify() { for (const fn of this._listeners) fn(this.user); },
 
+  // Set by _tryOAuthRedirect() when the page just came back from an OAuth
+  // callback, so app.js knows whether/what to toast. null until then.
+  oauthRedirectResult: null,
+
   async init() {
     try {
       this.providers = await (await fetch(`${this.API_BASE}/auth/providers`)).json();
@@ -30,7 +34,27 @@ const Auth = {
       // Backend unreachable — the app stays fully usable local-only; just
       // don't show any sign-in affordance for providers we can't confirm.
     }
-    await this._trySilentResume();
+    const handled = await this._tryOAuthRedirect();
+    if (!handled) await this._trySilentResume();
+  },
+
+  // Completes sign-in directly from the token the OAuth callback hands
+  // back in the URL fragment (see server auth.js for why this exists
+  // instead of just relying on the refresh cookie) — returns true if the
+  // URL indicated an OAuth return at all (success or error), so init()
+  // knows not to also attempt the normal cookie-based silent resume.
+  async _tryOAuthRedirect() {
+    const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const authParam = hash.get('auth');
+    if (!authParam) return false;
+    const token = hash.get('token');
+    history.replaceState({}, '', location.pathname + location.search);
+    if (authParam === 'success' && token) {
+      this.accessToken = token;
+      await this._loadMe();
+    }
+    this.oauthRedirectResult = this.user ? 'success' : 'error';
+    return true;
   },
 
   async _trySilentResume() {

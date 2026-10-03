@@ -141,7 +141,7 @@ router.get('/:provider/callback', async (req, res) => {
   res.clearCookie(cookieName, { path: '/auth' });
 
   if (!configuredProviders().includes(provider) || !code || !state || state !== expectedState) {
-    return res.redirect(`${frontendUrl()}?auth=error`);
+    return res.redirect(`${frontendUrl()}#auth=error`);
   }
 
   try {
@@ -188,8 +188,18 @@ router.get('/:provider/callback', async (req, res) => {
       }
       await client.query('COMMIT');
 
-      await issueSession(res, userId, req.headers['user-agent']);
-      res.redirect(`${frontendUrl()}?auth=success`);
+      // The refresh cookie below is still set as the normal long-lived
+      // session mechanism, but mobile browsers (Safari in particular) can
+      // silently refuse to send a just-set cross-site cookie back on the
+      // frontend's own subsequent fetch(credentials:'include') call to
+      // /auth/refresh — meaning the OAuth exchange above succeeds server-
+      // side, but the browser never actually looks signed in. Handing the
+      // access token straight back via the URL *fragment* (never sent to
+      // any server, unlike a query string) lets the frontend complete
+      // sign-in immediately, with no dependency on that cookie read at
+      // all. See CLAUDE.md "OAuth mobile sign-in" for the full writeup.
+      const accessToken = await issueSession(res, userId, req.headers['user-agent']);
+      res.redirect(`${frontendUrl()}#auth=success&token=${encodeURIComponent(accessToken)}`);
     } catch (err) {
       await client.query('ROLLBACK');
       throw err;
@@ -198,7 +208,7 @@ router.get('/:provider/callback', async (req, res) => {
     }
   } catch (err) {
     console.error(`${provider} OAuth callback failed`, err);
-    res.redirect(`${frontendUrl()}?auth=error`);
+    res.redirect(`${frontendUrl()}#auth=error`);
   }
 });
 

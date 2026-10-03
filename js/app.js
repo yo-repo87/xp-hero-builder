@@ -22,14 +22,10 @@
   State.init();
   ImportExportUI.init();
   AccountUI.init();
-  await Auth.init(); // silent session resume — no-op if not signed in or backend unreachable; Auth.subscribe already re-renders the header/profile tab if it succeeds
+  await Auth.init(); // silent session resume (or OAuth-redirect completion) — no-op if not signed in or backend unreachable; Auth.subscribe already re-renders the header/profile tab if it succeeds
 
-  const authParam = new URLSearchParams(location.search).get('auth');
-  if (authParam) {
-    if (authParam === 'success' && Auth.user) UI.toast(`Signed in as ${Auth.user.displayName}`);
-    else if (authParam === 'error') UI.toast("Sign-in didn't go through — try again");
-    history.replaceState({}, '', location.pathname);
-  }
+  if (Auth.oauthRedirectResult === 'success') UI.toast(`Signed in as ${Auth.user.displayName}`);
+  else if (Auth.oauthRedirectResult === 'error') UI.toast("Sign-in didn't go through — try again");
 
   function renderAll() {
     WeaponsUI.render();
