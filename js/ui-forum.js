@@ -50,14 +50,43 @@ function renderForumMentions(escapedHtml, members) {
   return escapedHtml.replace(pattern, (m) => `<span class="fm-mention">${m}</span>`);
 }
 
+// Only this app's OWN already-hosted game art may be embedded as an image —
+// never an arbitrary external URL. This is a public forum anyone can post
+// to once signed in, so a bare user-typed image URL would be a real
+// hotlinking/content-safety risk (tracking pixels, inappropriate external
+// images); restricting to a known-safe same-site asset path avoids that
+// entirely while still covering the actual use case (referencing one of
+// this app's own extracted monster/weapon/hero/item portraits).
+function isSafeForumImagePath(src) {
+  const clean = src.replace(/^https:\/\/yo-repo87\.github\.io\/xp-hero-builder\//, '');
+  return /^assets\/img\/[a-zA-Z0-9_\-]+\/[a-zA-Z0-9_\- ]+\.(png|jpg|jpeg|gif|webp)$/i.test(clean) ? clean : null;
+}
+
 // A small, regex-based subset of Discord's own lightweight markdown — not a
 // full CommonMark parser (this app has no build step to pull one in, and
-// forum posts don't need tables/images/nested lists). Input is HTML-escaped
+// forum posts don't need tables/nested lists). Input is HTML-escaped
 // FIRST, so every transform below only ever wraps already-safe text in a
 // known-safe tag; no HTML a user types can reach the page unescaped.
 function renderForumMarkdown(raw, members) {
   let s = escapeHtml(raw || '');
   s = renderForumMentions(s, members);
+
+  // Images are extracted FIRST and protected behind opaque placeholder
+  // tokens — real monster/item icon filenames are full of underscores
+  // (e.g. Face_CH2_Goblin_Unique.png), which the italic-underscore rule
+  // below would otherwise mangle (matching "_CH2_" as italic) before the
+  // image syntax ever got a chance to match the whole path. The
+  // placeholder keeps the finished <img> tag safe from every later
+  // formatting pass, then gets swapped back in at the very end.
+  const imgPlaceholders = [];
+  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (full, alt, src) => {
+    const safeSrc = isSafeForumImagePath(src);
+    if (!safeSrc) return full;
+    const token = `\u0000IMG${imgPlaceholders.length}\u0000`;
+    imgPlaceholders.push(`<img class="fm-post-image" src="${safeSrc}" alt="${alt}" loading="lazy" onerror="this.remove()">`);
+    return token;
+  });
+
   s = s.replace(/```([\s\S]+?)```/g, (_, code) => `<pre class="fm-codeblock">${code}</pre>`);
   s = s.replace(/`([^`\n]+)`/g, '<code class="fm-code">$1</code>');
   s = s.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
@@ -67,6 +96,8 @@ function renderForumMarkdown(raw, members) {
   s = s.replace(/_([^_\n]+)_/g, '<em>$1</em>');
   s = s.replace(/^&gt; ?(.*)$/gm, '<span class="fm-quote">▌ $1</span>');
   s = s.replace(/\n/g, '<br>');
+
+  s = s.replace(/\u0000IMG(\d+)\u0000/g, (_, i) => imgPlaceholders[Number(i)]);
   return s;
 }
 
