@@ -2859,11 +2859,67 @@ against-production test in this project.
 
 **Deliberately not built this round, stated plainly rather than left
 implicit**: real-time updates (WebSocket) — explicitly traded away for
-simplicity per the `AskUserQuestion` answer; image/file attachments in
-posts; a moderator tier below full admin; notifications when @mentioned
-(the mention is purely a rendered highlight right now, not wired to any
-notification system); and channel management UI (the 4 channels are
-seeded by hand in `schema.sql`, no "create a channel" admin flow).
+simplicity per the `AskUserQuestion` answer; **user-uploaded** image/file
+attachments in posts (inline embedding of this app's own already-hosted
+art was added the same day — see "Forum inline image embeds" below, a
+narrower thing than a real upload feature); a moderator tier below full
+admin; notifications when @mentioned (the mention is purely a rendered
+highlight right now, not wired to any notification system); and channel
+management UI (the 4 channels are seeded by hand in `schema.sql`, no
+"create a channel" admin flow).
+
+## Forum inline image embeds (2026-10-07, same session follow-up)
+
+Same-day follow-up to "Forum" above — real players had already started
+using it for real (24 threads in Builds & Strategy, 8 in Farming & Items
+by the time this was checked, see "Users signed up" below), and build/
+farming discussion naturally wants to reference a specific hero/weapon/
+monster/item's own art. Rather than build real file uploads (a genuinely
+bigger feature — storage, size limits, moderation surface), this adds
+Markdown image syntax (`![alt](path)`) restricted to **this app's own
+already-hosted game art only** — never an arbitrary external URL.
+
+**Security design, not an afterthought**: `isSafeForumImagePath()`
+(`js/ui-forum.js`) strips an optional real-site prefix
+(`https://yo-repo87.github.io/xp-hero-builder/`) then requires the
+remaining path to match `^assets\/img\/[folder]\/[filename].(png|jpg|
+jpeg|gif|webp)$` exactly — a single folder level, a restricted filename
+character class with no `.` (so no `../` traversal is even expressible
+inside a path segment), anchored start-to-end. Anything that doesn't
+match renders as plain literal Markdown text, not an image — a user
+can't hotlink external trackers or inappropriate images through this
+public, anyone-who's-signed-in posting surface. Images are extracted and
+placeholder-protected *before* every other Markdown pass runs, since
+real icon filenames (e.g. `Face_CH2_Goblin_Unique.png`) are full of
+underscores that the italic-underscore rule would otherwise mangle
+first — confirmed this ordering bug doesn't happen with a direct test
+case (an image reference followed by real `_italic_` text in the same
+line both render correctly).
+
+**Verified two ways before considering this done**: (1) 8 unit test
+cases run directly in Node against the real `renderForumMarkdown`/
+`isSafeForumImagePath` logic — safe embed, underscore-mangling
+avoidance, external-URL rejection, path-traversal rejection, protocol-
+relative-URL rejection, the real-site-prefixed-URL normalization case,
+alt-text quote-breakout neutralization (confirmed `escapeHtml` already
+runs before the `alt` capture, so a literal `"` in alt text can't break
+out of the `alt="..."` attribute), and a raw `<script>` tag in the post
+body — all 8 behaved exactly as intended. (2) A live end-to-end check
+against the real production site and backend: registered a throwaway
+test account, posted a real thread to the (empty, low-risk) General
+channel containing both a safe embed and a deliberately-unsafe external
+URL, loaded the live page with Playwright and confirmed the safe image
+rendered at full resolution (`naturalWidth: 130`, a real goblin
+portrait) while the unsafe URL rendered as inert literal text, screenshot-
+confirmed visually, zero new console errors. Test thread and account
+both deleted from the real database immediately after, same discipline
+as every prior against-production test in this project.
+
+**Shipped**: `isSafeForumImagePath()`/the image-extraction pass in
+`renderForumMarkdown()` (`js/ui-forum.js`), `.fm-post-image` CSS
+(`css/style.css`) — no backend/schema changes, this is purely a
+client-side rendering rule over content the API already stored as plain
+text.
 
 ## Users signed up / production test-account cleanup (2026-10-07)
 
@@ -3669,16 +3725,34 @@ understate true last-activity for a session that hasn't rotated.
     via direct API calls (no browser-automation tool was available this
     session, unlike prior Playwright-verified sessions — noted honestly
     rather than skipped silently). Full writeup in "Forum" above.
+44. Same-day follow-up, continued in a later remote-control session.
+    Real players had already started using the new Forum (24 threads in
+    Builds & Strategy, 8 in Farming & Items) and build/farming discussion
+    naturally wants to reference specific game art, so this added
+    Markdown image embeds (`![alt](path)`) restricted to this app's own
+    already-hosted art only — any external URL renders as inert literal
+    text instead, a deliberate security boundary for a public, anyone-
+    signed-in posting surface. Verified two ways: 8 unit test cases
+    against the real rendering/validation logic in isolation (safe
+    embed, traversal/external-URL/protocol-relative rejection, alt-text
+    quote-breakout neutralization, raw-script-tag escaping), then a live
+    end-to-end check — a throwaway test thread posted to the real
+    production forum, confirmed rendering correctly via Playwright
+    (screenshot-verified), cleaned up immediately after. Full writeup in
+    "Forum inline image embeds" above.
 
 ## Open items / plausible next steps (not started)
 
 - Forum is live (see "Forum" above) but several things were explicitly
   traded away rather than overlooked: real-time updates (refresh-based/
-  polling only, by deliberate choice), image/file attachments, a
-  moderator tier below full admin, @mention notifications (purely a
-  rendered highlight right now), and any channel-management UI (the 4
-  channels are seeded by hand in `schema.sql`). Revisit if usage grows
-  enough to justify the added complexity.
+  polling only, by deliberate choice), **user-uploaded** image/file
+  attachments (inline embedding of this app's own already-hosted art was
+  added 2026-10-07 — see "Forum inline image embeds" — a narrower thing
+  than a real upload feature), a moderator tier below full admin,
+  @mention notifications (purely a rendered highlight right now), and
+  any channel-management UI (the 4 channels are seeded by hand in
+  `schema.sql`). Revisit if usage grows enough to justify the added
+  complexity.
 - Accounts backend is fully live publicly, all four sign-in methods
   working (email/password, Google, Discord, Facebook) — see "Accounts
   backend" above for the full build writeup and the NPM/Cloudflare
