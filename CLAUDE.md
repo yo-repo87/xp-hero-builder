@@ -139,11 +139,22 @@ js/
                                 reuses SpawnMapUI's board-as-backdrop technique)
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
                                 + Next Best Upgrade advisor
+  ui-search.js                  Global search modal (header "🔍 Search" button) — searches
+                                heroes/weapons/items/monsters by name, click-through never
+                                silently adds/equips anything you don't already own
   forum.js                     Forum API client (thin fetch wrapper, mirrors auth.js's
                                 cloud-save section) — see "Forum" below
   ui-forum.js                  Forum tab: Discord-styled channel sidebar + threads +
                                 replies + emoji reactions + markdown-lite + @mentions +
                                 admin pin/delete — see "Forum" below
+  admin.js / ui-admin.js        Admin tab (analytics + user management) — admin-only,
+                                see "Account roles, Admin tab, and account security" below
+  webauthn-client.js            Thin wrapper around the @simplewebauthn/browser CDN
+                                bundle (navigator.credentials register/authenticate) —
+                                see "Account roles, Admin tab, and account security" below
+  security.js / ui-security.js  Plain-REST security API client + the Profile tab's
+                                Security section (passkeys/security keys/TOTP 2FA) — see
+                                "Account roles, Admin tab, and account security" below
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
 data/*.json                 71 extracted, typed, English-labeled game-balance tables
@@ -3054,6 +3065,199 @@ directly against the real live site (as several prior sessions already
 do for anything auth-dependent) sidestepped both issues at once and is
 the right default for this kind of check, not just a fallback.
 
+## Account roles, Admin tab, and account security — passkeys/security keys/TOTP (2026-10-07)
+
+User asked for two sizeable things at once: (1) a role system (standard
+user vs. admin, the user's own account as the admin) with an Admin tab
+showing analytics, user management (delete, promote/demote), and an
+online-status indicator; and (2) a Profile-tab "Security" section
+letting signed-in users register and manage security keys, passkeys,
+and TOTP 2FA. Both ship this session. Given the real size and the
+security-sensitive nature of (2) specifically, this was built and
+verified in deliberate stages — Admin first (self-contained, reuses
+existing infra, lower risk), then WebAuthn/TOTP (touches the core login
+flow, higher stakes) — rather than rushing straight through.
+
+### Roles / Admin tab
+
+**No new role column was needed** — `users.is_admin` already existed
+(added back on 2026-10-07 for Forum moderation, see "Forum" above) and
+the user's own account was already flagged `true` at that time. This
+session just builds real UI/API on top of what was already there,
+rather than inventing a second parallel role system.
+
+**Backend**: a new `requireAdmin` middleware (`server/src/middleware/
+requireAdmin.js`, must run after `requireAuth`) checks `is_admin` live
+against the database on every request, same reasoning as the Forum's
+own `isAdmin()` check — revoking admin takes effect immediately, no
+forced re-login needed. A new `/admin` route set
+(`server/src/routes/admin.js`): `GET /analytics` (user/admin counts, a
+30-day signups-by-day series, forum thread/reply totals, total cloud
+saves), `GET /users` (every account with a real "online" indicator),
+`POST /users/:id/promote`, `POST /users/:id/demote`, `DELETE /users/:id`.
+
+**"Online" is a deliberate, stated approximation, not real presence** —
+this app has no WebSocket/heartbeat layer at all. A refresh token is
+reissued every time the frontend's access token silently renews
+(roughly every 15 minutes of real use, per `tokens.js`'s
+`ACCESS_TOKEN_TTL`), so "this account's newest non-revoked refresh
+token was created within the last 15 minutes" is used as the online
+signal — much tighter than "has *any* unexpired token," which would
+stay true for the full 30-day refresh lifetime and call almost
+everyone who's ever signed in "online." Stated explicitly in the
+Admin tab's own UI caveat, not left implicit.
+
+**Real safety rails, not just happy-path CRUD**: an admin can't demote
+their own account (`/demote` checks `req.params.id === req.userId`
+first), can't demote the *last* remaining admin (a live `COUNT(*) FROM
+users WHERE is_admin` check), and can't delete their own account from
+this panel. All three were verified by actually trying them, not just
+reading the code and assuming — confirmed each one gets the correct
+rejection message rather than silently doing nothing or 500ing.
+
+**Frontend**: a new `#tab-admin` nav button, styled and gated exactly
+like the existing Profile tab (`.tab-btn--admin`, same `hidden`-
+attribute convention, same "stays visible in the compact mobile header"
+CSS exception) — toggled in `AccountUI.onAuthChange()` based on
+`Auth.user?.isAdmin` (already included in every user-object response
+shape since the Forum session added it). `js/admin.js` (API client) +
+`js/ui-admin.js` (the tab itself: stat tiles, a plain CSS-bar signups
+chart, a user list with promote/demote/delete buttons and an online
+dot) — follows `ForumUI`'s established lazy-boot-via-`renderAll()`
+pattern rather than joining the blind full-rerender-on-`State.notify()`
+chain, since admin data comes from the server, not `State.data`.
+
+### Account security — passkeys, security keys, TOTP 2FA
+
+**The real design decision made up front, not guessed at under the
+hood**: "security keys," "passkeys," and "2FA" are the same underlying
+WebAuthn credential type with one real distinction — whether it was
+registered as a resident/discoverable credential (`is_passkey=true` in
+the new `webauthn_credentials` table). A **passkey** is a full
+passwordless alternative to email+password, with its own "Sign in with
+a Passkey" button on the sign-in modal — tap it, no email typed, the
+browser offers up any resident credential it holds for this site. A
+**security key** (non-resident) and an **authenticator app (TOTP)** are
+both **required second factors after a normal password login** —
+registering either flips the account into needing that second step on
+every future password sign-in. This mirrors the real, standard
+industry pattern for exactly this three-way combination (closest real-
+world analog: GitHub's own security settings draw the same line), not
+an invented scheme. Deliberately **not** asked about before building —
+confident enough in this being the standard pattern that re-confirming
+it would have just re-derived what's already well-established.
+
+**Schema** (`server/db/schema.sql`): `webauthn_credentials` (one row
+per registered key — `credential_id`/`public_key`/`counter`/
+`device_type`/`backed_up`/`transports`/`is_passkey`/`nickname`),
+`webauthn_challenges` (short-lived, one-time-use — `user_id` is null
+for a passwordless/discoverable login challenge, since the server
+genuinely doesn't know who's signing in until the response comes
+back), `totp_credentials` (one row per user, `enabled` stays false
+until a real code confirms the QR scan actually worked), 
+`mfa_backup_codes` (bcrypt-hashed, issued once, the moment 2FA is
+first confirmed), `pending_2fa_sessions` (bridges "password just
+checked out" and "second factor just verified").
+
+**A real, non-obvious correctness issue caught and fixed during design,
+before any code ran**: the WebAuthn challenge for an anonymous
+passwordless login has no `user_id` to scope by — looking it up as
+"whatever's the most recent null-user pending challenge" would be a
+genuine race between two different browsers starting a passkey login
+around the same moment. Fixed by matching on the *exact challenge
+value* the authenticator actually signed (decoded straight out of the
+response's own `clientDataJSON`, not trusted from a separate DB lookup)
+rather than "the newest row for this scope" — the same anti-replay
+property a nonce is supposed to have, and immune to that race by
+construction.
+
+**A real crash bug caught live, not in code review**: `otplib`'s
+`verify()` **throws** (`TokenLengthError`) for anything that isn't a
+6-digit numeric string, rather than returning `{ valid: false }` —
+discovered when a local throwaway-container test of the backup-code
+fallback path (a 10-character hex code reaching that same `verify()`
+call) killed the request with an empty response before this app's own
+code ever got a chance to catch it. Fixed by wrapping both call sites
+(`verifyLoginCode` for login-time 2FA, `confirmSetup` for the initial
+QR-scan confirmation) in a try/catch that treats a malformed code
+exactly like an incorrect one, plus added route-level try/catch as
+defense-in-depth consistent with the WebAuthn routes' own pattern —
+relying solely on a callee never throwing is exactly what just failed
+here.
+
+**Backend libraries, not hand-rolled**: `@simplewebauthn/server`
+(all the actual attestation/assertion cryptographic verification —
+WebAuthn is exactly the kind of protocol this project's "don't
+hand-roll crypto" instinct applies hardest to) and `otplib` + `qrcode`
+for TOTP (RFC 4226/6238 math + QR code generation). **Frontend**:
+`@simplewebauthn/browser`, loaded from jsdelivr as a plain `<script>`
+tag (`index.html`) — a deliberate, reasoned exception to this app's
+usual zero-external-JS convention, since it's the *official*, wire-
+format-compatible client for the exact server package already in use,
+and hand-rolling WebAuthn's base64url↔ArrayBuffer binary encoding by
+hand is a real, easy-to-get-subtly-wrong risk not worth taking for a
+security feature specifically. `js/webauthn-client.js` wraps its
+`startRegistration`/`startAuthentication` calls; `js/security.js` is
+the plain-REST client for everything else (TOTP setup/confirm/disable,
+credential listing/removal, the TOTP login-verify call).
+
+**Login flow change** (`server/src/routes/auth.js`): `POST /login`
+checks for an enabled second factor (TOTP, or any non-passkey WebAuthn
+credential — a passkey alone does *not* count, by design, since that's
+a full alternative sign-in method, not a layer on top of the
+password) and, if present, returns `{ requiresMfa: true, pendingToken,
+methods }` instead of a session. `js/auth.js`'s `login()` surfaces this
+to its caller rather than assuming success; `js/ui-account.js` shows a
+second modal (a code field, plus a "use my security key instead"
+button when a key is registered) and completes the session via the new
+`Auth.completeSession()` (factored out of the old `login()`/
+`register()` bodies, now also the single completion point for a
+passkey sign-in and a 2FA-verify success). **The pending-2FA token is
+deliberately not one-time-use on every lookup** — a wrong code (a
+typo) lets the user retry within the 5-minute window instead of being
+forced back to re-typing their password from scratch; it's only
+actually consumed once a correct second factor redeems it.
+
+**Verified in stages, each before moving to the next**:
+1. Admin backend logic (analytics queries, promote/demote/delete and
+   all three safety rails, the online-indicator query) and the full
+   TOTP lifecycle (setup → confirm with a real generated code → login
+   requiring MFA → wrong code correctly rejected without burning the
+   pending session → correct code succeeds → a backup code works once
+   and is rejected on reuse → disable requires the real password) were
+   verified against the real production database via a throwaway local
+   Docker container (not yet swapped into production) — this is where
+   the otplib crash above was actually caught, live, before shipping.
+2. WebAuthn specifically **cannot** be verified this way — its RP ID is
+   bound to the real production origin (`yo-repo87.github.io`, itself
+   on the public-suffix list, so nothing shorter is valid), meaning a
+   browser's `navigator.credentials.create()/get()` will only work
+   scoped to that exact live domain. So the backend was deployed to
+   production first (image rebuilt, container recreated — same
+   discipline as every prior backend change, no bind-mount to rely
+   on), then verified end-to-end with Playwright using Chrome DevTools
+   Protocol's **virtual authenticator** (`WebAuthn.enable` +
+   `WebAuthn.addVirtualAuthenticator`) against the real live site — not
+   a mock, a real (simulated) FIDO2 authenticator completing the actual
+   cryptographic ceremony. Confirmed, in one continuous browser
+   session: registering a resident passkey, signing out, and signing
+   back in **fully passwordlessly** via the "Sign in with a Passkey"
+   button; then separately, registering a non-resident security key
+   *and* confirming TOTP on the same account, signing out, confirming
+   the password-only login correctly now requires a 2FA step, and that
+   **both** paths work (a real TOTP code generated from the captured
+   QR secret, and tapping the virtual security key via "use my security
+   key instead"); then disabling TOTP with password re-confirmation.
+3. The Admin tab was verified the same way — real stat tiles, a real
+   user list, promote → demote → delete all exercised against a
+   throwaway second test account, screenshot-confirmed visually.
+4. A full regression sweep (all 6 main tabs + Forum, desktop and
+   mobile) confirmed the Admin/Profile tabs stay correctly hidden for a
+   signed-out visitor and nothing else broke. All test accounts, their
+   credentials/backup codes/sessions (confirmed cascading correctly via
+   the FK chain), and the temporary admin-flag grant were removed from
+   the real database afterward.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3864,8 +4068,46 @@ the right default for this kind of check, not just a fallback.
     rejection plus unrelated severe host memory pressure first, both
     sidestepped by testing against production directly instead. Full
     writeup in "@mention notifications and a global search bar" above.
+46. Same session. User asked for roles (standard/admin) with an Admin
+    tab (analytics, user management, online indicator) plus a Profile-
+    tab Security section for passkeys/security keys/TOTP 2FA. Built in
+    stages given the real size and the security-sensitive second half:
+    Admin first (reused the existing `users.is_admin` flag from the
+    Forum session, no new role system needed), then WebAuthn/TOTP.
+    Settled the "what do these three things actually mean" design
+    question without asking — security keys + TOTP are required second
+    factors after a password, passkeys are a full passwordless
+    alternative, the standard real-world pattern for this exact
+    combination. Caught and fixed two real bugs before shipping: a
+    challenge-matching design flaw that would have been a genuine race
+    for concurrent anonymous passkey logins (fixed before it ever ran,
+    by matching the exact signed challenge value instead of "the newest
+    pending row"), and a live crash — otplib's `verify()` throws on a
+    malformed code instead of returning invalid, which killed the
+    login flow's 2FA step the moment a backup code (the very case its
+    fallback path exists for) reached it. Backend logic verified
+    against the real database via a throwaway local container first;
+    WebAuthn itself needed the real production origin (its RP ID is
+    bound to `yo-repo87.github.io`), so that part was verified after
+    deploying, using Chrome DevTools Protocol's virtual authenticator
+    for a real (simulated) FIDO2 ceremony against the live site — full
+    passkey registration + passwordless sign-in, security key + TOTP
+    registration, both 2FA paths at login, and TOTP disable, all
+    confirmed working end-to-end. Full writeup in "Account roles, Admin
+    tab, and account security" above.
 
 ## Open items / plausible next steps (not started)
+
+- Account security (passkeys/security keys/TOTP) is live — see "Account
+  roles, Admin tab, and account security" above. Not pursued this
+  session: a "remove all 2FA at once" / account-recovery flow for
+  someone who loses their authenticator *and* all backup codes *and*
+  every registered key (would need a manual admin-assisted reset, no
+  self-service path exists); rate-limiting on login/MFA-verify attempts
+  (a reasonable scope boundary for this app's realistic scale, not
+  implemented); and surfacing `webauthn_credentials.device_type`/
+  `backed_up` in the Security tab's own UI (stored, not yet shown to
+  the user — only used internally).
 
 - Forum is live (see "Forum" above) but several things were explicitly
   traded away rather than overlooked: real-time updates (refresh-based/
