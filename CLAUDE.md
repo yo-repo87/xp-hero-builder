@@ -2950,6 +2950,110 @@ auto-sync on every build change), with the caveat that a refresh token's
 `created_at` doesn't update on later reuse of the same token, so this can
 understate true last-activity for a session that hasn't rotated.
 
+## @mention notifications and a global search bar (2026-10-07, same session)
+
+User asked what else was worth adding; picked two of four offered options
+at once: @mention notifications (the Forum's own mentions were purely a
+rendered highlight until now, flagged explicitly as not-built in "Forum"
+above) and a global search bar (offered, declined, a few times across
+earlier sessions — finally picked).
+
+**@mention notifications.** A new `forum_mentions` table (`mentioned_
+user_id`, `author_user_id`, `thread_id`, `reply_id` nullable, `read_at`)
+records one row per mentioned user at thread/reply creation time only —
+not re-derived on edit, a deliberate scoping choice kept simple on
+purpose. The server-side detection (`extractMentionedUserIds()`,
+`server/src/routes/forum.js`) **mirrors the client's own
+`renderForumMentions()` matching exactly** (same longest-display-name-
+first single-alternation-regex approach) so "who gets notified" and
+"what renders as a highlighted `@Name` span" can never disagree — two
+independent implementations of the same matching rule would have been a
+real risk of silent drift otherwise. Self-mentions are excluded
+(`member.id !== authorId`). `GET /forum/mentions` returns up to 50
+recent mentions plus a real `unreadCount`; `POST /forum/mentions/
+read-all` is the only mutate endpoint — opening the mentions panel marks
+everything read in one call, no per-item read-tracking, matching how
+most apps' notification bell actually behaves (cleared once the list has
+been *seen*, not once each item has been individually clicked).
+
+Frontend: a small red badge (`.fm-tab-badge`) on the Forum nav tab —
+both the desktop pill and the mobile bottom-bar copy, since both share
+the same `.tab-btn[data-tab="forum"]` selector — checked once per sign-
+in/out transition via `Auth.subscribe()` (the same wiring pattern
+`AccountUI`'s own avatar-painting already uses), not a separate polling
+loop. **A real race condition was caught and fixed before shipping**:
+`ForumUI._renderShell()` runs synchronously on every auth change and
+would naively bake `ForumMentions.unreadCount` into the banner's HTML at
+that instant — but `ForumMentions.refresh()`'s own fetch is async and
+resolves *after* `_renderShell()` has already returned, so the banner
+would show a stale (usually zero) count until the next unrelated
+re-render happened to occur. Fixed by having the banner's single DOM
+element (`#fm-mentions-banner-row`) always exist (rendered `hidden` by
+default) and giving `ForumMentions` sole ownership of its content/
+visibility via a dedicated `_paintBanner()`, called both from
+`ForumMentions._paint()` (once the real fetch resolves) and once
+immediately from `_renderShell()` itself (to reflect whatever count is
+already known at that moment, without waiting) — the same two-caller
+pattern already used for the tab badges, just applied to a banner
+instead of a badge.
+
+**Global search.** `js/ui-search.js` (new) builds one flat in-memory
+index from `Game.db.WeaponData`/`CostumeData`/`StackableItemData`/
+`EnemyData` (no new data, this app's full catalog was already loaded)
+and a modal with a live-filtering text input, opened via a new "🔍
+Search" header button (desktop) or a matching entry in the mobile "⋯"
+overflow menu. **A real design decision, not an oversight**: Monsters
+and Farmable Items already have pure read-only catalog detail views
+(`MonstersUI.openDetail`/`FarmableUI.openDetail`), so a search result
+click for those is always 100% safe. Heroes and Weapons don't — the
+only existing "click a catalog card" entry points for those
+(`HeroesUI.openAddPicker`/`WeaponsUI.openPicker`) **add the hero or
+equip the weapon immediately on click**, since that's the correct
+behavior when the user deliberately opened that picker to begin with.
+Reusing those entry points directly from search would mean a search
+click could silently mutate the user's build — a real surprise coming
+from what looks like a read-only lookup. So a hero/weapon the user
+already owns jumps straight to its own existing detail/enhance view
+(same safety as Monsters/Items); one they don't own switches to that
+tab and opens the *picker* (letting the user take the actual add/equip
+action themselves, a separate deliberate click) rather than acting on
+their behalf.
+
+**Verified end-to-end**, mentions against the real production backend
+directly (curl): mention creation, self-mention exclusion (a reply
+containing both a real cross-mention and a stray self-mention of the
+author's own name correctly recorded only the former), reply mentions,
+mark-all-read, and cascade-delete on thread deletion all confirmed
+correct before any frontend work began. Frontend (both features)
+verified live via Playwright against the real deployed site after
+pushing: badge shows the correct unread count, the banner and panel
+render the real mention (correct author/title/snippet), clicking a
+mention navigates to the real thread and clears the badge; global
+search renders real icons/names/type tags for "goblin"/"dragon" queries
+and correctly branches through owned-vs-not-owned for a hero and a
+weapon, confirmed via direct `State.data` inspection that neither
+`State.data.heroes` nor `State.data.weapons` changed from a plain search
+click (only changed once the normal picker's own card was clicked
+afterward, a separate deliberate action). Screenshot-confirmed both
+features visually. All test accounts/threads deleted from the real
+database afterward.
+
+**A real aside worth recording**: this session's local-server testing
+(`python3 -m http.server`) hit two separate, genuinely distinct
+failures before landing on the right approach — a CORS rejection
+(`xpherobuilder-api.arc-it.uk`'s CORS config only allows
+`https://yo-repo87.github.io`, so any auth-dependent flow against
+`localhost`/`127.0.0.1` fails outright, unrelated to this session's own
+code) and, separately, real Chromium page crashes traced to this shared
+host's memory being extremely tight at the time (a `free -h` check
+showed under 150MB free, and tens of thousands of long-accumulated
+*unrelated* zombie `chrome_crashpad`/`chrome` processes owned by `root`,
+dating back weeks — a pre-existing host condition, not something this
+session caused or should try to clean up). Deploying and testing
+directly against the real live site (as several prior sessions already
+do for anything auth-dependent) sidestepped both issues at once and is
+the right default for this kind of check, not just a fallback.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3740,6 +3844,26 @@ understate true last-activity for a session that hasn't rotated.
     production forum, confirmed rendering correctly via Playwright
     (screenshot-verified), cleaned up immediately after. Full writeup in
     "Forum inline image embeds" above.
+45. Same session. User asked what else was worth adding, offered 4
+    options, picked 2: @mention notifications and a global search bar.
+    Shipped both. Mentions: a new `forum_mentions` table + server-side
+    detection mirroring the client's own mention-matching regex exactly
+    (so "who's notified" and "what highlights" never drift apart), a
+    badge on the Forum nav tab, and an in-tab panel — verified against
+    the real production API directly (creation/self-exclusion/reply-
+    mentions/mark-read/cascade-delete) before any frontend work. Global
+    search: one box searching the whole already-loaded catalog, with a
+    deliberate safety rule — a result click never silently adds a hero
+    or equips a weapon, only ever opens a read-only detail view or (for
+    something not yet owned) the normal picker, same as every other
+    "click to view" affordance already in this app. Caught and fixed a
+    real race condition in the mention badge's rendering before shipping
+    (a synchronous render could bake in a stale, not-yet-fetched unread
+    count). Verified end-to-end via Playwright against the real live
+    site after deploying — a local-server attempt hit a real CORS
+    rejection plus unrelated severe host memory pressure first, both
+    sidestepped by testing against production directly instead. Full
+    writeup in "@mention notifications and a global search bar" above.
 
 ## Open items / plausible next steps (not started)
 
@@ -3748,11 +3872,13 @@ understate true last-activity for a session that hasn't rotated.
   polling only, by deliberate choice), **user-uploaded** image/file
   attachments (inline embedding of this app's own already-hosted art was
   added 2026-10-07 — see "Forum inline image embeds" — a narrower thing
-  than a real upload feature), a moderator tier below full admin,
-  @mention notifications (purely a rendered highlight right now), and
+  than a real upload feature), a moderator tier below full admin, and
   any channel-management UI (the 4 channels are seeded by hand in
-  `schema.sql`). Revisit if usage grows enough to justify the added
-  complexity.
+  `schema.sql`). **Updated 2026-10-07 (see "@mention notifications and a
+  global search bar" above) — @mention notifications are now shipped,
+  not open**: a badge on the Forum nav tab plus an in-tab panel, backed
+  by a real `forum_mentions` table. Revisit the remaining items if usage
+  grows enough to justify the added complexity.
 - Accounts backend is fully live publicly, all four sign-in methods
   working (email/password, Google, Discord, Facebook) — see "Accounts
   backend" above for the full build writeup and the NPM/Cloudflare
