@@ -112,4 +112,15 @@ const Forum = {
     this._membersCache = (await res.json()).members;
     return this._membersCache;
   },
+
+  async getMentions() {
+    const res = await Auth.authedFetch('/forum/mentions');
+    if (!res.ok) throw new Error('Could not load mentions');
+    return res.json(); // { mentions, unreadCount }
+  },
+
+  async markMentionsRead() {
+    const res = await Auth.authedFetch('/forum/mentions/read-all', { method: 'POST' });
+    if (!res.ok) throw new Error('Could not mark mentions read');
+  },
 };

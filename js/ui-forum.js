@@ -136,6 +136,93 @@ function wireMentionAutocomplete(textareaId, dropdownId, getMembers) {
   ta.addEventListener('blur', () => setTimeout(() => { dd.hidden = true; }, 150));
 }
 
+// Tracks unread @mention count and paints a small badge on the Forum nav
+// tab (both the desktop pill and the mobile bottom-bar copy) so a mention
+// is visible from any tab, not just while already looking at the Forum.
+// Checked once per sign-in/out transition (via Auth.subscribe, wired in
+// ForumUI.init() below) — no separate polling loop of its own; the Forum
+// tab's own 20s poll already covers "while you're actively looking at the
+// forum," and this is just the "did something happen while I was
+// elsewhere" signal, which only needs to be fresh as of the last auth
+// change or an explicit refresh() call (e.g. after opening the panel).
+const ForumMentions = {
+  unreadCount: 0,
+  mentions: [],
+
+  async refresh() {
+    if (!Auth.user) { this.unreadCount = 0; this.mentions = []; this._paint(); return; }
+    try {
+      const { mentions, unreadCount } = await Forum.getMentions();
+      this.mentions = mentions;
+      this.unreadCount = unreadCount;
+    } catch { /* silent — badge just stays at its last known value */ }
+    this._paint();
+  },
+
+  _paint() {
+    document.querySelectorAll('.tab-btn[data-tab="forum"]').forEach(btn => {
+      let badge = btn.querySelector('.fm-tab-badge');
+      if (this.unreadCount > 0) {
+        if (!badge) { badge = document.createElement('span'); badge.className = 'fm-tab-badge'; btn.appendChild(badge); }
+        badge.textContent = this.unreadCount > 9 ? '9+' : String(this.unreadCount);
+      } else if (badge) {
+        badge.remove();
+      }
+    });
+    this._paintBanner();
+  },
+
+  // Separate from _paint() so _renderShell() (js/ui-forum.js's ForumUI) can
+  // re-sync this one element to whatever count is already known right after
+  // rebuilding the Forum tab's shell, without needing a full ForumMentions
+  // refresh (which would re-hit the API every time the shell re-renders).
+  _paintBanner() {
+    const row = document.getElementById('fm-mentions-banner-row');
+    if (!row) return;
+    if (!Auth.user || this.unreadCount <= 0) { row.hidden = true; return; }
+    row.hidden = false;
+    row.innerHTML = `🔔 You have ${this.unreadCount} new mention${this.unreadCount === 1 ? '' : 's'}. <button class="btn btn-sm btn-gold" id="fm-view-mentions">View</button>`;
+    document.getElementById('fm-view-mentions').addEventListener('click', () => this.openPanel());
+  },
+
+  async openPanel() {
+    UI.openModal(`
+      <div class="modal-header"><h3>🔔 Mentions</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-body" id="fm-mentions-list"><div class="fm-loading">Loading…</div></div>
+    `);
+    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    const list = document.getElementById('fm-mentions-list');
+    try {
+      const { mentions } = await Forum.getMentions();
+      list.innerHTML = mentions.length
+        ? mentions.map(m => `
+          <div class="fm-mention-row" data-thread="${m.threadId}">
+            <div class="fm-mention-meta">${escapeHtml(m.author.displayName)} mentioned you · ${fmtForumTime(m.createdAt)}</div>
+            <div class="fm-mention-title">${escapeHtml(m.threadTitle)}</div>
+            <div class="fm-mention-snippet">${escapeHtml(m.snippet)}</div>
+          </div>`).join('')
+        : `<div class="empty-state" style="padding:20px">No mentions yet.</div>`;
+      list.querySelectorAll('[data-thread]').forEach(row => {
+        row.addEventListener('click', () => {
+          UI.closeModal();
+          State.setTab('forum');
+          ForumUI.openThread(row.dataset.thread);
+        });
+      });
+    } catch (err) {
+      list.innerHTML = `<div class="empty-state">${escapeHtml(err.message)}</div>`;
+    }
+    // Opening the panel marks everything as read — the badge clears once
+    // the list has been SEEN, matching how most apps' notification bell
+    // behaves; no per-item read-tracking, kept deliberately simple.
+    if (this.unreadCount > 0) {
+      try { await Forum.markMentionsRead(); } catch { /* best effort */ }
+      this.unreadCount = 0;
+      this._paint();
+    }
+  },
+};
+
 const ForumUI = {
   channels: [],
   members: [],
@@ -147,6 +234,7 @@ const ForumUI = {
 
   init() {
     Auth.subscribe(() => this._onAuthChange());
+    Auth.subscribe(() => ForumMentions.refresh());
   },
 
   render() {
@@ -205,6 +293,7 @@ const ForumUI = {
     const root = document.getElementById('forum-root');
     root.innerHTML = `
       ${!Auth.user ? `<div class="fm-top-banner">Reading is open to everyone. <button class="btn btn-sm btn-gold" id="fm-top-signin">Sign In</button> to create threads and reply.</div>` : ''}
+      <div class="fm-top-banner fm-mentions-banner" id="fm-mentions-banner-row" hidden></div>
       <div class="fm-layout">
         <aside class="fm-sidebar" id="fm-sidebar"></aside>
         <main class="fm-main" id="forum-content"></main>
@@ -213,6 +302,12 @@ const ForumUI = {
     this._renderSidebar();
     const topSignin = document.getElementById('fm-top-signin');
     if (topSignin) topSignin.addEventListener('click', () => AccountUI.openAuthModal());
+    // The banner's own content/visibility is owned by ForumMentions (see
+    // its _paint()), not computed here — _renderShell() can run before
+    // ForumMentions.refresh()'s async fetch resolves, so baking the count
+    // into this render would show a stale number. Re-paint it immediately
+    // from whatever ForumMentions already knows right now.
+    ForumMentions._paintBanner();
   },
 
   _renderSidebar() {

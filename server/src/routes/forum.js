@@ -38,6 +38,47 @@ async function reactionsFor(column, id, userId) {
   return rows;
 }
 
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+// Mirrors js/ui-forum.js's renderForumMentions matching exactly (longest
+// display name first, one combined alternation, no word-boundary — see
+// that function's own comment for why) so "who gets notified" and "what
+// renders as a highlighted mention" never disagree. Returns distinct
+// mentioned user ids, excluding the author (no self-mention notification).
+function extractMentionedUserIds(rawBody, members, authorId) {
+  if (!rawBody || !members.length) return [];
+  const sorted = [...members].filter(m => m.display_name).sort((a, b) => b.display_name.length - a.display_name.length);
+  if (!sorted.length) return [];
+  const pattern = new RegExp('@(?:' + sorted.map(m => escapeRegex(m.display_name)).join('|') + ')', 'g');
+  const found = new Set();
+  let m;
+  while ((m = pattern.exec(rawBody))) {
+    const name = m[0].slice(1);
+    const member = sorted.find(mm => mm.display_name === name);
+    if (member && member.id !== authorId) found.add(member.id);
+  }
+  return [...found];
+}
+
+// Inserts one forum_mentions row per user @mentioned in a just-created
+// thread/reply. Best-effort — a failure here never fails the post itself,
+// since the post already succeeded and this is a secondary side effect.
+async function recordMentions(rawBody, authorId, threadId, replyId) {
+  try {
+    const { rows: members } = await pool.query(`SELECT id, display_name FROM users`);
+    const mentioned = extractMentionedUserIds(rawBody, members, authorId);
+    if (!mentioned.length) return;
+    const values = mentioned.map((_, i) => `($${i * 4 + 1}, $${i * 4 + 2}, $${i * 4 + 3}, $${i * 4 + 4})`).join(',');
+    const params = mentioned.flatMap(uid => [uid, authorId, threadId, replyId]);
+    await pool.query(
+      `INSERT INTO forum_mentions (mentioned_user_id, author_user_id, thread_id, reply_id) VALUES ${values}`,
+      params
+    );
+  } catch (err) {
+    console.error('recordMentions failed (non-fatal)', err);
+  }
+}
+
 function validateTitle(title) {
   const t = (title || '').trim();
   if (!t) return 'Title is required';
@@ -137,6 +178,7 @@ router.post('/channels/:channelId/threads', requireAuth, async (req, res) => {
      RETURNING id, created_at`,
     [req.params.channelId, req.userId, title.trim(), body.trim()]
   );
+  await recordMentions(body.trim(), req.userId, rows[0].id, null);
   res.status(201).json({ thread: { id: rows[0].id, createdAt: rows[0].created_at } });
 });
 
@@ -193,6 +235,7 @@ router.post('/threads/:id/replies', requireAuth, async (req, res) => {
     `INSERT INTO forum_replies (thread_id, user_id, body) VALUES ($1, $2, $3) RETURNING id, created_at`,
     [req.params.id, req.userId, body.trim()]
   );
+  await recordMentions(body.trim(), req.userId, req.params.id, rows[0].id);
   res.status(201).json({ reply: { id: rows[0].id, createdAt: rows[0].created_at } });
 });
 
@@ -255,6 +298,47 @@ router.post('/threads/:id/reactions', requireAuth, (req, res) =>
 router.post('/replies/:id/reactions', requireAuth, (req, res) =>
   toggleReaction('reply_id', 'forum_replies', req.params.id, req.userId, (req.body || {}).emoji, res)
 );
+
+// --- Mentions ------------------------------------------------------------------
+
+router.get('/mentions', requireAuth, async (req, res) => {
+  const { rows } = await pool.query(
+    `SELECT fm.id, fm.thread_id, fm.reply_id, fm.created_at, fm.read_at,
+            t.title AS thread_title, t.channel_id,
+            u.id AS author_id, u.display_name AS author_name,
+            COALESCE(r.body, t.body) AS snippet_source
+     FROM forum_mentions fm
+     JOIN forum_threads t ON t.id = fm.thread_id
+     LEFT JOIN forum_replies r ON r.id = fm.reply_id
+     JOIN users u ON u.id = fm.author_user_id
+     WHERE fm.mentioned_user_id = $1
+     ORDER BY fm.created_at DESC
+     LIMIT 50`,
+    [req.userId]
+  );
+  const { rows: countRows } = await pool.query(
+    `SELECT COUNT(*)::int AS unread FROM forum_mentions WHERE mentioned_user_id = $1 AND read_at IS NULL`,
+    [req.userId]
+  );
+  res.json({
+    mentions: rows.map(r => ({
+      id: r.id, threadId: r.thread_id, replyId: r.reply_id, channelId: r.channel_id,
+      threadTitle: r.thread_title,
+      snippet: r.snippet_source.length > 140 ? r.snippet_source.slice(0, 140) + '…' : r.snippet_source,
+      author: { id: r.author_id, displayName: r.author_name },
+      createdAt: r.created_at, read: !!r.read_at,
+    })),
+    unreadCount: countRows[0].unread,
+  });
+});
+
+router.post('/mentions/read-all', requireAuth, async (req, res) => {
+  await pool.query(
+    `UPDATE forum_mentions SET read_at = now() WHERE mentioned_user_id = $1 AND read_at IS NULL`,
+    [req.userId]
+  );
+  res.json({ ok: true });
+});
 
 // --- Members (for @mention autocomplete) --------------------------------------
 

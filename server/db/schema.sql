@@ -117,3 +117,22 @@ CREATE UNIQUE INDEX forum_reactions_thread_unique ON forum_reactions(user_id, th
 CREATE UNIQUE INDEX forum_reactions_reply_unique ON forum_reactions(user_id, reply_id, emoji) WHERE reply_id IS NOT NULL;
 CREATE INDEX forum_reactions_thread_id_idx ON forum_reactions(thread_id);
 CREATE INDEX forum_reactions_reply_id_idx ON forum_reactions(reply_id);
+
+-- @mention notifications (added 2026-10-07). One row per (mentioned user,
+-- post) pair, created server-side at thread/reply creation time only (not
+-- re-derived on edit — a simple, deliberate scoping choice). reply_id is
+-- null when the mention happened in the thread's own opening post.
+-- author_user_id is stored explicitly rather than derived by joining
+-- through thread/reply.user_id, since which one that is depends on whether
+-- reply_id is set — keeping it a plain column avoids a conditional join
+-- everywhere this table is read.
+CREATE TABLE forum_mentions (
+  id                 uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  mentioned_user_id  uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  author_user_id     uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  thread_id          uuid NOT NULL REFERENCES forum_threads(id) ON DELETE CASCADE,
+  reply_id           uuid REFERENCES forum_replies(id) ON DELETE CASCADE,
+  created_at         timestamptz NOT NULL DEFAULT now(),
+  read_at            timestamptz
+);
+CREATE INDEX forum_mentions_mentioned_user_id_idx ON forum_mentions(mentioned_user_id);

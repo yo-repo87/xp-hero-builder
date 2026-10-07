@@ -61,16 +61,20 @@
     UI.openModal(`
       <div class="modal-header"><h3>More</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body action-row" style="flex-direction:column;align-items:stretch">
+        <button class="btn" id="mm-search">🔍 Search</button>
         <button class="btn" id="mm-import">Import Build</button>
         <button class="btn" id="mm-export">Export Build</button>
         <button class="btn btn-danger" id="mm-reset">Reset Build</button>
       </div>
     `);
     document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    document.getElementById('mm-search').addEventListener('click', () => { UI.closeModal(); GlobalSearchUI.open(); });
     document.getElementById('mm-import').addEventListener('click', () => { UI.closeModal(); document.getElementById('file-import').click(); });
     document.getElementById('mm-export').addEventListener('click', () => { UI.closeModal(); ImportExportUI.exportFile(); });
     document.getElementById('mm-reset').addEventListener('click', () => { UI.closeModal(); ImportExportUI.reset(); });
   });
+
+  document.getElementById('btn-search').addEventListener('click', () => GlobalSearchUI.open());
 
   State.subscribe(() => renderAll());
   renderAll();
