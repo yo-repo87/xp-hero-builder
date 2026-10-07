@@ -44,7 +44,7 @@ function frontendUrl() {
 }
 
 function publicUser(row) {
-  return { id: row.id, email: row.email, displayName: row.display_name, emailVerified: row.email_verified };
+  return { id: row.id, email: row.email, displayName: row.display_name, emailVerified: row.email_verified, isAdmin: row.is_admin };
 }
 
 async function issueSession(res, userId, userAgent) {
@@ -70,7 +70,7 @@ router.post('/register', async (req, res) => {
     const passwordHash = await hashPassword(password);
     const { rows } = await pool.query(
       `INSERT INTO users (email, password_hash, display_name) VALUES ($1, $2, $3)
-       RETURNING id, email, display_name, email_verified`,
+       RETURNING id, email, display_name, email_verified, is_admin`,
       [email, passwordHash, displayName || email.split('@')[0]]
     );
     const user = rows[0];
@@ -118,7 +118,7 @@ router.post('/logout', async (req, res) => {
 });
 
 router.get('/me', requireAuth, async (req, res) => {
-  const { rows } = await pool.query(`SELECT id, email, display_name, email_verified FROM users WHERE id = $1`, [req.userId]);
+  const { rows } = await pool.query(`SELECT id, email, display_name, email_verified, is_admin FROM users WHERE id = $1`, [req.userId]);
   if (!rows[0]) return res.status(404).json({ error: 'User not found' });
   res.json({ user: publicUser(rows[0]) });
 });

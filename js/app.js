@@ -22,6 +22,7 @@
   State.init();
   ImportExportUI.init();
   AccountUI.init();
+  ForumUI.init();
   await Auth.init(); // silent session resume (or OAuth-redirect completion) — no-op if not signed in or backend unreachable; Auth.subscribe already re-renders the header/profile tab if it succeeds
 
   if (Auth.oauthRedirectResult === 'success') UI.toast(`Signed in as ${Auth.user.displayName}`);
@@ -34,6 +35,7 @@
     FarmableUI.render();
     MonstersUI.render();
     GuideUI.render();
+    ForumUI.render();
     setActiveTab(State.data.ui.activeTab);
   }
 

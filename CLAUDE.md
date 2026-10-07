@@ -139,6 +139,11 @@ js/
                                 reuses SpawnMapUI's board-as-backdrop technique)
   ui-guide.js                  Guide tab: per-hero advice engine + Total DPS estimate
                                 + Next Best Upgrade advisor
+  forum.js                     Forum API client (thin fetch wrapper, mirrors auth.js's
+                                cloud-save section) — see "Forum" below
+  ui-forum.js                  Forum tab: Discord-styled channel sidebar + threads +
+                                replies + emoji reactions + markdown-lite + @mentions +
+                                admin pin/delete — see "Forum" below
   ui-importexport.js           save-file download/upload
   app.js                     bootstrap: Game.load() -> State.init() -> renderAll()
 data/*.json                 71 extracted, typed, English-labeled game-balance tables
@@ -2721,6 +2726,174 @@ confirmed clean layout); Chapter 6's Baal renders correctly too; Chapter
 6-tab desktop sweep plus a Chapter-6 mobile detail-view pass, zero
 console/page errors throughout, zero horizontal overflow.
 
+## Forum (2026-10-07)
+
+New session. User asked whether an open forum (threads + replies, visible
+to everyone) would be a good idea. Given the real user count at the time
+(4 signed-up accounts, one barely active — see the test-account-cleanup
+entry below) the honest answer was "not yet, an empty forum reads worse
+than no forum" — but the user asked to build it anyway, explicitly
+"take inspiration from discord as far as the design and features." Four
+real architecture decisions were asked up front via `AskUserQuestion`
+rather than assumed, since each shapes the schema/infra:
+1. **Channel sidebar** (Discord-style `#general`/`#builds`/etc.) over a
+   flat thread list.
+2. **Refresh-based**, not real-time WebSocket — fits the existing static-
+   frontend-plus-REST-API shape with zero new infrastructure, at the cost
+   of new replies only showing up on reload or a periodic poll rather
+   than instantly.
+3. **Admin powers for the owner's own account** (`mgibson041387@gmail.com`)
+   — can delete/pin any thread or reply; everyone else manages only their
+   own posts.
+4. **All four offered extras**: emoji reactions, markdown formatting,
+   @mentions, pinned threads.
+
+**Database** (`server/db/schema.sql`, applied live via `docker exec
+shared_postgres psql`): `users.is_admin` (boolean, set `true` only for
+the owner's row) plus four new tables — `forum_channels` (4 rows seeded:
+General, Builds & Strategy, Farming & Items, Bugs & Feedback),
+`forum_threads`, `forum_replies`, `forum_reactions`. The reactions table
+covers both a thread-level and a reply-level reaction via two nullable
+FK columns (`thread_id`/`reply_id`) plus a CHECK that exactly one is set
+— deliberately **not** one combined `UNIQUE(user_id, thread_id, reply_id,
+emoji)` constraint, because Postgres never treats two NULLs as equal for
+a plain UNIQUE constraint, so a combined one would silently fail to stop
+a duplicate reaction on the same reply (`thread_id` is NULL on every such
+row, so "equal" never holds). Used two separate **partial** unique
+indexes instead (`WHERE thread_id IS NOT NULL` / `WHERE reply_id IS NOT
+NULL`), each only comparing columns that are actually non-null within
+its own partial scope — caught and designed around this before it ever
+shipped, not after a bug report.
+
+**Backend** (`server/src/routes/forum.js`, mounted at `/forum` in
+`app.js`): reads are fully public (no account needed to browse, matching
+"reading is open to everyone" from the original ask), writes require
+`requireAuth`. An `optionalAuth` middleware (new — never rejects, just
+sets `req.userId` if a valid bearer token happens to be present) lets a
+signed-in visitor's own reactions get marked `reacted: true` on a public
+thread-detail fetch without forcing sign-in just to read. Admin status
+is checked live against `users.is_admin` per request rather than baked
+into the JWT, so flipping the flag takes effect immediately with no need
+to force a re-login. Edit is owner-only even for the admin account
+(admins can delete/pin but deliberately can't rewrite someone else's
+words — a real moderation-scope boundary, not an oversight). Reaction
+toggle semantics: posting the same emoji twice removes it; `auth.js`'s
+`publicUser()` and its `/register`/`/me` queries were extended to
+include `isAdmin` in every response shape the frontend already consumes.
+
+**Frontend**: `js/forum.js` (thin API client, mirrors `auth.js`'s cloud-
+save section) + `js/ui-forum.js` (everything else). Markdown is a small,
+deliberately non-CommonMark regex-based subset of Discord's own lite
+syntax (`**bold**`, `*italic*`, `` `code` ``/``` ```code block``` ```,
+`~~strike~~`, `> quote`) — raw text is HTML-escaped **first**, so every
+transform only ever wraps already-safe text in a known-safe tag; no
+user-typed HTML can reach the page unescaped (verified directly: a raw
+`<script>`/`<img onerror>` payload renders as inert escaped text, not
+executed). @mentions are matched against the real `/forum/members` list
+(display names, not a bare `@\w+` guess) since names can contain spaces.
+**A real bug was caught and fixed before shipping**: the first version
+matched mentions with one sequential `.replace()` call per member,
+longest name first — but a later pass for a *shorter* name (e.g. "Bob")
+would match again **inside** text an earlier pass already wrapped for a
+longer name that happens to start the same way ("Bobby Jones"), nesting
+a second mention span inside the first. Fixed by building one combined
+alternation regex (`@(?:LongestName|ShorterName|...)`) and doing a
+single replace pass instead of N sequential ones — a single pass
+consumes the longest match at each position and advances past it, so a
+shorter alternative never gets a chance to re-scan already-matched text.
+Caught by actually unit-testing the renderer function in isolation with
+a deliberate "Bob" + "Bobby Jones" test case, not assumed correct from
+the code.
+
+Rendering pattern deliberately breaks from this app's usual "full
+re-render on every `State.notify()`" convention (see "Architecture"
+above) — `ForumUI` mounts once and only re-fetches on explicit
+navigation/actions or its own 20-second poll timer while the Forum tab
+is actually active, rather than joining the blind full-rerender chain
+every other tab uses. Reasoning: Forum's content comes from the server,
+not `State.data`, and `State.notify()` only fires from genuine build
+edits — which can't happen while the Forum tab is the one being looked
+at in this single-active-tab layout — so there was no actual risk in
+deviating, and blindly re-joining the generic chain would have hammered
+the API and wiped an in-progress reply draft on every unrelated change.
+The "new replies" refresh-based promise is implemented literally: a full
+channel's thread list is safe to silently re-fetch on each poll tick (no
+draft risk there), but an *open thread* with a live reply composer is
+not — polling it instead compares reply counts and shows a small "🔄 N
+new replies — click to refresh" banner, so a draft in progress is never
+silently discarded out from under the user.
+
+**Theme**: scoped entirely to `.forum-wrap` with its own dark/blurple
+Discord-style color tokens, deliberately not touching the app's shared
+`:root` parchment palette — same reasoning already applied to the
+Traits tab's real-but-unmatched blue theme (see Open Items): a feature
+explicitly modeled on Discord reads better in Discord's own palette than
+forced into the fantasy-RPG frame everywhere else.
+
+**Deployment**: the backend container (`xpherobuilder_backend`) has no
+bind-mount (see "OAuth mobile sign-in bug" above for why), so the image
+was rebuilt from `server/Dockerfile` and the container recreated from
+it — env vars preserved via a one-time `docker inspect`-dumped file,
+deleted immediately after use, same discipline as every prior backend
+redeploy in this project.
+
+**Verified end-to-end against the real production backend and database**
+(no browser-automation tool was available in this session, unlike every
+prior Playwright-verified session in this file — flagged honestly rather
+than silently skipped): registered two real throwaway accounts
+(`playwright-test-forum-*@example.com`), temporarily granted one
+`is_admin` directly via SQL (no real admin password was available in
+this session), and exercised the full matrix — create/edit/delete
+thread and reply, reaction toggle on then off (confirms the partial-
+unique-index dedup actually works, not just that it doesn't error),
+disallowed-emoji rejection, title/body length validation, a non-owner's
+edit attempt correctly rejected, the admin account successfully deleting
+another user's reply and the thread itself, pin-then-list-sorts-first,
+and the public (no-token) thread-detail read correctly reporting
+`viewerIsAdmin: false` while the same read with the admin's token
+reports `true`. Markdown/mention rendering was unit-tested in isolation
+in Node (not just read as code) — this is where the mention-nesting bug
+above was actually caught. Both test accounts and all test data deleted
+from the real database afterward, same cleanup discipline as every prior
+against-production test in this project.
+
+**Deliberately not built this round, stated plainly rather than left
+implicit**: real-time updates (WebSocket) — explicitly traded away for
+simplicity per the `AskUserQuestion` answer; image/file attachments in
+posts; a moderator tier below full admin; notifications when @mentioned
+(the mention is purely a rendered highlight right now, not wired to any
+notification system); and channel management UI (the 4 channels are
+seeded by hand in `schema.sql`, no "create a channel" admin flow).
+
+## Users signed up / production test-account cleanup (2026-10-07)
+
+Same session, before the Forum work above. User asked how many users had
+signed up. Queried `shared_postgres`'s real `users` table directly rather
+than guessing — found 6 rows, but 2 (`profile-test@example.com`/
+`profile-test2@example.com`, names "Jane Smith"/"Bob") were immediately
+recognizable as leftover test data from the 2026-09-30 Profile-tab/
+avatar-initials Playwright verification (that session's own writeup
+names "Bob" → "BO" as its single-word-name test case) — they'd never
+been cleaned up because they don't match the `playwright-test%` email
+pattern this project's other against-production test cleanups (see
+"Accounts backend", "Auto-sync cloud saves") have used. Reported the
+real count (4 genuine sign-ups: the user's own account, plus
+gaz316@sky.com/caleb.merritt00@gmail.com/mr.wigglez42069@gmail.com) and
+flagged the two test rows; user confirmed, both deleted (cascades to any
+saves via the FK). **Worth remembering**: this project's test-cleanup
+convention has a real gap — not every verification pass used the
+`playwright-test%` email convention, so a future audit of production
+data shouldn't assume that pattern alone catches every leftover test
+account.
+
+Also answered as a genuinely separate follow-up in the same session:
+"when did each user last use it" has no dedicated column to answer
+directly — built from two real proxies instead (`refresh_tokens.created_at`,
+issued on every sign-in/session refresh; `saves.updated_at`, written by
+auto-sync on every build change), with the caveat that a refresh token's
+`created_at` doesn't update on later reuse of the same token, so this can
+understate true last-activity for a session that hasn't rotated.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -3472,9 +3645,40 @@ console/page errors throughout, zero horizontal overflow.
     pre-existing (not new) "no spawn section for this specific monster"
     behavior was correct, not a bug, during testing. Full writeup in
     "Enemy spawn maps extended to chapters 4-6" above.
+42. New session. User asked how many users had signed up. Found 2 of 6
+    `users` rows were leftover test data from an earlier session (never
+    cleaned up — didn't match the usual `playwright-test%` pattern),
+    flagged and deleted them with the user's confirmation, then answered
+    a same-session follow-up on last-login timing using two real proxy
+    columns (no dedicated "last login" field exists). Full writeup in
+    "Users signed up / production test-account cleanup" above.
+43. Same session, immediate follow-up. User asked whether an open forum
+    would be a good idea (told honestly: not yet, too few users), then
+    asked to build it anyway, Discord-inspired. Four architecture
+    decisions confirmed via `AskUserQuestion` (channel sidebar, refresh-
+    based not WebSocket, admin powers for the owner's account, all four
+    offered extras — reactions/markdown/@mentions/pinned threads) before
+    writing anything. Shipped a new `is_admin` column + 4 new tables
+    (channels/threads/replies/reactions), a new `/forum` Express route
+    set, and `js/forum.js`/`js/ui-forum.js` — a Discord-dark-themed tab
+    scoped to its own CSS tokens, deliberately outside this app's usual
+    blind full-rerender-on-notify pattern. Caught and fixed a real
+    mention-rendering bug (a shorter name matching inside an already-
+    wrapped longer name's text) via isolated unit testing before
+    shipping. Verified end-to-end against the real production database
+    via direct API calls (no browser-automation tool was available this
+    session, unlike prior Playwright-verified sessions — noted honestly
+    rather than skipped silently). Full writeup in "Forum" above.
 
 ## Open items / plausible next steps (not started)
 
+- Forum is live (see "Forum" above) but several things were explicitly
+  traded away rather than overlooked: real-time updates (refresh-based/
+  polling only, by deliberate choice), image/file attachments, a
+  moderator tier below full admin, @mention notifications (purely a
+  rendered highlight right now), and any channel-management UI (the 4
+  channels are seeded by hand in `schema.sql`). Revisit if usage grows
+  enough to justify the added complexity.
 - Accounts backend is fully live publicly, all four sign-in methods
   working (email/password, Google, Discord, Facebook) — see "Accounts
   backend" above for the full build writeup and the NPM/Cloudflare

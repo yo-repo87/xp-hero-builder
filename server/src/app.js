@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js';
 import savesRoutes from './routes/saves.js';
+import forumRoutes from './routes/forum.js';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cookieParser());
 app.get('/health', (req, res) => res.json({ ok: true }));
 app.use('/auth', authRoutes);
 app.use('/saves', savesRoutes);
+app.use('/forum', forumRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err);
