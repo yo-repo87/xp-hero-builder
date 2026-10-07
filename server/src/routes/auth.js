@@ -12,6 +12,9 @@ import {
 } from '../auth/tokens.js';
 import { configuredProviders, buildAuthorizeUrl, exchangeCodeForProfile } from '../auth/oauth.js';
 import requireAuth from '../middleware/requireAuth.js';
+import * as pending2fa from '../auth/pending2fa.js';
+import { isEnabled as totpEnabled } from '../auth/totp.js';
+import { hasSecondFactorCredential } from '../auth/webauthn.js';
 
 const router = Router();
 
@@ -43,11 +46,11 @@ function frontendUrl() {
   return base.endsWith('/') ? base : `${base}/`;
 }
 
-function publicUser(row) {
+export function publicUser(row) {
   return { id: row.id, email: row.email, displayName: row.display_name, emailVerified: row.email_verified, isAdmin: row.is_admin };
 }
 
-async function issueSession(res, userId, userAgent) {
+export async function issueSession(res, userId, userAgent) {
   const [accessToken, refreshToken] = await Promise.all([
     signAccessToken(userId),
     issueRefreshToken(userId, userAgent),
@@ -91,6 +94,20 @@ router.post('/login', async (req, res) => {
   const user = rows[0];
   const ok = user && (await verifyPassword(password, user.password_hash));
   if (!ok) return res.status(401).json({ error: 'Incorrect email or password' });
+
+  // If this account has an enabled second factor (TOTP, or a registered
+  // non-resident security key), the password alone isn't enough — hand
+  // back a short-lived pending token instead of a real session, and the
+  // frontend prompts for the second step. A passkey alone does NOT count
+  // here (that's a full alternative sign-in method, not a second factor
+  // layered on top of the password — see "Account security" in
+  // CLAUDE.md), so this only checks TOTP and non-resident WebAuthn
+  // credentials.
+  const [totpOn, hasKey] = await Promise.all([totpEnabled(user.id), hasSecondFactorCredential(user.id)]);
+  if (totpOn || hasKey) {
+    const pendingToken = await pending2fa.issue(user.id);
+    return res.json({ requiresMfa: true, pendingToken, methods: { totp: totpOn, webauthn: hasKey } });
+  }
 
   const accessToken = await issueSession(res, user.id, req.headers['user-agent']);
   res.json({ accessToken, user: publicUser(user) });

@@ -136,3 +136,83 @@ CREATE TABLE forum_mentions (
   read_at            timestamptz
 );
 CREATE INDEX forum_mentions_mentioned_user_id_idx ON forum_mentions(mentioned_user_id);
+
+-- Account security: WebAuthn (security keys + passkeys) and TOTP 2FA
+-- (added 2026-10-07). Security keys and passkeys are the SAME underlying
+-- WebAuthn credential type and share one table — the only real difference
+-- is whether the credential was registered with a resident/discoverable
+-- key (is_passkey=true), which is what lets it be used for a fully
+-- passwordless "sign in with a passkey" flow with no email typed first.
+-- A non-resident credential (is_passkey=false, the "security key" case)
+-- can still be registered and used, just only as a second factor after a
+-- normal email+password login — the browser can't offer it up without
+-- already knowing which account to narrow the search to.
+CREATE TABLE webauthn_credentials (
+  id             uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id        uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  credential_id  text NOT NULL UNIQUE,       -- base64url credential id from the authenticator
+  public_key     text NOT NULL,              -- base64-encoded COSE public key
+  counter        bigint NOT NULL DEFAULT 0,  -- signature counter; a non-increasing value on a later use flags possible credential cloning
+  device_type    text NOT NULL,              -- 'singleDevice' | 'multiDevice', from simplewebauthn
+  backed_up      boolean NOT NULL DEFAULT false,
+  transports     text,                       -- JSON array, e.g. ["usb","nfc","internal"]
+  is_passkey     boolean NOT NULL DEFAULT false,
+  nickname       text NOT NULL,              -- user-given label, e.g. "YubiKey 5", "MacBook Touch ID"
+  created_at     timestamptz NOT NULL DEFAULT now(),
+  last_used_at   timestamptz
+);
+CREATE INDEX webauthn_credentials_user_id_idx ON webauthn_credentials(user_id);
+
+-- Short-lived challenge storage between a /register-options or
+-- /login-options call and the matching /register-verify or /login-verify
+-- call. user_id is null for a passwordless login challenge (the server
+-- doesn't know who's signing in yet — that's the whole point of a
+-- discoverable-credential flow). Rows are deleted on use or expiry, not
+-- left to accumulate (see security.js's cleanup).
+CREATE TABLE webauthn_challenges (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id     uuid REFERENCES users(id) ON DELETE CASCADE,
+  challenge   text NOT NULL,
+  purpose     text NOT NULL CHECK (purpose IN ('register', 'login')),
+  created_at  timestamptz NOT NULL DEFAULT now(),
+  expires_at  timestamptz NOT NULL
+);
+
+-- TOTP (authenticator-app) 2FA. One row per user; enabled stays false
+-- until the user proves they actually scanned the QR code correctly by
+-- submitting one real code back (see security.js /totp/confirm) — a
+-- secret that was generated but never confirmed must never gate login.
+CREATE TABLE totp_credentials (
+  user_id       uuid PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  secret        text NOT NULL,   -- base32 TOTP secret
+  enabled       boolean NOT NULL DEFAULT false,
+  created_at    timestamptz NOT NULL DEFAULT now(),
+  confirmed_at  timestamptz
+);
+
+-- One-time recovery codes, issued once (and only once) when TOTP is first
+-- confirmed, for the case where the user loses their authenticator device
+-- and has no security key registered either. code_hash, never the plain
+-- code, same discipline as password_hash/refresh token hashing elsewhere.
+CREATE TABLE mfa_backup_codes (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id     uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  code_hash   text NOT NULL,
+  used_at     timestamptz,
+  created_at  timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX mfa_backup_codes_user_id_idx ON mfa_backup_codes(user_id);
+
+-- Bridges the gap between "password just checked out" and "second factor
+-- just verified" during a 2FA login — issued by POST /auth/login in place
+-- of a real session when the account has an enabled second factor, spent
+-- by POST /security/mfa/verify. token_hash, not the raw token, same
+-- reasoning as refresh_tokens; a real session is only ever issued after
+-- this is correctly redeemed.
+CREATE TABLE pending_2fa_sessions (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id     uuid NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  token_hash  text NOT NULL UNIQUE,
+  created_at  timestamptz NOT NULL DEFAULT now(),
+  expires_at  timestamptz NOT NULL
+);

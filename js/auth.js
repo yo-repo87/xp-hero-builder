@@ -107,12 +107,18 @@ const Auth = {
     });
     const body = await res.json();
     if (!res.ok) throw new Error(body.error || 'Registration failed');
-    this.accessToken = body.accessToken;
-    this.user = body.user;
-    this._notify();
+    this.completeSession(body.accessToken, body.user);
     return this.user;
   },
 
+  // Returns { requiresMfa: false } on a normal completed login (Auth.user
+  // is already set by the time this resolves), or { requiresMfa: true,
+  // pendingToken, methods } if the account has 2FA enabled — the caller
+  // (ui-account.js) is then responsible for prompting for the second
+  // factor and calling completeSession() itself once THAT succeeds,
+  // since there are two different ways to satisfy it (a TOTP code via
+  // security.js, or a security key via webauthn-client.js) and this
+  // function has no opinion on which the user picks.
   async login(email, password) {
     const res = await fetch(`${this.API_BASE}/auth/login`, {
       method: 'POST',
@@ -122,10 +128,19 @@ const Auth = {
     });
     const body = await res.json();
     if (!res.ok) throw new Error(body.error || 'Login failed');
-    this.accessToken = body.accessToken;
-    this.user = body.user;
+    if (body.requiresMfa) return { requiresMfa: true, pendingToken: body.pendingToken, methods: body.methods };
+    this.completeSession(body.accessToken, body.user);
+    return { requiresMfa: false };
+  },
+
+  // Finalizes a session from any successful auth call — register/login
+  // directly above, or (via ui-account.js) the 2FA step or a passwordless
+  // passkey sign-in, both of which hand back this same { accessToken,
+  // user } shape from their own endpoints.
+  completeSession(accessToken, user) {
+    this.accessToken = accessToken;
+    this.user = user;
     this._notify();
-    return this.user;
   },
 
   loginWithProvider(provider) {

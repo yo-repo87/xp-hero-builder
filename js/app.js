@@ -36,6 +36,7 @@
     MonstersUI.render();
     GuideUI.render();
     ForumUI.render();
+    AdminUI.render();
     setActiveTab(State.data.ui.activeTab);
   }
 

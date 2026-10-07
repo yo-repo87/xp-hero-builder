@@ -59,6 +59,7 @@ const AccountUI = {
       else this.openAuthModal();
     });
     document.getElementById('tab-profile').addEventListener('click', () => State.setTab('profile'));
+    document.getElementById('tab-admin').addEventListener('click', () => State.setTab('admin'));
     Auth.subscribe(() => this.onAuthChange());
     // Every local change (weapons, heroes, traits, upgrades...) runs
     // through State.notify() — this is the one hook point that lets
@@ -71,8 +72,11 @@ const AccountUI = {
   onAuthChange() {
     this.renderHeader();
     this.renderProfileTab();
+    SecurityUI.render();
     // Don't strand the user on a tab that just disappeared.
     if (!Auth.user && State.data.ui.activeTab === 'profile') State.setTab('weapons');
+    if (!Auth.user?.isAdmin && State.data.ui.activeTab === 'admin') State.setTab('weapons');
+    document.getElementById('tab-admin').hidden = !Auth.user?.isAdmin;
 
     if (Auth.user && !this._wasSignedIn) {
       // Just signed in — either a fresh login or a silently-resumed
@@ -182,7 +186,9 @@ const AccountUI = {
       <div class="modal-body">
         <div class="caveat">An account is entirely optional — everything in this app already works fully without one, saved locally in your browser. Signing in loads your most recent cloud save automatically (replacing what's here now) and keeps it synced across devices from then on via a small self-hosted backend.</div>
 
-        ${oauthButtons ? `<div class="oauth-row">${oauthButtons}</div><div class="auth-divider">or</div>` : ''}
+        ${oauthButtons ? `<div class="oauth-row">${oauthButtons}</div>` : ''}
+        ${!isRegister && WebAuthnClient.supported() ? `<div class="oauth-row"><button type="button" class="btn oauth-btn" id="auth-passkey-btn">🔑 Sign in with a Passkey</button></div>` : ''}
+        ${oauthButtons || (!isRegister && WebAuthnClient.supported()) ? `<div class="auth-divider">or</div>` : ''}
 
         <div class="form-field">
           <label for="auth-email">Email</label>
@@ -211,6 +217,19 @@ const AccountUI = {
     document.querySelectorAll('[data-oauth]').forEach(el => {
       el.addEventListener('click', () => Auth.loginWithProvider(el.dataset.oauth));
     });
+    document.getElementById('auth-passkey-btn')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      try {
+        const { accessToken, user } = await WebAuthnClient.signInWithPasskey();
+        Auth.completeSession(accessToken, user);
+        UI.toast(`Welcome back, ${Auth.user.displayName}!`);
+        UI.closeModal();
+      } catch (err) {
+        UI.toast(err.message);
+        btn.disabled = false;
+      }
+    });
 
     document.getElementById('auth-submit').addEventListener('click', async (e) => {
       const email = document.getElementById('auth-email').value.trim();
@@ -229,14 +248,69 @@ const AccountUI = {
           const name = document.getElementById('auth-name').value.trim();
           await Auth.register(email, password, name);
           UI.toast(`Welcome, ${Auth.user.displayName}!`);
+          UI.closeModal();
         } else {
-          await Auth.login(email, password);
-          UI.toast(`Welcome back, ${Auth.user.displayName}!`);
+          const result = await Auth.login(email, password);
+          if (result.requiresMfa) {
+            this._openMfaStep(email, result.pendingToken, result.methods);
+          } else {
+            UI.toast(`Welcome back, ${Auth.user.displayName}!`);
+            UI.closeModal();
+          }
         }
-        UI.closeModal();
       } catch (err) {
         errorEl.textContent = err.message;
         errorEl.style.display = '';
+        btn.disabled = false;
+      }
+    });
+  },
+
+  // The second step after a password login when the account has 2FA
+  // enabled — a fresh modal (replacing the email/password one) offering
+  // a TOTP code field and, if the account also has a registered security
+  // key, a "use your security key instead" button as an alternative.
+  _openMfaStep(email, pendingToken, methods) {
+    UI.openModal(`
+      <div class="modal-header"><h3>Two-Factor Verification</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-body">
+        <div class="caveat">Enter the 6-digit code from your authenticator app, or a backup code.</div>
+        <div class="form-field"><label for="mfa-code">Code</label><input type="text" id="mfa-code" inputmode="numeric" autocomplete="one-time-code" autofocus></div>
+        <div id="mfa-error" class="caveat" style="display:none;border-color:var(--danger,#a33)"></div>
+        <div class="action-row">
+          <button class="btn btn-gold" id="mfa-submit">Verify</button>
+          ${methods.webauthn ? '<button class="btn" id="mfa-use-key">Use my security key instead</button>' : ''}
+        </div>
+      </div>
+    `);
+    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    document.getElementById('mfa-submit').addEventListener('click', async (e) => {
+      const code = document.getElementById('mfa-code').value.trim();
+      const errEl = document.getElementById('mfa-error');
+      errEl.style.display = 'none';
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      try {
+        const { accessToken, user } = await Security.verifyTotpLogin(pendingToken, code);
+        Auth.completeSession(accessToken, user);
+        UI.toast(`Welcome back, ${Auth.user.displayName}!`);
+        UI.closeModal();
+      } catch (err) {
+        errEl.textContent = err.message;
+        errEl.style.display = '';
+        btn.disabled = false;
+      }
+    });
+    document.getElementById('mfa-use-key')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      try {
+        const { accessToken, user } = await WebAuthnClient.verifyMfaWithSecurityKey(email, pendingToken);
+        Auth.completeSession(accessToken, user);
+        UI.toast(`Welcome back, ${Auth.user.displayName}!`);
+        UI.closeModal();
+      } catch (err) {
+        UI.toast(err.message);
         btn.disabled = false;
       }
     });
