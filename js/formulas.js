@@ -387,26 +387,38 @@ const Formulas = {
   // see the comment on idx.runeSubSkillsByUniqueOptionId in data.js for the
   // full writeup). 4 of their 6 runes have BaseValue/ValuePerLevel both at
   // 0 — rendering a flat, WRONG "0%" above if this were ignored — while
-  // actually carrying a real, scaling effect here instead. The exact
-  // in-game meaning of a target SkillSubData row's `type_id` (which named
-  // sub-skill-effect category — AtkSpeedUp/Burn/Shield/etc, real categories
-  // confirmed to exist via IL2CPP metadata, but not mapped id-to-name) is
-  // NOT decoded — this environment has no Il2CppDumper/.NET runtime
-  // available to disassemble the real resolver class and confirm it, so
-  // each hidden effect is returned as real, honest numbers (which skill
-  // slot, which value field, the real computed boost and base value)
-  // without inventing what it actually does in plain English.
+  // actually carrying a real, scaling effect here instead.
+  //
+  // CONFIRMED BY DECOMPILATION (2026-10-23, same day): a .NET 6 runtime +
+  // Il2CppDumper were installed into this environment specifically to
+  // chase this down (no Il2CppDumper/.NET runtime had been available
+  // earlier the same day). The real resolver
+  // (DevilHunterIdle.Rune.RuneUniqueOptionSubSkillResolver.Grow, RVA
+  // 0x249DF98) disassembles to a plain `fadd` — the rune's computed growth
+  // (ValuePerLevel * level) is ADDED to the hero's own base SkillSubData
+  // value, not multiplied or replaced — confirming `base + boost` (used
+  // below) is the real formula, not a guess. Separately, each
+  // `SubskillID` is a real `E_SkillSubType` enum constant with a real
+  // compiled name (e.g. `Costume_Misty_AtkDmgUp_1`) — confirmed against
+  // the real enum definition with zero orphans across all 241 distinct
+  // SubskillIDs this table actually uses, so `EffectName_readable` is a
+  // confirmed real name, not invented flavor text (stored on the data row
+  // itself, data/RuneUniqueOptionSubSkillData.json).
   _runeHiddenEffects(opt, level) {
     const rows = Game.index.runeSubSkillsByUniqueOptionId.get(opt.id) || [];
     return rows.filter(r => r.ValuePerLevel !== 0).map(r => {
       const skillSub = Game.index.skillSubById.get(r.SubskillID);
+      const base = skillSub ? (r.GrowthValueSlot === 2 ? skillSub.value2 : skillSub.value1) : null;
+      const boost = r.ValuePerLevel * level;
       return {
         row: r,
         skillSub,
+        effectName: r.EffectName_readable,
         costumeSkillSlot: r.CostumeSkillIndex + 1, // 0-based -> human-facing "1st/2nd/3rd skill"
         valueField: r.GrowthValueSlot === 2 ? 'value2' : 'value1',
-        boost: r.ValuePerLevel * level,
-        base: skillSub ? (r.GrowthValueSlot === 2 ? skillSub.value2 : skillSub.value1) : null,
+        boost,
+        base,
+        total: base != null ? base + boost : null, // confirmed by decompilation: base + boost, see comment above
       };
     });
   },

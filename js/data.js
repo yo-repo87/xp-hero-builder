@@ -620,14 +620,17 @@ const Game = {
     // here instead. RuneUniqueOptionSubSkillData.SubskillID resolves into
     // SkillSubData (a hero's own per-skill combat-tuning row); GrowthValueSlot
     // (1 or 2) says whether the rune's growth adds into that row's value1 or
-    // value2. The real in-game MEANING of a given SkillSubData.type_id
-    // (what AtkSpeedUp/Burn/Shield/etc. — real named sub-skill-effect
-    // categories confirmed to exist via IL2CPP metadata strings — a given
-    // numeric type_id maps to) is NOT decoded: this environment has no
-    // Il2CppDumper/.NET runtime available to disassemble
-    // RuneUniqueOptionSubSkillResolver and confirm the real enum values, so
-    // this is shown as a real, honestly-labeled unresolved mechanic (see
-    // CLAUDE.md "Rune system" for the full writeup), not guessed at.
+    // value2.
+    //
+    // FULLY DECODED same day, after installing a .NET 6 runtime +
+    // Il2CppDumper into this environment specifically to chase it down (the
+    // real `RuneUniqueOptionSubSkillResolver.Grow` method, RVA 0x249DF98,
+    // disassembles to a plain `fadd` — confirmed base+boost, not a guess).
+    // `SubskillID` is a real `E_SkillSubType` enum constant
+    // (e.g. `Costume_Misty_AtkDmgUp_1`) — resolved with zero orphans across
+    // all 241 distinct SubskillIDs this table actually uses, stored as
+    // `EffectName`/`EffectName_readable` right on each committed row. See
+    // CLAUDE.md "Rune system" for the full writeup.
     idx.runeSubSkillsByUniqueOptionId = groupBy(this.db.RuneUniqueOptionSubSkillData, r => r.UniqueOptionID);
     idx.skillSubById = new Map(this.db.SkillSubData.map(s => [s.id, s]));
 

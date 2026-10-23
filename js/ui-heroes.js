@@ -193,10 +193,10 @@ const HeroesUI = {
         ${levelControlHTML('rune-lvl-slider', 1, maxLevel, level, `${level} / ${maxLevel}`)}
         ${unique ? `<div class="milestone-row" style="margin-bottom:8px">${escapeHtml(unique.desc)}</div>` : ''}
         ${unique && unique.hiddenEffects.length ? `
-          <div class="milestone-row milestone-row--locked" style="margin-bottom:8px">
-            🔒 Also boosts ${unique.hiddenEffects.length > 1 ? `all ${unique.hiddenEffects.length} of this hero's skills` : `this hero's skill ${unique.hiddenEffects[0].costumeSkillSlot}`}
-            by +${fmtNum(unique.hiddenEffects[0].boost)} at this level
-            <span style="color:var(--ink-muted);font-weight:500"> — real, scaling effect confirmed in the game's data, but which stat it actually modifies isn't decoded yet</span>
+          <div class="milestone-row" style="margin-bottom:8px">
+            ✨ Also increases <b>${escapeHtml(unique.hiddenEffects[0].effectName || 'an unnamed effect')}</b>
+            by +${fmtNum(unique.hiddenEffects[0].boost)}${unique.hiddenEffects[0].base != null ? ` (${fmtNum(unique.hiddenEffects[0].base)} → ${fmtNum(unique.hiddenEffects[0].total)})` : ''}
+            <span style="color:var(--ink-muted);font-weight:500"> — confirmed by decompilation, applies to ${unique.hiddenEffects.length > 1 ? `all ${unique.hiddenEffects.length} of this hero's skill levels` : `skill level ${unique.hiddenEffects[0].costumeSkillSlot}`}</span>
           </div>` : ''}
         ${nextCost ? `<div class="caveat">Cost to reach Lv ${level + 1}: ${this._runeCostLineHTML(nextCost)}</div>`
           : level >= maxLevel ? `<div class="caveat">Max level for this grade — pick a higher-grade version via "Change" to continue leveling.</div>` : ''}

@@ -3976,6 +3976,93 @@ language even more specific, but wasn't pulled in here to keep this
 fix's scope strictly to the Rune tables, per the user's explicit request
 to shelve that finding separately rather than quietly bundling it in.
 
+## The Rune mechanism, fully decoded — a real .NET runtime installed mid-session to do it (2026-10-23, same session)
+
+Immediate follow-up. User asked directly: get the tooling that was
+missing and dig deeper into the Rune finding above, rather than leaving
+it at "real numbers, mechanism not decoded."
+
+**Installed real tooling into this environment, user-local, no sudo**:
+Microsoft's own `dotnet-install.sh` script (`curl -sSL
+https://dot.net/v1/dotnet-install.sh`) to put a .NET 6 runtime at
+`~/.dotnet6` (confirmed `apt`/`dpkg` exist on this box but passwordless
+`sudo` doesn't — this path needed no root at all), then the real
+`Il2CppDumper` v6.7.46 release (net6 build, from its GitHub releases) run
+directly against this session's own already-unpacked `libil2cpp.so` +
+`global-metadata.dat` (the same v27.0.0 files already in the scratchpad
+from earlier today — no fresh APK needed). It completed a real,
+successful dump (`Dumping... Done!`) before crashing on its own
+interactive "press any key to exit" prompt in this non-interactive shell
+— harmless, since `dump.cs` (39.7MB)/`script.json` (108MB)/
+`stringliteral.json` were already written to disk by that point. This is
+genuinely reusable for any future session in this same environment, not
+just this one question — the exact steps are written down here so a
+future session doesn't have to rediscover them.
+
+**Two real, confirmed findings, both from reading the dump directly —
+no disassembly even needed for the first one**:
+1. The real resolver class, `DevilHunterIdle.Rune.
+   RuneUniqueOptionSubSkillResolver`, has real method signatures
+   (`BuildSubSkillList`, `Grow`, `Clone`) that already strongly implied
+   the mechanism before any disassembly: `Grow(SkillSubData source, List
+   <RuneUniqueOptionSubSkillData> rows, int level) -> SkillSubData`
+   takes the hero's own *base* skill row and returns a grown copy.
+2. `SkillSubData.type_id`/`RuneUniqueOptionSubSkillData.SubskillID`
+   are real `E_SkillSubType` enum constants — and the dump shows the
+   *entire* enum with its real integer values and real names directly
+   (no disassembly needed to read a C# `enum` definition, Il2CppDumper
+   surfaces these as plain `public const E_SkillSubType Name = N;`
+   lines). Grepped for every `SubskillID` this app's committed
+   `RuneUniqueOptionSubSkillData` table actually uses: **241 distinct
+   values, 241 resolved, zero orphans** — a complete, confirmed mapping,
+   not a sample. Misty's and Vlad's specific entries read like a design
+   doc: `Costume_Misty_AtkDmgUp_1/2/3`, `Costume_Misty_Survive_1/2/3`,
+   `Costume_Vlad_Thorn_1/2/3_Rune`, `Costume_Vlad_AttackSpeedUp_1_Rune` —
+   exactly the 4 affected runes, named precisely.
+
+**One real disassembly was still worth doing**, to settle whether `Grow`
+adds, multiplies, or replaces: set up the same ELF-offset + capstone
+technique this project's 2026-10-03 session used (`pyelftools` resolves
+RVA→file-offset via the real `PT_LOAD` segment table, `capstone`
+decodes the AArch64 bytes), pointed at `Grow`'s real RVA (`0x249DF98`
+from the fresh dump). The function body is short and unambiguous: it
+loads the base `value1`/`value2` into `s9`/`s8`, computes the rune's
+growth into `s10`, and the payoff instruction is a plain `fadd s9, s9,
+s10` (or `s8, s8, s10` depending which slot) — **confirmed: simple
+addition**, `effective = base + (ValuePerLevel × level)`, not a guess.
+
+**Shipped**: `RuneUniqueOptionSubSkillData.json` gained two new columns,
+`EffectName` (the real enum constant, e.g.
+`Costume_Misty_AtkDmgUp_1`) and `EffectName_readable` (a light
+mechanical cleanup — strip the `Costume_<Hero>_` prefix and trailing
+`_N`/`_N_Rune`, split PascalCase into words, expand a small number of
+real abbreviations seen in the data itself, `Atk`→`Attack`/
+`Dmg`→`Damage` — not invented flavor text, a direct rendering of the
+real compiled name). `Formulas._runeHiddenEffects()` now also returns
+`effectName`, `base`, and `total` (`base + boost`, per the confirmed
+`fadd`). The Rune panel UI (`js/ui-heroes.js`) dropped the 🔒
+"mechanism not decoded" framing entirely — it now reads e.g. "✨ Also
+increases **Attack Damage Up** by +0.04 (0.20 → 0.24) — confirmed by
+decompilation, applies to all 3 of this hero's skill levels", using the
+same real, verified numbers as before but with a real name and the full
+before/after instead of a caveat about not knowing what it does.
+
+A genuinely interesting side-detail this surfaced, not acted on further:
+Misty's "Growth Potion" rune boosts `AtkDmgUp` but **not** the
+symmetric `AtkDmgDown` row that also exists for her same skill (both are
+real, named `E_SkillSubType` entries, only one has nonzero
+`ValuePerLevel`) — the rune buffs the success-case upside without
+making the failure-case downside worse, a real, specific design choice
+now visible in the data, not something this session needed to guess at.
+
+Verified via the same Node harness as before: all 4 runes now show real
+names and real before/after numbers at level 10 (e.g. Elixir: Survive
+0.3 → 0.4; Rose of Wallachia: Thorn 0.25 → 0.35); the other 115 runes in
+the game remain completely unaffected (re-ran the same regression
+sweep, still zero unexpected hidden-effect rows). `node --check` clean
+on every touched file, `data/RuneUniqueOptionSubSkillData.json`
+confirmed valid JSON.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -4939,24 +5026,47 @@ to shelve that finding separately rather than quietly bundling it in.
     User asked to act on the Rune finding and shelve the other 6 groups
     for later review. Full writeup of the fix in "A real Rune display
     bug, found and fixed same-day it shipped" above.
+54. Same session, immediate follow-up. User asked to get the tooling
+    that was missing and dig deeper into the Rune finding, rather than
+    leave it at "real numbers, mechanism not decoded." Installed a real
+    .NET 6 runtime (user-local, no sudo) and the real Il2CppDumper
+    release, ran it against this session's already-unpacked v27.0.0
+    game files, and got a genuine fresh `dump.cs`. Fully resolved both
+    open questions from entry 53's fix: the real resolver's method
+    signatures already named the mechanism before any disassembly was
+    needed (`Grow(SkillSubData source, ...)` returns a grown copy of the
+    hero's own base skill row), the real `E_SkillSubType` enum resolved
+    all 241 distinct effect ids this app's data actually uses with zero
+    orphans (giving real names like "Attack Damage Up"/"Survive"/"Thorn"
+    for exactly the 4 affected runes), and one real disassembly (the
+    `Grow` method's RVA, using the same ELF-offset + capstone technique
+    the 2026-10-03 session established) confirmed the arithmetic is a
+    plain addition, not a guess. The Rune panel's "mechanism not
+    decoded" caveat is gone — it now shows the real effect name and the
+    real before/after numbers. Full writeup in "The Rune mechanism,
+    fully decoded" above.
 
 ## Open items / plausible next steps (not started)
 
 - **New 2026-10-23**: a 7-group deep dive (Hero's Tomb, Boss Raid, Combat
   engine internals, Hero progression presets, Rune system, Story/world
-  flavor, Progression/reward plumbing — see chronological entry 53 and
-  "A real Rune display bug" above) was explicitly shelved by the user
-  after only the Rune finding was actioned. Real, concrete leads still on
-  the table for a future session: `SkillData` resolving real hero skill
-  names (small, independent, would also improve the new Rune hidden-effect
-  display's wording); `MilestonePresetData`'s 91 real progression
-  snapshots as a "recommended build" reference feature; full decompilation
-  of `RuneUniqueOptionSubSkillResolver` to finally name what the Rune
-  hidden-effect mechanism actually modifies (blocked this session by no
-  Il2CppDumper/.NET runtime being available — would need either that
-  tooling or a differently-equipped environment). Everything else checked
-  in that dive came back as a confirmed non-issue or a confirmed dead
-  end, not a lead — see entry 53 for the full per-group breakdown.
+  flavor, Progression/reward plumbing — see chronological entries 53-54,
+  "A real Rune display bug", and "The Rune mechanism, fully decoded"
+  above) was explicitly shelved by the user after only the Rune finding
+  was actioned — and that one is now **fully** resolved, not just
+  patched (real effect names, real confirmed add-arithmetic, via a real
+  decompile pass after installing a .NET runtime + Il2CppDumper into this
+  environment — see "The Rune mechanism, fully decoded" for the exact
+  install steps, reusable for any future decompile need in this same
+  environment). Real, concrete leads still on the table for a future
+  session: `SkillData` resolving real hero skill names (small,
+  independent — and now that this session has a real, working
+  Il2CppDumper setup again, worth revisiting with actual decompilation
+  rather than just the schema-level resolution already confirmed);
+  `MilestonePresetData`'s 91 real progression snapshots as a "recommended
+  build" reference feature. Everything else checked in that dive came
+  back as a confirmed non-issue or a confirmed dead end, not a lead — see
+  entry 53 for the full per-group breakdown.
 - A v27.0.0 APK was pulled (up from v26.2.0) and its
   full Unity TextAsset table list captured (185 tables) while chasing the
   coupon-site question above, but **not diffed against this app's 65
