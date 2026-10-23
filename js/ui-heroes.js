@@ -154,44 +154,77 @@ const HeroesUI = {
     renderBody();
   },
 
-  // --- Rune (equip/level a rune on this hero) -------------------------------
-  // See CLAUDE.md "Rune system" for the full data-shape writeup: each
-  // equipped rune is one RuneData row (a hero's own named rune, or one of
-  // the 3 generic Melee/Ranged/Universal families at a given grade — grade
-  // is baked into which row is picked, mirroring how weapon fusion-chain
-  // links work, not a separately-tracked player stat) plus a player-set
-  // level (1..that grade's MaxLevel).
+  // --- Rune (equip/level this hero's runes) ---------------------------------
+  // See CLAUDE.md "Rune system" / "Multiple rune slots" for the full
+  // data-shape writeup. A hero has 7 rune slots (Formulas.
+  // RUNE_SLOT_UNLOCK_LEVELS), not 1 — confirmed 2026-10-24 after a direct
+  // user report that there was no way to equip a general (Melee/Ranged/
+  // Universal) rune alongside a hero-specific one. Slot 0 is always this
+  // hero's own named Hero Rune; slots 1-6 are free-choice general slots
+  // (any Melee/Ranged/Universal rune), gated behind the account-wide
+  // Player Level. Each equipped rune is one RuneData row (grade is baked
+  // into which row is picked, mirroring how weapon fusion-chain links
+  // work, not a separately-tracked player stat) plus a player-set level
+  // (1..that grade's MaxLevel).
 
   _runeSectionHTML(hero) {
-    if (!hero.rune) {
-      return `<button class="btn btn-gold" id="rune-choose-btn">Choose a Rune</button>`;
+    const playerLevel = State.data.player.level;
+    return `
+      <div class="rune-panel">
+        ${hero.runes.map((_, i) => this._runeSlotHTML(hero, i, playerLevel)).join('')}
+        <div class="caveat">No decompiled evidence ties Runes into the confirmed Dps formula (docs/game_logic_deep_dive.md) — shown here as this hero's own stat panel, not folded into the Guide tab's Total DPS estimate.</div>
+      </div>`;
+  },
+
+  _runeSlotHTML(hero, slotIndex, playerLevel) {
+    const reqLevel = Formulas.runeSlotUnlockLevel(slotIndex);
+    const slotLabel = slotIndex === 0 ? 'Hero Rune' : `General Rune ${slotIndex}`;
+    if (playerLevel < reqLevel) {
+      return `
+        <div class="rune-slot rune-slot--locked">
+          <span class="rune-slot-label">${slotLabel}</span>
+          <span style="color:var(--ink-faint);font-size:.82rem">🔒 Unlocks at Player Level ${reqLevel}</span>
+        </div>`;
     }
-    const rune = Game.index.runeById.get(hero.rune.runeDataId);
-    if (!rune) return `<button class="btn btn-gold" id="rune-choose-btn">Choose a Rune</button>`; // stale id (e.g. an older export) -- just let the user pick again
+    const slotData = hero.runes[slotIndex];
+    const rune = slotData ? Game.index.runeById.get(slotData.runeDataId) : null;
+    if (!slotData || !rune) { // empty, or a stale id (e.g. an older export) -- just let the user pick again
+      return `
+        <div class="rune-slot">
+          <div class="rune-slot-header">
+            <span class="rune-slot-label">${slotLabel}</span>
+            <button class="btn btn-sm" data-rune-choose="${slotIndex}">+ Choose a Rune</button>
+          </div>
+        </div>`;
+    }
     const grade = Game.index.runeGradeById.get(rune.GradeID);
     const rarity = grade ? grade.Rarity : 1;
     const typeRow = Game.index.runeTypeById.get(rune.TypeID);
     const maxLevel = Formulas.runeMaxLevel(rune);
-    const level = Math.min(hero.rune.level, maxLevel);
+    const level = Math.min(slotData.level, maxLevel);
     const unique = Formulas.runeUniqueOption(rune, level);
     const bonusRows = Formulas.runeLevelBonusRows(rune, level);
     const nextCost = level < maxLevel ? Formulas.runeCostForLevel(rune, level + 1) : null;
+    const sliderId = `rune-lvl-slider-${slotIndex}`;
 
     return `
-      <div class="rune-panel">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:8px">
-          <div class="detail-art" style="width:64px;height:64px;flex-shrink:0;${rarityStyle(rarity)}"><img src="${Game.runeIcon(rune)}" onerror="onImgError(this)" alt=""></div>
+      <div class="rune-slot">
+        <div class="rune-slot-header">
+          <span class="rune-slot-label">${slotLabel}</span>
+          <div class="action-row" style="margin:0">
+            <button class="btn btn-sm" data-rune-choose="${slotIndex}">Change</button>
+            <button class="btn btn-sm btn-danger" data-rune-remove="${slotIndex}">Remove</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;margin:8px 0">
+          <div class="detail-art" style="width:52px;height:52px;flex-shrink:0;${rarityStyle(rarity)}"><img src="${Game.runeIcon(rune)}" onerror="onImgError(this)" alt=""></div>
           <div style="flex:1;min-width:0">
-            <div class="detail-name" style="font-size:.92rem">${escapeHtml(rune.Name_en)}</div>
+            <div class="detail-name" style="font-size:.88rem">${escapeHtml(rune.Name_en)}</div>
             <div class="detail-tags">${rarityTag(rarity)}${typeRow ? `<span class="tag">${escapeHtml(typeRow.Name_en)}</span>` : ''}</div>
           </div>
         </div>
-        <div class="action-row" style="margin:0 0 10px">
-          <button class="btn btn-sm" id="rune-choose-btn">Change</button>
-          <button class="btn btn-sm btn-danger" id="rune-remove-btn">Remove</button>
-        </div>
-        ${levelControlHTML('rune-lvl-slider', 1, maxLevel, level, `${level} / ${maxLevel}`)}
-        ${unique ? `<div class="milestone-row" style="margin-bottom:8px">${escapeHtml(unique.desc)}</div>` : ''}
+        ${levelControlHTML(sliderId, 1, maxLevel, level, `${level} / ${maxLevel}`)}
+        ${unique ? `<div class="milestone-row" style="margin:8px 0">${escapeHtml(unique.desc)}</div>` : ''}
         ${unique && unique.hiddenEffects.length ? `
           <div class="milestone-row" style="margin-bottom:8px">
             ✨ Also increases <b>${escapeHtml(unique.hiddenEffects[0].effectName || 'an unnamed effect')}</b>
@@ -209,7 +242,6 @@ const HeroesUI = {
                 <span style="color:var(--ink-muted);font-weight:500"> — Lv ${row.Level}</span>
               </div>`).join('')}
           </div>` : ''}
-        <div class="caveat">No decompiled evidence ties Runes into the confirmed Dps formula (docs/game_logic_deep_dive.md) — shown here as this hero's own stat panel, not folded into the Guide tab's Total DPS estimate.</div>
       </div>`;
   },
 
@@ -227,58 +259,71 @@ const HeroesUI = {
   },
 
   _wireRuneEvents(heroId, renderBody) {
-    document.getElementById('rune-choose-btn')?.addEventListener('click', () => this._openRunePicker(heroId));
-    document.getElementById('rune-remove-btn')?.addEventListener('click', () => {
-      State.updateHero(heroId, { rune: null });
-      renderBody();
+    document.querySelectorAll('[data-rune-choose]').forEach(btn => {
+      btn.addEventListener('click', () => this._openRunePicker(heroId, Number(btn.dataset.runeChoose)));
     });
-    wireLevelControl('rune-lvl-slider', (level) => {
-      const hero = State.getHero(heroId);
-      State.updateHero(heroId, { rune: { ...hero.rune, level } });
-      renderBody();
+    document.querySelectorAll('[data-rune-remove]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        State.removeHeroRuneSlot(heroId, Number(btn.dataset.runeRemove));
+        renderBody();
+      });
     });
+    for (let i = 0; i < 7; i++) {
+      wireLevelControl(`rune-lvl-slider-${i}`, (level) => {
+        State.setHeroRuneSlotLevel(heroId, i, level);
+        renderBody();
+      });
+    }
   },
 
-  _openRunePicker(heroId) {
+  // slotIndex 0 (the Hero Rune slot) only offers this hero's own named
+  // rune(s), if any; slots 1-6 (general slots) only offer the 3 generic
+  // Melee/Ranged/Universal families — matching the real game's own
+  // slot-type split confirmed via MilestonePresetEquipEntryData (slot 0 is
+  // always a TypeID-1 Hero Rune across every sampled preset; slots 1+ are
+  // always one of the 3 generic families, freely mixed).
+  _openRunePicker(heroId, slotIndex) {
     const hero = State.getHero(heroId);
     if (!hero) return;
-    const ownRunes = (Game.index.runesByCostumeId.get(hero.costumeId) || []).slice().sort((a, b) => a.id - b.id);
+    const isHeroSlot = slotIndex === 0;
     const generic = Game.index.runesByCostumeId.get(0) || [];
-    const tabs = [
-      ...(ownRunes.length ? [{ key: 'own', label: "This Hero's Rune", rows: ownRunes }] : []),
-      { key: '101', label: 'Melee', rows: generic.filter(r => r.TypeID === 101) },
-      { key: '102', label: 'Ranged', rows: generic.filter(r => r.TypeID === 102) },
-      { key: '103', label: 'Universal', rows: generic.filter(r => r.TypeID === 103) },
-    ];
+    const tabs = isHeroSlot
+      ? [{ key: 'own', label: "This Hero's Rune", rows: (Game.index.runesByCostumeId.get(hero.costumeId) || []).slice().sort((a, b) => a.id - b.id) }]
+      : [
+          { key: '101', label: 'Melee', rows: generic.filter(r => r.TypeID === 101) },
+          { key: '102', label: 'Ranged', rows: generic.filter(r => r.TypeID === 102) },
+          { key: '103', label: 'Universal', rows: generic.filter(r => r.TypeID === 103) },
+        ];
     let activeKey = tabs[0].key;
 
     const renderGrid = () => {
       const tab = tabs.find(t => t.key === activeKey);
       const rows = tab.rows.slice().sort((a, b) => a.Name_en.localeCompare(b.Name_en) || a.GradeID - b.GradeID);
       const grid = document.getElementById('rune-picker-grid');
+      const currentSlot = hero.runes[slotIndex];
       grid.innerHTML = rows.length ? rows.map(r => {
         const grade = Game.index.runeGradeById.get(r.GradeID);
         const rarity = grade ? grade.Rarity : 1;
-        const selected = hero.rune && hero.rune.runeDataId === r.id;
+        const selected = currentSlot && currentSlot.runeDataId === r.id;
         return `
           <div class="picker-card ${selected ? 'selected' : ''}" data-rune="${r.id}" style="${rarityStyle(rarity)}">
             <img src="${Game.runeIcon(r)}" onerror="onImgError(this)" alt="">
             <div class="pc-name">${escapeHtml(r.Name_en)}</div>
             <div class="pc-tag">${rarityPip(rarity)}${Game.rarityColor(rarity).name}</div>
           </div>`;
-      }).join('') : `<div class="empty-state">No runes in this category.</div>`;
+      }).join('') : `<div class="empty-state">${isHeroSlot ? 'This hero has no named rune yet.' : 'No runes in this category.'}</div>`;
       grid.querySelectorAll('[data-rune]').forEach(el => {
         el.addEventListener('click', () => {
-          State.updateHero(heroId, { rune: { runeDataId: Number(el.dataset.rune), level: 1 } });
+          State.setHeroRuneSlot(heroId, slotIndex, Number(el.dataset.rune));
           this.openEnhance(heroId);
         });
       });
     };
 
     UI.openModal(`
-      <div class="modal-header"><h3>Choose a Rune</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-header"><h3>Choose a Rune — ${isHeroSlot ? 'Hero Rune' : `General Slot ${slotIndex}`}</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
-        <div class="picker-filters">${tabs.map(t => `<button class="chip${t.key === activeKey ? ' active' : ''}" data-rune-tab="${t.key}">${escapeHtml(t.label)}</button>`).join('')}</div>
+        ${tabs.length > 1 ? `<div class="picker-filters">${tabs.map(t => `<button class="chip${t.key === activeKey ? ' active' : ''}" data-rune-tab="${t.key}">${escapeHtml(t.label)}</button>`).join('')}</div>` : ''}
         <div class="picker-grid" id="rune-picker-grid"></div>
       </div>
     `);

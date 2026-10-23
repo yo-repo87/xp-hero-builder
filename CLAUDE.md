@@ -4063,6 +4063,70 @@ sweep, still zero unexpected hidden-effect rows). `node --check` clean
 on every touched file, `data/RuneUniqueOptionSubSkillData.json`
 confirmed valid JSON.
 
+## Multiple rune slots — a real, confirmed gap this app had modeled as one (2026-10-24)
+
+User reported directly: "there is no place to equip a normal rune like
+how we can equip a hero rune." Investigated before assuming anything,
+using the IL2CPP decompile tooling installed earlier the same session —
+and the report was exactly right, with a precise, real answer.
+
+**The real mechanic, fully confirmed, not guessed**: a hero has **7**
+rune slots, not 1. Slot 0 is always the hero's own named Hero Rune;
+slots 1-6 are free-choice "General" slots that take any Melee/Ranged/
+Universal rune — all equippable *simultaneously*, confirmed directly by
+`MilestonePresetEquipEntryData`'s own real `slot_index` field (0-6 across
+real progression milestones — group 6, for example, shows Enhanced
+Flurry in slot 0, Sword Rune in slot 1, Crossbow Rune in slot 2,
+Protection Rune in slot 3, and a *second* Mace Rune in slot 4, proving
+slot index isn't tied to one fixed rune type). Unlock gating is real too:
+the game's own `RUNE_SLOT_OPENCONDITION_PLAYERLEVEL` Remote Config value
+reads `"1,1,200,250,300,350,400"` — one threshold per slot, against the
+account-wide Player Level this app already tracks for the Total DPS
+estimate (`State.data.player.level`) — no new input needed, the
+infrastructure to gate this correctly already existed.
+
+This app had only ever modeled slot 0 — a single `hero.rune` field — so
+picking a generic rune always silently overwrote whatever hero-specific
+rune was equipped, and vice versa, because they shared the one slot that
+existed. Not a display bug like the two Rune sessions earlier today;
+this was a real, structural gap in what the app let you represent at
+all.
+
+**Shipped**: `hero.rune` (singular) → `hero.runes` (array of 7,
+`{runeDataId, level} | null` per index) in `js/state.js`, with a real
+migration path (`migrateHeroRunes`, run through the same `migrate()`
+choke point both localStorage load and file/cloud import already go
+through) that moves an old save's single `rune` into slot 0 rather than
+losing it — verified directly: a legacy single-rune save round-trips
+through `importJSON` with its rune intact in slot 0 and no stray `rune`
+key left over. New `State.setHeroRuneSlot`/`setHeroRuneSlotLevel`/
+`removeHeroRuneSlot(heroId, slotIndex, ...)` methods, mirroring the
+existing per-slot pattern `setTraitSlot` already established.
+`Formulas.RUNE_SLOT_UNLOCK_LEVELS`/`runeSlotUnlockLevel()` hold the real
+confirmed thresholds. `js/ui-heroes.js`'s single rune panel became a
+7-slot list (`_runeSlotHTML`, called once per slot) — each slot shows a
+locked state ("🔒 Unlocks at Player Level N") below its threshold, an
+empty "+ Choose a Rune" state above it, or the existing full panel
+(unchanged visually) once filled; `_openRunePicker(heroId, slotIndex)`
+now restricts its own tab set by slot — slot 0 offers only this hero's
+own named rune(s) (if any), slots 1-6 offer only the 3 generic families
+— matching the real game's own slot-type split, not a per-slot free-for-
+all this app would have had to guess at. New CSS: `.rune-slot`/
+`.rune-slot--locked`/`.rune-slot-header`/`.rune-slot-label`, `.rune-panel`
+repurposed as the outer list container.
+
+Verified with a dedicated Node test suite (not just the general
+regression harness): a fresh hero gets exactly 7 null slots; a hero rune
+and a generic rune can be equipped into different slots *simultaneously*
+without clobbering each other (the exact bug reported); leveling one
+slot leaves every other slot's level untouched; removing one slot leaves
+the others equipped; the real unlock-level thresholds resolve correctly
+per slot; and the legacy-save migration preserves an old single rune
+into slot 0 with no data loss. Separately rendered the actual panel HTML
+end-to-end (locked slots show the right threshold, equipped slots show
+the right names, the hidden-effect line from earlier today's Rune
+decode still renders) rather than only testing the state layer.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -5045,6 +5109,23 @@ confirmed valid JSON.
     decoded" caveat is gone — it now shows the real effect name and the
     real before/after numbers. Full writeup in "The Rune mechanism,
     fully decoded" above.
+55. Same session, immediate follow-up. User reported there was no way to
+    equip a generic rune alongside a hero-specific one. Investigated with
+    the still-live decompile tooling from entry 54 and confirmed it
+    directly: a hero has 7 real rune slots (1 Hero Rune + 6 free-choice
+    General slots, all equippable simultaneously), confirmed via
+    `MilestonePresetEquipEntryData`'s own `slot_index` field and the real
+    `RUNE_SLOT_OPENCONDITION_PLAYERLEVEL` Remote Config thresholds
+    ("1,1,200,250,300,350,400") — gated on the account-wide Player Level
+    this app already tracked for the Total DPS estimate, so no new input
+    was needed. This app had only ever modeled slot 0. Migrated
+    `hero.rune` (singular) to `hero.runes` (7 slots) with a real
+    backward-compatible migration path for existing saves, rebuilt the
+    Rune panel as a 7-slot list with real per-slot unlock gating and
+    type-restricted pickers, and verified with a dedicated test suite
+    (equip-both-simultaneously, independent per-slot leveling/removal,
+    legacy-save migration, and the actual rendered HTML across locked/
+    empty/equipped states). Full writeup in "Multiple rune slots" above.
 
 ## Open items / plausible next steps (not started)
 

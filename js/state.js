@@ -81,7 +81,15 @@ const State = {
 
   addHero(costumeId) {
     if (this.data.heroes.some(h => h.costumeId === costumeId)) return;
-    const hero = { id: cryptoId(), costumeId, level: 1, starGrade: 1, evoRarity: 0, rune: null }; // rune: {runeDataId, level} | null
+    // runes: 7 slots, index 0 = this hero's own named Hero Rune, indices
+    // 1-6 = free-choice general (Melee/Ranged/Universal) slots — confirmed
+    // real via MilestonePresetEquipEntryData's own slot_index usage (0-6)
+    // and the real RemoteConfig key RUNE_SLOT_OPENCONDITION_PLAYERLEVEL
+    // ("1,1,200,250,300,350,400"); each entry is {runeDataId, level} | null.
+    // See CLAUDE.md "Rune system" / "Multiple rune slots" for the full
+    // writeup — this app originally modeled only slot 0 as a single `rune`
+    // field, which a direct user report caught as a real, confirmed gap.
+    const hero = { id: cryptoId(), costumeId, level: 1, starGrade: 1, evoRarity: 0, runes: Array(7).fill(null) };
     this.data.heroes.push(hero);
     if (this.data.activeHeroId === null) this.data.activeHeroId = hero.id;
     this.notify();
@@ -111,6 +119,28 @@ const State = {
 
   getHero(heroId) { return this.data.heroes.find(h => h.id === heroId) || null; },
   getActiveHero() { return this.getHero(this.data.activeHeroId); },
+
+  // --- Hero rune slots (7 per hero — see the `runes` field comment in
+  // addHero above) -----------------------------------------------------
+
+  setHeroRuneSlot(heroId, slotIndex, runeDataId) {
+    const hero = this.getHero(heroId);
+    if (!hero) return;
+    hero.runes[slotIndex] = { runeDataId, level: 1 };
+    this.notify();
+  },
+  setHeroRuneSlotLevel(heroId, slotIndex, level) {
+    const hero = this.getHero(heroId);
+    if (!hero || !hero.runes[slotIndex]) return;
+    hero.runes[slotIndex].level = level;
+    this.notify();
+  },
+  removeHeroRuneSlot(heroId, slotIndex) {
+    const hero = this.getHero(heroId);
+    if (!hero) return;
+    hero.runes[slotIndex] = null;
+    this.notify();
+  },
 
   // --- Traits ------------------------------------------------------------
 
@@ -180,11 +210,25 @@ function migrate(obj) {
   merged.weapons = Array.isArray(obj.weapons) && obj.weapons.length === 6 ? obj.weapons : fresh.weapons;
   merged.traits = obj.traits && Array.isArray(obj.traits.slots) ? obj.traits : fresh.traits;
   merged.upgrades = { ...fresh.upgrades, ...(obj.upgrades || {}) };
-  merged.heroes = Array.isArray(obj.heroes) ? obj.heroes : [];
+  merged.heroes = (Array.isArray(obj.heroes) ? obj.heroes : []).map(migrateHeroRunes);
   merged.player = { ...fresh.player, ...(obj.player || {}) };
   merged.ui = { ...fresh.ui, ...(obj.ui || {}) };
   merged.schemaVersion = SCHEMA_VERSION;
   return merged;
+}
+
+// A build saved before the 7-slot rune system (2026-10-24) has a single
+// `rune: {runeDataId, level} | null` field instead of `runes: [...7]` —
+// migrate it into slot 0 (the Hero Rune slot, matching where a
+// hero-specific rune always lived under the old single-slot model) rather
+// than losing it, and defensively backfill `runes` for any hero missing it
+// for any other reason.
+function migrateHeroRunes(hero) {
+  if (Array.isArray(hero.runes) && hero.runes.length === 7) return hero;
+  const runes = Array(7).fill(null);
+  if (hero.rune) runes[0] = hero.rune;
+  const { rune, ...rest } = hero;
+  return { ...rest, runes };
 }
 
 function cryptoId() {

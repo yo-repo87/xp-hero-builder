@@ -345,6 +345,23 @@ const Formulas = {
     return grade ? grade.MaxLevel : 1;
   },
 
+  // A hero has 7 rune slots, not 1 — confirmed 2026-10-24 after a direct
+  // user report that there was no way to equip a general (Melee/Ranged/
+  // Universal) rune alongside a hero-specific one. Slot 0 is always the
+  // hero's own named Hero Rune; slots 1-6 are free-choice general slots
+  // (confirmed via MilestonePresetEquipEntryData's real slot_index usage,
+  // 0-6, freely mixing Melee/Ranged/Universal runes across them — slot
+  // *index* isn't tied to a fixed rune *type*). Unlock gate is the
+  // account-wide Player Level (State.data.player.level, already modeled
+  // for the Total DPS estimate) against the real
+  // RUNE_SLOT_OPENCONDITION_PLAYERLEVEL Remote Config value,
+  // "1,1,200,250,300,350,400" — read directly from the game's own
+  // RemoteConfig defaults table, not guessed.
+  RUNE_SLOT_UNLOCK_LEVELS: [1, 1, 200, 250, 300, 350, 400],
+  runeSlotUnlockLevel(slotIndex) {
+    return this.RUNE_SLOT_UNLOCK_LEVELS[slotIndex] ?? Infinity;
+  },
+
   // The rune's own unique effect (RuneUniqueOptionData, base+perLevel*level).
   // Hero-specific runes (OptionType 0) have a real `{0}%`-templated
   // description straight from the game's own Locale (e.g. "Bonus Skill
