@@ -1,0 +1,2842 @@
+[
+ {
+  "id": 2109,
+  "type_id": 5,
+  "value1": 0.1,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_S1_DAGGER_L",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{2:P0}</color>\\nFlower Dance inflicts an Attack Down {0:P0} Debuff on enemies hit for {1} sec."
+ },
+ {
+  "id": 2110,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_DAGGER_A",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{1:P0}</color>\\nFlower Dance's number of hits increases by {0}."
+ },
+ {
+  "id": 2111,
+  "type_id": 0,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_DAGGER_M",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nFlower Dance damage increases by {0:P0}."
+ },
+ {
+  "id": 2112,
+  "type_id": 27,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_S1_DAGGER_X",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{2:P0}</color>\\nFlower Dance inflicts a Healing Reduction {0:P0} Debuff on enemies hit for {1} sec."
+ },
+ {
+  "id": 2113,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_DAGGER_E",
+  "locale_desc_en": "<color=#077536>Weapon & Skill Transcended. Bonus Skill Damage +{0:P0}</color>\\nFlower Dance now throws a chakram at enemies hit."
+ },
+ {
+  "id": 2209,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_SWORD_L",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{0:P0}</color>\\nHalf Moon Blade removes all Buffs from enemies hit."
+ },
+ {
+  "id": 2210,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_SWORD_A",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{0:P0}</color>\\nHalf Moon Blade's wave becomes larger."
+ },
+ {
+  "id": 2211,
+  "type_id": 0,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_SWORD_M",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nHalf Moon Blade damage increases by {0:P0}."
+ },
+ {
+  "id": 2212,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_SWORD_X",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{0:P0}</color>\\nHalf Moon Blade removes all Debuffs from allies."
+ },
+ {
+  "id": 2213,
+  "type_id": 0,
+  "value1": 60.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_SWORD_E",
+  "locale_desc_en": "<color=#077536>Weapon & Skill Transcended. Bonus Skill Damage +{0:P0}</color>\\nHalf Moon Blade's wave fires in 3 directions."
+ },
+ {
+  "id": 2309,
+  "type_id": 10,
+  "value1": 4.0,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_S1_MORNINGSTAR_L",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nSoul Wave grants self a shield equal to {0:P0} damage."
+ },
+ {
+  "id": 2310,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_MORNINGSTAR_A",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{0:P0}</color>\\nSoul Wave's emission range expands."
+ },
+ {
+  "id": 2311,
+  "type_id": 6,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_MORNINGSTAR_M",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nSoul Wave cooldown decreases by {0:P0}."
+ },
+ {
+  "id": 2312,
+  "type_id": 10,
+  "value1": 2.0,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_S1_MORNINGSTAR_X",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{0:P0}</color>\\nSoul Wave's shield is applied to all allies."
+ },
+ {
+  "id": 2313,
+  "type_id": 4,
+  "value1": 12.0,
+  "value2": 3.0,
+  "locale_desc": "SKILL_DESC_S1_MORNINGSTAR_E",
+  "locale_desc_en": "<color=#077536>Weapon & Skill Transcended. Bonus Skill Damage +{0:P0}</color>\\nSoul Wave leaves a lingering effect that deals continuous damage to nearby enemies."
+ },
+ {
+  "id": 2409,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_CROSSBOW_L",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nAT Arrow lands a {0:P0} Critical Hit if the enemy is debuffed."
+ },
+ {
+  "id": 2410,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_CROSSBOW_A",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{1:P0}</color>\\nAT Arrow fires {0} more arrows."
+ },
+ {
+  "id": 2411,
+  "type_id": 0,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_CROSSBOW_M",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nAT Arrow damage increases by {0:P0}."
+ },
+ {
+  "id": 2412,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_CROSSBOW_X",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{1:P0}</color>\\nAT Arrow fires {0} more arrows if self has no Debuffs."
+ },
+ {
+  "id": 2413,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 10.0,
+  "locale_desc": "SKILL_DESC_S1_CROSSBOW_E",
+  "locale_desc_en": "<color=#077536>Weapon & Skill Transcended. Bonus Skill Damage +{2:P0}</color>\\nAT Arrow fires {0} to {1} more arrows at random."
+ },
+ {
+  "id": 2509,
+  "type_id": 106,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_S1_GUN_L",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{2:P0}</color>\\nGravity Pulse grants an Attack Speed +{0:P0} Buff to all allies for {1} sec."
+ },
+ {
+  "id": 2510,
+  "type_id": 0,
+  "value1": 1.1,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_GUN_A",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{0:P0}</color>\\nGravity Pulse's gravitational field becomes larger."
+ },
+ {
+  "id": 2511,
+  "type_id": 6,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_GUN_M",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nGravity Pulse cooldown decreases by {0:P0}."
+ },
+ {
+  "id": 2512,
+  "type_id": 8,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_S1_GUN_X",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{2:P0}</color>\\nGravity Pulse grants a Critical Damage +{1:P0} Buff to all allies for {0} sec."
+ },
+ {
+  "id": 2513,
+  "type_id": 0,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": "SKILL_DESC_S1_GUN_E",
+  "locale_desc_en": "<color=#077536>Weapon & Skill Transcended. Bonus Skill Damage +{0:P0}</color>\\nGravity Pulse triggers another large-scale explosion upon ending."
+ },
+ {
+  "id": 2609,
+  "type_id": 9,
+  "value1": 0.05,
+  "value2": 6.0,
+  "locale_desc": "SKILL_DESC_S1_WAND_L",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nCarpet Bombing heals the lowest-HP ally for {0:P0} of Max HP."
+ },
+ {
+  "id": 2610,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 9.0,
+  "locale_desc": "SKILL_DESC_S1_WAND_A",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{1:P0}</color>\\nCarpet Bombing drops {0} more bombs and its bombing range increases."
+ },
+ {
+  "id": 2611,
+  "type_id": 6,
+  "value1": 0.2,
+  "value2": 9.0,
+  "locale_desc": "SKILL_DESC_S1_WAND_M",
+  "locale_desc_en": "<color=#077536>Weapon Evolved. Bonus Skill Damage +{1:P0}</color>\\nCarpet Bombing cooldown decreases by {0:P0}."
+ },
+ {
+  "id": 2612,
+  "type_id": 9,
+  "value1": 0.05,
+  "value2": 9.0,
+  "locale_desc": "SKILL_DESC_S1_WAND_X",
+  "locale_desc_en": "<color=#077536>Skill Evolved. Bonus Skill Damage +{0:P0}</color>\\nCarpet Bombing's healing is applied to all allies."
+ },
+ {
+  "id": 2613,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 12.0,
+  "locale_desc": "SKILL_DESC_S1_WAND_E",
+  "locale_desc_en": "<color=#077536>Weapon & Skill Transcended. Bonus Skill Damage +{1:P0}</color>\\nCarpet Bombing drops {0} more bombs and its range expands to the entire screen."
+ },
+ {
+  "id": 10011,
+  "type_id": 22,
+  "value1": 50.0,
+  "value2": 1000.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10012,
+  "type_id": 22,
+  "value1": 300.0,
+  "value2": 1000.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10013,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10014,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10015,
+  "type_id": 0,
+  "value1": 100.0,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10021,
+  "type_id": 19,
+  "value1": 10.0,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10022,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10023,
+  "type_id": 0,
+  "value1": 1.5,
+  "value2": 1.1,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10024,
+  "type_id": 11,
+  "value1": 0.5,
+  "value2": 10.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10025,
+  "type_id": 29,
+  "value1": 1.0,
+  "value2": 10.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10031,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10032,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 1.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10033,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10034,
+  "type_id": 11,
+  "value1": 0.5,
+  "value2": 1000.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10035,
+  "type_id": 7,
+  "value1": 0.5,
+  "value2": 1000.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10036,
+  "type_id": 14,
+  "value1": 1.0,
+  "value2": 1000.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10037,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10038,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10041,
+  "type_id": 17,
+  "value1": 0.9,
+  "value2": 5.0,
+  "locale_desc": "SKILL_DESC_RAIDBOSS_FROZENBLOOM_MOVESPEED_DOWN",
+  "locale_desc_en": "SKILL_DESC_RAIDBOSS_FROZENBLOOM_MOVESPEED_DOWN"
+ },
+ {
+  "id": 10042,
+  "type_id": 18,
+  "value1": 0.6,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10043,
+  "type_id": 0,
+  "value1": 8.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10048,
+  "type_id": 2,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10049,
+  "type_id": 18,
+  "value1": 0.1,
+  "value2": 2.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10051,
+  "type_id": 20,
+  "value1": 0.15,
+  "value2": 10.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10052,
+  "type_id": 10,
+  "value1": 0.1,
+  "value2": 10.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10053,
+  "type_id": 20,
+  "value1": 0.05,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10054,
+  "type_id": 31,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10055,
+  "type_id": 33,
+  "value1": 0.03,
+  "value2": 12.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10056,
+  "type_id": 9,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10057,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10058,
+  "type_id": 10,
+  "value1": 0.01,
+  "value2": 10.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10061,
+  "type_id": 21,
+  "value1": 0.1,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10062,
+  "type_id": 2,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10063,
+  "type_id": 0,
+  "value1": 8.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 10064,
+  "type_id": 21,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100011,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100012,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100031,
+  "type_id": 26,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100032,
+  "type_id": 26,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100041,
+  "type_id": 27,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100042,
+  "type_id": 27,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100051,
+  "type_id": 10,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100052,
+  "type_id": 10,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100061,
+  "type_id": 9,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100062,
+  "type_id": 9,
+  "value1": 5.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100063,
+  "type_id": 9,
+  "value1": 6.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100064,
+  "type_id": 9,
+  "value1": 10.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100101,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100102,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100103,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100104,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110101,
+  "type_id": 2,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110102,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110103,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110104,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100021,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100022,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100023,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110021,
+  "type_id": 2,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110022,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110023,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100024,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100025,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100026,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100131,
+  "type_id": 9,
+  "value1": 0.1,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100132,
+  "type_id": 9,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100133,
+  "type_id": 9,
+  "value1": 0.3,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100134,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100135,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100136,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100081,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100082,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100083,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110081,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 2.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110082,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 2.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110083,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 2.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100084,
+  "type_id": 12,
+  "value1": 0.5,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100085,
+  "type_id": 12,
+  "value1": 0.5,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100086,
+  "type_id": 12,
+  "value1": 0.5,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100091,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100092,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100093,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110091,
+  "type_id": 2,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110092,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110093,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100094,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100095,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100096,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100111,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100112,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100113,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110111,
+  "type_id": 2,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110112,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110113,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100114,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100141,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100142,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100143,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100144,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100145,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100146,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100147,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100148,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100149,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100151,
+  "type_id": 18,
+  "value1": 0.3,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100152,
+  "type_id": 18,
+  "value1": 0.5,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100153,
+  "type_id": 18,
+  "value1": 0.8,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100154,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100155,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100156,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100157,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100158,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100159,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100161,
+  "type_id": 24,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100162,
+  "type_id": 24,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100163,
+  "type_id": 24,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100164,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100165,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100166,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100167,
+  "type_id": 8,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100168,
+  "type_id": 8,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100169,
+  "type_id": 8,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100171,
+  "type_id": 34,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100172,
+  "type_id": 34,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100173,
+  "type_id": 34,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100174,
+  "type_id": 10008,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100175,
+  "type_id": 10008,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100176,
+  "type_id": 10008,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100177,
+  "type_id": 29,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100178,
+  "type_id": 29,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100179,
+  "type_id": 29,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100181,
+  "type_id": 21,
+  "value1": 0.5,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100182,
+  "type_id": 21,
+  "value1": 0.5,
+  "value2": 4.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100183,
+  "type_id": 21,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000184,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000185,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000186,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000187,
+  "type_id": 0,
+  "value1": 5.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000188,
+  "type_id": 0,
+  "value1": 5.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000189,
+  "type_id": 0,
+  "value1": 5.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000190,
+  "type_id": 21,
+  "value1": 0.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000191,
+  "type_id": 21,
+  "value1": 0.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000192,
+  "type_id": 21,
+  "value1": 0.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100191,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100192,
+  "type_id": 0,
+  "value1": 0.6,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100193,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100194,
+  "type_id": 0,
+  "value1": 0.6,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100195,
+  "type_id": 0,
+  "value1": 1.2,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100196,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100197,
+  "type_id": 37,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100198,
+  "type_id": 37,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100199,
+  "type_id": 37,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100071,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100072,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100073,
+  "type_id": 2,
+  "value1": 2.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110071,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110072,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 110073,
+  "type_id": 2,
+  "value1": 1.25,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100074,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100075,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100076,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100077,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100078,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100079,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100121,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100122,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100123,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100124,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100125,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100126,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000127,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000128,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000129,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000130,
+  "type_id": 39,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000131,
+  "type_id": 39,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000132,
+  "type_id": 39,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000133,
+  "type_id": 13,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000134,
+  "type_id": 13,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000135,
+  "type_id": 13,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100201,
+  "type_id": 7,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100202,
+  "type_id": 7,
+  "value1": 2.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100203,
+  "type_id": 7,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000204,
+  "type_id": 7,
+  "value1": 1.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000205,
+  "type_id": 7,
+  "value1": 2.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000206,
+  "type_id": 7,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000207,
+  "type_id": 13,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000208,
+  "type_id": 13,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000209,
+  "type_id": 13,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000210,
+  "type_id": 6,
+  "value1": -2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000211,
+  "type_id": 6,
+  "value1": -2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000212,
+  "type_id": 6,
+  "value1": -2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000213,
+  "type_id": 39,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000214,
+  "type_id": 39,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000215,
+  "type_id": 39,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000231,
+  "type_id": 11,
+  "value1": 0.3,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000232,
+  "type_id": 11,
+  "value1": 0.4,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000233,
+  "type_id": 11,
+  "value1": 0.5,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000234,
+  "type_id": 11,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000235,
+  "type_id": 11,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000236,
+  "type_id": 11,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000237,
+  "type_id": 0,
+  "value1": 20.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000238,
+  "type_id": 0,
+  "value1": 20.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000239,
+  "type_id": 0,
+  "value1": 20.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000240,
+  "type_id": 8,
+  "value1": 0.5,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000241,
+  "type_id": 8,
+  "value1": 0.5,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000242,
+  "type_id": 8,
+  "value1": 0.5,
+  "value2": 3.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000243,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000244,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000245,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000246,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000247,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000248,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000301,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000302,
+  "type_id": 2,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000303,
+  "type_id": 2,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1100301,
+  "type_id": 2,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1100302,
+  "type_id": 2,
+  "value1": 0.75,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1100303,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000304,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000305,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000306,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000307,
+  "type_id": 0,
+  "value1": 0.2,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000308,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000309,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000310,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000311,
+  "type_id": 25,
+  "value1": 0.8,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000312,
+  "type_id": 25,
+  "value1": 0.8,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000313,
+  "type_id": 25,
+  "value1": 0.8,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000314,
+  "type_id": 12,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000315,
+  "type_id": 12,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000316,
+  "type_id": 12,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000317,
+  "type_id": 4,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000318,
+  "type_id": 4,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000319,
+  "type_id": 4,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000320,
+  "type_id": 17,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000321,
+  "type_id": 17,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000322,
+  "type_id": 17,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000401,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000402,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000403,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1100401,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 2.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1100402,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 2.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1100403,
+  "type_id": 19,
+  "value1": 3.0,
+  "value2": 2.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000404,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000405,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000406,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000407,
+  "type_id": 10,
+  "value1": 5.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000408,
+  "type_id": 10,
+  "value1": 5.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000409,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000410,
+  "type_id": 0,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000411,
+  "type_id": 0,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000412,
+  "type_id": 0,
+  "value1": 1.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000413,
+  "type_id": 0,
+  "value1": 5.0,
+  "value2": 15.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000414,
+  "type_id": 0,
+  "value1": 5.0,
+  "value2": 15.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000415,
+  "type_id": 0,
+  "value1": 5.0,
+  "value2": 15.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000416,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000417,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000418,
+  "type_id": 2,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000419,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000420,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000421,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100241,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 1.1,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100242,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 1.4,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100243,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 1.4,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100244,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 2.14,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100245,
+  "type_id": 25,
+  "value1": 0.5,
+  "value2": 2.14,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100246,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100247,
+  "type_id": 0,
+  "value1": 3.0,
+  "value2": 15.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100248,
+  "type_id": 25,
+  "value1": 1.0,
+  "value2": 1.1,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100249,
+  "type_id": 25,
+  "value1": 1.0,
+  "value2": 1.4,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100250,
+  "type_id": 25,
+  "value1": 1.0,
+  "value2": 2.14,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100251,
+  "type_id": 10027,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100252,
+  "type_id": 10027,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100253,
+  "type_id": 10027,
+  "value1": 0.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100254,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.05,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100255,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.05,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 100256,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.05,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000501,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 8.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000502,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 10.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000503,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 12.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000504,
+  "type_id": 9,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000505,
+  "type_id": 9,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000506,
+  "type_id": 9,
+  "value1": 3.0,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000507,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.25,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000508,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.25,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000509,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.25,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000510,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000511,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000512,
+  "type_id": 0,
+  "value1": 2.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000513,
+  "type_id": 101,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000514,
+  "type_id": 101,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000515,
+  "type_id": 101,
+  "value1": 0.4,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000516,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000517,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000518,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000601,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000602,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000603,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.5,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000604,
+  "type_id": 102,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000605,
+  "type_id": 102,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000606,
+  "type_id": 102,
+  "value1": 0.3,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000607,
+  "type_id": 103,
+  "value1": 0.6,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000608,
+  "type_id": 103,
+  "value1": 0.9,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000609,
+  "type_id": 103,
+  "value1": 1.5,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000610,
+  "type_id": 0,
+  "value1": 2.2,
+  "value2": 0.7,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000611,
+  "type_id": 0,
+  "value1": 2.2,
+  "value2": 0.7,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000612,
+  "type_id": 0,
+  "value1": 2.2,
+  "value2": 0.7,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000613,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000614,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000615,
+  "type_id": 0,
+  "value1": 0.5,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000616,
+  "type_id": 104,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000617,
+  "type_id": 104,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000618,
+  "type_id": 104,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000619,
+  "type_id": 105,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000620,
+  "type_id": 105,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000621,
+  "type_id": 105,
+  "value1": 0.2,
+  "value2": 5.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000622,
+  "type_id": 0,
+  "value1": 0.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000623,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000624,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 1.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000625,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 1.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000626,
+  "type_id": 0,
+  "value1": 0.3,
+  "value2": 1.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000627,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000628,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000629,
+  "type_id": 0,
+  "value1": 1.0,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ },
+ {
+  "id": 1000630,
+  "type_id": 0,
+  "value1": 0.1,
+  "value2": 0.0,
+  "locale_desc": null,
+  "locale_desc_en": null
+ }
+]

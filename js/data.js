@@ -26,7 +26,7 @@ const DATA_FILES = [
   'ShopItemSources', 'CraftableItems',
   'RuneData', 'RuneGradeData', 'RuneTypeData', 'RuneOptionTypeData',
   'RuneUniqueOptionData', 'RuneLevelBonusGroupData', 'RuneLevelCostData',
-  'RuneBreakRewardData',
+  'RuneBreakRewardData', 'RuneUniqueOptionSubSkillData', 'SkillSubData',
   'GiftChestSpawnPoints', 'GiftChestSpawnData',
 ];
 
@@ -611,6 +611,25 @@ const Game = {
     for (const arr of idx.runeLevelBonusByGroup.values()) arr.sort((a, b) => a.Level - b.Level);
     idx.runeLevelCostByKey = new Map(this.db.RuneLevelCostData.map(r => [`${r.TypeID}:${r.GradeID}:${r.Level}`, r]));
     idx.runeBreakRewardByKey = new Map(this.db.RuneBreakRewardData.map(r => [`${r.TypeID}:${r.GradeID}:${r.Level}`, r]));
+
+    // A rune's "Unique Option" can carry a SECOND, hidden effect alongside
+    // its main BaseValue/ValuePerLevel stat line — confirmed real 2026-10-23
+    // while deep-diving Misty/Vlad's new hero runes: 4 of their 6 named
+    // runes have BaseValue/ValuePerLevel both at 0 (rendering a flat "0%"
+    // under the old code) while actually carrying a real, scaling effect
+    // here instead. RuneUniqueOptionSubSkillData.SubskillID resolves into
+    // SkillSubData (a hero's own per-skill combat-tuning row); GrowthValueSlot
+    // (1 or 2) says whether the rune's growth adds into that row's value1 or
+    // value2. The real in-game MEANING of a given SkillSubData.type_id
+    // (what AtkSpeedUp/Burn/Shield/etc. — real named sub-skill-effect
+    // categories confirmed to exist via IL2CPP metadata strings — a given
+    // numeric type_id maps to) is NOT decoded: this environment has no
+    // Il2CppDumper/.NET runtime available to disassemble
+    // RuneUniqueOptionSubSkillResolver and confirm the real enum values, so
+    // this is shown as a real, honestly-labeled unresolved mechanic (see
+    // CLAUDE.md "Rune system" for the full writeup), not guessed at.
+    idx.runeSubSkillsByUniqueOptionId = groupBy(this.db.RuneUniqueOptionSubSkillData, r => r.UniqueOptionID);
+    idx.skillSubById = new Map(this.db.SkillSubData.map(s => [s.id, s]));
 
     // Gift Chest in-world spawn mechanic (extracted 2026-10-01, wired in
     // 2026-10-02 — see CLAUDE.md "Gift Chest spawn map"). Real spawn-point

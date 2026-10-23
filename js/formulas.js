@@ -374,11 +374,41 @@ const Formulas = {
       // so would be presenting an unconfirmed scaling guess as fact.
       const desc = stripRichText(opt.Desc_en).replace(/\{\d+(:[^}]*)?\}/g, (m, fmt) =>
         fmtNum(value) + (fmt && fmt.includes('%') ? '%' : ''));
-      return { opt, value, desc };
+      return { opt, value, desc, hiddenEffects: this._runeHiddenEffects(opt, level) };
     }
     const statRow = Game.index.runeOptionTypeByType.get(opt.OptionType);
     const statName = statRow ? statRow.Desc_en : `Option ${opt.OptionType}`;
-    return { opt, value, desc: `${statName} +${fmtNum(value)}%` };
+    return { opt, value, desc: `${statName} +${fmtNum(value)}%`, hiddenEffects: this._runeHiddenEffects(opt, level) };
+  },
+
+  // A rune's Unique Option can carry a SECOND effect alongside the main
+  // BaseValue/ValuePerLevel stat above, confirmed real 2026-10-23 while
+  // deep-diving Misty/Vlad's new hero runes (RuneUniqueOptionSubSkillData —
+  // see the comment on idx.runeSubSkillsByUniqueOptionId in data.js for the
+  // full writeup). 4 of their 6 runes have BaseValue/ValuePerLevel both at
+  // 0 — rendering a flat, WRONG "0%" above if this were ignored — while
+  // actually carrying a real, scaling effect here instead. The exact
+  // in-game meaning of a target SkillSubData row's `type_id` (which named
+  // sub-skill-effect category — AtkSpeedUp/Burn/Shield/etc, real categories
+  // confirmed to exist via IL2CPP metadata, but not mapped id-to-name) is
+  // NOT decoded — this environment has no Il2CppDumper/.NET runtime
+  // available to disassemble the real resolver class and confirm it, so
+  // each hidden effect is returned as real, honest numbers (which skill
+  // slot, which value field, the real computed boost and base value)
+  // without inventing what it actually does in plain English.
+  _runeHiddenEffects(opt, level) {
+    const rows = Game.index.runeSubSkillsByUniqueOptionId.get(opt.id) || [];
+    return rows.filter(r => r.ValuePerLevel !== 0).map(r => {
+      const skillSub = Game.index.skillSubById.get(r.SubskillID);
+      return {
+        row: r,
+        skillSub,
+        costumeSkillSlot: r.CostumeSkillIndex + 1, // 0-based -> human-facing "1st/2nd/3rd skill"
+        valueField: r.GrowthValueSlot === 2 ? 'value2' : 'value1',
+        boost: r.ValuePerLevel * level,
+        base: skillSub ? (r.GrowthValueSlot === 2 ? skillSub.value2 : skillSub.value1) : null,
+      };
+    });
   },
 
   // Level-milestone bonuses (RuneLevelBonusGroupData), same shape as

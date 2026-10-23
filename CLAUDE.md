@@ -3896,6 +3896,86 @@ root-cause class as prior mobile-viewport overflow bugs this project has
 hit before, e.g. the Monsters-tab layout-viewport bug and the Rune
 panel's header row — see "Mobile layout" and "Rune system" above).
 
+## A real Rune display bug, found and fixed same-day it shipped (2026-10-23)
+
+Same session, immediate follow-up to a 7-group deep dive the user asked
+for across Hero's Tomb, Boss Raid, Combat engine internals, Hero
+progression presets, Rune system, Story/world flavor, and Progression/
+reward plumbing. User asked to act on the Rune finding specifically and
+shelve the rest for later review.
+
+**The bug**: `RuneUniqueOptionSubSkillData` (343 rows, one of the
+never-before-extracted tables from the deep dive) turned out to be the
+real successor to the old `SubskillId1/2/3` columns removed from
+`RuneUniqueOptionData` in the v27.0.0 refresh (confirmed directly — the
+old committed data's `SubskillId2`/`SubskillId3` values for rune id 5
+are literally the same `subskill_id`s this new table lists for that same
+`unique_option_id`). But it revealed something the Misty/Vlad session
+earlier today got wrong: **4 of their 6 new hero runes** (Growth Potion,
+Elixir, Rose of Wallachia, Walpurgis Night) **have `BaseValue`/
+`ValuePerLevel` both at 0 in the main field — rendering a flat, literally
+wrong "0%" — while actually carrying a real, scaling effect through this
+separate table instead.** Confirmed by checking every row: exactly 12 of
+343 rows have a nonzero `value_per_level`, split 3-each across exactly
+those 4 rune ids (44/46/47/48) — the other 115 runes in the game are
+completely unaffected, confirmed by a dedicated regression check after
+the fix (zero unexpected hidden-effect rows anywhere else).
+
+**What was and wasn't resolvable**: tried to properly decompile what
+these hidden effects actually *do* before shipping a fix, since this
+project's norm is confirmed meaning over guessing. Found real evidence
+in the IL2CPP metadata — a real `RuneUniqueOptionSubSkillResolver` class
+(`Assets/Supercent/Devil_Hunter_Idle/Rune/Scripts/
+RuneUniqueOptionSubSkillResolver.cs`), real named `GROWTH_VALUE_SLOT_1`/
+`GROWTH_VALUE_SLOT_2` constants (confirming `GrowthValueSlot` is a real,
+intentional enum, not noise), and a real family of ~20 named
+`XSubSkillType` getters (`AtkSpeedUpSubSkillType`, `BurnSubSkillType`,
+`ShieldSubSkillType`, `SkillDamageUpSubSkillType`, etc.) confirming
+`SkillSubData.type_id` maps to one of these real named categories. **But
+this environment has no Il2CppDumper or .NET runtime available** (unlike
+the 2026-10-03 session, which had a pre-built address map from a
+different, now-gone scratchpad lineage) — so the actual numeric
+`type_id`→name mapping couldn't be confirmed via real disassembly, and
+wasn't guessed at. The fix ships the real, honest numbers (which of the
+hero's 3 skills, which value slot, the real computed per-level boost,
+and that skill-row's own real base value) without inventing what it
+mechanically does.
+
+**Shipped**: `data/RuneUniqueOptionSubSkillData.json` and
+`data/SkillSubData.json` (typed + Locale-resolved, following this
+project's usual convention — note only 31 of 355 `SkillSubData` rows
+have a real description at all, the rest are sparse, consistent with
+what was found checking a 10-row sample during the deep dive) added to
+`DATA_FILES`; `idx.runeSubSkillsByUniqueOptionId`/`idx.skillSubById`
+(`data.js`); `Formulas._runeHiddenEffects()` (`formulas.js`), called from
+`runeUniqueOption()` and folded into its return shape as a new
+`hiddenEffects` array; a new, clearly-labeled "🔒 Also boosts..." line
+in the hero enhance modal's Rune panel (`js/ui-heroes.js`), styled with
+the same `milestone-row--locked` treatment already used for the
+Rune system's other honestly-unresolved mechanic (`GrantType 2`'s "roll
+mechanic not decoded" line) — same visual language for the same kind of
+honesty, not a new pattern invented for this one case.
+
+Verified via a Node harness running the real `Game.load()`/
+`Formulas.runeUniqueOption()` pipeline: all 4 affected runes now show
+real nonzero boost numbers at level 10 (e.g. Growth Potion: +0.035 to
+all 3 of Misty's skills, each skill's own real base value1 being 0.2);
+the 2 runes that were already correct (Schrödinger's Potion, Come Sweet
+Death) show zero hidden effects, confirming no double-counting; and a
+dedicated sweep of the other 115 pre-existing runes in the game confirms
+none of them gained a spurious hidden-effect line.
+
+**Deliberately not pursued this round, per the user's own scoping**: the
+other 6 deep-dive groups (Hero's Tomb, Boss Raid, Combat engine
+internals, Hero progression presets, Story/world flavor, Progression/
+reward plumbing) were explicitly shelved for later review, including the
+one other concrete, low-effort finding from that same dive — `SkillData`
+resolving real hero skill names (e.g. Misty's "Witch's Brew Lv1/2/3")
+— which would make this exact fix's "boosts this hero's skill 1/2/3"
+language even more specific, but wasn't pulled in here to keep this
+fix's scope strictly to the Rune tables, per the user's explicit request
+to shelve that finding separately rather than quietly bundling it in.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -4838,10 +4918,46 @@ panel's header row — see "Mobile layout" and "Rune system" above).
     bug, not just Monsters), plus `min-width: 0` on the two flex/grid
     containers that would otherwise silently defeat it. Full writeup in
     "Long untranslated monster names overflowing" above.
+53. Same session, immediate follow-up. User asked for a deep dive across
+    7 of the 108 never-extracted table groups for insight/accuracy —
+    Hero's Tomb, Boss Raid, Combat engine internals, Hero progression
+    presets, Rune system, Story/world flavor, Progression/reward
+    plumbing. Real findings per group: re-confirmed (via a fresh, direct
+    live-CDN check across all 108 current build-hash directories) that
+    chapter 4+ map content genuinely still doesn't exist; found that
+    `StageBlockerData` is more complete than `StageData.UnlockCondEnemyID`
+    for 2 stages but that field isn't shown in the UI at all, so zero
+    current impact; confirmed `SkillData` can resolve real hero skill
+    names; confirmed `MilestonePresetData` splits into 91 real
+    progression snapshots + 5 unrelated "Influencer" presets; re-confirmed
+    (via a third independent table) that the same 5 raid bosses remain
+    inactive content; confirmed Hero's Tomb's full enemy roster already
+    has zero gaps against the committed catalog; and — the one finding
+    worth acting on immediately — found that 4 of the 6 Misty/Vlad hero
+    runes shipped earlier today display a wrong flat "0%" because their
+    real effect lives in a different table than the one the app reads.
+    User asked to act on the Rune finding and shelve the other 6 groups
+    for later review. Full writeup of the fix in "A real Rune display
+    bug, found and fixed same-day it shipped" above.
 
 ## Open items / plausible next steps (not started)
 
-- **New 2026-10-23**: a v27.0.0 APK was pulled (up from v26.2.0) and its
+- **New 2026-10-23**: a 7-group deep dive (Hero's Tomb, Boss Raid, Combat
+  engine internals, Hero progression presets, Rune system, Story/world
+  flavor, Progression/reward plumbing — see chronological entry 53 and
+  "A real Rune display bug" above) was explicitly shelved by the user
+  after only the Rune finding was actioned. Real, concrete leads still on
+  the table for a future session: `SkillData` resolving real hero skill
+  names (small, independent, would also improve the new Rune hidden-effect
+  display's wording); `MilestonePresetData`'s 91 real progression
+  snapshots as a "recommended build" reference feature; full decompilation
+  of `RuneUniqueOptionSubSkillResolver` to finally name what the Rune
+  hidden-effect mechanism actually modifies (blocked this session by no
+  Il2CppDumper/.NET runtime being available — would need either that
+  tooling or a differently-equipped environment). Everything else checked
+  in that dive came back as a confirmed non-issue or a confirmed dead
+  end, not a lead — see entry 53 for the full per-group breakdown.
+- A v27.0.0 APK was pulled (up from v26.2.0) and its
   full Unity TextAsset table list captured (185 tables) while chasing the
   coupon-site question above, but **not diffed against this app's 65
   committed `data/*.json` tables** for new/changed content — that

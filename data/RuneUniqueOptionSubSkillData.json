@@ -1,0 +1,3089 @@
+[
+ {
+  "id": 1,
+  "UniqueOptionID": 5,
+  "SubskillID": 100063,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 2,
+  "UniqueOptionID": 5,
+  "SubskillID": 100064,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 3,
+  "UniqueOptionID": 6,
+  "SubskillID": 100103,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 4,
+  "UniqueOptionID": 6,
+  "SubskillID": 100104,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 5,
+  "UniqueOptionID": 7,
+  "SubskillID": 100021,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 6,
+  "UniqueOptionID": 7,
+  "SubskillID": 100024,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 7,
+  "UniqueOptionID": 7,
+  "SubskillID": 100022,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 8,
+  "UniqueOptionID": 7,
+  "SubskillID": 100025,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 9,
+  "UniqueOptionID": 7,
+  "SubskillID": 100023,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 10,
+  "UniqueOptionID": 7,
+  "SubskillID": 100026,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 11,
+  "UniqueOptionID": 8,
+  "SubskillID": 100131,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 12,
+  "UniqueOptionID": 8,
+  "SubskillID": 100134,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 13,
+  "UniqueOptionID": 8,
+  "SubskillID": 100132,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 14,
+  "UniqueOptionID": 8,
+  "SubskillID": 100135,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 15,
+  "UniqueOptionID": 8,
+  "SubskillID": 100133,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 16,
+  "UniqueOptionID": 8,
+  "SubskillID": 100136,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 17,
+  "UniqueOptionID": 10,
+  "SubskillID": 100091,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 18,
+  "UniqueOptionID": 10,
+  "SubskillID": 100094,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 19,
+  "UniqueOptionID": 10,
+  "SubskillID": 100092,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 20,
+  "UniqueOptionID": 10,
+  "SubskillID": 100095,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 21,
+  "UniqueOptionID": 10,
+  "SubskillID": 100093,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 22,
+  "UniqueOptionID": 10,
+  "SubskillID": 100096,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 23,
+  "UniqueOptionID": 11,
+  "SubskillID": 100114,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 24,
+  "UniqueOptionID": 11,
+  "SubskillID": 100114,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 25,
+  "UniqueOptionID": 11,
+  "SubskillID": 100114,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 26,
+  "UniqueOptionID": 12,
+  "SubskillID": 100144,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 27,
+  "UniqueOptionID": 12,
+  "SubskillID": 100145,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 28,
+  "UniqueOptionID": 12,
+  "SubskillID": 100146,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 29,
+  "UniqueOptionID": 13,
+  "SubskillID": 100141,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 30,
+  "UniqueOptionID": 13,
+  "SubskillID": 100147,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 31,
+  "UniqueOptionID": 13,
+  "SubskillID": 100142,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 32,
+  "UniqueOptionID": 13,
+  "SubskillID": 100148,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 33,
+  "UniqueOptionID": 13,
+  "SubskillID": 100143,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 34,
+  "UniqueOptionID": 13,
+  "SubskillID": 100149,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 35,
+  "UniqueOptionID": 14,
+  "SubskillID": 100151,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 36,
+  "UniqueOptionID": 14,
+  "SubskillID": 100154,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 37,
+  "UniqueOptionID": 14,
+  "SubskillID": 100152,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 38,
+  "UniqueOptionID": 14,
+  "SubskillID": 100155,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 39,
+  "UniqueOptionID": 14,
+  "SubskillID": 100153,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 40,
+  "UniqueOptionID": 14,
+  "SubskillID": 100156,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 41,
+  "UniqueOptionID": 15,
+  "SubskillID": 100151,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 42,
+  "UniqueOptionID": 15,
+  "SubskillID": 100157,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 43,
+  "UniqueOptionID": 15,
+  "SubskillID": 100152,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 44,
+  "UniqueOptionID": 15,
+  "SubskillID": 100158,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 45,
+  "UniqueOptionID": 15,
+  "SubskillID": 100153,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 46,
+  "UniqueOptionID": 15,
+  "SubskillID": 100159,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 47,
+  "UniqueOptionID": 16,
+  "SubskillID": 100161,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 48,
+  "UniqueOptionID": 16,
+  "SubskillID": 100164,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 49,
+  "UniqueOptionID": 16,
+  "SubskillID": 100162,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 50,
+  "UniqueOptionID": 16,
+  "SubskillID": 100165,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 51,
+  "UniqueOptionID": 16,
+  "SubskillID": 100163,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 52,
+  "UniqueOptionID": 16,
+  "SubskillID": 100166,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 53,
+  "UniqueOptionID": 17,
+  "SubskillID": 100161,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 54,
+  "UniqueOptionID": 17,
+  "SubskillID": 100167,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 55,
+  "UniqueOptionID": 17,
+  "SubskillID": 100162,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 56,
+  "UniqueOptionID": 17,
+  "SubskillID": 100168,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 57,
+  "UniqueOptionID": 17,
+  "SubskillID": 100163,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 58,
+  "UniqueOptionID": 17,
+  "SubskillID": 100169,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 59,
+  "UniqueOptionID": 18,
+  "SubskillID": 100171,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 60,
+  "UniqueOptionID": 18,
+  "SubskillID": 100174,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 61,
+  "UniqueOptionID": 18,
+  "SubskillID": 100172,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 62,
+  "UniqueOptionID": 18,
+  "SubskillID": 100175,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 63,
+  "UniqueOptionID": 18,
+  "SubskillID": 100173,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 64,
+  "UniqueOptionID": 18,
+  "SubskillID": 100176,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 65,
+  "UniqueOptionID": 19,
+  "SubskillID": 100171,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 66,
+  "UniqueOptionID": 19,
+  "SubskillID": 100177,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 67,
+  "UniqueOptionID": 19,
+  "SubskillID": 100172,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 68,
+  "UniqueOptionID": 19,
+  "SubskillID": 100178,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 69,
+  "UniqueOptionID": 19,
+  "SubskillID": 100173,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 70,
+  "UniqueOptionID": 19,
+  "SubskillID": 100179,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 71,
+  "UniqueOptionID": 20,
+  "SubskillID": 100181,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 72,
+  "UniqueOptionID": 20,
+  "SubskillID": 1000184,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 73,
+  "UniqueOptionID": 20,
+  "SubskillID": 100182,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 74,
+  "UniqueOptionID": 20,
+  "SubskillID": 1000185,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 75,
+  "UniqueOptionID": 20,
+  "SubskillID": 100183,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 76,
+  "UniqueOptionID": 20,
+  "SubskillID": 1000186,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 77,
+  "UniqueOptionID": 21,
+  "SubskillID": 1000187,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 78,
+  "UniqueOptionID": 21,
+  "SubskillID": 1000190,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 79,
+  "UniqueOptionID": 21,
+  "SubskillID": 1000188,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 80,
+  "UniqueOptionID": 21,
+  "SubskillID": 1000191,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 81,
+  "UniqueOptionID": 21,
+  "SubskillID": 1000189,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 82,
+  "UniqueOptionID": 21,
+  "SubskillID": 1000192,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 83,
+  "UniqueOptionID": 22,
+  "SubskillID": 100194,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 84,
+  "UniqueOptionID": 22,
+  "SubskillID": 100195,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 85,
+  "UniqueOptionID": 22,
+  "SubskillID": 100196,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 86,
+  "UniqueOptionID": 23,
+  "SubskillID": 100191,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 87,
+  "UniqueOptionID": 23,
+  "SubskillID": 100197,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 88,
+  "UniqueOptionID": 23,
+  "SubskillID": 100192,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 89,
+  "UniqueOptionID": 23,
+  "SubskillID": 100198,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 90,
+  "UniqueOptionID": 23,
+  "SubskillID": 100193,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 91,
+  "UniqueOptionID": 23,
+  "SubskillID": 100199,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 92,
+  "UniqueOptionID": 24,
+  "SubskillID": 100071,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 93,
+  "UniqueOptionID": 24,
+  "SubskillID": 100074,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 94,
+  "UniqueOptionID": 24,
+  "SubskillID": 100072,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 95,
+  "UniqueOptionID": 24,
+  "SubskillID": 100075,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 96,
+  "UniqueOptionID": 24,
+  "SubskillID": 100073,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 97,
+  "UniqueOptionID": 24,
+  "SubskillID": 100076,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 98,
+  "UniqueOptionID": 25,
+  "SubskillID": 100071,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 99,
+  "UniqueOptionID": 25,
+  "SubskillID": 100077,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 100,
+  "UniqueOptionID": 25,
+  "SubskillID": 100072,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 101,
+  "UniqueOptionID": 25,
+  "SubskillID": 100078,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 102,
+  "UniqueOptionID": 25,
+  "SubskillID": 100073,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 103,
+  "UniqueOptionID": 25,
+  "SubskillID": 100079,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 104,
+  "UniqueOptionID": 26,
+  "SubskillID": 100121,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 105,
+  "UniqueOptionID": 26,
+  "SubskillID": 1000127,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 106,
+  "UniqueOptionID": 26,
+  "SubskillID": 100122,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 107,
+  "UniqueOptionID": 26,
+  "SubskillID": 100124,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 108,
+  "UniqueOptionID": 26,
+  "SubskillID": 1000128,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 109,
+  "UniqueOptionID": 26,
+  "SubskillID": 100123,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 110,
+  "UniqueOptionID": 26,
+  "SubskillID": 100125,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 111,
+  "UniqueOptionID": 26,
+  "SubskillID": 100126,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 112,
+  "UniqueOptionID": 26,
+  "SubskillID": 1000129,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 113,
+  "UniqueOptionID": 27,
+  "SubskillID": 100121,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 114,
+  "UniqueOptionID": 27,
+  "SubskillID": 1000130,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 115,
+  "UniqueOptionID": 27,
+  "SubskillID": 100122,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 116,
+  "UniqueOptionID": 27,
+  "SubskillID": 100124,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 117,
+  "UniqueOptionID": 27,
+  "SubskillID": 1000131,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 118,
+  "UniqueOptionID": 27,
+  "SubskillID": 100123,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 119,
+  "UniqueOptionID": 27,
+  "SubskillID": 100125,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 120,
+  "UniqueOptionID": 27,
+  "SubskillID": 100126,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 121,
+  "UniqueOptionID": 27,
+  "SubskillID": 1000132,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 122,
+  "UniqueOptionID": 28,
+  "SubskillID": 100121,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 123,
+  "UniqueOptionID": 28,
+  "SubskillID": 1000133,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 124,
+  "UniqueOptionID": 28,
+  "SubskillID": 100122,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 125,
+  "UniqueOptionID": 28,
+  "SubskillID": 100124,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 126,
+  "UniqueOptionID": 28,
+  "SubskillID": 1000134,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 127,
+  "UniqueOptionID": 28,
+  "SubskillID": 100123,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 128,
+  "UniqueOptionID": 28,
+  "SubskillID": 100125,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 129,
+  "UniqueOptionID": 28,
+  "SubskillID": 100126,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 130,
+  "UniqueOptionID": 28,
+  "SubskillID": 1000135,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 131,
+  "UniqueOptionID": 29,
+  "SubskillID": 1000204,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 132,
+  "UniqueOptionID": 29,
+  "SubskillID": 1000205,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 133,
+  "UniqueOptionID": 29,
+  "SubskillID": 1000206,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 134,
+  "UniqueOptionID": 30,
+  "SubskillID": 100201,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 135,
+  "UniqueOptionID": 30,
+  "SubskillID": 1000207,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 136,
+  "UniqueOptionID": 30,
+  "SubskillID": 100202,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 137,
+  "UniqueOptionID": 30,
+  "SubskillID": 1000208,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 138,
+  "UniqueOptionID": 30,
+  "SubskillID": 100203,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 139,
+  "UniqueOptionID": 30,
+  "SubskillID": 1000209,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 140,
+  "UniqueOptionID": 31,
+  "SubskillID": 100201,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 141,
+  "UniqueOptionID": 31,
+  "SubskillID": 1000210,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 142,
+  "UniqueOptionID": 31,
+  "SubskillID": 1000213,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 143,
+  "UniqueOptionID": 31,
+  "SubskillID": 100202,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 144,
+  "UniqueOptionID": 31,
+  "SubskillID": 1000211,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 145,
+  "UniqueOptionID": 31,
+  "SubskillID": 1000214,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 146,
+  "UniqueOptionID": 31,
+  "SubskillID": 100203,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 147,
+  "UniqueOptionID": 31,
+  "SubskillID": 1000212,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 148,
+  "UniqueOptionID": 31,
+  "SubskillID": 1000215,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 149,
+  "UniqueOptionID": 32,
+  "SubskillID": 1000234,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 150,
+  "UniqueOptionID": 32,
+  "SubskillID": 1000235,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 151,
+  "UniqueOptionID": 32,
+  "SubskillID": 1000236,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 152,
+  "UniqueOptionID": 33,
+  "SubskillID": 1000231,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 153,
+  "UniqueOptionID": 33,
+  "SubskillID": 1000246,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 154,
+  "UniqueOptionID": 33,
+  "SubskillID": 1000232,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 155,
+  "UniqueOptionID": 33,
+  "SubskillID": 1000247,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 156,
+  "UniqueOptionID": 33,
+  "SubskillID": 1000233,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 157,
+  "UniqueOptionID": 33,
+  "SubskillID": 1000248,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 158,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000231,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 159,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000240,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 160,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000243,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 161,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000232,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 162,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000241,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 163,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000244,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 164,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000233,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 165,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000242,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 166,
+  "UniqueOptionID": 34,
+  "SubskillID": 1000245,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 167,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000301,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 168,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000304,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 169,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000308,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 170,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000302,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 171,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000305,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 172,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000309,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 173,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000303,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 174,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000306,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 175,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000310,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 176,
+  "UniqueOptionID": 35,
+  "SubskillID": 1000307,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 177,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000301,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 178,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000311,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 179,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000314,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 180,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000302,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 181,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000312,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 182,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000315,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 183,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000303,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 184,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000313,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 185,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000316,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 186,
+  "UniqueOptionID": 36,
+  "SubskillID": 1000307,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 187,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000301,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 188,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000304,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 189,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000317,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 190,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000320,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 191,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000302,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 192,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000305,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 193,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000318,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 194,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000321,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 195,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000303,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 196,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000306,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 197,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000319,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 198,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000322,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 199,
+  "UniqueOptionID": 37,
+  "SubskillID": 1000307,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 200,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000401,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 201,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000410,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 202,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000402,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 203,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000411,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 204,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000407,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 205,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000403,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 206,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000412,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 207,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000408,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 208,
+  "UniqueOptionID": 38,
+  "SubskillID": 1000409,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 209,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000401,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 210,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000404,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 211,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000413,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 212,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000402,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 213,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000405,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 214,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000407,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 215,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000414,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 216,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000403,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 217,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000406,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 218,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000408,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 219,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000409,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 220,
+  "UniqueOptionID": 39,
+  "SubskillID": 1000415,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 221,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000401,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 222,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000404,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 223,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000416,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 224,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000419,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 225,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000402,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 226,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000405,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 227,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000417,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 228,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000420,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 229,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000407,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 230,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000403,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 231,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000406,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 232,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000418,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 233,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000421,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 234,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000408,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 235,
+  "UniqueOptionID": 40,
+  "SubskillID": 1000409,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 236,
+  "UniqueOptionID": 41,
+  "SubskillID": 100248,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 237,
+  "UniqueOptionID": 41,
+  "SubskillID": 100249,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 238,
+  "UniqueOptionID": 41,
+  "SubskillID": 100243,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 239,
+  "UniqueOptionID": 41,
+  "SubskillID": 100250,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 240,
+  "UniqueOptionID": 41,
+  "SubskillID": 100245,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 241,
+  "UniqueOptionID": 41,
+  "SubskillID": 100246,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 242,
+  "UniqueOptionID": 41,
+  "SubskillID": 100247,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 243,
+  "UniqueOptionID": 42,
+  "SubskillID": 100241,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 244,
+  "UniqueOptionID": 42,
+  "SubskillID": 100251,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 245,
+  "UniqueOptionID": 42,
+  "SubskillID": 100242,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 246,
+  "UniqueOptionID": 42,
+  "SubskillID": 100243,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 247,
+  "UniqueOptionID": 42,
+  "SubskillID": 100252,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 248,
+  "UniqueOptionID": 42,
+  "SubskillID": 100244,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 249,
+  "UniqueOptionID": 42,
+  "SubskillID": 100245,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 250,
+  "UniqueOptionID": 42,
+  "SubskillID": 100246,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 251,
+  "UniqueOptionID": 42,
+  "SubskillID": 100247,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 252,
+  "UniqueOptionID": 42,
+  "SubskillID": 100253,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 253,
+  "UniqueOptionID": 43,
+  "SubskillID": 100241,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 254,
+  "UniqueOptionID": 43,
+  "SubskillID": 100254,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 255,
+  "UniqueOptionID": 43,
+  "SubskillID": 100242,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 256,
+  "UniqueOptionID": 43,
+  "SubskillID": 100243,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 257,
+  "UniqueOptionID": 43,
+  "SubskillID": 100255,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 258,
+  "UniqueOptionID": 43,
+  "SubskillID": 100244,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 259,
+  "UniqueOptionID": 43,
+  "SubskillID": 100245,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 260,
+  "UniqueOptionID": 43,
+  "SubskillID": 100246,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 261,
+  "UniqueOptionID": 43,
+  "SubskillID": 100247,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 262,
+  "UniqueOptionID": 43,
+  "SubskillID": 100256,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 263,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000601,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 264,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000604,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 265,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000607,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 266,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000610,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 267,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000613,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 268,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000616,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.0035,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 269,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000619,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": 1
+ },
+ {
+  "id": 270,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000602,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 271,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000605,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 272,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000608,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 273,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000611,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 274,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000614,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 275,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000617,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.0035,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 276,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000620,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": 1
+ },
+ {
+  "id": 277,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000603,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 278,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000606,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 279,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000609,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 280,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000612,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 281,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000615,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 282,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000618,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.0035,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 283,
+  "UniqueOptionID": 44,
+  "SubskillID": 1000621,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": 1
+ },
+ {
+  "id": 284,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000601,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 285,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000604,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 286,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000607,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 287,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000622,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 288,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000630,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 289,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000602,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 290,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000605,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 291,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000608,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 292,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000622,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 293,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000630,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 294,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000603,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 295,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000606,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 296,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000609,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 297,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000622,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 298,
+  "UniqueOptionID": 45,
+  "SubskillID": 1000630,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 299,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000623,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 300,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000604,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 301,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000607,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 302,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000624,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.01,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 303,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000627,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 304,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000623,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 305,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000605,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 306,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000608,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 307,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000625,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.01,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 308,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000628,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 309,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000623,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 310,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000606,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 311,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000609,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 312,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000626,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.01,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 313,
+  "UniqueOptionID": 46,
+  "SubskillID": 1000629,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 314,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000501,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 315,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000504,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 316,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000507,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 2,
+  "ValuePerLevel": 0.01,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 317,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000502,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 318,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000505,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 319,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000508,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 2,
+  "ValuePerLevel": 0.01,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 320,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000503,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 321,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000506,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 322,
+  "UniqueOptionID": 47,
+  "SubskillID": 1000509,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 2,
+  "ValuePerLevel": 0.01,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 323,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000501,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 324,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000504,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 325,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000510,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 326,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000513,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.004,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 327,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000502,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 328,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000505,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 329,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000511,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 330,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000514,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.004,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 331,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000503,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 332,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000506,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 333,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000512,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 334,
+  "UniqueOptionID": 48,
+  "SubskillID": 1000515,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 1,
+  "ValuePerLevel": 0.004,
+  "DescArgIndex": 0
+ },
+ {
+  "id": 335,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000501,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 336,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000504,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 337,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000516,
+  "CostumeSkillIndex": 0,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 338,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000502,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 339,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000505,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 340,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000517,
+  "CostumeSkillIndex": 1,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 341,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000503,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 342,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000506,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ },
+ {
+  "id": 343,
+  "UniqueOptionID": 49,
+  "SubskillID": 1000518,
+  "CostumeSkillIndex": 2,
+  "GrowthValueSlot": 0,
+  "ValuePerLevel": 0.0,
+  "DescArgIndex": -1
+ }
+]
