@@ -3763,6 +3763,60 @@ done this session and is worth doing before/alongside an actual deploy.
 only, pending the user's go-ahead (this touches live hero/item data and
 a formula used in the Guide tab's DPS estimate, not a low-stakes change).
 
+## Data-file cache-busting gap found and fixed (2026-10-23, same session)
+
+User reported Misty/Vlad weren't showing up in the Heroes tab right after
+the prior commit was deployed. Checked the live site directly before
+assuming anything: `data/CostumeData.json` on the real production URL
+already had both heroes (confirmed via a cache-bypassing `curl`), the
+real hero art (`25.png`/`26.png`) was live and correct, and the deployed
+`index.html` was already serving the new `?v=c89b77e` script tags — so
+the deploy itself was clean, not the cause.
+
+**Real, previously-unflagged gap found while investigating**: every
+`js/*.js`/`css/*.css` reference in `index.html` carries a `?v=<hash>`
+cache-busting token (see "Git / deploy" below), but `data.js`'s own
+`Game.load()` fetches every `data/*.json` file with **no cache-busting
+at all** — `fetch(\`data/${name}.json\`)`, a bare path, every time, since
+this field was first built. This means a returning visitor whose browser
+had cached an old `data/CostumeData.json` from before this push could
+keep seeing the pre-Misty/Vlad roster for up to GitHub Pages' 10-minute
+`Cache-Control: max-age=600` window, even though the live file was
+already correct — the most likely explanation for what was reported,
+though not provable after the fact without the user's own browser cache
+state. This gap has quietly existed for every single past data refresh
+in this project's history, not just this one — just never surfaced as a
+visible symptom before, since a hero/weapon/monster added to the catalog
+has (until now) typically been checked for live correctness via direct
+`curl`/Playwright on a fresh load rather than by a returning visitor's
+already-warm cache.
+
+**Fixed properly, not just "tell the user to hard-refresh"**:
+`Game.load()` now looks up its own `<script src="js/data.js?v=...">` tag
+(`document.querySelector('script[src*="data.js"]')`, not
+`document.currentScript` — a real correctness distinction: by the time
+`load()`'s body runs, `document.currentScript` would actually reflect
+whichever script is *calling* `Game.load()`, which is `app.js` today,
+not `data.js` itself; it happens to produce the same value only because
+every script tag shares one `?v=` token, so the direct lookup is the
+version that stays correct even if that ever changes) and appends the
+same `?v=` token to every `data/*.json` fetch. This means data files now
+automatically get cache-busted every time the existing "bump `?v=` after
+every push" convention already runs — no separate step, and no future
+data-only deploy can silently leave a returning visitor on stale data
+again.
+
+Also used this as the actual Heroes-tab UX explanation: like every other
+hero in this app, Misty and Vlad don't appear in the main roster grid
+automatically — that grid only shows `State.data.heroes` (the heroes a
+*visitor* has explicitly added to their own build). New catalog heroes
+become selectable through the existing "+ Add Hero" picker
+(`HeroesUI.openAddPicker`, sorted by rarity), exactly like every
+previously-added hero always has — not a bug, but worth stating
+plainly since this is the first time a new hero was added outside the
+original 24 shipped with the app, so it's the first time this distinction
+actually mattered to a real user-facing report.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -4658,8 +4712,27 @@ a formula used in the Guide tab's DPS estimate, not a low-stakes change).
     placeholder format the existing `runeUniqueOption` code couldn't
     match). Full writeup — including the table-purpose reference list
     and every verification step — in "Reference: the 108 v27.0.0 data
-    tables" and "Misty, Vlad, and 4 other follow-ups" above. **Left
-    uncommitted and undeployed**, pending the user's go-ahead.
+    tables" and "Misty, Vlad, and 4 other follow-ups" above. User
+    confirmed via `AskUserQuestion` to commit and push now; shipped as
+    two commits (the changes, then the usual cache-busting `?v=` bump)
+    and deployed to production.
+50. Same session, immediate follow-up. User reported Misty/Vlad weren't
+    showing up in the Heroes tab right after that deploy. Checked the
+    live site directly rather than assuming — the data, art, and deployed
+    JS version were all already correct in production — and found a
+    real, previously-unflagged gap instead: `data/*.json` fetches in
+    `Game.load()` had never carried any cache-busting token at all,
+    unlike every `js`/`css` reference, so a returning visitor's browser
+    could plausibly still be serving a stale pre-Misty/Vlad
+    `CostumeData.json` for up to GitHub Pages' 10-minute cache window.
+    Fixed properly (not just "hard refresh") by having `Game.load()`
+    look up its own script tag's `?v=` token and append it to every data
+    fetch too — a gap that's quietly existed for every past data refresh
+    in this project, not just this one, now closed for good. Also
+    clarified the real, pre-existing UX: new catalog heroes were never
+    going to appear in the main roster automatically — like every hero
+    before them, they show up through the existing "+ Add Hero" picker.
+    Full writeup in "Data-file cache-busting gap found and fixed" above.
 
 ## Open items / plausible next steps (not started)
 

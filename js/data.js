@@ -95,9 +95,25 @@ const Game = {
   index: {},
 
   async load() {
+    // Reuse this script's own `?v=` cache-busting token for every
+    // data/*.json fetch too — these were never cache-busted at all before
+    // (unlike every js/*.js and css/*.css reference in index.html), so a
+    // returning visitor's browser could keep serving a stale data file for
+    // up to GitHub Pages' 10-minute Cache-Control window after a data-only
+    // deploy, even once the live file itself was already correct. Looked
+    // up by matching this script's own src (not document.currentScript,
+    // which at this point in execution would actually reflect whichever
+    // script is calling Game.load() — app.js today — not data.js itself;
+    // works out the same by coincidence since every tag shares one token,
+    // but this stays correct even if that ever changes) — so this
+    // automatically stays in sync whenever the existing "bump ?v= after
+    // every push" convention runs, no separate step needed.
+    const selfTag = document.querySelector('script[src*="data.js"]');
+    const v = (selfTag && new URL(selfTag.src, location.href).searchParams.get('v')) || '';
+    const qs = v ? `?v=${v}` : '';
     const entries = await Promise.all(
       DATA_FILES.map(name =>
-        fetch(`data/${name}.json`).then(r => {
+        fetch(`data/${name}.json${qs}`).then(r => {
           if (!r.ok) throw new Error(`Failed to load ${name}.json`);
           return r.json();
         }).then(json => [name, json])
