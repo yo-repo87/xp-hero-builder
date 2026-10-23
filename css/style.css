@@ -345,7 +345,8 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 .tag {
   font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; font-family: 'Baloo 2', sans-serif;
   background: var(--wood-dark); color: #e8d5b8;
-  white-space: nowrap; display: inline-block;
+  white-space: nowrap; display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis;
+  vertical-align: top; box-sizing: border-box;
 }
 .detail-desc { font-size: 0.86rem; color: var(--ink-muted); margin-bottom: 14px; }
 
@@ -579,6 +580,16 @@ footer.app-footer {
    Shop currency purchase so none of the three get confused. */
 .farm-source-row--craft { border-style: dashed; border-color: var(--green); background: #6ad71e14; }
 .tag--craft { background: var(--green); color: var(--wood-dark); }
+
+/* .tag--shop/.tag--craft carry the longest label text of any tag variant
+   ("SHOP EXCLUSIVE" / "CRAFTABLE") and are the ones shown on the
+   Farmable Items grid's narrow picker cards (as little as 128px wide) —
+   a smaller size here means the base .tag rule's ellipsis fallback
+   above rarely needs to actually trigger, instead of relying on
+   truncation as the first line of defense. */
+.picker-card .tag--shop, .picker-card .tag--craft {
+  font-size: 0.6rem; padding: 2px 6px; letter-spacing: -0.01em;
+}
 
 /* ---------- Admin tab ---------- */
 .admin-stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
