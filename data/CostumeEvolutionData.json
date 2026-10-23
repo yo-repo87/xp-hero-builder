@@ -1286,5 +1286,19 @@
   "Rarity": 8,
   "StatReduction": 3.0,
   "id": 92
+ },
+ {
+  "CostItemId1": 8401,
+  "CostItemId2": -1,
+  "Cost_Amount1": "120",
+  "Cost_Amount2": "0",
+  "Cost_Piece": "840",
+  "Costume_Id": 25,
+  "OptionStyle": 2,
+  "OptionType": 12,
+  "OptionValue": "5",
+  "Rarity": 8,
+  "StatReduction": 3.0,
+  "id": 93
  }
 ]

@@ -361,7 +361,20 @@ const Formulas = {
     if (!opt) return null;
     const value = opt.BaseValue + opt.ValuePerLevel * level;
     if (opt.OptionType === 0) {
-      return { opt, value, desc: stripRichText(opt.Desc_en).replace('{0}', fmtNum(value)) };
+      // Misty/Vlad's hero-rune templates (added 2026-10-23) use a
+      // `{0:0%}`-style placeholder instead of the older bare `{0}` +
+      // trailing literal "%" every other hero rune's Desc_en uses. Only
+      // one value exists per rune, so every numbered placeholder (there's
+      // occasionally a second `{1:...}` in a dual-effect description,
+      // e.g. Misty's "Growth Potion") gets the same value — the data
+      // genuinely has no second number to offer. The raw stored value is
+      // already percent-point scale (consistent with every other row in
+      // this column, e.g. "8" meaning 8%), so this does NOT re-apply the
+      // literal C#-style "multiply by 100" `0%` format semantics — doing
+      // so would be presenting an unconfirmed scaling guess as fact.
+      const desc = stripRichText(opt.Desc_en).replace(/\{\d+(:[^}]*)?\}/g, (m, fmt) =>
+        fmtNum(value) + (fmt && fmt.includes('%') ? '%' : ''));
+      return { opt, value, desc };
     }
     const statRow = Game.index.runeOptionTypeByType.get(opt.OptionType);
     const statName = statRow ? statRow.Desc_en : `Option ${opt.OptionType}`;

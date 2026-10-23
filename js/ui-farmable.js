@@ -228,6 +228,18 @@ const FarmableUI = {
             ${sources.tower.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Challenge Tower Rewards</h4>${towerHTML}` : ''}
             ${sources.heroTomb.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Hero's Tomb Rewards</h4>${heroTombHTML}` : ''}
             ${sources.other.length ? `<h4 style="margin:14px 0 6px;font-size:.9rem">Other Confirmed Sources</h4>${otherHTML}` : ''}
+            ${item.IsUsable ? `
+              <h4 style="margin:14px 0 6px;font-size:.9rem">🎁 Usable Item</h4>
+              <div class="farm-source-row">
+                <div class="farm-source-info">
+                  <div class="fs-title">${item.UsageAction === 2 ? 'Opens as a Gacha Pack' : 'Opens as a Choice Ticket'}</div>
+                  <div class="fs-sub">${item.UsageAction === 2
+                    ? `Rolls a reward from a weighted pool · grants ×${fmtNum(item.UseRewardAmount)} per use`
+                    : `Lets you pick your own reward${item.UseRewardAmount > 1 ? ` · pick ×${fmtNum(item.UseRewardAmount)}` : ''}`}</div>
+                </div>
+              </div>
+              <div class="caveat">Confirmed real from this item's own \`UsageAction\`/\`UseRewardAmount\` fields (added in the v27.0.0 game update) — but the exact reward pool or choice list (which weapon/costume/item this actually grants) comes from the game's Gacha system, which this app doesn't model yet, so only the mechanism is shown here, not the specific contents.</div>
+            ` : ''}
             ${craftRecipe ? `
               <h4 style="margin:14px 0 6px;font-size:.9rem">🔨 Craftable</h4>
               <div class="caveat" style="border-color:var(--gold)">Combine these at a real in-game crafting/merge listing — not a drop, but built entirely from other items you farm, not currency.</div>

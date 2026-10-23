@@ -550,5 +550,51 @@
   "id": 24,
   "lv_gid": 8001,
   "rarity": 8
+ },
+ {
+  "BonusWeaponCategory": 6,
+  "Costume_Skill_List": [
+   10080,
+   10081,
+   10082
+  ],
+  "Description": "HERO_DESC_Misty",
+  "Description_en": "An apprentice witch who wanders the world gathering rare herbs. She can't yet wield powerful magic, but she has a knack for mixing odd potions that produce effects no one could predict. She's a scatterbrain who gets lost all the time, yet every monster that has gone after her herb pouch has come to regret that day.",
+  "Iap_Value": null,
+  "IconSprite": "Face_Skin_Misty",
+  "Lv_Opt_GID": 200025,
+  "Max_Grade": 6,
+  "Max_Lv": 130,
+  "Name": "HERO_NAME_Misty",
+  "Name_en": "Misty",
+  "Prefab": "Skin_Misty",
+  "Star_Opt_GID": 100025,
+  "UnlockRequiredPieces": 100,
+  "id": 25,
+  "lv_gid": 7001,
+  "rarity": 7
+ },
+ {
+  "BonusWeaponCategory": 1,
+  "Costume_Skill_List": [
+   10083,
+   10084,
+   10085
+  ],
+  "Description": "HERO_DESC_Vlad",
+  "Description_en": "A legendary count who has guarded the nights of the Kingdom of Kron for centuries. He never shows himself while the sun is up, and it is said he has never lost a single battle. At first, no one believed the rumors, but after seeing him calmly raise a glass while fighting demons, no one doubts them anymore. He is always courteous and speaks in an old-fashioned manner, yet trendy slang of unknown origin slips out from time to time.",
+  "Iap_Value": null,
+  "IconSprite": "Face_Skin_Vlad",
+  "Lv_Opt_GID": 200026,
+  "Max_Grade": 6,
+  "Max_Lv": 130,
+  "Name": "HERO_NAME_Vlad",
+  "Name_en": "Vlad",
+  "Prefab": "Skin_Vlad",
+  "Star_Opt_GID": 100026,
+  "UnlockRequiredPieces": 100,
+  "id": 26,
+  "lv_gid": 8001,
+  "rarity": 8
  }
 ]
