@@ -3817,6 +3817,56 @@ plainly since this is the first time a new hero was added outside the
 original 24 shipped with the app, so it's the first time this distinction
 actually mattered to a real user-facing report.
 
+## Pill-badge text wrapping/bleeding, fixed in 3 rounds (2026-10-23, same session)
+
+User reported the CRAFTABLE/SHOP EXCLUSIVE tags on the Farmable Items
+grid had their text wrap, breaking the rounded background shape across
+two line-boxes (a classic inline-element-with-a-background issue: `.tag`
+had `border-radius: 999px` but no `white-space`/`display` rule at all,
+so when a narrow picker card forced "SHOP EXCLUSIVE" onto two lines, the
+pill background rendered as two separate broken-looking chunks).
+
+**Round 1**: added `white-space: nowrap; display: inline-block;` to the
+base `.tag` class (matching an identical fix already precedented
+elsewhere in this file, `.weapon-slot .slot-level-badge`). Fixed the
+broken-shape symptom, but — predictably, and confirmed by the user
+immediately after — just moved the problem: nowrap prevents wrapping but
+doesn't cap width, so on the narrowest grid cards (`.picker-card`, as
+little as 128px) the longer badge text now overflowed sideways into the
+next card instead.
+
+**Round 2**: added `max-width: 100%; overflow: hidden; text-overflow:
+ellipsis;` to `.tag` as a guaranteed backstop (same truncation pattern
+already used elsewhere in this file for narrow-space text, e.g.
+`.fm-thread-title`), plus a `.picker-card .tag--shop, .picker-card
+.tag--craft` override shrinking font-size/padding specifically for those
+two (the longest labels in the app: "SHOP EXCLUSIVE"/"CRAFTABLE"), so
+the ellipsis rarely needs to actually trigger in practice.
+
+**Round 3**: user asked to check other items/the Heroes tab for the same
+pattern. Audited every `border-radius: 999px` rule in the stylesheet
+holding real text (not a decorative dot/circle) — found and fixed one
+more genuine instance (`.hc-active-badge`, the hero roster card's
+"Active" badge, same missing `white-space` guard — low real-world risk
+since the text is a fixed short word, but the same latent pattern) and
+defensively hardened `.rarity-ribbon-badge` (the rarity tag shown on
+both item and hero detail views — a fixed-size flex-centered box; none
+of the 9 real rarity names are currently long enough to trigger it, but
+added the same nowrap/ellipsis guard for free). **Explicitly checked and
+ruled out, not just assumed safe**: item/hero names (`.pc-name`) have no
+background shape to break even when they wrap (plain text on the card's
+own background, not a separate pill); filter chips and nav tabs
+(`.chip`/`.tab-btn`) are flex items with no `min-width: 0` override, so
+default flexbox min-content sizing already protects them from shrinking
+below their own text's width.
+
+No browser tool was available this session for any of these three
+rounds — all three were verified by CSS box-model reasoning (container
+widths, flexbox min-content behavior, existing precedent elsewhere in
+the file) and confirmed against real user feedback after each deploy,
+not a visual render check. Worth a real Playwright/visual pass next time
+one's available, to close that loop properly.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -4733,6 +4783,20 @@ actually mattered to a real user-facing report.
     going to appear in the main roster automatically — like every hero
     before them, they show up through the existing "+ Add Hero" picker.
     Full writeup in "Data-file cache-busting gap found and fixed" above.
+51. Same session, immediate follow-up. User reported the CRAFTABLE/SHOP
+    EXCLUSIVE tags on Farmable Items had their text wrap and break the
+    pill shape. Fixed in 3 rounds as real issues surfaced from user
+    feedback after each deploy (no browser tool was available to catch
+    them beforehand): `white-space: nowrap` stopped the wrap but then
+    caused the badge to bleed into the next grid card; `max-width: 100%`
+    + ellipsis + a shrunk font-size for the two longest labels fixed
+    that; then a requested broader audit of the Farmable Items grid and
+    Heroes tab found and fixed one more real instance (the hero roster
+    card's "Active" badge) and defensively hardened the rarity ribbon
+    badge, while explicitly ruling out (not just assuming) that item/hero
+    names and the filter chips/nav tabs were never actually at risk. Full
+    writeup in "Pill-badge text wrapping/bleeding, fixed in 3 rounds"
+    above.
 
 ## Open items / plausible next steps (not started)
 
