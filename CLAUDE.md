@@ -3867,6 +3867,35 @@ the file) and confirmed against real user feedback after each deploy,
 not a visual render check. Worth a real Playwright/visual pass next time
 one's available, to close that loop properly.
 
+## Long untranslated monster names overflowing (2026-10-23, same session)
+
+User reported a Monsters-tab name like `ENEMY_NAME_HEROTOMB_COSTUME_ELF`
+running off the right edge and getting cut off — a different root cause
+from the pill-badge saga above, worth distinguishing clearly. Some
+Hero's Tomb `EnemyData` rows have no real English Locale string yet
+(documented back in the 2026-09-30 data refresh: "Most aren't localized
+into English yet... shown as the raw key text, the same graceful
+fallback this app already uses everywhere else"), so `Name_en` falls
+back to the raw key itself — a single long token with **no spaces**,
+only underscores, which standard CSS line-breaking doesn't treat as a
+break opportunity. A normal name like "Hero Shard Selection Box" already
+wraps fine at its spaces; a key like this just doesn't have anywhere to
+wrap at all, so it overflows its container as one unbroken string.
+
+Fixed with `overflow-wrap: break-word` (lets the browser break mid-token
+only when there's truly no other option, so normal space-separated names
+are completely unaffected) on the three places a monster name can render:
+the grid card (`.pc-name`, shared with every other tab's picker grid —
+Farmable Items/Heroes/Weapons all benefit too, not just Monsters), the
+detail modal's big name (`.detail-name`), and the modal header title
+(`.modal-header h3`). Also added `min-width: 0` to the detail modal's
+content column and the header `h3` itself — both are flex/grid items
+that, by default, refuse to shrink below their own text's intrinsic
+width, which would otherwise silently defeat `overflow-wrap` (the same
+root-cause class as prior mobile-viewport overflow bugs this project has
+hit before, e.g. the Monsters-tab layout-viewport bug and the Rune
+panel's header row — see "Mobile layout" and "Rune system" above).
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -4797,6 +4826,18 @@ one's available, to close that loop properly.
     names and the filter chips/nav tabs were never actually at risk. Full
     writeup in "Pill-badge text wrapping/bleeding, fixed in 3 rounds"
     above.
+52. Same session, immediate follow-up. User reported a Monsters-tab
+    enemy name (an untranslated raw Locale key,
+    `ENEMY_NAME_HEROTOMB_COSTUME_ELF`) overflowing and getting cut off —
+    a different root cause from entry 51's pill badges: a long single
+    token with no spaces, which standard CSS line-breaking can't wrap at
+    all. Fixed with `overflow-wrap: break-word` on every place a monster
+    name renders (`.pc-name`, `.detail-name`, `.modal-header h3` — the
+    first of these is shared across every tab's picker grid, so this
+    also protects Farmable Items/Heroes/Weapons from the same class of
+    bug, not just Monsters), plus `min-width: 0` on the two flex/grid
+    containers that would otherwise silently defeat it. Full writeup in
+    "Long untranslated monster names overflowing" above.
 
 ## Open items / plausible next steps (not started)
 
