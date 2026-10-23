@@ -178,6 +178,46 @@ Edited `/home/pi/Claude/HeroBuilder/js/formulas.js` and `/home/pi/Claude/HeroBui
 - No changes to `ui-*.js` or any displayed numbers — verified via a headless-browser pass (same method used when the app was first built) that the weapon detail modal, hero detail modal, and equipment tab all still render without console errors after the doc-comment edits.
 - **2026-10-03 (§6 above)**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption`/`CostumeOwnEvolutionOption` wired up for real (new `Formulas.costumeOwnGradeSum()`/`costumeOwnLevelSum()`/`costumeOwnEvolutionSum()`, each looping `State.data.heroes` — the app's roster, the direct analog of "owned costumes"); `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption` fixed to filter `OptionStyle==EquipOnly_Option` only (new `costumeEquippingGradeSum()`/`costumeEquippingLevelSum()`), correcting the double-counting risk described in §6. All five sources upgraded from `unmodeled`/`mapped` to `confirmed` in the Guide tab's Total DPS breakdown. `heroStarBonuses()`/`heroLevelBonuses()` themselves were left untouched (still unfiltered by `OptionStyle`) since the Heroes tab's "Stat Bonuses Unlocked" list legitimately wants every row, not just the Dps-formula's own split.
 
+## 8. CONFIRMED (2026-10-24): Runes genuinely ARE a real `Dps` formula input — the earlier "no evidence" caveat was wrong
+
+A direct user report ("I believe the runes do effect the dps") challenged this doc's own §1 enum listing, which only showed 20 `EStatContentType` entries (0-20) and didn't mention Runes at all. Re-checked against a **fresh v27.0.0 IL2CPP dump** (a .NET 6 runtime + Il2CppDumper were installed into the working environment specifically for this — see CLAUDE.md "The Rune mechanism, fully decoded") rather than trusting the older enum listing above, which turns out to be genuinely stale — the real compiled enum has grown since whatever build §1 was derived from (new `CostumeCodexOption`/`CostumeStarGradeCodexOption` entries inserted mid-list, shifting every later value's number, plus two entirely new entries at the end):
+
+```
+public enum EStatContentType {
+    None=0, Base=1, PlayerLevel=2, Ability=3, Weapon=4, WeaponOption=5,
+    WeaponLevelBonus=6, CostumeOwnGradeOption=7, CostumeOwnLevelOption=8,
+    CostumeEquippingGradeOption=9, CostumeEquippingLevelOption=10,
+    CostumeOwnEvolutionOption=11, CostumeCodexOption=12,
+    CostumeStarGradeCodexOption=13, CostumeEquippingLevelHpOption=14,
+    CostumeEquippingLevelAttackOption=15, CostumeEquipMainWeaponBonusOption=16,
+    SpecialUpgrade=17, BlessingBuff=18, ExtraUpgrade=19, VipSubscription=20,
+    TraitRoll=21, SoulUpgrade=22, HeroTombMembership=23, Rune=24
+}
+```
+
+**`Rune=24` is real, and it's genuinely read by the Dps formula.** Disassembled `DpsStatCalculator.GetCalculatedValue` fresh in this build (RVA `0x22B1C5C` — note this is a *different* RVA from the `0x27F3C50` cited in §1's header, confirming that §1 was derived from an older build than this section; §1's RVA was not re-verified this session). The function fetches exactly 20 `EStatContentType` keys from its `sources` dictionary via a uniform `Dictionary<EStatContentType,long>.TryGetValue`-style call, in this order: `PlayerLevel, Ability, Weapon, WeaponOption, WeaponLevelBonus, SpecialUpgrade, ExtraUpgrade, SoulUpgrade, CostumeEquippingLevelAttackOption, CostumeOwnGradeOption, CostumeOwnLevelOption, CostumeEquippingGradeOption, CostumeEquippingLevelOption, CostumeOwnEvolutionOption, CostumeEquipMainWeaponBonusOption, CostumeCodexOption, CostumeStarGradeCodexOption, VipSubscription, TraitRoll, **Rune**` — the very last one fetched, treated with the exact same `scvtf`/`fadd` handling as every other source. `BlessingBuff` and `HeroTombMembership` are conspicuously **not** fetched at all, confirming those two genuinely don't feed `Dps` (consistent with `BlessingBuff` already being `unmodeled` in this app, and with `HeroTombMembership` apparently feeding a different calculator instead — see below).
+
+**Traced who actually populates a `Rune`-tagged `StatModification`.** `RuneManager : IStatModifier` (confirmed real `IStatModifier` implementation, same interface pattern this app already relies on for `CostumeInventoryManager`/`TraitSynergyController`) has `GetStatModifications()` (RVA `0x23AA950`), which delegates to `RuneStatProvider.GetStatModifications()` (RVA `0x249D800`). Disassembled that function: it is **not a stub** — it loops every one of the account's rune equip slots (`GetSlots()`), and for each slot holding an equipped `RuneInstance`, calls `RuneStatContributionHelper.AddRuneContributions(runeId, level, attributeOptions, sourceTag, modifications)` (RVA `0x2498000`), which in turn calls three sub-functions: `AddAttributeOptions` (reads `RuneAttributeOption` — a table this app hasn't extracted, possibly tied to the separate PvP Invasion rune-loadout system seen nearby, `RuneInvasionEquipSnapshot`/`RuneEquipInfo_Invasion`), `AddLevelBonusStats` (RVA `0x249A9E0` — this app's already-modeled `RuneLevelBonusGroupData` GrantType-1 fixed bonuses), and `AddUniqueStat` (RVA `0x249ACEC` — this app's already-modeled `RuneUniqueOptionData`). `RuneStatContributionHelper.MILLI_SCALE = 1000` confirms the per-mille convention this app's `runeUniqueOption()`/`runeLevelBonusRows()` already use.
+
+**A real, important scoping finding: hero-specific named runes (OptionType 0) are excluded from this pipeline entirely.** Disassembling `AddUniqueStat` shows an early gate — `cmp w0,#1; b.lt <bail>` on the rune's own raw `OptionType` field — that skips the whole function with **zero** `StatModification` added whenever `OptionType == 0`. That's exactly the hero-specific named runes (Misty's "Growth Potion," Vlad's "Rose of Wallachia," etc. — this app's own `runeUniqueOption()` already special-cases `OptionType === 0` for its templated-description text). Confirms these runes' effects reach the player **only** through the already-decoded `RuneUniqueOptionSubSkillResolver.Grow()` skill-value-boost mechanism (see the prior "Rune mechanism" session), not through the generic `EStatContentType.Rune` stat pipeline at all — the two are genuinely separate delivery mechanisms, not duplicates of the same effect.
+
+**For the 3 generic Melee/Ranged/Universal rune families (`OptionType != 0`), a further bitmask gate applies.** Past the `OptionType==0` check, `AddUniqueStat`/`AddLevelBonusStats` both call a resolver (RVA `0x2eb0f5c`, not traced further) that converts the raw `OptionType`/stat-type field into a real `EStat` enum value (0-29), then test it against a fixed bitmask `0x3FBDFFFE` — bits for `EStat.None`(0), `EStat.HealingRate`(17), and `EStat.HeroTombRuneDropMult`(22) are the only ones cleared; every other `EStat` value, **including `EStat.Dps`(1) itself**, passes. This confirms it's structurally possible for a generic rune's resolved stat to register directly against `EStat.Dps` — but the exact `OptionType → EStat` mapping performed by that resolver was not decoded this session (a third disassembly layer beyond what this investigation chased), so **which of this app's already-extracted generic-rune `RuneOptionTypeData` rows (HP / Skill Damage / the 6 weapon-type damage rates) specifically lands on `EStat.Dps` versus a different `EStat`** remains unconfirmed.
+
+```
+public enum EStat {
+    None=0, Dps=1, Hp=2, AttackSpeedRate=3, MoveSpeed=4, CriticalRate=5,
+    CriticalDamageRate=6, HpRegen=7, DoubleAttackRate=8, TripleAttackRate=9,
+    VampRate=10, SkillCoolDownRate=11, Cargo=12, SkillDamageRate=13,
+    ExpRate=14, CoinRate=15, FinalBasicAttackDamageMult=16, HealingRate=17,
+    RangedDamageRate=18, MeleeDamageRate=19, EffectResistRate=20,
+    BasicAttackDamageMult=21, HeroTombRuneDropMult=22, DaggerDamageRate=23,
+    SwordDamageRate=24, MorningstarDamageRate=25, GunDamageRate=26,
+    WandDamageRate=27, BowDamageRate=28, DodgeRate=29
+}
+```
+
+**Bottom line, directly answering the report**: the user was right, and the app's prior caveat ("No decompiled evidence ties Runes into the confirmed Dps formula") was wrong and has been corrected (`js/formulas.js`, `js/ui-heroes.js`, CLAUDE.md). Runes — specifically the 3 generic rune families, not hero-specific named runes — are a real, confirmed `EStatContentType.Rune` input to the real `Dps` formula. What's still honestly unresolved, and why this app does **not** yet fold a numeric Rune term into the Guide tab's Total DPS estimate: the precise `OptionType → EStat` wiring for the generic families wasn't decoded, so which specific rune stat rows actually land on `EStat.Dps` (vs. a different, Dps-irrelevant `EStat`) is unknown — adding a guessed number here would be exactly the kind of unconfirmed-mapping-presented-as-fact this project's norm forbids. Resolving RVA `0x2eb0f5c` would close this gap for a future session.
+
 ## Appendix: raw disassembly locations
 
 - `docs/decompiled/stat_calculators.asm.txt` (in this repo) — all `IStatCalculator` implementations + `StatCalculatorFactory`.

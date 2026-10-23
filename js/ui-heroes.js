@@ -172,7 +172,7 @@ const HeroesUI = {
     return `
       <div class="rune-panel">
         ${hero.runes.map((_, i) => this._runeSlotHTML(hero, i, playerLevel)).join('')}
-        <div class="caveat">No decompiled evidence ties Runes into the confirmed Dps formula (docs/game_logic_deep_dive.md) — shown here as this hero's own stat panel, not folded into the Guide tab's Total DPS estimate.</div>
+        <div class="caveat">CONFIRMED by decompilation: Runes genuinely feed the real Dps formula (EStatContentType.Rune) — but only the 3 generic Melee/Ranged/Universal families, and only via an unresolved OptionType→EStat mapping (hero-specific named runes bypass this path entirely, boosting a skill value instead). See docs/game_logic_deep_dive.md §8 — not folded into the Guide tab's Total DPS estimate yet since the exact stat wiring isn't confirmed.</div>
       </div>`;
   },
 

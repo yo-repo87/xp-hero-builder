@@ -334,11 +334,39 @@ const Formulas = {
   // --- Runes ---------------------------------------------------------------
   // Each equipped rune is one RuneData row (like a weapon fusion-chain
   // link — grade is baked into which row is equipped, not a separate
-  // player stat) + a player-set level. No decompiled evidence ties Runes
-  // into the confirmed 17-source Dps formula (docs/game_logic_deep_dive.md
-  // doesn't mention Runes at all) — shown as its own stat panel, NOT folded
-  // into the Guide tab's Total DPS estimate, per this project's standing
-  // norm of not presenting an unconfirmed mapping as fact.
+  // player stat) + a player-set level.
+  //
+  // CORRECTED 2026-10-24, per a direct user report ("I believe the runes do
+  // effect the dps") that challenged this exact comment's prior claim.
+  // CONFIRMED BY DECOMPILATION (fresh v27.0.0 dump — see
+  // docs/game_logic_deep_dive.md §8 for the full writeup): `Rune` (=24) IS a
+  // real EStatContentType, and IS one of the ~20 sources
+  // `DpsStatCalculator.GetCalculatedValue` (RVA 0x22B1C5C) actually reads —
+  // the prior "no decompiled evidence ties Runes into the Dps formula" claim
+  // was wrong and is now corrected. Fed via a confirmed real chain:
+  // `RuneManager : IStatModifier` -> `RuneStatProvider.GetStatModifications()`
+  // -> `RuneStatContributionHelper.AddRuneContributions()` (MILLI_SCALE=1000,
+  // confirming the same per-mille convention this app's own
+  // runeUniqueOption()/runeLevelBonusRows() already use).
+  //
+  // BUT this is still deliberately NOT folded into totalDpsBreakdown() below,
+  // for two confirmed, specific reasons rather than a blanket "unmodeled":
+  // (1) hero-specific named runes (OptionType 0, e.g. Misty's "Growth
+  // Potion") are confirmed to bypass this pipeline entirely — a real
+  // `cmp w0,#1; b.lt <bail>` gate in AddUniqueStat skips them with zero
+  // StatModification added; their effect instead reaches the player only via
+  // the already-decoded RuneUniqueOptionSubSkillResolver.Grow() skill-value
+  // boost (a different mechanism, not a Dps source at all). (2) For the 3
+  // generic Melee/Ranged/Universal families, a further resolver call (RVA
+  // 0x2eb0f5c, NOT decoded this session) converts each rune's raw OptionType
+  // into a real EStat value before a bitmask filter — confirmed structurally
+  // that EStat.Dps itself can pass that filter, but the exact OptionType ->
+  // EStat mapping wasn't traced, so which of this app's already-extracted
+  // generic-rune stat rows (HP / Skill Damage / the 6 weapon-type damage
+  // rates) actually lands on EStat.Dps (vs. a Dps-irrelevant EStat) is
+  // genuinely unresolved. Adding a guessed numeric contribution here would
+  // be exactly the kind of unconfirmed mapping this project's norm forbids —
+  // shown as its own stat panel, not a guessed Total DPS term.
 
   runeMaxLevel(rune) {
     const grade = Game.index.runeGradeById.get(rune.GradeID);
