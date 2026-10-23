@@ -345,6 +345,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 .tag {
   font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; font-family: 'Baloo 2', sans-serif;
   background: var(--wood-dark); color: #e8d5b8;
+  white-space: nowrap; display: inline-block;
 }
 .detail-desc { font-size: 0.86rem; color: var(--ink-muted); margin-bottom: 14px; }
 
