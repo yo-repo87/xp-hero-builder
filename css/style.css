@@ -289,7 +289,10 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 .picker-card:hover { transform: translateY(-2px); filter: brightness(1.03); }
 .picker-card.selected { box-shadow: 0 0 0 3px var(--gold) inset; }
 .picker-card img { height: 56px; margin: 0 auto 6px; object-fit: contain; }
-.picker-card .pc-name { font-family: 'Baloo 2', sans-serif; font-size: 0.78rem; font-weight: 700; line-height: 1.2; color: var(--ink); }
+.picker-card .pc-name {
+  font-family: 'Baloo 2', sans-serif; font-size: 0.78rem; font-weight: 700; line-height: 1.2; color: var(--ink);
+  overflow-wrap: break-word; word-break: break-word;
+}
 .picker-card .pc-tag { font-size: 0.68rem; color: var(--ink-muted); margin-top: 2px; }
 
 .monster-card { position: relative; }
@@ -323,7 +326,10 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 .modal-header {
   display: flex; align-items: center; gap: 12px; padding: 14px 6px; border-bottom: 2px solid var(--line);
 }
-.modal-header h3 { font-family: 'Bakbak One', sans-serif; font-size: 1rem; flex: 1; color: var(--ink); }
+.modal-header h3 {
+  font-family: 'Bakbak One', sans-serif; font-size: 1rem; flex: 1; color: var(--ink);
+  overflow-wrap: break-word; word-break: break-word; min-width: 0;
+}
 .modal-close {
   border: none; width: 30px; height: 30px; cursor: pointer; font-size: 0;
   background-image: url('../assets/img/ui/btn/Btn_Close_01.png'); background-size: contain; background-repeat: no-repeat; background-color: transparent;
@@ -334,6 +340,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 
 /* ---------- detail panel ---------- */
 .detail-layout { display: grid; grid-template-columns: 200px 1fr; gap: 22px; }
+.detail-layout > div:last-child { min-width: 0; }
 @media (max-width: 620px) { .detail-layout { grid-template-columns: 1fr; } }
 .detail-art {
   background-image: var(--ring-img); background-size: 150px 150px; background-repeat: no-repeat; background-position: center;
@@ -341,7 +348,10 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
   display: flex; align-items: center; justify-content: center; padding: 18px; min-height: 180px;
 }
 .detail-art img { max-height: 150px; filter: drop-shadow(0 6px 8px rgba(0,0,0,.4)); }
-.detail-name { font-family: 'Bakbak One', sans-serif; font-size: 1.15rem; color: var(--ink); }
+.detail-name {
+  font-family: 'Bakbak One', sans-serif; font-size: 1.15rem; color: var(--ink);
+  overflow-wrap: break-word; word-break: break-word;
+}
 .detail-tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 8px 0 12px; }
 .tag {
   font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; font-family: 'Baloo 2', sans-serif;
