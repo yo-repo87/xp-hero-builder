@@ -227,6 +227,7 @@ short version:
 | Trait/synergy percent display (Equipment tab) and `TraitRoll` Dps source | **Fixed 2026-09-04** — `rate_amount` (`TraitOptionData`, `TraitSynergyInfoData`) is per-mille (confirmed by decompiling `TraitSynergyController.GetStatModifications`), the same convention as Extra/Special/SoulUpgrade's `RateAmount`. Display now divides by 10 uniformly (replacing a guessed, inconsistent ">100 ? /100 : /1" heuristic); the Dps formula's `TraitRoll` source uses the raw value directly (no ×10 — that had been an unverified guess borrowed from the RateAmount fix and was wrong). |
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). **Updated 2026-10-03**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption` (the interface/vtable-dispatch functions earlier left at 0) are now fully traced and `confirmed` — see "Own vs. Equipping Dps sources, confirmed" below for the full writeup, including a real pre-existing bug this surfaced and fixed in `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption`. `WeaponLevelBonus`, `CostumeOwnEvolutionOption`, and `TraitRoll` were already `confirmed`. Only `BlessingBuff` and `VipSubscription` remain genuinely unmodeled/manual now. **Updated 2026-10-24**: `Rune` is now a confirmed-real 25th `EStatContentType` source — and, as of a same-day follow-up, fully wired into this breakdown as `confirmed` too (see "Runes confirmed to feed the real Dps formula, and now wired in with real numbers" below). The generic-rune-stat→`EStat` mapping that was unresolved earlier the same day got fully decoded (a real `E_BonusOption→EStat` lookup table, read byte-for-byte from the binary) — a rune's own main effect never hits `Dps` for any currently-shipped rune, but its "TOTAL POWER" level-milestone bonus does, and that's what's summed in now. |
 | Special Upgrade level caps | **Corrected 2026-10-24** (superseding the 2026-09-04 fix below — that fix was itself wrong). Re-verified digit-for-digit against 3 real screenshots covering all 11 stat types: `SpecialUpgradeTypeData.MaxLevelDatas[grade-1]` **is** the real, confirmed cumulative max level per type — the 2026-09-04 fix's "internally consistent but unused, use `grade*10` instead" conclusion doesn't hold up (`grade*10` matches none of the 11 types at any grade except by coincidence). The real in-game UI also shows a PER-GRADE-TIER-relative "Level N/M" (resets each grade), not the cumulative counter — see "Special Upgrade level caps, corrected for real this time" below for the full writeup, including the exact byte-for-byte match (LOAD MASTER's real screen: "47% > 48%, Level 17/20" = this app's own `SpecialUpgradeLevelData` row at cumulative UpgradeLevel 47 exactly). *(2026-09-04 fix, now superseded: uniform `grade * 10` across all stat types — see commit `5305f6f`.)* |
+| Ability tree level curves | **Fixed 2026-10-24** per direct user report with real screenshots: `abilityRow()` now correctly linearly-interpolates between checkpoints (confirmed by decompiling `InterpolationHelper<T>.CreateData`) instead of silently using the nearest checkpoint at-or-below; the Ability tab now correctly shows percent-type stats (Critical Chance/Attack Speed/Critical Damage/Double Attack/Triple Attack) as "N%" instead of flat "+N". **Open, unresolved, NOT a code bug**: POWER and HP's own underlying checkpoint data appears stale vs. the live game (confirmed ~3.2x and ~4.8x low respectively, even with correct interpolation) — Cargo and HP Recovery match exactly, ruling out a formula issue. `totalDpsBreakdown`'s `Ability` source may be underestimating the real contribution as a result — see "Ability tab" below. |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
 | Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **7 items are confirmed Craftable** (a real multi-item recipe — see "Craftable items") and **18 more are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with distinct "🔨 CRAFTABLE" / "🛒 SHOP EXCLUSIVE" tags rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
@@ -4437,6 +4438,89 @@ just got, rather than assuming this audit already covered that ground.
 (caught *during* this audit, not a result of finding a real Extra/Soul
 bug) and this writeup.
 
+## Ability tab: a real interpolation bug fixed, a real display bug fixed, and a real data-staleness gap found but not fixed (2026-10-24)
+
+Immediate follow-up to the Extra/Soul audit — user added 2 more real
+screenshots (`Ability 01-02.PNG`) of the live game's Ability tab (all 9
+visible stat types). This tree mixes flat absolute quantities (Power,
+Cargo, HP, HP Recovery, Move Speed — shown "+N") with real percent/rate
+stats (Critical Chance, Attack Speed, Double Attack, Triple Attack, and
+by strong inference Critical Damage — shown "N%"), which this app had
+never actually distinguished.
+
+**Bug 1, confirmed and fixed: no interpolation at all.** `abilityRow()`
+used `_closestRow` (nearest checkpoint at-or-below the current level) —
+but `AbilityLevelUpCostInfo`'s own checkpoint tables are genuinely sparse
+(e.g. Power has only 60 rows spanning levels 1-2000). Decompiled the real
+function chain (`AbilityManager.OnGetAbilityStat` →
+`AbilityLevelUpCostInfo.GetEffectAmount` →
+`.GetAbilityLevelUpCostData` → the generic
+`InterpolationHelper<T>.CreateData`, RVA `0x3F272E4`) and found a plain,
+real linear interpolation: `origin + (next-origin)*(level-originLevel)/
+(nextLevel-originLevel)` — confirmed via the exact `fsub/fdiv/fmul/fadd`
+sequence in the disassembly, not inferred. Verified this actually
+explains the screenshots: Cargo's real screen at level 554 shows "829K",
+and this formula reproduces 829,086 **exactly** from the real surrounding
+checkpoints (527→763,870 and 564→853,240) — `_closestRow` would have
+returned 763,870 ("764K"), silently under-reporting every level that
+isn't exactly on a checkpoint. Cross-checked the same way against HP
+Recovery (level 416 → 632,663, matching the screenshot's "632K" exactly).
+Fixed by adding a new shared `Formulas._interpolatedRow()` helper
+(mirroring the pre-existing `PlayerLevel` interpolation already in
+`totalDpsBreakdown`, now a second confirmed real use of the same
+technique) and switching `abilityRow()` to it. Extra/Special/Soul were
+deliberately left alone — their own level tables are dense (one row per
+level, confirmed in the prior Extra/Soul audit), so interpolation there
+would be a pure no-op; not worth touching code that isn't broken.
+
+**Bug 2, confirmed and fixed: every ability type displayed as a flat
+"+N", including the percent types.** `AbilityListElementInfo` carries no
+display-type field to read this from, so the distinction was never made
+at all — e.g. Critical Chance maxing at `EffectAmount 200` was shown as
+literally "+200" instead of "20%". Confirmed the real ÷10 convention
+(matching this app's existing Extra/Special/Soul `RateAmount` handling)
+against 4 of the 5 real percent types directly from the screenshots:
+Critical Chance (200→20% MAX), Attack Speed (1800→180% MAX), Double
+Attack (700→70% MAX), and Triple Attack (175→17%, 210→21% at levels 5/6
+specifically, not just at max — ruling out a coincidental match at the
+cap). Critical Damage (id 9) wasn't shown in either screenshot but is
+grouped in by strong thematic inference (direct sibling of Critical
+Chance, same `Icon_Critical*` naming, same rate/chance semantics) —
+stated as inference, not claimed as screenshot-confirmed. Shipped as a
+new `Formulas.ABILITY_PERCENT_TYPES` set (`{5,8,9,11,12}`) and
+`ui-equipment.js`'s `_renderAbility()` now branches on it, using the
+existing `fmtPct()` helper for the percent types.
+
+**A third, genuinely different finding — NOT a code bug, left
+unresolved and clearly flagged rather than guessed at.** Even with
+correct interpolation, POWER (id 1 — the exact stat
+`totalDpsBreakdown`'s own `Ability` Dps source reads) and HP (id 4) both
+show a large, real gap against their screenshots: Power interpolates to
+~21.9K at level 631 where the real screen shows "70.5K" (≈3.2x low); HP
+interpolates to ~4.18M at level 600 where the real screen shows "~20.05M"
+(≈4.8x low). Crucially, this is **not** uniform — Cargo and HP Recovery,
+checked the identical way, match the live game exactly, and the two
+mismatch ratios (3.2x vs 4.8x) aren't even the same, ruling out one
+shared missing multiplier. The most plausible explanation is genuine
+checkpoint-value staleness specific to these two stat types (idle games
+commonly re-tune individual progression curves via live balance patches
+without changing the APK itself) — but this is stated as the most likely
+explanation, not confirmed fact, and **no correction was applied**:
+guessing a fix multiplier here would be exactly the kind of unconfirmed
+mapping this project's norm forbids. This means `totalDpsBreakdown`'s
+`Ability` source may currently be underestimating the real Dps
+contribution from the Ability tree — flagged plainly in both the code
+comment and here, not silently left as a mystery. Resolving this for
+real would need a fresh, verified data pull for `AbilityLevelUpCostInfo`
+specifically (an APK re-pull might not even be sufficient, if this is a
+live server-side balance tune rather than an APK-bundled change).
+
+Verified with a dedicated Node harness replaying every real screenshot
+data point (both the interpolation fix and the percent-type fix) as
+explicit test cases — all pass — plus the full existing regression suite
+(Rune/Special Upgrade tests) confirming zero collateral breakage.
+`node --check` clean on both touched files.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -5528,9 +5612,44 @@ bug) and this writeup.
     Full writeup in "Extra Upgrade / Soul Upgrade math audited, no bug
     found" above, including the corrected methodology note for future
     exploration scripts in this project.
+60. Same session, immediate follow-up. User added 2 more real screenshots
+    of the Ability tab. Found and fixed two real, confirmed bugs:
+    `abilityRow()` never interpolated between checkpoints at all (just
+    used the nearest one at-or-below), confirmed wrong and fixed via
+    decompiling the real `InterpolationHelper<T>.CreateData` function
+    (plain linear interpolation) and cross-checking the fix against two
+    independent screenshot data points (Cargo, HP Recovery) that now
+    match exactly; and the Ability tab displayed every stat as a flat
+    "+N" even though 5 of the 9 types are real percent/rate stats,
+    confirmed via 4 direct screenshot matches and fixed with a new
+    explicit `ABILITY_PERCENT_TYPES` set. Also found, and explicitly did
+    NOT fix, a third issue: POWER and HP's own underlying checkpoint data
+    appears stale against the live game by a large, non-uniform margin
+    (~3.2x and ~4.8x respectively) even with the interpolation bug fixed
+    — Cargo and HP Recovery don't show this, ruling out a shared formula
+    problem. Flagged plainly as an open, unresolved data-accuracy gap
+    rather than guessing a correction, since POWER directly feeds the
+    Total DPS estimate's `Ability` source. Full writeup in "Ability tab"
+    above.
 
 ## Open items / plausible next steps (not started)
 
+- **New 2026-10-24**: POWER's (Ability tree, id 1) and HP's (id 4)
+  underlying `AbilityLevelUpCostInfo` checkpoint data appears genuinely
+  stale against the live game — confirmed via real screenshots, not
+  guessed: even with the interpolation bug fixed (see "Ability tab"
+  above), Power's real screen value at level 631 is ~3.2x higher than
+  what this app's own data produces, and HP's at level 600 is ~4.8x
+  higher. Cargo and HP Recovery, checked the identical way, match
+  exactly — so this is specific to these two stat types, not a systemic
+  issue. POWER directly feeds `totalDpsBreakdown`'s own `Ability` Dps
+  source, so this is a real accuracy gap in the Total DPS estimate, not
+  just a cosmetic one. No fix was applied (guessing a correction
+  multiplier would be exactly the kind of unconfirmed mapping this
+  project's norm forbids) — resolving this for real needs a fresh,
+  verified `AbilityLevelUpCostInfo` data pull, and even a fresh APK pull
+  might not be sufficient if this turns out to be a live server-side
+  balance tune rather than something baked into the APK itself.
 - **New 2026-10-23**: a 7-group deep dive (Hero's Tomb, Boss Raid, Combat
   engine internals, Hero progression presets, Rune system, Story/world
   flavor, Progression/reward plumbing — see chronological entries 53-54,

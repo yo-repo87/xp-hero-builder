@@ -519,13 +519,63 @@ const Formulas = {
     return best;
   },
 
+  // CONFIRMED 2026-10-24 by decompilation (DevilHunterIdle.Common.
+  // InterpolationHelper<T>.CreateData, RVA 0x3F272E4 — the generic helper
+  // AbilityLevelUpCostInfo.GetAbilityLevelUpCostData()/GetEffectAmount()
+  // actually use): the real game does plain LINEAR interpolation between
+  // whichever two checkpoint rows bracket the requested level
+  // (`origin + (next-origin)*(level-originLevel)/(nextLevel-originLevel)`,
+  // confirmed via the exact `fsub/fdiv/fmul/fadd` sequence in the
+  // disassembly), not "closest row at-or-below" as `_closestRow` above
+  // does. Caught via a direct user report with real screenshots: Cargo's
+  // real screen at level 554 shows "829K", and this interpolation formula
+  // reproduces that exactly (829,086) from the surrounding checkpoints —
+  // `_closestRow` would have returned the checkpoint AT 527 (763,870,
+  // "764K"), silently under-reporting every level that isn't exactly on a
+  // checkpoint. Cross-checked the same way against HP Recovery (level
+  // 416 -> 632,663, matching the screenshot's "632K" exactly). Extracted
+  // as a shared helper (mirrors the pre-existing PlayerLevel interpolation
+  // in totalDpsBreakdown below, now the second confirmed real use of this
+  // exact technique) since Ability is the one tree whose checkpoint tables
+  // are genuinely sparse (Extra/Special/Soul's own level tables are dense,
+  // one row per level, so interpolation there would be a no-op — not
+  // changed, to keep this fix scoped to the actual confirmed bug).
+  _interpolatedRow(rows, levelField, valueFields, level) {
+    if (!rows || rows.length === 0) return null;
+    if (level <= rows[0][levelField]) return rows[0];
+    const last = rows[rows.length - 1];
+    if (level >= last[levelField]) return last;
+    let lo = rows[0], hi = last;
+    for (let i = 0; i < rows.length - 1; i++) {
+      if (rows[i][levelField] <= level && level <= rows[i + 1][levelField]) { lo = rows[i]; hi = rows[i + 1]; break; }
+    }
+    if (lo[levelField] === hi[levelField]) return lo;
+    const t = (level - lo[levelField]) / (hi[levelField] - lo[levelField]);
+    const out = { ...lo };
+    for (const f of valueFields) out[f] = num(lo[f]) + t * (num(hi[f]) - num(lo[f]));
+    return out;
+  },
+
   abilityRow(abilityType, level) {
-    return this._closestRow(Game.index.abilityLevelsByType.get(abilityType), 'CurLevel', level);
+    return this._interpolatedRow(Game.index.abilityLevelsByType.get(abilityType), 'CurLevel', ['EffectAmount'], level);
   },
   abilityMaxLevel(abilityType) {
     const rows = Game.index.abilityLevelsByType.get(abilityType) || [];
     return rows.length ? rows[rows.length - 1].CurLevel : 0;
   },
+  // Confirmed real percent-type abilities (Critical Chance/Attack Speed/
+  // Double Attack/Triple Attack directly against real screenshots —
+  // e.g. Attack Speed maxes at EffectAmount 1800 -> displayed "180%",
+  // confirming the same ÷10 convention this app already uses for Extra/
+  // Special/Soul's RateAmount; Critical Damage (id 9) was not shown in
+  // any screenshot but is grouped here as a confident inference — it's
+  // the direct sibling of Critical Chance, same "Icon_Critical*" naming,
+  // same rate/chance semantics). Every other ability type (Power/Cargo/
+  // HP/HP Recovery/Move Speed) is a flat absolute quantity, shown as-is.
+  // AbilityListElementInfo itself carries no display-type field to read
+  // this from directly, so it's listed explicitly rather than guessed per
+  // row.
+  ABILITY_PERCENT_TYPES: new Set([5, 8, 9, 11, 12]),
 
   extraRow(optionType, level) {
     return this._closestRow(Game.index.extraLevelsByOptionType.get(optionType), 'Level', level);
@@ -713,11 +763,22 @@ const Formulas = {
       set('PlayerLevel', val, 'mapped', `PlayerLevelData.Attack @ player level ${level} (interpolated)`);
     }
 
-    // Ability — AbilityListElementInfo id 1 = "POWER", flat EffectAmount.
+    // Ability — AbilityListElementInfo id 1 = "POWER", flat EffectAmount,
+    // now correctly interpolated between checkpoints (see abilityRow
+    // above). KNOWN OPEN ISSUE (2026-10-24, direct user report with real
+    // screenshots, not yet resolved): even with correct interpolation,
+    // this app's committed AbilityLevelUpCostInfo checkpoint VALUES for
+    // POWER specifically appear stale vs. the live game — a real
+    // screenshot at level 631 showed "70.5K" where this table's own
+    // interpolated value is ~21.9K (a ~3.2x gap). Cargo and HP Recovery,
+    // checked the same way, match the live game exactly — so this isn't
+    // a formula bug, it's specific underlying data that's gone stale
+    // (HP, id 4, shows the same pattern, ~4.8x low) and would need a
+    // fresh data pull to actually confirm/correct — not guessed at here.
     {
       const level = State.data.upgrades.ability[1] || 0;
       const row = this.abilityRow(1, level);
-      set('Ability', row ? num(row.EffectAmount) : 0, 'mapped', `Ability tree "POWER" @ level ${level}`);
+      set('Ability', row ? num(row.EffectAmount) : 0, 'mapped', `Ability tree "POWER" @ level ${level} (interpolated; underlying data may be stale, see comment above)`);
     }
 
     // Weapon / WeaponLevelBonus / WeaponOption — summed across all 6 equipped slots.

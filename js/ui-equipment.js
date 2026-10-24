@@ -176,12 +176,21 @@ const EquipmentUI = {
       const nextRow = level < maxLevel ? Formulas.abilityRow(type.id, level + 1) : null;
       return { type, level, maxLevel, row, nextRow };
     });
-    grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => this._card({
-      icon: '⬆', accent: 'var(--tree-ability)', title: type.Title_en, sub: type.Desc_en,
-      curLabel: row ? `+${fmtNum(row.EffectAmount)}` : '+0',
-      nextLabel: nextRow ? `+${fmtNum(nextRow.EffectAmount)}` : null,
-      level, maxLevel,
-    })).join('');
+    // Ability mixes flat quantity types (Power/Cargo/HP/HP Recovery/Move
+    // Speed — shown "+N") with real percent/rate types (Critical Chance/
+    // Attack Speed/Critical Damage/Double Attack/Triple Attack — shown
+    // "N%", EffectAmount÷10 per the confirmed convention) — see
+    // Formulas.ABILITY_PERCENT_TYPES for the evidence.
+    const fmtAbility = (v, isPct) => isPct ? fmtPct(v / 10) : `+${fmtNum(v)}`;
+    grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => {
+      const isPct = Formulas.ABILITY_PERCENT_TYPES.has(type.id);
+      return this._card({
+        icon: '⬆', accent: 'var(--tree-ability)', title: type.Title_en, sub: type.Desc_en,
+        curLabel: row ? fmtAbility(row.EffectAmount, isPct) : fmtAbility(0, isPct),
+        nextLabel: nextRow ? fmtAbility(nextRow.EffectAmount, isPct) : null,
+        level, maxLevel,
+      });
+    }).join('');
     grid.querySelectorAll('.upgrade-row').forEach((el, i) => {
       this._wireCard(el, cards[i].level, cards[i].maxLevel, (v) => State.setAbilityLevel(cards[i].type.id, v));
     });
