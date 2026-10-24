@@ -4335,18 +4335,35 @@ in-game UI displays a **per-grade-tier-relative** "Level N/M" (the tier's
 own size — the delta between successive `MaxLevelDatas` entries, e.g.
 `50-30=20` for grade 4) rather than the cumulative number at all.
 
-**Massive Muscle (OptionType 1) has no `SpecialUpgradeTypeData` row at
-all** (confirmed: that table only has 10 rows, one per every OTHER type)
-— but its own `SpecialUpgradeLevelData` rows follow the identical
-`[5,15,30,50]` cumulative progression as the other grade-1-available
-types, confirmed directly by reading all 50 of its own rows rather than
-assumed from sharing a name with another type. Hardcoded as an explicit
-fallback in `specialMaxLevelForGrade()` with a comment citing exactly
-this evidence, not silently guessed.
+**Correction, same day, caught while investigating the Extra/Soul Upgrade
+trees next**: this section originally claimed here that Massive Muscle
+(OptionType 1) has no `SpecialUpgradeTypeData` row at all, and shipped a
+hardcoded `[5,15,30,50]` fallback in `specialMaxLevelForGrade()` for it.
+That claim was wrong — an artifact of an ad-hoc Node exploration script
+that incorrectly `.slice(1)`'d this table, assuming a schema-row prefix
+that the committed `data/*.json` files don't actually carry (confirmed
+directly: index 0 of `SpecialUpgradeTypeData.json` really is Massive
+Muscle's own real row, `id:1, OptionType:1, MaxLevelDatas:[5,15,30,50]`,
+not a schema template). The real app code (`Game.load()`'s `this.db[name]
+= json`, zero slicing) was never affected by this — `Game.index.
+specialTypeByOptionType` always correctly resolved Massive Muscle's row,
+so the shipped fix's numeric behavior was correct the whole time, just
+for a reason the original comment got wrong, with dead fallback code that
+happened to numerically agree with the real row it claimed didn't exist.
+Removed the now-provably-unnecessary fallback and corrected the comment.
+**Worth remembering for future ad-hoc exploration scripts in this
+project: never assume a `[schema_row, ...data]` prefix on a committed
+`data/*.json` file** — that convention describes the *raw extraction*
+format from the original APK TextAssets (see the top of this file), not
+the already-converted, already-schema-stripped files actually committed
+here. Always load through `Game.load()`/`Game.db`/`Game.index` (or
+mirror its zero-slicing behavior exactly) when the row count or row
+identity actually matters, rather than guessing at a slice.
 
 **Shipped**: `Formulas.specialMaxLevelForGrade()` rewritten to read the
-real `MaxLevelDatas[grade-1]` (clamped to the array's length, with the
-Massive Muscle fallback above) instead of `grade*10`; a new
+real `MaxLevelDatas[grade-1]` (clamped to the array's length, no fallback
+needed — every OptionType always resolves a real row) instead of
+`grade*10`; a new
 `Formulas.specialTierBounds(optionType, grade)` returns the per-tier
 `{priorCap, tierMax}` the real UI's "Level N/M" needs. `ui-equipment.js`'s
 `_renderSpecial()` now computes and displays the tier-relative level/cap
@@ -4367,6 +4384,58 @@ Load Master example) — all 11 types' real tier cap (20) and every maxed
 type's real displayed percent matched exactly, plus the decisive Load
 Master cross-check (cumulative level 47 → "47.0%" and "17/20",
 byte-for-byte). `node --check` clean on both touched files.
+
+## Extra Upgrade / Soul Upgrade math audited, no bug found (2026-10-24, same session)
+
+User asked to check Extra Upgrade and Soul Upgrade the same way the
+Special Upgrade cap bug had just been found — a reasonable ask, since
+all three trees share the same `RateAmount`/per-type-level-curve shape
+and the same "option_type 1 is the headline Power/Attack track" pattern.
+This is also what surfaced and fixed the Massive-Muscle-comment mistake
+described above — checking Extra's/Soul's own "option_type 1" rows
+(Bulk Up, Battle Boost) against their TypeData catalogs the SAME way
+revealed the exploration-script slicing mistake before it could repeat
+itself (both tables ALSO have their OptionType-1 row at raw index 0).
+
+**Checked for the same class of bug**: does either tree have a hardcoded
+formula standing in for a real per-type table (Special's actual bug), or
+a hidden "tier that resets" structure the UI doesn't match (Special's
+display bug)? Neither `ExtraUpgradeLevelData` nor `SoulUpgradeLevelData`
+has any `GradeLevel`-equivalent field at all — confirmed by checking
+both tables' real schemas directly — and neither tree has an account-wide
+"grade" stepper in the UI, consistent with there being no such mechanic
+to model in the first place. `Formulas.extraMaxLevel()`/`soulMaxLevel()`
+already read the real max directly off each type's own last data row
+(`rows[rows.length-1].Level`) rather than a hardcoded formula — the
+opposite of what Special's bug looked like — so there was no "wrong
+formula silently replacing a real table" risk here by construction.
+
+**Verified the real data itself is clean, not just the code shape**:
+dumped every row of both tables, grouped by type, and checked for gaps
+or irregular level sequences. Both are fully self-consistent — every
+Extra Upgrade type has exactly 51 contiguous rows (Level 0-50, no gaps,
+same max for every one of the 8 types); every Soul Upgrade type has
+101 contiguous rows (Level 0-100) **except** Battle Boost itself, which
+has 201 (Level 0-200) — a real, confirmed asymmetry (Battle Boost is
+Soul's own "option_type 1" headline stat, same pattern as Special's
+Massive Muscle and Extra's Bulk Up being sized differently from their
+sibling stats in each tree — not a data error).
+
+**Honest limitation, stated plainly**: unlike Special (where 3 real
+screenshots gave a byte-for-byte cross-check), no screenshots of the
+Extra or Soul tabs were provided this round, so this audit is a thorough
+self-consistency check of the real underlying data and code shape, not
+an independently-verified match against the live game the way the
+Special fix was. Nothing found here contradicts the existing 2026-09-04
+confirmed `RateAmount`÷10 display convention, and no evidence of a bug
+analogous to Special's was found — but if real screenshots of these two
+tabs ever surface, they're worth the same digit-for-digit check Special
+just got, rather than assuming this audit already covered that ground.
+
+**No code changes shipped from this section** — only the
+`specialMaxLevelForGrade()` comment/fallback correction described above
+(caught *during* this audit, not a result of finding a real Extra/Soul
+bug) and this writeup.
 
 ## Git / deploy
 
@@ -5439,6 +5508,26 @@ byte-for-byte). `node --check` clean on both touched files.
     replaying every real screenshot data point as an explicit test case.
     Full writeup in "Special Upgrade level caps, corrected for real this
     time" above.
+59. Same session, immediate follow-up. User asked to check the Extra
+    Upgrade and Soul Upgrade math too, given what had just turned up in
+    Special. Audited both trees' real data (schemas, row contiguity,
+    per-type max levels) and the formulas reading them — found both
+    self-consistent with no evidence of the same bug class (neither has
+    a hardcoded-formula-replacing-a-real-table risk, since
+    `extraMaxLevel()`/`soulMaxLevel()` already read the real max directly
+    off each type's own data; neither has any grade-tier structure to
+    mismatch in the first place). While checking Extra's and Soul's own
+    "option_type 1" rows (Bulk Up, Battle Boost) against their TypeData
+    catalogs, caught a real mistake in the PRIOR session's own work: a
+    claim that Massive Muscle "has no SpecialUpgradeTypeData row at all"
+    was wrong — an artifact of an ad-hoc exploration script incorrectly
+    assuming a schema-row prefix the committed data files don't actually
+    have. The real app code was never affected (it never slices), so the
+    shipped fix's behavior was already correct — only the explanatory
+    comment and a now-redundant fallback needed fixing, both corrected.
+    Full writeup in "Extra Upgrade / Soul Upgrade math audited, no bug
+    found" above, including the corrected methodology note for future
+    exploration scripts in this project.
 
 ## Open items / plausible next steps (not started)
 

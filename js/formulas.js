@@ -580,19 +580,21 @@ const Formulas = {
   // 20/20 MAX, 10%") and SKILL COOLDOWN RATE (maxes at cumulative level 20
   // -> 20%, matching "Level 20/20 MAX, 20%").
   //
-  // MASSIVE MUSCLE (OptionType 1) has no SpecialUpgradeTypeData row at all
-  // (confirmed: the table only has 10 rows, covering every OTHER type) —
-  // but its own SpecialUpgradeLevelData rows follow the identical
-  // [5,15,30,50] cumulative progression as the other grade-1-available
-  // types (confirmed by reading all 50 of its own rows directly: grade
-  // boundaries fall exactly at cumulative levels 5/15/30/50, and its real
-  // screen shows "Level 20/20 MAX, 30%" — cumulative level 50, RateAmount
-  // 300 — an exact match). Hardcoded as a fallback below since there's no
-  // dedicated data row to read it from, not guessed.
+  // Correction, same day: an earlier draft of this comment claimed MASSIVE
+  // MUSCLE (OptionType 1) has no SpecialUpgradeTypeData row at all — that
+  // was wrong, an artifact of an ad-hoc exploration script that incorrectly
+  // `.slice(1)`'d this table assuming a schema-row prefix. The committed
+  // `data/*.json` files carry no such prefix (confirmed directly: index 0
+  // of SpecialUpgradeTypeData really is Massive Muscle's own real row, id
+  // 1, MaxLevelDatas [5,15,30,50]) — `Game.load()` never slices anything,
+  // so the real app and `Game.index.specialTypeByOptionType` were never
+  // affected by this; only that one draft comment's narrative was wrong,
+  // now fixed. No fallback is needed below — every OptionType, Massive
+  // Muscle included, always resolves a real row.
   specialMaxLevelForGrade(optionType, grade) {
     if (grade < this.specialUnlockGrade(optionType)) return 0;
     const type = Game.index.specialTypeByOptionType.get(optionType);
-    const levels = type ? toArray(type.MaxLevelDatas).map(num) : [5, 15, 30, 50]; // Massive Muscle fallback — confirmed via its own SpecialUpgradeLevelData rows, see comment above
+    const levels = toArray(type.MaxLevelDatas).map(num);
     const i = Math.min(grade, levels.length) - 1;
     return i >= 0 ? levels[i] : 0;
   },
