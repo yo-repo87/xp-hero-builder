@@ -10,22 +10,33 @@ const SCHEMA_VERSION = 1;
 function freshState() {
   return {
     schemaVersion: SCHEMA_VERSION,
-    // weapons: which weapon (by id) occupies each of the 6 equip slots —
-    // just a pointer, not where level/rolls live (see weaponRoster below).
-    // Matches the real game directly: a direct user report with 3 real
-    // screenshots (2026-10-24) showed every weapon in the whole catalog
-    // keeps its own level even while unequipped (shown "Lv.1" in the
-    // roster grid, not absent) — this app previously stored level/rolls
-    // INSIDE the slot itself, so swapping a weapon out silently discarded
-    // its progress. See "Weapon roster" in CLAUDE.md for the full writeup.
+    // weapons: which weapon COPY (an instance id, keyed into weaponRoster
+    // below) occupies each of the 6 equip slots — just a pointer.
+    // CONFIRMED by decompilation (2026-10-24, direct user follow-up ask —
+    // "allow duplicates since this is a mechanic of the game"): the real
+    // game's own `WeaponStatus` class (per-copy — UniqueId/WeaponId/Level/
+    // BonusOptions) and `WeaponMergeValidator` (`Dictionary<int,
+    // List<WeaponStatus>> ownListByWeaponId`, `NORMAL_MERGE_SAME_WEAPON_
+    // COUNT = 3` — 3 copies of the same weapon merge into the next fusion
+    // tier, `NextTierID`) confirm weapons are real, independent, multi-
+    // owned instances, not one slot/one entry per weapon type. This app
+    // modeled it as a single slot-embedded object originally (losing a
+    // weapon's progress on re-slotting — a real reported bug, fixed
+    // 2026-10-24 earlier the same day by moving level/rolls into a
+    // weaponId-keyed roster), then as exactly one roster entry per
+    // weaponId (still only one copy possible) — this is the third and
+    // (per the real WeaponStatus shape) now-correct iteration: a roster
+    // of individually-owned COPIES, keyed by a generated instance id, any
+    // number of which can share the same weaponId. See "Weapon roster"
+    // in CLAUDE.md for the full writeup of all three iterations.
     weapons: [null, null, null, null, null, null],
-    // weaponRoster: { [weaponId]: {level, bonusRolls:[{optionId,pct}]} } —
-    // persists independent of slot/equip status. A weaponId with no entry
-    // here is implicitly level 1 / no rolls (matching the real game's own
-    // default), not "doesn't exist" — every weapon in the catalog is
-    // always browsable/levelable, there's no separate "ownership" gate
-    // the way Heroes has (confirmed: the real roster grid shows literally
-    // every weapon in the game, not just ones explicitly added).
+    // weaponRoster: { [instanceId]: {weaponId, level, bonusRolls:
+    // [{optionId,pct}]} } — one entry per OWNED COPY (zero or more per
+    // weaponId), persists independent of slot/equip status. A weaponId
+    // with zero roster entries is simply not owned — unlike the
+    // single-roster-entry iteration this replaces, ownership is now a
+    // real, meaningful concept again (you can't have "2 duplicates" of
+    // something that's implicitly always owned at level 1).
     weaponRoster: {},
     traits: { slots: Array(10).fill(null) },        // traitOptionId per slot (2 groups x 5 synergy types)
     upgrades: {
@@ -69,43 +80,69 @@ const State = {
 
   // --- Weapons -----------------------------------------------------------
   // See the `weapons`/`weaponRoster` field comments in freshState() above —
-  // level/rolls live in the roster, keyed by weaponId, independent of
-  // whether (or where) that weapon is currently equipped.
+  // every owned COPY of a weapon is its own roster entry (instanceId),
+  // independent of whether (or where) that specific copy is equipped.
 
-  getWeaponState(weaponId) {
-    return this.data.weaponRoster[weaponId] || { level: 1, bonusRolls: [] };
+  // All owned copies of one weaponId, newest-first-added is not
+  // guaranteed — callers that care about order should sort by level/etc.
+  // themselves. Returns [{instanceId, weaponId, level, bonusRolls}].
+  getWeaponCopies(weaponId) {
+    return Object.entries(this.data.weaponRoster)
+      .filter(([, c]) => c.weaponId === weaponId)
+      .map(([instanceId, c]) => ({ instanceId, ...c }));
   },
 
-  _ensureWeaponRosterEntry(weaponId) {
-    if (!this.data.weaponRoster[weaponId]) this.data.weaponRoster[weaponId] = { level: 1, bonusRolls: [] };
-    return this.data.weaponRoster[weaponId];
+  getWeaponInstance(instanceId) {
+    const c = this.data.weaponRoster[instanceId];
+    return c ? { instanceId, ...c } : null;
   },
 
-  equipWeapon(slotIndex, weaponId) {
-    if (weaponId == null) { this.clearWeaponSlot(slotIndex); return; }
-    // A weapon can only occupy one slot at a time — if it's already
-    // equipped elsewhere, move it rather than leaving a duplicate.
-    const prevSlot = this.data.weapons.indexOf(weaponId);
+  // Adds a brand-new owned copy (level 1, no rolls) and returns its id.
+  addWeaponCopy(weaponId) {
+    const instanceId = weaponInstanceId();
+    this.data.weaponRoster[instanceId] = { weaponId, level: 1, bonusRolls: [] };
+    this.notify();
+    return instanceId;
+  },
+
+  // Removes an owned copy entirely (e.g. added by mistake, or spent as
+  // merge material once that flow exists) — unequips it first if it's
+  // currently in a slot, so a slot never points at a deleted copy.
+  removeWeaponCopy(instanceId) {
+    const slot = this.data.weapons.indexOf(instanceId);
+    if (slot !== -1) this.data.weapons[slot] = null;
+    delete this.data.weaponRoster[instanceId];
+    this.notify();
+  },
+
+  equipWeapon(slotIndex, instanceId) {
+    if (instanceId == null) { this.clearWeaponSlot(slotIndex); return; }
+    if (!this.data.weaponRoster[instanceId]) return; // unknown copy — no-op
+    // One copy can only occupy one slot at a time (a different COPY of
+    // the same weaponId is a separate instance and can equip freely).
+    const prevSlot = this.data.weapons.indexOf(instanceId);
     if (prevSlot !== -1 && prevSlot !== slotIndex) this.data.weapons[prevSlot] = null;
-    this._ensureWeaponRosterEntry(weaponId);
-    this.data.weapons[slotIndex] = weaponId;
+    this.data.weapons[slotIndex] = instanceId;
     this.notify();
   },
 
   clearWeaponSlot(slotIndex) {
-    // Roster data (level/rolls) is deliberately left untouched — this is
-    // the actual fix for the reported data-loss bug.
+    // Roster data (level/rolls) is deliberately left untouched.
     this.data.weapons[slotIndex] = null;
     this.notify();
   },
 
-  setWeaponLevel(weaponId, level) {
-    this._ensureWeaponRosterEntry(weaponId).level = level;
+  setWeaponLevel(instanceId, level) {
+    const c = this.data.weaponRoster[instanceId];
+    if (!c) return;
+    c.level = level;
     this.notify();
   },
 
-  setWeaponBonusRolls(weaponId, rolls) {
-    this._ensureWeaponRosterEntry(weaponId).bonusRolls = rolls;
+  setWeaponBonusRolls(instanceId, rolls) {
+    const c = this.data.weaponRoster[instanceId];
+    if (!c) return;
+    c.bonusRolls = rolls;
     this.notify();
   },
 
@@ -265,29 +302,74 @@ function migrateHeroRunes(hero) {
   return { ...rest, runes };
 }
 
-// A build saved before the weapon-roster system (2026-10-24) has
-// `weapons: [{weaponId, level, bonusRolls}|null, ...6]` — level/rolls
-// lived INSIDE the slot, so re-slotting a weapon silently discarded its
-// progress (the reported bug). Migrates each slot's embedded data into a
-// real roster entry (keyed by weaponId, surviving unequip) and reduces
-// the slot itself to a bare weaponId pointer. A save already on the new
-// format (slot entries are plain ids/null, not objects) passes through
-// unchanged — detected per-slot, not globally, so a partially-migrated
-// or hand-edited save still comes through correctly.
+// Weapon saves have been through two prior shapes this same day
+// (2026-10-24), both superseded — see the big comment on `weapons` in
+// freshState() above for the real-game evidence behind the current,
+// instance-based one:
+//   1. ancient: `weapons: [{weaponId, level, bonusRolls}|null, ...6]` —
+//      level/rolls lived INSIDE the slot, so re-slotting a weapon
+//      silently discarded its progress (the first reported bug).
+//   2. today's first fix: `weapons: [weaponId|null, ...6]` +
+//      `weaponRoster: {[weaponId]: {level, bonusRolls}}` — fixed the
+//      data loss, but only one copy of any given weapon could ever
+//      exist (the second reported gap — the real game allows owning and
+//      leveling multiple copies, confirmed via decompiling
+//      WeaponMergeValidator/WeaponStatus).
+//   3. current: `weapons: [instanceId|null, ...6]` + `weaponRoster:
+//      {[instanceId]: {weaponId, level, bonusRolls}}` — any number of
+//      independently-leveled copies per weaponId.
+// Detected per-slot/per-roster-entry (object vs number vs string), not
+// globally, so a partially-migrated or hand-edited save still comes
+// through correctly, and nothing is lost migrating straight from shape 1
+// to shape 3 in one pass (most real saves, including this app's own
+// already-shipped shape-2 saves from earlier today, will actually be
+// shape 2 or 3 by the time anyone hits this with real data).
 function migrateWeaponRoster(obj) {
   const weapons = Array.isArray(obj.weapons) && obj.weapons.length === 6 ? obj.weapons : [null, null, null, null, null, null];
-  const roster = { ...(obj.weaponRoster || {}) };
+  const oldRoster = obj.weaponRoster || {};
+  const newRoster = {};
+  const weaponIdToInstanceId = {}; // only for shape-2 roster entries, to rewrite shape-2 slot pointers below
+
+  for (const [key, entry] of Object.entries(oldRoster)) {
+    if (entry && entry.weaponId != null) {
+      // already shape 3 — keep as-is
+      newRoster[key] = { weaponId: entry.weaponId, level: entry.level || 1, bonusRolls: entry.bonusRolls || [] };
+    } else {
+      // shape 2 — the key itself IS the weaponId
+      const weaponId = Number(key);
+      const instanceId = weaponInstanceId();
+      newRoster[instanceId] = { weaponId, level: (entry && entry.level) || 1, bonusRolls: (entry && entry.bonusRolls) || [] };
+      weaponIdToInstanceId[weaponId] = instanceId;
+    }
+  }
+
   const newWeapons = weapons.map(slot => {
     if (slot == null) return null;
     if (typeof slot === 'object') {
-      if (!roster[slot.weaponId]) roster[slot.weaponId] = { level: slot.level || 1, bonusRolls: slot.bonusRolls || [] };
-      return slot.weaponId;
+      // shape 1 — level/rolls embedded directly in the slot
+      const instanceId = weaponInstanceId();
+      newRoster[instanceId] = { weaponId: slot.weaponId, level: slot.level || 1, bonusRolls: slot.bonusRolls || [] };
+      return instanceId;
     }
-    return slot;
+    if (typeof slot === 'number') {
+      // shape 2 — slot held a bare weaponId
+      if (weaponIdToInstanceId[slot] != null) return weaponIdToInstanceId[slot];
+      // weaponId wasn't in the roster for some reason — create a fresh instance defensively rather than drop the slot
+      const instanceId = weaponInstanceId();
+      newRoster[instanceId] = { weaponId: slot, level: 1, bonusRolls: [] };
+      weaponIdToInstanceId[slot] = instanceId;
+      return instanceId;
+    }
+    return slot; // already shape 3 (an instanceId string)
   });
-  return { weapons: newWeapons, weaponRoster: roster };
+
+  return { weapons: newWeapons, weaponRoster: newRoster };
 }
 
 function cryptoId() {
   return 'h_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+}
+
+function weaponInstanceId() {
+  return 'w_' + Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 }

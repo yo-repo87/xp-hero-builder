@@ -134,14 +134,19 @@ const GuideUI = {
 
 function buildAdvice(hero, costume) {
   const blocks = [];
+  // Each equip slot now holds an instanceId (a specific owned COPY), not a
+  // bare weaponId — pair each with its catalog row and its own roster
+  // entry (level/rolls) rather than re-deriving the level from weaponId.
   const equippedWeapons = State.data.weapons
-    .map(id => id && Game.index.weaponById.get(id))
-    .filter(Boolean);
+    .map(id => id && State.getWeaponInstance(id))
+    .filter(Boolean)
+    .map(ws => ({ ws, w: Game.index.weaponById.get(ws.weaponId) }))
+    .filter(x => x.w);
 
   // --- Weapon category synergy -------------------------------------------
   {
     const bonusCat = costume.BonusWeaponCategory;
-    const matches = equippedWeapons.filter(w => w.Category === bonusCat).length;
+    const matches = equippedWeapons.filter(({ w }) => w.Category === bonusCat).length;
     const items = [];
     let sev = 'sev-good';
     if (equippedWeapons.length === 0) {
@@ -163,17 +168,13 @@ function buildAdvice(hero, costume) {
     let sev = 'sev-good';
     const emptySlots = State.data.weapons.filter(s => !s).length;
     if (emptySlots > 0) { sev = 'sev-bad'; items.push(`${emptySlots} weapon slot${emptySlots > 1 ? 's are' : ' is'} empty — every filled slot adds DPS, so equip a weapon in each of the 6 slots first.`); }
-    const underleveled = equippedWeapons.filter(w => {
-      const ws = State.getWeaponState(w.id);
-      const max = Formulas.weaponMaxLevel(w);
-      return ws.level < max * 0.5;
-    });
+    const underleveled = equippedWeapons.filter(({ w, ws }) => ws.level < Formulas.weaponMaxLevel(w) * 0.5);
     if (underleveled.length > 0) {
       sev = sev === 'sev-good' ? 'sev-warn' : sev;
       items.push(`${underleveled.length} equipped weapon${underleveled.length > 1 ? 's are' : ' is'} under half of their max level — scroll cost per level is flat, so cheap early levels on these are efficient upgrades right now.`);
     }
-    const lowestRarity = equippedWeapons.length ? Math.min(...equippedWeapons.map(w => w.Rarity)) : null;
-    const highestRarity = equippedWeapons.length ? Math.max(...equippedWeapons.map(w => w.Rarity)) : null;
+    const lowestRarity = equippedWeapons.length ? Math.min(...equippedWeapons.map(({ w }) => w.Rarity)) : null;
+    const highestRarity = equippedWeapons.length ? Math.max(...equippedWeapons.map(({ w }) => w.Rarity)) : null;
     if (lowestRarity !== null && highestRarity - lowestRarity >= 3) {
       sev = sev === 'sev-good' ? 'sev-warn' : sev;
       items.push(`Your equipped weapons span a wide rarity gap (rarity ${lowestRarity} to ${highestRarity}). The lowest-rarity slot is likely your weakest link — prioritize tiering it up or replacing it.`);
@@ -228,7 +229,7 @@ function buildAdvice(hero, costume) {
   {
     const items = [];
     const catCounts = new Map();
-    for (const w of equippedWeapons) catCounts.set(w.Category, (catCounts.get(w.Category) || 0) + 1);
+    for (const { w } of equippedWeapons) catCounts.set(w.Category, (catCounts.get(w.Category) || 0) + 1);
     const dominant = [...catCounts.entries()].sort((a, b) => b[1] - a[1])[0];
     if (dominant) {
       const cat = Game.index.weaponCategoryById.get(dominant[0]);

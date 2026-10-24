@@ -4627,6 +4627,111 @@ honestly rather than silently skipped, consistent with this project's
 practice elsewhere (see "Forum" above for a prior instance of the same
 disclosure) — worth a real visual pass next time one's available.
 
+## Weapon duplicates — a real, confirmed game mechanic this app now supports (2026-10-24, same session)
+
+Immediate follow-up to "Weapon roster" above. User asked directly whether
+the new roster accounted for owning duplicate copies of a weapon "since
+this is a mechanic of the game," after the prior fix's own write-up
+flagged (honestly, without having investigated it) that the real
+screenshots showed a "MERGE" button whose purpose hadn't been chased
+down. Investigated properly via decompilation before building anything,
+per this project's standing norm, rather than guessing at a shape.
+
+**Confirmed real, and confirmed the exact shape, not just "yes
+duplicates exist."** `WeaponMergeValidator` (`DevilHunterIdle.ForWeapon`)
+has `NORMAL_MERGE_SAME_WEAPON_COUNT = 3` (merging consumes 3 copies of
+the same weapon into the next fusion tier via `NextTierID` — the same
+chain this app's `weaponChain()` already walks) and a special
+`EXOTIC_TO_ETERNAL_MATERIAL_COUNT = 2` case (the top-tier merge needs
+only 2 materials, plus a `TRANSCENDENCE_STONE_REQUIRE_AMOUNT = 1` extra
+item). Its own `CountExoticN(Dictionary<int, List<WeaponStatus>>
+ownListByWeaponId)` signature confirms ownership is tracked as a real
+list of instances per weaponId, not a single slot or a bare count. The
+real `WeaponStatus` class (`DevilHunterIdle`) is the per-COPY object:
+`UniqueId`, `WeaponId`, `Level`, `BonusOptions` — confirming each owned
+copy independently tracks its own level and bonus rolls, exactly
+mirroring this app's own `{level, bonusRolls}` shape, just per-instance
+instead of per-weapon-type.
+
+**This meant the roster shape shipped just hours earlier the same day
+(one entry per weaponId) was already outdated** — a real, visible
+consequence of fixing a reported bug in stages rather than getting the
+full picture up front, worth stating plainly rather than glossing over.
+Moved to a third, now-correct shape: `State.data.weaponRoster` is keyed
+by a generated **instanceId** (`{[instanceId]: {weaponId, level,
+bonusRolls}}`), and `State.data.weapons` (the 6 equip slots) holds
+instanceIds, not weaponIds. Any number of independently-leveled copies
+of the same weaponId can now exist and even be equipped simultaneously
+in different slots. A real, deliberate consequence of this: **weapon
+ownership is now a genuine concept again** (0, 1, or many copies) —
+unlike the immediately-prior shape, a weapon with zero owned copies is
+simply "Not Owned," not implicitly available at level 1. This is a
+closer match to the real game (which clearly tracks ownership as a real
+list, confirmed above) than the previous "every weapon is always at
+least level 1" model was.
+
+**Shipped**: `state.js` — `getWeaponCopies(weaponId)` (every owned copy),
+`getWeaponInstance(instanceId)`, `addWeaponCopy(weaponId)` (creates a
+fresh level-1 copy, returns its id), `removeWeaponCopy(instanceId)`
+(unequips first if needed, then deletes), `equipWeapon`/
+`setWeaponLevel`/`setWeaponBonusRolls` all re-keyed to instanceId. A
+rewritten `migrateWeaponRoster()` now chains through all 3 historical
+shapes in one pass (ancient embedded-in-slot → today's weaponId-keyed →
+current instance-based), detected per-slot/per-entry so a partially
+migrated or hand-edited save still comes through correctly — most real
+saves will actually be on shape 2 (this app's own prior fix from earlier
+the same session), not shape 1, so this was tested as the realistic
+common case, not just the theoretical worst case.
+
+`ui-weapons.js` gained a new ownership-aware roster card (dimmed "Not
+Owned" state; a plain level for exactly one copy; a "×N" badge plus the
+best-leveled copy's level for multiple) and a new `openCopiesList
+(weaponId, fromSlotIndex)` view — the real game's own grouping
+(`ownListByWeaponId`) — listing every owned copy with its own level and
+equipped-slot tag, plus "+ Add Another Copy." A shared `openWeaponEntry
+(weaponId, fromSlotIndex)` routes the roster grid, global search, and
+the slot-scoped quick-pick through the same logic: exactly one copy
+opens straight to its detail (no extra click, same fast path as before
+duplicates existed), otherwise the copies list. The per-copy detail view
+gained a "Remove This Copy" action (confirmed via a native `confirm()`
+dialog, consistent with this app's other destructive-action pattern) and
+a "View All N Copies" link when more than one exists.
+
+`formulas.js`'s weapon-reading call sites (`totalDpsBreakdown`'s weapon
+loop, the `CostumeEquipMainWeaponBonusOption` source, and
+`nextBestUpgrades`'s weapon-level-step simulation) were updated again to
+resolve an equip slot's instanceId to its specific copy via
+`State.getWeaponInstance()` rather than a weaponId-keyed lookup.
+`ui-guide.js`'s weapon-synergy advice blocks updated the same way.
+
+**Deliberately not built this round, stated plainly**: the actual Merge
+action itself (selecting 3 copies and consuming them for the next
+fusion tier, including the special Exotic→Eternal 2-material+
+Transcendence-Stone case) — this ask was specifically "allow duplicates
+to exist," which is now real and confirmed-correct per the decompiled
+evidence above; automating the merge *action* is a distinct, substantial
+follow-on feature (real selection UI, validation against
+`WeaponMergeValidator`'s actual rules) that wasn't asked for this round.
+
+Verified with a dedicated Node harness (13 scenarios): two independent
+copies of the same weapon leveling independently; both equipped
+simultaneously in different slots; moving one specific copy between
+slots without disturbing the other; unequip/remove preserving or
+correctly clearing the right copy's data; a weapon with zero copies
+resolving to "not owned" rather than crashing; migration from both
+historical shapes (including an unequipped shape-2 entry, not just an
+equipped one) landing correctly on the new shape with nothing lost; a
+shape-3 save round-tripping through export/import unchanged;
+`totalDpsBreakdown` correctly reading the EQUIPPED copy's level even
+when a second, differently-leveled copy of the same weapon also exists
+unequipped (the decisive check that duplicates don't get conflated); and
+`nextBestUpgrades` still simulating/reverting cleanly through the new
+shape. Also smoke-tested roster card rendering for all three ownership
+states (0/1/many copies) across the full 84-weapon catalog. No browser
+tool was available this session to verify the new copies-list modal
+visually — folded into the same Open Items disclosure as the rest of
+today's Weapon Roster work.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -5759,18 +5864,49 @@ disclosure) — worth a real visual pass next time one's available.
     every one of the 84 real catalog weapons' card rendering. No browser
     tool was available to verify the page visually this session — flagged
     honestly. Full writeup in "Weapon roster" above.
+62. Same session, immediate follow-up. User asked directly whether the
+    new weapon roster accounted for duplicate copies, "since this is a
+    mechanic of the game." Investigated via decompilation before building
+    anything (per this project's standing norm) and confirmed it's real,
+    with a specific exact shape: `WeaponMergeValidator` confirms merging
+    consumes 3 copies of the same weapon into the next fusion tier (a
+    special 2-material case for the top Exotic→Eternal tier), and
+    `WeaponStatus`/`ownListByWeaponId` confirm ownership is tracked as a
+    real per-instance list, not a count or a single slot. This meant the
+    roster shape shipped only hours earlier the same day (one entry per
+    weaponId) was already outdated — stated plainly rather than glossed
+    over. Moved to a third shape keyed by a generated instance id, so any
+    number of independently-leveled copies of the same weapon can exist
+    and even be equipped simultaneously. Weapon ownership is now a real
+    concept again (0/1/many copies), a deliberate step back from the
+    immediately-prior "every weapon implicitly exists at level 1" model,
+    matching the real game more closely. Deliberately did not build the
+    actual Merge action itself this round — a distinct, larger follow-on
+    feature, stated clearly as not done rather than silently skipped.
+    Verified with a dedicated 13-scenario Node harness covering
+    independent per-copy leveling, simultaneous multi-slot equipping,
+    migration from both historical shapes, and the Dps formula correctly
+    reading the specific equipped copy even with a second unequipped copy
+    of the same weapon present. Full writeup in "Weapon duplicates"
+    above.
 
 ## Open items / plausible next steps (not started)
 
-- **New 2026-10-24**: the Weapon Roster redesign (see "Weapon roster"
-  above) was verified thoroughly at the state/formula layer via a
-  dedicated Node harness, but no browser/Playwright tool was available
+- **New 2026-10-24**: the Weapon Roster redesign AND the follow-up
+  duplicate-copy support (see "Weapon roster" and "Weapon duplicates"
+  above) were both verified thoroughly at the state/formula layer via
+  dedicated Node harnesses, but no browser/Playwright tool was available
   this session to visually confirm the new on-page roster grid, the
-  unscoped 6-slot equip-choice UI, or the modal's new Save/Equip/Unequip
-  button layout actually render and click correctly. Worth a real
-  Playwright pass (desktop + mobile, matching this project's usual
-  standard) next time one's available, before treating this as fully
-  closed.
+  ownership-aware card states (not owned / 1 copy / "×N" copies), the
+  new copies-list modal, the unscoped 6-slot equip-choice UI, or the
+  detail modal's new Save/Equip/Unequip/Remove button layout actually
+  render and click correctly. Worth a real Playwright pass (desktop +
+  mobile, matching this project's usual standard) next time one's
+  available, before treating either of these as fully closed. Also
+  genuinely open: the actual Merge action (consume 3 copies → next
+  fusion tier, confirmed real via `WeaponMergeValidator`) was
+  deliberately not built this round — a real follow-on feature if the
+  user wants it.
 - **New 2026-10-24**: POWER's (Ability tree, id 1) and HP's (id 4)
   underlying `AbilityLevelUpCostInfo` checkpoint data appears genuinely
   stale against the live game — confirmed via real screenshots, not

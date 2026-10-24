@@ -78,13 +78,14 @@ const GlobalSearchUI = {
       if (owned) HeroesUI.openEnhance(owned.id);
       else HeroesUI.openAddPicker();
     } else if (type === 'weapon') {
-      // Every weapon is always browsable/levelable now (see "Weapon
-      // roster" in CLAUDE.md), not just ones currently equipped — open
-      // its detail view directly regardless of equip status, same
-      // read-only-safe click behavior this app already uses for Monsters/
-      // Farmable Items (a search click never silently equips anything).
+      // Routes through the same ownership-aware entry point the roster
+      // grid itself uses (see "Weapon roster" in CLAUDE.md) — a weapon
+      // with exactly one owned copy opens straight to its detail, zero or
+      // multiple copies opens the copies list. Never silently creates a
+      // copy on its own, same read-only-safe click behavior this app
+      // already uses for Monsters/Farmable Items.
       State.setTab('weapons');
-      WeaponsUI.openDetail(id);
+      WeaponsUI.openWeaponEntry(id);
     }
   },
 };

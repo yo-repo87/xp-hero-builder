@@ -1,26 +1,27 @@
 // ---------------------------------------------------------------------------
 // ui-weapons.js — the 6-slot weapon loadout grid, a persistent "every
 // weapon in the game" roster grid below it, a slot-scoped quick-pick
-// modal, and the per-weapon level/bonus-roll detail modal.
+// modal, a per-weapon "your copies" list, and the per-copy level/bonus-
+// roll detail modal.
 //
-// Weapon level/bonusRolls live in State.data.weaponRoster, keyed by
-// weaponId, independent of whether (or where) that weapon is currently
-// equipped — see the field comment in state.js for the full writeup.
-// This mirrors the real game directly: a direct user report with 3 real
-// screenshots (2026-10-24) showed every weapon in the whole catalog is
-// always browsable/levelable (shown "Lv.1" by default, not absent) and
-// keeps its own level even while unequipped — this app previously stored
-// level/rolls INSIDE the equip slot itself, so swapping a weapon out of a
-// slot silently discarded its progress. See "Weapon roster" in CLAUDE.md.
+// Every owned COPY of a weapon is its own entry in State.data.weaponRoster
+// (keyed by a generated instanceId), independent of whether/where that
+// specific copy is equipped — see the field comments in state.js for the
+// full real-game evidence (WeaponStatus/WeaponMergeValidator, confirmed
+// by decompilation 2026-10-24) behind this shape. A weaponId can have
+// zero, one, or several owned copies at once, each independently leveled
+// — matching the real game's own duplicate-ownership + merge mechanic,
+// which this app doesn't automate (no Merge action yet) but no longer
+// structurally prevents either.
 // ---------------------------------------------------------------------------
 
 const WeaponsUI = {
 
   // Layout matches the real in-game Equipment screen: 3 slots flanking each
-  // side of a center hero-preview panel, slot 1 marked MAIN (real screen's
-  // top-left slot is a distinct, larger "main hand" slot). Below that, a
-  // persistent roster grid (every weapon in the game, real level, EQUIPPED
-  // tag) — the real screen's own always-visible "WEAPON" grid, not a modal.
+  // side of a center hero-preview panel, slot 1 marked MAIN. Below that, a
+  // persistent roster grid — every weapon in the game, ownership-aware
+  // (not owned / 1 copy / multiple copies), the real screen's own
+  // always-visible "WEAPON" grid, not a modal.
   render() {
     const grid = document.getElementById('weapon-slot-grid');
     const left = [0, 1, 2].map(i => this._slotHTML(State.data.weapons[i], i)).join('');
@@ -51,27 +52,34 @@ const WeaponsUI = {
     const weapons = Game.db.WeaponData.slice().sort((a, b) => a.Category - b.Category || a.Rarity - b.Rarity);
     grid.innerHTML = weapons.map(w => this._rosterCardHTML(w)).join('');
     grid.querySelectorAll('[data-weapon]').forEach(el => {
-      el.addEventListener('click', () => this.openDetail(Number(el.dataset.weapon)));
+      el.addEventListener('click', () => this.openWeaponEntry(Number(el.dataset.weapon)));
     });
   },
 
+  // One card per weaponId in the catalog, ownership-aware: dimmed "not
+  // owned" state, a plain level for exactly one copy, or a "×N" badge
+  // (plus the highest-leveled copy's level) when multiple are owned.
   _rosterCardHTML(w) {
-    const slotIndex = State.data.weapons.indexOf(w.id);
-    const ws = State.getWeaponState(w.id);
+    const copies = State.getWeaponCopies(w.id);
+    const equippedCount = copies.filter(c => State.data.weapons.includes(c.instanceId)).length;
     const r = Game.rarityColor(w.Rarity);
+    const owned = copies.length > 0;
+    const bestLevel = owned ? Math.max(...copies.map(c => c.level)) : null;
     return `
-      <div class="picker-card weapon-roster-card" data-weapon="${w.id}" style="${rarityStyle(w.Rarity)}">
-        ${slotIndex !== -1 ? `<span class="pc-equipped-badge">EQUIPPED</span>` : ''}
+      <div class="picker-card weapon-roster-card${owned ? '' : ' weapon-roster-card--unowned'}" data-weapon="${w.id}" style="${rarityStyle(w.Rarity)}">
+        ${equippedCount > 0 ? `<span class="pc-equipped-badge">EQUIPPED${equippedCount > 1 ? ` ×${equippedCount}` : ''}</span>` : ''}
+        ${copies.length > 1 ? `<span class="pc-copies-badge">×${copies.length}</span>` : ''}
         <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
         <div class="pc-name">${escapeHtml(w.Name_en)}</div>
         <div class="pc-tag">${rarityPip(w.Rarity)}${r.name}</div>
-        <div class="pc-level">Lv ${ws.level}</div>
+        <div class="pc-level">${owned ? `Lv ${bestLevel}` : 'Not Owned'}</div>
       </div>`;
   },
 
-  _slotHTML(weaponId, i) {
+  _slotHTML(instanceId, i) {
     const mainTag = i === 0 ? `<span class="slot-main-tag">MAIN</span>` : '';
-    const w = weaponId && Game.index.weaponById.get(weaponId);
+    const ws = instanceId && State.getWeaponInstance(instanceId);
+    const w = ws && Game.index.weaponById.get(ws.weaponId);
     if (!w) {
       return `
         <div class="weapon-slot" data-slot="${i}">
@@ -80,7 +88,6 @@ const WeaponsUI = {
           <div class="slot-empty-icon">+</div>
         </div>`;
     }
-    const ws = State.getWeaponState(weaponId);
     return `
       <div class="weapon-slot filled" data-slot="${i}" style="${rarityStyle(w.Rarity)}">
         ${mainTag}
@@ -89,12 +96,67 @@ const WeaponsUI = {
       </div>`;
   },
 
+  // Shared entry point (roster grid, global search, and the quick-pick
+  // picker all route through this) — resolves straight to a single
+  // copy's detail view when there's exactly one, otherwise to the
+  // copies list so the user picks which owned copy (or adds a new one).
+  openWeaponEntry(weaponId, fromSlotIndex = null) {
+    const copies = State.getWeaponCopies(weaponId);
+    if (copies.length === 1) { this.openDetail(copies[0].instanceId, fromSlotIndex); return; }
+    this.openCopiesList(weaponId, fromSlotIndex);
+  },
+
+  // Lists every owned copy of one weapon (icon, level, equipped-slot tag)
+  // plus an "Add a copy" action — the real game's own grouping (owning
+  // multiple copies of the same weapon, confirmed via decompiling
+  // WeaponMergeValidator's `Dictionary<int, List<WeaponStatus>>`).
+  openCopiesList(weaponId, fromSlotIndex = null) {
+    const w = Game.index.weaponById.get(weaponId);
+
+    const renderBody = () => {
+      const copies = State.getWeaponCopies(weaponId)
+        .slice()
+        .sort((a, b) => b.level - a.level);
+      body.innerHTML = `
+        ${copies.length ? `<div class="picker-grid">${copies.map(c => this._copyCardHTML(w, c)).join('')}</div>` :
+          `<p class="ur-sub">You don't own any copies of ${escapeHtml(w.Name_en)} yet.</p>`}
+        <div class="action-row">
+          <button class="btn btn-gold" id="add-copy-btn">+ Add ${copies.length ? 'Another' : 'a'} Copy</button>
+          ${fromSlotIndex != null ? `<button class="btn" id="back-btn">← Back to list</button>` : ''}
+        </div>`;
+      body.querySelectorAll('[data-instance]').forEach(el => {
+        el.addEventListener('click', () => this.openDetail(el.dataset.instance, fromSlotIndex));
+      });
+      document.getElementById('add-copy-btn').addEventListener('click', () => {
+        const instanceId = State.addWeaponCopy(weaponId);
+        this.openDetail(instanceId, fromSlotIndex);
+      });
+      document.getElementById('back-btn')?.addEventListener('click', () => this.openPicker(fromSlotIndex));
+    };
+
+    UI.openModal(`
+      <div class="modal-header"><h3>${escapeHtml(w.Name_en)} — Your Copies</h3><button class="modal-close" id="modal-close">✕</button></div>
+      <div class="modal-body" id="modal-body-target"></div>
+    `);
+    const body = document.getElementById('modal-body-target');
+    document.getElementById('modal-close').addEventListener('click', () => UI.closeModal());
+    renderBody();
+  },
+
+  _copyCardHTML(w, copy) {
+    const slotIndex = State.data.weapons.indexOf(copy.instanceId);
+    return `
+      <div class="picker-card weapon-roster-card" data-instance="${copy.instanceId}" style="${rarityStyle(w.Rarity)}">
+        ${slotIndex !== -1 ? `<span class="pc-equipped-badge">SLOT ${slotIndex + 1}</span>` : ''}
+        <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
+        <div class="pc-level">Lv ${copy.level}</div>
+      </div>`;
+  },
+
   // Slot-scoped quick-pick: clicking any of the 6 equip slots (empty or
   // filled) opens this, scoped to swapping that one slot specifically.
-  // The standalone roster grid below the rig is the other, unscoped way
-  // to reach a weapon's detail view (see _renderRoster above).
   openPicker(slotIndex) {
-    const currentWeaponId = State.data.weapons[slotIndex];
+    const currentInstanceId = State.data.weapons[slotIndex];
     const state = { category: 'all' };
 
     const renderBody = () => {
@@ -110,9 +172,9 @@ const WeaponsUI = {
         </div>
         <div class="picker-grid">
           ${weapons.map(w => {
-            const isCurrent = currentWeaponId === w.id;
+            const equippedHere = State.getWeaponCopies(w.id).some(c => c.instanceId === currentInstanceId);
             const card = this._rosterCardHTML(w);
-            return isCurrent ? card.replace('class="picker-card weapon-roster-card"', 'class="picker-card weapon-roster-card selected"') : card;
+            return equippedHere ? card.replace('class="picker-card weapon-roster-card"', 'class="picker-card weapon-roster-card selected"') : card;
           }).join('')}
         </div>`;
       body.innerHTML = filterHTML;
@@ -121,14 +183,14 @@ const WeaponsUI = {
         renderBody();
       }));
       body.querySelectorAll('[data-weapon]').forEach(el => el.addEventListener('click', () => {
-        this.openDetail(Number(el.dataset.weapon), slotIndex);
+        this.openWeaponEntry(Number(el.dataset.weapon), slotIndex);
       }));
     };
 
     UI.openModal(`
       <div class="modal-header">
         <h3>Weapon ${slotIndex + 1} — Choose Weapon</h3>
-        ${currentWeaponId ? `<button class="btn btn-sm btn-danger" id="unequip-btn">Unequip</button>` : ''}
+        ${currentInstanceId ? `<button class="btn btn-sm btn-danger" id="unequip-btn">Unequip</button>` : ''}
         <button class="modal-close" id="modal-close">✕</button>
       </div>
       <div class="modal-body" id="modal-body-target"></div>
@@ -138,47 +200,42 @@ const WeaponsUI = {
     document.getElementById('unequip-btn')?.addEventListener('click', () => {
       State.clearWeaponSlot(slotIndex);
       UI.closeModal();
-      UI.toast('Weapon unequipped — its level and rolls are kept, find it again in the weapon roster below');
+      UI.toast('Weapon unequipped — its level and rolls are kept, find it in the weapon roster below');
     });
     renderBody();
   },
 
-  // weaponId is always the primary key now (level/rolls live in the
-  // roster, not in any one slot). `fromSlotIndex` is optional context:
-  // set when opened via openPicker's "fill this one empty/filled slot"
-  // flow (shows a single "Equip to Slot N" button and a "Back to list"
-  // link back to that picker); left null when opened from the standalone
-  // roster grid or global search (shows a per-slot equip choice instead,
-  // since there's no single slot already implied).
-  openDetail(weaponId, fromSlotIndex = null) {
-    const w = Game.index.weaponById.get(weaponId);
+  // instanceId is the primary key (one specific owned copy). `fromSlotIndex`
+  // is optional context: set when opened via openPicker's "fill this one
+  // slot" flow (shows a single "Equip to Slot N" button); left null when
+  // opened from the standalone roster grid, the copies list, or search.
+  openDetail(instanceId, fromSlotIndex = null) {
+    const owned = State.getWeaponInstance(instanceId);
+    if (!owned) { UI.closeModal(); return; } // copy was removed elsewhere — bail safely
+    const w = Game.index.weaponById.get(owned.weaponId);
     const rarityRow = Formulas.rarityRow(w);
     const maxLevel = Formulas.weaponMaxLevel(w);
-    const equippedSlotIndex = State.data.weapons.indexOf(weaponId);
-    const ws = State.getWeaponState(weaponId);
 
     // draft is a local, unsaved working copy — "Save Changes"/"Equip"/
     // "Unequip" below all commit it to the roster explicitly, so a
     // half-adjusted slider never silently persists on its own.
-    const draft = { level: ws.level, bonusRolls: [...(ws.bonusRolls || [])] };
+    const draft = { level: owned.level, bonusRolls: [...(owned.bonusRolls || [])] };
 
     const r = Game.rarityColor(w.Rarity);
     const chain = Game.weaponChain(w.id);
     const bonusPool = Formulas.bonusOptionPool();
 
     const commitDraft = () => {
-      State.setWeaponLevel(weaponId, draft.level);
-      State.setWeaponBonusRolls(weaponId, draft.bonusRolls);
+      State.setWeaponLevel(instanceId, draft.level);
+      State.setWeaponBonusRolls(instanceId, draft.bonusRolls);
     };
 
     const renderBody = () => {
+      const equippedSlotIndex = State.data.weapons.indexOf(instanceId);
+      const otherCopies = State.getWeaponCopies(w.id).filter(c => c.instanceId !== instanceId);
       const dps = Formulas.weaponDPS(w, draft.level);
       const scrollCost = Formulas.scrollCostForLevel(draft.level);
       const maxAffixes = rarityRow ? rarityRow.BonusOptionCount : 0;
-      // Level-bonus SlotType preview: use the real equipped slot if this
-      // weapon is currently in one, else whichever slot this view was
-      // opened for (quick-pick flow), else slot 0 as a neutral default —
-      // cosmetic preview only, doesn't change what's actually saved.
       const previewSlot = equippedSlotIndex !== -1 ? equippedSlotIndex : (fromSlotIndex ?? 0);
       const levelBonusRows = Formulas.weaponLevelBonusRows(w, previewSlot, draft.level);
 
@@ -189,15 +246,13 @@ const WeaponsUI = {
         if (fromSlotIndex != null) {
           return `<button class="btn btn-gold" id="equip-btn" data-slot="${fromSlotIndex}">Equip to Slot ${fromSlotIndex + 1}</button>`;
         }
-        // Opened unscoped (roster grid / search) and not currently
-        // equipped anywhere — offer every slot explicitly rather than
-        // guessing which one the user wants replaced.
         return `
           <div class="weapon-equip-choices">
             <div class="ur-sub" style="width:100%;margin-bottom:4px">Equip to:</div>
             ${State.data.weapons.map((id, i) => {
-              const cur = id && Game.index.weaponById.get(id);
-              const label = cur ? `Slot ${i + 1} (replace ${escapeHtml(cur.Name_en)})` : `Slot ${i + 1} (empty)`;
+              const curWs = id && State.getWeaponInstance(id);
+              const curW = curWs && Game.index.weaponById.get(curWs.weaponId);
+              const label = curW ? `Slot ${i + 1} (replace ${escapeHtml(curW.Name_en)} Lv ${curWs.level})` : `Slot ${i + 1} (empty)`;
               return `<button class="btn btn-sm" data-equip-slot="${i}">${label}</button>`;
             }).join('')}
           </div>`;
@@ -220,6 +275,7 @@ const WeaponsUI = {
               <span class="tag">${w.IsRanged ? 'Ranged' : 'Melee'}</span>
               <span class="tag">Grade ${w.Grade}</span>
               ${equippedSlotIndex !== -1 ? `<span class="tag" style="color:var(--gold)">Equipped — Slot ${equippedSlotIndex + 1}</span>` : ''}
+              ${otherCopies.length ? `<span class="tag">+${otherCopies.length} other cop${otherCopies.length > 1 ? 'ies' : 'y'} owned</span>` : ''}
             </div>
             ${w.Story_en ? `<div class="detail-desc">${escapeHtml(w.Story_en)}</div>` : ''}
 
@@ -233,14 +289,14 @@ const WeaponsUI = {
             <h4 style="margin:14px 0 6px;font-size:.9rem">Upgrade Level</h4>
             ${levelControlHTML('lvl-slider', 1, maxLevel, draft.level, `${draft.level} / ${maxLevel}`)}
             <div class="stat-list">
-              <div class="stat-pill"><span class="stat-name">Weapon DPS (this weapon's slice)</span><span class="stat-val">${fmtNum(dps.total)}</span></div>
+              <div class="stat-pill"><span class="stat-name">Weapon DPS (this copy's slice)</span><span class="stat-val">${fmtNum(dps.total)}</span></div>
               <div class="stat-pill"><span class="stat-name">Rarity Multiplier</span><span class="stat-val">×${fmtNum(dps.mult)}</span></div>
               <div class="stat-pill"><span class="stat-name">Scroll cost (this level)</span><span class="stat-val">${scrollCost != null ? fmtNum(scrollCost) : '—'}</span></div>
             </div>
             <div class="caveat">DPS = base ${fmtNum(dps.base)} + ${fmtNum(dps.perLevel)} × (level−1), from this weapon's rarity/grade tier data. Confirmed by decompiling the game's real Dps formula: your actual in-game Dps stat multiplies this weapon's contribution by three more percentage brackets from your player level, ability/extra/special/soul upgrades, hero grade/level/evolution, VIP, and trait roll all at once — so this number is this weapon's own slice, not your full build's Dps. See docs/game_logic_deep_dive.md for the exact formula.</div>
 
             ${levelBonusRows.length ? `
-              <h4 style="margin:16px 0 6px;font-size:.9rem">Level-Up Bonuses <span style="color:var(--ink-muted);font-weight:500">(fixed, unlocks automatically as this weapon's level crosses each threshold)</span></h4>
+              <h4 style="margin:16px 0 6px;font-size:.9rem">Level-Up Bonuses <span style="color:var(--ink-muted);font-weight:500">(fixed, unlocks automatically as this copy's level crosses each threshold)</span></h4>
               <div class="milestone-list">${this._levelBonusListHTML(levelBonusRows)}</div>
             ` : ''}
 
@@ -252,7 +308,9 @@ const WeaponsUI = {
             <div class="action-row">
               <button class="btn btn-gold" id="save-btn">Save Changes</button>
               ${equipControlsHTML}
+              ${otherCopies.length ? `<button class="btn" id="copies-btn">View All ${otherCopies.length + 1} Copies</button>` : ''}
               ${chain.length > 1 ? `<button class="btn" id="tier-btn">View Fusion Chain</button>` : ''}
+              <button class="btn btn-danger" id="remove-btn">Remove This Copy</button>
               ${fromSlotIndex != null ? `<button class="btn" id="back-btn">← Back to list</button>` : ''}
             </div>
           </div>
@@ -260,6 +318,7 @@ const WeaponsUI = {
 
       wireLevelControl('lvl-slider', (level) => { draft.level = level; renderBody(); });
       document.getElementById('back-btn')?.addEventListener('click', () => this.openPicker(fromSlotIndex));
+      document.getElementById('copies-btn')?.addEventListener('click', () => this.openCopiesList(w.id, fromSlotIndex));
       document.getElementById('save-btn').addEventListener('click', () => {
         commitDraft();
         UI.closeModal();
@@ -274,7 +333,7 @@ const WeaponsUI = {
       document.getElementById('equip-btn')?.addEventListener('click', (e) => {
         const slot = Number(e.target.dataset.slot);
         commitDraft();
-        State.equipWeapon(slot, weaponId);
+        State.equipWeapon(slot, instanceId);
         UI.closeModal();
         UI.toast(`Equipped to Weapon ${slot + 1}`);
       });
@@ -282,10 +341,16 @@ const WeaponsUI = {
         btn.addEventListener('click', () => {
           const slot = Number(btn.dataset.equipSlot);
           commitDraft();
-          State.equipWeapon(slot, weaponId);
+          State.equipWeapon(slot, instanceId);
           UI.closeModal();
           UI.toast(`Equipped to Weapon ${slot + 1}`);
         });
+      });
+      document.getElementById('remove-btn').addEventListener('click', () => {
+        if (!confirm(`Remove this copy of ${w.Name_en} (Lv ${draft.level})? This can't be undone.`)) return;
+        State.removeWeaponCopy(instanceId);
+        UI.closeModal();
+        UI.toast('Copy removed');
       });
       this._wireAffixEvents(draft, bonusPool, maxAffixes, renderBody);
     };

@@ -784,11 +784,11 @@ const Formulas = {
     // Weapon / WeaponLevelBonus / WeaponOption — summed across all 6 equipped slots.
     {
       let weaponBase = 0, weaponLevelBonus = 0, weaponOption = 0;
-      State.data.weapons.forEach((weaponId, i) => {
-        if (!weaponId) return;
-        const w = Game.index.weaponById.get(weaponId);
+      State.data.weapons.forEach((instanceId, i) => {
+        if (!instanceId) return;
+        const ws = State.getWeaponInstance(instanceId);
+        const w = ws && Game.index.weaponById.get(ws.weaponId);
         if (!w) return;
-        const ws = State.getWeaponState(weaponId);
         const dps = this.weaponDPS(w, ws.level);
         weaponBase += dps.base;
         for (const { row, unlocked, slotOk } of this.weaponLevelBonusRows(w, i, ws.level)) {
@@ -828,10 +828,10 @@ const Formulas = {
 
     // CostumeEquipMainWeaponBonusOption — Weapon 1's category affinity bonus, if it grants Power (type 1).
     {
-      const slot0Id = State.data.weapons[0];
+      const slot0Instance = State.data.weapons[0] && State.getWeaponInstance(State.data.weapons[0]);
       let val = 0, note = 'No weapon in Weapon 1 slot';
-      if (slot0Id) {
-        const w = Game.index.weaponById.get(slot0Id);
+      if (slot0Instance) {
+        const w = Game.index.weaponById.get(slot0Instance.weaponId);
         const cat = w && Game.index.weaponCategoryById.get(w.Category);
         if (cat) {
           // Class_OptionType/Value come through as a plain string (not an
@@ -961,11 +961,11 @@ const Formulas = {
       if (delta > 0) candidates.push({ label, delta, nav });
     };
 
-    State.data.weapons.forEach((weaponId, i) => {
-      if (!weaponId) return;
-      const w = Game.index.weaponById.get(weaponId);
-      const ws = State.data.weaponRoster[weaponId];
-      if (!w || !ws || ws.level >= this.weaponMaxLevel(w)) return;
+    State.data.weapons.forEach((instanceId, i) => {
+      if (!instanceId) return;
+      const ws = State.data.weaponRoster[instanceId];
+      const w = ws && Game.index.weaponById.get(ws.weaponId);
+      if (!w || ws.level >= this.weaponMaxLevel(w)) return;
       tryStep(`${w.Name_en} (Weapon ${i + 1}) → Lv ${ws.level + 1}`, 'weapons',
         () => { ws.level += 1; }, () => { ws.level -= 1; });
     });
