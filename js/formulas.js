@@ -784,16 +784,17 @@ const Formulas = {
     // Weapon / WeaponLevelBonus / WeaponOption — summed across all 6 equipped slots.
     {
       let weaponBase = 0, weaponLevelBonus = 0, weaponOption = 0;
-      State.data.weapons.forEach((slot, i) => {
-        if (!slot) return;
-        const w = Game.index.weaponById.get(slot.weaponId);
+      State.data.weapons.forEach((weaponId, i) => {
+        if (!weaponId) return;
+        const w = Game.index.weaponById.get(weaponId);
         if (!w) return;
-        const dps = this.weaponDPS(w, slot.level);
+        const ws = State.getWeaponState(weaponId);
+        const dps = this.weaponDPS(w, ws.level);
         weaponBase += dps.base;
-        for (const { row, unlocked, slotOk } of this.weaponLevelBonusRows(w, i, slot.level)) {
+        for (const { row, unlocked, slotOk } of this.weaponLevelBonusRows(w, i, ws.level)) {
           if (unlocked && slotOk) weaponLevelBonus += num(row.Amount) * 1000;
         }
-        for (const roll of (slot.bonusRolls || [])) {
+        for (const roll of (ws.bonusRolls || [])) {
           const opt = Game.index.weaponBonusOptionById.get(roll.optionId);
           if (!opt || opt.PropertyName !== 'WEAPON_BONUS_OP_ATTACK') continue;
           const mult = opt.MinValue + (roll.pct / 100) * (opt.MaxValue - opt.MinValue);
@@ -827,10 +828,10 @@ const Formulas = {
 
     // CostumeEquipMainWeaponBonusOption — Weapon 1's category affinity bonus, if it grants Power (type 1).
     {
-      const slot0 = State.data.weapons[0];
+      const slot0Id = State.data.weapons[0];
       let val = 0, note = 'No weapon in Weapon 1 slot';
-      if (slot0) {
-        const w = Game.index.weaponById.get(slot0.weaponId);
+      if (slot0Id) {
+        const w = Game.index.weaponById.get(slot0Id);
         const cat = w && Game.index.weaponCategoryById.get(w.Category);
         if (cat) {
           // Class_OptionType/Value come through as a plain string (not an
@@ -960,12 +961,13 @@ const Formulas = {
       if (delta > 0) candidates.push({ label, delta, nav });
     };
 
-    State.data.weapons.forEach((slot, i) => {
-      if (!slot) return;
-      const w = Game.index.weaponById.get(slot.weaponId);
-      if (!w || slot.level >= this.weaponMaxLevel(w)) return;
-      tryStep(`${w.Name_en} (Weapon ${i + 1}) → Lv ${slot.level + 1}`, 'weapons',
-        () => { slot.level += 1; }, () => { slot.level -= 1; });
+    State.data.weapons.forEach((weaponId, i) => {
+      if (!weaponId) return;
+      const w = Game.index.weaponById.get(weaponId);
+      const ws = State.data.weaponRoster[weaponId];
+      if (!w || !ws || ws.level >= this.weaponMaxLevel(w)) return;
+      tryStep(`${w.Name_en} (Weapon ${i + 1}) → Lv ${ws.level + 1}`, 'weapons',
+        () => { ws.level += 1; }, () => { ws.level -= 1; });
     });
 
     if (hero.level < costume.Max_Lv) {

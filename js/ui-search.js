@@ -78,10 +78,13 @@ const GlobalSearchUI = {
       if (owned) HeroesUI.openEnhance(owned.id);
       else HeroesUI.openAddPicker();
     } else if (type === 'weapon') {
-      const slotIndex = State.data.weapons.findIndex(w => w && w.weaponId === id);
+      // Every weapon is always browsable/levelable now (see "Weapon
+      // roster" in CLAUDE.md), not just ones currently equipped — open
+      // its detail view directly regardless of equip status, same
+      // read-only-safe click behavior this app already uses for Monsters/
+      // Farmable Items (a search click never silently equips anything).
       State.setTab('weapons');
-      if (slotIndex !== -1) WeaponsUI.openDetail(slotIndex, id);
-      else WeaponsUI.openPicker(0);
+      WeaponsUI.openDetail(id);
     }
   },
 };

@@ -10,7 +10,23 @@ const SCHEMA_VERSION = 1;
 function freshState() {
   return {
     schemaVersion: SCHEMA_VERSION,
-    weapons: [null, null, null, null, null, null], // {weaponId, level, bonusRolls:[{optionId,pct}]}
+    // weapons: which weapon (by id) occupies each of the 6 equip slots —
+    // just a pointer, not where level/rolls live (see weaponRoster below).
+    // Matches the real game directly: a direct user report with 3 real
+    // screenshots (2026-10-24) showed every weapon in the whole catalog
+    // keeps its own level even while unequipped (shown "Lv.1" in the
+    // roster grid, not absent) — this app previously stored level/rolls
+    // INSIDE the slot itself, so swapping a weapon out silently discarded
+    // its progress. See "Weapon roster" in CLAUDE.md for the full writeup.
+    weapons: [null, null, null, null, null, null],
+    // weaponRoster: { [weaponId]: {level, bonusRolls:[{optionId,pct}]} } —
+    // persists independent of slot/equip status. A weaponId with no entry
+    // here is implicitly level 1 / no rolls (matching the real game's own
+    // default), not "doesn't exist" — every weapon in the catalog is
+    // always browsable/levelable, there's no separate "ownership" gate
+    // the way Heroes has (confirmed: the real roster grid shows literally
+    // every weapon in the game, not just ones explicitly added).
+    weaponRoster: {},
     traits: { slots: Array(10).fill(null) },        // traitOptionId per slot (2 groups x 5 synergy types)
     upgrades: {
       ability: {},  // { [abilityType]: level }
@@ -52,28 +68,44 @@ const State = {
   },
 
   // --- Weapons -----------------------------------------------------------
+  // See the `weapons`/`weaponRoster` field comments in freshState() above —
+  // level/rolls live in the roster, keyed by weaponId, independent of
+  // whether (or where) that weapon is currently equipped.
 
-  setWeaponSlot(slotIndex, weaponId) {
-    this.data.weapons[slotIndex] = weaponId == null ? null : { weaponId, level: 1, bonusRolls: [] };
+  getWeaponState(weaponId) {
+    return this.data.weaponRoster[weaponId] || { level: 1, bonusRolls: [] };
+  },
+
+  _ensureWeaponRosterEntry(weaponId) {
+    if (!this.data.weaponRoster[weaponId]) this.data.weaponRoster[weaponId] = { level: 1, bonusRolls: [] };
+    return this.data.weaponRoster[weaponId];
+  },
+
+  equipWeapon(slotIndex, weaponId) {
+    if (weaponId == null) { this.clearWeaponSlot(slotIndex); return; }
+    // A weapon can only occupy one slot at a time — if it's already
+    // equipped elsewhere, move it rather than leaving a duplicate.
+    const prevSlot = this.data.weapons.indexOf(weaponId);
+    if (prevSlot !== -1 && prevSlot !== slotIndex) this.data.weapons[prevSlot] = null;
+    this._ensureWeaponRosterEntry(weaponId);
+    this.data.weapons[slotIndex] = weaponId;
     this.notify();
   },
 
   clearWeaponSlot(slotIndex) {
+    // Roster data (level/rolls) is deliberately left untouched — this is
+    // the actual fix for the reported data-loss bug.
     this.data.weapons[slotIndex] = null;
     this.notify();
   },
 
-  setWeaponLevel(slotIndex, level) {
-    const slot = this.data.weapons[slotIndex];
-    if (!slot) return;
-    slot.level = level;
+  setWeaponLevel(weaponId, level) {
+    this._ensureWeaponRosterEntry(weaponId).level = level;
     this.notify();
   },
 
-  setWeaponBonusRolls(slotIndex, rolls) {
-    const slot = this.data.weapons[slotIndex];
-    if (!slot) return;
-    slot.bonusRolls = rolls;
+  setWeaponBonusRolls(weaponId, rolls) {
+    this._ensureWeaponRosterEntry(weaponId).bonusRolls = rolls;
     this.notify();
   },
 
@@ -207,7 +239,9 @@ function migrate(obj) {
   // an older/partial export never crashes the app.
   const fresh = freshState();
   const merged = { ...fresh, ...obj };
-  merged.weapons = Array.isArray(obj.weapons) && obj.weapons.length === 6 ? obj.weapons : fresh.weapons;
+  const { weapons, weaponRoster } = migrateWeaponRoster(obj);
+  merged.weapons = weapons;
+  merged.weaponRoster = weaponRoster;
   merged.traits = obj.traits && Array.isArray(obj.traits.slots) ? obj.traits : fresh.traits;
   merged.upgrades = { ...fresh.upgrades, ...(obj.upgrades || {}) };
   merged.heroes = (Array.isArray(obj.heroes) ? obj.heroes : []).map(migrateHeroRunes);
@@ -229,6 +263,29 @@ function migrateHeroRunes(hero) {
   if (hero.rune) runes[0] = hero.rune;
   const { rune, ...rest } = hero;
   return { ...rest, runes };
+}
+
+// A build saved before the weapon-roster system (2026-10-24) has
+// `weapons: [{weaponId, level, bonusRolls}|null, ...6]` — level/rolls
+// lived INSIDE the slot, so re-slotting a weapon silently discarded its
+// progress (the reported bug). Migrates each slot's embedded data into a
+// real roster entry (keyed by weaponId, surviving unequip) and reduces
+// the slot itself to a bare weaponId pointer. A save already on the new
+// format (slot entries are plain ids/null, not objects) passes through
+// unchanged — detected per-slot, not globally, so a partially-migrated
+// or hand-edited save still comes through correctly.
+function migrateWeaponRoster(obj) {
+  const weapons = Array.isArray(obj.weapons) && obj.weapons.length === 6 ? obj.weapons : [null, null, null, null, null, null];
+  const roster = { ...(obj.weaponRoster || {}) };
+  const newWeapons = weapons.map(slot => {
+    if (slot == null) return null;
+    if (typeof slot === 'object') {
+      if (!roster[slot.weaponId]) roster[slot.weaponId] = { level: slot.level || 1, bonusRolls: slot.bonusRolls || [] };
+      return slot.weaponId;
+    }
+    return slot;
+  });
+  return { weapons: newWeapons, weaponRoster: roster };
 }
 
 function cryptoId() {

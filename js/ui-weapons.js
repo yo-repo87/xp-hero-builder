@@ -1,12 +1,26 @@
 // ---------------------------------------------------------------------------
-// ui-weapons.js — the 6-slot weapon loadout grid + weapon picker/upgrade modal.
+// ui-weapons.js — the 6-slot weapon loadout grid, a persistent "every
+// weapon in the game" roster grid below it, a slot-scoped quick-pick
+// modal, and the per-weapon level/bonus-roll detail modal.
+//
+// Weapon level/bonusRolls live in State.data.weaponRoster, keyed by
+// weaponId, independent of whether (or where) that weapon is currently
+// equipped — see the field comment in state.js for the full writeup.
+// This mirrors the real game directly: a direct user report with 3 real
+// screenshots (2026-10-24) showed every weapon in the whole catalog is
+// always browsable/levelable (shown "Lv.1" by default, not absent) and
+// keeps its own level even while unequipped — this app previously stored
+// level/rolls INSIDE the equip slot itself, so swapping a weapon out of a
+// slot silently discarded its progress. See "Weapon roster" in CLAUDE.md.
 // ---------------------------------------------------------------------------
 
 const WeaponsUI = {
 
   // Layout matches the real in-game Equipment screen: 3 slots flanking each
   // side of a center hero-preview panel, slot 1 marked MAIN (real screen's
-  // top-left slot is a distinct, larger "main hand" slot).
+  // top-left slot is a distinct, larger "main hand" slot). Below that, a
+  // persistent roster grid (every weapon in the game, real level, EQUIPPED
+  // tag) — the real screen's own always-visible "WEAPON" grid, not a modal.
   render() {
     const grid = document.getElementById('weapon-slot-grid');
     const left = [0, 1, 2].map(i => this._slotHTML(State.data.weapons[i], i)).join('');
@@ -28,11 +42,37 @@ const WeaponsUI = {
     grid.querySelectorAll('.weapon-slot').forEach(el => {
       el.addEventListener('click', () => this.openPicker(Number(el.dataset.slot)));
     });
+    this._renderRoster();
   },
 
-  _slotHTML(slot, i) {
+  _renderRoster() {
+    const grid = document.getElementById('weapon-roster-grid');
+    if (!grid) return;
+    const weapons = Game.db.WeaponData.slice().sort((a, b) => a.Category - b.Category || a.Rarity - b.Rarity);
+    grid.innerHTML = weapons.map(w => this._rosterCardHTML(w)).join('');
+    grid.querySelectorAll('[data-weapon]').forEach(el => {
+      el.addEventListener('click', () => this.openDetail(Number(el.dataset.weapon)));
+    });
+  },
+
+  _rosterCardHTML(w) {
+    const slotIndex = State.data.weapons.indexOf(w.id);
+    const ws = State.getWeaponState(w.id);
+    const r = Game.rarityColor(w.Rarity);
+    return `
+      <div class="picker-card weapon-roster-card" data-weapon="${w.id}" style="${rarityStyle(w.Rarity)}">
+        ${slotIndex !== -1 ? `<span class="pc-equipped-badge">EQUIPPED</span>` : ''}
+        <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
+        <div class="pc-name">${escapeHtml(w.Name_en)}</div>
+        <div class="pc-tag">${rarityPip(w.Rarity)}${r.name}</div>
+        <div class="pc-level">Lv ${ws.level}</div>
+      </div>`;
+  },
+
+  _slotHTML(weaponId, i) {
     const mainTag = i === 0 ? `<span class="slot-main-tag">MAIN</span>` : '';
-    if (!slot) {
+    const w = weaponId && Game.index.weaponById.get(weaponId);
+    if (!w) {
       return `
         <div class="weapon-slot" data-slot="${i}">
           ${mainTag}
@@ -40,18 +80,21 @@ const WeaponsUI = {
           <div class="slot-empty-icon">+</div>
         </div>`;
     }
-    const w = Game.index.weaponById.get(slot.weaponId);
-    if (!w) return this._slotHTML(null, i);
+    const ws = State.getWeaponState(weaponId);
     return `
       <div class="weapon-slot filled" data-slot="${i}" style="${rarityStyle(w.Rarity)}">
         ${mainTag}
-        <span class="slot-level-badge">Lv ${slot.level}</span>
+        <span class="slot-level-badge">Lv ${ws.level}</span>
         <div class="slot-art"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
       </div>`;
   },
 
+  // Slot-scoped quick-pick: clicking any of the 6 equip slots (empty or
+  // filled) opens this, scoped to swapping that one slot specifically.
+  // The standalone roster grid below the rig is the other, unscoped way
+  // to reach a weapon's detail view (see _renderRoster above).
   openPicker(slotIndex) {
-    const currentSlot = State.data.weapons[slotIndex];
+    const currentWeaponId = State.data.weapons[slotIndex];
     const state = { category: 'all' };
 
     const renderBody = () => {
@@ -67,14 +110,9 @@ const WeaponsUI = {
         </div>
         <div class="picker-grid">
           ${weapons.map(w => {
-            const r = Game.rarityColor(w.Rarity);
-            const isCurrent = currentSlot && currentSlot.weaponId === w.id;
-            return `
-              <div class="picker-card ${isCurrent ? 'selected' : ''}" data-weapon="${w.id}" style="${rarityStyle(w.Rarity)}">
-                <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
-                <div class="pc-name">${escapeHtml(w.Name_en)}</div>
-                <div class="pc-tag">${rarityPip(w.Rarity)}${r.name}</div>
-              </div>`;
+            const isCurrent = currentWeaponId === w.id;
+            const card = this._rosterCardHTML(w);
+            return isCurrent ? card.replace('class="picker-card weapon-roster-card"', 'class="picker-card weapon-roster-card selected"') : card;
           }).join('')}
         </div>`;
       body.innerHTML = filterHTML;
@@ -83,14 +121,14 @@ const WeaponsUI = {
         renderBody();
       }));
       body.querySelectorAll('[data-weapon]').forEach(el => el.addEventListener('click', () => {
-        this.openDetail(slotIndex, Number(el.dataset.weapon));
+        this.openDetail(Number(el.dataset.weapon), slotIndex);
       }));
     };
 
     UI.openModal(`
       <div class="modal-header">
         <h3>Weapon ${slotIndex + 1} — Choose Weapon</h3>
-        ${currentSlot ? `<button class="btn btn-sm btn-danger" id="unequip-btn">Unequip</button>` : ''}
+        ${currentWeaponId ? `<button class="btn btn-sm btn-danger" id="unequip-btn">Unequip</button>` : ''}
         <button class="modal-close" id="modal-close">✕</button>
       </div>
       <div class="modal-body" id="modal-body-target"></div>
@@ -100,32 +138,70 @@ const WeaponsUI = {
     document.getElementById('unequip-btn')?.addEventListener('click', () => {
       State.clearWeaponSlot(slotIndex);
       UI.closeModal();
-      UI.toast('Weapon unequipped');
+      UI.toast('Weapon unequipped — its level and rolls are kept, find it again in the weapon roster below');
     });
     renderBody();
   },
 
-  openDetail(slotIndex, weaponId) {
+  // weaponId is always the primary key now (level/rolls live in the
+  // roster, not in any one slot). `fromSlotIndex` is optional context:
+  // set when opened via openPicker's "fill this one empty/filled slot"
+  // flow (shows a single "Equip to Slot N" button and a "Back to list"
+  // link back to that picker); left null when opened from the standalone
+  // roster grid or global search (shows a per-slot equip choice instead,
+  // since there's no single slot already implied).
+  openDetail(weaponId, fromSlotIndex = null) {
     const w = Game.index.weaponById.get(weaponId);
     const rarityRow = Formulas.rarityRow(w);
     const maxLevel = Formulas.weaponMaxLevel(w);
-    const currentSlot = State.data.weapons[slotIndex];
-    const isEquippedHere = currentSlot && currentSlot.weaponId === weaponId;
+    const equippedSlotIndex = State.data.weapons.indexOf(weaponId);
+    const ws = State.getWeaponState(weaponId);
 
-    // draft mirrors state if already equipped in this slot, else starts fresh
-    const draft = isEquippedHere
-      ? { level: currentSlot.level, bonusRolls: [...(currentSlot.bonusRolls || [])] }
-      : { level: 1, bonusRolls: [] };
+    // draft is a local, unsaved working copy — "Save Changes"/"Equip"/
+    // "Unequip" below all commit it to the roster explicitly, so a
+    // half-adjusted slider never silently persists on its own.
+    const draft = { level: ws.level, bonusRolls: [...(ws.bonusRolls || [])] };
 
     const r = Game.rarityColor(w.Rarity);
     const chain = Game.weaponChain(w.id);
     const bonusPool = Formulas.bonusOptionPool();
 
+    const commitDraft = () => {
+      State.setWeaponLevel(weaponId, draft.level);
+      State.setWeaponBonusRolls(weaponId, draft.bonusRolls);
+    };
+
     const renderBody = () => {
       const dps = Formulas.weaponDPS(w, draft.level);
       const scrollCost = Formulas.scrollCostForLevel(draft.level);
       const maxAffixes = rarityRow ? rarityRow.BonusOptionCount : 0;
-      const levelBonusRows = Formulas.weaponLevelBonusRows(w, slotIndex, draft.level);
+      // Level-bonus SlotType preview: use the real equipped slot if this
+      // weapon is currently in one, else whichever slot this view was
+      // opened for (quick-pick flow), else slot 0 as a neutral default —
+      // cosmetic preview only, doesn't change what's actually saved.
+      const previewSlot = equippedSlotIndex !== -1 ? equippedSlotIndex : (fromSlotIndex ?? 0);
+      const levelBonusRows = Formulas.weaponLevelBonusRows(w, previewSlot, draft.level);
+
+      const equipControlsHTML = (() => {
+        if (equippedSlotIndex !== -1) {
+          return `<button class="btn" id="unequip-btn">Unequip (keeps level &amp; rolls)</button>`;
+        }
+        if (fromSlotIndex != null) {
+          return `<button class="btn btn-gold" id="equip-btn" data-slot="${fromSlotIndex}">Equip to Slot ${fromSlotIndex + 1}</button>`;
+        }
+        // Opened unscoped (roster grid / search) and not currently
+        // equipped anywhere — offer every slot explicitly rather than
+        // guessing which one the user wants replaced.
+        return `
+          <div class="weapon-equip-choices">
+            <div class="ur-sub" style="width:100%;margin-bottom:4px">Equip to:</div>
+            ${State.data.weapons.map((id, i) => {
+              const cur = id && Game.index.weaponById.get(id);
+              const label = cur ? `Slot ${i + 1} (replace ${escapeHtml(cur.Name_en)})` : `Slot ${i + 1} (empty)`;
+              return `<button class="btn btn-sm" data-equip-slot="${i}">${label}</button>`;
+            }).join('')}
+          </div>`;
+      })();
 
       body.innerHTML = `
         <div class="detail-layout">
@@ -143,6 +219,7 @@ const WeaponsUI = {
               <span class="tag">${escapeHtml(weaponCategoryName(w.Category))} · ${escapeHtml(weaponClassName(w.Category))}</span>
               <span class="tag">${w.IsRanged ? 'Ranged' : 'Melee'}</span>
               <span class="tag">Grade ${w.Grade}</span>
+              ${equippedSlotIndex !== -1 ? `<span class="tag" style="color:var(--gold)">Equipped — Slot ${equippedSlotIndex + 1}</span>` : ''}
             </div>
             ${w.Story_en ? `<div class="detail-desc">${escapeHtml(w.Story_en)}</div>` : ''}
 
@@ -173,21 +250,42 @@ const WeaponsUI = {
             ` : ''}
 
             <div class="action-row">
-              <button class="btn btn-gold" id="equip-btn">${isEquippedHere ? 'Save Changes' : `Equip to Slot ${slotIndex + 1}`}</button>
-              ${chain.length > 1 ? `<button class="btn" id="tier-btn">${'View Fusion Chain'}</button>` : ''}
-              <button class="btn" id="back-btn">← Back to list</button>
+              <button class="btn btn-gold" id="save-btn">Save Changes</button>
+              ${equipControlsHTML}
+              ${chain.length > 1 ? `<button class="btn" id="tier-btn">View Fusion Chain</button>` : ''}
+              ${fromSlotIndex != null ? `<button class="btn" id="back-btn">← Back to list</button>` : ''}
             </div>
           </div>
         </div>`;
 
       wireLevelControl('lvl-slider', (level) => { draft.level = level; renderBody(); });
-      document.getElementById('back-btn').addEventListener('click', () => this.openPicker(slotIndex));
-      document.getElementById('equip-btn').addEventListener('click', () => {
-        State.setWeaponSlot(slotIndex, w.id);
-        State.setWeaponLevel(slotIndex, draft.level);
-        State.setWeaponBonusRolls(slotIndex, draft.bonusRolls);
+      document.getElementById('back-btn')?.addEventListener('click', () => this.openPicker(fromSlotIndex));
+      document.getElementById('save-btn').addEventListener('click', () => {
+        commitDraft();
         UI.closeModal();
-        UI.toast(isEquippedHere ? 'Weapon updated' : `Equipped to Weapon ${slotIndex + 1}`);
+        UI.toast(`${w.Name_en} saved — Lv ${draft.level}`);
+      });
+      document.getElementById('unequip-btn')?.addEventListener('click', () => {
+        commitDraft();
+        State.clearWeaponSlot(equippedSlotIndex);
+        UI.closeModal();
+        UI.toast('Weapon unequipped — its level and rolls are kept');
+      });
+      document.getElementById('equip-btn')?.addEventListener('click', (e) => {
+        const slot = Number(e.target.dataset.slot);
+        commitDraft();
+        State.equipWeapon(slot, weaponId);
+        UI.closeModal();
+        UI.toast(`Equipped to Weapon ${slot + 1}`);
+      });
+      body.querySelectorAll('[data-equip-slot]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const slot = Number(btn.dataset.equipSlot);
+          commitDraft();
+          State.equipWeapon(slot, weaponId);
+          UI.closeModal();
+          UI.toast(`Equipped to Weapon ${slot + 1}`);
+        });
       });
       this._wireAffixEvents(draft, bonusPool, maxAffixes, renderBody);
     };

@@ -4521,6 +4521,112 @@ explicit test cases — all pass — plus the full existing regression suite
 (Rune/Special Upgrade tests) confirming zero collateral breakage.
 `node --check` clean on both touched files.
 
+## Weapon roster — a real data-loss bug fixed (2026-10-24)
+
+User reported directly: "when i add a weapon to the page and go to change
+it the stats for that weapon get removed," and asked whether weapons
+could work like Heroes do — own and level several, not just the 6
+currently equipped — and confirmed the real game works exactly that way.
+3 real screenshots (`XP Hero Images/Weapons 01-03.PNG`, not committed —
+personal account data) of the live Equipment screen confirmed it
+precisely: a persistent "WEAPON" grid below the 6 equip slots lists
+**every weapon in the game**, each showing its own real level (a
+never-touched weapon shows "Lv.1," not absent), with "EQUIPPED" tags on
+whichever 6 currently fill the slots above. Unequipping or swapping a
+weapon doesn't erase it — it just drops off the equipped set and keeps
+sitting in the roster at its own level.
+
+**This app's own data model was the direct cause.** `State.data.weapons`
+was `[{weaponId, level, bonusRolls}|null, ...6]` — level and bonus rolls
+lived *inside* the slot object itself, not in any independent, persistent
+place. Equipping a different weapon into a slot replaced that whole
+object, silently discarding whatever the previous occupant's level and
+rolls had been — exactly the reported bug, not a cosmetic issue.
+
+**Redesigned to match the real game, mirroring the pattern this app
+already uses for Heroes** (a persistent roster, separate from which one
+is "active"): `State.data.weapons` is now `[weaponId|null, ...6]` — just
+pointers to which weapon occupies each slot — and a new
+`State.data.weaponRoster` (`{[weaponId]: {level, bonusRolls}}`) holds the
+actual progress, keyed by weapon id, independent of slot/equip status. A
+weaponId with no roster entry is implicitly level 1 / no rolls (matching
+the real game's own default), not "doesn't exist" — unlike Heroes, there
+is deliberately no separate "ownership" gate for weapons, since the real
+roster grid shows literally every weapon in the catalog already
+browsable/levelable, confirmed directly from the screenshots.
+
+**Shipped**:
+- `state.js`: `freshState()`'s new `weaponRoster` field; `getWeaponState
+  (weaponId)` (read, defaults to `{level:1, bonusRolls:[]}`);
+  `equipWeapon(slotIndex, weaponId)` (creates a roster entry if new,
+  moves the weapon out of any *other* slot it's currently in first — a
+  weapon can only occupy one slot at a time); `clearWeaponSlot(slotIndex)`
+  (now correctly leaves roster data untouched — the actual fix);
+  `setWeaponLevel(weaponId, level)`/`setWeaponBonusRolls(weaponId,
+  rolls)` (re-keyed from `slotIndex` to `weaponId`, mutate the roster
+  directly). A new `migrateWeaponRoster()`, run through the same
+  `migrate()` choke point every other save/import/cloud-load already
+  goes through, upgrades an old save's embedded-in-slot shape into a real
+  roster entry (detected per-slot — object vs plain id — so a
+  partially-migrated or hand-edited save still comes through correctly),
+  losing nothing.
+- `formulas.js`: `totalDpsBreakdown`'s weapon loop, the
+  `CostumeEquipMainWeaponBonusOption` source, and `nextBestUpgrades`'s
+  weapon-level-step simulation all updated to read `State.data.weapons[i]`
+  as a plain weaponId and pull level/rolls from
+  `State.getWeaponState()`/`State.data.weaponRoster` instead of the old
+  embedded shape.
+- `ui-weapons.js`: the 6-slot equip rig is visually unchanged, but a new
+  persistent **Weapon Roster** grid now sits below it on the page itself
+  (not a modal) — every weapon in the catalog, its real level, an
+  "EQUIPPED" tag for whichever 6 are currently slotted — matching the
+  real screen's own always-visible layout rather than hiding this behind
+  a picker. Clicking any card (equipped or not) opens `openDetail
+  (weaponId, fromSlotIndex=null)` — reworked to take `weaponId` as the
+  primary key (not `slotIndex`): a "Save Changes" button always commits
+  the level/roll draft to the roster regardless of equip status (the
+  actual "still adjust their level" ask); equip/unequip is a separate,
+  orthogonal action. Opened via a specific empty/filled slot's quick-pick
+  (`openPicker`), it shows one "Equip to Slot N" button scoped to that
+  slot (old behavior, unchanged); opened unscoped, from the new roster
+  grid or global search, it shows all 6 slots explicitly ("Slot 1
+  (empty)" / "Slot 1 (replace X)") rather than guessing which one to
+  replace.
+- `ui-search.js`: a weapon search result now always opens that weapon's
+  real detail view directly (`WeaponsUI.openDetail(id)`), since every
+  weapon is browsable regardless of equip status now — this actually
+  makes the existing "a search click never silently mutates your build"
+  safety guarantee (see "@mention notifications and a global search bar"
+  above) *more* uniform across catalogs, not a new exception: Monsters/
+  Farmable Items were already pure read-only lookups, and Weapons now
+  joins them instead of being the one type that needed an equip-side-
+  effect workaround.
+- `ui-guide.js`: the Weapon Category Synergy / loadout-completeness advice
+  blocks updated to read weapon level via `State.getWeaponState()`
+  instead of the old embedded-in-slot shape.
+- `index.html`/`css/style.css`: a new `#weapon-roster-grid` container
+  (reuses the existing `.picker-grid`/`.picker-card` classes, already
+  generic enough to render inline on the page, not just inside a modal);
+  new `.pc-level`/`.pc-equipped-badge` for the roster card's level text
+  and gold "EQUIPPED" tag, and `.weapon-equip-choices` for the unscoped
+  6-slot equip-choice row.
+
+Verified with a dedicated Node harness covering the exact reported bug
+end to end (equip a weapon, level it, swap the slot to a different
+weapon, confirm the first weapon's level/rolls survive in the roster —
+the old code failed this, the new code passes), a weapon moving between
+two slots, legacy-save migration (both the embedded-object shape and an
+already-migrated plain-id shape pass through correctly), `
+totalDpsBreakdown` correctly reading the new roster-backed level, and `
+nextBestUpgrades`'s weapon-stepping simulation still correctly mutating
+and reverting through the roster. Also smoke-tested every one of the 84
+real catalog weapons' card HTML renders without throwing, in both
+equipped and unequipped states. No browser/Playwright tool was available
+this session to verify the actual rendered page visually — flagged
+honestly rather than silently skipped, consistent with this project's
+practice elsewhere (see "Forum" above for a prior instance of the same
+disclosure) — worth a real visual pass next time one's available.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -5631,9 +5737,40 @@ explicit test cases — all pass — plus the full existing regression suite
     rather than guessing a correction, since POWER directly feeds the
     Total DPS estimate's `Ability` source. Full writeup in "Ability tab"
     above.
+61. Same session, immediate follow-up. User reported that swapping a
+    weapon out of a slot erased its saved level, and asked whether
+    weapons could own-and-level independently like Heroes do, confirming
+    the real game works exactly that way — backed by 3 real screenshots
+    of the live Equipment screen showing a persistent "every weapon in
+    the game, each at its own level" roster grid. Root cause: this app
+    stored a weapon's level/bonus rolls *inside* its equip-slot object,
+    so replacing the slot's occupant discarded them — not cosmetic, the
+    literal reported bug. Redesigned to mirror how Heroes already work: a
+    new `State.data.weaponRoster` holds level/rolls per weaponId,
+    independent of slot/equip status, with the 6 equip slots reduced to
+    plain weaponId pointers into it. Added the missing persistent "Weapon
+    Roster" grid to the Weapons tab page itself (not a modal), matching
+    the real screen's own always-visible layout — every weapon browsable
+    and levelable regardless of equip status, the actual ask. Migrated
+    existing saves automatically. Verified end to end with a dedicated
+    Node harness reproducing the exact reported bug (now fixed) plus
+    legacy-save migration, the Dps formula, and the Next Best Upgrade
+    simulation all correctly updated for the new model; smoke-tested
+    every one of the 84 real catalog weapons' card rendering. No browser
+    tool was available to verify the page visually this session — flagged
+    honestly. Full writeup in "Weapon roster" above.
 
 ## Open items / plausible next steps (not started)
 
+- **New 2026-10-24**: the Weapon Roster redesign (see "Weapon roster"
+  above) was verified thoroughly at the state/formula layer via a
+  dedicated Node harness, but no browser/Playwright tool was available
+  this session to visually confirm the new on-page roster grid, the
+  unscoped 6-slot equip-choice UI, or the modal's new Save/Equip/Unequip
+  button layout actually render and click correctly. Worth a real
+  Playwright pass (desktop + mobile, matching this project's usual
+  standard) next time one's available, before treating this as fully
+  closed.
 - **New 2026-10-24**: POWER's (Ability tree, id 1) and HP's (id 4)
   underlying `AbilityLevelUpCostInfo` checkpoint data appears genuinely
   stale against the live game — confirmed via real screenshots, not

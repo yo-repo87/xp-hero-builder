@@ -281,6 +281,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
 /* ---------- generic card grid (picker items) ---------- */
 .picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 10px; }
 .picker-card {
+  position: relative;
   border-radius: var(--radius-sm); padding: 10px; cursor: pointer; text-align: center; transition: transform .1s, filter .12s;
   border-image: url('../assets/img/ui/frame/Frame_Brown_R14.png') 30 fill;
   border-image-width: 12px; border-style: solid; border-width: 12px;
@@ -294,6 +295,16 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
   overflow-wrap: break-word; word-break: break-word;
 }
 .picker-card .pc-tag { font-size: 0.68rem; color: var(--ink-muted); margin-top: 2px; }
+.picker-card .pc-level { font-size: 0.7rem; color: var(--ink); font-weight: 700; margin-top: 3px; }
+.picker-card .pc-equipped-badge {
+  position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+  background: var(--gold); color: #3a2a12; text-shadow: none;
+  font-size: 0.6rem; font-weight: 800; letter-spacing: 0.04em;
+  padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.25); z-index: 1;
+}
+.weapon-equip-choices { display: flex; flex-wrap: wrap; gap: 6px; width: 100%; }
 
 .monster-card { position: relative; }
 .tag--boss {

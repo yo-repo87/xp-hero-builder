@@ -135,7 +135,7 @@ const GuideUI = {
 function buildAdvice(hero, costume) {
   const blocks = [];
   const equippedWeapons = State.data.weapons
-    .map(s => s && Game.index.weaponById.get(s.weaponId))
+    .map(id => id && Game.index.weaponById.get(id))
     .filter(Boolean);
 
   // --- Weapon category synergy -------------------------------------------
@@ -164,9 +164,9 @@ function buildAdvice(hero, costume) {
     const emptySlots = State.data.weapons.filter(s => !s).length;
     if (emptySlots > 0) { sev = 'sev-bad'; items.push(`${emptySlots} weapon slot${emptySlots > 1 ? 's are' : ' is'} empty — every filled slot adds DPS, so equip a weapon in each of the 6 slots first.`); }
     const underleveled = equippedWeapons.filter(w => {
-      const s = State.data.weapons.find(sl => sl && sl.weaponId === w.id);
+      const ws = State.getWeaponState(w.id);
       const max = Formulas.weaponMaxLevel(w);
-      return s && s.level < max * 0.5;
+      return ws.level < max * 0.5;
     });
     if (underleveled.length > 0) {
       sev = sev === 'sev-good' ? 'sev-warn' : sev;
