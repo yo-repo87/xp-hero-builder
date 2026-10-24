@@ -225,7 +225,7 @@ short version:
 | Hero Evolution bonus value | **Fixed 2026-09-04** by decompilation (`AddOwnEvolveStatModifications`) — was wrongly modeled as cumulative-sum across every reached tier; the real client does a single lookup at the exact current tier (`GetByCostumeAndRarity`) and multiplies its `OptionValue` by 10. |
 | Trait synergy token-counting | **Confirmed correct by decompilation** (`TraitSynergyController.CalculateSynergyTokens`) |
 | Trait/synergy percent display (Equipment tab) and `TraitRoll` Dps source | **Fixed 2026-09-04** — `rate_amount` (`TraitOptionData`, `TraitSynergyInfoData`) is per-mille (confirmed by decompiling `TraitSynergyController.GetStatModifications`), the same convention as Extra/Special/SoulUpgrade's `RateAmount`. Display now divides by 10 uniformly (replacing a guessed, inconsistent ">100 ? /100 : /1" heuristic); the Dps formula's `TraitRoll` source uses the raw value directly (no ×10 — that had been an unverified guess borrowed from the RateAmount fix and was wrong). |
-| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). **Updated 2026-10-03**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption` (the interface/vtable-dispatch functions earlier left at 0) are now fully traced and `confirmed` — see "Own vs. Equipping Dps sources, confirmed" below for the full writeup, including a real pre-existing bug this surfaced and fixed in `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption`. `WeaponLevelBonus`, `CostumeOwnEvolutionOption`, and `TraitRoll` were already `confirmed`. Only `BlessingBuff` and `VipSubscription` remain genuinely unmodeled/manual now. **Updated 2026-10-24**: `Rune` is now a confirmed-real 25th `EStatContentType` source (see "Runes confirmed to feed the real Dps formula" below) — genuinely read by the formula, but still not folded into this breakdown since the exact generic-rune-stat→`EStat` wiring wasn't decoded; adding it would mean guessing a mapping, not confirming one. |
+| Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). **Updated 2026-10-03**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption` (the interface/vtable-dispatch functions earlier left at 0) are now fully traced and `confirmed` — see "Own vs. Equipping Dps sources, confirmed" below for the full writeup, including a real pre-existing bug this surfaced and fixed in `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption`. `WeaponLevelBonus`, `CostumeOwnEvolutionOption`, and `TraitRoll` were already `confirmed`. Only `BlessingBuff` and `VipSubscription` remain genuinely unmodeled/manual now. **Updated 2026-10-24**: `Rune` is now a confirmed-real 25th `EStatContentType` source — and, as of a same-day follow-up, fully wired into this breakdown as `confirmed` too (see "Runes confirmed to feed the real Dps formula, and now wired in with real numbers" below). The generic-rune-stat→`EStat` mapping that was unresolved earlier the same day got fully decoded (a real `E_BonusOption→EStat` lookup table, read byte-for-byte from the binary) — a rune's own main effect never hits `Dps` for any currently-shipped rune, but its "TOTAL POWER" level-milestone bonus does, and that's what's summed in now. |
 | Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
 | Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **7 items are confirmed Craftable** (a real multi-item recipe — see "Craftable items") and **18 more are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with distinct "🔨 CRAFTABLE" / "🛒 SHOP EXCLUSIVE" tags rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
@@ -4209,6 +4209,73 @@ existing `test_runes.js` Node harness that nothing regressed (comment-only
 edit to `formulas.js`, string-only edit to `ui-heroes.js`), plus
 `node --check` on both files.
 
+## Runes confirmed to feed the real Dps formula, and now wired in with real numbers (2026-10-24, same-day follow-up)
+
+Immediate same-day follow-up to the section above — user asked to keep
+chasing the one gap that section left open (the generic rune families'
+`OptionType → EStat` wiring) rather than stopping at "confirmed real,
+but not wired in." Fully resolved it, with zero guessing — see
+`docs/game_logic_deep_dive.md` §9 for the full disassembly writeup; this
+section covers what actually shipped.
+
+**The resolver turned out to already have a real, named signature in the
+dump**: `E_BonusOptionExtensions.ToStat(E_BonusOption) -> EStat`. This was
+the key unlock — `RuneOptionTypeData`/`RuneUniqueOptionData`/
+`RuneLevelBonusGroupData`'s raw `OptionType` field isn't some
+rune-specific numbering at all; it's literally `E_BonusOption`, **the
+same enum this app already decoded back on 2026-09-04** for hero Level/
+Star/Evolution bonus labels. Disassembling `ToStat()` itself found a
+real 29-entry lookup table at a fixed address — read the actual bytes
+directly out of the `.so` file (not disassembled instructions, real data)
+to get the complete, zero-ambiguity mapping. The headline result:
+`E_BonusOption.DpsMult(1) → EStat.Dps`.
+
+**Checked every currently-shipped rune's real data against this mapping,
+not just the enum in the abstract.** `RuneUniqueOptionData` (a rune's own
+main effect) never uses `OptionType=1` for any rune that exists in the
+game today — confirmed by checking all of them, not assumed — so the
+main effect genuinely never feeds `Dps`. But `RuneLevelBonusGroupData`'s
+`GrantType===1` ("fixed stat bonus") rows **do**: 56 real rows are
+`OptionType=1`, Desc_en `"TOTAL POWER {0}"`, real `Value`s in the 30-550
+range (the same magnitude as every other stat type in that table, not
+an outlier). One more disassembly check (`AddLevelBonusStats`, RVA
+`0x249A9E0`) confirmed this raw `Value` is loaded as a plain integer
+(`ldrsw`) and passed straight into the formula with **zero** scaling —
+unlike `AddUniqueStat`'s own value, which goes through a real `×1000.0`
+float multiply first. That difference is exactly why the Unique Option
+and the Level Bonus need different treatment, confirmed by instruction,
+not assumed from the field names.
+
+**Shipped**: `Formulas.totalDpsBreakdown()` gained a real `Rune` source
+(`formulas.js`) — sums every one of the active hero's 7 equipped rune
+slots' unlocked `GrantType===1`/`OptionType===1` row, raw `Value` used
+directly, now tagged `confirmed`. Placed in the `mult3` bracket alongside
+`TraitRoll`/`SoulUpgrade` (the real disassembly fetches `Rune`
+immediately after `TraitRoll`, the best available signal for bracket
+placement without a fully-traced `fadd` tree — this one specific
+placement detail is inferred, not byte-confirmed, same as this formula's
+pre-existing disclosed limitation). Also fixed `runeLevelBonusRows()`'s
+display, which had been showing the raw per-mille integer with no unit
+("TOTAL POWER 50") — now divides by 10 and appends "%" ("TOTAL POWER
+5.0%"), matching this app's established `RateAmount` display convention
+(a reasoned inference from the data's consistent magnitude, not a
+byte-confirmed display fact the way the formula wiring itself is). The
+Rune panel's own caveat text (`js/ui-heroes.js`) now states plainly that
+this is folded into the Total DPS estimate, rather than describing an
+open gap that's now closed.
+
+Verified end-to-end with a dedicated Node harness, not just a syntax
+check: the new `Rune` source resolves to exactly `0` while a rune's
+milestone is locked and exactly the real raw `Value` once unlocked; a
+fully-developed test hero's actual computed `Dps` genuinely increases
+(2547 → 2674) once a maxed rune with an unlocked TOTAL POWER bonus is
+equipped — confirming the number moves the real headline result, not
+just an intermediate source value; and a full `State.data` snapshot diff
+around the call confirms zero state mutation, the same discipline this
+app's other simulation-style checks (e.g. Next Best Upgrade) already use.
+`node --check` clean on both touched files; the existing `test_runes.js`
+regression suite still passes unchanged.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -5235,6 +5302,28 @@ edit to `formulas.js`, string-only edit to `ui-heroes.js`), plus
     `totalDpsBreakdown`) — verified via the existing Node test harness
     that nothing regressed. Full writeup in "Runes confirmed to feed the
     real Dps formula" above.
+57. Same session, immediate follow-up. User asked to keep chasing the
+    one gap entry 56 left open — the generic rune families' unresolved
+    `OptionType → EStat` wiring. Found the real resolver already had a
+    named signature in the dump (`E_BonusOptionExtensions.ToStat`),
+    realized this meant the rune tables' `OptionType` field is literally
+    the same `E_BonusOption` enum this app decoded back on 2026-09-04 for
+    hero bonus labels, then read the real 29-entry lookup table's actual
+    bytes directly out of the binary for a complete, zero-ambiguity
+    mapping. Cross-checked every currently-shipped rune's real data
+    against it: a rune's own main effect never resolves to `EStat.Dps`
+    for any rune that exists today, but `RuneLevelBonusGroupData`'s
+    "TOTAL POWER" level-milestone rows do, and one more disassembly check
+    confirmed that value needs zero scaling to feed the formula directly.
+    Wired a new, real `confirmed` `Rune` source into
+    `Formulas.totalDpsBreakdown()`, fixed a real display bug this
+    surfaced along the way (`runeLevelBonusRows()` was showing the raw
+    per-mille integer with no `%` sign), and verified end-to-end with a
+    dedicated Node harness that a real test hero's computed Dps genuinely
+    increases once a maxed, unlocked rune is equipped — not just that an
+    intermediate source value changed. Full writeup in "Runes confirmed
+    to feed the real Dps formula, and now wired in with real numbers"
+    above.
 
 ## Open items / plausible next steps (not started)
 
@@ -5323,15 +5412,16 @@ edit to `formulas.js`, string-only edit to `ui-heroes.js`), plus
   bonuses. **What's still genuinely open, stated honestly rather than
   guessed at**: `GrantType 2` level-bonus rows ("grants 1 random
   attribute") have no decoded roll mechanic — shown locked/unresolved,
-  not guessed. **Updated 2026-10-24 (see "Runes confirmed to feed the
-  real Dps formula" below) — the claim that Runes don't feed the Dps
-  formula at all was WRONG and is now corrected**: `EStatContentType.Rune`
-  is confirmed real and confirmed read by `DpsStatCalculator`. Still not
-  folded into the Guide tab's Total DPS estimate, but now for a precise,
-  confirmed reason rather than a blanket "no evidence": hero-specific
-  named runes are confirmed to bypass this pipeline entirely, and the
-  generic rune families' exact `OptionType`→`EStat` wiring (which specific
-  stat row lands on the Dps-relevant `EStat`) wasn't decoded. `HeroTombRuneDropData`'s own
+  not guessed. **Updated 2026-10-24 — this item is now fully shipped, not
+  open.** The claim that Runes don't feed the Dps formula at all was
+  WRONG and is now corrected AND wired in with real numbers (see "Runes
+  confirmed to feed the real Dps formula, and now wired in with real
+  numbers" below): `EStatContentType.Rune` is a confirmed real source,
+  the full `E_BonusOption→EStat` mapping was decoded byte-for-byte from
+  the binary, and the Guide tab's Total DPS estimate now sums every
+  equipped rune's unlocked "TOTAL POWER" level-milestone bonus as a
+  `confirmed` source (a rune's own main effect never hits Dps for any
+  currently-shipped rune — only this milestone bonus does). `HeroTombRuneDropData`'s own
   `gacha_reward_id`/`gacha_reward_count`/`gacha_reward_drop_rate` fields
   (flagged back on 2026-10-01) remain a separate, still-unexplored
   bonus-roll layer.

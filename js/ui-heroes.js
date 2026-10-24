@@ -172,7 +172,7 @@ const HeroesUI = {
     return `
       <div class="rune-panel">
         ${hero.runes.map((_, i) => this._runeSlotHTML(hero, i, playerLevel)).join('')}
-        <div class="caveat">CONFIRMED by decompilation: Runes genuinely feed the real Dps formula (EStatContentType.Rune) — but only the 3 generic Melee/Ranged/Universal families, and only via an unresolved OptionType→EStat mapping (hero-specific named runes bypass this path entirely, boosting a skill value instead). See docs/game_logic_deep_dive.md §8 — not folded into the Guide tab's Total DPS estimate yet since the exact stat wiring isn't confirmed.</div>
+        <div class="caveat">CONFIRMED by decompilation and now folded into the Guide tab's Total DPS estimate (EStatContentType.Rune): any equipped rune's unlocked "TOTAL POWER" level-milestone bonus genuinely feeds the real Dps formula (resolved via the real E_BonusOption→EStat lookup table, read directly from the binary). A rune's own main effect (shown above) does NOT feed Dps — only this level-milestone bonus does, confirmed by checking every currently-shipped rune's real data. See docs/game_logic_deep_dive.md §8.</div>
       </div>`;
   },
 

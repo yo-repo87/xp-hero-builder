@@ -474,12 +474,22 @@ const Formulas = {
   // confirmed fixed stat bonus (real `{0}`-templated desc); GrantType 2
   // ("grants 1 random attribute") is a real field but its actual roll
   // mechanic was never decompiled — shown honestly, not guessed at.
+  // Display note added 2026-10-24: none of the 200 GrantType===1 rows bake
+  // a "%" into Desc_en, but every OptionType's Value sits in the same
+  // small 30-550 range this app's other confirmed per-mille sources use
+  // (RateAmount, rate_amount) — and CONFIRMED by decompilation that the
+  // real game feeds this raw Value directly into the Dps-formula's
+  // per-mille sum with zero scaling (AddLevelBonusStats loads it via
+  // `ldrsw`, a plain integer load, never touched by float math). So this
+  // divides by 10 for human display here (matching the established
+  // RateAmount convention), while totalDpsBreakdown below uses the raw
+  // value directly, per-mille, exactly as the real formula does.
   runeLevelBonusRows(rune, level) {
     const rows = Game.index.runeLevelBonusByGroup.get(rune.LevelBonusGroupID) || [];
     return rows.map(row => ({
       row,
       unlocked: level >= row.Level,
-      desc: row.GrantType === 1 ? stripRichText(row.Desc_en).replace('{0}', fmtNum(row.Value)) : null,
+      desc: row.GrantType === 1 ? stripRichText(row.Desc_en).replace('{0}', fmtNum(row.Value / 10) + '%') : null,
     }));
   },
 
@@ -758,6 +768,39 @@ const Formulas = {
       set('TraitRoll', hit ? num(hit.bonus.rate_amount) : 0, 'confirmed', 'Trait synergy bonus for "Total Attack Power" (TraitSynergyController.GetStatModifications, confirmed no ×10)');
     }
 
+    // Rune — CONFIRMED by decompilation (2026-10-24, resolved past the
+    // "unmodeled" state from the same day's earlier correction): the real
+    // E_BonusOptionExtensions.ToStat() lookup table (read directly from
+    // the binary's own data, not inferred from names) confirms
+    // E_BonusOption.DpsMult(1) -> EStat.Dps. RuneLevelBonusGroupData's
+    // GrantType===1 rows use this exact E_BonusOption-space OptionType
+    // field (confirmed: the real RuneOptionTypeData catalog's own
+    // OptionType numbering matches E_BonusOption's 1:1, e.g. 2="CRITICAL
+    // DAMAGE"=CritDamageMult), and AddLevelBonusStats (RVA 0x249A9E0)
+    // passes an OptionType===1 row's raw Value straight into the
+    // StatModification with zero scaling. Checked every currently-shipped
+    // RuneUniqueOptionData row (the OTHER source AddRuneContributions
+    // feeds): none uses OptionType===1 for any rune in the real game data,
+    // so only the level-milestone "TOTAL POWER" bonus contributes here,
+    // never the rune's own main effect. Sums every equipped slot's
+    // unlocked TOTAL POWER row, across all 7 slots (hero-specific runes
+    // ARE eligible for this — only their separate Unique Option is gated
+    // out, confirmed no such gate exists in AddLevelBonusStats).
+    {
+      let runeTotal = 0;
+      if (hero) {
+        for (const slot of hero.runes) {
+          if (!slot) continue;
+          const rune = Game.index.runeById.get(slot.runeDataId);
+          if (!rune) continue;
+          for (const { row, unlocked } of this.runeLevelBonusRows(rune, slot.level)) {
+            if (unlocked && row.GrantType === 1 && row.OptionType === 1) runeTotal += num(row.Value);
+          }
+        }
+      }
+      set('Rune', runeTotal, 'confirmed', 'Sum of every equipped rune slot’s unlocked "TOTAL POWER" level-milestone bonus (RuneLevelBonusGroupData GrantType 1/OptionType 1 — confirmed via AddLevelBonusStats + the real E_BonusOption→EStat lookup table, read directly from the binary)');
+    }
+
     // VipSubscription — no VIP-tier data table found; manual per-mille input.
     set('VipSubscription', State.data.player.vipPerMille, 'manual', 'No VIP-tier bonus table found in extracted data — enter your in-game VIP bonus % × 10');
 
@@ -772,7 +815,14 @@ const Formulas = {
 
     const mult1 = (1000 + src.WeaponOption.value + src.WeaponLevelBonus.value + src.SpecialUpgrade.value + src.ExtraUpgrade.value + src.VipSubscription.value) / 1000;
     const mult2 = (1000 + src.CostumeOwnGradeOption.value + src.CostumeOwnLevelOption.value + src.CostumeOwnEvolutionOption.value + src.CostumeEquipMainWeaponBonusOption.value) / 1000;
-    const mult3 = (1000 + src.TraitRoll.value + src.SoulUpgrade.value) / 1000;
+    // Rune placed in mult3 alongside TraitRoll/SoulUpgrade: the real
+    // disassembly fetches Rune immediately after TraitRoll (the last two
+    // of 20 fetches, right before the combine step) — the best available
+    // signal for bracket placement without a fully-traced fadd tree (see
+    // docs/game_logic_deep_dive.md §8), consistent with this formula's
+    // existing, already-disclosed "shape confirmed, not every bracket
+    // assignment" limitation.
+    const mult3 = (1000 + src.TraitRoll.value + src.SoulUpgrade.value + src.Rune.value) / 1000;
 
     const dps = Math.round(rawBase * mult1 * mult2 * mult3);
 
