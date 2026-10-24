@@ -541,36 +541,74 @@ const Formulas = {
     // data.js).
     return this._closestRow(Game.index.specialLevelsByOptionType.get(optionType), 'UpgradeLevel', level);
   },
-  // CORRECTED per direct user report against the live game (Equipment >
-  // Special tab): every stat's level cap at Altar Grade N, ONCE UNLOCKED, is
-  // a flat N*10, uniform across all stat types. `SpecialUpgradeTypeData.
-  // MaxLevelDatas`'s own 4 numbers looked like a plausible per-type
-  // cumulative-cap table but don't match what's shown in-game at grade 2
-  // (20, not 15) — wrong table for the cap *magnitude*.
-  //
-  // BUT (2026-09-04, by decompilation, following up on the weapon Level-Up
-  // Bonus fix): MaxLevelDatas' zero-vs-nonzero PATTERN turns out to be real
-  // and is a separate fact from the cap magnitude — it's exactly what
-  // `SpecialUpgradeManager.GetUnlockGrade` (RVA 0x250D6F0) reads to decide
-  // which Altar Grade a stat type first becomes available at: it calls
-  // `SpecialUpgradeTypeData.GetGradeMaxLevel(grade)` for grade=1,2,3...
-  // and returns the first grade whose entry is nonzero. E.g. FAST HEAL's
-  // MaxLevelDatas is `[0,10,25,45]` — grade 1's entry is 0, so it isn't
-  // unlocked until grade 2; DUAL TRIGGER's `[0,0,15,35]` doesn't unlock
-  // until grade 3; TRIPLE EDGE's `[0,0,0,20]` not until grade 4. Only 5 of
-  // the 11 types (the ones with a nonzero first entry) are available from
-  // grade 1. This had never been modeled — every type was previously shown
-  // upgradable at every grade — so `specialUnlockGrade` + the 0-below-
-  // unlock-grade branch below are both new.
+  // MaxLevelDatas' zero-vs-nonzero PATTERN is real (confirmed 2026-09-04 by
+  // decompilation) and is exactly what `SpecialUpgradeManager.GetUnlockGrade`
+  // (RVA 0x250D6F0) reads to decide which Altar Grade a stat type first
+  // becomes available at: it calls `SpecialUpgradeTypeData.GetGradeMaxLevel
+  // (grade)` for grade=1,2,3... and returns the first grade whose entry is
+  // nonzero. E.g. FAST HEAL's MaxLevelDatas is `[0,10,25,45]` — grade 1's
+  // entry is 0, so it isn't unlocked until grade 2; DUAL TRIGGER's
+  // `[0,0,15,35]` doesn't unlock until grade 3; TRIPLE EDGE's `[0,0,0,20]`
+  // not until grade 4. Only 5 of the 11 types (the ones with a nonzero
+  // first entry) are available from grade 1.
   specialUnlockGrade(optionType) {
     const type = Game.index.specialTypeByOptionType.get(optionType);
     const levels = type ? toArray(type.MaxLevelDatas) : [];
     for (let i = 0; i < levels.length; i++) if (num(levels[i]) > 0) return i + 1;
     return 1;
   },
+  // CORRECTED 2026-10-24 per a direct user report with 3 real in-game
+  // screenshots (Equipment > Special tab, all 11 stat types visible at the
+  // player's real Altar Grade). The 2026-09-04 "flat grade*10" fix above
+  // was itself wrong — it was reasoned from a single ambiguous data point
+  // (grade 2's cap reported as "20, not 15", which is consistent with
+  // EITHER grade*10 OR a misreading of the real table) and never actually
+  // matched any of the 11 types at any grade except by coincidence.
+  //
+  // Re-verified directly against SpecialUpgradeLevelData's own real rows,
+  // cross-checked digit-for-digit against the screenshots (not just row
+  // counts): e.g. LOAD MASTER's real screen shows "47% > 48%, Level
+  // 17/20" — and SpecialUpgradeLevelData's own UpgradeLevel=47 row has
+  // RateAmount=470 (470/10 = 47.0%, an exact match), sitting at
+  // GradeLevel=4, Level=17 (also an exact match). This confirms
+  // `SpecialUpgradeTypeData.MaxLevelDatas[grade-1]` IS the real, correct
+  // CUMULATIVE max level at that grade (not "internally consistent but
+  // unused" as the 2026-09-04 comment assumed) — this app's internal
+  // `rec.level` is already a cumulative counter (see specialRow above), so
+  // this is the correct quantity to cap it at. Verified the same way for
+  // LIFE STEAL (maxes at cumulative level 50 -> 10%, matching "Level
+  // 20/20 MAX, 10%") and SKILL COOLDOWN RATE (maxes at cumulative level 20
+  // -> 20%, matching "Level 20/20 MAX, 20%").
+  //
+  // MASSIVE MUSCLE (OptionType 1) has no SpecialUpgradeTypeData row at all
+  // (confirmed: the table only has 10 rows, covering every OTHER type) —
+  // but its own SpecialUpgradeLevelData rows follow the identical
+  // [5,15,30,50] cumulative progression as the other grade-1-available
+  // types (confirmed by reading all 50 of its own rows directly: grade
+  // boundaries fall exactly at cumulative levels 5/15/30/50, and its real
+  // screen shows "Level 20/20 MAX, 30%" — cumulative level 50, RateAmount
+  // 300 — an exact match). Hardcoded as a fallback below since there's no
+  // dedicated data row to read it from, not guessed.
   specialMaxLevelForGrade(optionType, grade) {
     if (grade < this.specialUnlockGrade(optionType)) return 0;
-    return grade * 10;
+    const type = Game.index.specialTypeByOptionType.get(optionType);
+    const levels = type ? toArray(type.MaxLevelDatas).map(num) : [5, 15, 30, 50]; // Massive Muscle fallback — confirmed via its own SpecialUpgradeLevelData rows, see comment above
+    const i = Math.min(grade, levels.length) - 1;
+    return i >= 0 ? levels[i] : 0;
+  },
+  // The real in-game UI shows a PER-GRADE-TIER-relative "Level N/M" that
+  // resets at each grade transition — NOT the cumulative counter this app
+  // stores internally. Confirmed via the LOAD MASTER example above: real
+  // cumulative level 47 displays as "Level 17/20" because grade 4's own
+  // tier spans cumulative levels 31-50 (a 20-level tier — the DELTA
+  // between grade 4's cap, 50, and grade 3's cap, 30), and 47 is 17 levels
+  // into that tier. Returns the tier's own size (`tierMax`, the "/M") and
+  // the cumulative level the tier starts at (`priorCap`, subtract this
+  // from a cumulative level to get the "N" shown before the slash).
+  specialTierBounds(optionType, grade) {
+    const priorCap = this.specialMaxLevelForGrade(optionType, grade - 1);
+    const tierCap = this.specialMaxLevelForGrade(optionType, grade);
+    return { priorCap, tierMax: tierCap - priorCap };
   },
 
   soulRow(optionType, level) {

@@ -226,7 +226,7 @@ short version:
 | Trait synergy token-counting | **Confirmed correct by decompilation** (`TraitSynergyController.CalculateSynergyTokens`) |
 | Trait/synergy percent display (Equipment tab) and `TraitRoll` Dps source | **Fixed 2026-09-04** — `rate_amount` (`TraitOptionData`, `TraitSynergyInfoData`) is per-mille (confirmed by decompiling `TraitSynergyController.GetStatModifications`), the same convention as Extra/Special/SoulUpgrade's `RateAmount`. Display now divides by 10 uniformly (replacing a guessed, inconsistent ">100 ? /100 : /1" heuristic); the Dps formula's `TraitRoll` source uses the raw value directly (no ×10 — that had been an unverified guess borrowed from the RateAmount fix and was wrong). |
 | Total DPS estimate (Guide tab) | Formula **shape confirmed** by decompiling `DpsStatCalculator`; individual source→data mappings are tagged `confirmed`/`mapped`/`manual`/`unmodeled` right in the UI (see `Formulas.totalDpsBreakdown`). **Updated 2026-10-03**: `CostumeOwnGradeOption`/`CostumeOwnLevelOption` (the interface/vtable-dispatch functions earlier left at 0) are now fully traced and `confirmed` — see "Own vs. Equipping Dps sources, confirmed" below for the full writeup, including a real pre-existing bug this surfaced and fixed in `CostumeEquippingGradeOption`/`CostumeEquippingLevelOption`. `WeaponLevelBonus`, `CostumeOwnEvolutionOption`, and `TraitRoll` were already `confirmed`. Only `BlessingBuff` and `VipSubscription` remain genuinely unmodeled/manual now. **Updated 2026-10-24**: `Rune` is now a confirmed-real 25th `EStatContentType` source — and, as of a same-day follow-up, fully wired into this breakdown as `confirmed` too (see "Runes confirmed to feed the real Dps formula, and now wired in with real numbers" below). The generic-rune-stat→`EStat` mapping that was unresolved earlier the same day got fully decoded (a real `E_BonusOption→EStat` lookup table, read byte-for-byte from the binary) — a rune's own main effect never hits `Dps` for any currently-shipped rune, but its "TOTAL POWER" level-milestone bonus does, and that's what's summed in now. |
-| Special Upgrade level caps | **Fixed 2026-09-04** per direct user report against the live game: uniform `grade * 10` across all stat types, NOT the per-type `SpecialUpgradeTypeData.MaxLevelDatas` table (that table's cumulative values were internally consistent but simply not what the game displays — see commit `5305f6f`) |
+| Special Upgrade level caps | **Corrected 2026-10-24** (superseding the 2026-09-04 fix below — that fix was itself wrong). Re-verified digit-for-digit against 3 real screenshots covering all 11 stat types: `SpecialUpgradeTypeData.MaxLevelDatas[grade-1]` **is** the real, confirmed cumulative max level per type — the 2026-09-04 fix's "internally consistent but unused, use `grade*10` instead" conclusion doesn't hold up (`grade*10` matches none of the 11 types at any grade except by coincidence). The real in-game UI also shows a PER-GRADE-TIER-relative "Level N/M" (resets each grade), not the cumulative counter — see "Special Upgrade level caps, corrected for real this time" below for the full writeup, including the exact byte-for-byte match (LOAD MASTER's real screen: "47% > 48%, Level 17/20" = this app's own `SpecialUpgradeLevelData` row at cumulative UpgradeLevel 47 exactly). *(2026-09-04 fix, now superseded: uniform `grade * 10` across all stat types — see commit `5305f6f`.)* |
 | Special Upgrade type unlock gating (6 of 11 stat types don't exist until a later Altar Grade) | **Confirmed by decompilation** 2026-09-04 (`SpecialUpgradeManager.GetUnlockGrade`, RVA `0x250D6F0`) — previously unmodeled entirely (all 11 types were shown upgradable from grade 1). `MaxLevelDatas`'s zero-vs-nonzero pattern (the same field whose exact cap *numbers* were already known-wrong, see row above) is genuinely read by the real client to find each type's first-available grade. `Formulas.specialUnlockGrade()` + locked-card UI added. |
 | Farmable Items sources | **36/103** catalog items have a confirmed, real, gameplay-earned source as of 2026-10-01 (was a true 11/103 at the start of that day — this row previously claimed a stale/wrong "21/103"; see "Boss Raid / Challenge Tower / Hero's Tomb rewards" for the honesty note and the two real bugs that explain that gap). Every `*Reward*`-named table in the game, plus a broader sweep for unnamed ones, has now been checked (wired in or explicitly excluded with a reason) — see "Chasing 100% item coverage" for the full accounting. A further **7 items are confirmed Craftable** (a real multi-item recipe — see "Craftable items") and **18 more are confirmed Shop Exclusive** — no drop/earn source, but a real, verified in-game Shop listing with real cost data (mostly priced in other in-game currencies, not real money — see "Shop Exclusive marking") — shown in the UI with distinct "🔨 CRAFTABLE" / "🛒 SHOP EXCLUSIVE" tags rather than lumped in with "source not identified." The remaining **43** items are genuinely unresolved: ~6 are crafting-only tiered Weapon Scrolls (searched for everywhere, found nowhere as a reward or shop listing), the rest (Weapon/Melee/Ranged Selection Chests not resolved via the confirmed `.Type` convention, Rv Skip Ticket, Home Return Portal Ticket, etc.) are a short, specific, genuinely-unresolved list rather than a vague "keep looking." A real new in-world mechanic (`GiftChestSpawnData`/`GiftChestSpawner` — spawning treasure chests, distinct from static `ChestData`) was also found and partially extracted (16 real Chapter 1 spawn-point coordinates) but not yet wired into any UI — see Open Items. The "Rune" item/equip system itself (9 real data tables, extracted 2026-10-01 but not yet wired into any UI) remains unmodeled as a feature. |
 | Real map art (Farmable Items / Monsters "View Map") | **Confirmed real**, added 2026-09-30 — exact tile positions/sizes read directly from the game's own Minimap popup prefab's RectTransform data (not estimated), tile art is the game's own real per-stage sprites. Chapters 1-3 only (matches `StageData`'s own coverage). Chapters 1-2 show the game's real dimmed "cleared" silhouette (no full-color art exists for them in the current game files); Chapter 3 shows full unique art. See "Real map art" section above. |
@@ -4276,6 +4276,98 @@ app's other simulation-style checks (e.g. Next Best Upgrade) already use.
 `node --check` clean on both touched files; the existing `test_runes.js`
 regression suite still passes unchanged.
 
+## Special Upgrade level caps, corrected for real this time (2026-10-24)
+
+User reported, in general terms, that the Altar Grade/Special Upgrade
+math didn't match their real account, and provided 3 real screenshots
+(`XP Hero Images/Stats 01-03.PNG`, left in the repo root by the user, not
+committed — personal account data) of the live game's Special tab showing
+all 11 stat types' real current level, cap, and percent simultaneously.
+This directly challenged the 2026-09-04 fix (see the confidence table
+above), which had replaced `SpecialUpgradeTypeData.MaxLevelDatas` with a
+flat `grade * 10` formula based on a single, ambiguous data point.
+
+**Re-derived the real mechanic from scratch, cross-checked against every
+visible number in all 3 screenshots, not just one.** The screenshots show
+11 types simultaneously, several already at "MAX" with real displayed
+percents (Massive Muscle 30%, Life Steal 10%, Quick Step 33%, Skill
+Damage 20%, Skill Cooldown Rate 20%) and several mid-progress with a
+visible "current% > next%" pair (Load Master "47% > 48%, Level 17/20";
+HP Boost "16.4% > 16.8%, Level 11/20"; Fast Heal "17.8% > 18.2%, Level
+15/20"; Lucky Punch "6% > 6.2%, Level 2/20"; Dual Trigger "13.7% >
+14.6%, Level 1/20"; Triple Edge "4.5% > 6%, Level 3/20") — every single
+one showing a level cap of exactly **20**, regardless of which stat type.
+Since Triple Edge and Skill Cooldown Rate (confirmed gated to unlock only
+at Altar Grade 4 — this part of the app's logic, `specialUnlockGrade`,
+was already correct and untouched) are both shown active/unlocked, this
+player's real Altar Grade is confirmed to be 4 — later directly confirmed
+by the user themselves ("in game as things are I have access to Triple
+Edge and Skill Cooldown Rate").
+
+**Dumped this app's own real `SpecialUpgradeLevelData` table for Massive
+Muscle (50 rows) and found the exact structure**: rows are grouped into 4
+blocks by a real `GradeLevel` field, with a `Level` field that **resets
+to 1 at each grade boundary** — grade 1 spans levels 1-5, grade 2 spans
+1-10, grade 3 spans 1-15, grade 4 spans 1-20 — while a separate
+`UpgradeLevel` field counts cumulatively, 1 through 50 straight through.
+The cumulative boundaries (5, 15, 30, 50) are an EXACT match for Massive
+Muscle's own implied progression and for the shared
+`MaxLevelDatas: [5,15,30,50]` array used by Load Master/HP Boost/Life
+Steal/Quick Step (the 4 other grade-1-available types) — confirming
+`MaxLevelDatas[grade-1]` really is the correct CUMULATIVE max level per
+type, exactly as the table's own name always implied; the 2026-09-04
+fix's rejection of this table was the actual mistake.
+
+**The decisive, single cross-check that nailed down the exact display
+convention**: Load Master's own `SpecialUpgradeLevelData` row at
+cumulative `UpgradeLevel=47` has `GradeLevel=4, Level=17, RateAmount=470`
+— meaning `470/10 = 47.0%` and tier-level `17` — an **exact**,
+digit-for-digit match for the screenshot's "47% > 48%, Level 17/20" (and
+`UpgradeLevel=48` confirms the "> 48%" half too). Repeated this same
+exact-match check for Life Steal (maxes at cumulative level 50,
+`RateAmount=100` → 10.0%, matching "10% MAX") and Skill Cooldown
+Rate (maxes at cumulative level 20, `RateAmount=200` → 20.0%, matching
+"20% MAX") — both exact. This confirms two separate, previously-conflated
+facts: (1) this app's internal `rec.level` counter, already cumulative
+(per the pre-existing `specialRow()` comment), is correctly capped by
+`MaxLevelDatas[grade-1]` directly — **not** `grade*10`; and (2) the real
+in-game UI displays a **per-grade-tier-relative** "Level N/M" (the tier's
+own size — the delta between successive `MaxLevelDatas` entries, e.g.
+`50-30=20` for grade 4) rather than the cumulative number at all.
+
+**Massive Muscle (OptionType 1) has no `SpecialUpgradeTypeData` row at
+all** (confirmed: that table only has 10 rows, one per every OTHER type)
+— but its own `SpecialUpgradeLevelData` rows follow the identical
+`[5,15,30,50]` cumulative progression as the other grade-1-available
+types, confirmed directly by reading all 50 of its own rows rather than
+assumed from sharing a name with another type. Hardcoded as an explicit
+fallback in `specialMaxLevelForGrade()` with a comment citing exactly
+this evidence, not silently guessed.
+
+**Shipped**: `Formulas.specialMaxLevelForGrade()` rewritten to read the
+real `MaxLevelDatas[grade-1]` (clamped to the array's length, with the
+Massive Muscle fallback above) instead of `grade*10`; a new
+`Formulas.specialTierBounds(optionType, grade)` returns the per-tier
+`{priorCap, tierMax}` the real UI's "Level N/M" needs. `ui-equipment.js`'s
+`_renderSpecial()` now computes and displays the tier-relative level/cap
+(matching the real game's own screen) and the stepper operates in those
+same tier-relative units, translating back to the cumulative counter
+(`priorCap + v`) before calling `State.setSpecialLevel()` — so the
+underlying stored state stays cumulative (unchanged, still compatible
+with `specialRow()`'s existing `UpgradeLevel` lookup and with
+`nextBestUpgrades()`'s own simulation, which already called
+`specialMaxLevelForGrade()` directly in cumulative terms and needed no
+further change). `specialUnlockGrade()` itself was not touched — it was
+already correct, confirmed again by the user's own Triple-Edge/Skill-
+Cooldown-Rate report.
+
+Verified with a dedicated Node harness replaying every single real data
+point from all 3 screenshots as an explicit test case (not just the one
+Load Master example) — all 11 types' real tier cap (20) and every maxed
+type's real displayed percent matched exactly, plus the decisive Load
+Master cross-check (cumulative level 47 → "47.0%" and "17/20",
+byte-for-byte). `node --check` clean on both touched files.
+
 ## Git / deploy
 
 - Local git identity is **repo-scoped** (not global): `user.name yo-repo87`,
@@ -5324,6 +5416,29 @@ regression suite still passes unchanged.
     intermediate source value changed. Full writeup in "Runes confirmed
     to feed the real Dps formula, and now wired in with real numbers"
     above.
+58. New session. User reported that the Altar Grade / Special Upgrade
+    math didn't match their real account and provided 3 real screenshots
+    of the live game's Special tab (all 11 stat types visible at once).
+    Re-derived the real mechanic from scratch rather than trusting the
+    2026-09-04 fix, and found that fix was itself wrong: it had rejected
+    `SpecialUpgradeTypeData.MaxLevelDatas` as "internally consistent but
+    not what the game displays" based on one ambiguous data point. Cross-
+    checked every one of the 11 types' real screenshot numbers against
+    this app's own `SpecialUpgradeLevelData` table and found an exact,
+    digit-for-digit match using `MaxLevelDatas` directly — including the
+    specific insight that the live UI shows a per-grade-tier-relative
+    "Level N/M" (resetting each grade) rather than the cumulative counter
+    this app stores internally. Mid-investigation, the user independently
+    confirmed their real Altar Grade was 4 by noting they have access to
+    Triple Edge and Skill Cooldown Rate — which matched the grade this
+    session had already inferred purely from the screenshot math. Fixed
+    `Formulas.specialMaxLevelForGrade()` to read the real table, added
+    `specialTierBounds()` for the real per-tier display convention, and
+    updated the Special tab's UI to show and step through levels the same
+    way the real game does. Verified with a dedicated Node harness
+    replaying every real screenshot data point as an explicit test case.
+    Full writeup in "Special Upgrade level caps, corrected for real this
+    time" above.
 
 ## Open items / plausible next steps (not started)
 

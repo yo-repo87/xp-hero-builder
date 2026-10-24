@@ -214,10 +214,15 @@ const EquipmentUI = {
     const cards = Game.db.SpecialUpgradeTypeData.map(type => {
       const rec = State.data.upgrades.special[type.OptionType] || { grade: globalGrade, level: 0 };
       const unlockGrade = Formulas.specialUnlockGrade(type.OptionType);
-      const maxLevel = Formulas.specialMaxLevelForGrade(type.OptionType, globalGrade);
+      const cumMax = Formulas.specialMaxLevelForGrade(type.OptionType, globalGrade);
+      // Display/stepper work in the real game's own PER-TIER-relative
+      // "Level N/M" (confirmed 2026-10-24 against real screenshots — see
+      // Formulas.specialTierBounds) rather than the cumulative counter
+      // this app stores internally; `priorCap` translates back and forth.
+      const { priorCap, tierMax } = Formulas.specialTierBounds(type.OptionType, globalGrade);
       const row = Formulas.specialRow(type.OptionType, rec.level);
-      const nextRow = rec.level < maxLevel ? Formulas.specialRow(type.OptionType, rec.level + 1) : null;
-      return { type, level: rec.level, maxLevel, row, nextRow, unlockGrade, locked: globalGrade < unlockGrade };
+      const nextRow = rec.level < cumMax ? Formulas.specialRow(type.OptionType, rec.level + 1) : null;
+      return { type, level: rec.level - priorCap, maxLevel: tierMax, priorCap, row, nextRow, unlockGrade, locked: globalGrade < unlockGrade };
     });
     const gradeHTML = `
       <div class="upgrade-row upgrade-row--grade">
@@ -254,7 +259,9 @@ const EquipmentUI = {
       if (i === 0) return; // grade row handled above
       const c = cards[i - 1];
       if (c.locked) return; // no stepper to wire
-      this._wireCard(el, c.level, c.maxLevel, (v) => State.setSpecialLevel(c.type.OptionType, globalGrade, v));
+      // `v` arrives tier-relative (matching the displayed "Level N/M");
+      // translate back to the cumulative counter State/specialRow expect.
+      this._wireCard(el, c.level, c.maxLevel, (v) => State.setSpecialLevel(c.type.OptionType, globalGrade, c.priorCap + v));
     });
   },
 
