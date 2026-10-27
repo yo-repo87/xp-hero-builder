@@ -5,3 +5,39 @@ launch.sh
 .pgpass_xpherobuilder
 server/.env
 .npm_admin_password
+# --- added by backup: secrets & bulky/generated files ---
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+gitkey
+**/gitkey
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+**/asp/
+config.xml
+*.db
+*.db-*
+*.sqlite*
+*.log
+logs/
+node_modules/
+venv/
+.venv/
+__pycache__/
+dist/
+build/
+.gradle/
+MediaCover/
+Backups/
+
+
+# Personal account screenshots — never commit
+XP Hero Images/
