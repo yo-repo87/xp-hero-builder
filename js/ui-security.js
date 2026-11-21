@@ -116,7 +116,7 @@ const SecurityUI = {
       <div class="modal-header"><h3>Enable 2FA</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
         <p class="fs-sub">Scan this with your authenticator app (Google Authenticator, Authy, 1Password, etc.), or enter the key manually.</p>
-        <div style="text-align:center;margin:14px 0"><img src="${setup.qrDataUrl}" alt="2FA QR code" style="width:200px;height:200px;border-radius:8px"></div>
+        <div style="text-align:center;margin:14px 0"><img loading="lazy" decoding="async" src="${setup.qrDataUrl}" alt="2FA QR code" style="width:200px;height:200px;border-radius:8px"></div>
         <div class="form-field"><label>Manual entry key</label><input type="text" readonly value="${escapeHtml(setup.secret)}" onclick="this.select()"></div>
         <div class="form-field"><label for="sec-totp-code">Enter the 6-digit code to confirm</label><input type="text" id="sec-totp-code" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></div>
         <div id="sec-totp-error" class="caveat" style="display:none;border-color:var(--danger,#a33)"></div>

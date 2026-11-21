@@ -687,7 +687,7 @@ const Game = {
   // (--ring-img etc, set inline but consumed by rules in css/style.css) —
   // url() inside a custom property resolves relative to the *stylesheet
   // that reads it*, not the HTML page, so these need the `../` prefix that
-  // style.css itself uses. Don't reuse these for <img src> (relative to the
+  // style.css itself uses. Don't reuse these for <img loading="lazy" decoding="async" src> (relative to the
   // HTML page instead) — use weaponIcon/heroIcon/itemIcon/etc. for that.
   rarityCircle(tier) { return `../assets/img/ui/circle/Circle_WeaponBg_${this.rarityColor(tier).art}.png`; },
   rarityRibbon(tier) { const a = this.rarityColor(tier).art; return `../assets/img/ui/ribbon/Ribbon_${a === 'Normal' ? 'Nomal' : a}.png`; },

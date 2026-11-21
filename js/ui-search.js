@@ -52,7 +52,7 @@ const GlobalSearchUI = {
       if (!matches.length) { results.innerHTML = `<div class="empty-state" style="padding:20px">No matches for "${escapeHtml(input.value.trim())}".</div>`; return; }
       results.innerHTML = `<div class="picker-grid">${matches.map(m => `
         <div class="picker-card gs-result" data-type="${m.type}" data-id="${m.id}" style="${rarityStyle(m.rarity)}">
-          <img src="${m.icon}" onerror="onImgError(this)" alt="">
+          <img loading="lazy" decoding="async" src="${m.icon}" onerror="onImgError(this)" alt="">
           <div class="pc-name">${escapeHtml(m.name)}</div>
           <div class="pc-tag">${this._typeLabel(m.type)}</div>
         </div>`).join('')}</div>`;

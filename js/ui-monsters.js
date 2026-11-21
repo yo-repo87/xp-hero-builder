@@ -97,7 +97,7 @@ const MonstersUI = {
       return `
         <div class="picker-card monster-card" data-enemy="${e.id}" style="${rarityStyle(e.Rarity)}">
           ${isBoss ? '<span class="tag tag--boss">BOSS</span>' : ''}
-          <img src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt="">
+          <img loading="lazy" decoding="async" src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt="">
           <div class="pc-name">${escapeHtml(e.Name_en)}</div>
           ${isBoss ? `<div class="pc-tag" style="font-style:italic">${escapeHtml(e.NickName_en)}</div>` : ''}
           <div class="pc-tag">${rarityPip(e.Rarity)}${r.name} · Lv ${fmtNum(e.Level)}</div>
@@ -122,7 +122,7 @@ const MonstersUI = {
       <div class="modal-header"><h3>${escapeHtml(e.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
         <div class="detail-layout">
-          <div class="detail-art" style="${rarityStyle(e.Rarity)}"><img src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt=""></div>
+          <div class="detail-art" style="${rarityStyle(e.Rarity)}"><img loading="lazy" decoding="async" src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt=""></div>
           <div>
             <div class="detail-name">${escapeHtml(e.Name_en)}</div>
             <div class="detail-tags">

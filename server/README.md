@@ -47,7 +47,7 @@ Database `xpherobuilder`, owned by role `xpherobuilder`, lives on the
 Postgres instance already hosting `dollartree`/`mtg`/`yugioh`/`yourspace`/
 `financemgr`/`inventory`, one DB + same-named owner role per app, same
 convention followed here. Schema: `users`, `oauth_identities`,
-`refresh_tokens`, `saves` — see `db/schema.sql` (the exact statements used
+`refresh_tokens`, `saves` — see `db/migrations/` (apply new files with `db/migrate.sh`; `001_initial_schema.sql` is the exact statements used
 to create it). There's no migration framework wired up yet — that file is
 a point-in-time record of what was run by hand once, not something
 re-runnable against an already-migrated database; if the schema needs to

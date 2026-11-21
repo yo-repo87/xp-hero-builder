@@ -201,9 +201,9 @@ const MapUI = {
       const style = `left:${(row.x * 100).toFixed(2)}%;top:${(row.y * 100).toFixed(2)}%;width:${(row.w * 100).toFixed(2)}%;height:${(row.h * 100).toFixed(2)}%;`;
       return `
         <div class="map-tile${pin ? ' hit' : ''}" style="${style}">
-          <img class="map-tile-art" src="${Game.stageMapTile(row)}" onerror="onImgError(this)" alt="">
+          <img loading="lazy" decoding="async" class="map-tile-art" src="${Game.stageMapTile(row)}" onerror="onImgError(this)" alt="">
           <div class="map-tile-num">${row.stage}</div>
-          ${pin ? `<img class="map-tile-pin" src="${pin.iconUrl}" onerror="onImgError(this)" alt="" title="${escapeHtml(pin.label || '')}">` : ''}
+          ${pin ? `<img loading="lazy" decoding="async" class="map-tile-pin" src="${pin.iconUrl}" onerror="onImgError(this)" alt="" title="${escapeHtml(pin.label || '')}">` : ''}
         </div>`;
     }).join('');
   },
@@ -304,7 +304,7 @@ const SpawnMapUI = {
       const pos = norm(p);
       return `
         <div class="spawn-dot${isOwn ? ' own' : ''}" style="left:${pos.left.toFixed(2)}%;top:${pos.top.toFixed(2)}%;" title="${escapeHtml(label)}${p.is_patrol ? ' (patrols)' : ''}">
-          <img src="${iconUrl}" onerror="onImgError(this)" alt="">
+          <img loading="lazy" decoding="async" src="${iconUrl}" onerror="onImgError(this)" alt="">
         </div>`;
     }).join('');
 
@@ -340,7 +340,7 @@ const SpawnMapUI = {
 
     return `
       ${MapZoom.wrapHTML('chapter-map-canvas spawn-overlay-canvas', stageInnerHTML)}
-      <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
+      <div class="spawn-map-legend"><span class="spawn-dot own" style="position:static;display:inline-block;"><img loading="lazy" decoding="async" src="${Game.enemyIcon(enemy)}" onerror="onImgError(this)" alt=""></span> ${escapeHtml(enemy.Name_en)} (${ownPoints.length} spawn point${ownPoints.length === 1 ? '' : 's'}) &nbsp;&nbsp; <span class="spawn-dot" style="position:static;display:inline-block;"></span> other enemies in Chapter ${chapter}'s free-roam world (${allInChapter.length} total spawn points)${ownPoints.some(p => p.is_patrol) ? ' &nbsp;&nbsp; <span class="spawn-path-swatch own"></span> this monster\'s patrol route' : ''}</div>
       <div class="caveat">These are real placed-in-world (x,z) Transform positions from the game's own enemy spawn scene data (EnemySpawnGroups + EnemySpawnGroupData_158), confirmed by decompiling the actual scene hierarchy — not estimated. They're overlaid here on Chapter ${chapter}'s real story-stage tile board (the same real art the "View Story-Stage Map" button uses) so you can see which chapter you're looking at at a glance${hasBoard ? '' : ' (no real tile board exists for this chapter, so a plain backdrop is shown instead)'} — but the dots are spread across their own free-roam-world layout, which is a genuinely different coordinate system from the discrete stage tiles underneath them, so <strong>dot position relative to a specific tile is not meaningful</strong>, only "this chapter" is. Chapters 1-6 have this data extracted (the shared free-roam coordinate space physically contains all six; chapters beyond 6 would need locating further AssetBundles this extraction hasn't reached).${patrolling.length ? ' Patrol routes (real waypoint loops, from the game\'s own PatrolPathGroup scene data) are only shown for the 16 spawn instances flagged as patrolling in EnemySpawnGroupData_158, all of them in Chapters 1-3 — most enemies just stand still at their spawn point.' : ''} Drag to pan; Ctrl+scroll, pinch, or the +/− buttons to zoom.</div>`;
   },
 };
@@ -387,7 +387,7 @@ const GiftChestMapUI = {
         const pos = norm(p);
         return `
           <div class="spawn-dot" style="left:${pos.left.toFixed(2)}%;top:${pos.top.toFixed(2)}%;" title="${escapeHtml(p.name)}">
-            <img src="assets/img/chests/AcquireGiftChest.png" alt="">
+            <img loading="lazy" decoding="async" src="assets/img/chests/AcquireGiftChest.png" alt="">
           </div>`;
       }).join('');
 

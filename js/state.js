@@ -106,13 +106,37 @@ const State = {
   },
 
   // Removes an owned copy entirely (e.g. added by mistake, or spent as
-  // merge material once that flow exists) — unequips it first if it's
+  // merge material via mergeWeapons) — unequips it first if it's
   // currently in a slot, so a slot never points at a deleted copy.
   removeWeaponCopy(instanceId) {
     const slot = this.data.weapons.indexOf(instanceId);
     if (slot !== -1) this.data.weapons[slot] = null;
     delete this.data.weaponRoster[instanceId];
     this.notify();
+  },
+
+  // Merge copies of one weapon into a single copy of its next tier (rule:
+  // Formulas.mergeRule). Sources are consumed; the new copy starts at Lv 1
+  // (level carry-over isn't decoded — the user sets the real level after) and
+  // takes over the first equip slot any source occupied.
+  mergeWeapons(instanceIds) {
+    const insts = instanceIds.map(id => this.data.weaponRoster[id]);
+    if (insts.some(i => !i)) return { ok: false, error: 'Unknown weapon copy.' };
+    const wid = insts[0].weaponId;
+    if (insts.some(i => i.weaponId !== wid)) return { ok: false, error: 'All copies must be the same weapon.' };
+    const rule = Formulas.mergeRule(wid);
+    if (!rule) return { ok: false, error: 'This weapon has no next tier to merge into.' };
+    if (new Set(instanceIds).size !== rule.required) return { ok: false, error: `Merging needs exactly ${rule.required} copies.` };
+    const slot = this.data.weapons.findIndex(id => instanceIds.includes(id));
+    for (const id of instanceIds) {
+      const i = this.data.weapons.indexOf(id);
+      if (i !== -1) this.data.weapons[i] = null;
+      delete this.data.weaponRoster[id];
+    }
+    const newInstanceId = this.addWeaponCopy(rule.next.id);
+    if (slot !== -1) this.data.weapons[slot] = newInstanceId;
+    this.notify();
+    return { ok: true, newInstanceId, next: rule.next };
   },
 
   equipWeapon(slotIndex, instanceId) {

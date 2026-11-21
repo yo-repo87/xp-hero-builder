@@ -1,3 +1,4 @@
+import { loginLimiter, registerLimiter } from '../middleware/rateLimit.js';
 import crypto from 'node:crypto';
 import { Router } from 'express';
 import pool from '../db.js';
@@ -64,7 +65,7 @@ router.get('/providers', (req, res) => {
   res.json({ email: true, google: oauth.includes('google'), facebook: oauth.includes('facebook'), discord: oauth.includes('discord') });
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', registerLimiter, async (req, res) => {
   const { email, password, displayName } = req.body || {};
   if (!email || !password || password.length < 8) {
     return res.status(400).json({ error: 'email and a password of at least 8 characters are required' });
@@ -86,7 +87,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', loginLimiter, async (req, res) => {
   const { email, password } = req.body || {};
   if (!email || !password) return res.status(400).json({ error: 'email and password are required' });
 

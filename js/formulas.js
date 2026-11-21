@@ -778,7 +778,7 @@ const Formulas = {
     {
       const level = State.data.upgrades.ability[1] || 0;
       const row = this.abilityRow(1, level);
-      set('Ability', row ? num(row.EffectAmount) : 0, 'mapped', `Ability tree "POWER" @ level ${level} (interpolated; underlying data may be stale, see comment above)`);
+      set('Ability', row ? num(row.EffectAmount) : 0, 'mapped', `Ability tree "POWER" @ level ${level} (interpolated). ⚠️ Likely UNDERESTIMATED: real in-game Power is ~3x this value at the same level — this app's extracted checkpoint data appears stale for POWER.`);
     }
 
     // Weapon / WeaponLevelBonus / WeaponOption — summed across all 6 equipped slots.
@@ -947,6 +947,18 @@ const Formulas = {
   // is a manual input with no step to simulate, and Runes aren't wired
   // into this formula at all (see "Rune system" in CLAUDE.md), so
   // including any of them here would compare apples to oranges.
+  // Weapon merge rule — CONFIRMED by decompilation (WeaponMergeValidator):
+  // NORMAL_MERGE_SAME_WEAPON_COUNT = 3 copies of the SAME weapon -> its NextTierID;
+  // EXOTIC_TO_ETERNAL_MATERIAL_COUNT = 2 (+ TRANSCENDENCE_STONE_REQUIRE_AMOUNT = 1,
+  // an inventory item this app doesn't track). Returns null if the weapon can't merge.
+  mergeRule(weaponId) {
+    const w = Game.index.weaponById.get(weaponId);
+    const next = w && w.NextTierID ? Game.index.weaponById.get(w.NextTierID) : null;
+    if (!next) return null;
+    const eternal = w.Rarity === 8 && next.Rarity === 9;
+    return { next, required: eternal ? 2 : 3, needsStone: eternal };
+  },
+
   nextBestUpgrades(heroId) {
     const hero = State.getHero(heroId);
     if (!hero) return [];
@@ -987,18 +999,24 @@ const Formulas = {
       }
     }
 
+    // Restore a key exactly as it was (delete it if it was absent), so a
+    // simulation never leaves stray keys behind in State.data.
+    const restorer = (obj, key) => {
+      const had = Object.prototype.hasOwnProperty.call(obj, key), val = obj[key];
+      return () => { if (had) obj[key] = val; else delete obj[key]; };
+    };
     {
       const level = State.data.upgrades.ability[1] || 0;
       if (level < this.abilityMaxLevel(1)) {
         tryStep(`Ability "POWER" → Lv ${level + 1}`, 'equipment',
-          () => { State.data.upgrades.ability[1] = level + 1; }, () => { State.data.upgrades.ability[1] = level; });
+          () => { State.data.upgrades.ability[1] = level + 1; }, restorer(State.data.upgrades.ability, 1));
       }
     }
     {
       const level = State.data.upgrades.extra[1] || 0;
       if (level < this.extraMaxLevel(1)) {
         tryStep(`Extra "Bulk Up" → Lv ${level + 1}`, 'equipment',
-          () => { State.data.upgrades.extra[1] = level + 1; }, () => { State.data.upgrades.extra[1] = level; });
+          () => { State.data.upgrades.extra[1] = level + 1; }, restorer(State.data.upgrades.extra, 1));
       }
     }
     {
@@ -1013,7 +1031,7 @@ const Formulas = {
         if (level < this.specialMaxLevelForGrade(1, globalGrade)) {
           tryStep(`Special "MASSIVE MUSCLE" → Lv ${level + 1}`, 'equipment',
             () => { State.data.upgrades.special[1] = { grade: globalGrade, level: level + 1 }; },
-            () => { State.data.upgrades.special[1] = rec; });
+            restorer(State.data.upgrades.special, 1));
         }
       }
     }
@@ -1021,7 +1039,7 @@ const Formulas = {
       const level = State.data.upgrades.soul[1] || 0;
       if (level < this.soulMaxLevel(1)) {
         tryStep(`Soul "Battle Boost" → Lv ${level + 1}`, 'equipment',
-          () => { State.data.upgrades.soul[1] = level + 1; }, () => { State.data.upgrades.soul[1] = level; });
+          () => { State.data.upgrades.soul[1] = level + 1; }, restorer(State.data.upgrades.soul, 1));
       }
     }
 

@@ -1,3 +1,4 @@
+import { writeLimiter } from '../middleware/rateLimit.js';
 import { Router } from 'express';
 import pool from '../db.js';
 import requireAuth from '../middleware/requireAuth.js';
@@ -164,7 +165,7 @@ router.get('/threads/:id', optionalAuth, async (req, res) => {
   });
 });
 
-router.post('/channels/:channelId/threads', requireAuth, async (req, res) => {
+router.post('/channels/:channelId/threads', requireAuth, writeLimiter, async (req, res) => {
   const { title, body } = req.body || {};
   const titleErr = validateTitle(title);
   const bodyErr = validateBody(body);
@@ -223,7 +224,7 @@ router.post('/threads/:id/pin', requireAuth, async (req, res) => {
 
 // --- Replies -----------------------------------------------------------------
 
-router.post('/threads/:id/replies', requireAuth, async (req, res) => {
+router.post('/threads/:id/replies', requireAuth, writeLimiter, async (req, res) => {
   const { body } = req.body || {};
   const bodyErr = validateBody(body);
   if (bodyErr) return res.status(400).json({ error: bodyErr });

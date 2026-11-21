@@ -32,7 +32,7 @@ const HeroesUI = {
       <div class="hero-card ${isActive ? 'active' : ''}" data-hero="${hero.id}" style="${rarityStyle(c.rarity)}">
         ${isActive ? '<span class="hc-active-badge">Active</span>' : ''}
         <button class="hc-remove" title="Remove">✕</button>
-        <img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
         <div class="hc-name">${escapeHtml(c.Name_en)}</div>
         <div class="hc-meta">Lv ${hero.level} · ${rarityStar(true)}${hero.starGrade}</div>
       </div>`;
@@ -50,7 +50,7 @@ const HeroesUI = {
               const r = Game.rarityColor(c.rarity);
               return `
               <div class="picker-card" data-costume="${c.id}" style="${rarityStyle(c.rarity)}">
-                <img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
+                <img loading="lazy" decoding="async" src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
                 <div class="pc-name">${escapeHtml(c.Name_en)}</div>
                 <div class="pc-tag">${rarityPip(c.rarity)}${r.name}</div>
               </div>`;
@@ -80,7 +80,7 @@ const HeroesUI = {
       body.innerHTML = `
         <div class="detail-layout">
           <div>
-            <div class="detail-art" style="${rarityStyle(c.rarity)}"><img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt=""></div>
+            <div class="detail-art" style="${rarityStyle(c.rarity)}"><img loading="lazy" decoding="async" src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt=""></div>
             <div class="action-row" style="margin-top:10px">
               <button class="btn ${State.data.activeHeroId === hero.id ? 'btn-gold' : ''}" id="active-btn" style="flex:1">
                 ${State.data.activeHeroId === hero.id ? rarityStar(true, true) + ' Active Hero' : 'Set as Active'}
@@ -217,7 +217,7 @@ const HeroesUI = {
           </div>
         </div>
         <div style="display:flex;gap:12px;align-items:center;margin:8px 0">
-          <div class="detail-art" style="width:52px;height:52px;flex-shrink:0;${rarityStyle(rarity)}"><img src="${Game.runeIcon(rune)}" onerror="onImgError(this)" alt=""></div>
+          <div class="detail-art" style="width:52px;height:52px;flex-shrink:0;${rarityStyle(rarity)}"><img loading="lazy" decoding="async" src="${Game.runeIcon(rune)}" onerror="onImgError(this)" alt=""></div>
           <div style="flex:1;min-width:0">
             <div class="detail-name" style="font-size:.88rem">${escapeHtml(rune.Name_en)}</div>
             <div class="detail-tags">${rarityTag(rarity)}${typeRow ? `<span class="tag">${escapeHtml(typeRow.Name_en)}</span>` : ''}</div>
@@ -307,7 +307,7 @@ const HeroesUI = {
         const selected = currentSlot && currentSlot.runeDataId === r.id;
         return `
           <div class="picker-card ${selected ? 'selected' : ''}" data-rune="${r.id}" style="${rarityStyle(rarity)}">
-            <img src="${Game.runeIcon(r)}" onerror="onImgError(this)" alt="">
+            <img loading="lazy" decoding="async" src="${Game.runeIcon(r)}" onerror="onImgError(this)" alt="">
             <div class="pc-name">${escapeHtml(r.Name_en)}</div>
             <div class="pc-tag">${rarityPip(rarity)}${Game.rarityColor(rarity).name}</div>
           </div>`;

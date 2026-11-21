@@ -33,7 +33,7 @@ const WeaponsUI = {
         <div class="equip-col">${left}</div>
         <div class="equip-center">
           ${costume ? `
-            <div class="equip-center-portrait" style="${rarityStyle(costume.rarity)}"><img src="${Game.heroIcon(costume)}" onerror="onImgError(this)" alt=""></div>
+            <div class="equip-center-portrait" style="${rarityStyle(costume.rarity)}"><img loading="lazy" decoding="async" src="${Game.heroIcon(costume)}" onerror="onImgError(this)" alt=""></div>
             <div class="equip-center-name">${escapeHtml(costume.Name_en)}</div>` : `
             <div class="equip-center-portrait empty">?</div>
             <div class="equip-center-name" style="color:var(--ink-faint)">No active hero</div>`}
@@ -69,7 +69,7 @@ const WeaponsUI = {
       <div class="picker-card weapon-roster-card${owned ? '' : ' weapon-roster-card--unowned'}" data-weapon="${w.id}" style="${rarityStyle(w.Rarity)}">
         ${equippedCount > 0 ? `<span class="pc-equipped-badge">EQUIPPED${equippedCount > 1 ? ` ×${equippedCount}` : ''}</span>` : ''}
         ${copies.length > 1 ? `<span class="pc-copies-badge">×${copies.length}</span>` : ''}
-        <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
         <div class="pc-name">${escapeHtml(w.Name_en)}</div>
         <div class="pc-tag">${rarityPip(w.Rarity)}${r.name}</div>
         <div class="pc-level">${owned ? `Lv ${bestLevel}` : 'Not Owned'}</div>
@@ -92,7 +92,7 @@ const WeaponsUI = {
       <div class="weapon-slot filled" data-slot="${i}" style="${rarityStyle(w.Rarity)}">
         ${mainTag}
         <span class="slot-level-badge">Lv ${ws.level}</span>
-        <div class="slot-art"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
+        <div class="slot-art"><img loading="lazy" decoding="async" src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
       </div>`;
   },
 
@@ -113,15 +113,19 @@ const WeaponsUI = {
   openCopiesList(weaponId, fromSlotIndex = null) {
     const w = Game.index.weaponById.get(weaponId);
 
+    const rule = Formulas.mergeRule(weaponId);
     const renderBody = () => {
       const copies = State.getWeaponCopies(weaponId)
         .slice()
         .sort((a, b) => b.level - a.level);
       body.innerHTML = `
         ${copies.length ? `<div class="picker-grid">${copies.map(c => this._copyCardHTML(w, c)).join('')}</div>` :
-          `<p class="ur-sub">You don't own any copies of ${escapeHtml(w.Name_en)} yet.</p>`}
+          `<p class="caveat">You don't own any copies of ${escapeHtml(w.Name_en)} yet.</p>`}
         <div class="action-row">
           <button class="btn btn-gold" id="add-copy-btn">+ Add ${copies.length ? 'Another' : 'a'} Copy</button>
+          ${rule ? `<button class="btn" id="merge-btn" ${copies.length < rule.required ? 'disabled' : ''}
+            title="Merge ${rule.required} copies into ${escapeHtml(rule.next.Name_en)}${rule.needsStone ? ' (also costs 1 Transcendence Stone in-game)' : ''}">
+            ⚒ Merge ${rule.required} → ${escapeHtml(rule.next.Name_en)} (${Game.rarityColor(rule.next.Rarity).name})</button>` : ''}
           ${fromSlotIndex != null ? `<button class="btn" id="back-btn">← Back to list</button>` : ''}
         </div>`;
       body.querySelectorAll('[data-instance]').forEach(el => {
@@ -132,6 +136,20 @@ const WeaponsUI = {
         this.openDetail(instanceId, fromSlotIndex);
       });
       document.getElementById('back-btn')?.addEventListener('click', () => this.openPicker(fromSlotIndex));
+      document.getElementById('merge-btn')?.addEventListener('click', () => {
+        // Consume the lowest-level copies (unequipped first) — the materials you'd normally spend.
+        const mats = copies.slice()
+          .sort((a, b) => (State.data.weapons.includes(a.instanceId) - State.data.weapons.includes(b.instanceId)) || a.level - b.level)
+          .slice(0, rule.required);
+        const desc = mats.map(c => `Lv ${c.level}`).join(', ');
+        if (!confirm(`Merge ${rule.required} copies of ${w.Name_en} (${desc}) into 1 ${rule.next.Name_en}?` +
+          (rule.needsStone ? '\n\nIn-game this also costs 1 Transcendence Stone.' : '') +
+          '\n\nThe new copy starts at Lv 1 here — set it to your real in-game level after.')) return;
+        const res = State.mergeWeapons(mats.map(c => c.instanceId));
+        if (!res.ok) { UI.toast(res.error); return; }
+        UI.toast(`Merged into ${rule.next.Name_en}!`);
+        this.openDetail(res.newInstanceId, fromSlotIndex);
+      });
     };
 
     UI.openModal(`
@@ -148,7 +166,7 @@ const WeaponsUI = {
     return `
       <div class="picker-card weapon-roster-card" data-instance="${copy.instanceId}" style="${rarityStyle(w.Rarity)}">
         ${slotIndex !== -1 ? `<span class="pc-equipped-badge">SLOT ${slotIndex + 1}</span>` : ''}
-        <img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt="">
         <div class="pc-level">Lv ${copy.level}</div>
       </div>`;
   },
@@ -261,7 +279,7 @@ const WeaponsUI = {
       body.innerHTML = `
         <div class="detail-layout">
           <div>
-            <div class="detail-art" style="${rarityStyle(w.Rarity)}"><img src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
+            <div class="detail-art" style="${rarityStyle(w.Rarity)}"><img loading="lazy" decoding="async" src="${Game.weaponIcon(w)}" onerror="onImgError(this)" alt=""></div>
             ${chain.length > 1 ? `
               <div style="margin-top:10px;font-size:.74rem;color:var(--ink-muted)">
                 Fusion chain: ${chain.map(c => c.id === w.id ? `<b style="color:var(--ink)">${escapeHtml(c.Name_en)}</b>` : escapeHtml(c.Name_en)).join(' → ')}

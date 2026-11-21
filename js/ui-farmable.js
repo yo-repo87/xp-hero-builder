@@ -96,7 +96,7 @@ const FarmableUI = {
             : `<span style="color:var(--ink-faint)">source not identified</span>`;
       return `
         <div class="picker-card farm-card" data-item="${item.id}" style="${rarityStyle(item.Rarity)}">
-          <img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
+          <img loading="lazy" decoding="async" src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt="">
           <div class="pc-name">${escapeHtml(item.Name_en)}</div>
           <div class="pc-tag">${rarityPip(item.Rarity)}${r.name}</div>
           <div class="pc-tag" style="margin-top:2px">${sourceTag}</div>
@@ -134,7 +134,7 @@ const FarmableUI = {
 
     const killHTML = sources.kill.slice().sort((a, b) => (a.chapter ?? 99) - (b.chapter ?? 99) || a.enemy.Name_en.localeCompare(b.enemy.Name_en)).map(s => `
       <div class="farm-source-row" data-track-enemy="${s.enemy.id}">
-        <img class="farm-source-thumb" src="${Game.enemyIcon(s.enemy)}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" class="farm-source-thumb" src="${Game.enemyIcon(s.enemy)}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title">Kill <b>${escapeHtml(s.enemy.Name_en)}</b>${s.enemy.NickName_en ? ` <span style="font-style:italic;font-weight:400">"${escapeHtml(s.enemy.NickName_en)}"</span>` : ''}</div>
           <div class="fs-sub">${s.chapter !== null ? `Chapter ${s.chapter}` : 'Special/Raid'} · drops ×${fmtNum(s.amount)}${s.pieces !== s.amount ? ` (${fmtNum(s.pieces)} piece${s.pieces === 1 ? '' : 's'})` : ''}</div>
@@ -144,7 +144,7 @@ const FarmableUI = {
 
     const guaranteedHTML = sources.guaranteed.map(s => `
       <div class="farm-source-row" data-track-enemy="${s.enemy ? s.enemy.id : ''}">
-        <img class="farm-source-thumb" src="${s.enemy ? Game.enemyIcon(s.enemy) : ''}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" class="farm-source-thumb" src="${s.enemy ? Game.enemyIcon(s.enemy) : ''}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title">Guaranteed — defeat <b>${escapeHtml(s.enemy ? s.enemy.Name_en : 'Unknown')}</b></div>
           <div class="fs-sub">${s.stage ? `Chapter ${s.stage.chapter} · Stage ${s.stage.stage} — ${escapeHtml(s.stage.Name_en)}` : 'Location unknown'} · drops ×${s.amount}</div>
@@ -154,7 +154,7 @@ const FarmableUI = {
 
     const chestHTML = sources.chest.map((s, i) => `
       <div class="farm-source-row" data-map-chest="${i}">
-        <img class="farm-source-thumb" src="${Game.chestIcon(s.chest)}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" class="farm-source-thumb" src="${Game.chestIcon(s.chest)}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title">${escapeHtml(s.chest.Name)} <span class="mono" style="color:var(--gold)">${fmtNum(s.pct)}%</span></div>
           <div class="fs-sub">${s.stages.length ? s.stages.map(st => `Ch${st.chapter}·St${st.stage}`).join(', ') : 'Stage unknown'} · yields ${s.amountMin === s.amountMax ? s.amountMin : `${s.amountMin}-${s.amountMax}`}</div>
@@ -164,7 +164,7 @@ const FarmableUI = {
 
     const bossRaidHTML = sources.bossRaid.slice().sort((a, b) => a.enemy.Name_en.localeCompare(b.enemy.Name_en) || a.pct - b.pct).map(s => `
       <div class="farm-source-row" data-track-enemy="${s.enemy.id}">
-        <img class="farm-source-thumb" src="${Game.enemyIcon(s.enemy)}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" class="farm-source-thumb" src="${Game.enemyIcon(s.enemy)}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title">Boss Raid — defeat <b>${escapeHtml(s.enemy.Name_en)}</b> (${s.difficulty}) <span class="mono" style="color:var(--gold)">${fmtNum(s.pct)}%</span></div>
           <div class="fs-sub">${s.repeatable ? 'Every clear' : 'First clear only'} · yields ${s.amountMin === s.amountMax ? s.amountMin : `${s.amountMin}-${s.amountMax}`}</div>
@@ -202,7 +202,7 @@ const FarmableUI = {
       const stage = rep.stage_id ? Game.index.stageById.get(rep.stage_id) : null;
       return `
       <div class="farm-source-row farm-source-row--community" data-track-enemy="${enemy ? enemy.id : ''}">
-        <img class="farm-source-thumb" src="${enemy ? Game.enemyIcon(enemy) : ''}" onerror="onImgError(this)" alt="">
+        <img loading="lazy" decoding="async" class="farm-source-thumb" src="${enemy ? Game.enemyIcon(enemy) : ''}" onerror="onImgError(this)" alt="">
         <div class="farm-source-info">
           <div class="fs-title"><span class="tag tag--community">USER-REPORTED</span> Slay <b>${escapeHtml(rep.enemy_name || 'Unknown creature')}</b></div>
           <div class="fs-sub">${escapeHtml(rep.stage_label || 'Location not given')}${rep.note ? ` — "${escapeHtml(rep.note)}"` : ''}${rep.reporter ? ` <span style="color:var(--ink-faint)">— ${escapeHtml(rep.reporter)}</span>` : ''}</div>
@@ -215,7 +215,7 @@ const FarmableUI = {
       <div class="modal-header"><h3>${escapeHtml(item.Name_en)}</h3><button class="modal-close" id="modal-close">✕</button></div>
       <div class="modal-body">
         <div class="detail-layout">
-          <div class="detail-art" style="${rarityStyle(item.Rarity)}"><img src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt=""></div>
+          <div class="detail-art" style="${rarityStyle(item.Rarity)}"><img loading="lazy" decoding="async" src="${Game.itemIcon(item)}" onerror="onImgError(this)" alt=""></div>
           <div>
             <div class="detail-name">${escapeHtml(item.Name_en)}</div>
             <div class="detail-tags">${rarityTag(item.Rarity)}</div>
@@ -248,7 +248,7 @@ const FarmableUI = {
                 if (!ingItem) return '';
                 return `
                 <div class="farm-source-row farm-source-row--craft" data-craft-ingredient="${ing.item_id}">
-                  <img class="farm-source-thumb" src="${Game.itemIcon(ingItem)}" onerror="onImgError(this)" alt="">
+                  <img loading="lazy" decoding="async" class="farm-source-thumb" src="${Game.itemIcon(ingItem)}" onerror="onImgError(this)" alt="">
                   <div class="farm-source-info">
                     <div class="fs-title">${escapeHtml(ingItem.Name_en)}</div>
                     <div class="fs-sub">requires ×${fmtNum(ing.amount)}</div>

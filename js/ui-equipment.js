@@ -43,7 +43,7 @@ const EquipmentUI = {
             <div class="trait-slot-icon">${synType ? synType.name_en.split(' ').map(w => w[0]).join('').slice(0,2) : '?'}</div>
             <div class="trait-slot-info">
               <div class="ts-title">${chosen ? escapeHtml((optType?.name_en) || 'Trait') : `<span style="color:var(--ink-faint)">Empty — ${synType ? escapeHtml(synType.name_en) : ''}</span>`}</div>
-              <div class="ts-sub">${chosen ? `+${fmtNum(chosen.rate_amount / 10)}% · rarity ${chosen.option_rarity}` : 'Tap to set'}</div>
+              <div class="ts-sub">${chosen ? `+${fmtNum(chosen.rate_amount / 10)}% · rarity ${chosen.option_rarity}${({4:' (B)',5:' (A)'})[chosen.option_rarity] || ''}` : 'Tap to set'}</div>
             </div>
           </div>`;
       }).join('');
@@ -112,6 +112,8 @@ const EquipmentUI = {
   // ---------------- Upgrade trees ----------------
 
   _renderUpgradeTabs() {
+    const ssi = document.getElementById('btn-screenshot-import');
+    if (ssi) ssi.onclick = () => ScreenshotImport.open();
     document.querySelectorAll('#upgrade-tree-tabs .chip').forEach(el => {
       el.classList.toggle('active', el.dataset.tree === this.activeTree);
       el.onclick = () => { this.activeTree = el.dataset.tree; this.render(); };
@@ -185,7 +187,9 @@ const EquipmentUI = {
     grid.innerHTML = cards.map(({ type, level, maxLevel, row, nextRow }) => {
       const isPct = Formulas.ABILITY_PERCENT_TYPES.has(type.id);
       return this._card({
-        icon: '⬆', accent: 'var(--tree-ability)', title: type.Title_en, sub: type.Desc_en,
+        icon: '⬆', accent: 'var(--tree-ability)', title: type.Title_en,
+        // POWER(1)/HP(4) checkpoint data verified ~3-5x low vs real screenshots (docs/history.md "Ability tab").
+        sub: (type.id === 1 || type.id === 4) ? `${type.Desc_en} ⚠️ Values shown are likely too low (stale game data).` : type.Desc_en,
         curLabel: row ? fmtAbility(row.EffectAmount, isPct) : fmtAbility(0, isPct),
         nextLabel: nextRow ? fmtAbility(nextRow.EffectAmount, isPct) : null,
         level, maxLevel,

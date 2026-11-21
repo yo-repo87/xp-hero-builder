@@ -1,3 +1,4 @@
+import { loginLimiter } from '../middleware/rateLimit.js';
 import { Router } from 'express';
 import pool from '../db.js';
 import requireAuth from '../middleware/requireAuth.js';
@@ -80,7 +81,7 @@ router.post('/webauthn/login-options', async (req, res) => {
 // session). passkey credentials never need to go through the
 // pendingToken path at all — tapping one is already the complete,
 // sufficient act of signing in.
-router.post('/webauthn/login-verify', async (req, res) => {
+router.post('/webauthn/login-verify', loginLimiter, async (req, res) => {
   const { response, pendingToken } = req.body || {};
   try {
     let expectedUserId = null;
@@ -126,7 +127,7 @@ router.post('/totp/disable', requireAuth, async (req, res) => {
 
 // --- The 2FA step itself, after a password login returned requiresMfa ---
 
-router.post('/mfa/verify', async (req, res) => {
+router.post('/mfa/verify', loginLimiter, async (req, res) => {
   const { pendingToken, code } = req.body || {};
   if (!pendingToken || !code) return res.status(400).json({ error: 'Missing pending token or code' });
   try {

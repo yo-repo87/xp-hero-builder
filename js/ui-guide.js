@@ -24,7 +24,7 @@ const GuideUI = {
             const c = Game.index.costumeById.get(h.costumeId);
             return `
               <div class="guide-hero-item ${h.id === heroId ? 'active' : ''}" data-hero="${h.id}">
-                <img src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
+                <img loading="lazy" decoding="async" src="${Game.heroIcon(c)}" onerror="onImgError(this)" alt="">
                 <div><div class="gh-name">${escapeHtml(c.Name_en)}</div><div class="gh-meta">Lv ${h.level} · ${rarityStar(true)}${h.starGrade}</div></div>
               </div>`;
           }).join('')}
