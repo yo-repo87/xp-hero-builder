@@ -486,7 +486,10 @@
   "CoolTime": 7.7,
   "SkillCategory": "Weapon",
   "Name_en": "Spinner Throw",
-  "Desc_en": "Throws a giant shuriken, dealing a total of {0:P0} damage."
+  "Desc_en": "Throws a giant shuriken, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 1.7
+  }
  },
  {
   "id": 2104,
@@ -497,7 +500,10 @@
   "CoolTime": 7.2,
   "SkillCategory": "Weapon",
   "Name_en": "Consecutive Stabs EX",
-  "Desc_en": "Attacks continuously, dealing a total of {0:P0} damage."
+  "Desc_en": "Attacks continuously, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 2.1
+  }
  },
  {
   "id": 2105,
@@ -508,7 +514,10 @@
   "CoolTime": 6.8,
   "SkillCategory": "Weapon",
   "Name_en": "Chamber of Pain",
-  "Desc_en": "Drives claws into the target area, dealing a total of {0:P0} damage."
+  "Desc_en": "Drives claws into the target area, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 2.6
+  }
  },
  {
   "id": 2106,
@@ -519,7 +528,10 @@
   "CoolTime": 6.4,
   "SkillCategory": "Weapon",
   "Name_en": "Abyssal Vortex",
-  "Desc_en": "Attacks continuously, dealing a total of {0:P0} damage."
+  "Desc_en": "Attacks continuously, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 2107,
@@ -530,7 +542,10 @@
   "CoolTime": 6.0,
   "SkillCategory": "Weapon",
   "Name_en": "Epic Spinner",
-  "Desc_en": "Throws a giant shuriken, dealing a total of {0:P0} damage."
+  "Desc_en": "Throws a giant shuriken, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 3.4
+  }
  },
  {
   "id": 2108,
@@ -607,7 +622,10 @@
   "CoolTime": 9.0,
   "SkillCategory": "Weapon",
   "Name_en": "Heavenly Sword",
-  "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range."
+  "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 2.0
+  }
  },
  {
   "id": 2204,
@@ -618,7 +636,10 @@
   "CoolTime": 8.5,
   "SkillCategory": "Weapon",
   "Name_en": "Round Bash EX",
-  "Desc_en": "Strikes the surrounding area twice, dealing a total of {0:P0} damage."
+  "Desc_en": "Strikes the surrounding area twice, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 2.5
+  }
  },
  {
   "id": 2205,
@@ -629,7 +650,10 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Sword of Heaven",
-  "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range."
+  "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 2206,
@@ -640,7 +664,10 @@
   "CoolTime": 7.5,
   "SkillCategory": "Weapon",
   "Name_en": "Abyssal Whip EX",
-  "Desc_en": "Summons tentacles of the abyss that deal a total of {0:P0} damage to enemies within range."
+  "Desc_en": "Summons tentacles of the abyss that deal a total of {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 3.5
+  }
  },
  {
   "id": 2207,
@@ -651,7 +678,10 @@
   "CoolTime": 7.0,
   "SkillCategory": "Weapon",
   "Name_en": "Sword of Heaven EX",
-  "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range."
+  "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 4.0
+  }
  },
  {
   "id": 2208,
@@ -728,7 +758,10 @@
   "CoolTime": 10.4,
   "SkillCategory": "Weapon",
   "Name_en": "Cactus Tremble",
-  "Desc_en": "Summons a cactus that deals {0:P0} damage to enemies within range."
+  "Desc_en": "Summons a cactus that deals {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 2.3
+  }
  },
  {
   "id": 2304,
@@ -739,7 +772,10 @@
   "CoolTime": 9.8,
   "SkillCategory": "Weapon",
   "Name_en": "Heavy Log Rolling",
-  "Desc_en": "Rolls a log that deals {0:P0} damage to enemies it crushes."
+  "Desc_en": "Rolls a log that deals {0:P0} damage to enemies it crushes.",
+  "Params": {
+   "0": 2.9
+  }
  },
  {
   "id": 2305,
@@ -750,7 +786,10 @@
   "CoolTime": 9.2,
   "SkillCategory": "Weapon",
   "Name_en": "Shockwave EX",
-  "Desc_en": "Slams the ground, dealing a total of {0:P0} damage."
+  "Desc_en": "Slams the ground, dealing a total of {0:P0} damage.",
+  "Params": {
+   "0": 3.5
+  }
  },
  {
   "id": 2306,
@@ -761,7 +800,10 @@
   "CoolTime": 8.6,
   "SkillCategory": "Weapon",
   "Name_en": "Summon Dark Totem",
-  "Desc_en": "Summons a Dark Totem that deals {0:P0} damage to enemies within range."
+  "Desc_en": "Summons a Dark Totem that deals {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 4.0
+  }
  },
  {
   "id": 2307,
@@ -772,7 +814,10 @@
   "CoolTime": 8.1,
   "SkillCategory": "Weapon",
   "Name_en": "Divine Smash",
-  "Desc_en": "Slams down a Heavenly Hammer, dealing {0:P0} damage."
+  "Desc_en": "Slams down a Heavenly Hammer, dealing {0:P0} damage.",
+  "Params": {
+   "0": 4.6
+  }
  },
  {
   "id": 2308,
@@ -849,7 +894,10 @@
   "CoolTime": 7.7,
   "SkillCategory": "Weapon",
   "Name_en": "Mad Bat",
-  "Desc_en": "Fires an exploding bat that deals {0:P0} damage."
+  "Desc_en": "Fires an exploding bat that deals {0:P0} damage.",
+  "Params": {
+   "0": 1.7
+  }
  },
  {
   "id": 2404,
@@ -860,7 +908,10 @@
   "CoolTime": 7.2,
   "SkillCategory": "Weapon",
   "Name_en": "Skull Fire",
-  "Desc_en": "Fires an exploding skull that deals {0:P0} damage."
+  "Desc_en": "Fires an exploding skull that deals {0:P0} damage.",
+  "Params": {
+   "0": 2.1
+  }
  },
  {
   "id": 2405,
@@ -871,7 +922,10 @@
   "CoolTime": 6.8,
   "SkillCategory": "Weapon",
   "Name_en": "Frost Arrow",
-  "Desc_en": "Fires an ice arrow that deals {0:P0} damage."
+  "Desc_en": "Fires an ice arrow that deals {0:P0} damage.",
+  "Params": {
+   "0": 2.6
+  }
  },
  {
   "id": 2406,
@@ -882,7 +936,10 @@
   "CoolTime": 6.4,
   "SkillCategory": "Weapon",
   "Name_en": "Rain of Fire",
-  "Desc_en": "Fires a burning arrow that deals a total of {0:P0} damage to enemies within range."
+  "Desc_en": "Fires a burning arrow that deals a total of {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 2407,
@@ -893,7 +950,10 @@
   "CoolTime": 6.0,
   "SkillCategory": "Weapon",
   "Name_en": "Holy Arrow",
-  "Desc_en": "Fires a holy arrow that deals {0:P0} damage."
+  "Desc_en": "Fires a holy arrow that deals {0:P0} damage.",
+  "Params": {
+   "0": 3.4
+  }
  },
  {
   "id": 2408,
@@ -970,7 +1030,10 @@
   "CoolTime": 9.0,
   "SkillCategory": "Weapon",
   "Name_en": "Magma Fire EX",
-  "Desc_en": "Fires a magma bullet that deals {0:P0} damage to enemies it hits."
+  "Desc_en": "Fires a magma bullet that deals {0:P0} damage to enemies it hits.",
+  "Params": {
+   "0": 2.0
+  }
  },
  {
   "id": 2504,
@@ -981,7 +1044,10 @@
   "CoolTime": 8.5,
   "SkillCategory": "Weapon",
   "Name_en": "Dragon Breath",
-  "Desc_en": "Exhales dragon breath, dealing {0:P0} damage to enemies within range."
+  "Desc_en": "Exhales dragon breath, dealing {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 2.5
+  }
  },
  {
   "id": 2505,
@@ -992,7 +1058,10 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Shotgun Blast",
-  "Desc_en": "Fires a shotgun, dealing {0:P0} damage."
+  "Desc_en": "Fires a shotgun, dealing {0:P0} damage.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 2506,
@@ -1003,7 +1072,10 @@
   "CoolTime": 7.5,
   "SkillCategory": "Weapon",
   "Name_en": "Dragon Breath EX",
-  "Desc_en": "Exhales dragon breath, dealing {0:P0} damage to enemies within range."
+  "Desc_en": "Exhales dragon breath, dealing {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 3.5
+  }
  },
  {
   "id": 2507,
@@ -1014,7 +1086,10 @@
   "CoolTime": 7.0,
   "SkillCategory": "Weapon",
   "Name_en": "Heavy Magma Fire",
-  "Desc_en": "Fires a magma bullet that deals {0:P0} damage to enemies it hits."
+  "Desc_en": "Fires a magma bullet that deals {0:P0} damage to enemies it hits.",
+  "Params": {
+   "0": 4.0
+  }
  },
  {
   "id": 2508,
@@ -1091,7 +1166,10 @@
   "CoolTime": 10.4,
   "SkillCategory": "Weapon",
   "Name_en": "Icy Road EX",
-  "Desc_en": "Summons a path of ice that deals {0:P0} damage to enemies within range."
+  "Desc_en": "Summons a path of ice that deals {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 2.3
+  }
  },
  {
   "id": 2604,
@@ -1102,7 +1180,10 @@
   "CoolTime": 9.8,
   "SkillCategory": "Weapon",
   "Name_en": "Electric Field",
-  "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range."
+  "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 2.9
+  }
  },
  {
   "id": 2605,
@@ -1113,7 +1194,10 @@
   "CoolTime": 9.2,
   "SkillCategory": "Weapon",
   "Name_en": "Thunder Storm",
-  "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range."
+  "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 3.5
+  }
  },
  {
   "id": 2606,
@@ -1124,7 +1208,10 @@
   "CoolTime": 8.6,
   "SkillCategory": "Weapon",
   "Name_en": "Flame Ball EX",
-  "Desc_en": "Fires an exploding fireball that deals {0:P0} damage to enemies within the explosion range."
+  "Desc_en": "Fires an exploding fireball that deals {0:P0} damage to enemies within the explosion range.",
+  "Params": {
+   "0": 4.0
+  }
  },
  {
   "id": 2607,
@@ -1135,7 +1222,10 @@
   "CoolTime": 8.1,
   "SkillCategory": "Weapon",
   "Name_en": "Divine Wrath",
-  "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range."
+  "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range.",
+  "Params": {
+   "0": 4.6
+  }
  },
  {
   "id": 2608,
@@ -1212,7 +1302,12 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Strike of the Dead Lv1",
-  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 3.7,
+   "1": 1.0,
+   "2": 5.0
+  }
  },
  {
   "id": 10002,
@@ -1223,7 +1318,13 @@
   "CoolTime": 11.4,
   "SkillCategory": "Costume",
   "Name_en": "Strike of the Dead Lv2",
-  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 4.3,
+   "1": 1.0,
+   "2": 5.0,
+   "3": 5.0
+  }
  },
  {
   "id": 10003,
@@ -1234,7 +1335,14 @@
   "CoolTime": 10.8,
   "SkillCategory": "Costume",
   "Name_en": "Strike of the Dead Lv3",
-  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage plus <color=#3d8300>{4:P0}</color> of Shield, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage plus <color=#3d8300>{4:P0}</color> of Shield, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 4.9,
+   "1": 1.0,
+   "2": 5.0,
+   "3": 5.0,
+   "4": 0.3
+  }
  },
  {
   "id": 10004,
@@ -1245,7 +1353,13 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Ice Storm Lv1",
-  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>100%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>100%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 3.7,
+   "1": 1.0,
+   "2": 5.0,
+   "3": 0.5
+  }
  },
  {
   "id": 10005,
@@ -1256,7 +1370,13 @@
   "CoolTime": 11.4,
   "SkillCategory": "Costume",
   "Name_en": "Ice Storm Lv2",
-  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>50%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>50%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 4.3,
+   "1": 1.5,
+   "2": 5.0,
+   "3": 0.5
+  }
  },
  {
   "id": 10006,
@@ -1267,7 +1387,14 @@
   "CoolTime": 10.8,
   "SkillCategory": "Costume",
   "Name_en": "Ice Storm Lv3",
-  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec and reduces Ice Storm cooldown by <color=#3d8300>{4:P0}</color>."
+  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec and reduces Ice Storm cooldown by <color=#3d8300>{4:P0}</color>.",
+  "Params": {
+   "0": 4.9,
+   "1": 2.0,
+   "2": 5.0,
+   "3": 0.5,
+   "4": 0.2
+  }
  },
  {
   "id": 10007,
@@ -1278,7 +1405,10 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Divine Path Lv1",
-  "Desc_en": "Removes all Buffs from the target and deals <color=#3d8300>{0:P0}</color> damage."
+  "Desc_en": "Removes all Buffs from the target and deals <color=#3d8300>{0:P0}</color> damage.",
+  "Params": {
+   "0": 2.5
+  }
  },
  {
   "id": 10008,
@@ -1289,7 +1419,10 @@
   "CoolTime": 8.0,
   "SkillCategory": "Costume",
   "Name_en": "Divine Path Lv2",
-  "Desc_en": "Removes all Buffs from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self."
+  "Desc_en": "Removes all Buffs from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 10009,
@@ -1300,7 +1433,10 @@
   "CoolTime": 7.5,
   "SkillCategory": "Costume",
   "Name_en": "Divine Path Lv3",
-  "Desc_en": "Removes all Buffs and shields from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self."
+  "Desc_en": "Removes all Buffs and shields from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
+  "Params": {
+   "0": 3.5
+  }
  },
  {
   "id": 10010,
@@ -1311,7 +1447,12 @@
   "CoolTime": 6.6,
   "SkillCategory": "Costume",
   "Name_en": "Leap Combo Lv1",
-  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.9,
+   "1": 1.0,
+   "2": 5.0
+  }
  },
  {
   "id": 10011,
@@ -1322,7 +1463,12 @@
   "CoolTime": 6.2,
   "SkillCategory": "Costume",
   "Name_en": "Leap Combo Lv2",
-  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.3,
+   "1": 2.0,
+   "2": 5.0
+  }
  },
  {
   "id": 10012,
@@ -1333,7 +1479,12 @@
   "CoolTime": 5.8,
   "SkillCategory": "Costume",
   "Name_en": "Leap Combo Lv3",
-  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.7,
+   "1": 3.0,
+   "2": 5.0
+  }
  },
  {
   "id": 10013,
@@ -1344,7 +1495,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Wide Lightning Lv1",
-  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 2.5,
+   "1": 1.5
+  }
  },
  {
   "id": 10014,
@@ -1355,7 +1510,11 @@
   "CoolTime": 10.4,
   "SkillCategory": "Costume",
   "Name_en": "Wide Lightning Lv2",
-  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 3.1,
+   "1": 2.0
+  }
  },
  {
   "id": 10015,
@@ -1366,7 +1525,11 @@
   "CoolTime": 9.8,
   "SkillCategory": "Costume",
   "Name_en": "Wide Lightning Lv3",
-  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 3.7,
+   "1": 2.5
+  }
  },
  {
   "id": 10016,
@@ -1377,7 +1540,11 @@
   "CoolTime": 7.0,
   "SkillCategory": "Costume",
   "Name_en": "Forest Arrow Lv1",
-  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit."
+  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit.",
+  "Params": {
+   "0": 1.6,
+   "1": 0.3
+  }
  },
  {
   "id": 10017,
@@ -1388,7 +1555,11 @@
   "CoolTime": 6.6,
   "SkillCategory": "Costume",
   "Name_en": "Forest Arrow Lv2",
-  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit."
+  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit.",
+  "Params": {
+   "0": 1.9,
+   "1": 0.6
+  }
  },
  {
   "id": 10018,
@@ -1399,7 +1570,11 @@
   "CoolTime": 6.2,
   "SkillCategory": "Costume",
   "Name_en": "Forest Arrow Lv3",
-  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit."
+  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit.",
+  "Params": {
+   "0": 2.3,
+   "1": 1.0
+  }
  },
  {
   "id": 10019,
@@ -1410,7 +1585,12 @@
   "CoolTime": 12.3,
   "SkillCategory": "Costume",
   "Name_en": "Pillar of Flame Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.1,
+   "1": 0.5,
+   "2": 3.0
+  }
  },
  {
   "id": 10020,
@@ -1421,7 +1601,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Pillar of Flame Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.5,
+   "1": 0.5,
+   "2": 4.0
+  }
  },
  {
   "id": 10021,
@@ -1432,7 +1617,12 @@
   "CoolTime": 10.4,
   "SkillCategory": "Costume",
   "Name_en": "Pillar of Flame Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 3.1,
+   "1": 0.5,
+   "2": 5.0
+  }
  },
  {
   "id": 10022,
@@ -1443,7 +1633,12 @@
   "CoolTime": 10.0,
   "SkillCategory": "Costume",
   "Name_en": "Bootcamp! Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.7,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 10023,
@@ -1454,7 +1649,12 @@
   "CoolTime": 9.0,
   "SkillCategory": "Costume",
   "Name_en": "Bootcamp! Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.0,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 10024,
@@ -1465,7 +1665,12 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Bootcamp! Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.5,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 10025,
@@ -1476,7 +1681,12 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Shuriken Flurry Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.1,
+   "1": 0.3,
+   "2": 3.0
+  }
  },
  {
   "id": 10026,
@@ -1487,7 +1697,12 @@
   "CoolTime": 7.8,
   "SkillCategory": "Costume",
   "Name_en": "Shuriken Flurry Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.3,
+   "1": 0.5,
+   "2": 3.0
+  }
  },
  {
   "id": 10027,
@@ -1498,7 +1713,12 @@
   "CoolTime": 7.0,
   "SkillCategory": "Costume",
   "Name_en": "Shuriken Flurry Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.6,
+   "1": 0.8,
+   "2": 3.0
+  }
  },
  {
   "id": 10028,
@@ -1509,7 +1729,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Weigh Anchor! Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 10029,
@@ -1520,7 +1745,12 @@
   "CoolTime": 10.0,
   "SkillCategory": "Costume",
   "Name_en": "Weigh Anchor! Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.7,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 10030,
@@ -1531,7 +1761,12 @@
   "CoolTime": 9.0,
   "SkillCategory": "Costume",
   "Name_en": "Weigh Anchor! Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.0,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 10031,
@@ -1542,7 +1777,11 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Heartpiercer Lv1",
-  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy."
+  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy.",
+  "Params": {
+   "0": 1.1,
+   "1": 0.5
+  }
  },
  {
   "id": 10032,
@@ -1553,7 +1792,11 @@
   "CoolTime": 7.8,
   "SkillCategory": "Costume",
   "Name_en": "Heartpiercer Lv2",
-  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy."
+  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy.",
+  "Params": {
+   "0": 1.3,
+   "1": 1.0
+  }
  },
  {
   "id": 10033,
@@ -1564,7 +1807,11 @@
   "CoolTime": 7.0,
   "SkillCategory": "Costume",
   "Name_en": "Heartpiercer Lv3",
-  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy."
+  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy.",
+  "Params": {
+   "0": 1.6,
+   "1": 2.0
+  }
  },
  {
   "id": 10034,
@@ -1575,7 +1822,11 @@
   "CoolTime": 9.3,
   "SkillCategory": "Costume",
   "Name_en": "Dragon's Flurry Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 0.9,
+   "1": 1.0
+  }
  },
  {
   "id": 10035,
@@ -1586,7 +1837,11 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Dragon's Flurry Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.1,
+   "1": 1.5
+  }
  },
  {
   "id": 10036,
@@ -1597,7 +1852,11 @@
   "CoolTime": 7.8,
   "SkillCategory": "Costume",
   "Name_en": "Dragon's Flurry Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.3,
+   "1": 2.0
+  }
  },
  {
   "id": 10037,
@@ -1608,7 +1867,11 @@
   "CoolTime": 9.3,
   "SkillCategory": "Costume",
   "Name_en": "Burst Barrage Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 0.9,
+   "1": 1.0
+  }
  },
  {
   "id": 10038,
@@ -1619,7 +1882,11 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Burst Barrage Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.1,
+   "1": 1.5
+  }
  },
  {
   "id": 10039,
@@ -1630,7 +1897,11 @@
   "CoolTime": 7.8,
   "SkillCategory": "Costume",
   "Name_en": "Burst Barrage Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.3,
+   "1": 2.0
+  }
  },
  {
   "id": 10040,
@@ -1641,7 +1912,12 @@
   "CoolTime": 14.7,
   "SkillCategory": "Costume",
   "Name_en": "Taunt Headbutt Lv1",
-  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self."
+  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self.",
+  "Params": {
+   "0": 1.5,
+   "1": 4.0,
+   "2": 0.5
+  }
  },
  {
   "id": 10041,
@@ -1652,7 +1928,12 @@
   "CoolTime": 13.5,
   "SkillCategory": "Costume",
   "Name_en": "Taunt Headbutt Lv2",
-  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self and melee allies."
+  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self and melee allies.",
+  "Params": {
+   "0": 1.7,
+   "1": 4.0,
+   "2": 0.5
+  }
  },
  {
   "id": 10042,
@@ -1663,7 +1944,12 @@
   "CoolTime": 12.3,
   "SkillCategory": "Costume",
   "Name_en": "Taunt Headbutt Lv3",
-  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for all allies."
+  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for all allies.",
+  "Params": {
+   "0": 2.1,
+   "1": 4.0,
+   "2": 0.5
+  }
  },
  {
   "id": 10045,
@@ -1674,7 +1960,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Death Spiral Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 1.0
+  }
  },
  {
   "id": 10046,
@@ -1685,7 +1975,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Death Spiral Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 1.5
+  }
  },
  {
   "id": 10047,
@@ -1696,7 +1990,11 @@
   "CoolTime": 10.0,
   "SkillCategory": "Costume",
   "Name_en": "Death Spiral Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.7,
+   "1": 2.0
+  }
  },
  {
   "id": 10048,
@@ -1707,7 +2005,11 @@
   "CoolTime": 14.7,
   "SkillCategory": "Costume",
   "Name_en": "Graceful Stomp Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP.",
+  "Params": {
+   "0": 1.5,
+   "1": 0.1
+  }
  },
  {
   "id": 10049,
@@ -1718,7 +2020,11 @@
   "CoolTime": 13.5,
   "SkillCategory": "Costume",
   "Name_en": "Graceful Stomp Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP.",
+  "Params": {
+   "0": 1.7,
+   "1": 0.2
+  }
  },
  {
   "id": 10050,
@@ -1729,7 +2035,11 @@
   "CoolTime": 12.3,
   "SkillCategory": "Costume",
   "Name_en": "Graceful Stomp Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP.",
+  "Params": {
+   "0": 2.1,
+   "1": 0.3
+  }
  },
  {
   "id": 90001,
@@ -1836,7 +2146,10 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Purifying Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from self and melee allies."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from self and melee allies.",
+  "Params": {
+   "0": 1.2
+  }
  },
  {
   "id": 10054,
@@ -1847,7 +2160,10 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Purifying Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from all allies."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from all allies.",
+  "Params": {
+   "0": 1.4
+  }
  },
  {
   "id": 10055,
@@ -1858,7 +2174,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Immunity Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to self and melee allies for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to self and melee allies for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 2.0
+  }
  },
  {
   "id": 10056,
@@ -1869,7 +2189,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Immunity Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to all allies for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to all allies for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 2.0
+  }
  },
  {
   "id": 10057,
@@ -1880,7 +2204,12 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Thorn Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 0.3,
+   "2": 5.0
+  }
  },
  {
   "id": 10058,
@@ -1891,7 +2220,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Thorn Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 0.5,
+   "2": 5.0
+  }
  },
  {
   "id": 10059,
@@ -1902,7 +2236,12 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Protection Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants self and melee allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants self and melee allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 3.0,
+   "2": 5.0
+  }
  },
  {
   "id": 10060,
@@ -1913,7 +2252,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Protection Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants all allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants all allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 3.0,
+   "2": 5.0
+  }
  },
  {
   "id": 10061,
@@ -1924,7 +2268,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Healing Bomb Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt.",
+  "Params": {
+   "0": 1.2,
+   "1": 3.0
+  }
  },
  {
   "id": 10062,
@@ -1935,7 +2283,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Healing Bomb Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt.",
+  "Params": {
+   "0": 1.4,
+   "1": 5.0
+  }
  },
  {
   "id": 10063,
@@ -1946,7 +2298,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Stun Bomb Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 1.0
+  }
  },
  {
   "id": 10064,
@@ -1957,7 +2313,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Costume",
   "Name_en": "Stun Bomb Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 1.5
+  }
  },
  {
   "id": 10065,
@@ -1968,7 +2328,12 @@
   "CoolTime": 8.5,
   "SkillCategory": "Costume",
   "Name_en": "Bullet Barrage Lv1",
-  "Desc_en": "Fires missiles in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing own ATK by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s."
+  "Desc_en": "Fires missiles in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing own ATK by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s.",
+  "Params": {
+   "0": 4.0,
+   "1": 3.0,
+   "2": 0.3
+  }
  },
  {
   "id": 10066,
@@ -1979,7 +2344,12 @@
   "CoolTime": 8.0,
   "SkillCategory": "Costume",
   "Name_en": "Bullet Barrage Lv2",
-  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of self and ranged allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s."
+  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of self and ranged allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s.",
+  "Params": {
+   "0": 4.5,
+   "1": 3.0,
+   "2": 0.4
+  }
  },
  {
   "id": 10067,
@@ -1990,7 +2360,12 @@
   "CoolTime": 7.5,
   "SkillCategory": "Costume",
   "Name_en": "Bullet Barrage Lv3",
-  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of all allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s."
+  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of all allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s.",
+  "Params": {
+   "0": 5.0,
+   "1": 3.0,
+   "2": 0.5
+  }
  },
  {
   "id": 10068,
@@ -2001,7 +2376,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Costume",
   "Name_en": "Black Blade Dance Lv1",
-  "Desc_en": "Quickly slashes enemies twice, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>."
+  "Desc_en": "Quickly slashes enemies twice, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>.",
+  "Params": {
+   "0": 4.0,
+   "1": 0.5
+  }
  },
  {
   "id": 10069,
@@ -2012,7 +2391,12 @@
   "CoolTime": 11.4,
   "SkillCategory": "Costume",
   "Name_en": "Black Blade Dance Lv2",
-  "Desc_en": "Quickly slashes enemies and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>."
+  "Desc_en": "Quickly slashes enemies and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>.",
+  "Params": {
+   "0": 6.0,
+   "1": 0.5,
+   "2": 0.5
+  }
  },
  {
   "id": 10070,
@@ -2023,7 +2407,12 @@
   "CoolTime": 10.8,
   "SkillCategory": "Costume",
   "Name_en": "Black Blade Dance Lv3",
-  "Desc_en": "Pulls in enemies and removes their buffs, then quickly slashes and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>."
+  "Desc_en": "Pulls in enemies and removes their buffs, then quickly slashes and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>.",
+  "Params": {
+   "0": 9.0,
+   "1": 0.5,
+   "2": 0.5
+  }
  },
  {
   "id": 10080,
@@ -2034,7 +2423,15 @@
   "CoolTime": 20.0,
   "SkillCategory": "Costume",
   "Name_en": "Witch's Brew Lv1",
-  "Desc_en": "Drinks an unstable brew. Has a <color=#3d8300>{0:0%}</color> chance to grant a Move Speed +<color=#3d8300>{2:0%}</color> and Attack Speed +<color=#3d8300>{3:0%}</color> buff to yourself for <color=#3d8300>{1}</color> sec, and a <color=#3d8300>{4:0%}</color> chance to explode, dealing <color=#3d8300>{5:0%}</color> damage to nearby enemies."
+  "Desc_en": "Drinks an unstable brew. Has a <color=#3d8300>{0:0%}</color> chance to grant a Move Speed +<color=#3d8300>{2:0%}</color> and Attack Speed +<color=#3d8300>{3:0%}</color> buff to yourself for <color=#3d8300>{1}</color> sec, and a <color=#3d8300>{4:0%}</color> chance to explode, dealing <color=#3d8300>{5:0%}</color> damage to nearby enemies.",
+  "Params": {
+   "0": 0.5,
+   "1": 5.0,
+   "2": 0.3,
+   "3": 0.6,
+   "4": 0.5,
+   "5": 3.5
+  }
  },
  {
   "id": 10081,
@@ -2045,7 +2442,15 @@
   "CoolTime": 19.0,
   "SkillCategory": "Costume",
   "Name_en": "Witch's Brew Lv2",
-  "Desc_en": "Drinks an unstable brew. Has a <color=#3d8300>{0:0%}</color> chance to grant a Move Speed +<color=#3d8300>{2:0%}</color> and Attack Speed +<color=#3d8300>{3:0%}</color> buff to yourself for <color=#3d8300>{1}</color> sec, and a <color=#3d8300>{4:0%}</color> chance to explode, dealing <color=#3d8300>{5:0%}</color> damage to nearby enemies."
+  "Desc_en": "Drinks an unstable brew. Has a <color=#3d8300>{0:0%}</color> chance to grant a Move Speed +<color=#3d8300>{2:0%}</color> and Attack Speed +<color=#3d8300>{3:0%}</color> buff to yourself for <color=#3d8300>{1}</color> sec, and a <color=#3d8300>{4:0%}</color> chance to explode, dealing <color=#3d8300>{5:0%}</color> damage to nearby enemies.",
+  "Params": {
+   "0": 0.5,
+   "1": 5.0,
+   "2": 0.3,
+   "3": 0.9,
+   "4": 0.5,
+   "5": 7.5
+  }
  },
  {
   "id": 10082,
@@ -2056,7 +2461,15 @@
   "CoolTime": 18.0,
   "SkillCategory": "Costume",
   "Name_en": "Witch's Brew Lv3",
-  "Desc_en": "Shatters an unstable brew over an area. Has a <color=#3d8300>{0:0%}</color> chance to grant a Move Speed +<color=#3d8300>{2:0%}</color> and Attack Speed +<color=#3d8300>{3:0%}</color> buff to yourself and nearby allies for <color=#3d8300>{1}</color> sec, and a <color=#3d8300>{4:0%}</color> chance to explode, dealing <color=#3d8300>{5:0%}</color> damage to nearby enemies."
+  "Desc_en": "Shatters an unstable brew over an area. Has a <color=#3d8300>{0:0%}</color> chance to grant a Move Speed +<color=#3d8300>{2:0%}</color> and Attack Speed +<color=#3d8300>{3:0%}</color> buff to yourself and nearby allies for <color=#3d8300>{1}</color> sec, and a <color=#3d8300>{4:0%}</color> chance to explode, dealing <color=#3d8300>{5:0%}</color> damage to nearby enemies.",
+  "Params": {
+   "0": 0.5,
+   "1": 5.0,
+   "2": 0.3,
+   "3": 1.5,
+   "4": 0.5,
+   "5": 13.5
+  }
  },
  {
   "id": 10083,
@@ -2067,7 +2480,12 @@
   "CoolTime": 26.0,
   "SkillCategory": "Costume",
   "Name_en": "Care for a Drink? Lv1",
-  "Desc_en": "Creates a blood pool, dealing a total of <color=#3d8300>{1:0%}</color> damage over <color=#3d8300>{0}</color> sec and absorbing <color=#3d8300>{2:0%}</color> of the damage as HP."
+  "Desc_en": "Creates a blood pool, dealing a total of <color=#3d8300>{1:0%}</color> damage over <color=#3d8300>{0}</color> sec and absorbing <color=#3d8300>{2:0%}</color> of the damage as HP.",
+  "Params": {
+   "0": 4.0,
+   "1": 10.0,
+   "2": 3.0
+  }
  },
  {
   "id": 10084,
@@ -2078,7 +2496,12 @@
   "CoolTime": 25.0,
   "SkillCategory": "Costume",
   "Name_en": "Care for a Drink? Lv2",
-  "Desc_en": "Creates a blood pool, dealing a total of <color=#3d8300>{1:0%}</color> damage over <color=#3d8300>{0}</color> sec and absorbing <color=#3d8300>{2:0%}</color> of the damage as HP."
+  "Desc_en": "Creates a blood pool, dealing a total of <color=#3d8300>{1:0%}</color> damage over <color=#3d8300>{0}</color> sec and absorbing <color=#3d8300>{2:0%}</color> of the damage as HP.",
+  "Params": {
+   "0": 5.0,
+   "1": 16.0,
+   "2": 3.0
+  }
  },
  {
   "id": 10085,
@@ -2089,7 +2512,12 @@
   "CoolTime": 24.0,
   "SkillCategory": "Costume",
   "Name_en": "Care for a Drink? Lv3",
-  "Desc_en": "Creates a blood pool, dealing a total of <color=#3d8300>{1:0%}</color> damage over <color=#3d8300>{0}</color> sec and absorbing <color=#3d8300>{2:0%}</color> of the damage as HP. Also heals allies standing in the pool."
+  "Desc_en": "Creates a blood pool, dealing a total of <color=#3d8300>{1:0%}</color> damage over <color=#3d8300>{0}</color> sec and absorbing <color=#3d8300>{2:0%}</color> of the damage as HP. Also heals allies standing in the pool.",
+  "Params": {
+   "0": 6.0,
+   "1": 21.5,
+   "2": 3.0
+  }
  },
  {
   "id": 50001,
@@ -2274,7 +2702,10 @@
   "CoolTime": 1000.0,
   "SkillCategory": "Enemy",
   "Name_en": "SHELL RETREAT",
-  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks."
+  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
+  "Params": {
+   "0": 50.0
+  }
  },
  {
   "id": 1110003,
@@ -2285,7 +2716,10 @@
   "CoolTime": 1000.0,
   "SkillCategory": "Enemy",
   "Name_en": "SHELL RETREAT",
-  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks."
+  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
+  "Params": {
+   "0": 300.0
+  }
  },
  {
   "id": 1110004,
@@ -2296,7 +2730,10 @@
   "CoolTime": 1000.0,
   "SkillCategory": "Enemy",
   "Name_en": "SHELL RETREAT",
-  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks."
+  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
+  "Params": {
+   "0": 300.0
+  }
  },
  {
   "id": 1110005,
@@ -2307,7 +2744,10 @@
   "CoolTime": 1000.0,
   "SkillCategory": "Enemy",
   "Name_en": "SHELL RETREAT",
-  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks."
+  "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
+  "Params": {
+   "0": 300.0
+  }
  },
  {
   "id": 1110011,
@@ -2318,7 +2758,10 @@
   "CoolTime": 10.0,
   "SkillCategory": "Enemy",
   "Name_en": "CLAW SMASH",
-  "Desc_en": "Targets the controlled hero with a giant claw, charges, then deals <color=#00bc00>{0:P0}</color> damage and inflicts <color=#bc0000>[Stun]</color>."
+  "Desc_en": "Targets the controlled hero with a giant claw, charges, then deals <color=#00bc00>{0:P0}</color> damage and inflicts <color=#bc0000>[Stun]</color>.",
+  "Params": {
+   "0": 5.0
+  }
  },
  {
   "id": 1120001,
@@ -2335,7 +2778,10 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "KING OF THE DESERT",
-  "Desc_en": "Summons <color=#00bc00>5</color> mummies at random locations and inflicts a <color=#bc0000>[Taunt]</color> Debuff on allies for <color=#00bc00>{0}</color> sec. Anubis's ATK increases based on the number of summoned minions."
+  "Desc_en": "Summons <color=#00bc00>5</color> mummies at random locations and inflicts a <color=#bc0000>[Taunt]</color> Debuff on allies for <color=#00bc00>{0}</color> sec. Anubis's ATK increases based on the number of summoned minions.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 1120003,
@@ -2346,7 +2792,10 @@
   "CoolTime": 15.0,
   "SkillCategory": "Enemy",
   "Name_en": "EXPLODING MUMMY",
-  "Desc_en": "Summons an <color=#00bc00>[Exploding Mummy]</color> that follows the controlled hero. On explosion it deals <color=#00bc00>{0:P0}</color> damage, also damaging mummies and Anubis."
+  "Desc_en": "Summons an <color=#00bc00>[Exploding Mummy]</color> that follows the controlled hero. On explosion it deals <color=#00bc00>{0:P0}</color> damage, also damaging mummies and Anubis.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 1120004,
@@ -2385,7 +2834,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "FESTIVAL OF THE NIGHT",
-  "Desc_en": "Charges for <color=#00bc00>5</color> sec, then transforms into a bat, dealing <color=#00bc00>{0:P0}</color> damage to ranged allies and absorbing <color=#00bc00>{1:P0}</color> of the damage as HP."
+  "Desc_en": "Charges for <color=#00bc00>5</color> sec, then transforms into a bat, dealing <color=#00bc00>{0:P0}</color> damage to ranged allies and absorbing <color=#00bc00>{1:P0}</color> of the damage as HP.",
+  "Params": {
+   "0": 7.0,
+   "1": 0.3
+  }
  },
  {
   "id": 1130003,
@@ -2435,7 +2888,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "ARCTIC WIND",
-  "Desc_en": "Knocks back nearby allies, dealing <color=#00bc00>{0:P0}</color> damage and inflicting <color=#bc0000>[Movement Speed Down]</color> and <color=#bc0000>[Attack Speed Down]</color> Debuffs for <color=#00bc00>{1}</color> sec."
+  "Desc_en": "Knocks back nearby allies, dealing <color=#00bc00>{0:P0}</color> damage and inflicting <color=#bc0000>[Movement Speed Down]</color> and <color=#bc0000>[Attack Speed Down]</color> Debuffs for <color=#00bc00>{1}</color> sec.",
+  "Params": {
+   "0": 5.0,
+   "1": 5.0
+  }
  },
  {
   "id": 1140003,
@@ -2446,7 +2903,10 @@
   "CoolTime": 18.0,
   "SkillCategory": "Enemy",
   "Name_en": "ICE BEAM",
-  "Desc_en": "Summons <color=#00bc00>3</color> flower buds at random locations. The buds periodically fire an <color=#00bc00>[Ice Beam]</color> that deals <color=#00bc00>{0:P0}</color> damage and inflicts <color=#bc0000>[Stun]</color> on allies hit."
+  "Desc_en": "Summons <color=#00bc00>3</color> flower buds at random locations. The buds periodically fire an <color=#00bc00>[Ice Beam]</color> that deals <color=#00bc00>{0:P0}</color> damage and inflicts <color=#bc0000>[Stun]</color> on allies hit.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 1140004,
@@ -2495,7 +2955,11 @@
   "CoolTime": 15.0,
   "SkillCategory": "Enemy",
   "Name_en": "FAIRY WIND",
-  "Desc_en": "Deals <color=#00bc00>{0:P0}</color> damage to all allies and inflicts a <color=#bc0000>[Poison]</color> Debuff for <color=#00bc00>{1}</color> sec. Also removes Buffs from allies hit and gains a <color=#0034bc>[Shield]</color> proportional to the Buffs removed."
+  "Desc_en": "Deals <color=#00bc00>{0:P0}</color> damage to all allies and inflicts a <color=#bc0000>[Poison]</color> Debuff for <color=#00bc00>{1}</color> sec. Also removes Buffs from allies hit and gains a <color=#0034bc>[Shield]</color> proportional to the Buffs removed.",
+  "Params": {
+   "0": 1.0,
+   "1": 10.0
+  }
  },
  {
   "id": 1150003,
@@ -2545,7 +3009,10 @@
   "CoolTime": 7.0,
   "SkillCategory": "Enemy",
   "Name_en": "HELLFIRE",
-  "Desc_en": "Fires Hellfire, dealing <color=#00bc00>{0:P0}</color> damage and inflicting a <color=#bc0000>[Burn]</color> Debuff on random allies. If two or more allies gather, a shield that reflects Hellfire is generated."
+  "Desc_en": "Fires Hellfire, dealing <color=#00bc00>{0:P0}</color> damage and inflicting a <color=#bc0000>[Burn]</color> Debuff on random allies. If two or more allies gather, a shield that reflects Hellfire is generated.",
+  "Params": {
+   "0": 2.0
+  }
  },
  {
   "id": 1160003,
@@ -2556,7 +3023,10 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "METEOR RAIN",
-  "Desc_en": "Drops rocks at random locations, dealing <color=#00bc00>{0:P0}</color> damage and inflicting <color=#bc0000>[Stun]</color>. The rocks stay stuck in the ground and block the path, but can be pushed."
+  "Desc_en": "Drops rocks at random locations, dealing <color=#00bc00>{0:P0}</color> damage and inflicting <color=#bc0000>[Stun]</color>. The rocks stay stuck in the ground and block the path, but can be pushed.",
+  "Params": {
+   "0": 2.0
+  }
  },
  {
   "id": 1160004,
@@ -2567,7 +3037,10 @@
   "CoolTime": 15.0,
   "SkillCategory": "Enemy",
   "Name_en": "HELL BREATH",
-  "Desc_en": "Each of the three heads fires a breath, dealing <color=#00bc00>{0:P0}</color> damage and inflicting a <color=#bc0000>[Burn]</color> debuff. Allies behind a rock take no breath damage."
+  "Desc_en": "Each of the three heads fires a breath, dealing <color=#00bc00>{0:P0}</color> damage and inflicting a <color=#bc0000>[Burn]</color> debuff. Allies behind a rock take no breath damage.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 1160005,
@@ -2589,7 +3062,12 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Strike of the Dead Lv1",
-  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 3.7,
+   "1": 1.0,
+   "2": 5.0
+  }
  },
  {
   "id": 2010002,
@@ -2600,7 +3078,13 @@
   "CoolTime": 11.4,
   "SkillCategory": "Enemy",
   "Name_en": "Strike of the Dead Lv2",
-  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 4.3,
+   "1": 1.0,
+   "2": 5.0,
+   "3": 5.0
+  }
  },
  {
   "id": 2010003,
@@ -2611,7 +3095,14 @@
   "CoolTime": 10.8,
   "SkillCategory": "Enemy",
   "Name_en": "Strike of the Dead Lv3",
-  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage plus <color=#3d8300>{4:P0}</color> of Shield, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Smashes the ground, dealing <color=#3d8300>{0:P0}</color> damage plus <color=#3d8300>{4:P0}</color> of Shield, and absorbs <color=#3d8300>{1:P0}</color> of the damage as HP.\\nExcess healing is converted into a shield for <color=#3d8300>{3}</color> sec. Upon skill use, inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 4.9,
+   "1": 1.0,
+   "2": 5.0,
+   "3": 5.0,
+   "4": 0.3
+  }
  },
  {
   "id": 2010004,
@@ -2622,7 +3113,13 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Ice Storm Lv1",
-  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>100%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>100%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 3.7,
+   "1": 1.0,
+   "2": 5.0,
+   "3": 0.5
+  }
  },
  {
   "id": 2010005,
@@ -2633,7 +3130,13 @@
   "CoolTime": 11.4,
   "SkillCategory": "Enemy",
   "Name_en": "Ice Storm Lv2",
-  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>50%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use at <color=#3d8300>50%</color> HP or above, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 4.3,
+   "1": 1.5,
+   "2": 5.0,
+   "3": 0.5
+  }
  },
  {
   "id": 2010006,
@@ -2644,7 +3147,14 @@
   "CoolTime": 10.8,
   "SkillCategory": "Enemy",
   "Name_en": "Ice Storm Lv3",
-  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec and reduces Ice Storm cooldown by <color=#3d8300>{4:P0}</color>."
+  "Desc_en": "Summons a blizzard that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.\\nUpon skill use, grants a Skill Damage +<color=#3d8300>{3:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec and reduces Ice Storm cooldown by <color=#3d8300>{4:P0}</color>.",
+  "Params": {
+   "0": 4.9,
+   "1": 2.0,
+   "2": 5.0,
+   "3": 0.5,
+   "4": 0.2
+  }
  },
  {
   "id": 2010007,
@@ -2655,7 +3165,10 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Divine Path Lv1",
-  "Desc_en": "Removes all Buffs from the target and deals <color=#3d8300>{0:P0}</color> damage."
+  "Desc_en": "Removes all Buffs from the target and deals <color=#3d8300>{0:P0}</color> damage.",
+  "Params": {
+   "0": 2.5
+  }
  },
  {
   "id": 2010008,
@@ -2666,7 +3179,10 @@
   "CoolTime": 8.0,
   "SkillCategory": "Enemy",
   "Name_en": "Divine Path Lv2",
-  "Desc_en": "Removes all Buffs from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self."
+  "Desc_en": "Removes all Buffs from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
+  "Params": {
+   "0": 3.0
+  }
  },
  {
   "id": 2010009,
@@ -2677,7 +3193,10 @@
   "CoolTime": 7.5,
   "SkillCategory": "Enemy",
   "Name_en": "Divine Path Lv3",
-  "Desc_en": "Removes all Buffs and shields from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self."
+  "Desc_en": "Removes all Buffs and shields from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
+  "Params": {
+   "0": 3.5
+  }
  },
  {
   "id": 2010010,
@@ -2688,7 +3207,12 @@
   "CoolTime": 6.6,
   "SkillCategory": "Enemy",
   "Name_en": "Leap Combo Lv1",
-  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.9,
+   "1": 1.0,
+   "2": 5.0
+  }
  },
  {
   "id": 2010011,
@@ -2699,7 +3223,12 @@
   "CoolTime": 6.2,
   "SkillCategory": "Enemy",
   "Name_en": "Leap Combo Lv2",
-  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.3,
+   "1": 2.0,
+   "2": 5.0
+  }
  },
  {
   "id": 2010012,
@@ -2710,7 +3239,12 @@
   "CoolTime": 5.8,
   "SkillCategory": "Enemy",
   "Name_en": "Leap Combo Lv3",
-  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Teleports to the enemy, dealing <color=#3d8300>{0:P0}</color> damage. If the target has a Debuff, grants an Attack Speed +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.7,
+   "1": 3.0,
+   "2": 5.0
+  }
  },
  {
   "id": 2010013,
@@ -2721,7 +3255,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Wide Lightning Lv1",
-  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 2.5,
+   "1": 1.5
+  }
  },
  {
   "id": 2010014,
@@ -2732,7 +3270,11 @@
   "CoolTime": 10.4,
   "SkillCategory": "Enemy",
   "Name_en": "Wide Lightning Lv2",
-  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 3.1,
+   "1": 2.0
+  }
  },
  {
   "id": 2010015,
@@ -2743,7 +3285,11 @@
   "CoolTime": 9.8,
   "SkillCategory": "Enemy",
   "Name_en": "Wide Lightning Lv3",
-  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Drops a lightning bolt that deals <color=#3d8300>{0:P0}</color> AoE damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 3.7,
+   "1": 2.5
+  }
  },
  {
   "id": 2010016,
@@ -2754,7 +3300,11 @@
   "CoolTime": 7.0,
   "SkillCategory": "Enemy",
   "Name_en": "Forest Arrow Lv1",
-  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit."
+  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit.",
+  "Params": {
+   "0": 1.6,
+   "1": 0.3
+  }
  },
  {
   "id": 2010017,
@@ -2765,7 +3315,11 @@
   "CoolTime": 6.6,
   "SkillCategory": "Enemy",
   "Name_en": "Forest Arrow Lv2",
-  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit."
+  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit.",
+  "Params": {
+   "0": 1.9,
+   "1": 0.6
+  }
  },
  {
   "id": 2010018,
@@ -2776,7 +3330,11 @@
   "CoolTime": 6.2,
   "SkillCategory": "Enemy",
   "Name_en": "Forest Arrow Lv3",
-  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit."
+  "Desc_en": "Rapidly fires piercing arrows, dealing a total of <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> upon a Critical Hit.",
+  "Params": {
+   "0": 2.3,
+   "1": 1.0
+  }
  },
  {
   "id": 2010019,
@@ -2787,7 +3345,12 @@
   "CoolTime": 12.3,
   "SkillCategory": "Enemy",
   "Name_en": "Pillar of Flame Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.1,
+   "1": 0.5,
+   "2": 3.0
+  }
  },
  {
   "id": 2010020,
@@ -2798,7 +3361,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Pillar of Flame Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.5,
+   "1": 0.5,
+   "2": 4.0
+  }
  },
  {
   "id": 2010021,
@@ -2809,7 +3377,12 @@
   "CoolTime": 10.4,
   "SkillCategory": "Enemy",
   "Name_en": "Pillar of Flame Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Burn Debuff on the target that deals <color=#3d8300>{1:P0}</color> damage for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 3.1,
+   "1": 0.5,
+   "2": 5.0
+  }
  },
  {
   "id": 2010022,
@@ -2820,7 +3393,12 @@
   "CoolTime": 10.0,
   "SkillCategory": "Enemy",
   "Name_en": "Bootcamp! Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.7,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 2010023,
@@ -2831,7 +3409,12 @@
   "CoolTime": 9.0,
   "SkillCategory": "Enemy",
   "Name_en": "Bootcamp! Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.0,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 2010024,
@@ -2842,7 +3425,12 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Bootcamp! Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Cooldown Reduction <color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.5,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 2010025,
@@ -2853,7 +3441,12 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Shuriken Flurry Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.1,
+   "1": 0.3,
+   "2": 3.0
+  }
  },
  {
   "id": 2010026,
@@ -2864,7 +3457,12 @@
   "CoolTime": 7.8,
   "SkillCategory": "Enemy",
   "Name_en": "Shuriken Flurry Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.3,
+   "1": 0.5,
+   "2": 3.0
+  }
  },
  {
   "id": 2010027,
@@ -2875,7 +3473,12 @@
   "CoolTime": 7.0,
   "SkillCategory": "Enemy",
   "Name_en": "Shuriken Flurry Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts an Attack Speed Down <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.6,
+   "1": 0.8,
+   "2": 3.0
+  }
  },
  {
   "id": 2010028,
@@ -2886,7 +3489,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Weigh Anchor! Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 2010029,
@@ -2897,7 +3505,12 @@
   "CoolTime": 10.0,
   "SkillCategory": "Enemy",
   "Name_en": "Weigh Anchor! Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to self and ranged allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.7,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 2010030,
@@ -2908,7 +3521,12 @@
   "CoolTime": 9.0,
   "SkillCategory": "Enemy",
   "Name_en": "Weigh Anchor! Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants a Crit Rate +<color=#3d8300>{1:P0}</color> Buff to all allies for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 2.0,
+   "1": 0.2,
+   "2": 5.0
+  }
  },
  {
   "id": 2010031,
@@ -2919,7 +3537,11 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Heartpiercer Lv1",
-  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy."
+  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy.",
+  "Params": {
+   "0": 1.1,
+   "1": 0.5
+  }
  },
  {
   "id": 2010032,
@@ -2930,7 +3552,11 @@
   "CoolTime": 7.8,
   "SkillCategory": "Enemy",
   "Name_en": "Heartpiercer Lv2",
-  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy."
+  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy.",
+  "Params": {
+   "0": 1.3,
+   "1": 1.0
+  }
  },
  {
   "id": 2010033,
@@ -2941,7 +3567,11 @@
   "CoolTime": 7.0,
   "SkillCategory": "Enemy",
   "Name_en": "Heartpiercer Lv3",
-  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy."
+  "Desc_en": "Fires an arrow that deals <color=#3d8300>{0:P0}</color> damage. Arrow damage increases by <color=#3d8300>{1:P0}</color> each time it pierces an enemy.",
+  "Params": {
+   "0": 1.6,
+   "1": 2.0
+  }
  },
  {
   "id": 2010034,
@@ -2952,7 +3582,11 @@
   "CoolTime": 9.3,
   "SkillCategory": "Enemy",
   "Name_en": "Dragon's Flurry Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 0.9,
+   "1": 1.0
+  }
  },
  {
   "id": 2010035,
@@ -2963,7 +3597,11 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Dragon's Flurry Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.1,
+   "1": 1.5
+  }
  },
  {
   "id": 2010036,
@@ -2974,7 +3612,11 @@
   "CoolTime": 7.8,
   "SkillCategory": "Enemy",
   "Name_en": "Dragon's Flurry Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.3,
+   "1": 2.0
+  }
  },
  {
   "id": 2010037,
@@ -2985,7 +3627,11 @@
   "CoolTime": 9.3,
   "SkillCategory": "Enemy",
   "Name_en": "Burst Barrage Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 0.9,
+   "1": 1.0
+  }
  },
  {
   "id": 2010038,
@@ -2996,7 +3642,11 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Burst Barrage Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.1,
+   "1": 1.5
+  }
  },
  {
   "id": 2010039,
@@ -3007,7 +3657,11 @@
   "CoolTime": 7.8,
   "SkillCategory": "Enemy",
   "Name_en": "Burst Barrage Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.3,
+   "1": 2.0
+  }
  },
  {
   "id": 2010040,
@@ -3018,7 +3672,12 @@
   "CoolTime": 14.7,
   "SkillCategory": "Enemy",
   "Name_en": "Taunt Headbutt Lv1",
-  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self."
+  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self.",
+  "Params": {
+   "0": 1.5,
+   "1": 4.0,
+   "2": 0.5
+  }
  },
  {
   "id": 2010041,
@@ -3029,7 +3688,12 @@
   "CoolTime": 13.5,
   "SkillCategory": "Enemy",
   "Name_en": "Taunt Headbutt Lv2",
-  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self and melee allies."
+  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for self and melee allies.",
+  "Params": {
+   "0": 1.7,
+   "1": 4.0,
+   "2": 0.5
+  }
  },
  {
   "id": 2010042,
@@ -3040,7 +3704,12 @@
   "CoolTime": 12.3,
   "SkillCategory": "Enemy",
   "Name_en": "Taunt Headbutt Lv3",
-  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for all allies."
+  "Desc_en": "Jumps to the enemy, dealing <color=#3d8300>{0:P0}</color> damage, and inflicts a Taunt Debuff on nearby enemies for <color=#3d8300>{1}</color> sec while reducing damage taken by <color=#3d8300>{2:P0}</color> for all allies.",
+  "Params": {
+   "0": 2.1,
+   "1": 4.0,
+   "2": 0.5
+  }
  },
  {
   "id": 2010045,
@@ -3051,7 +3720,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Death Spiral Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 1.0
+  }
  },
  {
   "id": 2010046,
@@ -3062,7 +3735,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Death Spiral Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 1.5
+  }
  },
  {
   "id": 2010047,
@@ -3073,7 +3750,11 @@
   "CoolTime": 10.0,
   "SkillCategory": "Enemy",
   "Name_en": "Death Spiral Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.7,
+   "1": 2.0
+  }
  },
  {
   "id": 2010048,
@@ -3084,7 +3765,11 @@
   "CoolTime": 14.7,
   "SkillCategory": "Enemy",
   "Name_en": "Graceful Stomp Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP.",
+  "Params": {
+   "0": 1.5,
+   "1": 0.1
+  }
  },
  {
   "id": 2010049,
@@ -3095,7 +3780,11 @@
   "CoolTime": 13.5,
   "SkillCategory": "Enemy",
   "Name_en": "Graceful Stomp Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP.",
+  "Params": {
+   "0": 1.7,
+   "1": 0.2
+  }
  },
  {
   "id": 2010050,
@@ -3106,7 +3795,11 @@
   "CoolTime": 12.3,
   "SkillCategory": "Enemy",
   "Name_en": "Graceful Stomp Lv3",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage, removes all Debuffs from self, and heals <color=#3d8300>{1:P0}</color> of Max HP.",
+  "Params": {
+   "0": 2.1,
+   "1": 0.3
+  }
  },
  {
   "id": 2010053,
@@ -3117,7 +3810,10 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Purifying Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from self and melee allies."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from self and melee allies.",
+  "Params": {
+   "0": 1.2
+  }
  },
  {
   "id": 2010054,
@@ -3128,7 +3824,10 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Purifying Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from all allies."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from all allies.",
+  "Params": {
+   "0": 1.4
+  }
  },
  {
   "id": 2010055,
@@ -3139,7 +3838,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Immunity Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to self and melee allies for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to self and melee allies for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 2.0
+  }
  },
  {
   "id": 2010056,
@@ -3150,7 +3853,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Immunity Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to all allies for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants Debuff immunity to all allies for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 2.0
+  }
  },
  {
   "id": 2010057,
@@ -3161,7 +3868,12 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Thorn Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 0.3,
+   "2": 5.0
+  }
  },
  {
   "id": 2010058,
@@ -3172,7 +3884,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Thorn Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Healing Reduction <color=#3d8300>{1:P0}</color> Debuff on the target for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 0.5,
+   "2": 5.0
+  }
  },
  {
   "id": 2010059,
@@ -3183,7 +3900,12 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Protection Strike Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants self and melee allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants self and melee allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 3.0,
+   "2": 5.0
+  }
  },
  {
   "id": 2010060,
@@ -3194,7 +3916,12 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Protection Strike Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants all allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and grants all allies a shield equal to <color=#3d8300>{1:P0}</color> of the damage dealt for <color=#3d8300>{2}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 3.0,
+   "2": 5.0
+  }
  },
  {
   "id": 2010061,
@@ -3205,7 +3932,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Healing Bomb Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt.",
+  "Params": {
+   "0": 1.2,
+   "1": 3.0
+  }
  },
  {
   "id": 2010062,
@@ -3216,7 +3947,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Healing Bomb Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and heals the lowest-HP ally for <color=#3d8300>{1:P0}</color> of the damage dealt.",
+  "Params": {
+   "0": 1.4,
+   "1": 5.0
+  }
  },
  {
   "id": 2010063,
@@ -3227,7 +3962,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Stun Bomb Lv1",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.2,
+   "1": 1.0
+  }
  },
  {
   "id": 2010064,
@@ -3238,7 +3977,11 @@
   "CoolTime": 11.0,
   "SkillCategory": "Enemy",
   "Name_en": "Stun Bomb Lv2",
-  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec."
+  "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and inflicts a Stun Debuff on the target for <color=#3d8300>{1}</color> sec.",
+  "Params": {
+   "0": 1.4,
+   "1": 1.5
+  }
  },
  {
   "id": 2010065,
@@ -3249,7 +3992,12 @@
   "CoolTime": 8.5,
   "SkillCategory": "Enemy",
   "Name_en": "Bullet Barrage Lv1",
-  "Desc_en": "Fires missiles in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing own ATK by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s."
+  "Desc_en": "Fires missiles in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing own ATK by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s.",
+  "Params": {
+   "0": 4.0,
+   "1": 3.0,
+   "2": 0.3
+  }
  },
  {
   "id": 2010066,
@@ -3260,7 +4008,12 @@
   "CoolTime": 8.0,
   "SkillCategory": "Enemy",
   "Name_en": "Bullet Barrage Lv2",
-  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of self and ranged allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s."
+  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of self and ranged allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s.",
+  "Params": {
+   "0": 4.5,
+   "1": 3.0,
+   "2": 0.4
+  }
  },
  {
   "id": 2010067,
@@ -3271,7 +4024,12 @@
   "CoolTime": 7.5,
   "SkillCategory": "Enemy",
   "Name_en": "Bullet Barrage Lv3",
-  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of all allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s."
+  "Desc_en": "Fires missiles and large bullets in rapid succession, dealing a total of <color=#3d8300>{0:P0}</color> damage to enemies and increasing ATK of all allies by <color=#3d8300>{2:P0}</color> for <color=#3d8300>{1}</color>s.",
+  "Params": {
+   "0": 5.0,
+   "1": 3.0,
+   "2": 0.5
+  }
  },
  {
   "id": 2010068,
@@ -3282,7 +4040,11 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "Black Blade Dance Lv1",
-  "Desc_en": "Quickly slashes enemies twice, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>."
+  "Desc_en": "Quickly slashes enemies twice, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>.",
+  "Params": {
+   "0": 4.0,
+   "1": 0.5
+  }
  },
  {
   "id": 2010069,
@@ -3293,7 +4055,12 @@
   "CoolTime": 11.4,
   "SkillCategory": "Enemy",
   "Name_en": "Black Blade Dance Lv2",
-  "Desc_en": "Quickly slashes enemies and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>."
+  "Desc_en": "Quickly slashes enemies and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>.",
+  "Params": {
+   "0": 6.0,
+   "1": 0.5,
+   "2": 0.5
+  }
  },
  {
   "id": 2010070,
@@ -3304,7 +4071,12 @@
   "CoolTime": 10.8,
   "SkillCategory": "Enemy",
   "Name_en": "Black Blade Dance Lv3",
-  "Desc_en": "Pulls in enemies and removes their buffs, then quickly slashes and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>."
+  "Desc_en": "Pulls in enemies and removes their buffs, then quickly slashes and fires a blade wave, dealing a total of <color=#3d8300>{0:P0}</color> damage. If self has no debuffs, damage increases by <color=#3d8300>{1:P0}</color>. If the enemy has no buffs, damage increases by an additional <color=#3d8300>{2:P0}</color>.",
+  "Params": {
+   "0": 9.0,
+   "1": 0.5,
+   "2": 0.5
+  }
  },
  {
   "id": 2000001,

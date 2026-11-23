@@ -35,6 +35,9 @@
     FarmableUI.render();
     MonstersUI.render();
     GuideUI.render();
+    MilestoneUI.render();
+    WorldMapUI.render();
+    InfoUI.render();
     ForumUI.render();
     AdminUI.render();
     setActiveTab(State.data.ui.activeTab);

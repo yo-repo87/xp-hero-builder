@@ -127,3 +127,22 @@ function wireLevelControl(id, onChange) {
     });
   });
 }
+
+// .NET-style composite formatting for game text: "{0:P0}", "{1:0%}", "{2:0.0}",
+// "{3:N0}", "{4}". Missing values become "?" rather than a guess.
+function formatLocaleArgs(text, params) {
+  return String(text).replace(/\{(\d+)(?::([^}]*))?\}/g, (m, i, fmt) => {
+    const v = params ? params[i] : undefined;
+    if (v === undefined || v === null) return '?';
+    const n = Number(v);
+    if (!fmt) return String(+n.toFixed(4));
+    let mm;
+    if ((mm = /^P(\d*)$/i.exec(fmt))) return (n * 100).toFixed(+(mm[1] || 0)) + '%';
+    if ((mm = /^N(\d*)$/i.exec(fmt))) return n.toLocaleString('en-US', { minimumFractionDigits: +(mm[1] || 0), maximumFractionDigits: +(mm[1] || 0) });
+    // '0' = fixed digit, '#' = optional digit (trailing zeros trimmed)
+    const fixed = (x, f) => { const frac = (f.split('.')[1] || '').replace(/[^0#]/g, ''); let t = x.toFixed(frac.length); const req = (frac.match(/0/g) || []).length; if (frac.length > req && t.includes('.')) { t = t.replace(/0+$/, ''); const have = (t.split('.')[1] || '').length; if (have < req) t += '0'.repeat(req - have); t = t.replace(/\.$/, ''); } return t; };
+    if (/%$/.test(fmt)) return fixed(n * 100, fmt.replace(/%$/, '')) + '%';
+    if (/^[0#,.]+$/.test(fmt)) return fixed(n, fmt);
+    return String(n);
+  });
+}

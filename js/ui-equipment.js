@@ -189,7 +189,7 @@ const EquipmentUI = {
       return this._card({
         icon: '⬆', accent: 'var(--tree-ability)', title: type.Title_en,
         // POWER(1)/HP(4) checkpoint data verified ~3-5x low vs real screenshots (docs/history.md "Ability tab").
-        sub: (type.id === 1 || type.id === 4) ? `${type.Desc_en} ⚠️ Values shown are likely too low (stale game data).` : type.Desc_en,
+        sub: (type.id === 1 || type.id === 4) ? `${type.Desc_en} Shows this tree's own bonus; the game's Ability screen shows your total from all sources, so it reads higher.` : type.Desc_en,
         curLabel: row ? fmtAbility(row.EffectAmount, isPct) : fmtAbility(0, isPct),
         nextLabel: nextRow ? fmtAbility(nextRow.EffectAmount, isPct) : null,
         level, maxLevel,

@@ -17,7 +17,9 @@
       <button class="tab-btn" data-tab="equipment">Equipment</button>
       <button class="tab-btn" data-tab="farmable">Farmable Items</button>
       <button class="tab-btn" data-tab="monsters">Monsters</button>
+      <button class="tab-btn" data-tab="worldmap">World Map</button>
       <button class="tab-btn" data-tab="guide">Guide</button>
+      <button class="tab-btn" data-tab="info">Game Info</button>
       <button class="tab-btn" data-tab="forum">Forum</button>
       <button class="tab-btn tab-btn--profile" data-tab="profile" id="tab-profile" hidden>
         <span class="profile-avatar" id="profile-avatar-tab"></span>
@@ -43,7 +45,9 @@
   <button class="tab-btn mobile-tab-btn" data-tab="equipment"><span class="mtb-icon">🛡️</span><span class="mtb-label">Gear</span></button>
   <button class="tab-btn mobile-tab-btn" data-tab="farmable"><span class="mtb-icon">💰</span><span class="mtb-label">Farm</span></button>
   <button class="tab-btn mobile-tab-btn" data-tab="monsters"><span class="mtb-icon">👹</span><span class="mtb-label">Enemies</span></button>
+  <button class="tab-btn mobile-tab-btn" data-tab="worldmap"><span class="mtb-icon">🗺️</span><span class="mtb-label">Map</span></button>
   <button class="tab-btn mobile-tab-btn" data-tab="guide"><span class="mtb-icon">📖</span><span class="mtb-label">Guide</span></button>
+  <button class="tab-btn mobile-tab-btn" data-tab="info"><span class="mtb-icon">📊</span><span class="mtb-label">Info</span></button>
   <button class="tab-btn mobile-tab-btn" data-tab="forum"><span class="mtb-icon">💬</span><span class="mtb-label">Forum</span></button>
 </nav>
 
@@ -108,6 +112,20 @@
     <div class="section-title"><h2>Build Guide</h2></div>
     <p class="section-sub">Pick one of your heroes to see build advice tailored to their current level, star grade, weapon loadout, traits, and upgrades.</p>
     <div id="guide-root"></div>
+    <div id="milestone-root"></div>
+  </section>
+
+  <!-- ============ WORLD MAP TAB ============ -->
+  <section class="tab-panel" id="panel-worldmap">
+    <div class="section-title"><h2>World Map</h2></div>
+    <p class="section-sub">The game's own world map with bosses, elites, monster spawns, gift chests and stage portals at their true positions. In World 2, tap anything to see the walking route from home.</p>
+    <div id="worldmap-root"></div>
+  </section>
+
+  <!-- ============ GAME INFO TAB ============ -->
+  <section class="tab-panel" id="panel-info">
+    <div class="section-title"><h2>Game Info</h2></div>
+    <div id="info-root"></div>
   </section>
 
   <!-- ============ FORUM TAB ============ -->
@@ -169,6 +187,8 @@
 <script src="js/ui-farmable.js?v=87acee3"></script>
 <script src="js/ui-monsters.js?v=87acee3"></script>
 <script src="js/ui-guide.js?v=87acee3"></script>
+<script src="js/ui-worldmap.js?v=87acee3"></script>
+<script src="js/ui-info.js?v=87acee3"></script>
 <script src="js/ui-search.js?v=87acee3"></script>
 <script src="js/ui-importexport.js?v=87acee3"></script>
 <script src="js/app.js?v=87acee3"></script>

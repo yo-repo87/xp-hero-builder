@@ -28,6 +28,7 @@ const DATA_FILES = [
   'RuneUniqueOptionData', 'RuneLevelBonusGroupData', 'RuneLevelCostData',
   'RuneBreakRewardData', 'RuneUniqueOptionSubSkillData', 'SkillSubData', 'SkillData',
   'GiftChestSpawnPoints', 'GiftChestSpawnData',
+  'WorldMap', 'MilestonePresets', 'GachaOdds', 'Codex', 'ShopValue', 'Changelog',
 ];
 
 // BossRaidStageData.bossraid_difficulty — confirmed by cross-referencing
@@ -346,22 +347,32 @@ const Game = {
       pushOther(item.id, { source: 'Invasion', title: `Invasion Pass season ${r.group_order} — unlock ${gate}${r.is_vip ? ' (VIP track)' : ''}`, pct: null, amount: r.reward_amount });
     }
 
-    const spinWeightByPreset = new Map();
+    // Each (preset_id, segment_id) pair is its own 12-slot wheel (v27.2.0 split
+    // presets into player segments), so weights are normalised per wheel. A
+    // player only ever sees one segment's wheel, so we report the range.
+    const wheelKey = r => `${r.preset_id}:${r.segment_id ?? 0}`;
+    const spinWeightByWheel = new Map();
     for (const r of this.db.LuckySpinRewardData) {
-      if (r.reward_type !== 1) continue;
-      if (!spinWeightByPreset.has(r.preset_id)) spinWeightByPreset.set(r.preset_id, 0);
-      spinWeightByPreset.set(r.preset_id, spinWeightByPreset.get(r.preset_id) + r.weight);
+      spinWeightByWheel.set(wheelKey(r), (spinWeightByWheel.get(wheelKey(r)) || 0) + r.weight);
     }
+    const spinAgg = new Map(); // `${itemId}:${preset}:${free}` -> {item, r, pcts[]}
     for (const r of this.db.LuckySpinRewardData) {
       if (r.reward_type !== 1) continue;
       const item = idx.itemByType.get(r.reward_param);
       if (!item) continue;
-      const total = spinWeightByPreset.get(r.preset_id) || 0;
+      const total = spinWeightByWheel.get(wheelKey(r)) || 0;
       if (total <= 0) continue;
+      const k = `${item.id}:${r.preset_id}:${r.is_free ? 1 : 0}`;
+      if (!spinAgg.has(k)) spinAgg.set(k, { item, r, pcts: [] });
+      spinAgg.get(k).pcts.push((r.weight / total) * 100);
+    }
+    for (const { item, r, pcts } of spinAgg.values()) {
+      const lo = Math.min(...pcts), hi = Math.max(...pcts);
+      const range = hi - lo > 0.005 ? ` — ${lo.toFixed(2)}–${hi.toFixed(2)}% depending on player segment` : '';
       pushOther(item.id, {
         source: 'Lucky Spin',
-        title: `Spin reward${r.is_free ? ' (free spin)' : ''}`,
-        pct: (r.weight / total) * 100, amount: r.reward_amount,
+        title: `Spin reward${r.is_free ? ' (free spin)' : ''}${range}`,
+        pct: hi, amount: r.reward_amount,
       });
     }
 

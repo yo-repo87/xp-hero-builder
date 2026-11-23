@@ -30,8 +30,8 @@ vm.createContext(ctx);
 const SRC = ['ui-common.js', 'data.js', 'formulas.js', 'state.js', 'screenshot-import.js']
   .map(f => fs.readFileSync(path.join(ROOT, 'js', f), 'utf8')).join('\n;\n');
 // Top-level const/let aren't context properties; re-export the ones tests need.
-vm.runInContext(SRC + '\n;globalThis.__T = { Game, Formulas, State, ScreenshotImport, migrate: typeof migrate === "function" ? migrate : null };', ctx);
-const { Game, Formulas, State, ScreenshotImport } = ctx.__T;
+vm.runInContext(SRC + '\n;globalThis.__T = { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, migrate: typeof migrate === "function" ? migrate : null };', ctx);
+const { Game, Formulas, State, ScreenshotImport, formatLocaleArgs } = ctx.__T;
 
 let pass = 0, fail = 0;
 const tests = [];
@@ -192,6 +192,31 @@ Level 11/20`;
   eq([r['special:MASSIVE MUSCLE'].grade, r['special:MASSIVE MUSCLE'].level], [4, 50]);
   eq(r['special:LOAD MASTER'].level, 47, 'tier 17/20 at grade 4 = cumulative 47');
   eq(Object.keys(r).length, 8);
+});
+
+test('skill text placeholders use .NET formats from LocaleParamData', () => {
+  eq(formatLocaleArgs('{0:P0}|{1:0%}|{2:0.0}|{3:N0}|{4:0.#}|{5}', { 0: 1.2, 1: 0.5, 2: 5, 3: 12345, 4: 3 }), '120%|50%|5.0|12,345|3|?');
+  const purify = Game.db.SkillData.find(s => s.id === 10053);
+  eq(formatLocaleArgs(purify.Desc_en.replace(/<[^>]+>/g, ''), purify.Params).startsWith('Deals 120% damage'), true);
+});
+
+test('Lucky Spin odds are normalised per wheel (preset + segment)', () => {
+  const wheel = Game.db.LuckySpinRewardData.filter(r => r.preset_id === 1 && r.segment_id === 1);
+  eq(wheel.length, 12);
+  eq(wheel.reduce((s, r) => s + r.weight, 0), 1000);
+});
+
+test('gacha box odds each sum to 100%', () => {
+  for (const b of Game.db.GachaOdds) {
+    const t = b.outcomes.reduce((s, o) => s + o.pct, 0);
+    ok(Math.abs(t - 100) < 0.05, `box ${b.id} sums to ${t}`);
+  }
+});
+
+test('world map chapters and navmesh load', () => {
+  const wm = Game.db.WorldMap;
+  eq(wm.chapters.map(c => c.chapter), [1, 2]);
+  eq(wm.nav['2'].polys.length, wm.nav['2'].links.length);
 });
 
 (async () => {

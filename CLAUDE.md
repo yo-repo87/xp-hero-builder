@@ -20,7 +20,8 @@ Forum/Admin are the exception: they load from the server and mount once.
 - `js/data.js` loads `data/*.json` into `Game.db` and builds `Game.index.*`
 - `js/formulas.js` holds all stat math. Each formula is tagged confirmed/mapped/manual/unmodeled
 - `js/state.js` holds the user build (localStorage, import/export, `migrate()` for old saves)
-- `js/ui-*.js` holds one module per tab, plus `ui-map.js` (MapUI/SpawnMapUI/GiftChestMapUI) and `ui-search.js`
+- `js/ui-*.js` holds one module per tab, plus `ui-map.js` (MapUI/SpawnMapUI/GiftChestMapUI) and `ui-search.js`.
+  `ui-worldmap.js` (World Map + navmesh routing), `ui-info.js` (Game Info), MilestoneUI in `ui-guide.js`
 - `tests/` has Node regression tests: run `node tests/run.js`
 - Optional backend in `server/` (Node/Express + Postgres on `shared_postgres`, db/role
   `xpherobuilder`, container `xpherobuilder_backend`, host port 3142 → container 4000, public URL
@@ -56,11 +57,9 @@ Forum/Admin are the exception: they load from the server and mount once.
   `mcr.microsoft.com/dotnet/runtime:6.0` container. More in `docs/history.md`.
 
 ## Open items
-- Ability POWER/HP is ~3–5x low vs the live game. It feeds Total DPS (flagged in the UI).
-  v27.2.0 has byte-identical POWER/HP rows, so it's not stale data: likely an unmodeled
-  multiplier. Needs disassembly or live in-game readings.
-- Milestone "recommended build" presets: tables extracted (`MilestonePreset*` in
-  `apk/work/textassets`), no UI yet. `GrantType 2` rune random-attribute roll: not investigated.
+- `GrantType 2` rune random-attribute roll: not investigated.
+- Codex bonuses (Game Info tab) aren't in the DPS math: option-value units unconfirmed.
+- Gacha boxes are listed by type/id: the data doesn't say which shop button or key opens each.
 - World chapter 3 (CH14+) spawn points and gift chests need its scene bundle, which the VM
   downloads only once that chapter is reached.
 - Still unmodeled: BlessingBuff, VipSubscription (manual input).

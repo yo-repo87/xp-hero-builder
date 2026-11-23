@@ -1,0 +1,123 @@
+{
+ "version": "27.2.0",
+ "previous": "26.2.0",
+ "date": "2026-11-23",
+ "notes": [
+  "Ability tree: one ability (type 3) gained 2 extra early levels; later level costs and effects shift accordingly.",
+  "Reward tables: 15 new reward groups and about 250 existing reward rows retuned (drop rates and amounts).",
+  "Lucky Spin: reward table grew from 24 to 192 rows (new spin presets/segments).",
+  "Chapter 5 enemy spawn positions were moved by the game."
+ ],
+ "sections": [
+  {
+   "title": "New Enemies",
+   "items": [
+    "Treasure Goblin"
+   ]
+  },
+  {
+   "title": "New Items",
+   "items": [
+    "Eternity Stone Selector",
+    "Orb Selection Ticket",
+    "Random Rune",
+    "Halloween Candy (event item; no English name in game text yet)",
+    "Special Hero Chest Key"
+   ]
+  },
+  {
+   "title": "New Stats",
+   "items": [
+    "Crossbow Attack Power",
+    "Dagger Attack Power",
+    "Gun Attack Power",
+    "Morningstar Attack Power",
+    "Sword Attack Power",
+    "Wand Attack Power"
+   ]
+  },
+  {
+   "title": "Renamed in-game text",
+   "items": [
+    "MELEE DAMAGE → MELEE WEAPON DAMAGE",
+    "Melee Attack Power → Melee Weapon Damage",
+    "Melee Damage → Melee Weapon Damage",
+    "RANGED DAMAGE → RANGED WEAPON DAMAGE",
+    "Ranged Attack Power → Ranged Weapon Damage",
+    "Ranged Damage → Ranged Weapon Damage"
+   ]
+  }
+ ],
+ "tables": [
+  {
+   "table": "RewardGroupData",
+   "added": 15,
+   "changed": 250
+  },
+  {
+   "table": "LuckySpinRewardData",
+   "added": 168,
+   "changed": 24
+  },
+  {
+   "table": "QuestData",
+   "added": 0,
+   "changed": 112
+  },
+  {
+   "table": "NewCostumeRevenuePassRewardData",
+   "added": 41,
+   "changed": 36
+  },
+  {
+   "table": "ItemDefinitionData",
+   "added": 62,
+   "changed": 0
+  },
+  {
+   "table": "StackableItemData",
+   "added": 12,
+   "changed": 46
+  },
+  {
+   "table": "StatData",
+   "added": 6,
+   "changed": 21
+  },
+  {
+   "table": "AbilityLevelUpCostInfo",
+   "added": 2,
+   "changed": 21
+  },
+  {
+   "table": "MinimapRewardData",
+   "added": 0,
+   "changed": 20
+  },
+  {
+   "table": "WeaponLevelUpBonusGroup",
+   "added": 0,
+   "changed": 16
+  },
+  {
+   "table": "EnemyData",
+   "added": 1,
+   "changed": 5
+  },
+  {
+   "table": "RuneOptionTypeData",
+   "added": 0,
+   "changed": 2
+  },
+  {
+   "table": "SoulUpgradeTypeData",
+   "added": 0,
+   "changed": 2
+  },
+  {
+   "table": "TraitSynergyGroupData",
+   "added": 1,
+   "changed": 1
+  }
+ ]
+}

@@ -764,21 +764,17 @@ const Formulas = {
     }
 
     // Ability — AbilityListElementInfo id 1 = "POWER", flat EffectAmount,
-    // now correctly interpolated between checkpoints (see abilityRow
-    // above). KNOWN OPEN ISSUE (2026-10-24, direct user report with real
-    // screenshots, not yet resolved): even with correct interpolation,
-    // this app's committed AbilityLevelUpCostInfo checkpoint VALUES for
-    // POWER specifically appear stale vs. the live game — a real
-    // screenshot at level 631 showed "70.5K" where this table's own
-    // interpolated value is ~21.9K (a ~3.2x gap). Cargo and HP Recovery,
-    // checked the same way, match the live game exactly — so this isn't
-    // a formula bug, it's specific underlying data that's gone stale
-    // (HP, id 4, shows the same pattern, ~4.8x low) and would need a
-    // fresh data pull to actually confirm/correct — not guessed at here.
+    // interpolated between checkpoints (see abilityRow above). RESOLVED
+    // 2026-11-23: the in-game Ability screen does NOT show this tree's own
+    // value. Decompiling AbilityListElement.RefreshUI (v27.2.0) shows it
+    // displays PlayerCharacter.GetPlayerStat_Float(...) — the player's TOTAL
+    // stat from every source — formatted with To1000KFormat. That is why a
+    // screenshot read ~3.2x (POWER) / ~4.8x (HP) above this tree's own
+    // EffectAmount: the gap is the other sources, not stale data.
     {
       const level = State.data.upgrades.ability[1] || 0;
       const row = this.abilityRow(1, level);
-      set('Ability', row ? num(row.EffectAmount) : 0, 'mapped', `Ability tree "POWER" @ level ${level} (interpolated). ⚠️ Likely UNDERESTIMATED: real in-game Power is ~3x this value at the same level — this app's extracted checkpoint data appears stale for POWER.`);
+      set('Ability', row ? num(row.EffectAmount) : 0, 'mapped', `Ability tree "POWER" @ level ${level} (interpolated). This is the Ability tree's own contribution; the in-game Ability screen shows your total POWER from every source, so it reads higher.`);
     }
 
     // Weapon / WeaponLevelBonus / WeaponOption — summed across all 6 equipped slots.

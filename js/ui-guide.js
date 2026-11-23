@@ -255,3 +255,66 @@ function buildAdvice(hero, costume) {
 
   return blocks;
 }
+
+// ---------------------------------------------------------------------------
+// MilestoneUI — compares the user's upgrade levels with the game's own
+// "milestone preset" builds (data/MilestonePresets.json, from
+// MilestonePresetData): the levels the game's designers target at each
+// player-level / boss checkpoint. Column → upgrade-id mapping was matched by
+// name and confirmed against each upgrade's in-game description.
+// ---------------------------------------------------------------------------
+const MilestoneUI = {
+  presetId: null,
+  TREES: [
+    ['Ability', 'ability', [['LV_Power', 1], ['LV_Cargo', 2], ['LV_MoveSpeed', 3], ['LV_Hp', 4], ['LV_Crit_Rate', 5], ['LV_AttackSpeed', 8], ['LV_Crit_Damage', 9], ['LV_HPRegen', 10], ['LV_DoubleAttack_Rate', 11], ['LV_TripleAttack_Rate', 12]], 'AbilityListElementInfo', 'id'],
+    ['Extra', 'extra', [['Lv_Ex_Power', 1], ['Lv_Ex_Cargo', 11], ['Lv_Ex_Hp', 5], ['Lv_Ex_HPRegen', 6], ['Lv_Ex_Crit_Rate', 9], ['Lv_Ex_SkillDamage', 12], ['Lv_Ex_LifeSteal', 3], ['Lv_Ex_SkillCoolDown', 4]], 'ExtraUpgradeTypeData', 'OptionType'],
+    ['Special', 'special', [['Lv_Sp_Power', 1], ['Lv_Sp_Cargo', 11], ['Lv_Sp_Hp', 5], ['Lv_Sp_LifeSteal', 3], ['Lv_Sp_MoveSpeed', 8], ['Lv_Sp_HPRegen', 6], ['Lv_Sp_Crit_Rate', 9], ['Lv_Sp_DoubleAttack_Rate', 13], ['Lv_Sp_SkillDamage', 12], ['Lv_Sp_TripleAttack_Rate', 14], ['Lv_Sp_SkillCooldown', 4]], 'SpecialUpgradeTypeData', 'OptionType'],
+    ['Soul', 'soul', [['lv_soul_attack', 1], ['lv_soul_crit_damage', 2], ['lv_soul_hp', 5], ['lv_soul_hp_regen', 6], ['lv_soul_cargo', 11], ['lv_soul_basicattack', 22], ['lv_soul_skill_damage', 12], ['lv_soul_ranged_damage', 19], ['lv_soul_melee_damage', 20]], 'SoulUpgradeTypeData', 'OptionType'],
+  ],
+
+  _mine(tree, id) {
+    const v = State.data.upgrades[tree][id];
+    if (v == null) return 0;
+    return typeof v === 'object' ? (v.level || 0) : v;
+  },
+
+  render() {
+    const root = document.getElementById('milestone-root');
+    if (!root || !Game.db.MilestonePresets) return;
+    const presets = Game.db.MilestonePresets;
+    const leveled = presets.filter(p => p.level != null);
+    if (this.presetId == null || !presets.some(p => p.id === this.presetId)) {
+      const myPower = this._mine('ability', 1);
+      this.presetId = leveled.reduce((best, p) => Math.abs((p.LV_Power || 0) - myPower) < Math.abs((best.LV_Power || 0) - myPower) ? p : best, leveled[0]).id;
+    }
+    const P = presets.find(p => p.id === this.presetId);
+    const opt = p => `<option value="${p.id}" ${p.id === P.id ? 'selected' : ''}>${p.level != null ? `Player Lv ${p.level} — ${escapeHtml(p.label)}` : escapeHtml(p.label)}</option>`;
+    let behind = 0, total = 0;
+    const sections = this.TREES.map(([name, tree, cols, table, key]) => {
+      const rows = cols.filter(([col]) => P[col] != null).map(([col, id]) => {
+        const meta = Game.db[table].find(r => r[key] === id);
+        const want = P[col], have = this._mine(tree, id);
+        total++; if (have < want) behind++;
+        const st = have >= want ? '<span class="ms-ok">✓</span>' : `<span class="ms-behind">−${fmtNum(want - have)}</span>`;
+        return `<tr><td>${escapeHtml(meta ? meta.Title_en : col)}</td><td class="num">${fmtNum(have)}</td><td class="num">${fmtNum(want)}</td><td class="num">${st}</td></tr>`;
+      }).join('');
+      const extra = tree === 'special' && P.Lv_Sp_Grade != null ? `<div class="info-note">Target Special grade: ${P.Lv_Sp_Grade}</div>` : '';
+      return rows ? `<div class="info-card"><h4>${name}</h4><table class="info-table"><thead><tr><th></th><th class="num">You</th><th class="num">Target</th><th class="num"></th></tr></thead><tbody>${rows}</tbody></table>${extra}</div>` : '';
+    }).join('');
+    const weapons = [1, 2, 3, 4, 5, 6].filter(i => P[`WeaponRarity_${i}`]).map(i => `${this._rarName(P[`WeaponRarity_${i}`])}${P[`WeaponGrade_${i}`] > 1 ? ` Gr ${P[`WeaponGrade_${i}`]}` : ''} Lv ${P[`WeaponLevel_${i}`]}`).join(' · ');
+    const hero = Game.index.costumeById.get(P.Costume_Equip);
+    const traits = [1, 2, 3, 4, 5].map(i => P[`trait_option_slot_${i}`]).filter(Boolean).map(id => { const t = Game.db.TraitOptionData.find(r => r.id === id); const ty = t && Game.db.TraitOptionTypeData.find(r => r.option_type === t.option_type || r.id === t.option_type); return ty ? `${Game.rarityColor(t.option_rarity).name} ${ty.name_en || ty.name}` : `Trait #${id}`; });
+    root.innerHTML = `
+      <div class="section-title" style="margin-top:24px"><h2>Milestone Check</h2></div>
+      <p class="section-sub">The game's own designer target build for each progress checkpoint (MilestonePresetData), compared with the upgrade levels on your account. The default checkpoint is the one whose POWER target is closest to your current POWER level.</p>
+      <select class="input" id="ms-preset">${leveled.map(opt).join('')}<optgroup label="Other presets">${presets.filter(p => p.level == null).map(opt).join('')}</optgroup></select>
+      <p class="info-note">${total - behind} of ${total} upgrades at or above target${behind ? `, ${behind} behind` : ''}.</p>
+      <div class="info-grid">${sections}</div>
+      <div class="info-card"><h4>Rest of the target build</h4>
+        <div class="info-note"><strong>Hero:</strong> ${hero ? escapeHtml(hero.Name_en) : '—'} · Lv ${fmtNum(P.Costume_Level || 0)} · ${fmtNum(P.Costume_UnlockCount || 0)} heroes unlocked</div>
+        <div class="info-note"><strong>Weapons:</strong> ${weapons || '—'}</div>
+        <div class="info-note"><strong>Traits:</strong> ${traits.length ? traits.map(escapeHtml).join(', ') : '—'}</div></div>`;
+    root.querySelector('#ms-preset').addEventListener('change', e => { this.presetId = +e.target.value; this.render(); });
+  },
+  _rarName(r) { return escapeHtml(Game.rarityColor(r).name); },
+};
