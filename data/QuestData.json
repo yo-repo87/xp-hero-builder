@@ -26,7 +26,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "InitialSwordEquipped",
   "Condition_Param": 0,
   "Condition_Type": 2001,
   "Condition_Value": 1,
@@ -44,15 +43,15 @@
   "Reward_Value_1": 14,
   "Reward_Value_2": 0,
   "SortOrder": 2,
-  "StartOnboarding": "EquipInitialSword",
   "Title": "QUEST_TITLE_GET_THE_WEAPON",
   "Title_en": "Get the Weapon",
-  "id": 1
+  "id": 1,
+  "CondFinishedOnboarding": "InitialSwordEquipped",
+  "StartOnboarding": "EquipInitialSword"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "SlimeKilled",
   "Condition_Param": 1001,
   "Condition_Type": 8,
   "Condition_Value": 3,
@@ -70,15 +69,15 @@
   "Reward_Value_1": 3,
   "Reward_Value_2": 0,
   "SortOrder": 3,
-  "StartOnboarding": "KillSlime",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 2
+  "id": 2,
+  "CondFinishedOnboarding": "SlimeKilled",
+  "StartOnboarding": "KillSlime"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "BonFireBuilt",
   "Condition_Param": 1,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -96,10 +95,11 @@
   "Reward_Value_1": 10,
   "Reward_Value_2": 0,
   "SortOrder": 4,
-  "StartOnboarding": "PurchaseBonFire",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 3
+  "id": 3,
+  "CondFinishedOnboarding": "BonFireBuilt",
+  "StartOnboarding": "PurchaseBonFire"
  },
  {
   "Accumulate": true,
@@ -145,15 +145,14 @@
   "Reward_Value_1": 20,
   "Reward_Value_2": 0,
   "SortOrder": 6,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 5
+  "id": 5,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -171,15 +170,15 @@
   "Reward_Value_1": 13,
   "Reward_Value_2": 0,
   "SortOrder": 7,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 6
+  "id": 6,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 2,
   "Condition_Type": 26,
   "Condition_Value": 2,
@@ -197,10 +196,11 @@
   "Reward_Value_1": 26,
   "Reward_Value_2": 0,
   "SortOrder": 8,
-  "StartOnboarding": "UpgradeCargo",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 7
+  "id": 7,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCargo"
  },
  {
   "Accumulate": false,
@@ -222,15 +222,14 @@
   "Reward_Value_1": 70,
   "Reward_Value_2": 0,
   "SortOrder": 9,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 8
+  "id": 8,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "SmithyBuilt",
   "Condition_Param": 3,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -248,10 +247,11 @@
   "Reward_Value_1": 5,
   "Reward_Value_2": 0,
   "SortOrder": 10,
-  "StartOnboarding": "PurchaseSmithy",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 9
+  "id": 9,
+  "CondFinishedOnboarding": "SmithyBuilt",
+  "StartOnboarding": "PurchaseSmithy"
  },
  {
   "Accumulate": false,
@@ -280,7 +280,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "SmithyGachaUpgraded",
   "Condition_Param": 3,
   "Condition_Type": 1000,
   "Condition_Value": 2,
@@ -298,15 +297,15 @@
   "Reward_Value_1": 111,
   "Reward_Value_2": 0,
   "SortOrder": 12,
-  "StartOnboarding": "UpgradeSmithyGacha",
   "Title": "QUEST_TITLE_UPGRADE_SMITHY",
   "Title_en": "Upgrade Smithy",
-  "id": 11
+  "id": 11,
+  "CondFinishedOnboarding": "SmithyGachaUpgraded",
+  "StartOnboarding": "UpgradeSmithyGacha"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 1,
   "Condition_Type": 26,
   "Condition_Value": 4,
@@ -324,15 +323,15 @@
   "Reward_Value_1": 147,
   "Reward_Value_2": 0,
   "SortOrder": 13,
-  "StartOnboarding": "UpgradePower",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 12
+  "id": 12,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradePower"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 4,
   "Condition_Type": 26,
   "Condition_Value": 2,
@@ -350,10 +349,11 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 14,
-  "StartOnboarding": "UpgradeHp",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 13
+  "id": 13,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeHp"
  },
  {
   "Accumulate": false,
@@ -375,15 +375,14 @@
   "Reward_Value_1": 147,
   "Reward_Value_2": 0,
   "SortOrder": 15,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 14
+  "id": 14,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 2,
   "Condition_Type": 26,
   "Condition_Value": 4,
@@ -401,15 +400,15 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 16,
-  "StartOnboarding": "UpgradeCargo",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 15
+  "id": 15,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCargo"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -427,10 +426,11 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 17,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 16
+  "id": 16,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": true,
@@ -483,7 +483,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 10,
   "Condition_Type": 26,
   "Condition_Value": 2,
@@ -501,10 +500,11 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 20,
-  "StartOnboarding": "UpgradeHpRecovery",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 19
+  "id": 19,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeHpRecovery"
  },
  {
   "Accumulate": false,
@@ -526,15 +526,14 @@
   "Reward_Value_1": 10,
   "Reward_Value_2": 0,
   "SortOrder": 21,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 20
+  "id": 20,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 2,
@@ -552,15 +551,15 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 22,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 21
+  "id": 21,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "StonExotickedUp",
   "Condition_Param": 20,
   "Condition_Type": 9,
   "Condition_Value": 5,
@@ -578,15 +577,15 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 23,
-  "StartOnboarding": "PickUpStones",
   "Title": "QUEST_TITLE_PICK_UP_STONES",
   "Title_en": "Pick up Stones",
-  "id": 22
+  "id": 22,
+  "CondFinishedOnboarding": "StonExotickedUp",
+  "StartOnboarding": "PickUpStones"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -604,10 +603,11 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 24,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 23
+  "id": 23,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": true,
@@ -677,15 +677,14 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 27,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 26
+  "id": 26,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
   "Condition_Param": 0,
   "Condition_Type": 4201,
   "Condition_Value": 1,
@@ -703,15 +702,15 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 28,
-  "StartOnboarding": "PurchaseShopNovisChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 27
+  "id": 27,
+  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
+  "StartOnboarding": "PurchaseShopNovisChest"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "KilledWoodKing",
   "Condition_Param": 1102,
   "Condition_Type": 8,
   "Condition_Value": 1,
@@ -729,15 +728,15 @@
   "Reward_Value_1": 57,
   "Reward_Value_2": 0,
   "SortOrder": 29,
-  "StartOnboarding": "LookWoodKing",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 28
+  "id": 28,
+  "CondFinishedOnboarding": "KilledWoodKing",
+  "StartOnboarding": "LookWoodKing"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -755,15 +754,15 @@
   "Reward_Value_1": 5,
   "Reward_Value_2": 0,
   "SortOrder": 30,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 29
+  "id": 29,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -781,15 +780,15 @@
   "Reward_Value_1": 360,
   "Reward_Value_2": 0,
   "SortOrder": 31,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 30
+  "id": 30,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 5,
   "Condition_Type": 26,
   "Condition_Value": 1,
@@ -807,10 +806,11 @@
   "Reward_Value_1": 4327,
   "Reward_Value_2": 0,
   "SortOrder": 32,
-  "StartOnboarding": "UpgradeCriticalChance",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 31
+  "id": 31,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCriticalChance"
  },
  {
   "Accumulate": false,
@@ -832,15 +832,14 @@
   "Reward_Value_1": 681,
   "Reward_Value_2": 0,
   "SortOrder": 33,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 32
+  "id": 32,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 2,
   "Condition_Type": 26,
   "Condition_Value": 7,
@@ -858,15 +857,15 @@
   "Reward_Value_1": 330,
   "Reward_Value_2": 0,
   "SortOrder": 34,
-  "StartOnboarding": "UpgradeCargo",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 33
+  "id": 33,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCargo"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "KeyHouseBuilt",
   "Condition_Param": 2,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -884,15 +883,15 @@
   "Reward_Value_1": 4327,
   "Reward_Value_2": 0,
   "SortOrder": 35,
-  "StartOnboarding": "PurchaseKeyHouse",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 34
+  "id": 34,
+  "CondFinishedOnboarding": "KeyHouseBuilt",
+  "StartOnboarding": "PurchaseKeyHouse"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestPickedUp2",
   "Condition_Param": 102,
   "Condition_Type": 10,
   "Condition_Value": 1,
@@ -910,15 +909,15 @@
   "Reward_Value_1": 4327,
   "Reward_Value_2": 0,
   "SortOrder": 36,
-  "StartOnboarding": "PickUpChest2",
   "Title": "QUEST_TITLE_CHEST_HUNTER",
   "Title_en": "Chest Hunter",
-  "id": 35
+  "id": 35,
+  "CondFinishedOnboarding": "ChestPickedUp2",
+  "StartOnboarding": "PickUpChest2"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestRevealed",
   "Condition_Param": 0,
   "Condition_Type": 15,
   "Condition_Value": 1,
@@ -936,15 +935,15 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 37,
-  "StartOnboarding": "ChestDelivered",
   "Title": "QUEST_TITLE_OPEN_CHEST",
   "Title_en": "Open Chest",
-  "id": 36
+  "id": 36,
+  "CondFinishedOnboarding": "ChestRevealed",
+  "StartOnboarding": "ChestDelivered"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
   "Condition_Param": 0,
   "Condition_Type": 4201,
   "Condition_Value": 1,
@@ -962,15 +961,15 @@
   "Reward_Value_1": 586,
   "Reward_Value_2": 0,
   "SortOrder": 38,
-  "StartOnboarding": "PurchaseShopNovisChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 37
+  "id": 37,
+  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
+  "StartOnboarding": "PurchaseShopNovisChest"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 1,
   "Condition_Type": 26,
   "Condition_Value": 7,
@@ -988,15 +987,15 @@
   "Reward_Value_1": 995,
   "Reward_Value_2": 0,
   "SortOrder": 39,
-  "StartOnboarding": "UpgradePower",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 38
+  "id": 38,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradePower"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "AbilityUpgraded",
   "Condition_Param": 3,
   "Condition_Type": 26,
   "Condition_Value": 1,
@@ -1014,15 +1013,15 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 40,
-  "StartOnboarding": "UpgradeMoveSpeed",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 39
+  "id": 39,
+  "CondFinishedOnboarding": "AbilityUpgraded",
+  "StartOnboarding": "UpgradeMoveSpeed"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
   "Condition_Param": 0,
   "Condition_Type": 4201,
   "Condition_Value": 1,
@@ -1040,10 +1039,11 @@
   "Reward_Value_1": 4327,
   "Reward_Value_2": 0,
   "SortOrder": 41,
-  "StartOnboarding": "PurchaseShopNovisChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 40
+  "id": 40,
+  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
+  "StartOnboarding": "PurchaseShopNovisChest"
  },
  {
   "Accumulate": true,
@@ -1065,15 +1065,14 @@
   "Reward_Value_1": 415,
   "Reward_Value_2": 0,
   "SortOrder": 42,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 41
+  "id": 41,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 4,
   "Condition_Type": 26,
   "Condition_Value": 4,
@@ -1091,15 +1090,15 @@
   "Reward_Value_1": 10,
   "Reward_Value_2": 0,
   "SortOrder": 43,
-  "StartOnboarding": "UpgradeHp",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 42
+  "id": 42,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeHp"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 2,
@@ -1117,15 +1116,15 @@
   "Reward_Value_1": 4327,
   "Reward_Value_2": 0,
   "SortOrder": 44,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 43
+  "id": 43,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponMerged",
   "Condition_Param": 0,
   "Condition_Type": 31,
   "Condition_Value": 1,
@@ -1143,10 +1142,11 @@
   "Reward_Value_1": 415,
   "Reward_Value_2": 0,
   "SortOrder": 45,
-  "StartOnboarding": "MergeWeapon",
   "Title": "QUEST_TITLE_MERGE_WEAPONS",
   "Title_en": "Merge Weapons",
-  "id": 44
+  "id": 44,
+  "CondFinishedOnboarding": "WeaponMerged",
+  "StartOnboarding": "MergeWeapon"
  },
  {
   "Accumulate": false,
@@ -1168,10 +1168,10 @@
   "Reward_Value_1": 7674,
   "Reward_Value_2": 0,
   "SortOrder": 46,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 45
+  "id": 45,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -1200,7 +1200,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
   "Condition_Param": 0,
   "Condition_Type": 4201,
   "Condition_Value": 1,
@@ -1218,10 +1217,11 @@
   "Reward_Value_1": 7674,
   "Reward_Value_2": 0,
   "SortOrder": 48,
-  "StartOnboarding": "PurchaseShopNovisChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 47
+  "id": 47,
+  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
+  "StartOnboarding": "PurchaseShopNovisChest"
  },
  {
   "Accumulate": false,
@@ -1243,15 +1243,14 @@
   "Reward_Value_1": 1482,
   "Reward_Value_2": 0,
   "SortOrder": 49,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 48
+  "id": 48,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 1,
   "Condition_Type": 26,
   "Condition_Value": 10,
@@ -1269,15 +1268,15 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 50,
-  "StartOnboarding": "UpgradePower",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 49
+  "id": 49,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradePower"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
   "Condition_Param": 0,
   "Condition_Type": 4201,
   "Condition_Value": 1,
@@ -1295,10 +1294,11 @@
   "Reward_Value_1": 7674,
   "Reward_Value_2": 0,
   "SortOrder": 51,
-  "StartOnboarding": "PurchaseShopNovisChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 50
+  "id": 50,
+  "CondFinishedOnboarding": "FinishPurchaseShopNovisChest",
+  "StartOnboarding": "PurchaseShopNovisChest"
  },
  {
   "Accumulate": false,
@@ -1320,15 +1320,14 @@
   "Reward_Value_1": 1977,
   "Reward_Value_2": 0,
   "SortOrder": 52,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 51
+  "id": 51,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 2,
   "Condition_Type": 26,
   "Condition_Value": 10,
@@ -1346,15 +1345,15 @@
   "Reward_Value_1": 10,
   "Reward_Value_2": 0,
   "SortOrder": 53,
-  "StartOnboarding": "UpgradeCargo",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 52
+  "id": 52,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCargo"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 2,
@@ -1372,10 +1371,11 @@
   "Reward_Value_1": 7674,
   "Reward_Value_2": 0,
   "SortOrder": 54,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 53
+  "id": 53,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
@@ -1397,15 +1397,14 @@
   "Reward_Value_1": 10,
   "Reward_Value_2": 0,
   "SortOrder": 55,
-  "StartOnboarding": "OpenBlessingBuff",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 54
+  "id": 54,
+  "StartOnboarding": "OpenBlessingBuff"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponLevelUpFinished",
   "Condition_Param": 0,
   "Condition_Type": 28,
   "Condition_Value": 1,
@@ -1423,15 +1422,15 @@
   "Reward_Value_1": 58,
   "Reward_Value_2": 0,
   "SortOrder": 56,
-  "StartOnboarding": "LevelUpWeapon",
   "Title": "QUEST_TITLE_WEAPON_UPGRADE",
   "Title_en": "Weapon Upgrade",
-  "id": 55
+  "id": 55,
+  "CondFinishedOnboarding": "WeaponLevelUpFinished",
+  "StartOnboarding": "LevelUpWeapon"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 4,
   "Condition_Type": 26,
   "Condition_Value": 7,
@@ -1449,10 +1448,11 @@
   "Reward_Value_1": 58,
   "Reward_Value_2": 0,
   "SortOrder": 57,
-  "StartOnboarding": "UpgradeHp",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 56
+  "id": 56,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeHp"
  },
  {
   "Accumulate": false,
@@ -1474,15 +1474,14 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 58,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 57
+  "id": 57,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -1500,15 +1499,15 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 59,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 224
+  "id": 224,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopExpertChest",
   "Condition_Param": 0,
   "Condition_Type": 4202,
   "Condition_Value": 1,
@@ -1526,15 +1525,15 @@
   "Reward_Value_1": 3684,
   "Reward_Value_2": 0,
   "SortOrder": 60,
-  "StartOnboarding": "PurchaseShopExpertChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 58
+  "id": 58,
+  "CondFinishedOnboarding": "FinishPurchaseShopExpertChest",
+  "StartOnboarding": "PurchaseShopExpertChest"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 2,
   "Condition_Type": 26,
   "Condition_Value": 13,
@@ -1552,10 +1551,11 @@
   "Reward_Value_1": 14597,
   "Reward_Value_2": 0,
   "SortOrder": 61,
-  "StartOnboarding": "UpgradeCargo",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 59
+  "id": 59,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCargo"
  },
  {
   "Accumulate": false,
@@ -1577,15 +1577,14 @@
   "Reward_Value_1": 10,
   "Reward_Value_2": 0,
   "SortOrder": 62,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 60
+  "id": 60,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 2,
@@ -1603,15 +1602,15 @@
   "Reward_Value_1": 14597,
   "Reward_Value_2": 0,
   "SortOrder": 63,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 61
+  "id": 61,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 1,
   "Condition_Type": 26,
   "Condition_Value": 13,
@@ -1629,15 +1628,15 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 64,
-  "StartOnboarding": "UpgradePower",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 62
+  "id": 62,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradePower"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopExpertChest",
   "Condition_Param": 0,
   "Condition_Type": 4202,
   "Condition_Value": 1,
@@ -1655,15 +1654,15 @@
   "Reward_Value_1": 750,
   "Reward_Value_2": 0,
   "SortOrder": 65,
-  "StartOnboarding": "PurchaseShopExpertChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 63
+  "id": 63,
+  "CondFinishedOnboarding": "FinishPurchaseShopExpertChest",
+  "StartOnboarding": "PurchaseShopExpertChest"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 4,
   "Condition_Type": 26,
   "Condition_Value": 10,
@@ -1681,15 +1680,15 @@
   "Reward_Value_1": 4527,
   "Reward_Value_2": 0,
   "SortOrder": 66,
-  "StartOnboarding": "UpgradeHp",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 64
+  "id": 64,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeHp"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "abilityUpgraded",
   "Condition_Param": 2,
   "Condition_Type": 26,
   "Condition_Value": 16,
@@ -1707,10 +1706,11 @@
   "Reward_Value_1": 14597,
   "Reward_Value_2": 0,
   "SortOrder": 67,
-  "StartOnboarding": "UpgradeCargo",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 65
+  "id": 65,
+  "CondFinishedOnboarding": "abilityUpgraded",
+  "StartOnboarding": "UpgradeCargo"
  },
  {
   "Accumulate": true,
@@ -1732,10 +1732,10 @@
   "Reward_Value_1": 1000,
   "Reward_Value_2": 0,
   "SortOrder": 68,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 66
+  "id": 66,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -1757,15 +1757,14 @@
   "Reward_Value_1": 1,
   "Reward_Value_2": 0,
   "SortOrder": 69,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 67
+  "id": 67,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishPurchaseShopWarriorChest",
   "Condition_Param": 0,
   "Condition_Type": 4203,
   "Condition_Value": 1,
@@ -1783,15 +1782,15 @@
   "Reward_Value_1": 79058,
   "Reward_Value_2": 10,
   "SortOrder": 70,
-  "StartOnboarding": "PurchaseShopWarriorChest",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 68
+  "id": 68,
+  "CondFinishedOnboarding": "FinishPurchaseShopWarriorChest",
+  "StartOnboarding": "PurchaseShopWarriorChest"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "SpecialUpgradeBuilt",
   "Condition_Param": 8,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -1809,15 +1808,15 @@
   "Reward_Value_1": 80639,
   "Reward_Value_2": 0,
   "SortOrder": 71,
-  "StartOnboarding": "PurchaseSpecialUpgrade",
   "Title": "QUEST_TITLE_BUILD_TRAINING_GROUND",
   "Title_en": "Build Training Ground",
-  "id": 69
+  "id": 69,
+  "CondFinishedOnboarding": "SpecialUpgradeBuilt",
+  "StartOnboarding": "PurchaseSpecialUpgrade"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishUpgradeSpecialMuscle",
   "Condition_Param": 0,
   "Condition_Type": 4000,
   "Condition_Value": 1,
@@ -1835,10 +1834,11 @@
   "Reward_Value_1": 82252,
   "Reward_Value_2": 2000,
   "SortOrder": 72,
-  "StartOnboarding": "UpgradeSpecialMuscle",
   "Title": "QUEST_TITLE_UPGRADE_MASSIVE_MUSCLE",
   "Title_en": "Upgrade Massive Muscle",
-  "id": 70
+  "id": 70,
+  "CondFinishedOnboarding": "FinishUpgradeSpecialMuscle",
+  "StartOnboarding": "UpgradeSpecialMuscle"
  },
  {
   "Accumulate": false,
@@ -1860,15 +1860,14 @@
   "Reward_Value_1": 83897,
   "Reward_Value_2": 0,
   "SortOrder": 73,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 71
+  "id": 71,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WoodPickedUp",
   "Condition_Param": 10,
   "Condition_Type": 9,
   "Condition_Value": 10,
@@ -1886,15 +1885,15 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 74,
-  "StartOnboarding": "PickUpWoods",
   "Title": "QUEST_TITLE_PICK_UP_WOODS",
   "Title_en": "Pick up Woods",
-  "id": 72
+  "id": 72,
+  "CondFinishedOnboarding": "WoodPickedUp",
+  "StartOnboarding": "PickUpWoods"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -1912,15 +1911,15 @@
   "Reward_Value_1": 85575,
   "Reward_Value_2": 0,
   "SortOrder": 75,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 73
+  "id": 73,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestSlotUnlocked",
   "Condition_Param": 0,
   "Condition_Type": 22,
   "Condition_Value": 2,
@@ -1938,17 +1937,18 @@
   "Reward_Value_1": 87287,
   "Reward_Value_2": 0,
   "SortOrder": 76,
-  "StartOnboarding": "UnlockChestSlot",
   "Title": "QUEST_TITLE_UNLOCK_CHEST_SLOT",
   "Title_en": "Unlock Chest Slot",
-  "id": 74
+  "id": 74,
+  "CondFinishedOnboarding": "ChestSlotUnlocked",
+  "StartOnboarding": "UnlockChestSlot"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -2018,7 +2018,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 2,
@@ -2036,15 +2035,15 @@
   "Reward_Value_1": 94482,
   "Reward_Value_2": 0,
   "SortOrder": 80,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 78
+  "id": 78,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "KilledGolem",
   "Condition_Param": 0,
   "Condition_Type": 24,
   "Condition_Value": 21,
@@ -2062,10 +2061,11 @@
   "Reward_Value_1": 52508,
   "Reward_Value_2": 2000,
   "SortOrder": 81,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 79
+  "id": 79,
+  "CondFinishedOnboarding": "KilledGolem",
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2087,10 +2087,10 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 82,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_BUY_THE_CHEST",
   "Title_en": "Buy the Chest",
-  "id": 217
+  "id": 217,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2112,15 +2112,14 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 83,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_EQUIP",
   "Title_en": "Equip",
-  "id": 218
+  "id": 218,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "StonExotickedUp",
   "Condition_Param": 20,
   "Condition_Type": 9,
   "Condition_Value": 15,
@@ -2138,15 +2137,15 @@
   "Reward_Value_1": 53558,
   "Reward_Value_2": 2000,
   "SortOrder": 84,
-  "StartOnboarding": "PickUpStones",
   "Title": "QUEST_TITLE_PICK_UP_STONES",
   "Title_en": "Pick up Stones",
-  "id": 80
+  "id": 80,
+  "CondFinishedOnboarding": "StonExotickedUp",
+  "StartOnboarding": "PickUpStones"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -2164,15 +2163,15 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 85,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 81
+  "id": 81,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 2,
@@ -2190,10 +2189,11 @@
   "Reward_Value_1": 54629,
   "Reward_Value_2": 2000,
   "SortOrder": 86,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 82
+  "id": 82,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -2215,15 +2215,14 @@
   "Reward_Value_1": 55722,
   "Reward_Value_2": 1,
   "SortOrder": 87,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 83
+  "id": 83,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2241,10 +2240,11 @@
   "Reward_Value_1": 251107,
   "Reward_Value_2": 0,
   "SortOrder": 88,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 84
+  "id": 84,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -2266,17 +2266,17 @@
   "Reward_Value_1": 256129,
   "Reward_Value_2": 4000,
   "SortOrder": 89,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 85
+  "id": 85,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -2315,10 +2315,10 @@
   "Reward_Value_1": 266477,
   "Reward_Value_2": 0,
   "SortOrder": 91,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 87
+  "id": 87,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2347,7 +2347,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2365,10 +2364,11 @@
   "Reward_Value_1": 277243,
   "Reward_Value_2": 4000,
   "SortOrder": 93,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 89
+  "id": 89,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -2414,15 +2414,14 @@
   "Reward_Value_1": 113233,
   "Reward_Value_2": 5000,
   "SortOrder": 95,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 91
+  "id": 91,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2440,10 +2439,11 @@
   "Reward_Value_1": 115497,
   "Reward_Value_2": 5000,
   "SortOrder": 96,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 92
+  "id": 92,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
@@ -2465,10 +2465,10 @@
   "Reward_Value_1": 117807,
   "Reward_Value_2": 5000,
   "SortOrder": 97,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UNLOCK_WEAPON_SLOT",
   "Title_en": "Unlock Weapon Slot",
-  "id": 93
+  "id": 93,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2490,10 +2490,10 @@
   "Reward_Value_1": 120163,
   "Reward_Value_2": 1,
   "SortOrder": 98,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 94
+  "id": 94,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2522,7 +2522,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2540,10 +2539,11 @@
   "Reward_Value_1": 545811,
   "Reward_Value_2": 5000,
   "SortOrder": 100,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 96
+  "id": 96,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -2565,10 +2565,10 @@
   "Reward_Value_1": 556727,
   "Reward_Value_2": 0,
   "SortOrder": 101,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 97
+  "id": 97,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2623,7 +2623,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -2645,7 +2645,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2663,10 +2662,11 @@
   "Reward_Value_1": 602619,
   "Reward_Value_2": 0,
   "SortOrder": 105,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 101
+  "id": 101,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
@@ -2688,10 +2688,10 @@
   "Reward_Value_1": 328230,
   "Reward_Value_2": 7000,
   "SortOrder": 106,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 102
+  "id": 102,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -2713,15 +2713,14 @@
   "Reward_Value_1": 334795,
   "Reward_Value_2": 1,
   "SortOrder": 107,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 103
+  "id": 103,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -2739,10 +2738,11 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 107,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 223
+  "id": 223,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": false,
@@ -2764,10 +2764,10 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 109,
-  "StartOnboarding": "InvasionOnboardingDefense",
   "Title": "QUEST_TITLE_INVASION_DEFENCE",
   "Title_en": "Invasion Defense",
-  "id": 220
+  "id": 220,
+  "StartOnboarding": "InvasionOnboardingDefense"
  },
  {
   "Accumulate": false,
@@ -2789,10 +2789,10 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 108,
-  "StartOnboarding": "InvasionOnboardingBuildingAttack",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 221
+  "id": 221,
+  "StartOnboarding": "InvasionOnboardingBuildingAttack"
  },
  {
   "Accumulate": false,
@@ -2814,10 +2814,10 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 111,
-  "StartOnboarding": "InvasionOnboardingAttack",
   "Title": "QUEST_TITLE_INVASION_ATTACK",
   "Title_en": "Proceed Invasion",
-  "id": 222
+  "id": 222,
+  "StartOnboarding": "InvasionOnboardingAttack"
  },
  {
   "Accumulate": false,
@@ -2839,17 +2839,17 @@
   "Reward_Value_1": 79578152,
   "Reward_Value_2": 10000,
   "SortOrder": 112,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 104
+  "id": 104,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -2871,7 +2871,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2889,10 +2888,11 @@
   "Reward_Value_1": 82793109,
   "Reward_Value_2": 10000,
   "SortOrder": 114,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 106
+  "id": 106,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -2962,15 +2962,14 @@
   "Reward_Value_1": 22553038,
   "Reward_Value_2": 10000,
   "SortOrder": 117,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 109
+  "id": 109,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -2988,10 +2987,11 @@
   "Reward_Value_1": 23004098,
   "Reward_Value_2": 20000,
   "SortOrder": 118,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 110
+  "id": 110,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3013,10 +3013,10 @@
   "Reward_Value_1": 23464180,
   "Reward_Value_2": 1,
   "SortOrder": 119,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 111
+  "id": 111,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3038,10 +3038,10 @@
   "Reward_Value_1": 36641098,
   "Reward_Value_2": 0,
   "SortOrder": 120,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 112
+  "id": 112,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3072,7 +3072,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -3094,7 +3094,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3112,10 +3111,11 @@
   "Reward_Value_1": 38883827,
   "Reward_Value_2": 20000,
   "SortOrder": 123,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 115
+  "id": 115,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3161,10 +3161,10 @@
   "Reward_Value_1": 40454733,
   "Reward_Value_2": 0,
   "SortOrder": 125,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 117
+  "id": 117,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3234,15 +3234,14 @@
   "Reward_Value_1": 19075650,
   "Reward_Value_2": 20000,
   "SortOrder": 128,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 120
+  "id": 120,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3260,10 +3259,11 @@
   "Reward_Value_1": 19457163,
   "Reward_Value_2": 20000,
   "SortOrder": 129,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 121
+  "id": 121,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
@@ -3285,10 +3285,10 @@
   "Reward_Value_1": 19846307,
   "Reward_Value_2": 20000,
   "SortOrder": 130,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UNLOCK_WEAPON_SLOT",
   "Title_en": "Unlock Weapon Slot",
-  "id": 122
+  "id": 122,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3310,10 +3310,10 @@
   "Reward_Value_1": 20243233,
   "Reward_Value_2": 1,
   "SortOrder": 131,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 123
+  "id": 123,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3368,7 +3368,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -3390,7 +3390,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3408,10 +3407,11 @@
   "Reward_Value_1": 119360185,
   "Reward_Value_2": 0,
   "SortOrder": 135,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 127
+  "id": 127,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3433,10 +3433,10 @@
   "Reward_Value_1": 121747388,
   "Reward_Value_2": 0,
   "SortOrder": 136,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 128
+  "id": 128,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3482,10 +3482,10 @@
   "Reward_Value_1": 43036040,
   "Reward_Value_2": 60000,
   "SortOrder": 138,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 130
+  "id": 130,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3514,7 +3514,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3532,10 +3531,11 @@
   "Reward_Value_1": 44774696,
   "Reward_Value_2": 60000,
   "SortOrder": 140,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 132
+  "id": 132,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3564,7 +3564,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3582,17 +3581,18 @@
   "Reward_Value_1": 6998952223,
   "Reward_Value_2": 70000,
   "SortOrder": 142,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 134
+  "id": 134,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -3614,7 +3614,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3632,10 +3631,11 @@
   "Reward_Value_1": 7281709892,
   "Reward_Value_2": 70000,
   "SortOrder": 144,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 136
+  "id": 136,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3681,10 +3681,10 @@
   "Reward_Value_1": 7575890972,
   "Reward_Value_2": 0,
   "SortOrder": 146,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 138
+  "id": 138,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3715,7 +3715,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -3737,7 +3737,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3755,10 +3754,11 @@
   "Reward_Value_1": 8039596107,
   "Reward_Value_2": 70000,
   "SortOrder": 149,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 141
+  "id": 141,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3804,10 +3804,10 @@
   "Reward_Value_1": 4141113028,
   "Reward_Value_2": 70000,
   "SortOrder": 151,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 143
+  "id": 143,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3836,7 +3836,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -3854,10 +3853,11 @@
   "Reward_Value_1": 4308413994,
   "Reward_Value_2": 70000,
   "SortOrder": 153,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 145
+  "id": 145,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -3879,10 +3879,10 @@
   "Reward_Value_1": 4394582274,
   "Reward_Value_2": 1,
   "SortOrder": 154,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 146
+  "id": 146,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3928,10 +3928,10 @@
   "Reward_Value_1": 27932543544,
   "Reward_Value_2": 0,
   "SortOrder": 156,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 148
+  "id": 148,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -3962,7 +3962,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -3984,7 +3984,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4002,10 +4001,11 @@
   "Reward_Value_1": 29642238669,
   "Reward_Value_2": 70000,
   "SortOrder": 159,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 151
+  "id": 151,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4027,10 +4027,10 @@
   "Reward_Value_1": 30235083443,
   "Reward_Value_2": 0,
   "SortOrder": 160,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 152
+  "id": 152,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4076,10 +4076,10 @@
   "Reward_Value_1": 9780223818,
   "Reward_Value_2": 0,
   "SortOrder": 162,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 154
+  "id": 154,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4108,7 +4108,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4126,10 +4125,11 @@
   "Reward_Value_1": 10175344861,
   "Reward_Value_2": 70000,
   "SortOrder": 164,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 156
+  "id": 156,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
@@ -4151,10 +4151,10 @@
   "Reward_Value_1": 10378851758,
   "Reward_Value_2": 70000,
   "SortOrder": 165,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UNLOCK_WEAPON_SLOT",
   "Title_en": "Unlock Weapon Slot",
-  "id": 157
+  "id": 157,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4176,10 +4176,10 @@
   "Reward_Value_1": 10586428793,
   "Reward_Value_2": 1,
   "SortOrder": 166,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 158
+  "id": 158,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4225,10 +4225,10 @@
   "Reward_Value_1": 65457376430,
   "Reward_Value_2": 0,
   "SortOrder": 168,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 160
+  "id": 160,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4259,7 +4259,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -4281,7 +4281,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4299,10 +4298,11 @@
   "Reward_Value_1": 69463891526,
   "Reward_Value_2": 0,
   "SortOrder": 171,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 163
+  "id": 163,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4348,10 +4348,10 @@
   "Reward_Value_1": 24554537584,
   "Reward_Value_2": 70000,
   "SortOrder": 173,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_LEVEL_UP",
   "Title_en": "Level Up",
-  "id": 165
+  "id": 165,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4380,7 +4380,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4398,15 +4397,15 @@
   "Reward_Value_1": 25546540902,
   "Reward_Value_2": 60000,
   "SortOrder": 175,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 167
+  "id": 167,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "None",
   "Condition_Param": 5103,
   "Condition_Type": 8,
   "Condition_Value": 1,
@@ -4426,7 +4425,8 @@
   "SortOrder": 176,
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 168
+  "id": 168,
+  "CondFinishedOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4455,7 +4455,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4473,17 +4472,18 @@
   "Reward_Value_1": 4471558214692,
   "Reward_Value_2": 0,
   "SortOrder": 178,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 170
+  "id": 170,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -4505,7 +4505,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4523,10 +4522,11 @@
   "Reward_Value_1": 4652209166566,
   "Reward_Value_2": 0,
   "SortOrder": 180,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 172
+  "id": 172,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4579,7 +4579,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4597,10 +4596,11 @@
   "Reward_Value_1": 4936961585233,
   "Reward_Value_2": 0,
   "SortOrder": 183,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 175
+  "id": 175,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4622,10 +4622,10 @@
   "Reward_Value_1": 5035700816938,
   "Reward_Value_2": 0,
   "SortOrder": 184,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 176
+  "id": 176,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4671,10 +4671,10 @@
   "Reward_Value_1": 5239143129942,
   "Reward_Value_2": 70000,
   "SortOrder": 186,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_PICK_UP_COINS",
   "Title_en": "Pick up Coins",
-  "id": 178
+  "id": 178,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4703,7 +4703,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4721,10 +4720,11 @@
   "Reward_Value_1": 5450804512392,
   "Reward_Value_2": 70000,
   "SortOrder": 188,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 180
+  "id": 180,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4746,15 +4746,14 @@
   "Reward_Value_1": 14699250000000,
   "Reward_Value_2": 1,
   "SortOrder": 189,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 181
+  "id": 181,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4772,10 +4771,11 @@
   "Reward_Value_1": 8503734809773,
   "Reward_Value_2": 0,
   "SortOrder": 190,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 182
+  "id": 182,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4806,7 +4806,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -4828,7 +4828,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4846,10 +4845,11 @@
   "Reward_Value_1": 9024231410009,
   "Reward_Value_2": 70000,
   "SortOrder": 193,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 185
+  "id": 185,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4871,10 +4871,10 @@
   "Reward_Value_1": 9204716038209,
   "Reward_Value_2": 0,
   "SortOrder": 194,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 186
+  "id": 186,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -4903,7 +4903,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4921,10 +4920,11 @@
   "Reward_Value_1": 9576586566153,
   "Reward_Value_2": 0,
   "SortOrder": 196,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 188
+  "id": 188,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -4946,17 +4946,17 @@
   "Reward_Value_1": 9768118297476,
   "Reward_Value_2": 0,
   "SortOrder": 197,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 189
+  "id": 189,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -4978,7 +4978,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -4996,10 +4995,11 @@
   "Reward_Value_1": 10162750276694,
   "Reward_Value_2": 0,
   "SortOrder": 199,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 191
+  "id": 191,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5045,10 +5045,10 @@
   "Reward_Value_1": 10573325387873,
   "Reward_Value_2": 70000,
   "SortOrder": 201,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_PICK_UP_COINS",
   "Title_en": "Pick up Coins",
-  "id": 193
+  "id": 193,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -5077,7 +5077,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5095,10 +5094,11 @@
   "Reward_Value_1": 11000487733543,
   "Reward_Value_2": 70000,
   "SortOrder": 203,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 195
+  "id": 195,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": true,
@@ -5120,10 +5120,10 @@
   "Reward_Value_1": 11220497488214,
   "Reward_Value_2": 70000,
   "SortOrder": 204,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UNLOCK_WEAPON_SLOT",
   "Title_en": "Unlock Weapon Slot",
-  "id": 196
+  "id": 196,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -5145,10 +5145,10 @@
   "Reward_Value_1": 36764657852564,
   "Reward_Value_2": 1,
   "SortOrder": 205,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT_ELITE",
   "Title_en": "Hunt Boss",
-  "id": 197
+  "id": 197,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -5201,7 +5201,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5219,10 +5218,11 @@
   "Reward_Value_1": 26679826593575,
   "Reward_Value_2": 0,
   "SortOrder": 208,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 200
+  "id": 200,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5244,17 +5244,17 @@
   "Reward_Value_1": 27213423125447,
   "Reward_Value_2": 0,
   "SortOrder": 209,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 201
+  "id": 201,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -5276,7 +5276,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5294,10 +5293,11 @@
   "Reward_Value_1": 28312845419715,
   "Reward_Value_2": 0,
   "SortOrder": 211,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 203
+  "id": 203,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5319,10 +5319,10 @@
   "Reward_Value_1": 28879102328109,
   "Reward_Value_2": 70000,
   "SortOrder": 212,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_PICK_UP_COINS",
   "Title_en": "Pick up Coins",
-  "id": 204
+  "id": 204,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -5351,7 +5351,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5369,10 +5368,11 @@
   "Reward_Value_1": 30045818062165,
   "Reward_Value_2": 70000,
   "SortOrder": 214,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 206
+  "id": 206,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5394,10 +5394,10 @@
   "Reward_Value_1": 62536475160257,
   "Reward_Value_2": 1,
   "SortOrder": 215,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 207
+  "id": 207,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -5450,7 +5450,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5468,10 +5467,11 @@
   "Reward_Value_1": 18683514362300,
   "Reward_Value_2": 0,
   "SortOrder": 218,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 210
+  "id": 210,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5493,17 +5493,17 @@
   "Reward_Value_1": 19057184649546,
   "Reward_Value_2": 0,
   "SortOrder": 219,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_PICK_UP_COINS",
   "Title_en": "Pick up Coins",
-  "id": 211
+  "id": 211,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -5525,7 +5525,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5543,10 +5542,11 @@
   "Reward_Value_1": 19827094909388,
   "Reward_Value_2": 70000,
   "SortOrder": 221,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 213
+  "id": 213,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5575,7 +5575,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 1,
@@ -5593,10 +5592,11 @@
   "Reward_Value_1": 20628109543727,
   "Reward_Value_2": 70000,
   "SortOrder": 223,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 215
+  "id": 215,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -5642,10 +5642,10 @@
   "Reward_Value_1": 0,
   "Reward_Value_2": 0,
   "SortOrder": 225,
-  "StartOnboarding": "FoundNewWorld",
   "Title": "QUEST_TITLE_MOVE_CHAPTER_2",
   "Title_en": "New World",
-  "id": 219
+  "id": 219,
+  "StartOnboarding": "FoundNewWorld"
  },
  {
   "Accumulate": false,
@@ -5674,7 +5674,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "BonFireBuilt",
   "Condition_Param": 11,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -5692,10 +5691,11 @@
   "Reward_Value_1": 36805220965066,
   "Reward_Value_2": 0,
   "SortOrder": 227,
-  "StartOnboarding": "PurchaseBonFire",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 1002
+  "id": 1002,
+  "CondFinishedOnboarding": "BonFireBuilt",
+  "StartOnboarding": "PurchaseBonFire"
  },
  {
   "Accumulate": true,
@@ -5724,7 +5724,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "KeyHouseBuilt",
   "Condition_Param": 13,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -5742,15 +5741,15 @@
   "Reward_Value_1": 38292151892055,
   "Reward_Value_2": 0,
   "SortOrder": 229,
-  "StartOnboarding": "PurchaseKeyHouse",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 1004
+  "id": 1004,
+  "CondFinishedOnboarding": "KeyHouseBuilt",
+  "StartOnboarding": "PurchaseKeyHouse"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestPickedUp_CH2",
   "Condition_Param": 107,
   "Condition_Type": 10,
   "Condition_Value": 1,
@@ -5768,10 +5767,11 @@
   "Reward_Value_1": 39057994929896,
   "Reward_Value_2": 0,
   "SortOrder": 230,
-  "StartOnboarding": "PickUpChest_CH2",
   "Title": "QUEST_TITLE_CHEST_HUNTER",
   "Title_en": "Chest Hunter",
-  "id": 1005
+  "id": 1005,
+  "CondFinishedOnboarding": "ChestPickedUp_CH2",
+  "StartOnboarding": "PickUpChest_CH2"
  },
  {
   "Accumulate": false,
@@ -5793,10 +5793,10 @@
   "Reward_Value_1": 39839154828494,
   "Reward_Value_2": 0,
   "SortOrder": 231,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 1006
+  "id": 1006,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -5873,7 +5873,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -5891,10 +5890,11 @@
   "Reward_Value_1": 44048024387087,
   "Reward_Value_2": 1,
   "SortOrder": 235,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 1010
+  "id": 1010,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": true,
@@ -5923,7 +5923,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "FinishUpgradeExtraBulk",
   "Condition_Param": 1,
   "Condition_Type": 4001,
   "Condition_Value": 1,
@@ -5941,10 +5940,11 @@
   "Reward_Value_1": 45827564572326,
   "Reward_Value_2": 0,
   "SortOrder": 237,
-  "StartOnboarding": "UpgradeExtraBulk",
   "Title": "QUEST_TITLE_UPGRADE_BULK_UP",
   "Title_en": "Upgrade Bulk Up",
-  "id": 1012
+  "id": 1012,
+  "CondFinishedOnboarding": "FinishUpgradeExtraBulk",
+  "StartOnboarding": "UpgradeExtraBulk"
  },
  {
   "Accumulate": true,
@@ -6110,10 +6110,10 @@
   "Reward_Value_1": 79518060329391,
   "Reward_Value_2": 0,
   "SortOrder": 244,
-  "StartOnboarding": "PurchaseTraitHouse",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 1163
+  "id": 1163,
+  "StartOnboarding": "PurchaseTraitHouse"
  },
  {
   "Accumulate": false,
@@ -6262,7 +6262,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestPickedUp_CH2_2",
   "Condition_Param": 108,
   "Condition_Type": 10,
   "Condition_Value": 1,
@@ -6280,10 +6279,11 @@
   "Reward_Value_1": 85638555800447,
   "Reward_Value_2": 1,
   "SortOrder": 251,
-  "StartOnboarding": "PickUpChest_CH2_2",
   "Title": "QUEST_TITLE_CHEST_HUNTER",
   "Title_en": "Chest Hunter",
-  "id": 1024
+  "id": 1024,
+  "CondFinishedOnboarding": "ChestPickedUp_CH2_2",
+  "StartOnboarding": "PickUpChest_CH2_2"
  },
  {
   "Accumulate": false,
@@ -6305,10 +6305,10 @@
   "Reward_Value_1": 87351326916456,
   "Reward_Value_2": 0,
   "SortOrder": 252,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 1025
+  "id": 1025,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -6339,7 +6339,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -6555,7 +6555,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -6747,7 +6747,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -6939,7 +6939,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -7155,7 +7155,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -7347,7 +7347,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -7515,7 +7515,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -7683,7 +7683,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -7899,7 +7899,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -8091,7 +8091,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -8283,7 +8283,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -8499,7 +8499,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -8715,7 +8715,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -8907,7 +8907,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -9123,7 +9123,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -9315,7 +9315,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -9483,7 +9483,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -9618,10 +9618,10 @@
   "Reward_Value_1": 1912491478325140,
   "Reward_Value_2": 0,
   "SortOrder": 390,
-  "StartOnboarding": "FindLocation",
   "Title": "QUEST_TITLE_MOVE_CHAPTER_3",
   "Title_en": "New World",
-  "id": 1165
+  "id": 1165,
+  "StartOnboarding": "FindLocation"
  },
  {
   "Accumulate": true,
@@ -9643,10 +9643,10 @@
   "Reward_Value_1": 1773362901143880,
   "Reward_Value_2": 0,
   "SortOrder": 391,
-  "StartOnboarding": "FoundNewWorld2",
   "Title": "QUEST_TITLE_MOVE_CHAPTER_3",
   "Title_en": "New World",
-  "id": 2001
+  "id": 2001,
+  "StartOnboarding": "FoundNewWorld2"
  },
  {
   "Accumulate": false,
@@ -9675,7 +9675,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "BonFireBuilt",
   "Condition_Param": 16,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -9693,10 +9692,11 @@
   "Reward_Value_1": 1845006762350100,
   "Reward_Value_2": 0,
   "SortOrder": 393,
-  "StartOnboarding": "PurchaseBonFire",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 2003
+  "id": 2003,
+  "CondFinishedOnboarding": "BonFireBuilt",
+  "StartOnboarding": "PurchaseBonFire"
  },
  {
   "Accumulate": true,
@@ -9725,7 +9725,6 @@
  {
   "Accumulate": true,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "KeyHouseBuilt",
   "Condition_Param": 17,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -9743,15 +9742,15 @@
   "Reward_Value_1": 1919545035549040,
   "Reward_Value_2": 0,
   "SortOrder": 395,
-  "StartOnboarding": "PurchaseKeyHouse",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 2005
+  "id": 2005,
+  "CondFinishedOnboarding": "KeyHouseBuilt",
+  "StartOnboarding": "PurchaseKeyHouse"
  },
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestPickedUp_CH3",
   "Condition_Param": 113,
   "Condition_Type": 10,
   "Condition_Value": 1,
@@ -9769,10 +9768,11 @@
   "Reward_Value_1": 1957935936260020,
   "Reward_Value_2": 1,
   "SortOrder": 396,
-  "StartOnboarding": "PickUpChest_CH3",
   "Title": "QUEST_TITLE_CHEST_HUNTER",
   "Title_en": "Chest Hunter",
-  "id": 2006
+  "id": 2006,
+  "CondFinishedOnboarding": "ChestPickedUp_CH3",
+  "StartOnboarding": "PickUpChest_CH3"
  },
  {
   "Accumulate": false,
@@ -9794,10 +9794,10 @@
   "Reward_Value_1": 1997094654985220,
   "Reward_Value_2": 0,
   "SortOrder": 397,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_HUNT",
   "Title_en": "Hunt",
-  "id": 2007
+  "id": 2007,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -9946,7 +9946,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 5,
@@ -9964,10 +9963,11 @@
   "Reward_Value_1": 2294034007120510,
   "Reward_Value_2": 0,
   "SortOrder": 404,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 2014
+  "id": 2014,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -10188,7 +10188,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -10206,10 +10205,11 @@
   "Reward_Value_1": 2182619920968910,
   "Reward_Value_2": 0,
   "SortOrder": 414,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 2024
+  "id": 2024,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": false,
@@ -10262,7 +10262,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "WeaponCreated",
   "Condition_Param": 0,
   "Condition_Type": 21,
   "Condition_Value": 5,
@@ -10280,10 +10279,11 @@
   "Reward_Value_1": 2316213721091570,
   "Reward_Value_2": 0,
   "SortOrder": 417,
-  "StartOnboarding": "CreateWeapon",
   "Title": "QUEST_TITLE_USE_THE_SMITHY",
   "Title_en": "Use the Smithy",
-  "id": 2027
+  "id": 2027,
+  "CondFinishedOnboarding": "WeaponCreated",
+  "StartOnboarding": "CreateWeapon"
  },
  {
   "Accumulate": false,
@@ -10600,7 +10600,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "CargoIsEmpty",
   "Condition_Param": 0,
   "Condition_Type": 18,
   "Condition_Value": 1,
@@ -10618,10 +10617,11 @@
   "Reward_Value_1": 3056194815695160,
   "Reward_Value_2": 0,
   "SortOrder": 431,
-  "StartOnboarding": "EmptyCargo",
   "Title": "QUEST_TITLE_RETURN_TO_BASE",
   "Title_en": "Return to Base",
-  "id": 2041
+  "id": 2041,
+  "CondFinishedOnboarding": "CargoIsEmpty",
+  "StartOnboarding": "EmptyCargo"
  },
  {
   "Accumulate": true,
@@ -11298,7 +11298,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 0,
-  "CondFinishedOnboarding": "ChestPickedUp_CH3_2",
   "Condition_Param": 114,
   "Condition_Type": 10,
   "Condition_Value": 1,
@@ -11316,10 +11315,11 @@
   "Reward_Value_1": 3573736483796270,
   "Reward_Value_2": 0,
   "SortOrder": 460,
-  "StartOnboarding": "PickUpChest_CH3_2",
   "Title": "QUEST_TITLE_CHEST_HUNTER",
   "Title_en": "Chest Hunter",
-  "id": 2070
+  "id": 2070,
+  "CondFinishedOnboarding": "ChestPickedUp_CH3_2",
+  "StartOnboarding": "PickUpChest_CH3_2"
  },
  {
   "Accumulate": false,
@@ -11341,10 +11341,10 @@
   "Reward_Value_1": 3645211213472200,
   "Reward_Value_2": 0,
   "SortOrder": 461,
-  "StartOnboarding": "None",
   "Title": "QUEST_TITLE_UPGRADE",
   "Title_en": "Upgrade",
-  "id": 2071
+  "id": 2071,
+  "StartOnboarding": "None"
  },
  {
   "Accumulate": false,
@@ -11567,7 +11567,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -11639,7 +11639,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -11759,7 +11759,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -11999,7 +11999,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -12119,7 +12119,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -12263,7 +12263,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -12503,7 +12503,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -12623,7 +12623,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -12671,7 +12671,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -12887,7 +12887,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13127,7 +13127,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13223,7 +13223,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13343,7 +13343,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13583,7 +13583,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13703,7 +13703,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13775,7 +13775,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -13967,7 +13967,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -14207,7 +14207,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -14327,7 +14327,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -14471,7 +14471,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -14711,7 +14711,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -14831,7 +14831,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -14879,7 +14879,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -15239,7 +15239,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -15359,7 +15359,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -15431,7 +15431,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -15599,7 +15599,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -15839,7 +15839,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -15983,7 +15983,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -16103,7 +16103,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -16343,7 +16343,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -16463,7 +16463,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -16535,7 +16535,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -16727,7 +16727,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -16967,7 +16967,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -17087,7 +17087,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -17207,7 +17207,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -17447,7 +17447,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -17567,7 +17567,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -17639,7 +17639,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -17831,7 +17831,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18071,7 +18071,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18191,7 +18191,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18335,7 +18335,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18575,7 +18575,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18695,7 +18695,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18743,7 +18743,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -18935,7 +18935,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -19175,7 +19175,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -19295,7 +19295,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -19439,7 +19439,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -19679,7 +19679,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -19799,7 +19799,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -19847,7 +19847,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -20063,7 +20063,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -20303,7 +20303,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -20399,7 +20399,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -20591,7 +20591,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 2,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 1,
@@ -20678,10 +20678,10 @@
   "Reward_Value_1": 329316335614913000,
   "Reward_Value_2": 0,
   "SortOrder": 850,
-  "StartOnboarding": "FindLocation",
   "Title": "QUEST_TITLE_INVESTIGATE",
   "Title_en": "Investigate",
-  "id": 2460
+  "id": 2460,
+  "StartOnboarding": "FindLocation"
  },
  {
   "Accumulate": false,
@@ -21559,7 +21559,7 @@
   "ImmediatelyComplete": false,
   "NextId": -1,
   "Quest_Type": 2,
-  "Reward_Id_1": 2002,
+  "Reward_Id_1": 2104,
   "Reward_Id_2": 0,
   "Reward_Type": 1,
   "Reward_Type_1": "StackableItem",
@@ -22680,7 +22680,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 8,
@@ -22944,7 +22944,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 8,
@@ -23136,7 +23136,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 9,
@@ -23376,7 +23376,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 9,
@@ -23568,7 +23568,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 10,
@@ -23832,7 +23832,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 10,
@@ -24024,7 +24024,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 11,
@@ -24288,7 +24288,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 11,
@@ -24456,7 +24456,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 12,
@@ -24720,7 +24720,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 12,
@@ -24912,7 +24912,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 13,
@@ -25176,7 +25176,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 13,
@@ -25368,7 +25368,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 14,
@@ -25632,7 +25632,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 14,
@@ -25800,7 +25800,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 15,
@@ -26064,7 +26064,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 15,
@@ -26256,7 +26256,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 16,
@@ -26328,7 +26328,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 16,
@@ -26520,7 +26520,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 16,
@@ -26688,7 +26688,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 17,
@@ -26952,7 +26952,7 @@
   "BundleDownloadType": 0,
   "Condition_Param": 0,
   "Condition_Type": 13,
-  "Condition_Value": 5,
+  "Condition_Value": 1,
   "Desc": "QUEST_DESC_HUNT_ANY_BOSS",
   "Desc_en": "Hunt Any Boss",
   "GroupId": 17,
@@ -26998,7 +26998,6 @@
  {
   "Accumulate": false,
   "BundleDownloadType": 1,
-  "CondFinishedOnboarding": "BossRaidCampBuilt",
   "Condition_Param": 901,
   "Condition_Type": 7,
   "Condition_Value": 1,
@@ -27016,10 +27015,11 @@
   "Reward_Value_1": 264500,
   "Reward_Value_2": 0,
   "SortOrder": 2,
-  "StartOnboarding": "BossRaidCamp",
   "Title": "QUEST_TITLE_BUILD",
   "Title_en": "Build",
-  "id": 901002
+  "id": 901002,
+  "CondFinishedOnboarding": "BossRaidCampBuilt",
+  "StartOnboarding": "BossRaidCamp"
  },
  {
   "Accumulate": false,

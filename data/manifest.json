@@ -1,7 +1,15 @@
 {
  "art_coverage": {
-  "weapons": {"matched": 84, "total_rows": 84, "missing_ids": []},
-  "heroes": {"matched": 24, "total_rows": 24, "missing_ids": []},
+  "weapons": {
+   "matched": 84,
+   "total_rows": 84,
+   "missing_ids": []
+  },
+  "heroes": {
+   "matched": 24,
+   "total_rows": 24,
+   "missing_ids": []
+  },
   "method": "Weapon/Costume 'IconSprite' field values matched Unity Sprite object names by EXACT string equality (no fuzzy matching needed) -- e.g. WeaponData.IconSprite='W_Dagger' exactly matches a Sprite named 'W_Dagger'. Every sprite was exported via Sprite.image (correctly cropped from its atlas), saved as assets/img/weapons/<weapon id>.png and assets/img/heroes/<costume id>.png. Weapon icons are ~70x80px; hero icons are ~177x188px (native exported resolution, not resized)."
  },
  "field_mapping_notes": [
@@ -57,11 +65,11 @@
   "WeaponCategoryData": 6,
   "WeaponRandomDPSRange": 9,
   "SubWeaponUnlockCostData": 5,
-  "CostumeData": 24,
+  "CostumeData": 26,
   "CostumeLevelData": 126,
-  "CostumeLevelOptionData": 624,
-  "CostumeStarGradeOptionData": 144,
-  "CostumeEvolutionData": 92,
+  "CostumeLevelOptionData": 676,
+  "CostumeStarGradeOptionData": 156,
+  "CostumeEvolutionData": 93,
   "TraitOptionData": 67,
   "TraitOptionTypeData": 21,
   "TraitSynergyGroupData": 10,
@@ -78,10 +86,10 @@
   "SpecialUpgradeTypeData": 11,
   "SoulUpgradeLevelData": 1009,
   "SoulUpgradeTypeData": 9,
-  "StatData": 21,
+  "StatData": 27,
   "BalancingData_Rarity": 14,
   "BalancingData_Currency": 2,
-  "RewardGroupData": 837
+  "RewardGroupData": 1327
  },
  "locale_resolved_fields": {
   "WeaponData": [
@@ -152,5 +160,6 @@
   "BalancingData_Rarity": [],
   "BalancingData_Currency": [],
   "RewardGroupData": []
- }
+ },
+ "source_apk": "XP Hero: Weapon RPG v27.2.0 (versionCode 82), pulled from the user's device 2026-11-23"
 }

@@ -6,7 +6,8 @@
   "reward_amount": 100,
   "reward_id": 3,
   "reward_type": "StackableItem",
-  "stage": 1
+  "stage": 1,
+  "display_type": 0
  },
  {
   "chapter": 1,
@@ -15,7 +16,8 @@
   "reward_amount": 10,
   "reward_id": 201,
   "reward_type": "StackableItem",
-  "stage": 2
+  "stage": 2,
+  "display_type": 0
  },
  {
   "chapter": 1,
@@ -24,7 +26,8 @@
   "reward_amount": 1,
   "reward_id": 2004,
   "reward_type": "Weapon",
-  "stage": 3
+  "stage": 3,
+  "display_type": 1
  },
  {
   "chapter": 1,
@@ -33,7 +36,8 @@
   "reward_amount": 2,
   "reward_id": 2003,
   "reward_type": "StackableItem",
-  "stage": 4
+  "stage": 4,
+  "display_type": 0
  },
  {
   "chapter": 1,
@@ -42,7 +46,8 @@
   "reward_amount": 3,
   "reward_id": 2003,
   "reward_type": "StackableItem",
-  "stage": 5
+  "stage": 5,
+  "display_type": 0
  },
  {
   "chapter": 1,
@@ -51,7 +56,8 @@
   "reward_amount": 1,
   "reward_id": 3005,
   "reward_type": "Weapon",
-  "stage": 6
+  "stage": 6,
+  "display_type": 1
  },
  {
   "chapter": 2,
@@ -60,7 +66,8 @@
   "reward_amount": 3,
   "reward_id": 2003,
   "reward_type": "StackableItem",
-  "stage": 1
+  "stage": 1,
+  "display_type": 0
  },
  {
   "chapter": 2,
@@ -69,7 +76,8 @@
   "reward_amount": 3,
   "reward_id": 2003,
   "reward_type": "StackableItem",
-  "stage": 2
+  "stage": 2,
+  "display_type": 0
  },
  {
   "chapter": 2,
@@ -78,7 +86,8 @@
   "reward_amount": 1,
   "reward_id": 1006,
   "reward_type": "Weapon",
-  "stage": 3
+  "stage": 3,
+  "display_type": 1
  },
  {
   "chapter": 2,
@@ -87,7 +96,8 @@
   "reward_amount": 3,
   "reward_id": 2003,
   "reward_type": "StackableItem",
-  "stage": 4
+  "stage": 4,
+  "display_type": 0
  },
  {
   "chapter": 2,
@@ -96,7 +106,8 @@
   "reward_amount": 3,
   "reward_id": 2003,
   "reward_type": "StackableItem",
-  "stage": 5
+  "stage": 5,
+  "display_type": 0
  },
  {
   "chapter": 2,
@@ -105,7 +116,8 @@
   "reward_amount": 1,
   "reward_id": 6006,
   "reward_type": "Weapon",
-  "stage": 6
+  "stage": 6,
+  "display_type": 1
  },
  {
   "chapter": 2,
@@ -114,7 +126,8 @@
   "reward_amount": 1,
   "reward_id": 2007,
   "reward_type": "Weapon",
-  "stage": 7
+  "stage": 7,
+  "display_type": 1
  },
  {
   "chapter": 3,
@@ -123,7 +136,8 @@
   "reward_amount": 3,
   "reward_id": 2004,
   "reward_type": "StackableItem",
-  "stage": 1
+  "stage": 1,
+  "display_type": 0
  },
  {
   "chapter": 3,
@@ -132,7 +146,8 @@
   "reward_amount": 3,
   "reward_id": 2004,
   "reward_type": "StackableItem",
-  "stage": 2
+  "stage": 2,
+  "display_type": 0
  },
  {
   "chapter": 3,
@@ -141,7 +156,8 @@
   "reward_amount": 1,
   "reward_id": 3006,
   "reward_type": "Weapon",
-  "stage": 3
+  "stage": 3,
+  "display_type": 1
  },
  {
   "chapter": 3,
@@ -150,7 +166,8 @@
   "reward_amount": 3,
   "reward_id": 2004,
   "reward_type": "StackableItem",
-  "stage": 4
+  "stage": 4,
+  "display_type": 0
  },
  {
   "chapter": 3,
@@ -159,7 +176,8 @@
   "reward_amount": 3,
   "reward_id": 2004,
   "reward_type": "StackableItem",
-  "stage": 5
+  "stage": 5,
+  "display_type": 0
  },
  {
   "chapter": 3,
@@ -168,7 +186,8 @@
   "reward_amount": 1,
   "reward_id": 4007,
   "reward_type": "Weapon",
-  "stage": 6
+  "stage": 6,
+  "display_type": 1
  },
  {
   "chapter": 3,
@@ -177,6 +196,7 @@
   "reward_amount": 1,
   "reward_id": 5008,
   "reward_type": "Weapon",
-  "stage": 7
+  "stage": 7,
+  "display_type": 1
  }
 ]

@@ -559,6 +559,66 @@
   "SubskillId3": "100244,100245,100246,100247,100256"
  },
  {
+  "id": 44,
+  "OptionType": 0,
+  "BaseValue": 0.0,
+  "ValuePerLevel": 0.0,
+  "Name": "Rune_Name_MISTY_1",
+  "Name_en": "Growth Potion",
+  "Desc": "Rune_Desc_MISTY_1",
+  "Desc_en": "Effect range increases by 50%. A successful potion enlarges allies, increasing ATK by <color=#0D9538>{0:0%}</color> for 5 sec. A failed potion shrinks enemies, decreasing ATK by <color=#0D9538>{1:0%}</color> for 5 sec."
+ },
+ {
+  "id": 45,
+  "OptionType": 0,
+  "BaseValue": 8.0,
+  "ValuePerLevel": 0.4,
+  "Name": "Rune_Name_MISTY_2",
+  "Name_en": "Schrödinger's Potion",
+  "Desc": "Rune_Desc_MISTY_2",
+  "Desc_en": "Both the success and failure effects occur at once. Attack Speed increases by an additional 10%, and the explosion's Bonus Skill Damage increases by <color=#0D9538>{0:0%}</color>."
+ },
+ {
+  "id": 46,
+  "OptionType": 0,
+  "BaseValue": 0.0,
+  "ValuePerLevel": 0.0,
+  "Name": "Rune_Name_MISTY_3",
+  "Name_en": "Elixir",
+  "Desc": "Rune_Desc_MISTY_3",
+  "Desc_en": "The skill always succeeds. Revives a dead ally with <color=#0D9538>{0:0%}</color> HP, triggering only once per ally."
+ },
+ {
+  "id": 47,
+  "OptionType": 0,
+  "BaseValue": 0.0,
+  "ValuePerLevel": 0.0,
+  "Name": "Rune_Name_VLAD_1",
+  "Name_en": "Rose of Wallachia",
+  "Desc": "Rune_Desc_VLAD_1",
+  "Desc_en": "Every 1 sec while the skill is active, blood thorns erupt, dealing damage equal to <color=#0D9538>{0:0%}</color> of the skill's total damage to enemies in range."
+ },
+ {
+  "id": 48,
+  "OptionType": 0,
+  "BaseValue": 0.0,
+  "ValuePerLevel": 0.0,
+  "Name": "Rune_Name_VLAD_2",
+  "Name_en": "Walpurgis Night",
+  "Desc": "Rune_Desc_VLAD_2",
+  "Desc_en": "The blood pool lasts 2 sec longer, and grants a Skill DMG +<color=#0D9538>{0:0%}</color> buff for 5 sec to allies healed in the pool."
+ },
+ {
+  "id": 49,
+  "OptionType": 0,
+  "BaseValue": 14.0,
+  "ValuePerLevel": 0.7,
+  "Name": "Rune_Name_VLAD_3",
+  "Name_en": "Come, Sweet Death",
+  "Desc": "Rune_Desc_VLAD_3",
+  "Desc_en": "The blood pool's range increases by 50%, and Bonus Skill Damage increases by <color=#0D9538>{0:0%}</color>. The blood pool follows you."
+ },
+ {
   "id": 1001,
   "OptionType": 24,
   "BaseValue": 0.1,
@@ -1493,65 +1553,5 @@
   "SubskillId1": "0",
   "SubskillId2": "0",
   "SubskillId3": "0"
- },
- {
-  "id": 44,
-  "OptionType": 0,
-  "BaseValue": 0.0,
-  "ValuePerLevel": 0.0,
-  "Name": "Rune_Name_MISTY_1",
-  "Name_en": "Growth Potion",
-  "Desc": "Rune_Desc_MISTY_1",
-  "Desc_en": "Effect range increases by 50%. A successful potion enlarges allies, increasing ATK by <color=#0D9538>{0:0%}</color> for 5 sec. A failed potion shrinks enemies, decreasing ATK by <color=#0D9538>{1:0%}</color> for 5 sec."
- },
- {
-  "id": 45,
-  "OptionType": 0,
-  "BaseValue": 8.0,
-  "ValuePerLevel": 0.4,
-  "Name": "Rune_Name_MISTY_2",
-  "Name_en": "Schrödinger's Potion",
-  "Desc": "Rune_Desc_MISTY_2",
-  "Desc_en": "Both the success and failure effects occur at once. Attack Speed increases by an additional 10%, and the explosion's Bonus Skill Damage increases by <color=#0D9538>{0:0%}</color>."
- },
- {
-  "id": 46,
-  "OptionType": 0,
-  "BaseValue": 0.0,
-  "ValuePerLevel": 0.0,
-  "Name": "Rune_Name_MISTY_3",
-  "Name_en": "Elixir",
-  "Desc": "Rune_Desc_MISTY_3",
-  "Desc_en": "The skill always succeeds. Revives a dead ally with <color=#0D9538>{0:0%}</color> HP, triggering only once per ally."
- },
- {
-  "id": 47,
-  "OptionType": 0,
-  "BaseValue": 0.0,
-  "ValuePerLevel": 0.0,
-  "Name": "Rune_Name_VLAD_1",
-  "Name_en": "Rose of Wallachia",
-  "Desc": "Rune_Desc_VLAD_1",
-  "Desc_en": "Every 1 sec while the skill is active, blood thorns erupt, dealing damage equal to <color=#0D9538>{0:0%}</color> of the skill's total damage to enemies in range."
- },
- {
-  "id": 48,
-  "OptionType": 0,
-  "BaseValue": 0.0,
-  "ValuePerLevel": 0.0,
-  "Name": "Rune_Name_VLAD_2",
-  "Name_en": "Walpurgis Night",
-  "Desc": "Rune_Desc_VLAD_2",
-  "Desc_en": "The blood pool lasts 2 sec longer, and grants a Skill DMG +<color=#0D9538>{0:0%}</color> buff for 5 sec to allies healed in the pool."
- },
- {
-  "id": 49,
-  "OptionType": 0,
-  "BaseValue": 14.0,
-  "ValuePerLevel": 0.7,
-  "Name": "Rune_Name_VLAD_3",
-  "Name_en": "Come, Sweet Death",
-  "Desc": "Rune_Desc_VLAD_3",
-  "Desc_en": "The blood pool's range increases by 50%, and Bonus Skill Damage increases by <color=#0D9538>{0:0%}</color>. The blood pool follows you."
  }
 ]

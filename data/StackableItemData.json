@@ -966,7 +966,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 58,
@@ -983,7 +983,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 59,
@@ -1000,7 +1000,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 60,
@@ -1017,7 +1017,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 61,
@@ -1034,7 +1034,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 62,
@@ -1051,7 +1051,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 63,
@@ -1068,7 +1068,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 64,
@@ -1085,7 +1085,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 65,
@@ -1102,7 +1102,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 66,
@@ -1119,7 +1119,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 67,
@@ -1136,7 +1136,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 68,
@@ -1153,7 +1153,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 69,
@@ -1170,7 +1170,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 70,
@@ -1187,7 +1187,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 71,
@@ -1204,7 +1204,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 72,
@@ -1221,7 +1221,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 73,
@@ -1238,7 +1238,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 74,
@@ -1255,7 +1255,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 75,
@@ -1272,7 +1272,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 76,
@@ -1289,7 +1289,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 77,
@@ -1306,7 +1306,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 78,
@@ -1323,7 +1323,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 79,
@@ -1340,7 +1340,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 80,
@@ -1357,7 +1357,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 81,
@@ -1374,7 +1374,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 82,
@@ -1391,7 +1391,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 83,
@@ -1408,7 +1408,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 84,
@@ -1425,7 +1425,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 85,
@@ -1442,7 +1442,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 86,
@@ -1459,7 +1459,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 87,
@@ -1476,7 +1476,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 88,
@@ -1493,7 +1493,7 @@
   "UsageAction": 1,
   "UsageParam": 1004,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 89,
@@ -1510,7 +1510,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 90,
@@ -1527,7 +1527,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 91,
@@ -1544,7 +1544,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 92,
@@ -1561,7 +1561,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 93,
@@ -1578,7 +1578,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 94,
@@ -1595,7 +1595,7 @@
   "UsageAction": 1,
   "UsageParam": 0,
   "UseRewardAmount": 1,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 95,
@@ -1646,7 +1646,7 @@
   "UsageAction": 2,
   "UsageParam": 9,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 98,
@@ -1663,7 +1663,7 @@
   "UsageAction": 2,
   "UsageParam": 10,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 99,
@@ -1680,7 +1680,7 @@
   "UsageAction": 2,
   "UsageParam": 11,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 100,
@@ -1697,7 +1697,7 @@
   "UsageAction": 2,
   "UsageParam": 12,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 101,
@@ -1714,7 +1714,7 @@
   "UsageAction": 2,
   "UsageParam": 13,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 102,
@@ -1731,7 +1731,7 @@
   "UsageAction": 2,
   "UsageParam": 14,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 103,
@@ -1748,7 +1748,7 @@
   "UsageAction": 2,
   "UsageParam": 15,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
  },
  {
   "id": 104,
@@ -1765,6 +1765,210 @@
   "UsageAction": 2,
   "UsageParam": 16,
   "UseRewardAmount": 30,
-  "Priority": 0
+  "Priority": null
+ },
+ {
+  "id": 105,
+  "Type": 5002,
+  "Rarity": 1,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_HALLOWEENCANDY",
+  "Name_en": "STACKABLE_NAME_HALLOWEENCANDY",
+  "Desc": "STACKABLE_DESC_HALLOWEENCANDY",
+  "Desc_en": "STACKABLE_DESC_HALLOWEENCANDY",
+  "PackageIcon": "Stackable_LiveopsItem_Halloweencandy ",
+  "IsUsable": false,
+  "ShowInInventory": false,
+  "UsageAction": 0,
+  "UsageParam": 0,
+  "UseRewardAmount": 0,
+  "Priority": null
+ },
+ {
+  "id": 106,
+  "Type": 9201,
+  "Rarity": 8,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_CHOICETICKET_TRANSCENDANCE",
+  "Name_en": "Eternity Stone Selector",
+  "Desc": "STACKABLE_DESC_CHOICETICKET_TRANSCENDANCE",
+  "Desc_en": "You can select an Eternal Stone.",
+  "PackageIcon": "Stackable_ChoiceTicket_Transcendence",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 1,
+  "UsageParam": 0,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 107,
+  "Type": 9301,
+  "Rarity": 1,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_NORMAL",
+  "Desc_en": "You can acquire runes from Normal to <color=#530176>Epic</color> rarity.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 18,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 108,
+  "Type": 9302,
+  "Rarity": 2,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_FINE",
+  "Desc_en": "<color=#2BDF64>Fine</color> to <color=#846500>Legendary</color> runes can be obtained.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 19,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 109,
+  "Type": 9303,
+  "Rarity": 3,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_RARE",
+  "Desc_en": "You can acquire runes from <color=#108AC5>Rare</color> to <color=#760E1B>Ancient</color> rarity.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 20,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 110,
+  "Type": 9304,
+  "Rarity": 4,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_EPIC",
+  "Desc_en": "You can obtain runes ranging from <color=#530176>Epic</color> to <color=#00967F>Mythic</color> rarity.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 21,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 111,
+  "Type": 9305,
+  "Rarity": 5,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_LEGENDARY",
+  "Desc_en": "You can acquire runes ranging from <color=#846500>Legendary</color> to <color=#8E0F3A>Exotic</color>.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 22,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 112,
+  "Type": 9306,
+  "Rarity": 6,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_ANCIENT",
+  "Desc_en": "You can acquire runes from <color=#760E1B>Ancient</color> to <color=#8E0F3A>Exotic</color> rarity.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 23,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 113,
+  "Type": 9307,
+  "Rarity": 7,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_MYTHIC",
+  "Desc_en": "You can acquire runes from <color=#00967F>Mythic</color> to <color=#8E0F3A>Exotic</color> rarity.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 24,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 114,
+  "Type": 9308,
+  "Rarity": 8,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_RANDOM_RUNE",
+  "Name_en": "Random Rune",
+  "Desc": "STACKABLE_DESC_RANDOM_RUNE_EXOTIC",
+  "Desc_en": "You can acquire an <color=#8E0F3A>Exotic</color> random rune.",
+  "PackageIcon": "Stackable_Random_Rune",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 2,
+  "UsageParam": 25,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 115,
+  "Type": 9401,
+  "Rarity": 4,
+  "Grade": 1,
+  "Name": "STACKABLE_NAME_CHOICETICKET_SOULSTONE",
+  "Name_en": "Orb Selection Ticket",
+  "Desc": "STACKABLE_DESC_CHOICETICKET_SOULSTONE",
+  "Desc_en": "You can select an orb.",
+  "PackageIcon": "Stackable_ChoiceTicekt_SoulStone",
+  "IsUsable": true,
+  "ShowInInventory": true,
+  "UsageAction": 1,
+  "UsageParam": 0,
+  "UseRewardAmount": 1,
+  "Priority": null
+ },
+ {
+  "id": 116,
+  "Type": 2104,
+  "Rarity": 8,
+  "Grade": 1,
+  "Name": "STACKABLE_ITEM_NAME_COSTUMEKEY_T4",
+  "Name_en": "Special Hero Chest Key",
+  "Desc": "SKILL_DESC_COSTUMEKEY_T4",
+  "Desc_en": "Used to open special hero chests in the shop",
+  "PackageIcon": "Stackable_CostumeKey_T4",
+  "IsUsable": false,
+  "ShowInInventory": true,
+  "UsageAction": 0,
+  "UsageParam": 0,
+  "UseRewardAmount": 0,
+  "Priority": 30
  }
 ]

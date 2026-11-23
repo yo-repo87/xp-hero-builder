@@ -7,7 +7,8 @@
   "reward_param": 0,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 10
+  "weight": 10,
+  "segment_id": 100
  },
  {
   "id": 1002,
@@ -17,7 +18,8 @@
   "reward_param": 0,
   "reward_type": 1,
   "slot_rarity": 4,
-  "weight": 600
+  "weight": 600,
+  "segment_id": 100
  },
  {
   "id": 1003,
@@ -27,7 +29,8 @@
   "reward_param": 3,
   "reward_type": 1,
   "slot_rarity": 6,
-  "weight": 250
+  "weight": 250,
+  "segment_id": 100
  },
  {
   "id": 1004,
@@ -37,7 +40,8 @@
   "reward_param": 6,
   "reward_type": 1,
   "slot_rarity": 6,
-  "weight": 55
+  "weight": 55,
+  "segment_id": 100
  },
  {
   "id": 1005,
@@ -47,7 +51,8 @@
   "reward_param": 5,
   "reward_type": 1,
   "slot_rarity": 4,
-  "weight": 29
+  "weight": 29,
+  "segment_id": 100
  },
  {
   "id": 1006,
@@ -57,7 +62,8 @@
   "reward_param": 14,
   "reward_type": 7,
   "slot_rarity": 3,
-  "weight": 24
+  "weight": 24,
+  "segment_id": 100
  },
  {
   "id": 1007,
@@ -67,7 +73,8 @@
   "reward_param": 6001,
   "reward_type": 1,
   "slot_rarity": 4,
-  "weight": 12
+  "weight": 12,
+  "segment_id": 100
  },
  {
   "id": 1008,
@@ -77,7 +84,8 @@
   "reward_param": 2004,
   "reward_type": 1,
   "slot_rarity": 5,
-  "weight": 10
+  "weight": 10,
+  "segment_id": 100
  },
  {
   "id": 1009,
@@ -87,7 +95,8 @@
   "reward_param": 6001,
   "reward_type": 1,
   "slot_rarity": 6,
-  "weight": 10
+  "weight": 10,
+  "segment_id": 100
  },
  {
   "id": 1010,
@@ -97,7 +106,8 @@
   "reward_param": 3,
   "reward_type": 1,
   "slot_rarity": 4,
-  "weight": 6
+  "weight": 6,
+  "segment_id": 100
  },
  {
   "id": 1011,
@@ -107,7 +117,8 @@
   "reward_param": 6002,
   "reward_type": 1,
   "slot_rarity": 6,
-  "weight": 2
+  "weight": 2,
+  "segment_id": 100
  },
  {
   "id": 1012,
@@ -117,7 +128,932 @@
   "reward_param": 2004,
   "reward_type": 1,
   "slot_rarity": 3,
-  "weight": 2
+  "weight": 2,
+  "segment_id": 100
+ },
+ {
+  "id": 1101,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 2500,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 1
+ },
+ {
+  "id": 1102,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 10,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 1
+ },
+ {
+  "id": 1103,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 1
+ },
+ {
+  "id": 1104,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 1
+ },
+ {
+  "id": 1105,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 3,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 1
+ },
+ {
+  "id": 1106,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 300,
+  "reward_param": 1,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 1
+ },
+ {
+  "id": 1107,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 250,
+  "reward_param": 301,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 1
+ },
+ {
+  "id": 1108,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 200,
+  "reward_param": 201,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 1
+ },
+ {
+  "id": 1109,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 500,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 1
+ },
+ {
+  "id": 1110,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 1
+ },
+ {
+  "id": 1111,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 1
+ },
+ {
+  "id": 1112,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 1
+ },
+ {
+  "id": 1201,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 2500,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 2
+ },
+ {
+  "id": 1202,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 2
+ },
+ {
+  "id": 1203,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 2
+ },
+ {
+  "id": 1204,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2103,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 2
+ },
+ {
+  "id": 1205,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 400,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 2
+ },
+ {
+  "id": 1206,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 500,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 2
+ },
+ {
+  "id": 1207,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 20,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 2
+ },
+ {
+  "id": 1208,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 300,
+  "reward_param": 203,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 2
+ },
+ {
+  "id": 1209,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 700,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 2
+ },
+ {
+  "id": 1210,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 2
+ },
+ {
+  "id": 1211,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 2
+ },
+ {
+  "id": 1212,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 2
+ },
+ {
+  "id": 1301,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9304,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 3
+ },
+ {
+  "id": 1302,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 3
+ },
+ {
+  "id": 1303,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 3
+ },
+ {
+  "id": 1304,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2103,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 3
+ },
+ {
+  "id": 1305,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 400,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 3
+ },
+ {
+  "id": 1306,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 3
+ },
+ {
+  "id": 1307,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 20,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 3
+ },
+ {
+  "id": 1308,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 450,
+  "reward_param": 203,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 3
+ },
+ {
+  "id": 1309,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 900,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 3
+ },
+ {
+  "id": 1310,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 3
+ },
+ {
+  "id": 1311,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 3
+ },
+ {
+  "id": 1312,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 3
+ },
+ {
+  "id": 1401,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9305,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 4
+ },
+ {
+  "id": 1402,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 4
+ },
+ {
+  "id": 1403,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 4
+ },
+ {
+  "id": 1404,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 2103,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 4
+ },
+ {
+  "id": 1405,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 400,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 4
+ },
+ {
+  "id": 1406,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 2000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 4
+ },
+ {
+  "id": 1407,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 20,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 4
+ },
+ {
+  "id": 1408,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 600,
+  "reward_param": 203,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 4
+ },
+ {
+  "id": 1409,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1200,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 4
+ },
+ {
+  "id": 1410,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 4
+ },
+ {
+  "id": 1411,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 4
+ },
+ {
+  "id": 1412,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 4
+ },
+ {
+  "id": 1501,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9306,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 5
+ },
+ {
+  "id": 1502,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 5
+ },
+ {
+  "id": 1503,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 6002,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 5
+ },
+ {
+  "id": 1504,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 10,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 5
+ },
+ {
+  "id": 1505,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 500,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 5
+ },
+ {
+  "id": 1506,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 3000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 5
+ },
+ {
+  "id": 1507,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 20,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 5
+ },
+ {
+  "id": 1508,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 100,
+  "reward_param": 205,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 5
+ },
+ {
+  "id": 1509,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1400,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 5
+ },
+ {
+  "id": 1510,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 5
+ },
+ {
+  "id": 1511,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 5
+ },
+ {
+  "id": 1512,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 5
+ },
+ {
+  "id": 1601,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 2,
+  "reward_param": 9306,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 6
+ },
+ {
+  "id": 1602,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 6
+ },
+ {
+  "id": 1603,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 6002,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 6
+ },
+ {
+  "id": 1604,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 10,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 6
+ },
+ {
+  "id": 1605,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 500,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 6
+ },
+ {
+  "id": 1606,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 4000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 6
+ },
+ {
+  "id": 1607,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 20,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 6
+ },
+ {
+  "id": 1608,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 200,
+  "reward_param": 205,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 6
+ },
+ {
+  "id": 1609,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1500,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 6
+ },
+ {
+  "id": 1610,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 6
+ },
+ {
+  "id": 1611,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 6
+ },
+ {
+  "id": 1612,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 6
+ },
+ {
+  "id": 1701,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9307,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 7
+ },
+ {
+  "id": 1702,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 7
+ },
+ {
+  "id": 1703,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 6002,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 7
+ },
+ {
+  "id": 1704,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 10,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 7
+ },
+ {
+  "id": 1705,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 500,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 7
+ },
+ {
+  "id": 1706,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 5000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 7
+ },
+ {
+  "id": 1707,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 20,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 7
+ },
+ {
+  "id": 1708,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 600,
+  "reward_param": 205,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 7
+ },
+ {
+  "id": 1709,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1600,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 7
+ },
+ {
+  "id": 1710,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 1,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 7
+ },
+ {
+  "id": 1711,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 150,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 7
+ },
+ {
+  "id": 1712,
+  "is_free": false,
+  "preset_id": 1,
+  "reward_amount": 50,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 7
  },
  {
   "id": 2001,
@@ -127,7 +1063,8 @@
   "reward_param": 0,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 10
+  "weight": 10,
+  "segment_id": 100
  },
  {
   "id": 2002,
@@ -137,7 +1074,8 @@
   "reward_param": 0,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 600
+  "weight": 600,
+  "segment_id": 100
  },
  {
   "id": 2003,
@@ -147,7 +1085,8 @@
   "reward_param": 5,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 250
+  "weight": 250,
+  "segment_id": 100
  },
  {
   "id": 2004,
@@ -157,7 +1096,8 @@
   "reward_param": 6,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 55
+  "weight": 55,
+  "segment_id": 100
  },
  {
   "id": 2005,
@@ -167,7 +1107,8 @@
   "reward_param": 3,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 29
+  "weight": 29,
+  "segment_id": 100
  },
  {
   "id": 2006,
@@ -177,7 +1118,8 @@
   "reward_param": 1004,
   "reward_type": 2,
   "slot_rarity": 1,
-  "weight": 24
+  "weight": 24,
+  "segment_id": 100
  },
  {
   "id": 2007,
@@ -187,7 +1129,8 @@
   "reward_param": 5,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 12
+  "weight": 12,
+  "segment_id": 100
  },
  {
   "id": 2008,
@@ -197,7 +1140,8 @@
   "reward_param": 6001,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 10
+  "weight": 10,
+  "segment_id": 100
  },
  {
   "id": 2009,
@@ -207,7 +1151,8 @@
   "reward_param": 17,
   "reward_type": 7,
   "slot_rarity": 1,
-  "weight": 10
+  "weight": 10,
+  "segment_id": 100
  },
  {
   "id": 2010,
@@ -217,7 +1162,8 @@
   "reward_param": 2004,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 6
+  "weight": 6,
+  "segment_id": 100
  },
  {
   "id": 2011,
@@ -227,7 +1173,8 @@
   "reward_param": 2004,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 2
+  "weight": 2,
+  "segment_id": 100
  },
  {
   "id": 2012,
@@ -237,6 +1184,931 @@
   "reward_param": 6002,
   "reward_type": 1,
   "slot_rarity": 1,
-  "weight": 2
+  "weight": 2,
+  "segment_id": 100
+ },
+ {
+  "id": 2101,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 5000,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 1
+ },
+ {
+  "id": 2102,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 20,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 1
+ },
+ {
+  "id": 2103,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 1
+ },
+ {
+  "id": 2104,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 600,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 1
+ },
+ {
+  "id": 2105,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 6,
+  "reward_param": 2003,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 1
+ },
+ {
+  "id": 2106,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 600,
+  "reward_param": 1,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 1
+ },
+ {
+  "id": 2107,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 500,
+  "reward_param": 301,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 1
+ },
+ {
+  "id": 2108,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 400,
+  "reward_param": 201,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 1
+ },
+ {
+  "id": 2109,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1000,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 1
+ },
+ {
+  "id": 2110,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 1
+ },
+ {
+  "id": 2111,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 1
+ },
+ {
+  "id": 2112,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 1
+ },
+ {
+  "id": 2201,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 5000,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 2
+ },
+ {
+  "id": 2202,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 2
+ },
+ {
+  "id": 2203,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 2
+ },
+ {
+  "id": 2204,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2103,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 2
+ },
+ {
+  "id": 2205,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 800,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 2
+ },
+ {
+  "id": 2206,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 2
+ },
+ {
+  "id": 2207,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 40,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 2
+ },
+ {
+  "id": 2208,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 600,
+  "reward_param": 203,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 2
+ },
+ {
+  "id": 2209,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1400,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 2
+ },
+ {
+  "id": 2210,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 2
+ },
+ {
+  "id": 2211,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 2
+ },
+ {
+  "id": 2212,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 2
+ },
+ {
+  "id": 2301,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9304,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 3
+ },
+ {
+  "id": 2302,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 3
+ },
+ {
+  "id": 2303,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 3
+ },
+ {
+  "id": 2304,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2103,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 3
+ },
+ {
+  "id": 2305,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 800,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 3
+ },
+ {
+  "id": 2306,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 3
+ },
+ {
+  "id": 2307,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 40,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 3
+ },
+ {
+  "id": 2308,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 900,
+  "reward_param": 203,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 3
+ },
+ {
+  "id": 2309,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1800,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 3
+ },
+ {
+  "id": 2310,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 3
+ },
+ {
+  "id": 2311,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 3
+ },
+ {
+  "id": 2312,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 3
+ },
+ {
+  "id": 2401,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9305,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 4
+ },
+ {
+  "id": 2402,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 4
+ },
+ {
+  "id": 2403,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 4
+ },
+ {
+  "id": 2404,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 2103,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 4
+ },
+ {
+  "id": 2405,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 800,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 4
+ },
+ {
+  "id": 2406,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 4000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 4
+ },
+ {
+  "id": 2407,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 40,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 4
+ },
+ {
+  "id": 2408,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1200,
+  "reward_param": 203,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 4
+ },
+ {
+  "id": 2409,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2400,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 4
+ },
+ {
+  "id": 2410,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 4
+ },
+ {
+  "id": 2411,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 4
+ },
+ {
+  "id": 2412,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 4
+ },
+ {
+  "id": 2501,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9306,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 5
+ },
+ {
+  "id": 2502,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 5
+ },
+ {
+  "id": 2503,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 6002,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 5
+ },
+ {
+  "id": 2504,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 20,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 5
+ },
+ {
+  "id": 2505,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1000,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 5
+ },
+ {
+  "id": 2506,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 6000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 5
+ },
+ {
+  "id": 2507,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 40,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 5
+ },
+ {
+  "id": 2508,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 200,
+  "reward_param": 205,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 5
+ },
+ {
+  "id": 2509,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2800,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 5
+ },
+ {
+  "id": 2510,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 5
+ },
+ {
+  "id": 2511,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 5
+ },
+ {
+  "id": 2512,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 5
+ },
+ {
+  "id": 2601,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 4,
+  "reward_param": 9306,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 6
+ },
+ {
+  "id": 2602,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 6
+ },
+ {
+  "id": 2603,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 6002,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 6
+ },
+ {
+  "id": 2604,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 20,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 6
+ },
+ {
+  "id": 2605,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1000,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 6
+ },
+ {
+  "id": 2606,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 8000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 6
+ },
+ {
+  "id": 2607,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 40,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 6
+ },
+ {
+  "id": 2608,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 400,
+  "reward_param": 205,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 6
+ },
+ {
+  "id": 2609,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 3000,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 6
+ },
+ {
+  "id": 2610,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 6
+ },
+ {
+  "id": 2611,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 6
+ },
+ {
+  "id": 2612,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 6
+ },
+ {
+  "id": 2701,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9307,
+  "reward_type": 1,
+  "slot_rarity": 8,
+  "weight": 1,
+  "segment_id": 7
+ },
+ {
+  "id": 2702,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10,
+  "reward_param": 9105,
+  "reward_type": 1,
+  "slot_rarity": 7,
+  "weight": 5,
+  "segment_id": 7
+ },
+ {
+  "id": 2703,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 6002,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 7
+ },
+ {
+  "id": 2704,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 20,
+  "reward_param": 2104,
+  "reward_type": 1,
+  "slot_rarity": 6,
+  "weight": 10,
+  "segment_id": 7
+ },
+ {
+  "id": 2705,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1000,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 7
+ },
+ {
+  "id": 2706,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 10000,
+  "reward_param": 6001,
+  "reward_type": 1,
+  "slot_rarity": 5,
+  "weight": 40,
+  "segment_id": 7
+ },
+ {
+  "id": 2707,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 40,
+  "reward_param": 8401,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 7
+ },
+ {
+  "id": 2708,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 1200,
+  "reward_param": 205,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 7
+ },
+ {
+  "id": 2709,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 3200,
+  "reward_param": 5,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 60,
+  "segment_id": 7
+ },
+ {
+  "id": 2710,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 2,
+  "reward_param": 9103,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 100,
+  "segment_id": 7
+ },
+ {
+  "id": 2711,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 300,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 200,
+  "segment_id": 7
+ },
+ {
+  "id": 2712,
+  "is_free": false,
+  "preset_id": 2,
+  "reward_amount": 100,
+  "reward_param": 3,
+  "reward_type": 1,
+  "slot_rarity": 1,
+  "weight": 414,
+  "segment_id": 7
  }
 ]

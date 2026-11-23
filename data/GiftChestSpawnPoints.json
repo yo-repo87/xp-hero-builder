@@ -2,97 +2,260 @@
  {
   "chapter": 1,
   "name": "GiftChestSpawner",
-  "x": 17.74,
+  "stage": 1,
+  "x": -2.21,
+  "z": -31.78
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 1,
+  "x": -2.2,
   "z": -31.77
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (1)",
-  "x": -28.34,
+  "name": "GiftChestSpawner",
+  "stage": 2,
+  "x": -48.28,
   "z": -10.92
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (10)",
-  "x": 67.2,
-  "z": 70.33
- },
- {
-  "chapter": 1,
-  "name": "GiftChestSpawner (11)",
-  "x": 31.73,
-  "z": 69.09
- },
- {
-  "chapter": 1,
-  "name": "GiftChestSpawner (12)",
-  "x": -6.57,
-  "z": 79.83
- },
- {
-  "chapter": 1,
-  "name": "GiftChestSpawner (13)",
-  "x": -17.33,
-  "z": 55.98
- },
- {
-  "chapter": 1,
-  "name": "GiftChestSpawner (14)",
-  "x": 111.86,
-  "z": 54.19
- },
- {
-  "chapter": 1,
-  "name": "GiftChestSpawner (2)",
-  "x": -11.83,
+  "name": "GiftChestSpawner",
+  "stage": 2,
+  "x": -31.77,
   "z": 11.54
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (3)",
-  "x": 15.84,
+  "name": "GiftChestSpawner",
+  "stage": 2,
+  "x": -14.69,
+  "z": -16.36
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 3,
+  "x": -4.1,
   "z": 40.07
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (4)",
-  "x": 58.73,
+  "name": "GiftChestSpawner",
+  "stage": 3,
+  "x": 38.79,
   "z": 33.49
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (5)",
-  "x": 73.39,
+  "name": "GiftChestSpawner",
+  "stage": 3,
+  "x": 53.45,
   "z": 22.25
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (6)",
-  "x": 78.72,
+  "name": "GiftChestSpawner",
+  "stage": 4,
+  "x": 58.78,
   "z": -0.48
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (7)",
-  "x": 111.42,
-  "z": -18.52
- },
- {
-  "chapter": 1,
-  "name": "GiftChestSpawner (8)",
-  "x": 84.08,
+  "name": "GiftChestSpawner",
+  "stage": 4,
+  "x": 64.14,
   "z": 12.73
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner (9)",
-  "x": 85.28,
+  "name": "GiftChestSpawner",
+  "stage": 4,
+  "x": 91.48,
+  "z": -18.52
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 5,
+  "x": 47.26,
+  "z": 70.33
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 5,
+  "x": 65.34,
   "z": 51.22
  },
  {
   "chapter": 1,
-  "name": "GiftChestSpawner 2",
-  "x": 5.25,
-  "z": -16.36
+  "name": "GiftChestSpawner",
+  "stage": 5,
+  "x": 91.92,
+  "z": 54.19
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 6,
+  "x": -37.27,
+  "z": 55.98
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 6,
+  "x": -26.51,
+  "z": 79.83
+ },
+ {
+  "chapter": 1,
+  "name": "GiftChestSpawner",
+  "stage": 6,
+  "x": 11.79,
+  "z": 69.09
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 7,
+  "x": -15.18,
+  "z": 6.46
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 7,
+  "x": -12.58,
+  "z": -20.94
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 7,
+  "x": 19.25,
+  "z": 7.51
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 8,
+  "x": -96.8,
+  "z": 7.82
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 8,
+  "x": -72.6,
+  "z": -1.74
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 8,
+  "x": -57.07,
+  "z": 34.98
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 9,
+  "x": -62.78,
+  "z": 102.42
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 9,
+  "x": -54.4,
+  "z": 84.26
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 9,
+  "x": -39.82,
+  "z": 66.15
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 9,
+  "x": -7.26,
+  "z": 43.94
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 9,
+  "x": 22.32,
+  "z": 41.93
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 10,
+  "x": 48.59,
+  "z": 21.11
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 10,
+  "x": 52.87,
+  "z": 8.21
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 10,
+  "x": 75.91,
+  "z": 9.67
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 11,
+  "x": 45.39,
+  "z": 88.47
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 11,
+  "x": 50.16,
+  "z": 69.39
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 11,
+  "x": 80.21,
+  "z": 87.08
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 12,
+  "x": 0.34,
+  "z": 98.95
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 12,
+  "x": 27.23,
+  "z": 138.07
+ },
+ {
+  "chapter": 2,
+  "name": "GiftChestSpawner",
+  "stage": 12,
+  "x": 47.22,
+  "z": 110.63
  }
 ]

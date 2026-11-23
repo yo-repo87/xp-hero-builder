@@ -276,7 +276,6 @@
   "AtkSpeed": 2.7,
   "Category": 1,
   "Desc": "WEAPON_DESC_S1_DAGGER",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses.",
   "FireBullet": "Dagger_Bash_Vert",
   "FireFX": "FX_DaggerSlash_S",
   "FireSFX": [
@@ -304,14 +303,14 @@
   "Story": "WEAPON_STORY_S1_DAGGER",
   "Story_en": "A legendary dagger said to have always appeared in battles that changed the course of history. As it grows, its dance becomes even more spectacular.",
   "UpgradeGroup": 1,
-  "id": 1104
+  "id": 1104,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 2.7,
   "Category": 1,
   "Desc": "WEAPON_DESC_S1_DAGGER",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses.",
   "FireBullet": "Dagger_Bash_Vert",
   "FireFX": "FX_DaggerSlash_S",
   "FireSFX": [
@@ -339,14 +338,14 @@
   "Story": "WEAPON_STORY_S1_DAGGER",
   "Story_en": "A legendary dagger said to have always appeared in battles that changed the course of history. As it grows, its dance becomes even more spectacular.",
   "UpgradeGroup": 1,
-  "id": 1105
+  "id": 1105,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 2.7,
   "Category": 1,
   "Desc": "WEAPON_DESC_S1_DAGGER",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses.",
   "FireBullet": "Dagger_Bash_Vert",
   "FireFX": "FX_DaggerSlash_S",
   "FireSFX": [
@@ -374,14 +373,14 @@
   "Story": "WEAPON_STORY_S1_DAGGER",
   "Story_en": "A legendary dagger said to have always appeared in battles that changed the course of history. As it grows, its dance becomes even more spectacular.",
   "UpgradeGroup": 1,
-  "id": 1106
+  "id": 1106,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 2.7,
   "Category": 1,
   "Desc": "WEAPON_DESC_S1_DAGGER",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses.",
   "FireBullet": "Dagger_Bash_Vert",
   "FireFX": "FX_DaggerSlash_S",
   "FireSFX": [
@@ -409,14 +408,14 @@
   "Story": "WEAPON_STORY_S1_DAGGER",
   "Story_en": "A legendary dagger said to have always appeared in battles that changed the course of history. As it grows, its dance becomes even more spectacular.",
   "UpgradeGroup": 1,
-  "id": 1107
+  "id": 1107,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 2.7,
   "Category": 1,
   "Desc": "WEAPON_DESC_S1_DAGGER",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses.",
   "FireBullet": "Dagger_Bash_Vert",
   "FireFX": "FX_DaggerSlash_S",
   "FireSFX": [
@@ -444,14 +443,14 @@
   "Story": "WEAPON_STORY_S1_DAGGER",
   "Story_en": "A legendary dagger said to have always appeared in battles that changed the course of history. As it grows, its dance becomes even more spectacular.",
   "UpgradeGroup": 1,
-  "id": 1108
+  "id": 1108,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 2.7,
   "Category": 1,
   "Desc": "WEAPON_DESC_S1_DAGGER",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses.",
   "FireBullet": "Dagger_Bash_Vert",
   "FireFX": "FX_DaggerSlash_S",
   "FireSFX": [
@@ -479,7 +478,8 @@
   "Story": "WEAPON_STORY_S1_DAGGER",
   "Story_en": "A legendary dagger said to have always appeared in battles that changed the course of history. As it grows, its dance becomes even more spectacular.",
   "UpgradeGroup": 1,
-  "id": 1109
+  "id": 1109,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Dagger</size></color>\\nRecommended for focused burst damage against bosses."
  },
  {
   "AtkRange": 2.0,
@@ -750,7 +750,6 @@
   "AtkSpeed": 1.0,
   "Category": 2,
   "Desc": "WEAPON_DESC_S1_SWORD",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP.",
   "FireBullet": "Sword_Bash_Vert",
   "FireFX": "FX_SwordSlash_S",
   "FireSFX": [
@@ -777,14 +776,14 @@
   "Story": "WEAPON_STORY_S1_SWORD",
   "Story_en": "A greatsword said to have sealed the moon demon. As it grows, its power to purify souls is unleashed.",
   "UpgradeGroup": 1,
-  "id": 2104
+  "id": 2104,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 1.0,
   "Category": 2,
   "Desc": "WEAPON_DESC_S1_SWORD",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP.",
   "FireBullet": "Sword_Bash_Vert",
   "FireFX": "FX_SwordSlash_S",
   "FireSFX": [
@@ -811,14 +810,14 @@
   "Story": "WEAPON_STORY_S1_SWORD",
   "Story_en": "A greatsword said to have sealed the moon demon. As it grows, its power to purify souls is unleashed.",
   "UpgradeGroup": 1,
-  "id": 2105
+  "id": 2105,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 1.0,
   "Category": 2,
   "Desc": "WEAPON_DESC_S1_SWORD",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP.",
   "FireBullet": "Sword_Bash_Vert",
   "FireFX": "FX_SwordSlash_S",
   "FireSFX": [
@@ -845,14 +844,14 @@
   "Story": "WEAPON_STORY_S1_SWORD",
   "Story_en": "A greatsword said to have sealed the moon demon. As it grows, its power to purify souls is unleashed.",
   "UpgradeGroup": 1,
-  "id": 2106
+  "id": 2106,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 1.0,
   "Category": 2,
   "Desc": "WEAPON_DESC_S1_SWORD",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP.",
   "FireBullet": "Sword_Bash_Vert",
   "FireFX": "FX_SwordSlash_S",
   "FireSFX": [
@@ -879,14 +878,14 @@
   "Story": "WEAPON_STORY_S1_SWORD",
   "Story_en": "A greatsword said to have sealed the moon demon. As it grows, its power to purify souls is unleashed.",
   "UpgradeGroup": 1,
-  "id": 2107
+  "id": 2107,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 1.0,
   "Category": 2,
   "Desc": "WEAPON_DESC_S1_SWORD",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP.",
   "FireBullet": "Sword_Bash_Vert",
   "FireFX": "FX_SwordSlash_S",
   "FireSFX": [
@@ -913,14 +912,14 @@
   "Story": "WEAPON_STORY_S1_SWORD",
   "Story_en": "A greatsword said to have sealed the moon demon. As it grows, its power to purify souls is unleashed.",
   "UpgradeGroup": 1,
-  "id": 2108
+  "id": 2108,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 1.0,
   "Category": 2,
   "Desc": "WEAPON_DESC_S1_SWORD",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP.",
   "FireBullet": "Sword_Bash_Vert",
   "FireFX": "FX_SwordSlash_S",
   "FireSFX": [
@@ -947,7 +946,8 @@
   "Story": "WEAPON_STORY_S1_SWORD",
   "Story_en": "A greatsword said to have sealed the moon demon. As it grows, its power to purify souls is unleashed.",
   "UpgradeGroup": 1,
-  "id": 2109
+  "id": 2109,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Longsword</size></color>\\nRecommended for countering enemy buffs and cleansing your debuffs in PvP."
  },
  {
   "AtkRange": 2.0,
@@ -1194,7 +1194,6 @@
   "AtkSpeed": 0.8,
   "Category": 3,
   "Desc": "WEAPON_DESC_S1_MORNINGSTAR",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles.",
   "FireBullet": "Morningstar_Bash_Vert",
   "FireFX": "FX_MorningstarS",
   "FireSFX": "BA_MorningSstar",
@@ -1218,14 +1217,14 @@
   "Story": "WEAPON_STORY_S1_MORNINGSTAR",
   "Story_en": "The commander of the battlefield that turns the tide of disadvantageous battles. As it grows, its ability to protect allies is unleashed.",
   "UpgradeGroup": 1,
-  "id": 3104
+  "id": 3104,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 0.8,
   "Category": 3,
   "Desc": "WEAPON_DESC_S1_MORNINGSTAR",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles.",
   "FireBullet": "Morningstar_Bash_Vert",
   "FireFX": "FX_MorningstarS",
   "FireSFX": "BA_MorningSstar",
@@ -1249,14 +1248,14 @@
   "Story": "WEAPON_STORY_S1_MORNINGSTAR",
   "Story_en": "The commander of the battlefield that turns the tide of disadvantageous battles. As it grows, its ability to protect allies is unleashed.",
   "UpgradeGroup": 1,
-  "id": 3105
+  "id": 3105,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 0.8,
   "Category": 3,
   "Desc": "WEAPON_DESC_S1_MORNINGSTAR",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles.",
   "FireBullet": "Morningstar_Bash_Vert",
   "FireFX": "FX_MorningstarS",
   "FireSFX": "BA_MorningSstar",
@@ -1280,14 +1279,14 @@
   "Story": "WEAPON_STORY_S1_MORNINGSTAR",
   "Story_en": "The commander of the battlefield that turns the tide of disadvantageous battles. As it grows, its ability to protect allies is unleashed.",
   "UpgradeGroup": 1,
-  "id": 3106
+  "id": 3106,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 0.8,
   "Category": 3,
   "Desc": "WEAPON_DESC_S1_MORNINGSTAR",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles.",
   "FireBullet": "Morningstar_Bash_Vert",
   "FireFX": "FX_MorningstarS",
   "FireSFX": "BA_MorningSstar",
@@ -1311,14 +1310,14 @@
   "Story": "WEAPON_STORY_S1_MORNINGSTAR",
   "Story_en": "The commander of the battlefield that turns the tide of disadvantageous battles. As it grows, its ability to protect allies is unleashed.",
   "UpgradeGroup": 1,
-  "id": 3107
+  "id": 3107,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 0.8,
   "Category": 3,
   "Desc": "WEAPON_DESC_S1_MORNINGSTAR",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles.",
   "FireBullet": "Morningstar_Bash_Vert",
   "FireFX": "FX_MorningstarS",
   "FireSFX": "BA_MorningSstar",
@@ -1342,14 +1341,14 @@
   "Story": "WEAPON_STORY_S1_MORNINGSTAR",
   "Story_en": "The commander of the battlefield that turns the tide of disadvantageous battles. As it grows, its ability to protect allies is unleashed.",
   "UpgradeGroup": 1,
-  "id": 3108
+  "id": 3108,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles."
  },
  {
   "AtkRange": 2.0,
   "AtkSpeed": 0.8,
   "Category": 3,
   "Desc": "WEAPON_DESC_S1_MORNINGSTAR",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles.",
   "FireBullet": "Morningstar_Bash_Vert",
   "FireFX": "FX_MorningstarS",
   "FireSFX": "BA_MorningSstar",
@@ -1373,7 +1372,8 @@
   "Story": "WEAPON_STORY_S1_MORNINGSTAR",
   "Story_en": "The commander of the battlefield that turns the tide of disadvantageous battles. As it grows, its ability to protect allies is unleashed.",
   "UpgradeGroup": 1,
-  "id": 3109
+  "id": 3109,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Mace</size></color>\\nRecommended for increasing stability with shields in field and boss battles."
  },
  {
   "AtkRange": 3.5,
@@ -1620,7 +1620,6 @@
   "AtkSpeed": 1.0,
   "Category": 4,
   "Desc": "WEAPON_DESC_S1_CROSSBOW",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow.",
   "FireBullet": "SilverArrow_S",
   "FireFX": "FX_Bow_Fire",
   "FireSFX": "BA_CrossBow",
@@ -1644,14 +1643,14 @@
   "Story": "WEAPON_STORY_S1_CROSSBOW",
   "Story_en": "The ultimate crossbow, a product of arcane energy research. As it grows, its energy runs rampant.",
   "UpgradeGroup": 1,
-  "id": 4104
+  "id": 4104,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 1.0,
   "Category": 4,
   "Desc": "WEAPON_DESC_S1_CROSSBOW",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow.",
   "FireBullet": "SilverArrow_S",
   "FireFX": "FX_Bow_Fire",
   "FireSFX": "BA_CrossBow",
@@ -1675,14 +1674,14 @@
   "Story": "WEAPON_STORY_S1_CROSSBOW",
   "Story_en": "The ultimate crossbow, a product of arcane energy research. As it grows, its energy runs rampant.",
   "UpgradeGroup": 1,
-  "id": 4105
+  "id": 4105,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 1.0,
   "Category": 4,
   "Desc": "WEAPON_DESC_S1_CROSSBOW",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow.",
   "FireBullet": "SilverArrow_S",
   "FireFX": "FX_Bow_Fire",
   "FireSFX": "BA_CrossBow",
@@ -1706,14 +1705,14 @@
   "Story": "WEAPON_STORY_S1_CROSSBOW",
   "Story_en": "The ultimate crossbow, a product of arcane energy research. As it grows, its energy runs rampant.",
   "UpgradeGroup": 1,
-  "id": 4106
+  "id": 4106,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 1.0,
   "Category": 4,
   "Desc": "WEAPON_DESC_S1_CROSSBOW",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow.",
   "FireBullet": "SilverArrow_S",
   "FireFX": "FX_Bow_Fire",
   "FireSFX": "BA_CrossBow",
@@ -1737,14 +1736,14 @@
   "Story": "WEAPON_STORY_S1_CROSSBOW",
   "Story_en": "The ultimate crossbow, a product of arcane energy research. As it grows, its energy runs rampant.",
   "UpgradeGroup": 1,
-  "id": 4107
+  "id": 4107,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 1.0,
   "Category": 4,
   "Desc": "WEAPON_DESC_S1_CROSSBOW",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow.",
   "FireBullet": "SilverArrow_S",
   "FireFX": "FX_Bow_Fire",
   "FireSFX": "BA_CrossBow",
@@ -1768,14 +1767,14 @@
   "Story": "WEAPON_STORY_S1_CROSSBOW",
   "Story_en": "The ultimate crossbow, a product of arcane energy research. As it grows, its energy runs rampant.",
   "UpgradeGroup": 1,
-  "id": 4108
+  "id": 4108,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 1.0,
   "Category": 4,
   "Desc": "WEAPON_DESC_S1_CROSSBOW",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow.",
   "FireBullet": "SilverArrow_S",
   "FireFX": "FX_Bow_Fire",
   "FireSFX": "BA_CrossBow",
@@ -1799,7 +1798,8 @@
   "Story": "WEAPON_STORY_S1_CROSSBOW",
   "Story_en": "The ultimate crossbow, a product of arcane energy research. As it grows, its energy runs rampant.",
   "UpgradeGroup": 1,
-  "id": 4109
+  "id": 4109,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Crossbow</size></color>\\nRecommended for reaching the highest explosive DPS as you grow."
  },
  {
   "AtkRange": 3.5,
@@ -2046,7 +2046,6 @@
   "AtkSpeed": 3.0,
   "Category": 5,
   "Desc": "WEAPON_DESC_S1_GUN",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower.",
   "FireBullet": "Bullet_SGrade",
   "FireFX": "FX_Gun_Fire",
   "FireSFX": "BA_Gun2",
@@ -2070,14 +2069,14 @@
   "Story": "WEAPON_STORY_S1_GUN",
   "Story_en": "The culmination of future science created to destroy planets. As it grows, bizarre energy is absorbed by allies.",
   "UpgradeGroup": 1,
-  "id": 5104
+  "id": 5104,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 3.0,
   "Category": 5,
   "Desc": "WEAPON_DESC_S1_GUN",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower.",
   "FireBullet": "Bullet_SGrade",
   "FireFX": "FX_Gun_Fire",
   "FireSFX": "BA_Gun2",
@@ -2101,14 +2100,14 @@
   "Story": "WEAPON_STORY_S1_GUN",
   "Story_en": "The culmination of future science created to destroy planets. As it grows, bizarre energy is absorbed by allies.",
   "UpgradeGroup": 1,
-  "id": 5105
+  "id": 5105,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 3.0,
   "Category": 5,
   "Desc": "WEAPON_DESC_S1_GUN",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower.",
   "FireBullet": "Bullet_SGrade",
   "FireFX": "FX_Gun_Fire",
   "FireSFX": "BA_Gun2",
@@ -2132,14 +2131,14 @@
   "Story": "WEAPON_STORY_S1_GUN",
   "Story_en": "The culmination of future science created to destroy planets. As it grows, bizarre energy is absorbed by allies.",
   "UpgradeGroup": 1,
-  "id": 5106
+  "id": 5106,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 3.0,
   "Category": 5,
   "Desc": "WEAPON_DESC_S1_GUN",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower.",
   "FireBullet": "Bullet_SGrade",
   "FireFX": "FX_Gun_Fire",
   "FireSFX": "BA_Gun2",
@@ -2163,14 +2162,14 @@
   "Story": "WEAPON_STORY_S1_GUN",
   "Story_en": "The culmination of future science created to destroy planets. As it grows, bizarre energy is absorbed by allies.",
   "UpgradeGroup": 1,
-  "id": 5107
+  "id": 5107,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 3.0,
   "Category": 5,
   "Desc": "WEAPON_DESC_S1_GUN",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower.",
   "FireBullet": "Bullet_SGrade",
   "FireFX": "FX_Gun_Fire",
   "FireSFX": "BA_Gun2",
@@ -2194,14 +2193,14 @@
   "Story": "WEAPON_STORY_S1_GUN",
   "Story_en": "The culmination of future science created to destroy planets. As it grows, bizarre energy is absorbed by allies.",
   "UpgradeGroup": 1,
-  "id": 5108
+  "id": 5108,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 3.0,
   "Category": 5,
   "Desc": "WEAPON_DESC_S1_GUN",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower.",
   "FireBullet": "Bullet_SGrade",
   "FireFX": "FX_Gun_Fire",
   "FireSFX": "BA_Gun2",
@@ -2225,7 +2224,8 @@
   "Story": "WEAPON_STORY_S1_GUN",
   "Story_en": "The culmination of future science created to destroy planets. As it grows, bizarre energy is absorbed by allies.",
   "UpgradeGroup": 1,
-  "id": 5109
+  "id": 5109,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Gun</size></color>\\nRecommended for drastically boosting the entire party's firepower."
  },
  {
   "AtkRange": 3.5,
@@ -2472,7 +2472,6 @@
   "AtkSpeed": 0.8,
   "Category": 6,
   "Desc": "WEAPON_DESC_S1_WAND",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies.",
   "FireBullet": "Wand_Bash_Vert",
   "FireFX": "FX_ChainLightning",
   "FireSFX": "BA_MagicWand",
@@ -2496,14 +2495,14 @@
   "Story": "WEAPON_STORY_S1_WAND",
   "Story_en": "A wand that stands as a symbol of human history, marked by repeated peace and war. As it grows, the ability to heal proportional to the destruction caused is unleashed.",
   "UpgradeGroup": 1,
-  "id": 6104
+  "id": 6104,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 0.8,
   "Category": 6,
   "Desc": "WEAPON_DESC_S1_WAND",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies.",
   "FireBullet": "Wand_Bash_Vert",
   "FireFX": "FX_ChainLightning",
   "FireSFX": "BA_MagicWand",
@@ -2527,14 +2526,14 @@
   "Story": "WEAPON_STORY_S1_WAND",
   "Story_en": "A wand that stands as a symbol of human history, marked by repeated peace and war. As it grows, the ability to heal proportional to the destruction caused is unleashed.",
   "UpgradeGroup": 1,
-  "id": 6105
+  "id": 6105,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 0.8,
   "Category": 6,
   "Desc": "WEAPON_DESC_S1_WAND",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies.",
   "FireBullet": "Wand_Bash_Vert",
   "FireFX": "FX_ChainLightning",
   "FireSFX": "BA_MagicWand",
@@ -2558,14 +2557,14 @@
   "Story": "WEAPON_STORY_S1_WAND",
   "Story_en": "A wand that stands as a symbol of human history, marked by repeated peace and war. As it grows, the ability to heal proportional to the destruction caused is unleashed.",
   "UpgradeGroup": 1,
-  "id": 6106
+  "id": 6106,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 0.8,
   "Category": 6,
   "Desc": "WEAPON_DESC_S1_WAND",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies.",
   "FireBullet": "Wand_Bash_Vert",
   "FireFX": "FX_ChainLightning",
   "FireSFX": "BA_MagicWand",
@@ -2589,14 +2588,14 @@
   "Story": "WEAPON_STORY_S1_WAND",
   "Story_en": "A wand that stands as a symbol of human history, marked by repeated peace and war. As it grows, the ability to heal proportional to the destruction caused is unleashed.",
   "UpgradeGroup": 1,
-  "id": 6107
+  "id": 6107,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 0.8,
   "Category": 6,
   "Desc": "WEAPON_DESC_S1_WAND",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies.",
   "FireBullet": "Wand_Bash_Vert",
   "FireFX": "FX_ChainLightning",
   "FireSFX": "BA_MagicWand",
@@ -2620,14 +2619,14 @@
   "Story": "WEAPON_STORY_S1_WAND",
   "Story_en": "A wand that stands as a symbol of human history, marked by repeated peace and war. As it grows, the ability to heal proportional to the destruction caused is unleashed.",
   "UpgradeGroup": 1,
-  "id": 6108
+  "id": 6108,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies."
  },
  {
   "AtkRange": 3.5,
   "AtkSpeed": 0.8,
   "Category": 6,
   "Desc": "WEAPON_DESC_S1_WAND",
-  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies.",
   "FireBullet": "Wand_Bash_Vert",
   "FireFX": "FX_ChainLightning",
   "FireSFX": "BA_MagicWand",
@@ -2651,6 +2650,7 @@
   "Story": "WEAPON_STORY_S1_WAND",
   "Story_en": "A wand that stands as a symbol of human history, marked by repeated peace and war. As it grows, the ability to heal proportional to the destruction caused is unleashed.",
   "UpgradeGroup": 1,
-  "id": 6109
+  "id": 6109,
+  "Desc_en": "<color=#fffb6e><size=26>Weapon Type : Wand</size></color>\\nRecommended for sustain through healing when facing multiple enemies."
  }
 ]

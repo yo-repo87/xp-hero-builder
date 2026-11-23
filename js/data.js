@@ -26,7 +26,7 @@ const DATA_FILES = [
   'ShopItemSources', 'CraftableItems',
   'RuneData', 'RuneGradeData', 'RuneTypeData', 'RuneOptionTypeData',
   'RuneUniqueOptionData', 'RuneLevelBonusGroupData', 'RuneLevelCostData',
-  'RuneBreakRewardData', 'RuneUniqueOptionSubSkillData', 'SkillSubData',
+  'RuneBreakRewardData', 'RuneUniqueOptionSubSkillData', 'SkillSubData', 'SkillData',
   'GiftChestSpawnPoints', 'GiftChestSpawnData',
 ];
 
@@ -633,6 +633,7 @@ const Game = {
     // CLAUDE.md "Rune system" for the full writeup.
     idx.runeSubSkillsByUniqueOptionId = groupBy(this.db.RuneUniqueOptionSubSkillData, r => r.UniqueOptionID);
     idx.skillSubById = new Map(this.db.SkillSubData.map(s => [s.id, s]));
+    idx.skillById = new Map(this.db.SkillData.map(s => [s.id, s]));
 
     // Gift Chest in-world spawn mechanic (extracted 2026-10-01, wired in
     // 2026-10-02 — see CLAUDE.md "Gift Chest spawn map"). Real spawn-point
@@ -658,7 +659,7 @@ const Game = {
     return `assets/img/runes/${rune.Icon.split('/').pop()}.png`;
   },
   heroIcon(costume) { return `assets/img/heroes/${costume.id}.png`; },
-  itemIcon(item) { return `assets/img/items/${item.PackageIcon}.png`; },
+  itemIcon(item) { return `assets/img/items/${String(item.PackageIcon).trim()}.png`; },
   enemyIcon(enemy) { return `assets/img/enemies/${enemy.IconSprite}.png`; },
   chestIcon(chest) { return `assets/img/chests/${chest.PrefabName}.png`; },
   stageMapTile(layoutRow) { return `assets/img/map/${layoutRow.sprite}.png`; },

@@ -123,8 +123,17 @@ const HeroesUI = {
                 `).join('')}
             </div>
 
-            ${c.Costume_Skill_List && c.Costume_Skill_List.filter(s => s).length ? `
-            <div class="caveat">Skill IDs from this hero's kit: ${toArray(c.Costume_Skill_List).filter(s => s).join(', ')} (skill effect text lives in a separate table not surfaced in this build).</div>` : ''}
+            ${toArray(c.Costume_Skill_List).filter(s => +s).length ? `
+            <div class="milestone-list">
+              ${toArray(c.Costume_Skill_List).filter(s => +s).map(id => {
+                const sk = Game.index.skillById.get(+id);
+                if (!sk) return `<div class="milestone-row"><span class="milestone-label">Skill #${escapeHtml(String(id))}</span></div>`;
+                // Skill text has runtime value placeholders like {0:P0}; their source values aren't mapped, so show "?" rather than guess.
+                const desc = String(sk.Desc_en || '').replace(/<[^>]+>/g, '').replace(/\{\d+(:[^}]*)?\}/g, '?');
+                return `<div class="milestone-row"><span class="milestone-label"><strong>${escapeHtml(sk.Name_en || sk.key)}</strong>${sk.CoolTime ? ` · ${fmtNum(sk.CoolTime)}s cooldown` : ''}<br><span style="color:var(--ink-faint);font-size:.82rem">${escapeHtml(desc)}</span></span></div>`;
+              }).join('')}
+            </div>
+            <div class="caveat">Skill names, cooldowns and descriptions come from the game's own SkillData. "?" marks a value the game fills in at runtime, which this app doesn't model yet.</div>` : ''}
 
             <div class="action-row">
               <button class="btn btn-danger" id="remove-btn">Remove Hero</button>

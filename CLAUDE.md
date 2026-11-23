@@ -48,16 +48,21 @@ Forum/Admin are the exception: they load from the server and mount once.
 - Push: `git push "https://x-access-token:$(cat gitkey)@github.com/yo-repo87/xp-hero-builder.git" main`.
   `gitkey` is gitignored. Git identity is repo-scoped. Never touch global config.
 - Production tests: test accounts use `playwright-test%` emails. Delete them afterward.
-- The extraction scratchpad (APK, dump.cs, UnityPy trees) is ephemeral. Pulling new
-  game data needs a fresh APK link from the user. Tooling notes (Il2CppDumper/.NET 6,
-  capstone, Addressables catalog decoder) are in `docs/history.md`.
+- Game data source: the user's Android VM (`adb` 192.168.122.34:5555, root shell). The APK
+  (v27.2.0) and the full extraction (dump.cs, TextAssets, merge/diff scripts) live in
+  gitignored `apk/` (durable). Downloaded chapter bundles come from the VM's
+  `/sdcard/Android/data/io.supercent.weaponrpg/files/UnityCache/Shared`. To refresh after a
+  game update, `adb shell pm path` → pull → `apk/work/merge.py`. Il2CppDumper runs in a
+  `mcr.microsoft.com/dotnet/runtime:6.0` container. More in `docs/history.md`.
 
 ## Open items
-- Ability POWER/HP checkpoint data is ~3–5x low vs the live game. It feeds Total DPS
-  (flagged in the UI) and needs a fresh data pull.
-- Needs a fresh APK: hero skill names (`SkillData`), Milestone "recommended build"
-  presets, `GrantType 2` rune random-attribute roll, Gift Chest spawn points for ch.2-3,
-  enemy spawn maps for ch.7+.
+- Ability POWER/HP is ~3–5x low vs the live game. It feeds Total DPS (flagged in the UI).
+  v27.2.0 has byte-identical POWER/HP rows, so it's not stale data: likely an unmodeled
+  multiplier. Needs disassembly or live in-game readings.
+- Milestone "recommended build" presets: tables extracted (`MilestonePreset*` in
+  `apk/work/textassets`), no UI yet. `GrantType 2` rune random-attribute roll: not investigated.
+- World chapter 3 (CH14+) spawn points and gift chests need its scene bundle, which the VM
+  downloads only once that chapter is reached.
 - Still unmodeled: BlessingBuff, VipSubscription (manual input).
 - 43 Farmable items have no known source. 21 enemy portraits and 7 Weapon Scroll icons
   are confirmed absent from the game files.

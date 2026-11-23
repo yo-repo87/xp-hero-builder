@@ -35,7 +35,7 @@
   "Rarity": 4,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.2,
   "SlotType": 1
  },
@@ -55,7 +55,7 @@
   "Rarity": 6,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -135,7 +135,7 @@
   "Rarity": 6,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -215,7 +215,7 @@
   "Rarity": 6,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -295,7 +295,7 @@
   "Rarity": 6,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -355,7 +355,7 @@
   "Rarity": 4,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.2,
   "SlotType": 1
  },
@@ -375,7 +375,7 @@
   "Rarity": 6,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -455,7 +455,7 @@
   "Rarity": 6,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -515,7 +515,7 @@
   "Rarity": 4,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.2,
   "SlotType": 1
  },
@@ -535,7 +535,7 @@
   "Rarity": 6,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -615,7 +615,7 @@
   "Rarity": 6,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -695,7 +695,7 @@
   "Rarity": 6,
   "OptionType": 20,
   "PropertyName": "WEAPON_BONUS_OP_MELEEDAMAGERATE",
-  "PropertyName_en": "Melee Damage",
+  "PropertyName_en": "Melee Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -775,7 +775,7 @@
   "Rarity": 6,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -835,7 +835,7 @@
   "Rarity": 4,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.2,
   "SlotType": 1
  },
@@ -855,7 +855,7 @@
   "Rarity": 6,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },
@@ -935,7 +935,7 @@
   "Rarity": 6,
   "OptionType": 19,
   "PropertyName": "WEAPON_BONUS_OP_RANGEDDAMAGERATE",
-  "PropertyName_en": "Ranged Damage",
+  "PropertyName_en": "Ranged Weapon Damage",
   "Amount": 0.03,
   "SlotType": 0
  },

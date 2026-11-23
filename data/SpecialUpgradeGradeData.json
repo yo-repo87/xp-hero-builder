@@ -28,11 +28,11 @@
   "UpgradeAmount1": 50,
   "UpgradeAmount2": 0,
   "UpgradeName1": "SPECIAL_UP_GRADE_NAME_POWER",
-  "UpgradeName1_en": "POWER",
   "UpgradeName2": null,
   "UpgradeType1": 1,
   "UpgradeType2": 0,
-  "id": 2
+  "id": 2,
+  "UpgradeName1_en": "POWER"
  },
  {
   "CenterFx": "FX_Aura_3",
@@ -46,12 +46,12 @@
   "UpgradeAmount1": 50,
   "UpgradeAmount2": 50,
   "UpgradeName1": "SPECIAL_UP_GRADE_NAME_POWER",
-  "UpgradeName1_en": "POWER",
   "UpgradeName2": "SPECIAL_UP_GRADE_NAME_SKILL_DAMAGE",
-  "UpgradeName2_en": "SKILL DAMAGE",
   "UpgradeType1": 1,
   "UpgradeType2": 12,
-  "id": 3
+  "id": 3,
+  "UpgradeName1_en": "POWER",
+  "UpgradeName2_en": "SKILL DAMAGE"
  },
  {
   "CenterFx": "FX_Aura_4",
@@ -65,12 +65,12 @@
   "UpgradeAmount1": 50,
   "UpgradeAmount2": 50,
   "UpgradeName1": "SPECIAL_UP_GRADE_NAME_POWER",
-  "UpgradeName1_en": "POWER",
   "UpgradeName2": "SPECIAL_UP_GRADE_NAME_SKILL_COOLDOWN",
-  "UpgradeName2_en": "SKILL COOLDOWN",
   "UpgradeType1": 1,
   "UpgradeType2": 4,
-  "id": 4
+  "id": 4,
+  "UpgradeName1_en": "POWER",
+  "UpgradeName2_en": "SKILL COOLDOWN"
  },
  {
   "CenterFx": "FX_Aura_5",
@@ -84,11 +84,11 @@
   "UpgradeAmount1": 50,
   "UpgradeAmount2": 100,
   "UpgradeName1": "SPECIAL_UP_GRADE_NAME_POWER",
-  "UpgradeName1_en": "POWER",
   "UpgradeName2": "SPECIAL_UP_GRADE_NAME_CRITICAL_DAMAGE",
-  "UpgradeName2_en": "CRITICAL DAMAGE",
   "UpgradeType1": 1,
   "UpgradeType2": 2,
-  "id": 5
+  "id": 5,
+  "UpgradeName1_en": "POWER",
+  "UpgradeName2_en": "CRITICAL DAMAGE"
  }
 ]

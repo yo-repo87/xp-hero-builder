@@ -3,124 +3,216 @@
   "IconName": "Ability/Icons_Category/Icon_Attack",
   "Title": "STAT_NAME_DPS",
   "Title_en": "POWER",
-  "id": 1
+  "id": 1,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 4
  },
  {
   "IconName": "Ability/Icons_Category/Icon_Health",
   "Title": "STAT_NAME_HP",
   "Title_en": "HP",
-  "id": 2
+  "id": 2,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 50
  },
  {
   "IconName": "Ability/Icons_Category/Icon_AttackSpeed",
   "Title": "STAT_NAME_ATTACKSPEEDRATE",
   "Title_en": "ATTACK SPEED",
-  "id": 3
+  "id": 3,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 1000
  },
  {
   "IconName": "Ability/Icons_Category/Icon_Speed",
   "Title": "STAT_NAME_MOVESPEED",
   "Title_en": "MOVE SPEED",
-  "id": 4
+  "id": 4,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 50
  },
  {
   "IconName": "Ability/Icons_Category/Icon_CriticalRate",
   "Title": "STAT_NAME_CRITICALRATE",
   "Title_en": "CRITICAL CHANCE",
-  "id": 5
+  "id": 5,
+  "LinkedShowId": 6,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icon_CriticalDamage",
   "Title": "STAT_NAME_CRITICALDAMAGERATE",
   "Title_en": "CRITICAL DAMAGE",
-  "id": 6
+  "id": 6,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 1500
  },
  {
   "IconName": "Ability/Icons_Category/Icon_HPRecovery",
   "Title": "STAT_NAME_HPREGEN",
   "Title_en": "HP RECOVERY",
-  "id": 7
+  "id": 7,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icon_DoubleAttack",
   "Title": "STAT_NAME_DOUBLEATTACKRATE",
   "Title_en": "DOUBLE ATTACK",
-  "id": 8
+  "id": 8,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icon_TripleAttack",
   "Title": "STAT_NAME_TRIPLEATTACKRATE",
   "Title_en": "TRIPLE ATTACK",
-  "id": 9
+  "id": 9,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_ExtraUpgrade/Icn_Bloodlust",
   "Title": "STAT_NAME_VAMPRATE",
   "Title_en": "LIFE STEAL",
-  "id": 10
+  "id": 10,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_SpecialUpgrade/Icn_SkillCoolDown",
   "Title": "STAT_NAME_SKILLCOOLDOWNRATE",
   "Title_en": "SKILL COOLDOWN",
-  "id": 11
+  "id": 11,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icon_Reward",
   "Title": "STAT_NAME_CARGO",
   "Title_en": "CARGO",
-  "id": 12
+  "id": 12,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 10
  },
  {
   "IconName": "Ability/Icons_SpecialUpgrade/Icn_SkillDamage",
   "Title": "STAT_NAME_SKILLDAMAGERATE",
   "Title_en": "SKILL DAMAGE",
-  "id": 13
+  "id": 13,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 1000
  },
  {
   "IconName": null,
   "Title": "STAT_NAME_EXPRATE",
   "Title_en": "EXP INCREASE",
-  "id": 14
+  "id": 14,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 1000
  },
  {
   "IconName": null,
   "Title": "STAT_NAME_COIN_RATE",
-  "id": 15
+  "Title_en": "STAT_NAME_COIN_RATE",
+  "id": 15,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 1000
  },
  {
   "IconName": null,
   "Title": "STAT_NAME_FINAL_BASIC_ATTACK_DAMAGE_MULT",
-  "id": 16
+  "Title_en": "STAT_NAME_FINAL_BASIC_ATTACK_DAMAGE_MULT",
+  "id": 16,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icn_HealingRate",
   "Title": "STAT_NAME_HEALING_RATE",
   "Title_en": "Healing",
-  "id": 17
+  "id": 17,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icn_RangedDamageRate",
   "Title": "STAT_NAME_RANGED_DAMAGE_RATE",
-  "Title_en": "Ranged Attack Power",
-  "id": 18
+  "Title_en": "Ranged Weapon Damage",
+  "id": 18,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icn_MeleeDamageRate",
   "Title": "STAT_NAME_MELEE_DAMAGE_RATE",
-  "Title_en": "Melee Attack Power",
-  "id": 19
+  "Title_en": "Melee Weapon Damage",
+  "id": 19,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icn_EffectResistRate",
   "Title": "STAT_NAME_EFFECT_RESIST_RATE",
   "Title_en": "Status Ailment Reduction",
-  "id": 20
+  "id": 20,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  },
  {
   "IconName": "Ability/Icons_Category/Icon_BasicAttackDamage",
   "Title": "STAT_NAME_BASIC_ATTACK_DAMAGE_MULT",
   "Title_en": "Basic Attack Up",
-  "id": 21
+  "id": 21,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 1000
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_DaggerDamageRate",
+  "Title": "STAT_NAME_DAGGERDAMAGERATE",
+  "Title_en": "Dagger Attack Power",
+  "id": 23,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_SwordDamageRate",
+  "Title": "STAT_NAME_SWORDDAMAGERATE",
+  "Title_en": "Sword Attack Power",
+  "id": 24,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_MaceDamageRate",
+  "Title": "STAT_NAME_MORNINGSTARDAMAGERATE",
+  "Title_en": "Morningstar Attack Power",
+  "id": 25,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_GunDamageRate",
+  "Title": "STAT_NAME_GUNDAMAGERATE",
+  "Title_en": "Gun Attack Power",
+  "id": 26,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_WandDamageRate",
+  "Title": "STAT_NAME_WANDDAMAGERATE",
+  "Title_en": "Wand Attack Power",
+  "id": 27,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
+ },
+ {
+  "IconName": "Ability/Icons_Category/Icn_CrossbowDamageRate",
+  "Title": "STAT_NAME_BOWDAMAGERATE",
+  "Title_en": "Crossbow Attack Power",
+  "id": 28,
+  "LinkedShowId": -1,
+  "ShowThresholdValue": 0
  }
 ]

@@ -703,6 +703,306 @@
   "item_type": 1
  },
  {
+  "id": 2056,
+  "item_id": 8601,
+  "item_type": 1
+ },
+ {
+  "id": 2057,
+  "item_id": 8602,
+  "item_type": 1
+ },
+ {
+  "id": 2058,
+  "item_id": 8603,
+  "item_type": 1
+ },
+ {
+  "id": 2059,
+  "item_id": 8604,
+  "item_type": 1
+ },
+ {
+  "id": 2060,
+  "item_id": 8605,
+  "item_type": 1
+ },
+ {
+  "id": 2061,
+  "item_id": 8606,
+  "item_type": 1
+ },
+ {
+  "id": 2062,
+  "item_id": 8607,
+  "item_type": 1
+ },
+ {
+  "id": 2063,
+  "item_id": 8608,
+  "item_type": 1
+ },
+ {
+  "id": 2064,
+  "item_id": 8701,
+  "item_type": 1
+ },
+ {
+  "id": 2065,
+  "item_id": 8702,
+  "item_type": 1
+ },
+ {
+  "id": 2066,
+  "item_id": 8703,
+  "item_type": 1
+ },
+ {
+  "id": 2067,
+  "item_id": 8704,
+  "item_type": 1
+ },
+ {
+  "id": 2068,
+  "item_id": 8705,
+  "item_type": 1
+ },
+ {
+  "id": 2069,
+  "item_id": 8706,
+  "item_type": 1
+ },
+ {
+  "id": 2070,
+  "item_id": 8707,
+  "item_type": 1
+ },
+ {
+  "id": 2071,
+  "item_id": 8708,
+  "item_type": 1
+ },
+ {
+  "id": 2072,
+  "item_id": 8801,
+  "item_type": 1
+ },
+ {
+  "id": 2073,
+  "item_id": 8802,
+  "item_type": 1
+ },
+ {
+  "id": 2074,
+  "item_id": 8803,
+  "item_type": 1
+ },
+ {
+  "id": 2075,
+  "item_id": 8804,
+  "item_type": 1
+ },
+ {
+  "id": 2076,
+  "item_id": 8805,
+  "item_type": 1
+ },
+ {
+  "id": 2077,
+  "item_id": 8806,
+  "item_type": 1
+ },
+ {
+  "id": 2078,
+  "item_id": 8807,
+  "item_type": 1
+ },
+ {
+  "id": 2079,
+  "item_id": 8808,
+  "item_type": 1
+ },
+ {
+  "id": 2080,
+  "item_id": 8901,
+  "item_type": 1
+ },
+ {
+  "id": 2081,
+  "item_id": 8902,
+  "item_type": 1
+ },
+ {
+  "id": 2082,
+  "item_id": 8903,
+  "item_type": 1
+ },
+ {
+  "id": 2083,
+  "item_id": 8904,
+  "item_type": 1
+ },
+ {
+  "id": 2084,
+  "item_id": 8905,
+  "item_type": 1
+ },
+ {
+  "id": 2085,
+  "item_id": 8906,
+  "item_type": 1
+ },
+ {
+  "id": 2086,
+  "item_id": 8907,
+  "item_type": 1
+ },
+ {
+  "id": 2087,
+  "item_id": 8908,
+  "item_type": 1
+ },
+ {
+  "id": 2088,
+  "item_id": 9001,
+  "item_type": 1
+ },
+ {
+  "id": 2089,
+  "item_id": 9002,
+  "item_type": 1
+ },
+ {
+  "id": 2090,
+  "item_id": 9003,
+  "item_type": 1
+ },
+ {
+  "id": 2091,
+  "item_id": 9004,
+  "item_type": 1
+ },
+ {
+  "id": 2092,
+  "item_id": 9005,
+  "item_type": 1
+ },
+ {
+  "id": 2093,
+  "item_id": 9006,
+  "item_type": 1
+ },
+ {
+  "id": 2094,
+  "item_id": 4001,
+  "item_type": 1
+ },
+ {
+  "id": 2095,
+  "item_id": 4002,
+  "item_type": 1
+ },
+ {
+  "id": 2096,
+  "item_id": 9101,
+  "item_type": 1
+ },
+ {
+  "id": 2097,
+  "item_id": 9102,
+  "item_type": 1
+ },
+ {
+  "id": 2098,
+  "item_id": 9103,
+  "item_type": 1
+ },
+ {
+  "id": 2099,
+  "item_id": 9104,
+  "item_type": 1
+ },
+ {
+  "id": 2100,
+  "item_id": 9105,
+  "item_type": 1
+ },
+ {
+  "id": 2101,
+  "item_id": 9106,
+  "item_type": 1
+ },
+ {
+  "id": 2102,
+  "item_id": 9107,
+  "item_type": 1
+ },
+ {
+  "id": 2103,
+  "item_id": 9108,
+  "item_type": 1
+ },
+ {
+  "id": 2104,
+  "item_id": 5002,
+  "item_type": 1
+ },
+ {
+  "id": 2105,
+  "item_id": 9201,
+  "item_type": 1
+ },
+ {
+  "id": 2106,
+  "item_id": 9401,
+  "item_type": 1
+ },
+ {
+  "id": 2107,
+  "item_id": 9301,
+  "item_type": 1
+ },
+ {
+  "id": 2108,
+  "item_id": 9302,
+  "item_type": 1
+ },
+ {
+  "id": 2109,
+  "item_id": 9303,
+  "item_type": 1
+ },
+ {
+  "id": 2110,
+  "item_id": 9304,
+  "item_type": 1
+ },
+ {
+  "id": 2111,
+  "item_id": 9305,
+  "item_type": 1
+ },
+ {
+  "id": 2112,
+  "item_id": 9306,
+  "item_type": 1
+ },
+ {
+  "id": 2113,
+  "item_id": 9307,
+  "item_type": 1
+ },
+ {
+  "id": 2114,
+  "item_id": 9308,
+  "item_type": 1
+ },
+ {
+  "id": 2115,
+  "item_id": 2104,
+  "item_type": 1
+ },
+ {
   "id": 3001,
   "item_id": 1,
   "item_type": 6
@@ -963,6 +1263,18 @@
  {
   "id": 4024,
   "item_id": 24,
+  "item_type": 7,
+  "shortage_param1": "GOTO_NEW_COSTUME_REVENUE"
+ },
+ {
+  "id": 4025,
+  "item_id": 25,
+  "item_type": 7,
+  "shortage_param1": "GOTO_NEW_COSTUME_REVENUE"
+ },
+ {
+  "id": 4026,
+  "item_id": 26,
   "item_type": 7,
   "shortage_param1": "GOTO_NEW_COSTUME_REVENUE"
  }

@@ -64,7 +64,7 @@
  },
  {
   "Description": "SOUL_UPGRADE_RANGED_DAMAGE_DESC",
-  "Description_en": "Ranged Damage",
+  "Description_en": "Ranged Weapon Damage",
   "IconName": "Ability/Icons_Category/Icn_RangedDamageRate",
   "OptionType": 19,
   "Title": "SOUL_UPGRADE_RANGED_DAMAGE",
@@ -73,7 +73,7 @@
  },
  {
   "Description": "SOUL_UPGRADE_MELEE_DAMAGE_DESC",
-  "Description_en": "Melee Damage",
+  "Description_en": "Melee Weapon Damage",
   "IconName": "Ability/Icons_Category/Icn_MeleeDamageRate",
   "OptionType": 20,
   "Title": "SOUL_UPGRADE_MELEE_DAMAGE",
