@@ -408,7 +408,7 @@ const WeaponsUI = {
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
             <input type="checkbox" data-affix="${opt.id}" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''}>
             <span class="stat-name" style="flex:1">${escapeHtml((opt.PropertyName_en || '').replace('{0}', ''))}</span>
-            <span class="stat-val">${checked ? `+${fmtNum((val - 1) * 100)}%` : '—'}</span>
+            <span class="stat-val">${checked ? `+${fmtNum(+val.toFixed(3))}%` : '—'}</span>
           </label>
           ${checked ? levelControlHTML(`affix-roll-${opt.id}`, 0, 100, pct, `${pct}%`) : ''}
         </div>`;

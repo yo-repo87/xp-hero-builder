@@ -1012,3 +1012,7 @@ footer.app-footer {
 .ms-ok { color: #2e8b3a; font-weight: 700; }
 .ms-behind { color: #c0392b; font-weight: 700; }
 #ms-preset { max-width: 100%; margin-bottom: 6px; }
+
+.tab-btn.has-new { position: relative; }
+.tab-btn.has-new::after { content: 'NEW'; position: absolute; top: -6px; right: -4px; background: var(--red); color: #fff; font-size: 0.55rem; font-weight: 800; padding: 1px 4px; border-radius: 6px; line-height: 1.2; }
+.farm-cargo-label { color: var(--parchment-light); display: inline-block; margin-bottom: 8px; }

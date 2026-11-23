@@ -146,3 +146,14 @@ function formatLocaleArgs(text, params) {
     return String(n);
   });
 }
+
+// Compact big numbers for tables: 49.9M, 7.89e15. Exact value goes in a title.
+function fmtCompact(n) {
+  n = Number(n) || 0;
+  const a = Math.abs(n);
+  if (a < 1e3) return String(Math.round(n));
+  const units = [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'K']];
+  if (a >= 1e15) return n.toExponential(2).replace('e+', 'e');
+  for (const [v, u] of units) if (a >= v) return `${+(n / v).toFixed(a / v < 100 ? 1 : 0)}${u}`;
+  return String(n);
+}

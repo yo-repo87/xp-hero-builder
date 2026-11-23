@@ -137,6 +137,7 @@ const MonstersUI = {
               <div class="stat-pill"><span class="stat-name">Max HP</span><span class="stat-val">${fmtNum(e.MaxHp)}</span></div>
               <div class="stat-pill"><span class="stat-name">Attack Power</span><span class="stat-val">${fmtNum(e.AttackPower)}</span></div>
               <div class="stat-pill"><span class="stat-name">Move Speed</span><span class="stat-val">${fmtNum(e.MoveSpeed)}</span></div>
+              <div class="stat-pill" title="Enemy HP ÷ your Total DPS estimate (active hero)"><span class="stat-name">Kill time (your build)</span><span class="stat-val">${escapeHtml(Farming.ttkText(e))}</span></div>
               <div class="stat-pill"><span class="stat-name">Location</span><span class="stat-val">${ch !== null ? `Chapter ${ch}` : 'Special/Raid'}${tie ? ` · Stage ${tie.stage}` : ''}</span></div>
             </div>
 

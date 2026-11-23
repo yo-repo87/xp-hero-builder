@@ -11,6 +11,7 @@ const ROOT = path.join(__dirname, '..');
 const store = {};
 const ctx = {
   console,
+  atob, btoa, TextDecoder, TextEncoder,
   URL,
   setTimeout, clearTimeout,
   crypto: require('crypto').webcrypto,
@@ -27,11 +28,11 @@ const ctx = {
 ctx.window = ctx;
 vm.createContext(ctx);
 
-const SRC = ['ui-common.js', 'data.js', 'formulas.js', 'state.js', 'screenshot-import.js']
+const SRC = ['ui-common.js', 'data.js', 'formulas.js', 'state.js', 'screenshot-import.js', 'save-import.js', 'farming.js']
   .map(f => fs.readFileSync(path.join(ROOT, 'js', f), 'utf8')).join('\n;\n');
 // Top-level const/let aren't context properties; re-export the ones tests need.
-vm.runInContext(SRC + '\n;globalThis.__T = { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, migrate: typeof migrate === "function" ? migrate : null };', ctx);
-const { Game, Formulas, State, ScreenshotImport, formatLocaleArgs } = ctx.__T;
+vm.runInContext(SRC + '\n;globalThis.__T = { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, SaveImport, Farming, UpgradeCost, migrate: typeof migrate === "function" ? migrate : null };', ctx);
+const { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, SaveImport, Farming, UpgradeCost } = ctx.__T;
 
 let pass = 0, fail = 0;
 const tests = [];
@@ -217,6 +218,30 @@ test('world map chapters and navmesh load', () => {
   const wm = Game.db.WorldMap;
   eq(wm.chapters.map(c => c.chapter), [1, 2]);
   eq(wm.nav['2'].polys.length, wm.nav['2'].links.length);
+});
+
+test('game save files decode (Base64 UTF-16LE name and body)', () => {
+  const name = Buffer.from('save_ability_1.1', 'utf16le').toString('base64');
+  eq(SaveImport.decodeName(name), 'save_ability_1.1');
+  const body = Buffer.concat([Buffer.from([1, 2, 3]), Buffer.from(Buffer.from('{"version":"7","lvs":"{\\"1\\":737}"}', 'utf16le').toString('base64'))]);
+  const json = SaveImport.decodeContent(body.buffer.slice(body.byteOffset, body.byteOffset + body.length));
+  eq(json.version, '7');
+  eq(SaveImport.toBuild({ save_ability: json }).build.upgrades.ability[1], 737);
+});
+
+test('ability gold costs match the live game (interpolated between checkpoints)', () => {
+  for (const [type, lv, want] of [[1, 737, 835e3], [2, 720, 1.28e6], [4, 760, 902e3], [10, 517, 3.77e6]]) {
+    const t = {}; UpgradeCost.ability(type, lv, lv + 1, t);
+    ok(Math.abs(t[0] - want) / want < 0.01, `type ${type} @${lv}: ${t[0]} vs ${want}`);
+    eq(Object.keys(t), ['0']);
+  }
+});
+
+test('time to kill = enemy HP / DPS; DPS-scaled enemies flagged', () => {
+  const e = Game.db.EnemyData.find(x => x.key === 'CH12_Lich_Boss');
+  eq(Math.round(Farming.ttk(e, 1e6).seconds), Math.round(e.MaxHp / 1e6));
+  const crow = Game.db.EnemyData.find(x => x.MaxHp_DPSMult > 0);
+  eq(Farming.ttk(crow, 1e6).scales, true);
 });
 
 (async () => {

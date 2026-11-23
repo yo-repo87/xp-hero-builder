@@ -30,9 +30,10 @@
     <div class="header-actions">
       <button class="btn btn-gold" id="btn-account">Sign In</button>
       <button class="btn" id="btn-search" title="Search">🔍 Search</button>
-      <button class="btn" id="btn-import">Import</button>
-      <input type="file" id="file-import" accept="application/json">
+      <button class="btn" id="btn-import" title="Import a build export (.json), or select your game save files to import your real account">Import</button>
+      <input type="file" id="file-import" multiple>
       <button class="btn" id="btn-export">Export</button>
+      <button class="btn" id="btn-share" title="Copy a link that opens your build">Share</button>
       <button class="btn btn-danger" id="btn-reset">Reset</button>
       <button class="btn mobile-menu-btn" id="btn-mobile-menu" aria-label="More options">⋮</button>
     </div>
@@ -120,6 +121,7 @@
     <div class="section-title"><h2>World Map</h2></div>
     <p class="section-sub">The game's own world map with bosses, elites, monster spawns, gift chests and stage portals at their true positions. In World 2, tap anything to see the walking route from home.</p>
     <div id="worldmap-root"></div>
+    <div id="farming-root"></div>
   </section>
 
   <!-- ============ GAME INFO TAB ============ -->
@@ -183,10 +185,12 @@
 <script src="js/ui-weapons.js?v=dbaa95a"></script>
 <script src="js/ui-heroes.js?v=dbaa95a"></script>
 <script src="js/ui-equipment.js?v=dbaa95a"></script>
+<script src="js/save-import.js?v=87acee3"></script>
 <script src="js/screenshot-import.js?v=dbaa95a"></script>
 <script src="js/ui-farmable.js?v=dbaa95a"></script>
 <script src="js/ui-monsters.js?v=dbaa95a"></script>
 <script src="js/ui-guide.js?v=dbaa95a"></script>
+<script src="js/farming.js?v=87acee3"></script>
 <script src="js/ui-worldmap.js?v=dbaa95a"></script>
 <script src="js/ui-info.js?v=dbaa95a"></script>
 <script src="js/ui-search.js?v=dbaa95a"></script>

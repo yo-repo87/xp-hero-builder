@@ -189,7 +189,7 @@ const WorldMapUI = {
     if (el.dataset.enemy) {
       const e = Game.index.enemyById.get(+el.dataset.enemy);
       label = e ? e.Name_en : 'this enemy';
-      html = e ? `<img class="wm-detail-icon" src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt=""><strong>${escapeHtml(e.Name_en)}</strong>${e.NickName_en ? ` — “${escapeHtml(e.NickName_en)}”` : ''} <button type="button" class="btn" data-wm-open="${e.id}">Monster details</button>` : escapeHtml(label);
+      html = e ? `<img class="wm-detail-icon" src="${Game.enemyIcon(e)}" onerror="onImgError(this)" alt=""><strong>${escapeHtml(e.Name_en)}</strong>${e.NickName_en ? ` — “${escapeHtml(e.NickName_en)}”` : ''} <button type="button" class="btn" data-wm-open="${e.id}">Monster details</button><div class="wm-coords">HP ${fmtNum(e.MaxHp)} · Attack ${fmtNum(e.AttackPower)} · Kill time with your build: ${escapeHtml(Farming.ttkText(e))}</div>` : escapeHtml(label);
     } else if (el.dataset.chest) { label = 'a gift chest spawn'; html = '🎁 <strong>Gift chest spawn point</strong>: chests appear here periodically (see the Farmable tab for timings and rewards).'; }
     else if (el.dataset.portal) { label = `the Stage ${el.dataset.portal} portal`; html = `🌀 <strong>Stage ${escapeHtml(el.dataset.portal)} portal</strong>`; }
     else if (el.dataset.home) { detail.innerHTML = '🏠 <strong>Home</strong>: return here to cash in your cargo.'; return; }
@@ -198,5 +198,59 @@ const WorldMapUI = {
     if (rb) rb.addEventListener('click', () => { this.routeTo = { p: [x, z], label }; this.draw(); });
     const ob = detail.querySelector('[data-wm-open]');
     if (ob) ob.addEventListener('click', () => MonstersUI.openDetail(+ob.dataset.wmOpen));
+  },
+};
+
+const FarmingUI = {
+  _key: null,
+  cargo() { try { return +localStorage.getItem('xph_cargo') || 3.7e6; } catch { return 3.7e6; } },
+  render() {
+    const root = document.getElementById('farming-root');
+    if (!root || !Game.db.WorldMap) return;
+    const cargo = this.cargo();
+    const key = JSON.stringify([State.data.upgrades, State.data.weapons, State.data.weaponRoster, State.data.heroes, State.data.activeHeroId, State.data.player, cargo, Farming.calibration()]);
+    if (key === this._key) return;
+    this._key = key;
+    const { dps, eff, rows } = Farming.areas({ cargo });
+    const cal = Farming.calibration();
+    const chOpts = rows.map(r => r.ch).sort((a, b) => a - b).map(c => `<option value="${c}" ${cal && cal.ch === c ? 'selected' : ''}>CH${c}</option>`).join('');
+    const best = rows[0] && rows[0].goldHr;
+    const body = rows.map(r => `<tr>
+        <td><strong>CH${r.ch}</strong> <span class="info-sub">World ${r.world}</span><div class="info-sub">${escapeHtml(r.names.slice(0, 3).join(', '))}${r.names.length > 3 ? '…' : ''}</div></td>
+        <td class="num" title="${fmtNum(Math.round(r.goldHr))}">${fmtCompact(r.goldHr)}${best && r.goldHr === best ? ' 🏆' : ''}</td>
+        <td class="num" title="${fmtNum(Math.round(r.xpHr))}">${fmtCompact(r.xpHr)}</td>
+        <td class="num">${r.keepUp < 0.999 ? `<span class="ms-behind">${Math.round(r.keepUp * 100)}%</span>` : '<span class="ms-ok">100%</span>'}</td>
+        <td class="num">${isFinite(r.fill) ? Farming.fmtTime(r.fill) : '—'}</td>
+        <td class="num">${r.trip != null ? Farming.fmtTime(r.trip) : '—'}${r.routeExact ? '' : ' <span class="info-sub">est.</span>'}</td>
+        <td><button type="button" class="btn" data-farm-ch="${r.ch}">Show</button></td></tr>`).join('');
+    root.innerHTML = `
+      <div class="section-title" style="margin-top:24px"><h2>Best Farming Spots</h2></div>
+      <p class="section-sub">Every area ranked by gold per hour for your current build (${eff.mode === 'site' ? 'site DPS estimate' : 'calibrated DPS'} ${dps ? fmtNum(Math.round(dps)) : 'unknown: add a hero and weapons first'}), counting cargo trips home.</p>
+      <label class="info-note farm-cargo-label">Cargo capacity: <input type="number" class="input" id="farm-cargo" value="${cargo}" min="1000" step="100000" style="width:140px"></label>
+      <div class="info-card"><strong>Calibrate with what you see in-game</strong> ${eff.mode === 'site' ? '<span class="ms-behind">(not calibrated: using the site\'s DPS estimate, which runs low)</span>' : `<span class="ms-ok">calibrated: effective DPS ${fmtNum(Math.round(eff.dps))}${eff.goldMult > 1.001 ? `, gold bonus ×${eff.goldMult.toFixed(2)}` : ''}</span>`}
+        <div class="info-note">I fill my cargo in <input type="number" class="input" id="cal-min" value="${cal ? cal.minutes : ''}" min="0.1" step="0.5" style="width:80px"> minutes while farming <select class="input" id="cal-ch">${chOpts}</select>
+        <button type="button" class="btn btn-gold" id="cal-save">Calibrate</button>${cal ? ' <button type="button" class="btn" id="cal-clear">Clear</button>' : ''}</div>
+        <div class="info-sub">The site solves for the damage that would give that fill time. If your rate is higher than the spawns could ever give, the extra is treated as gold bonuses instead.</div></div>
+      <div class="info-card"><table class="info-table"><thead><tr><th>Area</th><th class="num">Gold / hr</th><th class="num">XP / hr</th><th class="num" title="How much of the respawn rate your build can keep up with">Keep-up</th><th class="num">Fill cargo</th><th class="num">Trip home &amp; back</th><th></th></tr></thead><tbody>${body}</tbody></table></div>
+      <div class="caveat">Each spawn point gives one kill per respawn time (EnemySpawnGroupData). If your kill time (enemy HP ÷ your DPS, +1s to reach the next target) can't keep up, output is scaled down ("Keep-up"). Gold per kill is the enemy's base DropGoldAmount; coin-rate bonuses and subscriptions aren't applied, so real numbers are higher, but the ranking holds. Trip times use the navmesh walking route in World 2 and straight-line ×1.3 elsewhere ("est."), at a measured ~${Game.db.WorldMap.hero_speed} units/s, plus 10s in town. Areas with enemies whose HP scales with your damage use the game's multiplier as their kill time.</div>`;
+    root.querySelector('#farm-cargo').addEventListener('change', e => {
+      try { localStorage.setItem('xph_cargo', String(Math.max(1000, +e.target.value || 3.7e6))); } catch {}
+      this._key = null; this.render();
+    });
+    root.querySelector('#cal-save').addEventListener('click', () => {
+      const minutes = +root.querySelector('#cal-min').value;
+      if (!(minutes > 0)) { UI.toast('Enter how many minutes a full cargo takes'); return; }
+      Farming.setCalibration({ ch: +root.querySelector('#cal-ch').value, minutes, cargo });
+      this._key = null; this.render();
+    });
+    const clr = root.querySelector('#cal-clear');
+    if (clr) clr.addEventListener('click', () => { Farming.setCalibration(null); this._key = null; this.render(); });
+    root.querySelectorAll('[data-farm-ch]').forEach(b => b.addEventListener('click', () => {
+      const r = rows.find(x => x.ch === +b.dataset.farmCh);
+      WorldMapUI.chapter = r.world;
+      WorldMapUI.routeTo = { p: r.center, label: `the CH${r.ch} farming area` };
+      WorldMapUI.draw();
+      document.getElementById('worldmap-root').scrollIntoView({ behavior: 'smooth' });
+    }));
   },
 };

@@ -8,13 +8,13 @@
 const InfoUI = {
   _mounted: false,
   section: 'gacha',
-  SECTIONS: [['gacha', '🎲 Chest odds'], ['spin', '🎡 Lucky Spin'], ['codex', '📚 Codex'], ['shop', '💵 Shop value'], ['changes', '🆕 What changed']],
+  SECTIONS: [['rank', '🏆 Rankings'], ['gacha', '🎲 Chest odds'], ['spin', '🎡 Lucky Spin'], ['codex', '📚 Codex'], ['shop', '💵 Shop value'], ['changes', '🆕 What changed']],
 
   render() {
     const root = document.getElementById('info-root');
     if (!root || !Game.db.GachaOdds) return;
     // Codex depends on owned heroes; everything else is static.
-    if (this._mounted && this.section !== 'codex') return;
+    if (this._mounted && this.section !== 'codex') { this._maybeBadge(); return; }
     this._mounted = true;
     this.draw();
   },
@@ -27,6 +27,45 @@ const InfoUI = {
     const body = root.querySelector('#info-body');
     body.innerHTML = this[`_${this.section}`]();
     if (this.section === 'shop') this._wireShop(body);
+    if (this.section === 'rank') this._wireRank(body);
+    this._maybeBadge();
+  },
+
+
+  _seenKey: 'xph_seen_changelog',
+  _maybeBadge() {
+    const v = Game.db.Changelog && Game.db.Changelog.version;
+    let seen = null; try { seen = localStorage.getItem(this._seenKey); } catch {}
+    if (this.section === 'changes' && document.getElementById('panel-info')?.classList.contains('active')) { try { localStorage.setItem(this._seenKey, v); } catch {} seen = v; }
+    document.querySelectorAll('.tab-btn[data-tab="info"]').forEach(b => b.classList.toggle('has-new', !!v && seen !== v));
+  },
+  rankLevel: 70,
+  _rank() {
+    return `<p class="section-sub">How weapons and heroes compare on paper, from the game's own data. Weapons: base DPS at the chosen level (from rarity and grade) plus the Attack bonuses their level-up rewards unlock by then. Heroes: their best skill's damage multiplier (SkillData.TotalDPSMult) per second of cooldown, which drives how much skill damage they add.</p>
+      <div class="info-card"><h4>Weapons <span class="info-sub">at level <input type="number" class="input" id="rank-lv" value="${this.rankLevel}" min="1" max="200" style="width:70px"></span></h4><div id="rank-weapons"></div></div>
+      <div class="info-card"><h4>Heroes <span class="info-sub">best skill, by damage multiplier per second of cooldown</span></h4><div id="rank-heroes"></div></div>`;
+  },
+  _wireRank(body) {
+    const draw = () => {
+      const lv = this.rankLevel;
+      const rows = Game.db.WeaponData.map(w => {
+        const d = Formulas.weaponDPS(w, lv);
+        const atk = Formulas.weaponLevelBonusRows(w, 0, lv).filter(x => x.unlocked && x.row.PropertyName === 'WEAPON_BONUS_OP_ATTACK').reduce((s, x) => s + Number(x.row.Amount), 0);
+        const owned = Object.values(State.data.weaponRoster).some(c => c.weaponId === w.id);
+        return { w, dps: d.total, atk, score: d.total * (1 + atk), owned };
+      }).sort((a, b) => b.score - a.score).slice(0, 40);
+      body.querySelector('#rank-weapons').innerHTML = `<table class="info-table"><thead><tr><th>#</th><th>Weapon</th><th class="num">Base DPS</th><th class="num">Attack bonus</th><th class="num">Score</th></tr></thead><tbody>${rows.map((r, i) => `<tr><td>${i + 1}</td><td><img class="info-hero own" src="${Game.weaponIcon ? Game.weaponIcon(r.w) : `assets/img/weapons/${r.w.id}.png`}" onerror="onImgError(this)" alt=""> ${this._rar(r.w.Rarity)} ${escapeHtml(r.w.Name_en)}${r.w.Grade > 1 ? ` <span class="info-sub">Gr ${r.w.Grade}</span>` : ''}${r.owned ? ' <span class="info-tag">owned</span>' : ''}</td><td class="num">${fmtNum(Math.round(r.dps))}</td><td class="num">${r.atk ? `+${fmtNum(+(r.atk * 100).toFixed(1))}%` : '—'}</td><td class="num">${fmtNum(Math.round(r.score))}</td></tr>`).join('')}</tbody></table><div class="info-sub">Top 40. Score = base DPS × (1 + unlocked Attack bonus). Bonus rolls and slot-specific bonuses vary per copy and aren't included.</div>`;
+    };
+    const heroes = Game.db.CostumeData.map(c => {
+      const skills = toArray(c.Costume_Skill_List).filter(x => +x).map(id => Game.index.skillById.get(+id)).filter(Boolean);
+      const best = skills.filter(k => k.CoolTime > 0 && k.TotalDPSMult > 0).map(k => ({ k, mult: k.TotalDPSMult })).sort((a, b) => b.mult / b.k.CoolTime - a.mult / a.k.CoolTime)[0];
+      const owned = State.data.heroes.some(h => h.costumeId === c.id);
+      return { c, best, rate: best ? best.mult / best.k.CoolTime : 0, owned };
+    }).sort((a, b) => b.rate - a.rate);
+    body.querySelector('#rank-heroes').innerHTML = `<table class="info-table"><thead><tr><th>#</th><th>Hero</th><th>Best skill</th><th class="num">Multiplier</th><th class="num">Cooldown</th><th class="num">Per second</th></tr></thead><tbody>${heroes.map((h, i) => `<tr><td>${i + 1}</td><td><img class="info-hero own" src="${Game.heroIcon(h.c)}" onerror="onImgError(this)" alt=""> ${escapeHtml(h.c.Name_en)}${h.owned ? ' <span class="info-tag">owned</span>' : ''}</td><td>${h.best ? escapeHtml(h.best.k.Name_en) : '—'}</td><td class="num">${h.best ? `${fmtNum(+(h.best.mult * 100).toFixed(0))}%` : '—'}</td><td class="num">${h.best ? `${fmtNum(h.best.k.CoolTime)}s` : '—'}</td><td class="num">${h.best ? `${fmtNum(+(h.rate * 100).toFixed(1))}%/s` : '—'}</td></tr>`).join('')}</tbody></table><div class="info-sub">Multiplier is SkillData.TotalDPSMult, the skill's damage multiple (matches the skill text, e.g. Purifying Strike "Deals 120% damage"). Buffs and other utility effects aren't counted.</div>`;
+    const lvIn = body.querySelector('#rank-lv');
+    lvIn.addEventListener('change', () => { this.rankLevel = Math.max(1, Math.min(200, +lvIn.value || 70)); draw(); });
+    draw();
   },
 
   _pct(p) { return p >= 1 ? `${p.toFixed(1)}%` : p >= 0.01 ? `${p.toFixed(2)}%` : `${p.toFixed(3)}%`; },

@@ -21,7 +21,9 @@ Forum/Admin are the exception: they load from the server and mount once.
 - `js/formulas.js` holds all stat math. Each formula is tagged confirmed/mapped/manual/unmodeled
 - `js/state.js` holds the user build (localStorage, import/export, `migrate()` for old saves)
 - `js/ui-*.js` holds one module per tab, plus `ui-map.js` (MapUI/SpawnMapUI/GiftChestMapUI) and `ui-search.js`.
-  `ui-worldmap.js` (World Map + navmesh routing), `ui-info.js` (Game Info), MilestoneUI in `ui-guide.js`
+  `ui-worldmap.js` (World Map + navmesh routing + FarmingUI), `ui-info.js` (Game Info), MilestoneUI in `ui-guide.js`,
+  `farming.js` (kill time, farming model, DPS calibration, UpgradeCost), `save-import.js` (game save files),
+  `sw.js` (offline service worker)
 - `tests/` has Node regression tests: run `node tests/run.js`
 - Optional backend in `server/` (Node/Express + Postgres on `shared_postgres`, db/role
   `xpherobuilder`, container `xpherobuilder_backend`, host port 3142 → container 4000, public URL
@@ -62,6 +64,9 @@ Forum/Admin are the exception: they load from the server and mount once.
 - Gacha boxes are listed by type/id: the data doesn't say which shop button or key opens each.
 - World chapter 3 (CH14+) spawn points and gift chests need its scene bundle, which the VM
   downloads only once that chapter is reached.
+- Site Total DPS runs far low (~75x vs live on the user's account). Farming/kill-time use a calibration
+  from the player's own cargo-fill time instead. Finding the missing DPS sources is the biggest open item.
+- No total-HP model, so "would you survive" isn't shown, only kill time.
 - Still unmodeled: BlessingBuff, VipSubscription (manual input).
 - 43 Farmable items have no known source. 21 enemy portraits and 7 Weapon Scroll icons
   are confirmed absent from the game files.

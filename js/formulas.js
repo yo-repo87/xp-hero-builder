@@ -66,7 +66,7 @@ const Formulas = {
   // Bonus affix roll: a weapon gets `BonusOptionCount` affixes from the
   // WeaponBonusOptionData pool (Attack / LifeSteal / SkillCooldown / HP /
   // HPRegen / Dodge / MoveSpeed), each landing somewhere between the
-  // option's MinValue-MaxValue multiplier range. The builder lets the user
+  // option's MinValue-MaxValue range (in percent). The builder lets the user
   // pick which affixes rolled and where in the range they landed, to mirror
   // whatever their actual in-game weapon shows.
   bonusOptionPool() { return Game.db.WeaponBonusOptionData; },
@@ -793,13 +793,16 @@ const Formulas = {
         for (const roll of (ws.bonusRolls || [])) {
           const opt = Game.index.weaponBonusOptionById.get(roll.optionId);
           if (!opt || opt.PropertyName !== 'WEAPON_BONUS_OP_ATTACK') continue;
-          const mult = opt.MinValue + (roll.pct / 100) * (opt.MaxValue - opt.MinValue);
-          weaponOption += (mult - 1) * 1000;
+          // MinValue/MaxValue are PERCENT (+0.3%..+1.1% Attack), confirmed
+          // 2026-11-23 against 99 real rolls in the game's own save file
+          // (BonusOptions.Value × 100 always falls inside [Min, Max]).
+          const pctVal = opt.MinValue + (roll.pct / 100) * (opt.MaxValue - opt.MinValue);
+          weaponOption += pctVal * 10; // percent → per-mille
         }
       });
       set('Weapon', weaponBase, 'mapped', 'Sum of each equipped weapon’s base DPS (BalancingData_Rarity.WeaponDPSAdd)');
       set('WeaponLevelBonus', weaponLevelBonus, 'confirmed', 'Sum of each equipped weapon’s unlocked Level-Up Bonuses (WeaponLevelUpBonusGroup, confirmed via RegistWeaponLevelBonus decompilation)');
-      set('WeaponOption', weaponOption, 'mapped', 'Sum of equipped weapons’ rolled "Attack" bonus affixes, converted to per-mille');
+      set('WeaponOption', weaponOption, 'confirmed', 'Sum of equipped weapons’ rolled "Attack" bonus affixes (percent, confirmed against real save data), converted to per-mille');
     }
 
     // Hero-related sources. CostumeEquipping* are scoped to the active hero

@@ -6232,3 +6232,35 @@ any more), plus the VM's downloaded Unity bundle cache. Everything is kept in gi
   unresolved items in the unused tables.
 - **Milestone Check** (Guide tab): `MilestonePresets.json`; column → upgrade id mapping by name,
   confirmed against each upgrade's in-game description.
+
+## Game-save import, farming planner, kill time, cost planner, rankings, share/offline (2026-11-23)
+
+- **Game save import** (`js/save-import.js`): the game's saves in `Android/data/io.supercent.weaponrpg/files/`
+  are NOT encrypted. File name = Base64(UTF-16LE "save_<name>_1.0|1.1"); body = short header + Base64 of
+  UTF-16LE JSON; double-buffered, so the higher "version" wins. Mapped: ability `lvs`; extra/soul `up_d`;
+  special `ulv_dict` + `g_lv`; `save_currency.lv` = player level; costumes `o_list_sp17` (Level/Grade→starGrade,
+  Rarity>base→evoRarity, `e_id` equipped); weapons `o_list` (UniqueId/WeaponId/Level/BonusOptions) + `e_list` slots;
+  runes `ins`/`slt` (global slots, put on the equipped hero; each rune's `ao` random attribute isn't modeled
+  yet); traits `sil` (slot i → site slot i, unverified for the second group). Account ids in the saves are never read.
+- **Weapon bonus-roll bug fixed**: `WeaponBonusOptionData` Min/MaxValue are PERCENT. All 99 real rolls in the
+  save satisfy Value×100 ∈ [Min, Max]. The site treated them as multipliers ((mult−1)×1000), making most
+  Attack rolls negative.
+- **Farming / kill time** (`js/farming.js`): TTK = MaxHp / DPS; `MaxHp_DPSMult>0` enemies (types 4/6/7) are
+  flagged as HP-scales-with-damage. Area model: each spawn gives 1 kill per respawn; keep-up = 1/Σ((ttk+1)/respawn)
+  capped at 1; gold = DropGoldAmount (matches the in-game 21.1K label on CH12 Demon Soldiers); trips use the navmesh
+  route (World 2) or straight-line ×1.3. **The site's Total DPS is ~75x low** (362K vs 27.2M effective), so the
+  planner calibrates from an observed cargo-fill time (bisection on DPS; if the observed rate exceeds the spawn cap,
+  the excess becomes a gold multiplier). Calibrated with the bot's 5-min/3.71M at CH12, the model reproduces
+  that exactly and ranks CH10 ~22% above CH12 for this account.
+- **Upgrade cost planner** (Milestone panel): ability gold interpolated between checkpoints, checked against 4
+  live in-game costs (POWER 737 = 835K, CARGO 720 = 1.28M, HP 760 = 902K, HP RECOVERY 517 = 3.77M). Ability orb
+  costs are counted only on their exact checkpoint level (the live screen shows gold only in between; inferred).
+  Extra/Special (UpgradeLevel)/Soul per-level costs and SpecialUpgradeGradeData grade-ups are exact.
+- **Rankings** (Game Info): weapons by rarity DPS × unlocked level-up Attack bonus; heroes by best skill's
+  `SkillData.TotalDPSMult` (= the "Deals 120% damage" value, confirmed) per second of cooldown.
+- **Share links** (`#build=` deflate-raw + base64url, fragment never sent to a server), **offline** service worker
+  (`sw.js`: network-first pages, cache-first same-origin assets), **NEW badge** on Game Info until the changelog
+  for the current data version has been viewed.
+- Bot: `cashed_in` now requires being within 30 units of home plus two not-MAX reads (combat text over the cargo
+  bar caused false trips); "Gift Discovered" popups get the free CLAIM only; routes retry twice with fresh
+  floor-level tracking; per-step log in `apk/bot/steps.log`.

@@ -11,471 +11,546 @@
   "key": "SK_BA_Sword",
   "IconSprite": "face_SK_BA_Sword",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 3,
   "key": "SK_BA_Dagger",
   "IconSprite": "face_SK_BA_Dagger",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 4,
   "key": "SK_BA_MorningStar",
   "IconSprite": "face_SK_BA_MorningStar",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 5,
   "key": "SK_BA_Gun",
   "IconSprite": "face_SK_BA_Gun",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 6,
   "key": "SK_BA_CrossBow",
   "IconSprite": "face_SK_BA_CrossBow",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 7,
   "key": "SK_BA_Wand",
   "IconSprite": "face_SK_BA_Wand",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 12,
   "key": "SK_BA_Sword_EX",
   "IconSprite": "face_SK_BA_Sword_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 13,
   "key": "SK_BA_Dagger_EX",
   "IconSprite": "face_SK_BA_Dagger_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 14,
   "key": "SK_BA_MorningStar_EX",
   "IconSprite": "face_SK_BA_MorningStar_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 15,
   "key": "SK_BA_Gun_EX",
   "IconSprite": "face_SK_BA_Gun_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 16,
   "key": "SK_BA_CrossBow_EX",
   "IconSprite": "face_SK_BA_CrossBow_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 17,
   "key": "SK_BA_Wand_EX",
   "IconSprite": "face_SK_BA_Wand_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 18,
   "key": "SK_BA_Sword_SGrade_EX",
   "IconSprite": "face_SK_BA_Sword_SGrade_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 20,
   "key": "SK_BA_MorningStar_SGrade_EX",
   "IconSprite": "face_SK_BA_MorningStar_SGrade_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 21,
   "key": "SK_BA_Gun_SGrade_EX",
   "IconSprite": "face_SK_BA_Gun_SGrade_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 22,
   "key": "SK_BA_CrossBow_SGrade_EX",
   "IconSprite": "face_SK_BA_CrossBow_SGrade_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 23,
   "key": "SK_BA_Wand_SGrade_EX",
   "IconSprite": "face_SK_BA_Wand_SGrade_EX",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 24,
   "key": "SK_BA_Dagger_SGrade_EX1",
   "IconSprite": "face_SK_BA_Dagger_SGrade_EX1",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 25,
   "key": "SK_BA_Dagger_SGrade_EX2",
   "IconSprite": "face_SK_BA_Dagger_SGrade_EX2",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 26,
   "key": "SK_BA_Dagger_SGrade_EX3",
   "IconSprite": "face_SK_BA_Dagger_SGrade_EX3",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 27,
   "key": "SK_BA_Dagger_SGrade_EX4",
   "IconSprite": "face_SK_BA_Dagger_SGrade_EX4",
   "CoolTime": 0.0,
-  "SkillCategory": "Weapon"
+  "SkillCategory": "Weapon",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 101,
   "key": "SK_BA_MeleeEnemy",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 102,
   "key": "SK_BA_RangedEnemy",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 103,
   "key": "SK_BA_MeleeEnemyBoss",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 104,
   "key": "SK_BA_MeleeEnemy_Root",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1001,
   "key": "SK_Skeleton_Archer",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1002,
   "key": "SK_Elf_Archer",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1203,
   "key": "SK_CH2_Dragon_Melee",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1204,
   "key": "SK_CH2_Spider_Unique",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1303,
   "key": "SK_CH3_Golem_Boss",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1304,
   "key": "SK_CH3_Ghost_Unique",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1401,
   "key": "SK_CH4_SnowMan_Elite",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1402,
   "key": "SK_CH4_IceSkeleton_Elite",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1403,
   "key": "SK_CH4_WolfMan_Elite",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1404,
   "key": "SK_CH4_Witch",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1501,
   "key": "SK_CH5_HellDog_Elite",
   "CoolTime": 4.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1502,
   "key": "SK_CH5_SkullGoblin_Elite",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1503,
   "key": "SK_CH5_PigKing_Elite",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1504,
   "key": "SK_CH5_Devil_Boss",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1601,
   "key": "SK_CH5_Chicken_Elite",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1602,
   "key": "SK_CH5_Flower_Elite",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1603,
   "key": "SK_CH5_Elf_Elite",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020701,
   "key": "SK_CH7_DwarfBoss",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020702,
   "key": "SK_CH7_Water_Elite",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020703,
   "key": "SK_CH7_King_Boss_Attack",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020704,
   "key": "SK_CH7_King_Boss_Vertical_Cut",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020705,
   "key": "SK_CH7_King_Boss_Horizontal_Cut",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020801,
   "key": "SK_CH8_SkeletonMage",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020802,
   "key": "SK_CH8_GhoulOverlord",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020803,
   "key": "SK_CH8_UndeadHorse",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020804,
   "key": "SK_CH8_UndeadElfQueen_Ranged",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020805,
   "key": "SK_CH8_UndeadElfQueen",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020901,
   "key": "SK_CH9_AncientTreant",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020902,
   "key": "SK_CH9_MountainGiant",
   "CoolTime": 4.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020903,
   "key": "SK_CH9_Cenarius",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020904,
   "key": "SK_CH9_TigerRiderLord",
   "CoolTime": 3.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2020905,
   "key": "SK_CH9_DualbladeElfLord",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020906,
   "key": "SK_CH9_Ragnaros",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2020907,
   "key": "SK_CH9_Ragnaros_Smash",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021001,
   "key": "SK_CH10_OctopusLegSlam",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021002,
   "key": "SK_CH10_OctopusLegSwing",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021003,
   "key": "SK_CH10_NagaSeaWitch",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2021004,
   "key": "SK_CH10_CthunKing",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021005,
   "key": "SK_CH10_Hydra",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021006,
   "key": "SK_CH10_NagaLord",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021101,
   "key": "SK_CH11_TrollSpearman",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2021102,
   "key": "SK_CH11_Tauren",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021103,
   "key": "SK_CH11_TrainingDummy",
   "CoolTime": 8.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021104,
   "key": "SK_CH11_Garrosh",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021201,
   "key": "SK_CH12_Bone_Dragon",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2021202,
   "key": "SK_CH12_PigDevil",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021203,
   "key": "SK_CH12_DeathKnight",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021204,
   "key": "SK_CH12_Lich",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021301,
   "key": "SK_CH13_LichKing_1",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2021302,
   "key": "SK_CH13_LichKing_2",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 7.0
  },
  {
   "id": 2103,
@@ -489,7 +564,8 @@
   "Desc_en": "Throws a giant shuriken, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 1.7
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2104,
@@ -503,7 +579,8 @@
   "Desc_en": "Attacks continuously, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 2.1
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 2105,
@@ -517,7 +594,8 @@
   "Desc_en": "Drives claws into the target area, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 2.6
-  }
+  },
+  "TotalDPSMult": 2.6
  },
  {
   "id": 2106,
@@ -531,7 +609,8 @@
   "Desc_en": "Attacks continuously, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2107,
@@ -545,7 +624,8 @@
   "Desc_en": "Throws a giant shuriken, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 3.4
-  }
+  },
+  "TotalDPSMult": 3.4
  },
  {
   "id": 2108,
@@ -556,7 +636,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Flower Dance",
-  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage."
+  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage.",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2109,
@@ -567,7 +648,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Flower Dance",
-  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage."
+  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage.",
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2110,
@@ -578,7 +660,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Flower Dance EX",
-  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage."
+  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage.",
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2111,
@@ -589,7 +672,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Flower Dance EX",
-  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage."
+  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage.",
+  "TotalDPSMult": 4.5
  },
  {
   "id": 2112,
@@ -600,7 +684,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Flower Dance EX",
-  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage."
+  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage.",
+  "TotalDPSMult": 5.0
  },
  {
   "id": 2113,
@@ -611,7 +696,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Flower Dance MAX",
-  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage."
+  "Desc_en": "Slashes enemies rapidly like a dance 6 times, dealing a total of {0} damage.",
+  "TotalDPSMult": 5.5
  },
  {
   "id": 2203,
@@ -625,7 +711,8 @@
   "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range.",
   "Params": {
    "0": 2.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 2204,
@@ -639,7 +726,8 @@
   "Desc_en": "Strikes the surrounding area twice, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 2.5
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 2205,
@@ -653,7 +741,8 @@
   "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2206,
@@ -667,7 +756,8 @@
   "Desc_en": "Summons tentacles of the abyss that deal a total of {0:P0} damage to enemies within range.",
   "Params": {
    "0": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2207,
@@ -681,7 +771,8 @@
   "Desc_en": "Summons a heavenly sword that deals a total of {0:P0} damage to enemies within range.",
   "Params": {
    "0": 4.0
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2208,
@@ -692,7 +783,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Half Moon",
-  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage."
+  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage.",
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2209,
@@ -703,7 +795,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Half Moon",
-  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage."
+  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage.",
+  "TotalDPSMult": 4.5
  },
  {
   "id": 2210,
@@ -714,7 +807,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Half Moon EX",
-  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage."
+  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage.",
+  "TotalDPSMult": 5.0
  },
  {
   "id": 2211,
@@ -725,7 +819,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Half Moon EX",
-  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage."
+  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage.",
+  "TotalDPSMult": 5.5
  },
  {
   "id": 2212,
@@ -736,7 +831,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Half Moon EX",
-  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage."
+  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage.",
+  "TotalDPSMult": 6.0
  },
  {
   "id": 2213,
@@ -747,7 +843,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Half Moon MAX",
-  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage."
+  "Desc_en": "Unleashes a lunar blade wave, dealing {0} damage.",
+  "TotalDPSMult": 7.0
  },
  {
   "id": 2303,
@@ -761,7 +858,8 @@
   "Desc_en": "Summons a cactus that deals {0:P0} damage to enemies within range.",
   "Params": {
    "0": 2.3
-  }
+  },
+  "TotalDPSMult": 2.3
  },
  {
   "id": 2304,
@@ -775,7 +873,8 @@
   "Desc_en": "Rolls a log that deals {0:P0} damage to enemies it crushes.",
   "Params": {
    "0": 2.9
-  }
+  },
+  "TotalDPSMult": 2.9
  },
  {
   "id": 2305,
@@ -789,7 +888,8 @@
   "Desc_en": "Slams the ground, dealing a total of {0:P0} damage.",
   "Params": {
    "0": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2306,
@@ -803,7 +903,8 @@
   "Desc_en": "Summons a Dark Totem that deals {0:P0} damage to enemies within range.",
   "Params": {
    "0": 4.0
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2307,
@@ -817,7 +918,8 @@
   "Desc_en": "Slams down a Heavenly Hammer, dealing {0:P0} damage.",
   "Params": {
    "0": 4.6
-  }
+  },
+  "TotalDPSMult": 4.6
  },
  {
   "id": 2308,
@@ -828,7 +930,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Soul Wave",
-  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies."
+  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies.",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2309,
@@ -839,7 +942,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Soul Wave",
-  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies."
+  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies.",
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2310,
@@ -850,7 +954,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Soul Wave EX",
-  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies."
+  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies.",
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2311,
@@ -861,7 +966,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Soul Wave EX",
-  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies."
+  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies.",
+  "TotalDPSMult": 4.5
  },
  {
   "id": 2312,
@@ -872,7 +978,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Soul Wave EX",
-  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies."
+  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies.",
+  "TotalDPSMult": 5.0
  },
  {
   "id": 2313,
@@ -883,7 +990,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Soul Wave MAX",
-  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies."
+  "Desc_en": "Emits a soul sonic wave, dealing {0} damage to nearby enemies.",
+  "TotalDPSMult": 5.5
  },
  {
   "id": 2403,
@@ -897,7 +1005,8 @@
   "Desc_en": "Fires an exploding bat that deals {0:P0} damage.",
   "Params": {
    "0": 1.7
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2404,
@@ -911,7 +1020,8 @@
   "Desc_en": "Fires an exploding skull that deals {0:P0} damage.",
   "Params": {
    "0": 2.1
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 2405,
@@ -925,7 +1035,8 @@
   "Desc_en": "Fires an ice arrow that deals {0:P0} damage.",
   "Params": {
    "0": 2.6
-  }
+  },
+  "TotalDPSMult": 2.6
  },
  {
   "id": 2406,
@@ -939,7 +1050,8 @@
   "Desc_en": "Fires a burning arrow that deals a total of {0:P0} damage to enemies within range.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2407,
@@ -953,7 +1065,8 @@
   "Desc_en": "Fires a holy arrow that deals {0:P0} damage.",
   "Params": {
    "0": 3.4
-  }
+  },
+  "TotalDPSMult": 3.4
  },
  {
   "id": 2408,
@@ -964,7 +1077,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "AT Arrow",
-  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage."
+  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage.",
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2409,
@@ -975,7 +1089,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "AT Arrow",
-  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage."
+  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage.",
+  "TotalDPSMult": 4.3
  },
  {
   "id": 2410,
@@ -986,7 +1101,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "AT Arrow EX",
-  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage."
+  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage.",
+  "TotalDPSMult": 4.6
  },
  {
   "id": 2411,
@@ -997,7 +1113,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "AT Arrow EX",
-  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage."
+  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage.",
+  "TotalDPSMult": 4.9
  },
  {
   "id": 2412,
@@ -1008,7 +1125,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "AT Arrow EX",
-  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage."
+  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage.",
+  "TotalDPSMult": 5.2
  },
  {
   "id": 2413,
@@ -1019,7 +1137,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "AT Arrow MAX",
-  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage."
+  "Desc_en": "Fires 10 arcane arrows, dealing a total of {0} damage.",
+  "TotalDPSMult": 5.5
  },
  {
   "id": 2503,
@@ -1033,7 +1152,8 @@
   "Desc_en": "Fires a magma bullet that deals {0:P0} damage to enemies it hits.",
   "Params": {
    "0": 2.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 2504,
@@ -1047,7 +1167,8 @@
   "Desc_en": "Exhales dragon breath, dealing {0:P0} damage to enemies within range.",
   "Params": {
    "0": 2.5
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 2505,
@@ -1061,7 +1182,8 @@
   "Desc_en": "Fires a shotgun, dealing {0:P0} damage.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2506,
@@ -1075,7 +1197,8 @@
   "Desc_en": "Exhales dragon breath, dealing {0:P0} damage to enemies within range.",
   "Params": {
    "0": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2507,
@@ -1089,7 +1212,8 @@
   "Desc_en": "Fires a magma bullet that deals {0:P0} damage to enemies it hits.",
   "Params": {
    "0": 4.0
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2508,
@@ -1100,7 +1224,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Gravity Pulse",
-  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage."
+  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage.",
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2509,
@@ -1111,7 +1236,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Gravity Pulse",
-  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage."
+  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage.",
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2510,
@@ -1122,7 +1248,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Gravity Pulse EX",
-  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage."
+  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage.",
+  "TotalDPSMult": 4.5
  },
  {
   "id": 2511,
@@ -1133,7 +1260,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Gravity Pulse EX",
-  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage."
+  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage.",
+  "TotalDPSMult": 5.0
  },
  {
   "id": 2512,
@@ -1144,7 +1272,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Gravity Pulse EX",
-  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage."
+  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage.",
+  "TotalDPSMult": 5.5
  },
  {
   "id": 2513,
@@ -1155,7 +1284,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Gravity Pulse MAX",
-  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage."
+  "Desc_en": "Fires a gravity bomb that pulls enemies in and deals {0} damage.",
+  "TotalDPSMult": 6.0
  },
  {
   "id": 2603,
@@ -1169,7 +1299,8 @@
   "Desc_en": "Summons a path of ice that deals {0:P0} damage to enemies within range.",
   "Params": {
    "0": 2.3
-  }
+  },
+  "TotalDPSMult": 2.3
  },
  {
   "id": 2604,
@@ -1183,7 +1314,8 @@
   "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range.",
   "Params": {
    "0": 2.9
-  }
+  },
+  "TotalDPSMult": 2.9
  },
  {
   "id": 2605,
@@ -1197,7 +1329,8 @@
   "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range.",
   "Params": {
    "0": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2606,
@@ -1211,7 +1344,8 @@
   "Desc_en": "Fires an exploding fireball that deals {0:P0} damage to enemies within the explosion range.",
   "Params": {
    "0": 4.0
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2607,
@@ -1225,7 +1359,8 @@
   "Desc_en": "Summons an electric sphere that deals {0:P0} damage to enemies within range.",
   "Params": {
    "0": 4.6
-  }
+  },
+  "TotalDPSMult": 4.6
  },
  {
   "id": 2608,
@@ -1236,7 +1371,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Carpet Bombing",
-  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each."
+  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each.",
+  "TotalDPSMult": 2.4
  },
  {
   "id": 2609,
@@ -1247,7 +1383,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Carpet Bombing",
-  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each."
+  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each.",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2610,
@@ -1258,7 +1395,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Carpet Bombing EX",
-  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each."
+  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each.",
+  "TotalDPSMult": 3.6
  },
  {
   "id": 2611,
@@ -1269,7 +1407,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Carpet Bombing EX",
-  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each."
+  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each.",
+  "TotalDPSMult": 4.2
  },
  {
   "id": 2612,
@@ -1280,7 +1419,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Carpet Bombing EX",
-  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each."
+  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each.",
+  "TotalDPSMult": 4.8
  },
  {
   "id": 2613,
@@ -1291,7 +1431,8 @@
   "CoolTime": 8.0,
   "SkillCategory": "Weapon",
   "Name_en": "Carpet Bombing MAX",
-  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each."
+  "Desc_en": "Drops bombs on 6 random enemies within range, dealing {0} damage each.",
+  "TotalDPSMult": 5.4
  },
  {
   "id": 10001,
@@ -1307,7 +1448,8 @@
    "0": 3.7,
    "1": 1.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 3.7
  },
  {
   "id": 10002,
@@ -1324,7 +1466,8 @@
    "1": 1.0,
    "2": 5.0,
    "3": 5.0
-  }
+  },
+  "TotalDPSMult": 4.3
  },
  {
   "id": 10003,
@@ -1342,7 +1485,8 @@
    "2": 5.0,
    "3": 5.0,
    "4": 0.3
-  }
+  },
+  "TotalDPSMult": 4.9
  },
  {
   "id": 10004,
@@ -1359,7 +1503,8 @@
    "1": 1.0,
    "2": 5.0,
    "3": 0.5
-  }
+  },
+  "TotalDPSMult": 3.7
  },
  {
   "id": 10005,
@@ -1376,7 +1521,8 @@
    "1": 1.5,
    "2": 5.0,
    "3": 0.5
-  }
+  },
+  "TotalDPSMult": 4.3
  },
  {
   "id": 10006,
@@ -1394,7 +1540,8 @@
    "2": 5.0,
    "3": 0.5,
    "4": 0.2
-  }
+  },
+  "TotalDPSMult": 4.9
  },
  {
   "id": 10007,
@@ -1408,7 +1555,8 @@
   "Desc_en": "Removes all Buffs from the target and deals <color=#3d8300>{0:P0}</color> damage.",
   "Params": {
    "0": 2.5
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 10008,
@@ -1422,7 +1570,8 @@
   "Desc_en": "Removes all Buffs from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 10009,
@@ -1436,7 +1585,8 @@
   "Desc_en": "Removes all Buffs and shields from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
   "Params": {
    "0": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 10010,
@@ -1452,7 +1602,8 @@
    "0": 1.9,
    "1": 1.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.9
  },
  {
   "id": 10011,
@@ -1468,7 +1619,8 @@
    "0": 2.3,
    "1": 2.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.3
  },
  {
   "id": 10012,
@@ -1484,7 +1636,8 @@
    "0": 2.7,
    "1": 3.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.7
  },
  {
   "id": 10013,
@@ -1499,7 +1652,8 @@
   "Params": {
    "0": 2.5,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 10014,
@@ -1514,7 +1668,8 @@
   "Params": {
    "0": 3.1,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 3.1
  },
  {
   "id": 10015,
@@ -1529,7 +1684,8 @@
   "Params": {
    "0": 3.7,
    "1": 2.5
-  }
+  },
+  "TotalDPSMult": 3.7
  },
  {
   "id": 10016,
@@ -1544,7 +1700,8 @@
   "Params": {
    "0": 1.6,
    "1": 0.3
-  }
+  },
+  "TotalDPSMult": 1.6
  },
  {
   "id": 10017,
@@ -1559,7 +1716,8 @@
   "Params": {
    "0": 1.9,
    "1": 0.6
-  }
+  },
+  "TotalDPSMult": 1.9
  },
  {
   "id": 10018,
@@ -1574,7 +1732,8 @@
   "Params": {
    "0": 2.3,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 2.3
  },
  {
   "id": 10019,
@@ -1590,7 +1749,8 @@
    "0": 2.1,
    "1": 0.5,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 10020,
@@ -1606,7 +1766,8 @@
    "0": 2.5,
    "1": 0.5,
    "2": 4.0
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 10021,
@@ -1622,7 +1783,8 @@
    "0": 3.1,
    "1": 0.5,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 3.1
  },
  {
   "id": 10022,
@@ -1638,7 +1800,8 @@
    "0": 1.7,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 10023,
@@ -1654,7 +1817,8 @@
    "0": 2.0,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 10024,
@@ -1670,7 +1834,8 @@
    "0": 2.5,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 10025,
@@ -1686,7 +1851,8 @@
    "0": 1.1,
    "1": 0.3,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 10026,
@@ -1702,7 +1868,8 @@
    "0": 1.3,
    "1": 0.5,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 10027,
@@ -1718,7 +1885,8 @@
    "0": 1.6,
    "1": 0.8,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 1.6
  },
  {
   "id": 10028,
@@ -1734,7 +1902,8 @@
    "0": 1.4,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10029,
@@ -1750,7 +1919,8 @@
    "0": 1.7,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 10030,
@@ -1766,7 +1936,8 @@
    "0": 2.0,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 10031,
@@ -1781,7 +1952,8 @@
   "Params": {
    "0": 1.1,
    "1": 0.5
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 10032,
@@ -1796,7 +1968,8 @@
   "Params": {
    "0": 1.3,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 10033,
@@ -1811,7 +1984,8 @@
   "Params": {
    "0": 1.6,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.6
  },
  {
   "id": 10034,
@@ -1826,7 +2000,8 @@
   "Params": {
    "0": 0.9,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 0.9
  },
  {
   "id": 10035,
@@ -1841,7 +2016,8 @@
   "Params": {
    "0": 1.1,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 10036,
@@ -1856,7 +2032,8 @@
   "Params": {
    "0": 1.3,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 10037,
@@ -1871,7 +2048,8 @@
   "Params": {
    "0": 0.9,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 0.9
  },
  {
   "id": 10038,
@@ -1886,7 +2064,8 @@
   "Params": {
    "0": 1.1,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 10039,
@@ -1901,7 +2080,8 @@
   "Params": {
    "0": 1.3,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 10040,
@@ -1917,7 +2097,8 @@
    "0": 1.5,
    "1": 4.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 1.5
  },
  {
   "id": 10041,
@@ -1933,7 +2114,8 @@
    "0": 1.7,
    "1": 4.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 10042,
@@ -1949,7 +2131,8 @@
    "0": 2.1,
    "1": 4.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 10045,
@@ -1964,7 +2147,8 @@
   "Params": {
    "0": 1.2,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10046,
@@ -1979,7 +2163,8 @@
   "Params": {
    "0": 1.4,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10047,
@@ -1994,7 +2179,8 @@
   "Params": {
    "0": 1.7,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 10048,
@@ -2009,7 +2195,8 @@
   "Params": {
    "0": 1.5,
    "1": 0.1
-  }
+  },
+  "TotalDPSMult": 1.5
  },
  {
   "id": 10049,
@@ -2024,7 +2211,8 @@
   "Params": {
    "0": 1.7,
    "1": 0.2
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 10050,
@@ -2039,103 +2227,120 @@
   "Params": {
    "0": 2.1,
    "1": 0.3
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 90001,
   "key": "SK_Enemy_Meteor",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90002,
   "key": "SK_Enemy_Meteor_Tri",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90003,
   "key": "SK_Enemy_Fireball",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90004,
   "key": "SK_Enemy_Fireball_Tri",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90005,
   "key": "SK_Enemy_EggThrow",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90006,
   "key": "SK_Enemy_EggThrow_Tri",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90007,
   "key": "SK_Enemy_Poison",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90008,
   "key": "SK_Enemy_Poison_Tri",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90009,
   "key": "SK_Enemy_BombThrow",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90010,
   "key": "SK_Enemy_BombThrow_Tri",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90011,
   "key": "SK_Enemy_Tornado_Tri",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90012,
   "key": "SK_Enemy_Tornado",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90013,
   "key": "SK_Enemy_Tornado_Big",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90015,
   "key": "SK_Enemy_Root",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90016,
   "key": "SK_Enemy_IceSpike",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 90021,
   "key": "SK_Enemy_WaterDrop",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 10053,
@@ -2149,7 +2354,8 @@
   "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from self and melee allies.",
   "Params": {
    "0": 1.2
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10054,
@@ -2163,7 +2369,8 @@
   "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from all allies.",
   "Params": {
    "0": 1.4
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10055,
@@ -2178,7 +2385,8 @@
   "Params": {
    "0": 1.2,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10056,
@@ -2193,7 +2401,8 @@
   "Params": {
    "0": 1.4,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10057,
@@ -2209,7 +2418,8 @@
    "0": 1.2,
    "1": 0.3,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10058,
@@ -2225,7 +2435,8 @@
    "0": 1.4,
    "1": 0.5,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10059,
@@ -2241,7 +2452,8 @@
    "0": 1.2,
    "1": 3.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10060,
@@ -2257,7 +2469,8 @@
    "0": 1.4,
    "1": 3.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10061,
@@ -2272,7 +2485,8 @@
   "Params": {
    "0": 1.2,
    "1": 3.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10062,
@@ -2287,7 +2501,8 @@
   "Params": {
    "0": 1.4,
    "1": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10063,
@@ -2302,7 +2517,8 @@
   "Params": {
    "0": 1.2,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 10064,
@@ -2317,7 +2533,8 @@
   "Params": {
    "0": 1.4,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 10065,
@@ -2333,7 +2550,8 @@
    "0": 4.0,
    "1": 3.0,
    "2": 0.3
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 10066,
@@ -2349,7 +2567,8 @@
    "0": 4.5,
    "1": 3.0,
    "2": 0.4
-  }
+  },
+  "TotalDPSMult": 4.5
  },
  {
   "id": 10067,
@@ -2365,7 +2584,8 @@
    "0": 5.0,
    "1": 3.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 5.0
  },
  {
   "id": 10068,
@@ -2380,7 +2600,8 @@
   "Params": {
    "0": 4.0,
    "1": 0.5
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 10069,
@@ -2396,7 +2617,8 @@
    "0": 6.0,
    "1": 0.5,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 6.0
  },
  {
   "id": 10070,
@@ -2412,7 +2634,8 @@
    "0": 9.0,
    "1": 0.5,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 9.0
  },
  {
   "id": 10080,
@@ -2431,7 +2654,8 @@
    "3": 0.6,
    "4": 0.5,
    "5": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 10081,
@@ -2450,7 +2674,8 @@
    "3": 0.9,
    "4": 0.5,
    "5": 7.5
-  }
+  },
+  "TotalDPSMult": 7.5
  },
  {
   "id": 10082,
@@ -2469,7 +2694,8 @@
    "3": 1.5,
    "4": 0.5,
    "5": 13.5
-  }
+  },
+  "TotalDPSMult": 13.5
  },
  {
   "id": 10083,
@@ -2485,7 +2711,8 @@
    "0": 4.0,
    "1": 10.0,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 10.0
  },
  {
   "id": 10084,
@@ -2501,7 +2728,8 @@
    "0": 5.0,
    "1": 16.0,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 16.0
  },
  {
   "id": 10085,
@@ -2517,181 +2745,211 @@
    "0": 6.0,
    "1": 21.5,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 21.5
  },
  {
   "id": 50001,
   "key": "SK_CH14_ShellSpider_Elite",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50002,
   "key": "SK_CH14_SkeletonGuard_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50003,
   "key": "SK_CH14_HobGoblin_Boss",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50004,
   "key": "SK_CH15_Hound_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50005,
   "key": "SK_CH15_IronFrog_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50006,
   "key": "SK_CH15_MagmaGolem_Boss",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50007,
   "key": "SK_CH16_SkeletonWarrior_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50008,
   "key": "SK_CH16_ElderDruid_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50009,
   "key": "SK_CH16_WolfHound_Elite",
   "CoolTime": 5.5,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50010,
   "key": "SK_CH16_SkullDragon_Melee",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50011,
   "key": "SK_CH16_SkullDragon_Breath",
   "CoolTime": 8.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50012,
   "key": "SK_CH17_GiantCrab_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50013,
   "key": "SK_CH17_SpecterLord_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50014,
   "key": "SK_CH17_AntKing_Boss_Vertical_Cut",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50015,
   "key": "SK_CH17_AntKing_Boss_Horizontal_Cut",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50016,
   "key": "SK_CH18_Witch",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50017,
   "key": "SK_CH18_Unicorn_Elite",
   "CoolTime": 8.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50018,
   "key": "SK_CH18_Demon_Elite",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50019,
   "key": "SK_CH18_VampireLord_Boss",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50020,
   "key": "SK_CH19_OrcLord_Elite_Earthquake",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50021,
   "key": "SK_CH19_OrcLord_Elite_WaveSlash",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50022,
   "key": "SK_CH19_SajaBoys",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50023,
   "key": "SK_CH19_VoidArmor_Elite",
   "CoolTime": 6.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50024,
   "key": "SK_CH19_GwiMa_Boss_Meteor",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 50025,
   "key": "SK_CH19_GwiMa_Boss_Smash",
   "CoolTime": 7.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 50026,
   "key": "SK_CH19_DimensionLord_VoidTrident",
   "CoolTime": 7.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50027,
   "key": "SK_CH19_DimensionLord_VoidBeam",
   "CoolTime": 7.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 2.0
  },
  {
   "id": 50028,
   "key": "SK_CH19_DimensionLord_VoidPillar",
   "CoolTime": 5.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1110001,
   "key": "SK_BA_Raid_CH1_CrystalCrab",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1110002,
@@ -2705,7 +2963,8 @@
   "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
   "Params": {
    "0": 50.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1110003,
@@ -2719,7 +2978,8 @@
   "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
   "Params": {
    "0": 300.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1110004,
@@ -2733,7 +2993,8 @@
   "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
   "Params": {
    "0": 300.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1110005,
@@ -2747,7 +3008,8 @@
   "Desc_en": "Upon dropping to low HP, hides in its shell to block <color=#00bc00>{0}</color> hits and grants itself a <color=#0034bc>[Reflective Shell]</color> Buff that reflects ranged attacks.",
   "Params": {
    "0": 300.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1110011,
@@ -2761,13 +3023,15 @@
   "Desc_en": "Targets the controlled hero with a giant claw, charges, then deals <color=#00bc00>{0:P0}</color> damage and inflicts <color=#bc0000>[Stun]</color>.",
   "Params": {
    "0": 5.0
-  }
+  },
+  "TotalDPSMult": 5.0
  },
  {
   "id": 1120001,
   "key": "SK_BA_Raid_CH1_Anubis",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1120002,
@@ -2781,7 +3045,8 @@
   "Desc_en": "Summons <color=#00bc00>5</color> mummies at random locations and inflicts a <color=#bc0000>[Taunt]</color> Debuff on allies for <color=#00bc00>{0}</color> sec. Anubis's ATK increases based on the number of summoned minions.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1120003,
@@ -2795,7 +3060,8 @@
   "Desc_en": "Summons an <color=#00bc00>[Exploding Mummy]</color> that follows the controlled hero. On explosion it deals <color=#00bc00>{0:P0}</color> damage, also damaging mummies and Anubis.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1120004,
@@ -2806,7 +3072,8 @@
   "CoolTime": 30.0,
   "SkillCategory": "Enemy",
   "Name_en": "RISE!",
-  "Desc_en": "Charges for <color=#00bc00>5 sec</color> and revives all dead mummies."
+  "Desc_en": "Charges for <color=#00bc00>5 sec</color> and revives all dead mummies.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1120005,
@@ -2817,13 +3084,15 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "KING'S MIGHT",
-  "Desc_en": "<color=#00bc00>[King of the Desert]</color> summons <color=#00bc00>10</color> mummies and grants them the <color=#0034bc>[ATK Up]</color> and <color=#0034bc>[Movement Speed Up]</color> buffs."
+  "Desc_en": "<color=#00bc00>[King of the Desert]</color> summons <color=#00bc00>10</color> mummies and grants them the <color=#0034bc>[ATK Up]</color> and <color=#0034bc>[Movement Speed Up]</color> buffs.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1130001,
   "key": "SK_BA_Raid_CH1_BloodLord",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1130002,
@@ -2838,7 +3107,8 @@
   "Params": {
    "0": 7.0,
    "1": 0.3
-  }
+  },
+  "TotalDPSMult": 7.0
  },
  {
   "id": 1130003,
@@ -2849,7 +3119,8 @@
   "CoolTime": 7.0,
   "SkillCategory": "Enemy",
   "Name_en": "SEALED COFFIN",
-  "Desc_en": "Targets the controlled hero, then drops a coffin from the sky to <color=#bc0000>[Seal]</color> an ally. The coffin can be destroyed, and it continuously drains HP from the trapped ally."
+  "Desc_en": "Targets the controlled hero, then drops a coffin from the sky to <color=#bc0000>[Seal]</color> an ally. The coffin can be destroyed, and it continuously drains HP from the trapped ally.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1130004,
@@ -2860,7 +3131,8 @@
   "CoolTime": 1000.0,
   "SkillCategory": "Enemy",
   "Name_en": "BERSERK",
-  "Desc_en": "Upon dropping to low HP, enters a berserk state, increasing <color=#0034bc>[ATK]</color>, <color=#0034bc>[Attack Speed]</color>, and <color=#0034bc>[HP Steal]</color>."
+  "Desc_en": "Upon dropping to low HP, enters a berserk state, increasing <color=#0034bc>[ATK]</color>, <color=#0034bc>[Attack Speed]</color>, and <color=#0034bc>[HP Steal]</color>.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1130005,
@@ -2871,13 +3143,15 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "WANING MOON",
-  "Desc_en": "Increases the range and damage of <color=#00bc00>[Festival of the Night]</color>, and reduces the charge time to <color=#00bc00>2 sec</color>."
+  "Desc_en": "Increases the range and damage of <color=#00bc00>[Festival of the Night]</color>, and reduces the charge time to <color=#00bc00>2 sec</color>.",
+  "TotalDPSMult": 7.0
  },
  {
   "id": 1140001,
   "key": "SK_BA_Raid_CH1_FrozenBloom",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1140002,
@@ -2892,7 +3166,8 @@
   "Params": {
    "0": 5.0,
    "1": 5.0
-  }
+  },
+  "TotalDPSMult": 5.0
  },
  {
   "id": 1140003,
@@ -2906,7 +3181,8 @@
   "Desc_en": "Summons <color=#00bc00>3</color> flower buds at random locations. The buds periodically fire an <color=#00bc00>[Ice Beam]</color> that deals <color=#00bc00>{0:P0}</color> damage and inflicts <color=#bc0000>[Stun]</color> on allies hit.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 5.0
  },
  {
   "id": 1140004,
@@ -2917,34 +3193,39 @@
   "CoolTime": 12.0,
   "SkillCategory": "Enemy",
   "Name_en": "ANTARCTIC WIND",
-  "Desc_en": "<color=#00bc00>[Antarctic Wind]</color> knocks back nearby allies further and summons frost flowers all around."
+  "Desc_en": "<color=#00bc00>[Antarctic Wind]</color> knocks back nearby allies further and summons frost flowers all around.",
+  "TotalDPSMult": 5.0
  },
  {
   "id": 1140011,
   "key": "SK_Raid_CH1_FrostBud_Beam_1",
   "IconSprite": "face_SK_Raid_CH1_FrozenBloom_2",
   "CoolTime": 4.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 1140012,
   "key": "SK_Raid_CH1_FrostBud_Beam_2",
   "IconSprite": "face_SK_Raid_CH1_FrozenBloom_2",
   "CoolTime": 4.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 3.0
  },
  {
   "id": 1140013,
   "key": "SK_Raid_CH1_IceFlower_Aura",
   "IconSprite": "face_SK_Raid_CH1_FrozenBloom_3",
   "CoolTime": 1.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1150001,
   "key": "SK_BA_Raid_CH1_Rosalia",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1150002,
@@ -2959,7 +3240,8 @@
   "Params": {
    "0": 1.0,
    "1": 10.0
-  }
+  },
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1150003,
@@ -2970,7 +3252,8 @@
   "CoolTime": 25.0,
   "SkillCategory": "Enemy",
   "Name_en": "POISON MIST",
-  "Desc_en": "Poison mist rises across the battlefield. Allies in the poison mist take <color=#bc0000>[Poison]</color> damage every second and their attack range is reduced."
+  "Desc_en": "Poison mist rises across the battlefield. Allies in the poison mist take <color=#bc0000>[Poison]</color> damage every second and their attack range is reduced.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1150004,
@@ -2981,7 +3264,8 @@
   "CoolTime": 30.0,
   "SkillCategory": "Enemy",
   "Name_en": "HEALING BLOSSOM",
-  "Desc_en": "Hides in a flower for <color=#00bc00>10 sec</color> and gradually gains a <color=#0034bc>[Shield]</color>. Rosalia recovers HP equal to the shield gained until the flower disappears. The flower disappears even if <color=#bc0000>[Stun]</color> is applied."
+  "Desc_en": "Hides in a flower for <color=#00bc00>10 sec</color> and gradually gains a <color=#0034bc>[Shield]</color>. Rosalia recovers HP equal to the shield gained until the flower disappears. The flower disappears even if <color=#bc0000>[Stun]</color> is applied.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1150005,
@@ -2992,13 +3276,15 @@
   "CoolTime": 15.0,
   "SkillCategory": "Enemy",
   "Name_en": "QUEEN'S WIND",
-  "Desc_en": "Buffs removed by <color=#00bc00>[Fairy Wind]</color> are applied to Rosalia, and Rosalia gains a <color=#0034bc>[Shield]</color> proportional to the number of <color=#bc0000>[Poison]</color> debuffs on allies."
+  "Desc_en": "Buffs removed by <color=#00bc00>[Fairy Wind]</color> are applied to Rosalia, and Rosalia gains a <color=#0034bc>[Shield]</color> proportional to the number of <color=#bc0000>[Poison]</color> debuffs on allies.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1160001,
   "key": "SK_BA_Raid_CH1_Cerberus",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 1160002,
@@ -3012,7 +3298,8 @@
   "Desc_en": "Fires Hellfire, dealing <color=#00bc00>{0:P0}</color> damage and inflicting a <color=#bc0000>[Burn]</color> Debuff on random allies. If two or more allies gather, a shield that reflects Hellfire is generated.",
   "Params": {
    "0": 2.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 1160003,
@@ -3026,7 +3313,8 @@
   "Desc_en": "Drops rocks at random locations, dealing <color=#00bc00>{0:P0}</color> damage and inflicting <color=#bc0000>[Stun]</color>. The rocks stay stuck in the ground and block the path, but can be pushed.",
   "Params": {
    "0": 2.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 1160004,
@@ -3040,7 +3328,8 @@
   "Desc_en": "Each of the three heads fires a breath, dealing <color=#00bc00>{0:P0}</color> damage and inflicting a <color=#bc0000>[Burn]</color> debuff. Allies behind a rock take no breath damage.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 1160005,
@@ -3051,7 +3340,8 @@
   "CoolTime": 7.0,
   "SkillCategory": "Enemy",
   "Name_en": "INFERNO",
-  "Desc_en": "Cerberus becomes immune to debuffs, and <color=#00bc00>[Hellfire]</color> is fired three times in a row."
+  "Desc_en": "Cerberus becomes immune to debuffs, and <color=#00bc00>[Hellfire]</color> is fired three times in a row.",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2010001,
@@ -3067,7 +3357,8 @@
    "0": 3.7,
    "1": 1.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 3.7
  },
  {
   "id": 2010002,
@@ -3084,7 +3375,8 @@
    "1": 1.0,
    "2": 5.0,
    "3": 5.0
-  }
+  },
+  "TotalDPSMult": 4.3
  },
  {
   "id": 2010003,
@@ -3102,7 +3394,8 @@
    "2": 5.0,
    "3": 5.0,
    "4": 0.3
-  }
+  },
+  "TotalDPSMult": 4.9
  },
  {
   "id": 2010004,
@@ -3119,7 +3412,8 @@
    "1": 1.0,
    "2": 5.0,
    "3": 0.5
-  }
+  },
+  "TotalDPSMult": 3.7
  },
  {
   "id": 2010005,
@@ -3136,7 +3430,8 @@
    "1": 1.5,
    "2": 5.0,
    "3": 0.5
-  }
+  },
+  "TotalDPSMult": 4.3
  },
  {
   "id": 2010006,
@@ -3154,7 +3449,8 @@
    "2": 5.0,
    "3": 0.5,
    "4": 0.2
-  }
+  },
+  "TotalDPSMult": 4.9
  },
  {
   "id": 2010007,
@@ -3168,7 +3464,8 @@
   "Desc_en": "Removes all Buffs from the target and deals <color=#3d8300>{0:P0}</color> damage.",
   "Params": {
    "0": 2.5
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 2010008,
@@ -3182,7 +3479,8 @@
   "Desc_en": "Removes all Buffs from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
   "Params": {
    "0": 3.0
-  }
+  },
+  "TotalDPSMult": 3.0
  },
  {
   "id": 2010009,
@@ -3196,7 +3494,8 @@
   "Desc_en": "Removes all Buffs and shields from the target, deals <color=#3d8300>{0:P0}</color> damage, and removes all Debuffs from self.",
   "Params": {
    "0": 3.5
-  }
+  },
+  "TotalDPSMult": 3.5
  },
  {
   "id": 2010010,
@@ -3212,7 +3511,8 @@
    "0": 1.9,
    "1": 1.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.9
  },
  {
   "id": 2010011,
@@ -3228,7 +3528,8 @@
    "0": 2.3,
    "1": 2.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.3
  },
  {
   "id": 2010012,
@@ -3244,7 +3545,8 @@
    "0": 2.7,
    "1": 3.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.7
  },
  {
   "id": 2010013,
@@ -3259,7 +3561,8 @@
   "Params": {
    "0": 2.5,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 2010014,
@@ -3274,7 +3577,8 @@
   "Params": {
    "0": 3.1,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 3.1
  },
  {
   "id": 2010015,
@@ -3289,7 +3593,8 @@
   "Params": {
    "0": 3.7,
    "1": 2.5
-  }
+  },
+  "TotalDPSMult": 3.7
  },
  {
   "id": 2010016,
@@ -3304,7 +3609,8 @@
   "Params": {
    "0": 1.6,
    "1": 0.3
-  }
+  },
+  "TotalDPSMult": 1.6
  },
  {
   "id": 2010017,
@@ -3319,7 +3625,8 @@
   "Params": {
    "0": 1.9,
    "1": 0.6
-  }
+  },
+  "TotalDPSMult": 1.9
  },
  {
   "id": 2010018,
@@ -3334,7 +3641,8 @@
   "Params": {
    "0": 2.3,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 2.3
  },
  {
   "id": 2010019,
@@ -3350,7 +3658,8 @@
    "0": 2.1,
    "1": 0.5,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 2010020,
@@ -3366,7 +3675,8 @@
    "0": 2.5,
    "1": 0.5,
    "2": 4.0
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 2010021,
@@ -3382,7 +3692,8 @@
    "0": 3.1,
    "1": 0.5,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 3.1
  },
  {
   "id": 2010022,
@@ -3398,7 +3709,8 @@
    "0": 1.7,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2010023,
@@ -3414,7 +3726,8 @@
    "0": 2.0,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 2010024,
@@ -3430,7 +3743,8 @@
    "0": 2.5,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.5
  },
  {
   "id": 2010025,
@@ -3446,7 +3760,8 @@
    "0": 1.1,
    "1": 0.3,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 2010026,
@@ -3462,7 +3777,8 @@
    "0": 1.3,
    "1": 0.5,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 2010027,
@@ -3478,7 +3794,8 @@
    "0": 1.6,
    "1": 0.8,
    "2": 3.0
-  }
+  },
+  "TotalDPSMult": 1.6
  },
  {
   "id": 2010028,
@@ -3494,7 +3811,8 @@
    "0": 1.4,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010029,
@@ -3510,7 +3828,8 @@
    "0": 1.7,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2010030,
@@ -3526,7 +3845,8 @@
    "0": 2.0,
    "1": 0.2,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 2.0
  },
  {
   "id": 2010031,
@@ -3541,7 +3861,8 @@
   "Params": {
    "0": 1.1,
    "1": 0.5
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 2010032,
@@ -3556,7 +3877,8 @@
   "Params": {
    "0": 1.3,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 2010033,
@@ -3571,7 +3893,8 @@
   "Params": {
    "0": 1.6,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.6
  },
  {
   "id": 2010034,
@@ -3586,7 +3909,8 @@
   "Params": {
    "0": 0.9,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 0.9
  },
  {
   "id": 2010035,
@@ -3601,7 +3925,8 @@
   "Params": {
    "0": 1.1,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 2010036,
@@ -3616,7 +3941,8 @@
   "Params": {
    "0": 1.3,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 2010037,
@@ -3631,7 +3957,8 @@
   "Params": {
    "0": 0.9,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 0.9
  },
  {
   "id": 2010038,
@@ -3646,7 +3973,8 @@
   "Params": {
    "0": 1.1,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.1
  },
  {
   "id": 2010039,
@@ -3661,7 +3989,8 @@
   "Params": {
    "0": 1.3,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.3
  },
  {
   "id": 2010040,
@@ -3677,7 +4006,8 @@
    "0": 1.5,
    "1": 4.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 1.5
  },
  {
   "id": 2010041,
@@ -3693,7 +4023,8 @@
    "0": 1.7,
    "1": 4.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2010042,
@@ -3709,7 +4040,8 @@
    "0": 2.1,
    "1": 4.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 2010045,
@@ -3724,7 +4056,8 @@
   "Params": {
    "0": 1.2,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010046,
@@ -3739,7 +4072,8 @@
   "Params": {
    "0": 1.4,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010047,
@@ -3754,7 +4088,8 @@
   "Params": {
    "0": 1.7,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2010048,
@@ -3769,7 +4104,8 @@
   "Params": {
    "0": 1.5,
    "1": 0.1
-  }
+  },
+  "TotalDPSMult": 1.5
  },
  {
   "id": 2010049,
@@ -3784,7 +4120,8 @@
   "Params": {
    "0": 1.7,
    "1": 0.2
-  }
+  },
+  "TotalDPSMult": 1.7
  },
  {
   "id": 2010050,
@@ -3799,7 +4136,8 @@
   "Params": {
    "0": 2.1,
    "1": 0.3
-  }
+  },
+  "TotalDPSMult": 2.1
  },
  {
   "id": 2010053,
@@ -3813,7 +4151,8 @@
   "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from self and melee allies.",
   "Params": {
    "0": 1.2
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010054,
@@ -3827,7 +4166,8 @@
   "Desc_en": "Deals <color=#3d8300>{0:P0}</color> damage and removes Debuffs from all allies.",
   "Params": {
    "0": 1.4
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010055,
@@ -3842,7 +4182,8 @@
   "Params": {
    "0": 1.2,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010056,
@@ -3857,7 +4198,8 @@
   "Params": {
    "0": 1.4,
    "1": 2.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010057,
@@ -3873,7 +4215,8 @@
    "0": 1.2,
    "1": 0.3,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010058,
@@ -3889,7 +4232,8 @@
    "0": 1.4,
    "1": 0.5,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010059,
@@ -3905,7 +4249,8 @@
    "0": 1.2,
    "1": 3.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010060,
@@ -3921,7 +4266,8 @@
    "0": 1.4,
    "1": 3.0,
    "2": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010061,
@@ -3936,7 +4282,8 @@
   "Params": {
    "0": 1.2,
    "1": 3.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010062,
@@ -3951,7 +4298,8 @@
   "Params": {
    "0": 1.4,
    "1": 5.0
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010063,
@@ -3966,7 +4314,8 @@
   "Params": {
    "0": 1.2,
    "1": 1.0
-  }
+  },
+  "TotalDPSMult": 1.2
  },
  {
   "id": 2010064,
@@ -3981,7 +4330,8 @@
   "Params": {
    "0": 1.4,
    "1": 1.5
-  }
+  },
+  "TotalDPSMult": 1.4
  },
  {
   "id": 2010065,
@@ -3997,7 +4347,8 @@
    "0": 4.0,
    "1": 3.0,
    "2": 0.3
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2010066,
@@ -4013,7 +4364,8 @@
    "0": 4.5,
    "1": 3.0,
    "2": 0.4
-  }
+  },
+  "TotalDPSMult": 4.5
  },
  {
   "id": 2010067,
@@ -4029,7 +4381,8 @@
    "0": 5.0,
    "1": 3.0,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 5.0
  },
  {
   "id": 2010068,
@@ -4044,7 +4397,8 @@
   "Params": {
    "0": 4.0,
    "1": 0.5
-  }
+  },
+  "TotalDPSMult": 4.0
  },
  {
   "id": 2010069,
@@ -4060,7 +4414,8 @@
    "0": 6.0,
    "1": 0.5,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 6.0
  },
  {
   "id": 2010070,
@@ -4076,48 +4431,55 @@
    "0": 9.0,
    "1": 0.5,
    "2": 0.5
-  }
+  },
+  "TotalDPSMult": 9.0
  },
  {
   "id": 2000001,
   "key": "SK_Enemy_BA_Sword",
   "IconSprite": "face_SK_Enemy_BA_Sword",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2000002,
   "key": "SK_Enemy_BA_Dagger",
   "IconSprite": "face_SK_Enemy_BA_Dagger",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2000003,
   "key": "SK_Enemy_BA_MorningStar",
   "IconSprite": "face_SK_Enemy_BA_MorningStar",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2000004,
   "key": "SK_Enemy_BA_Gun",
   "IconSprite": "face_SK_Enemy_BA_Gun",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2000005,
   "key": "SK_Enemy_BA_CrossBow",
   "IconSprite": "face_SK_Enemy_BA_CrossBow",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  },
  {
   "id": 2000006,
   "key": "SK_Enemy_BA_Wand",
   "IconSprite": "face_SK_Enemy_BA_Wand",
   "CoolTime": 0.0,
-  "SkillCategory": "Enemy"
+  "SkillCategory": "Enemy",
+  "TotalDPSMult": 1.0
  }
 ]

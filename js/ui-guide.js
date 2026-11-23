@@ -301,6 +301,21 @@ const MilestoneUI = {
       const extra = tree === 'special' && P.Lv_Sp_Grade != null ? `<div class="info-note">Target Special grade: ${P.Lv_Sp_Grade}</div>` : '';
       return rows ? `<div class="info-card"><h4>${name}</h4><table class="info-table"><thead><tr><th></th><th class="num">You</th><th class="num">Target</th><th class="num"></th></tr></thead><tbody>${rows}</tbody></table>${extra}</div>` : '';
     }).join('');
+    // Cost to reach this preset from the current build.
+    const tot = {}, abil = {};
+    for (const [col, id] of this.TREES[0][2]) if (P[col] != null) UpgradeCost.ability(id, this._mine('ability', id), P[col], abil);
+    for (const [col, id] of this.TREES[1][2]) if (P[col] != null) UpgradeCost.dense('ExtraUpgradeLevelData', 'Level', id, this._mine('extra', id), P[col], tot);
+    for (const [col, id] of this.TREES[2][2]) if (P[col] != null) UpgradeCost.dense('SpecialUpgradeLevelData', 'UpgradeLevel', id, this._mine('special', id), P[col], tot);
+    for (const [col, id] of this.TREES[3][2]) if (P[col] != null) UpgradeCost.dense('SoulUpgradeLevelData', 'Level', id, this._mine('soul', id), P[col], tot);
+    const myGrade = Math.max(1, ...Object.values(State.data.upgrades.special).map(v => (v && v.grade) || 1));
+    if (P.Lv_Sp_Grade) UpgradeCost.specialGrades(myGrade, P.Lv_Sp_Grade, tot);
+    const all = { ...tot };
+    for (const [k, v] of Object.entries(abil)) all[k] = (all[k] || 0) + v;
+    const best = Farming.areas({ cargo: FarmingUI.cargo() }).rows[0];
+    const goldNeed = all[0] || 0;
+    const costRows = Object.entries(all).sort((a, b) => +a[0] - +b[0]).map(([t, v]) => `<tr><td>${escapeHtml(UpgradeCost.label(+t))}</td><td class="num">${fmtNum(Math.round(v))}</td></tr>`).join('');
+    const timeNote = goldNeed && best && best.goldHr > 0 ? `<div class="info-note">That gold is about <strong>${Farming.fmtTime(goldNeed / best.goldHr * 3600)}</strong> of farming CH${best.ch} at your ${Farming.effective().mode === 'site' ? 'estimated (uncalibrated)' : 'calibrated'} rate (see Best Farming Spots on the World Map tab).</div>` : '';
+    const costHTML = `<div class="info-card"><h4>Cost to reach this target</h4>${costRows ? `<table class="info-table"><tbody>${costRows}</tbody></table>${timeNote}<div class="info-sub">From the game's own upgrade cost tables. Ability gold costs are interpolated between checkpoints (checked against the live game); ability orb costs are counted only on their checkpoint levels (inferred). Extra, Special and Soul costs are exact per level.</div>` : '<div class="info-note">Nothing to buy: you are at or above this target everywhere.</div>'}</div>`;
     const weapons = [1, 2, 3, 4, 5, 6].filter(i => P[`WeaponRarity_${i}`]).map(i => `${this._rarName(P[`WeaponRarity_${i}`])}${P[`WeaponGrade_${i}`] > 1 ? ` Gr ${P[`WeaponGrade_${i}`]}` : ''} Lv ${P[`WeaponLevel_${i}`]}`).join(' · ');
     const hero = Game.index.costumeById.get(P.Costume_Equip);
     const traits = [1, 2, 3, 4, 5].map(i => P[`trait_option_slot_${i}`]).filter(Boolean).map(id => { const t = Game.db.TraitOptionData.find(r => r.id === id); const ty = t && Game.db.TraitOptionTypeData.find(r => r.option_type === t.option_type || r.id === t.option_type); return ty ? `${Game.rarityColor(t.option_rarity).name} ${ty.name_en || ty.name}` : `Trait #${id}`; });
@@ -309,6 +324,7 @@ const MilestoneUI = {
       <p class="section-sub">The game's own designer target build for each progress checkpoint (MilestonePresetData), compared with the upgrade levels on your account. The default checkpoint is the one whose POWER target is closest to your current POWER level.</p>
       <select class="input" id="ms-preset">${leveled.map(opt).join('')}<optgroup label="Other presets">${presets.filter(p => p.level == null).map(opt).join('')}</optgroup></select>
       <p class="info-note">${total - behind} of ${total} upgrades at or above target${behind ? `, ${behind} behind` : ''}.</p>
+      ${costHTML}
       <div class="info-grid">${sections}</div>
       <div class="info-card"><h4>Rest of the target build</h4>
         <div class="info-note"><strong>Hero:</strong> ${hero ? escapeHtml(hero.Name_en) : '—'} · Lv ${fmtNum(P.Costume_Level || 0)} · ${fmtNum(P.Costume_UnlockCount || 0)} heroes unlocked</div>
