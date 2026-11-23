@@ -27,6 +27,13 @@ const Admin = {
     if (!res.ok) throw new Error((await res.json()).error || 'Could not demote user');
   },
 
+  // Returns a Blob (zip of the game's save files pulled from the VM).
+  async getGameSaves() {
+    const res = await Auth.authedFetch('/admin/game-saves');
+    if (!res.ok) { let msg = 'Could not fetch game saves'; try { msg = (await res.json()).error || msg; } catch {} throw new Error(msg); }
+    return res.blob();
+  },
+
   async deleteUser(id) {
     const res = await Auth.authedFetch(`/admin/users/${id}`, { method: 'DELETE' });
     if (!res.ok && res.status !== 204) throw new Error((await res.json()).error || 'Could not delete user');

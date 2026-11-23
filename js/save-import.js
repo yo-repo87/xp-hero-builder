@@ -30,6 +30,32 @@ const SaveImport = {
     return JSON.parse(this._utf16(this._b64bytes(b64)).replace(/\u0000+$/, ''));
   },
 
+  // Minimal zip reader (stored or deflated entries) -> File-like objects.
+  async filesFromZip(blob) {
+    const buf = new Uint8Array(await blob.arrayBuffer());
+    const dv = new DataView(buf.buffer, buf.byteOffset, buf.byteLength);
+    let eocd = -1;
+    for (let i = buf.length - 22; i >= Math.max(0, buf.length - 65557); i--) if (dv.getUint32(i, true) === 0x06054b50) { eocd = i; break; }
+    if (eocd < 0) throw new Error('Not a zip file');
+    const count = dv.getUint16(eocd + 10, true);
+    let p = dv.getUint32(eocd + 16, true);
+    const out = [];
+    for (let n = 0; n < count; n++) {
+      if (dv.getUint32(p, true) !== 0x02014b50) throw new Error('Corrupt zip');
+      const method = dv.getUint16(p + 10, true), csize = dv.getUint32(p + 20, true);
+      const nlen = dv.getUint16(p + 28, true), xlen = dv.getUint16(p + 30, true), clen = dv.getUint16(p + 32, true);
+      const local = dv.getUint32(p + 42, true);
+      const name = new TextDecoder().decode(buf.subarray(p + 46, p + 46 + nlen)).split('/').pop();
+      p += 46 + nlen + xlen + clen;
+      const start = local + 30 + dv.getUint16(local + 26, true) + dv.getUint16(local + 28, true);
+      const raw = buf.slice(start, start + csize);
+      if (!name || (method !== 0 && method !== 8)) continue;
+      out.push({ name, arrayBuffer: async () => method === 0 ? raw.buffer
+        : new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer() });
+    }
+    return out;
+  },
+
   async readFiles(files) {
     const saves = {};
     for (const f of files) {

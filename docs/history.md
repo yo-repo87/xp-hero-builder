@@ -6264,3 +6264,20 @@ any more), plus the VM's downloaded Unity bundle cache. Everything is kept in gi
 - Bot: `cashed_in` now requires being within 30 units of home plus two not-MAX reads (combat text over the cargo
   bar caused false trips); "Gift Discovered" popups get the free CLAIM only; routes retry twice with fresh
   floor-level tracking; per-step log in `apk/bot/steps.log`.
+
+## Admin "Game Save Backup" (2026-11-23)
+
+The user asked for an APK that copies the saves out. That isn't possible on this VM: on Android 11+ a normal
+app can't read another app's `Android/data`, and apps here have no `su`. Instead:
+- `server/savepull` (Node, no deps, Alpine `android-tools`): `docker run -d --name xpherobuilder_savepull
+  --network host --restart unless-stopped --env-file server/savepull/.env xpherobuilder-savepull:latest`.
+  It binds to the bridge gateway 172.20.0.1:8099, so the backend container can reach it and the LAN can't.
+  It requires header `x-savepull-token`, allows one pull at a time, and uses its own adb server port (5038)
+  so it never restarts the host adb server the farm bot uses. It returns a STORED zip of only the `save_*`
+  files, with decoded names.
+- Backend `GET /admin/game-saves` (requireAuth + requireAdmin) proxies the zip as an attachment. Verified:
+  401 without auth, 403 for a non-admin, 200 + 504 KB zip for an admin (temporary playwright-test
+  account, deleted afterward).
+- Admin tab: "Download save files (.zip)" and "Import into my build". The site's Import button also accepts
+  the zip (`SaveImport.filesFromZip`: stored + deflate entries via DecompressionStream).
+- Deploy: the backend was rebuilt and recreated with its existing env plus `SAVEPULL_URL`/`SAVEPULL_TOKEN`.

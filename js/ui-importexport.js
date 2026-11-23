@@ -43,7 +43,11 @@ const ImportExportUI = {
       }
       return;
     }
-    try { await SaveImport.importFiles(files); }
+    try {
+      const expanded = [];
+      for (const f of files) expanded.push(...(/\.zip$/i.test(f.name) ? await SaveImport.filesFromZip(f) : [f]));
+      await SaveImport.importFiles(expanded);
+    }
     catch (err) { alert('Could not import game saves.\n\n' + err.message); }
   },
 

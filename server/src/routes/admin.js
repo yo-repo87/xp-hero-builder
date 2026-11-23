@@ -97,4 +97,23 @@ router.delete('/users/:id', async (req, res) => {
   res.status(204).end();
 });
 
+// Game save backup: asks the internal savepull helper (server/savepull) to
+// pull the game's save files off the Android VM and streams back the zip.
+// The helper is only reachable on the Docker bridge and needs a shared token.
+router.get('/game-saves', async (req, res) => {
+  const url = process.env.SAVEPULL_URL, token = process.env.SAVEPULL_TOKEN;
+  if (!url || !token) return res.status(503).json({ error: 'Game save backup is not configured on this server' });
+  try {
+    const r = await fetch(`${url}/saves.zip`, { headers: { 'x-savepull-token': token }, signal: AbortSignal.timeout(90000) });
+    if (r.status === 429) return res.status(429).json({ error: 'A save pull is already running, try again in a moment' });
+    if (!r.ok) return res.status(502).json({ error: 'Could not pull saves from the game VM (is it running?)' });
+    const buf = Buffer.from(await r.arrayBuffer());
+    const stamp = new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-');
+    res.set({ 'Content-Type': 'application/zip', 'Content-Disposition': `attachment; filename="xphero-saves-${stamp}.zip"`, 'Cache-Control': 'no-store' });
+    res.send(buf);
+  } catch {
+    res.status(502).json({ error: 'The save pull helper did not respond' });
+  }
+});
+
 export default router;

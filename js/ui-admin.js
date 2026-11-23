@@ -79,9 +79,38 @@ const AdminUI = {
       </div>
       <div id="admin-users-table"></div>
       <div class="caveat">"Online" is approximate — this app has no live-presence system, so it means the account's most recent active session was refreshed within the last 15 minutes, not a true real-time connection count.</div>
+
+      <h4 class="section-head" style="margin-top:24px">🎮 Game Save Backup</h4>
+      <p class="section-sub" style="margin:4px 0 10px">Pulls the current save files straight from the game VM and gives you a zip. Import it on this site (Import button, or below) to load the real account into your build.</p>
+      <div class="action-row">
+        <button class="btn btn-gold" id="admin-saves-download">⬇️ Download save files (.zip)</button>
+        <button class="btn" id="admin-saves-import">📥 Import into my build</button>
+      </div>
+      <div class="caveat">The zip contains the game's account identifiers; the site ignores them on import, but keep the file private.</div>
     `;
     this._renderUsersTable();
     document.getElementById('admin-refresh-users').addEventListener('click', () => this.refresh());
+    const dl = document.getElementById('admin-saves-download'), im = document.getElementById('admin-saves-import');
+    const busy = (on) => { dl.disabled = im.disabled = on; dl.textContent = on ? '⏳ Pulling from the VM…' : '⬇️ Download save files (.zip)'; };
+    dl.addEventListener('click', async () => {
+      busy(true);
+      try {
+        const blob = await Admin.getGameSaves();
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `xphero-saves-${new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-')}.zip`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+        UI.toast('Save files downloaded');
+      } catch (err) { UI.toast(err.message); }
+      finally { busy(false); }
+    });
+    im.addEventListener('click', async () => {
+      busy(true);
+      try { await SaveImport.importFiles(await SaveImport.filesFromZip(await Admin.getGameSaves())); }
+      catch (err) { UI.toast(err.message); }
+      finally { busy(false); }
+    });
   },
 
   _renderUsersTable() {

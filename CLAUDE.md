@@ -32,6 +32,11 @@ Forum/Admin are the exception: they load from the server and mount once.
   the Forum, and Admin. The container has **no bind-mount**: to deploy, rebuild the
   image and recreate the container (keep the env vars). Migrations live in
   `server/db/migrations/`.
+- `server/savepull/`: container `xpherobuilder_savepull` (host network, own adb server on port 5038)
+  pulls the game's save files from the VM and serves a zip on 172.20.0.1:8099 (Docker bridge only),
+  guarded by `SAVEPULL_TOKEN` (in gitignored `server/savepull/.env`). The backend's admin-only
+  `GET /admin/game-saves` proxies it (backend env `SAVEPULL_URL`, `SAVEPULL_TOKEN`). Rollback image:
+  `xpherobuilder-backend:prev`.
 - Community Reports go through the n8n webhook at `n8n.arc-it.uk` (workflow `2YxPo48UppaVLnNy`).
 
 ## Hard rules

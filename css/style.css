@@ -1016,3 +1016,4 @@ footer.app-footer {
 .tab-btn.has-new { position: relative; }
 .tab-btn.has-new::after { content: 'NEW'; position: absolute; top: -6px; right: -4px; background: var(--red); color: #fff; font-size: 0.55rem; font-weight: 800; padding: 1px 4px; border-radius: 6px; line-height: 1.2; }
 .farm-cargo-label { color: var(--parchment-light); display: inline-block; margin-bottom: 8px; }
+#panel-admin .section-head { color: var(--parchment-light); }
