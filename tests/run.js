@@ -28,11 +28,11 @@ const ctx = {
 ctx.window = ctx;
 vm.createContext(ctx);
 
-const SRC = ['ui-common.js', 'data.js', 'formulas.js', 'state.js', 'screenshot-import.js', 'save-import.js', 'farming.js']
+const SRC = ['ui-common.js', 'data.js', 'formulas.js', 'state.js', 'screenshot-import.js', 'save-import.js', 'save-edit.js', 'farming.js']
   .map(f => fs.readFileSync(path.join(ROOT, 'js', f), 'utf8')).join('\n;\n');
 // Top-level const/let aren't context properties; re-export the ones tests need.
-vm.runInContext(SRC + '\n;globalThis.__T = { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, SaveImport, Farming, UpgradeCost, migrate: typeof migrate === "function" ? migrate : null };', ctx);
-const { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, SaveImport, Farming, UpgradeCost } = ctx.__T;
+vm.runInContext(SRC + '\n;globalThis.__T = { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, SaveImport, SaveEdit, Farming, UpgradeCost, migrate: typeof migrate === "function" ? migrate : null };', ctx);
+const { Game, Formulas, State, ScreenshotImport, formatLocaleArgs, SaveImport, SaveEdit, Farming, UpgradeCost } = ctx.__T;
 
 let pass = 0, fail = 0;
 const tests = [];
@@ -227,6 +227,147 @@ test('game save files decode (Base64 UTF-16LE name and body)', () => {
   const json = SaveImport.decodeContent(body.buffer.slice(body.byteOffset, body.byteOffset + body.length));
   eq(json.version, '7');
   eq(SaveImport.toBuild({ save_ability: json }).build.upgrades.ability[1], 737);
+});
+
+test('save editor round-trips wallet, stack items, and weapons', () => {
+  const header = Uint8Array.from([0xef, 0xbb, 0xbf]);
+  const curNew = {
+    version: '5', gold: '92933', gem: '1', crystal: '4549', lv: '219',
+    stack: '{"7":32,"20":206,"2001":0}', max: '15', stack_c: '{}',
+  };
+  const curOld = Object.assign({}, curNew, { version: '2', gold: '1' });
+  const weapons = {
+    version: '1', l_index: '11', max_sc: '6', nai: '0',
+    e_list: '{"0":10,"1":11}',
+    o_list: JSON.stringify({
+      '10': { UniqueId: 10, WeaponId: 1001, Level: 5, AddRate: 0.0, FixedDPSAdd: 0, IsLock: false, IsNew: false, IsRecommend: false, BonusOptions: [{ BonusOptionType: 5, Value: 0.00342875114 }] },
+      '11': { UniqueId: 11, WeaponId: 2001, Level: 2, AddRate: 0, FixedDPSAdd: 0, IsLock: false, IsNew: false, IsRecommend: false, BonusOptions: [] },
+    }),
+    g_count: '{"1":3}', f_weapon: '[1001,2001]',
+  };
+  const player = { version: '4', nickname: 'keep' };
+  const entries = [
+    ['save_currency_1.0', curNew],
+    ['save_currency_1.1', curOld],
+    ['save_weap_1.0', weapons],
+    ['save_player_1.0', player],
+  ].map(([logical, json]) => ({ name: logical, logical, bytes: SaveEdit.encodeSave(json, header) }));
+  const session = SaveEdit.loadEntries(entries);
+  eq(session.groups.save_currency.json.gold, '92933');
+  eq(session.groups.save_currency.baseVersion, 5);
+  ok(SaveEdit.encodeLogicalName('save_currency_1.0') && SaveImport.decodeName(SaveEdit.encodeLogicalName('save_weap_1.0')) === 'save_weap_1.0');
+
+  const untouched = SaveEdit.buildFiles(session).find(f => f.logical === 'save_player_1.0');
+  eq([...untouched.bytes], [...entries.find(e => e.logical === 'save_player_1.0').bytes]);
+
+  SaveEdit.setWallet(session, 'gold', '1000');
+  SaveEdit.setWallet(session, 'crystal', SaveEdit.INT64_MAX);
+  SaveEdit.setStack(session, 7, '5');
+  SaveEdit.setStack(session, 301, '12');
+  let threw = false;
+  try { SaveEdit.setWallet(session, 'gem', '9223372036854775808'); } catch { threw = true; }
+  ok(threw, 'rejects past int64');
+  SaveEdit.setWeaponLevel(session, 10, 9);
+  SaveEdit.removeWeapon(session, 11);
+  const uid = SaveEdit.addWeapon(session, { weaponId: 1007, level: 3, bonusOptions: [{ BonusOptionType: 1, Value: 0.007 }], placeholder: true, note: 'mid' });
+  eq(uid, 12);
+
+  const built = SaveEdit.buildFiles(session);
+  const zip = SaveEdit.zipStored(built);
+  const back = SaveEdit.loadEntries(SaveEdit.readZip(zip));
+  const cur = back.groups.save_currency.json;
+  eq(cur.version, '6');
+  eq(cur.gold, '1000');
+  eq(cur.crystal, SaveEdit.INT64_MAX);
+  eq(cur.gem, '1');
+  eq(cur.lv, '219');
+  eq(cur.stack_c, '{}');
+  const stack = JSON.parse(cur.stack);
+  eq(stack['7'], 5);
+  eq(stack['20'], 206);
+  eq(stack['2001'], 0);
+  eq(stack['301'], 12);
+  const both = SaveEdit.readZip(zip).filter(f => SaveImport.decodeName(f.name).startsWith('save_currency'));
+  eq(both.length, 2);
+  for (const f of both) eq(SaveEdit.splitSave(f.bytes).json.gold, '1000');
+
+  const wj = back.groups.save_weap.json;
+  eq(wj.version, '2');
+  eq(wj.g_count, '{"1":3}');
+  ok(wj.o_list.includes('0.00342875114'), wj.o_list);
+  const owned = JSON.parse(wj.o_list);
+  eq(owned['10'].Level, 9);
+  ok(!owned['11'], 'removed weapon stays removed');
+  eq(owned['12'].WeaponId, 1007);
+  eq(owned['12'].Level, 3);
+  eq(JSON.parse(wj.e_list)['0'], 10);
+  ok(JSON.parse(wj.e_list)['1'] == null);
+  ok(JSON.parse(wj.f_weapon).includes(1007));
+  const playerBack = SaveEdit.readZip(zip).find(f => SaveImport.decodeName(f.name) === 'save_player_1.0');
+  eq(SaveEdit.splitSave(playerBack.bytes).json.nickname, 'keep');
+  eq([...SaveEdit.splitSave(both[0].bytes).header], [0xef, 0xbb, 0xbf]);
+});
+
+test('save editor promotes one owned weapon to its next tier', () => {
+  const weapons = {
+    version: '1', l_index: '11',
+    e_list: '{"0":10}',
+    o_list: JSON.stringify({
+      '10': { UniqueId: 10, WeaponId: 1002, Level: 14, AddRate: 0.5, FixedDPSAdd: 0, IsLock: true, IsNew: false, IsRecommend: false, BonusOptions: [{ BonusOptionType: 5, Value: 0.00342875114 }] },
+    }),
+    f_weapon: '[1002]',
+  };
+  const session = SaveEdit.loadEntries([{ name: 'save_weap_1.0', bytes: SaveEdit.encodeSave(weapons) }]);
+  const rule = Formulas.mergeRule(1002);
+  eq(rule.next.id, 1003);
+  eq(rule.required, 3);
+  ok(!rule.needsStone);
+  const eternal = Formulas.mergeRule(1108);
+  eq(eternal.required, 2);
+  ok(eternal.needsStone);
+  const count = Formulas.rarityRow(rule.next).BonusOptionCount;
+  eq(count, 2);
+  const filled = SaveEdit.fillBonusOptions([{ BonusOptionType: 5, Value: 0.00342875114 }], count, Game.db.WeaponBonusOptionData);
+  eq(filled.added, 1);
+  eq(filled.bonusOptions[0].Value, 0.00342875114);
+  eq(filled.bonusOptions[1].BonusOptionType, 1);
+  eq(filled.bonusOptions[1].Value, (0.3 + 1.1) / 200);
+  const same = SaveEdit.fillBonusOptions([{ BonusOptionType: 5, Value: 1 }], 1, Game.db.WeaponBonusOptionData);
+  eq(same.added, 0);
+  eq(same.bonusOptions.length, 1);
+  SaveEdit.promoteWeapon(session, 10, { weaponId: rule.next.id, level: 14, bonusOptions: filled.bonusOptions, note: 'up' });
+  let threw = false;
+  try { SaveEdit.promoteWeapon(session, 99, { weaponId: 1, level: 1, bonusOptions: [] }); } catch { threw = true; }
+  ok(threw, 'missing uid');
+  const back = SaveEdit.loadEntries(SaveEdit.readZip(SaveEdit.zipStored(SaveEdit.buildFiles(session))));
+  const wj = back.groups.save_weap.json;
+  const w = JSON.parse(wj.o_list)['10'];
+  eq(w.WeaponId, 1003);
+  eq(w.Level, 14);
+  eq(w.AddRate, 0.5);
+  eq(w.IsLock, true);
+  eq(w.UniqueId, 10);
+  eq(w.BonusOptions.length, 2);
+  ok(JSON.stringify(w.BonusOptions).includes('0.00342875114'));
+  eq(JSON.parse(wj.e_list)['0'], 10);
+  const found = JSON.parse(wj.f_weapon);
+  ok(found.includes(1002) && found.includes(1003));
+});
+
+test('save editor leaves an oversized stack untouched', () => {
+  const json = { version: '1', gold: '3', gem: '0', crystal: '0', stack: '{"7":9007199254740993}' };
+  const session = SaveEdit.loadEntries([{ name: 'save_currency_1.0', bytes: SaveEdit.encodeSave(json) }]);
+  ok(session.groups.save_currency.stackLocked);
+  SaveEdit.setWallet(session, 'gold', '9');
+  const out = SaveEdit.splitSave(SaveEdit.buildFiles(session)[0].bytes).json;
+  eq(out.gold, '9');
+  eq(out.stack, json.stack);
+});
+
+test('weapon catalog has a rarity and grade for the save editor cap', () => {
+  const missing = Game.db.WeaponData.filter(w => w.Rarity == null || w.Grade == null);
+  eq(missing.map(w => w.id), []);
+  for (const type of [0, 1, 3]) ok(Game.index.itemByType.get(type)?.Name_en, `wallet type ${type}`);
 });
 
 test('ability gold costs match the live game (interpolated between checkpoints)', () => {

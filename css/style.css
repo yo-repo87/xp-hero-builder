@@ -344,6 +344,7 @@ main { max-width: 1180px; margin: 0 auto; padding: 24px 20px 80px; }
   border-image-width: 26px 34px; border-style: solid; border-width: 26px 34px;
   background-color: var(--parchment-header);
 }
+.modal.modal--wide { max-width: 1040px; }
 .modal-header {
   display: flex; align-items: center; gap: 12px; padding: 14px 6px; border-bottom: 2px solid var(--line);
 }
@@ -641,6 +642,23 @@ footer.app-footer {
 .admin-user-info { flex: 1; min-width: 160px; }
 .admin-online-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--ink-faint); flex-shrink: 0; }
 .admin-online-dot.online { background: var(--green); box-shadow: 0 0 6px var(--green); }
+
+.se-wallet { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+.se-wallet-card { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; background: var(--parchment); border: 1px solid var(--line-soft); border-radius: 8px; padding: 8px; }
+.se-icon { width: 52px; height: 52px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.se-icon img { width: 40px; height: 40px; object-fit: contain; }
+.se-wallet-card .fs-title, .se-wallet-card .fs-sub { display: block; }
+.se-list { display: flex; flex-direction: column; gap: 6px; max-height: 420px; overflow: auto; margin-top: 8px; }
+.se-row { display: flex; align-items: center; gap: 8px; background: var(--parchment); border: 1px solid var(--line-soft); border-radius: 8px; padding: 6px 8px; flex-wrap: wrap; }
+.se-main { flex: 1; min-width: 140px; }
+.se-input { background: var(--parchment-light); border: 1px solid var(--line-soft); border-radius: 8px; padding: 6px 8px; font-size: 0.84rem; color: var(--ink); font-family: 'Baloo 2', sans-serif; box-sizing: border-box; }
+.se-amt { width: 8.5rem; }
+.se-input.invalid { border-color: #a33; }
+.se-add { margin-top: 10px; }
+.se-picks { display: flex; flex-direction: column; gap: 4px; max-height: 280px; overflow: auto; margin: 8px 0; }
+.se-pick { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; cursor: pointer; background: var(--parchment); color: inherit; font: inherit; border: 1px solid var(--line-soft); border-radius: 8px; padding: 4px 8px; }
+.se-pick.selected { box-shadow: 0 0 0 2px var(--gold) inset; }
+.se-pick .fs-title, .se-pick .fs-sub { display: block; }
 
 .form-field { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 0.76rem; font-weight: 700; color: var(--ink-muted); font-family: 'Baloo 2', sans-serif; }

@@ -21,7 +21,8 @@ const UI = {
     });
   },
 
-  openModal(html, { onMount } = {}) {
+  openModal(html, { onMount, wide } = {}) {
+    this.modalEl.classList.toggle('modal--wide', !!wide);
     this.modalEl.innerHTML = html;
     this.modalBackdrop.hidden = false;
     if (onMount) onMount(this.modalEl);
@@ -30,6 +31,7 @@ const UI = {
   closeModal() {
     this.modalBackdrop.hidden = true;
     this.modalEl.innerHTML = '';
+    this.modalEl.classList.remove('modal--wide');
   },
 
   toast(msg) {

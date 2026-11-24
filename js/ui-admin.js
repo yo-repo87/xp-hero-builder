@@ -85,6 +85,7 @@ const AdminUI = {
       <div class="action-row">
         <button class="btn btn-gold" id="admin-saves-download">⬇️ Download save files (.zip)</button>
         <button class="btn" id="admin-saves-import">📥 Import into my build</button>
+        <button class="btn" id="admin-save-editor-open" type="button">Save Editor</button>
       </div>
       <div class="caveat">The zip contains the game's account identifiers; the site ignores them on import, but keep the file private.</div>
     `;
@@ -111,6 +112,7 @@ const AdminUI = {
       catch (err) { UI.toast(err.message); }
       finally { busy(false); }
     });
+    document.getElementById('admin-save-editor-open').addEventListener('click', () => SaveEditor.open());
   },
 
   _renderUsersTable() {
