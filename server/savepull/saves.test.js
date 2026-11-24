@@ -3,7 +3,11 @@ import zlib from 'node:zlib';
 import { deviceFileName, logicalSaveName, savesFromZip, zipStored } from './saves.js';
 
 const body = Buffer.from('xxewAiyy');
-const names = ['save_currency_1.0', 'save_weap_1.1', 'save_player_1.0', 'save_ability_1.0', 'save_weaponpass_1.0'];
+const names = [
+  'save_currency_1.0', 'save_weap_1.1', 'save_player_1.0', 'save_ability_1.0', 'save_weaponpass_1.0',
+  'save_boss_raid_1.0', 'save_boss_raid_ranking_offer_1.0', 'save_hero_tomb_membership_1.1',
+  'save_streak_login_v3_1.0', 'save_content_unlock_anim_1.0',
+];
 for (const name of names) {
   const device = deviceFileName(name);
   assert.equal(device.includes('/'), false, name);
@@ -18,6 +22,12 @@ assert.equal(decoded[0].device, deviceFileName('save_currency_1.0'));
 
 const encoded = savesFromZip(zipStored([{ name: deviceFileName('save_weap_1.0'), data: body }]));
 assert.equal(encoded[0].logical, 'save_weap_1.0');
+
+// The editor exports device filenames. This is the name apply rejected.
+const bossRaid = 'cwBhAHYAZQBfAGIAbwBzAHMAXwByAGEAaQBkAF8AMQAuADAA';
+const boss = savesFromZip(zipStored([{ name: bossRaid, data: body }]));
+assert.equal(boss[0].logical, 'save_boss_raid_1.0');
+assert.equal(boss[0].device, bossRaid);
 
 const nested = savesFromZip(zipStored([{ name: 'folder/save_player_1.0', data: body }]));
 assert.equal(nested[0].logical, 'save_player_1.0');

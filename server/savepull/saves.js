@@ -3,7 +3,9 @@
 // downloader writes. Anything else is rejected.
 import zlib from 'node:zlib';
 
-const SAVE_NAME = /^save_[A-Za-z0-9]+_1\.[01]$/;
+// Same shape the game and the save importer use. Keys may contain
+// underscores (save_boss_raid_1.0); dots and slashes stay out.
+const SAVE_NAME = /^save_\w+_1\.[01]$/;
 const MAX_ENTRY = 2 * 1024 * 1024;
 const MAX_TOTAL = 8 * 1024 * 1024;
 
