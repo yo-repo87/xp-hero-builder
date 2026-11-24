@@ -63,6 +63,23 @@ Forum/Admin are the exception: they load from the server and mount once.
   game update, `adb shell pm path` → pull → `apk/work/merge.py`. Il2CppDumper runs in a
   `mcr.microsoft.com/dotnet/runtime:6.0` container. More in `docs/history.md`.
 
+## Farm bot (personal, not part of the site)
+- `apk/bot/farm2.py` (gitignored) auto-farms on the VM: when cargo hits MAX it walks home to cash in, then
+  back to `FARM` (world 15,124 = CH12 ice zone). Run it detached:
+  `cd apk/bot && setsid nohup ../work/venv/bin/python farm2.py >> farm.log 2>&1 < /dev/null &`.
+  Stop with `touch apk/bot/STOP`. Logs: `farm.log` (trips) and `steps.log` (every position read).
+- Position = blue dot on the in-game map (≈1.15 px/world unit, north up, fit in `common.py`). Routing =
+  A* + funnel over the chapter-2 NavMeshData polygons (`navpoly.py`); a flat 2D grid fails because the
+  ice plateau overlaps lower ground (the hero hits the cliff instead of taking the ladder).
+- Safety: never tap the Return button (it opens the membership IAP screen) or any purchase/ad button.
+  "Gift Discovered" popups get the free green CLAIM only. The map's close X is tapped only after a
+  template check confirms the map is open (that corner on the game screen is the gem counter).
+- Cash-in counts only when within 30 units of home AND two consecutive not-MAX reads (combat text
+  over the cargo bar caused false trips). It survives adb drops / VM reboots (reconnect + retry) and
+  walks to the farm on startup. It does NOT auto-start after a host reboot.
+- Game saves (`Android/data/io.supercent.weaponrpg/files/`) are unencrypted: file name = Base64 of a
+  UTF-16LE `save_<name>_1.0|1.1`, body = header + Base64 of UTF-16LE JSON. See `js/save-import.js`.
+
 ## Open items
 - `GrantType 2` rune random-attribute roll: not investigated.
 - Codex bonuses (Game Info tab) aren't in the DPS math: option-value units unconfirmed.
