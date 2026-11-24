@@ -77,6 +77,11 @@ Forum/Admin are the exception: they load from the server and mount once.
 - Cash-in counts only when within 30 units of home AND two consecutive not-MAX reads (combat text
   over the cargo bar caused false trips). It survives adb drops / VM reboots (reconnect + retry) and
   walks to the farm on startup. It does NOT auto-start after a host reboot.
+- Supervisor agent (`apk/bot/agent/`): when a route fails, `farm2.py` calls `supervisor.ask()`, which runs
+  headless Claude Code (`claude -p`, the user's paid plan, default model `sonnet`, max 6 calls/hour) inside
+  `agent/` with only `Read`, `Edit(lessons.md)` and `Bash(./gametool.py:*)`. `gametool.py` is its only way to
+  act and refuses taps in blocked zones (Return, shop/offers, currency counters, PASS, ads). `lessons.md` =
+  its memory; `runs.log` = every run. Promote repeated lessons into bot code.
 - Game saves (`Android/data/io.supercent.weaponrpg/files/`) are unencrypted: file name = Base64 of a
   UTF-16LE `save_<name>_1.0|1.1`, body = header + Base64 of UTF-16LE JSON. See `js/save-import.js`.
 
