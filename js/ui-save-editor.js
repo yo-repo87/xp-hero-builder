@@ -1,6 +1,7 @@
 // ---------------------------------------------------------------------------
 // ui-save-editor.js — save editor opened from the Admin tab.
-// Edits gold, the two gem-like wallet fields, stackable items, and weapons.
+// Edits gold, the two gem-like wallet fields, hero tokens, the hero
+// level-up and evolution items, other stackable items, and weapons.
 // Download writes a new zip; it does not push anything to the VM.
 // ---------------------------------------------------------------------------
 
@@ -11,6 +12,7 @@ const SaveEditor = {
   error: '',
   loading: false,
   itemQuery: '',
+  heroQuery: '',
   weaponQuery: '',
   addQuery: '',
   addPick: null,
@@ -59,7 +61,7 @@ const SaveEditor = {
         ${s ? `<button type="button" class="btn btn-gold" id="se-download">Download edited save (.zip)</button>` : ''}
       </div>
       ${this.error ? `<div class="empty-state">${escapeHtml(this.error)}</div>` : ''}
-      ${s ? this.loadedHTML() : `<p class="section-sub" style="margin:0">Load the backup from the game VM, or a zip you already downloaded. Gold, gems, stackable items, and weapons can be edited, then saved as a new zip.</p>`}
+      ${s ? this.loadedHTML() : `<p class="section-sub" style="margin:0">Load the backup from the game VM, or a zip you already downloaded. Gold, gems, hero tokens, hero upgrade items, other stackable items, and weapons can be edited, then saved as a new zip.</p>`}
     `;
   },
 
@@ -72,11 +74,13 @@ const SaveEditor = {
       <p class="section-sub" style="margin:0 0 8px">${escapeHtml(level)}Source: ${escapeHtml(this.sourceLabel || 'zip')}.</p>
       <div class="caveat">Gold, BlueStone, and Gem are the wallet fields <span class="mono">gold</span>, <span class="mono">gem</span>, and <span class="mono">crystal</span>. The shop currency named Gem is <span class="mono">crystal</span>. BlueStone, the forge stone, is <span class="mono">gem</span>. Stack items use <span class="mono">StackableItemData.Type</span>. Close the game before copying the zip onto the device. Nothing here is uploaded.</div>
       ${cur ? `<h4 class="section-head" style="margin-top:16px">Money and gems</h4>${this.walletHTML(cur)}` : `<div class="caveat">No currency file in this zip.</div>`}
+      ${this.heroesSectionHTML()}
       ${cur && !cur.stackLocked ? `
         <div class="action-row" style="margin:16px 0 8px;align-items:center;justify-content:space-between">
           <h4 class="section-head" style="margin:0">Stackable items</h4>
           <label class="fs-sub"><input type="checkbox" id="se-show-zero" ${this.showZero ? 'checked' : ''}> Show items at zero</label>
         </div>
+        <p class="fs-sub" style="margin:0 0 6px">Elixir and Evolution Potion are with the heroes.</p>
         <input class="se-input" id="se-item-q" placeholder="Search items" value="${escapeHtml(this.itemQuery)}" autocomplete="off">
         <div class="se-list" id="se-items"></div>` : (cur?.stackLocked ? `<div class="caveat">The stack field is not a plain integer map, so item amounts were left unchanged.</div>` : '')}
       ${weap ? `
@@ -120,9 +124,96 @@ const SaveEditor = {
     }).join('')}</div>`;
   },
 
+  // Elixir is CostumeLevelData.CostType_1 on every row. Evolution Potion is
+  // CostumeEvolutionData.CostItemId1 on every row.
+  heroUpgradeHTML() {
+    const stack = SaveEdit.readStack(this.session) || {};
+    const fields = [[5, 'Elixir'], [8401, 'Evolution Potion']];
+    return `<div class="se-wallet">${fields.map(([type, fallback]) => {
+      const item = Game.index.itemByType.get(type);
+      const name = item?.Name_en || fallback;
+      const amount = stack[String(type)] || '0';
+      return `<label class="se-wallet-card">
+        ${item ? this.artHTML(Game.itemIcon(item), item.Rarity, name) : ''}
+        <span>
+          <span class="fs-title">${escapeHtml(name)}</span>
+          <span class="fs-sub mono">type ${type}</span>
+        </span>
+        <input class="se-input se-amt se-stack" data-type="${type}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} amount" value="${escapeHtml(amount)}">
+      </label>`;
+    }).join('')}</div>`;
+  },
+
+  heroesSectionHTML() {
+    const cur = this.session.groups.save_currency;
+    const costume = this.session.groups.save_costume;
+    const items = cur && !cur.stackLocked
+      ? this.heroUpgradeHTML()
+      : `<div class="caveat">${cur?.stackLocked ? 'The stack field is not a plain integer map, so Elixir and Evolution Potion were left unchanged.' : 'No currency file in this zip, so Elixir and Evolution Potion are not here.'}</div>`;
+    let tokens;
+    if (!costume) tokens = `<div class="caveat">No hero file in this zip.</div>`;
+    else if (costume.heroesLocked) tokens = `<div class="caveat">Hero token counts are not plain integers, so they were left unchanged.</div>`;
+    else tokens = `
+      <input class="se-input" id="se-hero-q" placeholder="Search heroes" value="${escapeHtml(this.heroQuery)}" autocomplete="off">
+      <div class="se-list" id="se-heroes"></div>`;
+    return `
+      <h4 class="section-head" style="margin-top:16px">Heroes</h4>
+      <div class="caveat">Hero tokens are each hero's <span class="mono">PieceCount</span> in the costume save. <span class="mono">CostumeData.UnlockRequiredPieces</span> and each evolution row's <span class="mono">Cost_Piece</span> are piece costs. Elixir (type 5) is the level-up item on every <span class="mono">CostumeLevelData</span> row. Evolution Potion (type 8401) is the evolution item on every <span class="mono">CostumeEvolutionData</span> row. This changes the stored counts only. A hero missing from the save is added as not unlocked, at level 1 and star 1 with its starting rarity, only when the token count is set above zero.</div>
+      <h4 class="section-head" style="margin-top:12px">Upgrade items</h4>
+      ${items}
+      <h4 class="section-head" style="margin-top:12px">Hero tokens</h4>
+      ${tokens}`;
+  },
+
+  heroRows() {
+    const owned = SaveEdit.readHeroes(this.session) || {};
+    const q = this.heroQuery.trim().toLowerCase();
+    return Game.db.CostumeData.map(costume => {
+      const status = owned[String(costume.id)] || null;
+      const amount = status ? String(status.PieceCount) : '0';
+      return { costume, status, amount };
+    }).filter(({ costume }) => {
+      if (!q) return true;
+      const name = (costume.Name_en || costume.Name || '').toLowerCase();
+      return name.includes(q) || String(costume.id).includes(q);
+    }).sort((a, b) => {
+      const az = SaveEdit.canonDigit(a.amount) === '0' ? 1 : 0;
+      const bz = SaveEdit.canonDigit(b.amount) === '0' ? 1 : 0;
+      if (az !== bz) return az - bz;
+      const ap = a.status?.IsPurchased ? 0 : 1;
+      const bp = b.status?.IsPurchased ? 0 : 1;
+      if (ap !== bp) return ap - bp;
+      return (b.costume.rarity || 0) - (a.costume.rarity || 0)
+        || (a.costume.Name_en || '').localeCompare(b.costume.Name_en || '')
+        || a.costume.id - b.costume.id;
+    });
+  },
+
+  heroNote(row) {
+    const created = this.session.groups.save_costume?._createdHeroes?.has(row.costume.id);
+    if (created) return 'Added as not unlocked, level 1, star 1';
+    if (!row.status) return 'Not in this save';
+    const lv = `level ${row.status.Level}`;
+    const star = `star ${row.status.Grade}`;
+    return row.status.IsPurchased ? `Unlocked · ${lv} · ${star}` : `Not unlocked · ${lv} · ${star}`;
+  },
+
+  heroesHTML() {
+    const rows = this.heroRows();
+    if (!rows.length) return `<div class="caveat">No heroes match.</div>`;
+    return rows.map(r => {
+      const name = r.costume.Name_en || r.costume.Name || `Hero ${r.costume.id}`;
+      return `<div class="se-row">
+        ${this.artHTML(Game.heroIcon(r.costume), r.costume.rarity, name)}
+        <div class="se-main"><div class="fs-title">${escapeHtml(name)}</div><div class="fs-sub" data-hero-note="${r.costume.id}">${escapeHtml(this.heroNote(r))}</div></div>
+        <input class="se-input se-amt se-piece" data-piece="${r.costume.id}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} tokens" value="${escapeHtml(r.amount)}">
+      </div>`;
+    }).join('');
+  },
+
   itemRows() {
     const stack = SaveEdit.readStack(this.session) || {};
-    const hidden = new Set([-1, 0, 1, 2, 3]);
+    const hidden = new Set([-1, 0, 1, 2, 3, 5, 8401]);
     const rows = [];
     const seen = new Set();
     for (const item of Game.db.StackableItemData) {
@@ -256,9 +347,11 @@ const SaveEditor = {
 
   renderLists() {
     const items = this.host?.querySelector('#se-items');
+    const heroes = this.host?.querySelector('#se-heroes');
     const weapons = this.host?.querySelector('#se-weapons');
     const picks = this.host?.querySelector('#se-add-pick');
     if (items) items.innerHTML = this.itemsHTML();
+    if (heroes) heroes.innerHTML = this.heroesHTML();
     if (weapons) weapons.innerHTML = this.weaponsHTML();
     if (picks) picks.innerHTML = this.picksHTML();
     this.syncChosen();
@@ -270,11 +363,14 @@ const SaveEditor = {
     if (!status || !this.session) return;
     const bits = [];
     if (this.session.groups.save_currency?.dirty) bits.push('currency changed');
+    if (this.session.groups.save_costume?.dirty) bits.push('heroes changed');
     if (this.session.groups.save_weap?.dirty) bits.push('weapons changed');
     const cur = this.session.groups.save_currency;
+    const costume = this.session.groups.save_costume;
     const weap = this.session.groups.save_weap;
     const slots = [];
     if (cur?.dirty) slots.push(`currency ×${cur.slots.length} at version ${cur.baseVersion + 1}`);
+    if (costume?.dirty) slots.push(`heroes ×${costume.slots.length} at version ${costume.baseVersion + 1}`);
     if (weap?.dirty) slots.push(`weapons ×${weap.slots.length} at version ${weap.baseVersion + 1}`);
     status.textContent = bits.length
       ? `${bits.join(', ')}. Download writes ${slots.join(' and ')}. Other files are copied unchanged.`
@@ -367,6 +463,7 @@ const SaveEditor = {
   onInput(e) {
     const el = e.target;
     if (el.id === 'se-item-q') { this.itemQuery = el.value; this.renderLists(); return; }
+    if (el.id === 'se-hero-q') { this.heroQuery = el.value; const list = this.host.querySelector('#se-heroes'); if (list) list.innerHTML = this.heroesHTML(); return; }
     if (el.id === 'se-weapon-q') { this.weaponQuery = el.value; this.renderLists(); return; }
     if (el.id === 'se-add-q') {
       this.addQuery = el.value;
@@ -388,6 +485,19 @@ const SaveEditor = {
       if (!d) return;
       try { SaveEdit.setStack(this.session, el.dataset.type, d); this.renderStatus(); }
       catch (err) { el.classList.add('invalid'); UI.toast(err.message); }
+      return;
+    }
+    if (el.classList.contains('se-piece')) {
+      const d = SaveEdit.canonDigit(el.value.trim());
+      el.classList.toggle('invalid', !d);
+      if (!d) return;
+      const costume = Game.index.costumeById.get(+el.dataset.piece);
+      try {
+        SaveEdit.setHeroPieces(this.session, el.dataset.piece, d, costume ? { rarity: costume.rarity } : null);
+        const note = el.closest('.se-row')?.querySelector('[data-hero-note]');
+        if (note && this.session.groups.save_costume?._createdHeroes?.has(+el.dataset.piece)) note.textContent = 'Added as not unlocked, level 1, star 1';
+        this.renderStatus();
+      } catch (err) { el.classList.add('invalid'); UI.toast(err.message); }
       return;
     }
     if (el.classList.contains('se-level')) {

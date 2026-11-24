@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
 // save-edit.js — read an XP Hero save zip, edit wallet / stack items /
-// weapons, and write a zip the game can load.
+// hero tokens / weapons, and write a zip the game can load.
 //
 // File format (same as save-import.js): name = Base64 of UTF-16LE
 // "save_<key>_1.0|1.1", body = header (a UTF-8 BOM on real files) plus
@@ -13,6 +13,9 @@
 // field. Other stackable amounts are a JSON object in "stack", keyed by
 // E_StackableItemType. Weapons are save_weap: "o_list" (owned), "e_list"
 // (slot → unique id), "l_index", "f_weapon".
+// Hero tokens are CostumeStatus.PieceCount inside save_costume
+// "o_list_sp17" (a JSON string keyed by costume id). Elixir (stack type 5)
+// and Evolution Potion (stack type 8401) are ordinary stack amounts.
 //
 // Amounts are kept as digit strings. Wallet fields are int64 decimals in
 // the file (up to 9223372036854775807). Stack values are JSON numbers, so
@@ -121,7 +124,7 @@ const SaveEdit = {
     }
     if (!files.length) throw new Error('No XP Hero save files in that zip.');
     const groups = {};
-    for (const key of ['save_currency', 'save_weap']) {
+    for (const key of ['save_currency', 'save_weap', 'save_costume']) {
       const slots = files.filter(f => this._groupKey(f.logical) === key);
       if (!slots.length) continue;
       const best = slots.reduce((a, b) => {
@@ -137,15 +140,24 @@ const SaveEdit = {
         // that, so leave the stack string untouched rather than rewrite it wrong.
         group.stackLocked = /:\s*-?\d{16,}/.test(rawStack) || this._parseDigitMap(json.stack || '{}') == null;
       }
+      if (key === 'save_costume') {
+        const rawHeroes = typeof json.o_list_sp17 === 'string' ? json.o_list_sp17 : '';
+        // Same limit as the stack: a 16-digit PieceCount cannot round-trip
+        // through JSON.parse, so the hero list is left byte-for-byte.
+        group.heroesLocked = !rawHeroes || /"PieceCount"\s*:\s*-?\d{16,}/.test(rawHeroes) || this._parseHeroes(rawHeroes) == null;
+      }
       groups[key] = group;
     }
-    if (!groups.save_currency && !groups.save_weap) throw new Error('That zip has no currency or weapon save.');
+    if (!groups.save_currency && !groups.save_weap && !groups.save_costume) throw new Error('That zip has no currency, weapon, or hero save.');
     return { files, groups };
   },
 
   _group(session, key) {
     const g = session.groups[key];
-    if (!g) throw new Error(key === 'save_currency' ? 'This save has no currency file.' : 'This save has no weapon file.');
+    if (!g) {
+      const missing = { save_currency: 'currency file', save_weap: 'weapon file', save_costume: 'hero file' };
+      throw new Error(`This save has no ${missing[key] || 'file for that edit'}.`);
+    }
     return g;
   },
 
@@ -175,6 +187,72 @@ const SaveEdit = {
     if (!g._stack) g._stack = this._parseDigitMap(g.json.stack || '{}');
     g._stack[t] = d;
     g._stackDirty = true;
+    g.dirty = true;
+  },
+
+  _parseHeroes(raw) {
+    let obj;
+    try { obj = this._embedded(raw); } catch { return null; }
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return null;
+    for (const [k, hero] of Object.entries(obj)) {
+      if (!/^[1-9]\d*$/.test(k) || !hero || typeof hero !== 'object' || Array.isArray(hero)) return null;
+      const pc = hero.PieceCount;
+      if (typeof pc === 'number') {
+        if (!Number.isSafeInteger(pc) || pc < 0) return null;
+      } else if (this.canonDigit(pc) == null) return null;
+    }
+    return obj;
+  },
+
+  _storeCount(digits) {
+    const n = Number(digits);
+    if (Number.isSafeInteger(n) && String(n) === digits) return n;
+    return digits;
+  },
+
+  _stringifyHeroes(list) {
+    const body = JSON.stringify(list, (k, v) => {
+      if (k !== 'PieceCount') return v;
+      const digits = typeof v === 'number' ? String(v) : v;
+      if (this.canonDigit(digits) !== digits) throw new Error('Hero token count is not a plain integer');
+      return `__PC_${digits}__`;
+    });
+    return body.replace(/"__PC_(\d+)__"/g, '$1');
+  },
+
+  readHeroes(session) {
+    const g = session.groups.save_costume;
+    if (!g || g.heroesLocked) return null;
+    if (!g._heroes) g._heroes = this._parseHeroes(g.json.o_list_sp17);
+    return g._heroes;
+  },
+
+  // birth is { rarity } from CostumeData, used only when this hero has no
+  // row yet. A zero on a missing hero writes nothing.
+  setHeroPieces(session, costumeId, digits, birth) {
+    const d = this.canonDigit(digits);
+    if (d == null) throw new Error('Enter a whole number from 0 to 9223372036854775807');
+    const id = String(costumeId);
+    if (!/^[1-9]\d*$/.test(id)) throw new Error('Unknown hero');
+    const g = this._group(session, 'save_costume');
+    if (g.heroesLocked) throw new Error('Hero token counts are not plain integers, so they were left unchanged.');
+    if (!g._heroes) g._heroes = this._parseHeroes(g.json.o_list_sp17);
+    if (!g._heroes) throw new Error('Hero token counts could not be read.');
+    let hero = g._heroes[id];
+    if (!hero) {
+      if (d === '0') return;
+      const rarity = birth && Number.isInteger(+birth.rarity) ? +birth.rarity : null;
+      if (rarity == null) throw new Error('That hero is not in this save.');
+      hero = {
+        CostumeID: +id, Level: 1, Grade: 1, Rarity: rarity,
+        IsPurchased: false, IsMaxRarity: false, UnlockedOptions: {}, PieceCount: 0,
+      };
+      g._heroes[id] = hero;
+      if (!g._createdHeroes) g._createdHeroes = new Set();
+      g._createdHeroes.add(+id);
+    }
+    hero.PieceCount = this._storeCount(d);
+    g._heroesDirty = true;
     g.dirty = true;
   },
 
@@ -302,6 +380,7 @@ const SaveEdit = {
     const json = Object.assign({}, g.json);
     json.version = String(g.baseVersion + 1);
     if (g._stackDirty) json.stack = this._stringifyDigitMap(g._stack);
+    if (g._heroesDirty) json.o_list_sp17 = this._stringifyHeroes(g._heroes);
     if (g._weapons) json.o_list = JSON.stringify(g._weapons);
     if (g._equip) json.e_list = JSON.stringify(g._equip);
     if (g._lindex != null) json.l_index = g._lindex;

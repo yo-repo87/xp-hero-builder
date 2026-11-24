@@ -354,6 +354,53 @@ test('save editor promotes one owned weapon to its next tier', () => {
   ok(found.includes(1002) && found.includes(1003));
 });
 
+test('save editor edits hero tokens and leaves other costume fields', () => {
+  const costume = {
+    version: '3', e_id: '4',
+    o_list_sp17: JSON.stringify({
+      '1': { CostumeID: 1, Level: 91, Grade: 3, Rarity: 2, IsPurchased: true, IsMaxRarity: false, UnlockedOptions: { 9: true }, PieceCount: 120 },
+      '7': { CostumeID: 7, Level: 1, Grade: 1, Rarity: 6, IsPurchased: false, IsMaxRarity: false, UnlockedOptions: {}, PieceCount: 63 },
+    }),
+  };
+  const session = SaveEdit.loadEntries([{ name: 'save_costume_1.0', bytes: SaveEdit.encodeSave(costume) }]);
+  eq(SaveEdit.readHeroes(session)['1'].PieceCount, 120);
+  SaveEdit.setHeroPieces(session, 1, '400');
+  SaveEdit.setHeroPieces(session, 23, '0', { rarity: 7 });
+  eq(SaveEdit.readHeroes(session)['23'], undefined);
+  SaveEdit.setHeroPieces(session, 23, '15', { rarity: 7 });
+  let threw = false;
+  try { SaveEdit.setHeroPieces(session, 99, '4', null); } catch { threw = true; }
+  ok(threw, 'unknown hero');
+  const big = '9223372036854775807';
+  SaveEdit.setHeroPieces(session, 7, big);
+  const out = SaveEdit.splitSave(SaveEdit.buildFiles(session)[0].bytes).json;
+  eq(out.version, '4');
+  eq(out.e_id, '4');
+  const raw = out.o_list_sp17;
+  ok(raw.includes('"PieceCount":400'), raw);
+  ok(raw.includes(`"PieceCount":${big}`), raw);
+  ok(!raw.includes(`"PieceCount":"${big}"`), 'big token stays a JSON number');
+  const heroes = JSON.parse(raw.replace(big, '1'));
+  eq(heroes['1'].Level, 91);
+  eq(heroes['1'].Grade, 3);
+  eq(heroes['1'].IsPurchased, true);
+  eq(heroes['1'].UnlockedOptions['9'], true);
+  eq(heroes['1'].PieceCount, 400);
+  eq(heroes['23'].CostumeID, 23);
+  eq(heroes['23'].Level, 1);
+  eq(heroes['23'].Grade, 1);
+  eq(heroes['23'].Rarity, 7);
+  eq(heroes['23'].IsPurchased, false);
+  eq(heroes['23'].PieceCount, 15);
+  const locked = SaveEdit.loadEntries([{ name: 'save_costume_1.0', bytes: SaveEdit.encodeSave({ version: '1', e_id: '1', o_list_sp17: '{"1":{"CostumeID":1,"PieceCount":9007199254740993}}' }) }]);
+  ok(locked.groups.save_costume.heroesLocked);
+  const before = locked.files[0].bytes;
+  let refused = false;
+  try { SaveEdit.setHeroPieces(locked, 1, '2'); } catch { refused = true; }
+  ok(refused, 'locked tokens');
+  eq([...SaveEdit.buildFiles(locked)[0].bytes], [...before]);
+});
+
 test('save editor leaves an oversized stack untouched', () => {
   const json = { version: '1', gold: '3', gem: '0', crystal: '0', stack: '{"7":9007199254740993}' };
   const session = SaveEdit.loadEntries([{ name: 'save_currency_1.0', bytes: SaveEdit.encodeSave(json) }]);
