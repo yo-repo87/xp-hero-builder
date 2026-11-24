@@ -34,6 +34,17 @@ const Admin = {
     return res.blob();
   },
 
+  // Uploads a save zip. The server writes those save files onto the VM.
+  async applyGameSaves(file) {
+    const res = await Auth.authedFetch('/admin/game-saves', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/zip' },
+      body: file,
+    });
+    if (!res.ok) { let msg = 'Could not apply the save'; try { msg = (await res.json()).error || msg; } catch {} throw new Error(msg); }
+    return res.json();
+  },
+
   async deleteUser(id) {
     const res = await Auth.authedFetch(`/admin/users/${id}`, { method: 'DELETE' });
     if (!res.ok && res.status !== 204) throw new Error((await res.json()).error || 'Could not delete user');

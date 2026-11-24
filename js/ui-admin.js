@@ -81,18 +81,19 @@ const AdminUI = {
       <div class="caveat">"Online" is approximate — this app has no live-presence system, so it means the account's most recent active session was refreshed within the last 15 minutes, not a true real-time connection count.</div>
 
       <h4 class="section-head" style="margin-top:24px">🎮 Game Save Backup</h4>
-      <p class="section-sub" style="margin:4px 0 10px">Pulls the current save files straight from the game VM and gives you a zip. Import it on this site (Import button, or below) to load the real account into your build.</p>
+      <p class="section-sub" style="margin:4px 0 10px">Pulls the current save files straight from the game VM and gives you a zip. Import it on this site to load the real account into your build. Apply save writes a zip, such as one from the Save Editor, back onto the VM.</p>
       <div class="action-row">
         <button class="btn btn-gold" id="admin-saves-download">⬇️ Download save files (.zip)</button>
+        <label class="btn" style="cursor:pointer">⬆️ Apply save to the game<input type="file" id="admin-saves-apply" accept=".zip,application/zip" hidden></label>
         <button class="btn" id="admin-saves-import">📥 Import into my build</button>
         <button class="btn" id="admin-save-editor-open" type="button">Save Editor</button>
       </div>
-      <div class="caveat">The zip contains the game's account identifiers; the site ignores them on import, but keep the file private.</div>
+      <div class="caveat">The zip contains the game's account identifiers; the site ignores them on import, but keep the file private. Close the game before applying a save. Apply replaces only the save files inside the zip.</div>
     `;
     this._renderUsersTable();
     document.getElementById('admin-refresh-users').addEventListener('click', () => this.refresh());
-    const dl = document.getElementById('admin-saves-download'), im = document.getElementById('admin-saves-import');
-    const busy = (on) => { dl.disabled = im.disabled = on; dl.textContent = on ? '⏳ Pulling from the VM…' : '⬇️ Download save files (.zip)'; };
+    const dl = document.getElementById('admin-saves-download'), im = document.getElementById('admin-saves-import'), apply = document.getElementById('admin-saves-apply');
+    const busy = (on) => { dl.disabled = im.disabled = apply.disabled = on; dl.textContent = on ? '⏳ Working with the VM…' : '⬇️ Download save files (.zip)'; };
     dl.addEventListener('click', async () => {
       busy(true);
       try {
@@ -113,6 +114,18 @@ const AdminUI = {
       finally { busy(false); }
     });
     document.getElementById('admin-save-editor-open').addEventListener('click', () => SaveEditor.open());
+    apply.addEventListener('change', async () => {
+      const file = apply.files?.[0];
+      apply.value = '';
+      if (!file) return;
+      if (!confirm('Apply this save to the game on the VM?\n\nClose the game first. This replaces the save files in the zip and leaves every other file on the device alone.')) return;
+      busy(true);
+      try {
+        const result = await Admin.applyGameSaves(file);
+        UI.toast(`Applied ${result.count} save file${result.count === 1 ? '' : 's'}. Open the game to load them.`);
+      } catch (err) { UI.toast(err.message); }
+      finally { busy(false); }
+    });
   },
 
   _renderUsersTable() {

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
 import pool from '../db.js';
 import requireAuth from '../middleware/requireAuth.js';
 import requireAdmin from '../middleware/requireAdmin.js';
@@ -111,6 +111,30 @@ router.get('/game-saves', async (req, res) => {
     const stamp = new Date().toISOString().slice(0, 16).replace(/[:T]/g, '-');
     res.set({ 'Content-Type': 'application/zip', 'Content-Disposition': `attachment; filename="xphero-saves-${stamp}.zip"`, 'Cache-Control': 'no-store' });
     res.send(buf);
+  } catch {
+    res.status(502).json({ error: 'The save pull helper did not respond' });
+  }
+});
+
+// Apply a save zip to the VM. The helper writes only save_* files and refuses
+// while the game process is still running.
+router.post('/game-saves', express.raw({ type: () => true, limit: '8mb' }), async (req, res) => {
+  const url = process.env.SAVEPULL_URL, token = process.env.SAVEPULL_TOKEN;
+  if (!url || !token) return res.status(503).json({ error: 'Game save backup is not configured on this server' });
+  if (!Buffer.isBuffer(req.body) || req.body.length < 22) return res.status(400).json({ error: 'Upload a zip of save files' });
+  try {
+    const r = await fetch(`${url}/saves.zip`, {
+      method: 'POST',
+      headers: { 'x-savepull-token': token, 'content-type': 'application/zip' },
+      body: req.body,
+      signal: AbortSignal.timeout(120000),
+    });
+    const text = await r.text();
+    let payload = {};
+    try { payload = JSON.parse(text); } catch { /* helper sent a plain-text error */ }
+    if (r.status === 429) return res.status(429).json({ error: payload.error || 'A save transfer is already running, try again in a moment' });
+    if (!r.ok) return res.status(r.status === 400 || r.status === 409 || r.status === 413 ? r.status : 502).json({ error: payload.error || 'Could not apply the save to the game VM' });
+    res.json({ ok: true, count: payload.count || 0 });
   } catch {
     res.status(502).json({ error: 'The save pull helper did not respond' });
   }
