@@ -74,13 +74,14 @@ const SaveEditor = {
       <p class="section-sub" style="margin:0 0 8px">${escapeHtml(level)}Source: ${escapeHtml(this.sourceLabel || 'zip')}.</p>
       <div class="caveat">Gold, BlueStone, and Gem are the wallet fields <span class="mono">gold</span>, <span class="mono">gem</span>, and <span class="mono">crystal</span>. The shop currency named Gem is <span class="mono">crystal</span>. BlueStone, the forge stone, is <span class="mono">gem</span>. Stack items use <span class="mono">StackableItemData.Type</span>. Close the game before copying the zip onto the device. Nothing here is uploaded.</div>
       ${cur ? `<h4 class="section-head" style="margin-top:16px">Money and gems</h4>${this.walletHTML(cur)}` : `<div class="caveat">No currency file in this zip.</div>`}
+      ${this.pinnedItemsHTML()}
       ${this.heroesSectionHTML()}
       ${cur && !cur.stackLocked ? `
         <div class="action-row" style="margin:16px 0 8px;align-items:center;justify-content:space-between">
           <h4 class="section-head" style="margin:0">Stackable items</h4>
           <label class="fs-sub"><input type="checkbox" id="se-show-zero" ${this.showZero ? 'checked' : ''}> Show items at zero</label>
         </div>
-        <p class="fs-sub" style="margin:0 0 6px">Elixir and Evolution Potion are with the heroes.</p>
+        <p class="fs-sub" style="margin:0 0 6px">Elixir and S-Ticket are the cards above, including when the count is zero. Evolution Potion is with the heroes.</p>
         <input class="se-input" id="se-item-q" placeholder="Search items" value="${escapeHtml(this.itemQuery)}" autocomplete="off">
         <div class="se-list" id="se-items"></div>` : (cur?.stackLocked ? `<div class="caveat">The stack field is not a plain integer map, so item amounts were left unchanged.</div>` : '')}
       ${weap ? `
@@ -91,7 +92,8 @@ const SaveEditor = {
           <input class="se-input" id="se-add-q" placeholder="Search the catalog to add a weapon" value="${escapeHtml(this.addQuery)}" autocomplete="off">
           <div class="se-picks" id="se-add-pick" role="listbox"></div>
           <div class="action-row">
-            <label class="fs-sub">Level <input class="se-input se-amt" id="se-add-lv" inputmode="numeric" value="1" autocomplete="off"></label>
+            <label class="fs-sub">Level <input class="se-input se-amt" id="se-add-lv" inputmode="numeric" min="1" value="1" autocomplete="off"></label>
+            <span class="fs-sub" id="se-add-cap">Pick a weapon to see its max level</span>
             <button type="button" class="btn" id="se-add">Add weapon</button>
             <span class="fs-sub" id="se-add-chosen"></span>
           </div>
@@ -124,11 +126,17 @@ const SaveEditor = {
     }).join('')}</div>`;
   },
 
-  // Elixir is CostumeLevelData.CostType_1 on every row. Evolution Potion is
-  // CostumeEvolutionData.CostItemId1 on every row.
-  heroUpgradeHTML() {
+  // Always shown, including a zero count. Elixir is type 5. S-Ticket is
+  // type 6002 (Stackable_TraitSuperTicket). Evolution Potion stays with heroes.
+  pinnedItemsHTML() {
+    const cur = this.session.groups.save_currency;
+    if (!cur) return '';
+    if (cur.stackLocked) return `<div class="caveat">The stack field is not a plain integer map, so Elixir and S-Ticket were left unchanged.</div>`;
+    return `<h4 class="section-head" style="margin-top:16px">Elixir and S-Ticket</h4>${this.stackCardsHTML([[5, 'Elixir'], [6002, 'S-Ticket']])}`;
+  },
+
+  stackCardsHTML(fields) {
     const stack = SaveEdit.readStack(this.session) || {};
-    const fields = [[5, 'Elixir'], [8401, 'Evolution Potion']];
     return `<div class="se-wallet">${fields.map(([type, fallback]) => {
       const item = Game.index.itemByType.get(type);
       const name = item?.Name_en || fallback;
@@ -137,7 +145,7 @@ const SaveEditor = {
         ${item ? this.artHTML(Game.itemIcon(item), item.Rarity, name) : ''}
         <span>
           <span class="fs-title">${escapeHtml(name)}</span>
-          <span class="fs-sub mono">type ${type}</span>
+          <span class="fs-sub">${escapeHtml((item?.Desc_en || '').replace(/<[^>]+>/g, '') || `type ${type}`)}</span>
         </span>
         <input class="se-input se-amt se-stack" data-type="${type}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} amount" value="${escapeHtml(amount)}">
       </label>`;
@@ -148,8 +156,8 @@ const SaveEditor = {
     const cur = this.session.groups.save_currency;
     const costume = this.session.groups.save_costume;
     const items = cur && !cur.stackLocked
-      ? this.heroUpgradeHTML()
-      : `<div class="caveat">${cur?.stackLocked ? 'The stack field is not a plain integer map, so Elixir and Evolution Potion were left unchanged.' : 'No currency file in this zip, so Elixir and Evolution Potion are not here.'}</div>`;
+      ? this.stackCardsHTML([[8401, 'Evolution Potion']])
+      : `<div class="caveat">${cur?.stackLocked ? 'The stack field is not a plain integer map, so Evolution Potion was left unchanged.' : 'No currency file in this zip, so Evolution Potion is not here.'}</div>`;
     let tokens;
     if (!costume) tokens = `<div class="caveat">No hero file in this zip.</div>`;
     else if (costume.heroesLocked) tokens = `<div class="caveat">Hero token counts are not plain integers, so they were left unchanged.</div>`;
@@ -158,7 +166,7 @@ const SaveEditor = {
       <div class="se-list" id="se-heroes"></div>`;
     return `
       <h4 class="section-head" style="margin-top:16px">Heroes</h4>
-      <div class="caveat">Hero tokens are each hero's <span class="mono">PieceCount</span> in the costume save. <span class="mono">CostumeData.UnlockRequiredPieces</span> and each evolution row's <span class="mono">Cost_Piece</span> are piece costs. Elixir (type 5) is the level-up item on every <span class="mono">CostumeLevelData</span> row. Evolution Potion (type 8401) is the evolution item on every <span class="mono">CostumeEvolutionData</span> row. This changes the stored counts only. A hero missing from the save is added as not unlocked, at level 1 and star 1 with its starting rarity, only when the token count is set above zero.</div>
+      <div class="caveat">Hero tokens are each hero's <span class="mono">PieceCount</span> in the costume save. <span class="mono">CostumeData.UnlockRequiredPieces</span> and each evolution row's <span class="mono">Cost_Piece</span> are piece costs. Elixir, the level-up item on every <span class="mono">CostumeLevelData</span> row, is in the cards above. Evolution Potion (type 8401) is the evolution item on every <span class="mono">CostumeEvolutionData</span> row. This changes the stored counts only. A hero missing from the save is added as not unlocked, at level 1 and star 1 with its starting rarity, only when the token count is set above zero.</div>
       <h4 class="section-head" style="margin-top:12px">Upgrade items</h4>
       ${items}
       <h4 class="section-head" style="margin-top:12px">Hero tokens</h4>
@@ -213,7 +221,7 @@ const SaveEditor = {
 
   itemRows() {
     const stack = SaveEdit.readStack(this.session) || {};
-    const hidden = new Set([-1, 0, 1, 2, 3, 5, 8401]);
+    const hidden = new Set([-1, 0, 1, 2, 3, 5, 6002, 8401]);
     const rows = [];
     const seen = new Set();
     for (const item of Game.db.StackableItemData) {
@@ -230,8 +238,9 @@ const SaveEditor = {
     return rows.filter(r => {
       if (!this.showZero && SaveEdit.canonDigit(r.amount) === '0') return false;
       if (!q) return true;
-      const name = (r.item?.Name_en || r.item?.Name || '').toLowerCase();
-      return name.includes(q) || String(r.type).includes(q);
+      const folded = s => String(s || '').toLowerCase().replace(/[-_\s]/g, '');
+      const name = folded(`${r.item?.Name_en || ''} ${r.item?.Name || ''}`);
+      return name.includes(folded(q)) || String(r.type).includes(q);
     }).sort((a, b) => {
       const az = SaveEdit.canonDigit(a.amount) === '0' ? 1 : 0;
       const bz = SaveEdit.canonDigit(b.amount) === '0' ? 1 : 0;
@@ -302,7 +311,7 @@ const SaveEditor = {
           <div class="fs-sub">id ${w.WeaponId} · uid ${w.UniqueId}${slot ? ` · equipped slot ${escapeHtml(slot)}` : ''}${w.IsLock ? ' · locked' : ''}${capped ? '' : ' · no MaxLevel row for this rarity and grade'}</div>
           ${note ? `<div class="caveat">${escapeHtml(note)}</div>` : ''}
         </div>
-        <label class="fs-sub">Lv <input class="se-input se-amt se-level" data-uid="${w.UniqueId}" data-cap="${cap}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} level" value="${w.Level}"></label>
+        <label class="fs-sub">Lv <input class="se-input se-amt se-level" data-uid="${w.UniqueId}" data-cap="${cap}" min="1" max="${cap}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} level" value="${w.Level}"> <span>max ${cap}</span></label>
         ${upgrade}
         <button type="button" class="btn btn-sm btn-danger" data-remove="${w.UniqueId}" data-label="${escapeHtml(name)}">Remove</button>
       </div>`;
@@ -331,18 +340,37 @@ const SaveEditor = {
     return rows.map(w => {
       const name = w.Name_en || String(w.id);
       const on = this.addPick === w.id;
+      const row = Game.db.BalancingData_Rarity.find(r => r.Rarity === w.Rarity && r.Grade === w.Grade);
+      const cap = row ? ` · max ${row.MaxLevel}` : '';
       return `<button type="button" class="se-pick${on ? ' selected' : ''}" data-pick="${w.id}" role="option" aria-selected="${on ? 'true' : 'false'}">
         ${this.artHTML(Game.weaponIcon(w), w.Rarity, name)}
-        <span class="se-main"><span class="fs-title">${escapeHtml(name)}</span><span class="fs-sub">${escapeHtml(Game.rarityColor(w.Rarity).name)} · ${w.id}</span></span>
+        <span class="se-main"><span class="fs-title">${escapeHtml(name)}</span><span class="fs-sub">${escapeHtml(Game.rarityColor(w.Rarity).name)} · ${w.id}${cap}</span></span>
       </button>`;
     }).join('');
   },
 
   syncChosen() {
     const el = this.host?.querySelector('#se-add-chosen');
+    const capEl = this.host?.querySelector('#se-add-cap');
+    const lv = this.host?.querySelector('#se-add-lv');
     if (!el) return;
     const w = this.addPick != null ? Game.index.weaponById.get(this.addPick) : null;
-    el.textContent = w ? `Selected: ${w.Name_en || w.id}` : '';
+    if (!w) {
+      el.textContent = '';
+      if (capEl) capEl.textContent = 'Pick a weapon to see its max level';
+      if (lv) { lv.removeAttribute('max'); lv.dataset.cap = ''; }
+      return;
+    }
+    const cap = this.maxLevel(w, 1);
+    const known = !!Game.db.BalancingData_Rarity.find(r => r.Rarity === w.Rarity && r.Grade === w.Grade);
+    el.textContent = `Selected: ${w.Name_en || w.id}`;
+    if (capEl) capEl.textContent = known ? `Max level ${cap}` : 'No MaxLevel row for this rarity and grade, so level 1 is the only accepted value';
+    if (lv) {
+      lv.max = String(cap);
+      lv.dataset.cap = String(cap);
+      const n = Number(lv.value.trim());
+      lv.classList.toggle('invalid', !Number.isInteger(n) || n < 1 || n > cap);
+    }
   },
 
   renderLists() {
@@ -465,6 +493,7 @@ const SaveEditor = {
     if (el.id === 'se-item-q') { this.itemQuery = el.value; this.renderLists(); return; }
     if (el.id === 'se-hero-q') { this.heroQuery = el.value; const list = this.host.querySelector('#se-heroes'); if (list) list.innerHTML = this.heroesHTML(); return; }
     if (el.id === 'se-weapon-q') { this.weaponQuery = el.value; this.renderLists(); return; }
+    if (el.id === 'se-add-lv') { this.syncChosen(); return; }
     if (el.id === 'se-add-q') {
       this.addQuery = el.value;
       const picks = this.host.querySelector('#se-add-pick');
@@ -506,7 +535,7 @@ const SaveEditor = {
       const ok = Number.isInteger(n) && n >= 1 && n <= cap;
       el.classList.toggle('invalid', !ok);
       if (!ok) return;
-      try { SaveEdit.setWeaponLevel(this.session, +el.dataset.uid, n); this.renderStatus(); }
+      try { SaveEdit.setWeaponLevel(this.session, +el.dataset.uid, n, +el.dataset.cap); this.renderStatus(); }
       catch (err) { el.classList.add('invalid'); UI.toast(err.message); }
     }
   },
@@ -578,7 +607,7 @@ const SaveEditor = {
     }
     const spec = this.bonusSpec(weapon);
     let uid;
-    try { uid = SaveEdit.addWeapon(this.session, { weaponId: weapon.id, level, bonusOptions: spec.bonusOptions, placeholder: spec.placeholder, note: spec.note }); }
+    try { uid = SaveEdit.addWeapon(this.session, { weaponId: weapon.id, level, maxLevel: cap, bonusOptions: spec.bonusOptions, placeholder: spec.placeholder, note: spec.note }); }
     catch (err) { UI.toast(err.message); return; }
     this.weaponQuery = '';
     this.render();

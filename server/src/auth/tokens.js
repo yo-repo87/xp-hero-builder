@@ -50,6 +50,17 @@ export async function rotateRefreshToken(rawToken, userAgent) {
   return { userId: row.user_id, refreshToken: newToken };
 }
 
+// True when this exact refresh token was rotated in the last few seconds.
+// Used so a losing parallel refresh does not clear the replacement cookie.
+export async function refreshWasJustRotated(rawToken) {
+  const { rows } = await pool.query(
+    `SELECT revoked_at FROM refresh_tokens WHERE token_hash = $1`,
+    [hashToken(rawToken)]
+  );
+  const at = rows[0]?.revoked_at;
+  return !!at && Date.now() - new Date(at).getTime() < 15000;
+}
+
 export async function revokeRefreshToken(rawToken) {
   await pool.query(`UPDATE refresh_tokens SET revoked_at = now() WHERE token_hash = $1 AND revoked_at IS NULL`, [
     hashToken(rawToken),

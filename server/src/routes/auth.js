@@ -7,6 +7,7 @@ import {
   signAccessToken,
   issueRefreshToken,
   rotateRefreshToken,
+  refreshWasJustRotated,
   revokeRefreshToken,
   REFRESH_COOKIE_NAME,
   REFRESH_COOKIE_MAX_AGE_MS,
@@ -20,16 +21,25 @@ import { hasSecondFactorCredential } from '../auth/webauthn.js';
 const router = Router();
 
 // Cross-site cookie (frontend is on a different origin from this API),
-// so it must be SameSite=None + Secure; the browser then still attaches
-// it on fetch() calls from the frontend as long as those calls use
-// credentials: 'include' and CORS allows credentials (see app.js).
+// so it must be SameSite=None + Secure. Partitioned (CHIPS) lets Chrome
+// store it when third-party cookies are blocked. The browser attaches it
+// on fetch() to /auth as long as those calls use credentials: 'include'
+// and CORS allows credentials (see app.js). A new sign-in is required
+// once before a browser that blocked the old cookie will store this one.
 const REFRESH_COOKIE_OPTS = {
   httpOnly: true,
   secure: true,
   sameSite: 'none',
+  partitioned: true,
   maxAge: REFRESH_COOKIE_MAX_AGE_MS,
   path: '/auth',
 };
+
+function clearRefreshCookie(res) {
+  const base = { path: '/auth', secure: true, sameSite: 'none' };
+  res.clearCookie(REFRESH_COOKIE_NAME, base);
+  res.clearCookie(REFRESH_COOKIE_NAME, { ...base, partitioned: true });
+}
 const STATE_COOKIE_OPTS = { httpOnly: true, secure: true, sameSite: 'none', maxAge: 5 * 60 * 1000, path: '/auth' };
 
 // FRONTEND_ORIGIN is the bare origin (scheme+host, no path) — that's all
@@ -120,7 +130,9 @@ router.post('/refresh', async (req, res) => {
 
   const result = await rotateRefreshToken(raw, req.headers['user-agent']);
   if (!result) {
-    res.clearCookie(REFRESH_COOKIE_NAME, { path: '/auth' });
+    // A second tab can present the cookie this request just rotated. Clearing
+    // it would delete the new cookie the browser stored from the winner.
+    if (!(await refreshWasJustRotated(raw))) clearRefreshCookie(res);
     return res.status(401).json({ error: 'Refresh token invalid or expired' });
   }
   res.cookie(REFRESH_COOKIE_NAME, result.refreshToken, REFRESH_COOKIE_OPTS);
@@ -131,7 +143,7 @@ router.post('/refresh', async (req, res) => {
 router.post('/logout', async (req, res) => {
   const raw = req.cookies?.[REFRESH_COOKIE_NAME];
   if (raw) await revokeRefreshToken(raw);
-  res.clearCookie(REFRESH_COOKIE_NAME, { path: '/auth' });
+  clearRefreshCookie(res);
   res.json({ ok: true });
 });
 

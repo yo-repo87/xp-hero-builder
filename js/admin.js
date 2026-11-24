@@ -30,18 +30,19 @@ const Admin = {
   // Returns a Blob (zip of the game's save files pulled from the VM).
   async getGameSaves() {
     const res = await Auth.authedFetch('/admin/game-saves');
-    if (!res.ok) { let msg = 'Could not fetch game saves'; try { msg = (await res.json()).error || msg; } catch {} throw new Error(msg); }
+    if (!res.ok) { let msg = 'Could not fetch game saves'; try { msg = (await res.json()).error || msg; } catch {} if (res.status === 401) msg = Auth.signInHelp; throw new Error(msg); }
     return res.blob();
   },
 
   // Uploads a save zip. The server writes those save files onto the VM.
   async applyGameSaves(file) {
+    const bytes = await file.arrayBuffer();
     const res = await Auth.authedFetch('/admin/game-saves', {
       method: 'POST',
       headers: { 'Content-Type': 'application/zip' },
-      body: file,
+      body: bytes,
     });
-    if (!res.ok) { let msg = 'Could not apply the save'; try { msg = (await res.json()).error || msg; } catch {} throw new Error(msg); }
+    if (!res.ok) { let msg = 'Could not apply the save'; try { msg = (await res.json()).error || msg; } catch {} if (res.status === 401) msg = Auth.signInHelp; throw new Error(msg); }
     return res.json();
   },
 

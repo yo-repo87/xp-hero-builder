@@ -275,8 +275,9 @@ const SaveEdit = {
     return g;
   },
 
-  setWeaponLevel(session, uid, level) {
-    if (!Number.isInteger(level) || level < 1 || level > 1000000) throw new Error('Level must be a whole number from 1 to 1000000');
+  setWeaponLevel(session, uid, level, cap) {
+    const max = Number.isInteger(cap) && cap >= 1 ? cap : 1000000;
+    if (!Number.isInteger(level) || level < 1 || level > max) throw new Error(`Level must be a whole number from 1 to ${max}`);
     const g = this._touchWeapons(session);
     const w = g._weapons[String(uid)];
     if (!w) throw new Error('That weapon is not in this save');
@@ -349,8 +350,9 @@ const SaveEdit = {
   addWeapon(session, spec) {
     const weaponId = +spec.weaponId;
     const level = spec.level;
+    const max = Number.isInteger(spec.maxLevel) && spec.maxLevel >= 1 ? spec.maxLevel : 1000000;
     if (!Number.isInteger(weaponId) || weaponId <= 0) throw new Error('Unknown weapon');
-    if (!Number.isInteger(level) || level < 1 || level > 1000000) throw new Error('Level must be a whole number from 1 to 1000000');
+    if (!Number.isInteger(level) || level < 1 || level > max) throw new Error(`Level must be a whole number from 1 to ${max}`);
     if (!Array.isArray(spec.bonusOptions)) throw new Error('Missing bonus options');
     const g = this._touchWeapons(session);
     let maxUid = +g._lindex || +g.json.l_index || 0;

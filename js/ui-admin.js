@@ -88,7 +88,10 @@ const AdminUI = {
         <button class="btn" id="admin-saves-import">📥 Import into my build</button>
         <button class="btn" id="admin-save-editor-open" type="button">Save Editor</button>
       </div>
-      <div class="caveat">The zip contains the game's account identifiers; the site ignores them on import, but keep the file private. Close the game before applying a save. Apply replaces only the save files inside the zip.</div>
+      <div class="caveat">The zip contains the game's account identifiers; the site ignores them on import, but keep the file private. Close the game before applying a save. Apply replaces only the save files inside the zip. If apply says your access token is invalid or expired, click Sign in again, sign in with the same account, then apply that same zip. The Save Editor keeps your edits until you close this browser tab.</div>
+      <div class="action-row" style="margin-top:8px">
+        <button type="button" class="btn" id="admin-signin-again">Sign in again</button>
+      </div>
     `;
     this._renderUsersTable();
     document.getElementById('admin-refresh-users').addEventListener('click', () => this.refresh());
@@ -114,6 +117,7 @@ const AdminUI = {
       finally { busy(false); }
     });
     document.getElementById('admin-save-editor-open').addEventListener('click', () => SaveEditor.open());
+    document.getElementById('admin-signin-again').addEventListener('click', () => AccountUI.openAuthModal('login'));
     apply.addEventListener('change', async () => {
       const file = apply.files?.[0];
       apply.value = '';

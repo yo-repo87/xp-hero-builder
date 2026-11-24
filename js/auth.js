@@ -77,9 +77,44 @@ const Auth = {
     this._notify();
   },
 
-  // Attaches the bearer token and transparently retries once via refresh
-  // if the access token has expired mid-session.
+  // Shown when the API rejects the access token. The Admin page repeats
+  // these steps so they stay available after the toast goes away.
+  signInHelp: 'Your sign-in expired. On the Admin page, click Sign in again, sign in with the same account, then apply the same zip. The Save Editor keeps your edits until you close this browser tab.',
+
+  _tokenExpiresSoon() {
+    if (!this.accessToken) return true;
+    const part = this.accessToken.split('.')[1];
+    if (!part) return true;
+    try {
+      const pad = part.replace(/-/g, '+').replace(/_/g, '/');
+      const json = JSON.parse(atob(pad));
+      return !json.exp || json.exp * 1000 < Date.now() + 60000;
+    } catch {
+      return true;
+    }
+  },
+
+  // One refresh at a time. Two expired requests used to rotate the same
+  // cookie twice; the second try revoked the fresh cookie and the next
+  // request could not sign back in.
+  _refreshAccessToken() {
+    if (!this._refreshPromise) {
+      this._refreshPromise = (async () => {
+        const refreshed = await fetch(`${this.API_BASE}/auth/refresh`, { method: 'POST', credentials: 'include' });
+        if (!refreshed.ok) return false;
+        const body = await refreshed.json().catch(() => ({}));
+        if (!body.accessToken) return false;
+        this.accessToken = body.accessToken;
+        return true;
+      })().finally(() => { this._refreshPromise = null; });
+    }
+    return this._refreshPromise;
+  },
+
+  // Attaches the bearer token. Refreshes shortly before the 15-minute
+  // access token expires, and once more if a request still comes back 401.
   async authedFetch(path, opts = {}) {
+    if (this.accessToken && this._tokenExpiresSoon()) await this._refreshAccessToken();
     const doFetch = () =>
       fetch(`${this.API_BASE}${path}`, {
         ...opts,
@@ -88,12 +123,9 @@ const Auth = {
       });
 
     let res = await doFetch();
-    if (res.status === 401 && this.accessToken) {
-      const refreshed = await fetch(`${this.API_BASE}/auth/refresh`, { method: 'POST', credentials: 'include' });
-      if (refreshed.ok) {
-        this.accessToken = (await refreshed.json()).accessToken;
-        res = await doFetch();
-      }
+    if (res.status === 401) {
+      const ok = await this._refreshAccessToken();
+      if (ok) res = await doFetch();
     }
     return res;
   },

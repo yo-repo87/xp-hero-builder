@@ -38,7 +38,8 @@ const UI = {
     this.toastEl.textContent = msg;
     this.toastEl.classList.add('show');
     clearTimeout(this.toastTimer);
-    this.toastTimer = setTimeout(() => this.toastEl.classList.remove('show'), 2200);
+    const stay = String(msg || '').length > 80 ? 8000 : 2200;
+    this.toastTimer = setTimeout(() => this.toastEl.classList.remove('show'), stay);
   },
 };
 

@@ -268,7 +268,14 @@ test('save editor round-trips wallet, stack items, and weapons', () => {
   try { SaveEdit.setWallet(session, 'gem', '9223372036854775808'); } catch { threw = true; }
   ok(threw, 'rejects past int64');
   SaveEdit.setWeaponLevel(session, 10, 9);
+  let overOwned = false;
+  try { SaveEdit.setWeaponLevel(session, 10, 11, 10); } catch (err) { overOwned = /1 to 10/.test(err.message); }
+  ok(overOwned, 'owned level rejects a value above the weapon max');
+  eq(SaveEdit.readWeapons(session)['10'].Level, 9);
   SaveEdit.removeWeapon(session, 11);
+  let overAdd = false;
+  try { SaveEdit.addWeapon(session, { weaponId: 1007, level: 11, maxLevel: 10, bonusOptions: [] }); } catch (err) { overAdd = /1 to 10/.test(err.message); }
+  ok(overAdd, 'add rejects a level above the weapon max');
   const uid = SaveEdit.addWeapon(session, { weaponId: 1007, level: 3, bonusOptions: [{ BonusOptionType: 1, Value: 0.007 }], placeholder: true, note: 'mid' });
   eq(uid, 12);
 
@@ -415,6 +422,12 @@ test('weapon catalog has a rarity and grade for the save editor cap', () => {
   const missing = Game.db.WeaponData.filter(w => w.Rarity == null || w.Grade == null);
   eq(missing.map(w => w.id), []);
   for (const type of [0, 1, 3]) ok(Game.index.itemByType.get(type)?.Name_en, `wallet type ${type}`);
+  eq(Game.index.itemByType.get(5)?.Name_en, 'Elixir');
+  eq(Game.index.itemByType.get(6002)?.Name_en, 'S-Ticket');
+  eq(Game.index.itemByType.get(8401)?.Name_en, 'Evolution Potion');
+  const crude = Game.index.weaponById.get(1001);
+  const crudeRow = Game.db.BalancingData_Rarity.find(r => r.Rarity === crude.Rarity && r.Grade === crude.Grade);
+  eq(crudeRow.MaxLevel, 10);
 });
 
 test('ability gold costs match the live game (interpolated between checkpoints)', () => {
