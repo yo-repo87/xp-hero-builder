@@ -42,3 +42,6 @@ Backups/
 # Personal account screenshots — never commit
 XP Hero Images/
 apk/
+
+# Downloaded game-save zips (account identifiers)
+xphero-saves-*.zip
