@@ -17,6 +17,8 @@ const SaveEditor = {
   addQuery: '',
   addPick: null,
   showZero: false,
+  heroView: null, // null = closed, 'grid', or a costume id
+
 
   open() {
     UI.openModal(`
@@ -41,13 +43,22 @@ const SaveEditor = {
       host.addEventListener('input', e => this.onInput(e));
       host.addEventListener('change', e => this.onChange(e));
     }
+    if (!this._escBound) {
+      this._escBound = true;
+      // Runs before the modal's own Escape handler: close the hero window first.
+      window.addEventListener('keydown', e => {
+        if (e.key !== 'Escape' || this.heroView == null || !this.host?.isConnected) return;
+        e.stopImmediatePropagation();
+        this.setHeroView(this.heroView === 'grid' ? null : 'grid');
+      }, true);
+    }
     this.render();
   },
 
   render() {
     const host = this.host;
     if (!host) return;
-    host.innerHTML = this.shellHTML();
+    host.innerHTML = this.shellHTML() + (this.session && this.heroView != null ? this.heroPopHTML() : '');
     this.renderLists();
   },
 
@@ -61,7 +72,7 @@ const SaveEditor = {
         ${s ? `<button type="button" class="btn btn-gold" id="se-download">Download edited save (.zip)</button>` : ''}
       </div>
       ${this.error ? `<div class="empty-state">${escapeHtml(this.error)}</div>` : ''}
-      ${s ? this.loadedHTML() : `<p class="section-sub" style="margin:0">Load the backup from the game VM, or a zip you already downloaded. Gold, gems, hero tokens, hero upgrade items, other stackable items, and weapons can be edited, then saved as a new zip.</p>`}
+      ${s ? this.loadedHTML() : `<p class="section-sub" style="margin:0">Load the backup from the game VM, or a zip you already downloaded. Gold, gems, hero levels, stars, rarity, and tokens, hero upgrade items, other stackable items, and weapons can be edited, then saved as a new zip.</p>`}
     `;
   },
 
@@ -160,63 +171,193 @@ const SaveEditor = {
       : `<div class="caveat">${cur?.stackLocked ? 'The stack field is not a plain integer map, so Evolution Potion was left unchanged.' : 'No currency file in this zip, so Evolution Potion is not here.'}</div>`;
     let tokens;
     if (!costume) tokens = `<div class="caveat">No hero file in this zip.</div>`;
-    else if (costume.heroesLocked) tokens = `<div class="caveat">Hero token counts are not plain integers, so they were left unchanged.</div>`;
-    else tokens = `
-      <input class="se-input" id="se-hero-q" placeholder="Search heroes" value="${escapeHtml(this.heroQuery)}" autocomplete="off">
-      <div class="se-list" id="se-heroes"></div>`;
+    else if (costume.heroesLocked) tokens = `<div class="caveat">Hero token counts are not plain integers, so the hero list was left unchanged.</div>`;
+    else {
+      const n = costume._editedHeroes?.size || 0;
+      tokens = `<div class="action-row" style="align-items:center">
+        <button type="button" class="btn btn-gold" id="se-heroes-open">Heroes</button>
+        <span class="fs-sub">Level, stars, rarity, unlocked, and tokens for each hero.${n ? ` ${n} hero${n === 1 ? '' : 'es'} edited.` : ''}</span>
+      </div>`;
+    }
     return `
       <h4 class="section-head" style="margin-top:16px">Heroes</h4>
-      <div class="caveat">Hero tokens are each hero's <span class="mono">PieceCount</span> in the costume save. <span class="mono">CostumeData.UnlockRequiredPieces</span> and each evolution row's <span class="mono">Cost_Piece</span> are piece costs. Elixir, the level-up item on every <span class="mono">CostumeLevelData</span> row, is in the cards above. Evolution Potion (type 8401) is the evolution item on every <span class="mono">CostumeEvolutionData</span> row. This changes the stored counts only. A hero missing from the save is added as not unlocked, at level 1 and star 1 with its starting rarity, only when the token count is set above zero.</div>
+      <div class="caveat">Hero tokens are each hero's <span class="mono">PieceCount</span> in the costume save. <span class="mono">CostumeData.UnlockRequiredPieces</span> and each evolution row's <span class="mono">Cost_Piece</span> are piece costs. Elixir, the level-up item on every <span class="mono">CostumeLevelData</span> row, is in the cards above. Evolution Potion (type 8401) is the evolution item on every <span class="mono">CostumeEvolutionData</span> row. The Heroes button opens each hero's level, stars, rarity, unlocked flag, and tokens. A hero missing from the save is added as not unlocked, at level 1 and star 1 with its starting rarity, only when one of its values is changed (a token count of zero adds nothing).</div>
       <h4 class="section-head" style="margin-top:12px">Upgrade items</h4>
       ${items}
-      <h4 class="section-head" style="margin-top:12px">Hero tokens</h4>
+      <h4 class="section-head" style="margin-top:12px">Hero levels, stars, and tokens</h4>
       ${tokens}`;
   },
 
   heroRows() {
     const owned = SaveEdit.readHeroes(this.session) || {};
     const q = this.heroQuery.trim().toLowerCase();
-    return Game.db.CostumeData.map(costume => {
-      const status = owned[String(costume.id)] || null;
-      const amount = status ? String(status.PieceCount) : '0';
-      return { costume, status, amount };
-    }).filter(({ costume }) => {
-      if (!q) return true;
-      const name = (costume.Name_en || costume.Name || '').toLowerCase();
-      return name.includes(q) || String(costume.id).includes(q);
-    }).sort((a, b) => {
-      const az = SaveEdit.canonDigit(a.amount) === '0' ? 1 : 0;
-      const bz = SaveEdit.canonDigit(b.amount) === '0' ? 1 : 0;
-      if (az !== bz) return az - bz;
-      const ap = a.status?.IsPurchased ? 0 : 1;
-      const bp = b.status?.IsPurchased ? 0 : 1;
-      if (ap !== bp) return ap - bp;
-      return (b.costume.rarity || 0) - (a.costume.rarity || 0)
-        || (a.costume.Name_en || '').localeCompare(b.costume.Name_en || '')
-        || a.costume.id - b.costume.id;
-    });
+    return Game.db.CostumeData.map(costume => ({ costume, status: owned[String(costume.id)] || null }))
+      .filter(({ costume }) => {
+        if (!q) return true;
+        const name = (costume.Name_en || costume.Name || '').toLowerCase();
+        return name.includes(q) || String(costume.id).includes(q);
+      }).sort((a, b) => {
+        const ap = a.status?.IsPurchased ? 0 : 1;
+        const bp = b.status?.IsPurchased ? 0 : 1;
+        if (ap !== bp) return ap - bp;
+        return (b.costume.rarity || 0) - (a.costume.rarity || 0)
+          || (a.costume.Name_en || '').localeCompare(b.costume.Name_en || '')
+          || a.costume.id - b.costume.id;
+      });
   },
 
-  heroNote(row) {
-    const created = this.session.groups.save_costume?._createdHeroes?.has(row.costume.id);
-    if (created) return 'Added as not unlocked, level 1, star 1';
-    if (!row.status) return 'Not in this save';
-    const lv = `level ${row.status.Level}`;
-    const star = `star ${row.status.Grade}`;
-    return row.status.IsPurchased ? `Unlocked · ${lv} · ${star}` : `Not unlocked · ${lv} · ${star}`;
+  heroName(costume) { return costume.Name_en || costume.Name || `Hero ${costume.id}`; },
+
+  // Caps come from CostumeData (Max_Lv, Max_Grade) and the hero's
+  // CostumeEvolutionData tiers. A saved value past a cap is kept as the cap,
+  // same as weapons, so the editor never forces a value down.
+  heroLimits(costume, cur) {
+    const birth = +costume.rarity || 1;
+    const maxLv = Math.max(+costume.Max_Lv || 1, cur.Level || 1);
+    const maxGrade = Math.max(+costume.Max_Grade || 1, cur.Grade || 1);
+    const tiers = new Set([birth, ...Formulas.heroEvolutionRows(costume).map(r => r.Rarity)]);
+    if (Number.isInteger(cur.Rarity)) tiers.add(cur.Rarity);
+    return { birth, maxLv, maxGrade, rarities: [...tiers].sort((x, y) => x - y) };
   },
 
-  heroesHTML() {
+  heroCurrent(costume, status) {
+    return status
+      ? { Level: status.Level, Grade: status.Grade, Rarity: status.Rarity, IsPurchased: !!status.IsPurchased, PieceCount: String(status.PieceCount) }
+      : { Level: 1, Grade: 1, Rarity: +costume.rarity || 1, IsPurchased: false, PieceCount: '0' };
+  },
+
+  heroPopHTML() {
+    const grid = this.heroView === 'grid';
+    const costume = grid ? null : Game.index.costumeById.get(this.heroView);
+    const title = grid || !costume ? 'Heroes' : 'Edit hero';
+    return `<div class="se-pop" id="se-hero-pop" role="dialog" aria-modal="true" aria-label="${escapeHtml(title)}">
+      <div class="se-pop-panel">
+        <div class="se-pop-head">
+          ${grid ? '' : `<button type="button" class="btn btn-sm" id="se-hero-back">Back</button>`}
+          <h4 class="section-head" style="margin:0;flex:1">${escapeHtml(title)}</h4>
+          <button type="button" class="btn btn-sm" id="se-hero-close">Done</button>
+        </div>
+        ${grid || !costume ? this.heroGridHTML() : this.heroDetailHTML(costume)}
+      </div>
+    </div>`;
+  },
+
+  heroGridHTML() {
+    return `<p class="fs-sub" style="margin:0 0 8px">Pick a hero to edit. Dimmed heroes are not unlocked. Edits stay in this session until you download the save.</p>
+      <input class="se-input" id="se-hero-q" placeholder="Search heroes" value="${escapeHtml(this.heroQuery)}" autocomplete="off" style="width:100%">
+      <div class="se-hero-grid" id="se-hero-grid">${this.heroCardsHTML()}</div>`;
+  },
+
+  heroCardsHTML() {
     const rows = this.heroRows();
     if (!rows.length) return `<div class="caveat">No heroes match.</div>`;
-    return rows.map(r => {
-      const name = r.costume.Name_en || r.costume.Name || `Hero ${r.costume.id}`;
-      return `<div class="se-row">
-        ${this.artHTML(Game.heroIcon(r.costume), r.costume.rarity, name)}
-        <div class="se-main"><div class="fs-title">${escapeHtml(name)}</div><div class="fs-sub" data-hero-note="${r.costume.id}">${escapeHtml(this.heroNote(r))}</div></div>
-        <input class="se-input se-amt se-piece" data-piece="${r.costume.id}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} tokens" value="${escapeHtml(r.amount)}">
-      </div>`;
+    const edited = this.session.groups.save_costume?._editedHeroes;
+    return rows.map(({ costume, status }) => {
+      const name = this.heroName(costume);
+      const cur = this.heroCurrent(costume, status);
+      const on = cur.IsPurchased;
+      return `<button type="button" class="se-hero-card${on ? '' : ' locked'}" data-hero="${costume.id}">
+        ${edited?.has(costume.id) ? '<span class="se-badge">edited</span>' : ''}
+        ${this.artHTML(Game.heroIcon(costume), cur.Rarity, name)}
+        <span class="fs-title">${escapeHtml(name)}</span>
+        <span class="fs-sub">${status ? `Lv ${escapeHtml(String(cur.Level))} · ★${escapeHtml(String(cur.Grade))}` : 'Not in save'}</span>
+        <span class="fs-sub">${escapeHtml(Game.rarityColor(cur.Rarity).name)}${on ? '' : ' · locked'}</span>
+      </button>`;
     }).join('');
+  },
+
+  heroDetailHTML(costume) {
+    const status = (SaveEdit.readHeroes(this.session) || {})[String(costume.id)] || null;
+    const cur = this.heroCurrent(costume, status);
+    const lim = this.heroLimits(costume, cur);
+    const name = this.heroName(costume);
+    const id = costume.id;
+    const rarityOpts = lim.rarities.map(r => {
+      const label = r === lim.birth ? `${Game.rarityColor(r).name} (starting)` : `${Game.rarityColor(r).name} (evolution)`;
+      return `<option value="${r}" ${r === cur.Rarity ? 'selected' : ''}>${escapeHtml(label)}</option>`;
+    }).join('');
+    const starOpts = Array.from({ length: lim.maxGrade }, (_, i) => i + 1)
+      .map(g => `<option value="${g}" ${g === cur.Grade ? 'selected' : ''}>★ ${g}</option>`).join('');
+    return `
+      <div class="se-hero-top">
+        ${this.artHTML(Game.heroIcon(costume), cur.Rarity, name)}
+        <div class="se-main">
+          <div class="fs-title">${escapeHtml(name)}</div>
+          <div class="fs-sub" id="se-hero-sub">${escapeHtml(this.heroSub(costume))}</div>
+        </div>
+      </div>
+      <div class="se-hero-form">
+        <label class="se-field"><span class="fs-sub">Level (1 to ${lim.maxLv})</span>
+          <input class="se-input se-hero-num" data-field="Level" data-max="${lim.maxLv}" data-hid="${id}" inputmode="numeric" autocomplete="off" value="${escapeHtml(String(cur.Level))}"></label>
+        <label class="se-field"><span class="fs-sub">Stars (1 to ${lim.maxGrade})</span>
+          <select class="se-input se-hero-sel" data-field="Grade" data-hid="${id}">${starOpts}</select></label>
+        <label class="se-field"><span class="fs-sub">Rarity</span>
+          ${lim.rarities.length > 1
+            ? `<select class="se-input se-hero-sel" data-field="Rarity" data-hid="${id}">${rarityOpts}</select>`
+            : `<span class="fs-sub">${escapeHtml(Game.rarityColor(cur.Rarity).name)}. No evolution tiers.</span>`}</label>
+        <label class="se-field"><span class="fs-sub">Tokens</span>
+          <input class="se-input se-amt se-piece" data-piece="${id}" inputmode="numeric" autocomplete="off" aria-label="${escapeHtml(name)} tokens" value="${escapeHtml(cur.PieceCount)}"></label>
+        <label class="se-field se-check"><input type="checkbox" class="se-hero-unlock" data-hid="${id}" ${cur.IsPurchased ? 'checked' : ''}> Unlocked</label>
+      </div>
+      <div id="se-hero-stats">${this.heroStatsHTML(costume, cur)}</div>
+      <div class="caveat">Saved as <span class="mono">Level</span>, <span class="mono">Grade</span> (stars), <span class="mono">Rarity</span>, <span class="mono">IsPurchased</span>, and <span class="mono">PieceCount</span> in the costume save. Caps are <span class="mono">CostumeData.Max_Lv</span>, <span class="mono">Max_Grade</span>, and this hero's <span class="mono">CostumeEvolutionData</span> tiers. Attack and HP are not stored: the game computes them from these values. Nothing is spent (Elixir, tokens, Evolution Potion). <span class="mono">IsMaxRarity</span> and <span class="mono">UnlockedOptions</span> stay as saved, because what the game uses them for is not decoded. Whether the game re-checks these values on load is not confirmed.</div>`;
+  },
+
+  heroSub(costume) {
+    const g = this.session.groups.save_costume;
+    const inSave = !!(SaveEdit.readHeroes(this.session) || {})[String(costume.id)];
+    const created = g?._createdHeroes?.has(costume.id);
+    return `id ${costume.id} · starts ${Game.rarityColor(+costume.rarity || 1).name}${created ? ' · added by this editor as a new save row' : inSave ? '' : ' · not in this save yet (a change adds it)'}`;
+  },
+
+  heroStatsHTML(costume, cur) {
+    const evoRarity = cur.Rarity > (+costume.rarity || 0) ? cur.Rarity : 0;
+    const full = Formulas.heroFullStats(costume, { level: cur.Level, starGrade: cur.Grade, evoRarity });
+    const interp = full.base.interpolated ? ' (interpolated)' : '';
+    return `<div class="stat-list" style="margin:10px 0">
+        <div class="stat-pill"><span class="stat-name">Attack${interp}</span><span class="stat-val">${fmtNum(full.base.attack)}</span></div>
+        <div class="stat-pill"><span class="stat-name">HP${interp}</span><span class="stat-val">${fmtNum(full.base.hp)}</span></div>
+      </div>
+      ${full.bonuses.length ? `<div class="fs-sub">Bonuses: ${full.bonuses.map(b => escapeHtml(`${b.stat ? b.stat.Title_en : 'Stat ' + b.type} +${fmtNum(b.value)}`)).join(' · ')}</div>` : '<div class="fs-sub">No stat bonuses at these values.</div>'}`;
+  },
+
+  setHeroView(view) {
+    this.heroView = view;
+    if (view == null) this.heroQuery = '';
+    const pop = this.host?.querySelector('#se-hero-pop');
+    if (view == null) { this.render(); return; }
+    const html = this.heroPopHTML();
+    if (pop) pop.outerHTML = html; else this.host.insertAdjacentHTML('beforeend', html);
+    this.host.querySelector(view === 'grid' ? '#se-hero-q' : '#se-hero-back')?.focus();
+  },
+
+  refreshHeroStats(costumeId) {
+    const box = this.host?.querySelector('#se-hero-stats');
+    const costume = Game.index.costumeById.get(costumeId);
+    if (!box || !costume) return;
+    const status = (SaveEdit.readHeroes(this.session) || {})[String(costumeId)] || null;
+    box.innerHTML = this.heroStatsHTML(costume, this.heroCurrent(costume, status));
+  },
+
+  applyHeroField(el, field, value) {
+    const id = +el.dataset.hid;
+    const costume = Game.index.costumeById.get(id);
+    if (!costume) { UI.toast('Unknown hero'); return; }
+    const status = (SaveEdit.readHeroes(this.session) || {})[String(id)] || null;
+    const lim = this.heroLimits(costume, this.heroCurrent(costume, status));
+    const limits = field === 'Level' ? { max: lim.maxLv } : field === 'Grade' ? { max: lim.maxGrade } : field === 'Rarity' ? { allowed: lim.rarities } : null;
+    try {
+      SaveEdit.setHeroField(this.session, id, field, value, limits, { rarity: costume.rarity });
+      el.classList.remove('invalid');
+      this.refreshHeroStats(id);
+      const sub = this.host.querySelector('#se-hero-sub');
+      if (sub) sub.textContent = this.heroSub(costume);
+      if (field === 'Rarity') {
+        const ring = this.host.querySelector('.se-hero-top .se-icon');
+        if (ring) ring.setAttribute('style', rarityStyle(value));
+      }
+      this.renderStatus();
+    } catch (err) { el.classList.add('invalid'); UI.toast(err.message); }
   },
 
   itemRows() {
@@ -375,11 +516,9 @@ const SaveEditor = {
 
   renderLists() {
     const items = this.host?.querySelector('#se-items');
-    const heroes = this.host?.querySelector('#se-heroes');
     const weapons = this.host?.querySelector('#se-weapons');
     const picks = this.host?.querySelector('#se-add-pick');
     if (items) items.innerHTML = this.itemsHTML();
-    if (heroes) heroes.innerHTML = this.heroesHTML();
     if (weapons) weapons.innerHTML = this.weaponsHTML();
     if (picks) picks.innerHTML = this.picksHTML();
     this.syncChosen();
@@ -429,6 +568,9 @@ const SaveEditor = {
   },
 
   async onClick(e) {
+    const card = e.target.closest('[data-hero]');
+    if (card && this.host?.contains(card)) { this.setHeroView(+card.dataset.hero); return; }
+    if (e.target.id === 'se-hero-pop') { this.setHeroView(null); return; }
     const pickBtn = e.target.closest('.se-pick');
     if (pickBtn && this.host?.contains(pickBtn)) {
       this.addPick = +pickBtn.dataset.pick;
@@ -462,6 +604,9 @@ const SaveEditor = {
       return;
     }
     if (t.id === 'se-download') { this.download(); return; }
+    if (t.id === 'se-heroes-open') { this.setHeroView('grid'); return; }
+    if (t.id === 'se-hero-back') { this.setHeroView('grid'); return; }
+    if (t.id === 'se-hero-close') { this.setHeroView(null); return; }
     if (t.id === 'se-add') { this.addSelected(); return; }
     const up = e.target.closest('[data-upgrade]');
     if (up) { this.upgradeWeapon(+up.dataset.upgrade); return; }
@@ -482,6 +627,10 @@ const SaveEditor = {
       this.loading = true; this.error = ''; this.render();
       this.loadBlob(file, file.name).catch(err => { this.error = err.message || 'Could not read that zip'; })
         .finally(() => { this.loading = false; this.render(); });
+    } else if (e.target.classList.contains('se-hero-sel')) {
+      this.applyHeroField(e.target, e.target.dataset.field, Number(e.target.value));
+    } else if (e.target.classList.contains('se-hero-unlock')) {
+      this.applyHeroField(e.target, 'IsPurchased', e.target.checked);
     } else if (e.target.id === 'se-show-zero') {
       this.showZero = e.target.checked;
       this.renderLists();
@@ -491,7 +640,14 @@ const SaveEditor = {
   onInput(e) {
     const el = e.target;
     if (el.id === 'se-item-q') { this.itemQuery = el.value; this.renderLists(); return; }
-    if (el.id === 'se-hero-q') { this.heroQuery = el.value; const list = this.host.querySelector('#se-heroes'); if (list) list.innerHTML = this.heroesHTML(); return; }
+    if (el.id === 'se-hero-q') { this.heroQuery = el.value; const grid = this.host.querySelector('#se-hero-grid'); if (grid) grid.innerHTML = this.heroCardsHTML(); return; }
+    if (el.classList.contains('se-hero-num')) {
+      const n = Number(el.value.trim());
+      const max = +el.dataset.max;
+      if (!el.value.trim() || !Number.isInteger(n) || n < 1 || n > max) { el.classList.add('invalid'); return; }
+      this.applyHeroField(el, el.dataset.field, n);
+      return;
+    }
     if (el.id === 'se-weapon-q') { this.weaponQuery = el.value; this.renderLists(); return; }
     if (el.id === 'se-add-lv') { this.syncChosen(); return; }
     if (el.id === 'se-add-q') {
@@ -523,8 +679,8 @@ const SaveEditor = {
       const costume = Game.index.costumeById.get(+el.dataset.piece);
       try {
         SaveEdit.setHeroPieces(this.session, el.dataset.piece, d, costume ? { rarity: costume.rarity } : null);
-        const note = el.closest('.se-row')?.querySelector('[data-hero-note]');
-        if (note && this.session.groups.save_costume?._createdHeroes?.has(+el.dataset.piece)) note.textContent = 'Added as not unlocked, level 1, star 1';
+        const sub = this.host.querySelector('#se-hero-sub');
+        if (sub && costume) sub.textContent = this.heroSub(costume);
         this.renderStatus();
       } catch (err) { el.classList.add('invalid'); UI.toast(err.message); }
       return;
@@ -627,6 +783,8 @@ const SaveEditor = {
     this.addQuery = '';
     this.addPick = null;
     this.showZero = false;
+    this.heroView = null;
+    this.heroQuery = '';
     this.error = '';
   },
 

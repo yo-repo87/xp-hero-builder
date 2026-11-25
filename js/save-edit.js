@@ -227,20 +227,17 @@ const SaveEdit = {
     return g._heroes;
   },
 
-  // birth is { rarity } from CostumeData, used only when this hero has no
-  // row yet. A zero on a missing hero writes nothing.
-  setHeroPieces(session, costumeId, digits, birth) {
-    const d = this.canonDigit(digits);
-    if (d == null) throw new Error('Enter a whole number from 0 to 9223372036854775807');
+  // Returns the hero row, creating it only when create is true. birth is
+  // { rarity } from CostumeData, used only for a new row.
+  _heroRow(session, costumeId, birth, create) {
     const id = String(costumeId);
     if (!/^[1-9]\d*$/.test(id)) throw new Error('Unknown hero');
     const g = this._group(session, 'save_costume');
-    if (g.heroesLocked) throw new Error('Hero token counts are not plain integers, so they were left unchanged.');
+    if (g.heroesLocked) throw new Error('Hero token counts are not plain integers, so the hero list was left unchanged.');
     if (!g._heroes) g._heroes = this._parseHeroes(g.json.o_list_sp17);
-    if (!g._heroes) throw new Error('Hero token counts could not be read.');
+    if (!g._heroes) throw new Error('The hero list could not be read.');
     let hero = g._heroes[id];
-    if (!hero) {
-      if (d === '0') return;
+    if (!hero && create) {
       const rarity = birth && Number.isInteger(+birth.rarity) ? +birth.rarity : null;
       if (rarity == null) throw new Error('That hero is not in this save.');
       hero = {
@@ -251,9 +248,45 @@ const SaveEdit = {
       if (!g._createdHeroes) g._createdHeroes = new Set();
       g._createdHeroes.add(+id);
     }
-    hero.PieceCount = this._storeCount(d);
+    return { g, hero };
+  },
+
+  _heroTouched(g, id) {
+    if (!g._editedHeroes) g._editedHeroes = new Set();
+    g._editedHeroes.add(+id);
     g._heroesDirty = true;
     g.dirty = true;
+  },
+
+  // A zero on a missing hero writes nothing.
+  setHeroPieces(session, costumeId, digits, birth) {
+    const d = this.canonDigit(digits);
+    if (d == null) throw new Error('Enter a whole number from 0 to 9223372036854775807');
+    const { g, hero } = this._heroRow(session, costumeId, birth, d !== '0');
+    if (!hero) return;
+    hero.PieceCount = this._storeCount(d);
+    this._heroTouched(g, costumeId);
+  },
+
+  // field is Level, Grade, Rarity, or IsPurchased. limits: { max } for Level
+  // and Grade (min 1), { allowed: [rarities] } for Rarity. IsMaxRarity and
+  // UnlockedOptions are never changed: what the game uses them for is not decoded.
+  setHeroField(session, costumeId, field, value, limits, birth) {
+    if (field === 'IsPurchased') {
+      if (typeof value !== 'boolean') throw new Error('Unlocked must be true or false');
+    } else if (field === 'Level' || field === 'Grade') {
+      const max = limits && Number.isInteger(limits.max) && limits.max >= 1 ? limits.max : null;
+      if (max == null) throw new Error(`No ${field === 'Level' ? 'max level' : 'max star'} for this hero`);
+      if (!Number.isInteger(value) || value < 1 || value > max) throw new Error(`${field === 'Level' ? 'Level' : 'Stars'} must be a whole number from 1 to ${max}`);
+    } else if (field === 'Rarity') {
+      const allowed = limits && Array.isArray(limits.allowed) ? limits.allowed : [];
+      if (!Number.isInteger(value) || !allowed.includes(value)) throw new Error('That rarity is not one of this hero’s tiers');
+    } else {
+      throw new Error('Unknown hero field');
+    }
+    const { g, hero } = this._heroRow(session, costumeId, birth, true);
+    hero[field] = value;
+    this._heroTouched(g, costumeId);
   },
 
   readWeapons(session) {

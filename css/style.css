@@ -659,6 +659,21 @@ footer.app-footer {
 .se-pick { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; cursor: pointer; background: var(--parchment); color: inherit; font: inherit; border: 1px solid var(--line-soft); border-radius: 8px; padding: 4px 8px; }
 .se-pick.selected { box-shadow: 0 0 0 2px var(--gold) inset; }
 .se-pick .fs-title, .se-pick .fs-sub { display: block; }
+.se-pop { position: fixed; inset: 0; z-index: 150; background: rgba(20,12,4,0.6); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.se-pop-panel { background: var(--parchment-light); border: 2px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); width: 100%; max-width: 880px; max-height: 90vh; overflow-y: auto; padding: 12px 14px 16px; box-sizing: border-box; }
+.se-pop-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; position: sticky; top: -12px; background: var(--parchment-light); padding: 4px 0; z-index: 1; }
+.se-hero-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; margin-top: 10px; }
+.se-hero-card { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 4px; cursor: pointer; text-align: center; background: var(--parchment); color: inherit; font: inherit; border: 1px solid var(--line-soft); border-radius: 10px; }
+.se-hero-card:hover, .se-hero-card:focus-visible { box-shadow: 0 0 0 2px var(--gold) inset; }
+.se-hero-card.locked { opacity: 0.55; }
+.se-hero-card .fs-title, .se-hero-card .fs-sub { display: block; }
+.se-badge { position: absolute; top: 4px; right: 4px; font-size: 0.66rem; background: var(--gold); color: var(--ink); border-radius: 6px; padding: 0 5px; }
+.se-hero-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.se-hero-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; align-items: end; }
+.se-field { display: flex; flex-direction: column; gap: 3px; }
+.se-field .se-input { width: 100%; }
+.se-check { flex-direction: row; align-items: center; gap: 6px; }
+#se-hero-stats .stat-pill { min-width: 200px; gap: 10px; }
 
 .form-field { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 0.76rem; font-weight: 700; color: var(--ink-muted); font-family: 'Baloo 2', sans-serif; }

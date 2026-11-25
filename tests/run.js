@@ -408,6 +408,45 @@ test('save editor edits hero tokens and leaves other costume fields', () => {
   eq([...SaveEdit.buildFiles(locked)[0].bytes], [...before]);
 });
 
+test('save editor edits hero level, stars, rarity, and unlocked within caps', () => {
+  const costume = {
+    version: '2', e_id: '1',
+    o_list_sp17: JSON.stringify({
+      '1': { CostumeID: 1, Level: 91, Grade: 3, Rarity: 2, IsPurchased: true, IsMaxRarity: false, UnlockedOptions: { 9: true }, PieceCount: 120 },
+    }),
+  };
+  const session = SaveEdit.loadEntries([{ name: 'save_costume_1.0', bytes: SaveEdit.encodeSave(costume) }]);
+  const rejects = (fn, re) => { let m = ''; try { fn(); } catch (err) { m = err.message; } ok(re.test(m), m || 'did not throw'); };
+  SaveEdit.setHeroField(session, 1, 'Level', 130, { max: 130 });
+  SaveEdit.setHeroField(session, 1, 'Grade', 6, { max: 6 });
+  SaveEdit.setHeroField(session, 1, 'Rarity', 8, { allowed: [1, 2, 8] });
+  SaveEdit.setHeroField(session, 1, 'IsPurchased', false);
+  rejects(() => SaveEdit.setHeroField(session, 1, 'Level', 131, { max: 130 }), /1 to 130/);
+  rejects(() => SaveEdit.setHeroField(session, 1, 'Level', 0, { max: 130 }), /1 to 130/);
+  rejects(() => SaveEdit.setHeroField(session, 1, 'Grade', 7, { max: 6 }), /1 to 6/);
+  rejects(() => SaveEdit.setHeroField(session, 1, 'Rarity', 5, { allowed: [1, 2, 8] }), /tiers/);
+  rejects(() => SaveEdit.setHeroField(session, 1, 'IsMaxRarity', true), /Unknown hero field/);
+  rejects(() => SaveEdit.setHeroField(session, 1, 'Level', 5, null), /max level/);
+  SaveEdit.setHeroField(session, 21, 'IsPurchased', true, null, { rarity: 8 });
+  ok(session.groups.save_costume._editedHeroes.has(1) && session.groups.save_costume._editedHeroes.has(21));
+  const heroes = JSON.parse(SaveEdit.splitSave(SaveEdit.buildFiles(session)[0].bytes).json.o_list_sp17);
+  eq(heroes['1'].Level, 130);
+  eq(heroes['1'].Grade, 6);
+  eq(heroes['1'].Rarity, 8);
+  eq(heroes['1'].IsPurchased, false);
+  eq(heroes['1'].IsMaxRarity, false);
+  eq(heroes['1'].UnlockedOptions['9'], true);
+  eq(heroes['1'].PieceCount, 120);
+  eq(heroes['21'].Rarity, 8);
+  eq(heroes['21'].Level, 1);
+  eq(heroes['21'].IsPurchased, true);
+  eq(heroes['21'].PieceCount, 0);
+  const me = Game.index.costumeById.get(1);
+  eq(me.Max_Lv, 130);
+  eq(me.Max_Grade, 6);
+  eq(Formulas.heroEvolutionRows(me).map(r => r.Rarity).join(','), '2,3,4,5,6,7,8');
+});
+
 test('save editor leaves an oversized stack untouched', () => {
   const json = { version: '1', gold: '3', gem: '0', crystal: '0', stack: '{"7":9007199254740993}' };
   const session = SaveEdit.loadEntries([{ name: 'save_currency_1.0', bytes: SaveEdit.encodeSave(json) }]);
