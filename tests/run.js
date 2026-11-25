@@ -415,7 +415,7 @@ test('save editor edits trait slot option and synergy, keeps the lock flag', () 
     { name: 'save_trait_roll_1.0', bytes: SaveEdit.encodeSave(mk('1')) },
     { name: 'save_trait_roll_1.1', bytes: SaveEdit.encodeSave(mk('2')) },
   ]);
-  const allowed = { options: Game.db.TraitOptionData.map(o => o.id), synergies: Game.db.TraitSynergyTypeData.map(t => t.id) };
+  const allowed = SaveEdit.traitRollRules(Game.db);
   eq(SaveEdit.readTraits(session).length, 2);
   SaveEdit.setTraitSlot(session, 1, { optionId: 801, synergyType: 5 }, allowed);
   const rejects = (fn, re) => { let m = ''; try { fn(); } catch (err) { m = err.message; } ok(re.test(m), m || 'did not throw'); };
@@ -434,6 +434,32 @@ test('save editor edits trait slot option and synergy, keeps the lock flag', () 
   const bad = SaveEdit.loadEntries([{ name: 'save_trait_roll_1.0', bytes: SaveEdit.encodeSave({ version: '1', sil: '[{"i":0,"o":"x"}]' }) }]);
   ok(bad.groups.save_trait_roll.traitsLocked);
   eq(SaveEdit.readTraits(bad), null);
+});
+
+test('trait roll rules: derived from the roll tables, zero-rate rows refused', () => {
+  const r = SaveEdit.traitRollRules(Game.db);
+  eq(r.options.length, Game.db.TraitOptionData.length);
+  eq(r.synergies, [1, 2, 3, 4, 5]);
+  eq(r.grades, [1, 2, 3, 4, 5, 6, 7, 8]);
+  ok(Math.abs(r.odds[8][1] - 5 / 100000) < 1e-9, 'SSS normal-roll odds');
+  ok(Math.abs(r.odds[6][2] - 0.8108) < 1e-9, 'S on the S-Ticket roll');
+  eq(r.odds[1][2], undefined);
+  // Doctored tables: a zero-rate option, an unreachable grade, a zero-rate synergy.
+  const db = {
+    TraitRollData: [{ group: 1, option_group_id: 1, option_group_rarity: 1, rate: 10, synergy_group_id: 1 },
+                    { group: 1, option_group_id: 2, option_group_rarity: 2, rate: 0, synergy_group_id: 1 }],
+    TraitOptionData: [{ id: 101, option_group_id: 1, option_rarity: 1, rate: 100 }, { id: 102, option_group_id: 1, option_rarity: 1, rate: 0 },
+                      { id: 201, option_group_id: 2, option_rarity: 2, rate: 100 }],
+    TraitSynergyGroupData: [{ group: 1, synergy_type: 1, rate: 20 }, { group: 1, synergy_type: 2, rate: 0 }],
+  };
+  const d = SaveEdit.traitRollRules(db);
+  eq(d.options, [101]); eq(d.synergies, [1]); eq(d.grades, [1]);
+  const sil = '[{"i":0,"o":101,"s":1,"l":false}]';
+  const session = SaveEdit.loadEntries([{ name: 'save_trait_roll_1.0', bytes: SaveEdit.encodeSave({ version: '1', sil }) }]);
+  const rejects = (fn, re) => { let m = ''; try { fn(); } catch (err) { m = err.message; } ok(re.test(m), m || 'did not throw'); };
+  rejects(() => SaveEdit.setTraitSlot(session, 0, { optionId: 102, synergyType: 1 }, d), /Unknown trait option/);
+  rejects(() => SaveEdit.setTraitSlot(session, 0, { optionId: 201, synergyType: 1 }, d), /Unknown trait option/);
+  rejects(() => SaveEdit.setTraitSlot(session, 0, { optionId: 101, synergyType: 2 }, d), /Unknown synergy/);
 });
 
 test('save editor edits hero level, stars, rarity, and unlocked within caps', () => {

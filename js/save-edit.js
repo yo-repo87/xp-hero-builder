@@ -303,6 +303,37 @@ const SaveEdit = {
     return list;
   },
 
+  // What a real roll can produce, derived from the game's roll tables the same
+  // way TraitRollController.RollSingleSlot picks (decompiled): a TraitRollData
+  // row by rate within the roll group -> a TraitOptionData row by rate within
+  // that row's option group -> a TraitSynergyGroupData row by rate within its
+  // synergy group. Only the rolled slot is read, so duplicates across slots are
+  // allowed and there is no per-slot grade limit. Zero-rate rows are unreachable.
+  traitRollRules(db) {
+    const rollGroups = new Map();
+    for (const r of db.TraitRollData || []) {
+      if (!(r.rate > 0)) continue;
+      if (!rollGroups.has(r.group)) rollGroups.set(r.group, []);
+      rollGroups.get(r.group).push(r);
+    }
+    const optGroups = new Set(), synGroups = new Set(), odds = {};
+    for (const [group, rows] of rollGroups) {
+      const total = rows.reduce((t, r) => t + r.rate, 0);
+      for (const r of rows) {
+        optGroups.add(r.option_group_id); synGroups.add(r.synergy_group_id);
+        (odds[r.option_group_rarity] ||= {})[group] = (odds[r.option_group_rarity]?.[group] || 0) + r.rate / total;
+      }
+    }
+    const options = (db.TraitOptionData || []).filter(o => o.rate > 0 && optGroups.has(o.option_group_id));
+    const synergies = [...new Set((db.TraitSynergyGroupData || []).filter(x => x.rate > 0 && synGroups.has(x.group)).map(x => x.synergy_type))];
+    return {
+      options: options.map(o => o.id),
+      synergies: synergies.sort((x, y) => x - y),
+      grades: [...new Set(options.map(o => o.option_rarity))].sort((x, y) => x - y),
+      odds, // { grade: { rollGroup: probability } }
+    };
+  },
+
   readTraits(session) {
     const g = session.groups.save_trait_roll;
     if (!g || g.traitsLocked) return null;

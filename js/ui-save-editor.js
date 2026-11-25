@@ -401,10 +401,16 @@ const SaveEditor = {
   synergyName(id) { return Game.index.traitSynergyTypeById.get(id)?.name_en || `Synergy ${id}`; },
 
   traitAllowed() {
-    return {
-      options: Game.db.TraitOptionData.map(o => o.id),
-      synergies: Game.db.TraitSynergyTypeData.map(t => t.id),
-    };
+    if (!this._traitRules) this._traitRules = SaveEdit.traitRollRules(Game.db);
+    return this._traitRules;
+  },
+
+  // Roll group 1 = normal roll, 2 = the S-Ticket view (RollAllSlotsInSpecialTicketView).
+  oddsText(grade) {
+    const o = this.traitAllowed().odds[grade] || {};
+    const name = { 1: 'normal roll', 2: 'S-Ticket' };
+    const pct = (v) => v >= 0.01 ? `${+(v * 100).toFixed(2)}%` : `${+(v * 100).toFixed(3)}%`;
+    return Object.keys(o).sort().map(g => `${name[g] || 'roll group ' + g} ${pct(o[g])}`).join(' · ');
   },
 
   traitPopHTML() {
@@ -467,22 +473,25 @@ const SaveEditor = {
     if (!slot) return `<div class="caveat">That slot is not in this save.</div>`;
     const cur = Game.index.traitOptionById.get(slot.o);
     const grade = this.traitRarity ?? cur?.option_rarity ?? 1;
-    const grades = [...new Set(Game.db.TraitOptionData.map(o => o.option_rarity))].sort((a, b) => a - b);
-    const opts = Game.db.TraitOptionData.filter(o => o.option_rarity === grade)
+    const rules = this.traitAllowed();
+    const grades = rules.grades;
+    const allowedOpt = new Set(rules.options);
+    const opts = Game.db.TraitOptionData.filter(o => o.option_rarity === grade && allowedOpt.has(o.id))
       .sort((a, b) => a.option_type - b.option_type || a.id - b.id);
     return `
       <p class="fs-sub" style="margin:0 0 8px">Current: <b>${escapeHtml(cur ? `${this.traitGrade(cur.option_rarity)} · ${this.traitLabel(cur)}` : `unknown option ${slot.o}`)}</b> · ${escapeHtml(this.synergyName(slot.s))} · lock flag <span class="mono">l</span> ${slot.l ? 'on' : 'off'} (left as saved)</p>
       <h4 class="section-head" style="margin:8px 0 4px">Synergy</h4>
-      <div class="se-chips">${Game.db.TraitSynergyTypeData.slice().sort((a, b) => a.id - b.id).map(t =>
+      <div class="se-chips">${Game.db.TraitSynergyTypeData.filter(t => rules.synergies.includes(t.id)).sort((a, b) => a.id - b.id).map(t =>
         `<button type="button" class="se-chip${t.id === slot.s ? ' selected' : ''}" data-tsyn="${t.id}" data-slot="${slotIndex}" aria-pressed="${t.id === slot.s}">${escapeHtml(t.name_en || 'Synergy ' + t.id)}</button>`).join('')}</div>
       <h4 class="section-head" style="margin:12px 0 4px">Trait grade</h4>
       <div class="se-chips">${grades.map(r =>
-        `<button type="button" class="se-chip${r === grade ? ' selected' : ''}" data-tgrade="${r}" aria-pressed="${r === grade}" style="${rarityStyle(r)}">${escapeHtml(this.traitGrade(r))}</button>`).join('')}</div>
+        `<button type="button" class="se-chip${r === grade ? ' selected' : ''}" data-tgrade="${r}" aria-pressed="${r === grade}" style="${rarityStyle(r)}" title="${escapeHtml(this.oddsText(r))}">${escapeHtml(this.traitGrade(r))}</button>`).join('')}</div>
+      <p class="fs-sub" style="margin:4px 0 8px">Chance per roll for ${escapeHtml(this.traitGrade(grade))}: ${escapeHtml(this.oddsText(grade) || 'not rollable')}</p>
       <div class="se-picks" style="max-height:none">${opts.map(o =>
         `<button type="button" class="se-pick${o.id === slot.o ? ' selected' : ''}" data-topt="${o.id}" data-slot="${slotIndex}" aria-pressed="${o.id === slot.o}">
           <span class="se-main"><span class="fs-title">${escapeHtml(this.traitLabel(o))}</span><span class="fs-sub">${escapeHtml(this.traitGrade(o.option_rarity))} · option ${o.id}</span></span>
         </button>`).join('')}</div>
-      <div class="caveat">Saved in <span class="mono">save_trait_roll</span> <span class="mono">sil</span>: <span class="mono">o</span> is the <span class="mono">TraitOptionData</span> id and <span class="mono">s</span> the synergy type (field names from the decompiled <span class="mono">UserTraitSlotInfo</span>). Values are <span class="mono">rate_amount</span> per mille. This picks a trait directly. It does not spend Trait Points or S-Tickets. The game rolls grades S to SSS from a separate table (<span class="mono">TraitRollData</span> group 2), and it is not confirmed which grades each slot can roll. The lock flag <span class="mono">l</span> is <span class="mono">_isLocked</span>, but whether that is the roll lock or the slot unlock is not decoded, so it stays as saved. Slots are never added.</div>`;
+      <div class="caveat">Saved in <span class="mono">save_trait_roll</span> <span class="mono">sil</span>: <span class="mono">o</span> is the <span class="mono">TraitOptionData</span> id and <span class="mono">s</span> the synergy type (field names from the decompiled <span class="mono">UserTraitSlotInfo</span>). Values are <span class="mono">rate_amount</span> per mille. This picks a trait directly. It does not spend Trait Points or S-Tickets. Choices are limited to what a real roll can produce, derived from <span class="mono">TraitRollData</span>, <span class="mono">TraitOptionData</span> and <span class="mono">TraitSynergyGroupData</span> the way the decompiled <span class="mono">RollSingleSlot</span> picks. Every slot rolls from the same tables (a normal roll can give E to SSS, the S-Ticket roll S to SSS), and the game does not stop two slots having the same trait. The lock flag <span class="mono">l</span> is <span class="mono">_isLocked</span>, but whether that is the roll lock or the slot unlock is not decoded, so it stays as saved. Slots are never added.</div>`;
   },
 
   setTraitView(view) {
