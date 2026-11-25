@@ -124,7 +124,7 @@ const SaveEdit = {
     }
     if (!files.length) throw new Error('No XP Hero save files in that zip.');
     const groups = {};
-    for (const key of ['save_currency', 'save_weap', 'save_costume']) {
+    for (const key of ['save_currency', 'save_weap', 'save_costume', 'save_trait_roll']) {
       const slots = files.filter(f => this._groupKey(f.logical) === key);
       if (!slots.length) continue;
       const best = slots.reduce((a, b) => {
@@ -146,16 +146,17 @@ const SaveEdit = {
         // through JSON.parse, so the hero list is left byte-for-byte.
         group.heroesLocked = !rawHeroes || /"PieceCount"\s*:\s*-?\d{16,}/.test(rawHeroes) || this._parseHeroes(rawHeroes) == null;
       }
+      if (key === 'save_trait_roll') group.traitsLocked = this._parseTraits(json.sil) == null;
       groups[key] = group;
     }
-    if (!groups.save_currency && !groups.save_weap && !groups.save_costume) throw new Error('That zip has no currency, weapon, or hero save.');
+    if (!groups.save_currency && !groups.save_weap && !groups.save_costume && !groups.save_trait_roll) throw new Error('That zip has no currency, weapon, hero, or trait save.');
     return { files, groups };
   },
 
   _group(session, key) {
     const g = session.groups[key];
     if (!g) {
-      const missing = { save_currency: 'currency file', save_weap: 'weapon file', save_costume: 'hero file' };
+      const missing = { save_currency: 'currency file', save_weap: 'weapon file', save_costume: 'hero file', save_trait_roll: 'trait file' };
       throw new Error(`This save has no ${missing[key] || 'file for that edit'}.`);
     }
     return g;
@@ -289,6 +290,43 @@ const SaveEdit = {
     this._heroTouched(g, costumeId);
   },
 
+  // save_trait_roll "sil" is UserTraitSlotInfo[]: i slot index, o
+  // TraitOptionData id, s synergy type, l _isLocked (all per the decompiled
+  // JsonProperty names). Only o and s are edited; slots are never added.
+  _parseTraits(raw) {
+    let list;
+    try { list = this._embedded(raw); } catch { return null; }
+    if (!Array.isArray(list)) return null;
+    for (const t of list) {
+      if (!t || typeof t !== 'object' || ![t.i, t.o, t.s].every(Number.isSafeInteger) || typeof t.l !== 'boolean') return null;
+    }
+    return list;
+  },
+
+  readTraits(session) {
+    const g = session.groups.save_trait_roll;
+    if (!g || g.traitsLocked) return null;
+    if (!g._traits) g._traits = this._parseTraits(g.json.sil);
+    return g._traits;
+  },
+
+  // spec: { optionId, synergyType }, each checked against the allowed lists.
+  setTraitSlot(session, slotIndex, spec, allowed) {
+    const g = this._group(session, 'save_trait_roll');
+    if (g.traitsLocked) throw new Error('The trait slot list could not be read, so it was left unchanged.');
+    const list = this.readTraits(session);
+    const slot = list.find(t => t.i === slotIndex);
+    if (!slot) throw new Error('That trait slot is not in this save.');
+    const o = spec.optionId, sy = spec.synergyType;
+    if (!Number.isInteger(o) || !(allowed?.options || []).includes(o)) throw new Error('Unknown trait option');
+    if (!Number.isInteger(sy) || !(allowed?.synergies || []).includes(sy)) throw new Error('Unknown synergy type');
+    slot.o = o;
+    slot.s = sy;
+    if (!g._editedTraits) g._editedTraits = new Set();
+    g._editedTraits.add(slotIndex);
+    g.dirty = true;
+  },
+
   readWeapons(session) {
     const g = session.groups.save_weap;
     if (!g) return null;
@@ -416,6 +454,7 @@ const SaveEdit = {
     json.version = String(g.baseVersion + 1);
     if (g._stackDirty) json.stack = this._stringifyDigitMap(g._stack);
     if (g._heroesDirty) json.o_list_sp17 = this._stringifyHeroes(g._heroes);
+    if (g._editedTraits) json.sil = JSON.stringify(g._traits);
     if (g._weapons) json.o_list = JSON.stringify(g._weapons);
     if (g._equip) json.e_list = JSON.stringify(g._equip);
     if (g._lindex != null) json.l_index = g._lindex;

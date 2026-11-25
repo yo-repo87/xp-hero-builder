@@ -674,6 +674,13 @@ footer.app-footer {
 .se-field .se-input { width: 100%; }
 .se-check { flex-direction: row; align-items: center; gap: 6px; }
 #se-hero-stats .stat-pill { min-width: 200px; gap: 10px; }
+.se-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.se-chip { cursor: pointer; font: inherit; font-size: 0.82rem; color: var(--ink); background: var(--parchment); border: 1px solid var(--line-soft); border-radius: 999px; padding: 4px 12px; }
+.se-chip.selected { box-shadow: 0 0 0 2px var(--gold) inset; font-weight: 700; }
+.se-grade { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; border-radius: 50%; font-weight: 800; font-size: 1rem; }
+.se-trait-card .fs-title { font-size: 0.82rem; }
+.se-grade.rarity-ring { color: #fff; text-shadow: 0 1px 2px #000, 0 0 3px #000; }
+.se-chip[data-tgrade] { border-color: var(--rc); border-width: 2px; }
 
 .form-field { margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
 .form-field label { font-size: 0.76rem; font-weight: 700; color: var(--ink-muted); font-family: 'Baloo 2', sans-serif; }

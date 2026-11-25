@@ -408,6 +408,34 @@ test('save editor edits hero tokens and leaves other costume fields', () => {
   eq([...SaveEdit.buildFiles(locked)[0].bytes], [...before]);
 });
 
+test('save editor edits trait slot option and synergy, keeps the lock flag', () => {
+  const sil = '[{"i":0,"o":507,"s":4,"l":true},{"i":1,"o":501,"s":2,"l":false}]';
+  const mk = (v) => ({ version: v, sil, sip: '{}', mrc: '306', cuns: '[]' });
+  const session = SaveEdit.loadEntries([
+    { name: 'save_trait_roll_1.0', bytes: SaveEdit.encodeSave(mk('1')) },
+    { name: 'save_trait_roll_1.1', bytes: SaveEdit.encodeSave(mk('2')) },
+  ]);
+  const allowed = { options: Game.db.TraitOptionData.map(o => o.id), synergies: Game.db.TraitSynergyTypeData.map(t => t.id) };
+  eq(SaveEdit.readTraits(session).length, 2);
+  SaveEdit.setTraitSlot(session, 1, { optionId: 801, synergyType: 5 }, allowed);
+  const rejects = (fn, re) => { let m = ''; try { fn(); } catch (err) { m = err.message; } ok(re.test(m), m || 'did not throw'); };
+  rejects(() => SaveEdit.setTraitSlot(session, 1, { optionId: 999, synergyType: 5 }, allowed), /Unknown trait option/);
+  rejects(() => SaveEdit.setTraitSlot(session, 1, { optionId: 801, synergyType: 9 }, allowed), /Unknown synergy/);
+  rejects(() => SaveEdit.setTraitSlot(session, 7, { optionId: 801, synergyType: 1 }, allowed), /not in this save/);
+  ok(Game.index.traitOptionById.get(801), 'option 801 exists');
+  const files = SaveEdit.buildFiles(session).filter(f => f.logical.startsWith('save_trait_roll'));
+  eq(files.length, 2);
+  for (const f of files) {
+    const j = SaveEdit.splitSave(f.bytes).json;
+    eq(j.version, '3');
+    eq(j.sil, '[{"i":0,"o":507,"s":4,"l":true},{"i":1,"o":801,"s":5,"l":false}]');
+    eq(j.mrc, '306');
+  }
+  const bad = SaveEdit.loadEntries([{ name: 'save_trait_roll_1.0', bytes: SaveEdit.encodeSave({ version: '1', sil: '[{"i":0,"o":"x"}]' }) }]);
+  ok(bad.groups.save_trait_roll.traitsLocked);
+  eq(SaveEdit.readTraits(bad), null);
+});
+
 test('save editor edits hero level, stars, rarity, and unlocked within caps', () => {
   const costume = {
     version: '2', e_id: '1',

@@ -18,6 +18,8 @@ const SaveEditor = {
   addPick: null,
   showZero: false,
   heroView: null, // null = closed, 'grid', or a costume id
+  traitView: null, // null = closed, 'grid', or a slot index
+  traitRarity: null, // grade filter in the slot editor
 
 
   open() {
@@ -47,9 +49,14 @@ const SaveEditor = {
       this._escBound = true;
       // Runs before the modal's own Escape handler: close the hero window first.
       window.addEventListener('keydown', e => {
-        if (e.key !== 'Escape' || this.heroView == null || !this.host?.isConnected) return;
-        e.stopImmediatePropagation();
-        this.setHeroView(this.heroView === 'grid' ? null : 'grid');
+        if (e.key !== 'Escape' || !this.host?.isConnected) return;
+        if (this.heroView != null) {
+          e.stopImmediatePropagation();
+          this.setHeroView(this.heroView === 'grid' ? null : 'grid');
+        } else if (this.traitView != null) {
+          e.stopImmediatePropagation();
+          this.setTraitView(this.traitView === 'grid' ? null : 'grid');
+        }
       }, true);
     }
     this.render();
@@ -58,7 +65,9 @@ const SaveEditor = {
   render() {
     const host = this.host;
     if (!host) return;
-    host.innerHTML = this.shellHTML() + (this.session && this.heroView != null ? this.heroPopHTML() : '');
+    host.innerHTML = this.shellHTML()
+      + (this.session && this.heroView != null ? this.heroPopHTML() : '')
+      + (this.session && this.traitView != null ? this.traitPopHTML() : '');
     this.renderLists();
   },
 
@@ -87,6 +96,7 @@ const SaveEditor = {
       ${cur ? `<h4 class="section-head" style="margin-top:16px">Money and gems</h4>${this.walletHTML(cur)}` : `<div class="caveat">No currency file in this zip.</div>`}
       ${this.pinnedItemsHTML()}
       ${this.heroesSectionHTML()}
+      ${this.traitsSectionHTML()}
       ${cur && !cur.stackLocked ? `
         <div class="action-row" style="margin:16px 0 8px;align-items:center;justify-content:space-between">
           <h4 class="section-head" style="margin:0">Stackable items</h4>
@@ -360,6 +370,145 @@ const SaveEditor = {
     } catch (err) { el.classList.add('invalid'); UI.toast(err.message); }
   },
 
+  // --- Traits -------------------------------------------------------------
+  TRAIT_GRADES: ['', 'E', 'D', 'C', 'B', 'A', 'S', 'SS', 'SSS'], // ETraitGrade
+
+  traitsSectionHTML() {
+    const g = this.session.groups.save_trait_roll;
+    let body;
+    if (!g) body = `<div class="caveat">No trait file in this zip.</div>`;
+    else if (g.traitsLocked) body = `<div class="caveat">The trait slot list is not in the expected shape, so it was left unchanged.</div>`;
+    else {
+      const n = g._editedTraits?.size || 0;
+      const count = (SaveEdit.readTraits(this.session) || []).length;
+      body = `<div class="action-row" style="align-items:center">
+        <button type="button" class="btn btn-gold" id="se-traits-open">Traits</button>
+        <span class="fs-sub">${count} trait slot${count === 1 ? '' : 's'} in this save. Pick the trait and synergy for each.${n ? ` ${n} slot${n === 1 ? '' : 's'} edited.` : ''}</span>
+      </div>`;
+    }
+    return `<h4 class="section-head" style="margin-top:16px">Traits</h4>${body}`;
+  },
+
+  traitLabel(opt) {
+    if (!opt) return 'Unknown trait';
+    const t = Game.index.traitOptionTypeById.get(opt.option_type);
+    const desc = t?.option_info_desc_en || `${t?.name_en || 'Option ' + opt.option_type} +{0}%`;
+    return desc.replace('{0}', fmtNum(opt.rate_amount / 10));
+  },
+
+  traitGrade(r) { return this.TRAIT_GRADES[r] || `grade ${r}`; },
+
+  synergyName(id) { return Game.index.traitSynergyTypeById.get(id)?.name_en || `Synergy ${id}`; },
+
+  traitAllowed() {
+    return {
+      options: Game.db.TraitOptionData.map(o => o.id),
+      synergies: Game.db.TraitSynergyTypeData.map(t => t.id),
+    };
+  },
+
+  traitPopHTML() {
+    const grid = this.traitView === 'grid';
+    return `<div class="se-pop" id="se-trait-pop" role="dialog" aria-modal="true" aria-label="Traits">
+      <div class="se-pop-panel">
+        <div class="se-pop-head">
+          ${grid ? '' : `<button type="button" class="btn btn-sm" id="se-trait-back">Back</button>`}
+          <h4 class="section-head" style="margin:0;flex:1">${grid ? 'Traits' : `Edit slot ${this.traitView + 1}`}</h4>
+          <button type="button" class="btn btn-sm" id="se-trait-close">Done</button>
+        </div>
+        ${grid ? this.traitGridHTML() : this.traitDetailHTML(this.traitView)}
+      </div>
+    </div>`;
+  },
+
+  traitGridHTML() {
+    const list = SaveEdit.readTraits(this.session) || [];
+    const edited = this.session.groups.save_trait_roll?._editedTraits;
+    const cards = list.slice().sort((a, b) => a.i - b.i).map(t => {
+      const opt = Game.index.traitOptionById.get(t.o);
+      const r = opt?.option_rarity;
+      return `<button type="button" class="se-hero-card se-trait-card" data-tslot="${t.i}" ${r ? `style="${rarityStyle(r)}"` : ''}>
+        ${edited?.has(t.i) ? '<span class="se-badge">edited</span>' : ''}
+        <span class="fs-sub">Slot ${t.i + 1}</span>
+        <span class="se-grade ${r ? 'rarity-ring' : ''}">${escapeHtml(r ? this.traitGrade(r) : '?')}</span>
+        <span class="fs-title">${escapeHtml(opt ? this.traitLabel(opt) : `Unknown option ${t.o}`)}</span>
+        <span class="fs-sub">${escapeHtml(this.synergyName(t.s))}</span>
+      </button>`;
+    }).join('');
+    return `<p class="fs-sub" style="margin:0 0 8px">Pick a slot to change its trait or synergy. Edits stay in this session until you download the save.</p>
+      <div class="se-hero-grid">${cards || '<div class="caveat">This save has no trait slots.</div>'}</div>
+      ${this.synergySummaryHTML(list)}`;
+  },
+
+  // Synergy tokens are counted per slot synergy type: TraitSlot offset 0x20 is
+  // _synergyType, the field CalculateSynergyTokens reads. GetSynergyEffect then
+  // takes the highest synergy_value at or under that count.
+  synergySummaryHTML(list) {
+    const counts = new Map();
+    for (const t of list) if (Game.index.traitOptionById.get(t.o)) counts.set(t.s, (counts.get(t.s) || 0) + 1);
+    if (!counts.size) return '';
+    const rows = [...counts.entries()].sort((a, b) => a[0] - b[0]).map(([type, n]) => {
+      const infos = Game.db.TraitSynergyInfoData.filter(x => x.synergy_type === type);
+      const reached = infos.filter(x => x.synergy_value <= n);
+      const top = reached.length ? Math.max(...reached.map(x => x.synergy_value)) : null;
+      const active = top == null ? [] : reached.filter(x => x.synergy_value === top);
+      const next = infos.filter(x => x.synergy_value > n).map(x => x.synergy_value).sort((a, b) => a - b)[0];
+      const fx = active.map(x => {
+        const t = Game.index.traitOptionTypeById.get(x.option_type);
+        return (t?.synergy_info_desc_en || `${t?.name_en || 'Option ' + x.option_type} +{0}%`).replace('{0}', fmtNum(x.rate_amount / 10));
+      }).join(' · ');
+      return `<div class="fs-sub"><b>${escapeHtml(this.synergyName(type))}</b> ×${n}: ${escapeHtml(fx || 'no bonus yet')}${next ? ` (next at ${next})` : ''}</div>`;
+    }).join('');
+    return `<h4 class="section-head" style="margin-top:12px">Synergy</h4>${rows}`;
+  },
+
+  traitDetailHTML(slotIndex) {
+    const slot = (SaveEdit.readTraits(this.session) || []).find(t => t.i === slotIndex);
+    if (!slot) return `<div class="caveat">That slot is not in this save.</div>`;
+    const cur = Game.index.traitOptionById.get(slot.o);
+    const grade = this.traitRarity ?? cur?.option_rarity ?? 1;
+    const grades = [...new Set(Game.db.TraitOptionData.map(o => o.option_rarity))].sort((a, b) => a - b);
+    const opts = Game.db.TraitOptionData.filter(o => o.option_rarity === grade)
+      .sort((a, b) => a.option_type - b.option_type || a.id - b.id);
+    return `
+      <p class="fs-sub" style="margin:0 0 8px">Current: <b>${escapeHtml(cur ? `${this.traitGrade(cur.option_rarity)} · ${this.traitLabel(cur)}` : `unknown option ${slot.o}`)}</b> · ${escapeHtml(this.synergyName(slot.s))} · lock flag <span class="mono">l</span> ${slot.l ? 'on' : 'off'} (left as saved)</p>
+      <h4 class="section-head" style="margin:8px 0 4px">Synergy</h4>
+      <div class="se-chips">${Game.db.TraitSynergyTypeData.slice().sort((a, b) => a.id - b.id).map(t =>
+        `<button type="button" class="se-chip${t.id === slot.s ? ' selected' : ''}" data-tsyn="${t.id}" data-slot="${slotIndex}" aria-pressed="${t.id === slot.s}">${escapeHtml(t.name_en || 'Synergy ' + t.id)}</button>`).join('')}</div>
+      <h4 class="section-head" style="margin:12px 0 4px">Trait grade</h4>
+      <div class="se-chips">${grades.map(r =>
+        `<button type="button" class="se-chip${r === grade ? ' selected' : ''}" data-tgrade="${r}" aria-pressed="${r === grade}" style="${rarityStyle(r)}">${escapeHtml(this.traitGrade(r))}</button>`).join('')}</div>
+      <div class="se-picks" style="max-height:none">${opts.map(o =>
+        `<button type="button" class="se-pick${o.id === slot.o ? ' selected' : ''}" data-topt="${o.id}" data-slot="${slotIndex}" aria-pressed="${o.id === slot.o}">
+          <span class="se-main"><span class="fs-title">${escapeHtml(this.traitLabel(o))}</span><span class="fs-sub">${escapeHtml(this.traitGrade(o.option_rarity))} · option ${o.id}</span></span>
+        </button>`).join('')}</div>
+      <div class="caveat">Saved in <span class="mono">save_trait_roll</span> <span class="mono">sil</span>: <span class="mono">o</span> is the <span class="mono">TraitOptionData</span> id and <span class="mono">s</span> the synergy type (field names from the decompiled <span class="mono">UserTraitSlotInfo</span>). Values are <span class="mono">rate_amount</span> per mille. This picks a trait directly. It does not spend Trait Points or S-Tickets. The game rolls grades S to SSS from a separate table (<span class="mono">TraitRollData</span> group 2), and it is not confirmed which grades each slot can roll. The lock flag <span class="mono">l</span> is <span class="mono">_isLocked</span>, but whether that is the roll lock or the slot unlock is not decoded, so it stays as saved. Slots are never added.</div>`;
+  },
+
+  setTraitView(view) {
+    this.traitView = view;
+    if (view == null) { this.render(); return; }
+    const pop = this.host?.querySelector('#se-trait-pop');
+    const html = this.traitPopHTML();
+    if (pop) {
+      const panel = pop.querySelector('.se-pop-panel');
+      const top = panel ? panel.scrollTop : 0;
+      pop.outerHTML = html;
+      const np = this.host.querySelector('#se-trait-pop .se-pop-panel');
+      if (np && typeof view === 'number') np.scrollTop = top;
+    } else this.host.insertAdjacentHTML('beforeend', html);
+  },
+
+  applyTrait(slotIndex, change) {
+    const slot = (SaveEdit.readTraits(this.session) || []).find(t => t.i === slotIndex);
+    if (!slot) { UI.toast('That slot is not in this save'); return; }
+    const spec = { optionId: change.optionId ?? slot.o, synergyType: change.synergyType ?? slot.s };
+    try { SaveEdit.setTraitSlot(this.session, slotIndex, spec, this.traitAllowed()); }
+    catch (err) { UI.toast(err.message); return; }
+    this.setTraitView(slotIndex);
+    this.renderStatus();
+  },
+
   itemRows() {
     const stack = SaveEdit.readStack(this.session) || {};
     const hidden = new Set([-1, 0, 1, 2, 3, 5, 6002, 8401]);
@@ -532,6 +681,7 @@ const SaveEditor = {
     if (this.session.groups.save_currency?.dirty) bits.push('currency changed');
     if (this.session.groups.save_costume?.dirty) bits.push('heroes changed');
     if (this.session.groups.save_weap?.dirty) bits.push('weapons changed');
+    if (this.session.groups.save_trait_roll?.dirty) bits.push('traits changed');
     const cur = this.session.groups.save_currency;
     const costume = this.session.groups.save_costume;
     const weap = this.session.groups.save_weap;
@@ -539,6 +689,8 @@ const SaveEditor = {
     if (cur?.dirty) slots.push(`currency ×${cur.slots.length} at version ${cur.baseVersion + 1}`);
     if (costume?.dirty) slots.push(`heroes ×${costume.slots.length} at version ${costume.baseVersion + 1}`);
     if (weap?.dirty) slots.push(`weapons ×${weap.slots.length} at version ${weap.baseVersion + 1}`);
+    const tr = this.session.groups.save_trait_roll;
+    if (tr?.dirty) slots.push(`traits ×${tr.slots.length} at version ${tr.baseVersion + 1}`);
     status.textContent = bits.length
       ? `${bits.join(', ')}. Download writes ${slots.join(' and ')}. Other files are copied unchanged.`
       : 'No edits yet. A download before any edit is a byte-for-byte copy of the files you loaded, with the game’s encoded file names.';
@@ -571,10 +723,11 @@ const SaveEditor = {
     const card = e.target.closest('[data-hero]');
     if (card && this.host?.contains(card)) { this.setHeroView(+card.dataset.hero); return; }
     if (e.target.id === 'se-hero-pop') { this.setHeroView(null); return; }
-    const pickBtn = e.target.closest('.se-pick');
+    if (e.target.id === 'se-trait-pop') { this.setTraitView(null); return; }
+    const pickBtn = e.target.closest('.se-pick[data-pick]');   // weapon add-picker only; trait options share the class
     if (pickBtn && this.host?.contains(pickBtn)) {
       this.addPick = +pickBtn.dataset.pick;
-      for (const el of this.host.querySelectorAll('.se-pick')) {
+      for (const el of this.host.querySelectorAll('.se-pick[data-pick]')) {
         const on = el === pickBtn;
         el.classList.toggle('selected', on);
         el.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -607,6 +760,16 @@ const SaveEditor = {
     if (t.id === 'se-heroes-open') { this.setHeroView('grid'); return; }
     if (t.id === 'se-hero-back') { this.setHeroView('grid'); return; }
     if (t.id === 'se-hero-close') { this.setHeroView(null); return; }
+    if (t.id === 'se-traits-open' || t.id === 'se-trait-back') { this.setTraitView('grid'); return; }
+    if (t.id === 'se-trait-close') { this.setTraitView(null); return; }
+    const tslot = e.target.closest('[data-tslot]');
+    if (tslot) { this.traitRarity = null; this.setTraitView(+tslot.dataset.tslot); return; }
+    const topt = e.target.closest('[data-topt]');
+    if (topt) { this.applyTrait(+topt.dataset.slot, { optionId: +topt.dataset.topt }); return; }
+    const tsyn = e.target.closest('[data-tsyn]');
+    if (tsyn) { this.applyTrait(+tsyn.dataset.slot, { synergyType: +tsyn.dataset.tsyn }); return; }
+    const tgr = e.target.closest('[data-tgrade]');
+    if (tgr) { this.traitRarity = +tgr.dataset.tgrade; this.setTraitView(this.traitView); return; }
     if (t.id === 'se-add') { this.addSelected(); return; }
     const up = e.target.closest('[data-upgrade]');
     if (up) { this.upgradeWeapon(+up.dataset.upgrade); return; }
@@ -785,6 +948,7 @@ const SaveEditor = {
     this.showZero = false;
     this.heroView = null;
     this.heroQuery = '';
+    this.traitView = null;
     this.error = '';
   },
 
